@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">CPA Cathay Pacific (Asia's World City)</name>
+            <texture>Liveries-300/CPA-AWC.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries-300/CPA-AWC-lights.png</texture>
+        </lights>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>CPA</aircraft-operator>
+</sim>
+</PropertyList>

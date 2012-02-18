@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <!-- =============================================================== -->
+  <!--                        PFD display preprocessors                -->
+  <!-- =============================================================== -->
+
+  <filter>
+      <name>Stall speed margin computer</name> 
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+          <property>instrumentation/weu/state/stall-speed</property>
+      </input>
+      <reference>
+          <property>velocities/airspeed-kt</property>
+          <offset>85</offset>
+      </reference>
+      <output>instrumentation/pfd/stallspeed-diff</output>
+      <min>-205</min>
+      <max>10</max>
+  </filter>
+
+  <filter>
+      <name>Over speed margin computer</name> 
+      <type>gain</type>
+      <gain>-1.0</gain>
+      <input>
+          <property>instrumentation/afds/max-airspeed-kts</property>
+      </input>
+      <reference>
+          <property>velocities/airspeed-kt</property>
+          <offset>-95</offset>
+      </reference>
+      <output>instrumentation/pfd/overspeed-diff</output>
+      <min>-200</min>
+      <max>-10</max>
+  </filter>
+
+  <!-- =============================================================== -->
+  <!--                 speed trend vector processing                   -->
+  <!-- =============================================================== -->
+
+  <predict-simple>
+    <name>speed predictor (smoothed)</name>
+    <debug>false</debug>
+    <input>velocities/airspeed-kt</input>
+    <output>instrumentation/pfd/speed-lookahead</output>
+    <seconds>10.0</seconds>
+    <filter-gain>0.05</filter-gain>
+  </predict-simple>
+
+  <filter>
+    <name>PFD preprocessor (spd trend up)</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <property>instrumentation/pfd/speed-lookahead</property>
+    </input>
+    <reference>
+      <property>velocities/airspeed-kt</property>
+      <offset>90</offset>
+    </reference>
+    <gain>-0.002667</gain>
+    <output>instrumentation/pfd/speed-trend-up</output>
+    <max>0.24</max>
+    <min>0</min>
+  </filter>
+
+  <filter>
+    <name>PFD preprocessor (spd trend down)</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <property>instrumentation/pfd/speed-lookahead</property>
+      <min>0</min>
+    </input>
+    <reference>
+      <property>velocities/airspeed-kt</property>
+      <offset>-90</offset>
+    </reference>
+    <gain>-0.002667</gain>
+    <output>instrumentation/pfd/speed-trend-down</output>
+    <min>-0.24</min>
+    <max>0</max>
+  </filter>
+
+</PropertyList>

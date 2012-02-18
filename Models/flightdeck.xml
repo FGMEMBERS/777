@@ -1,0 +1,381 @@
+<!-- 777-200
+Justin Smithies
+Syd Adams
+-->
+
+<PropertyList>
+
+    <path>flightdeck.ac</path>
+
+    <model>
+        <path>Models/Aircraft/marker.xml</path>
+    </model>
+
+    <model>
+        <name>Pedestal</name>
+        <path>Aircraft/777/Models/pedestal.xml</path>
+        <offsets>
+            <x-m>-1.288</x-m>
+            <y-m>0.017</y-m>
+            <z-m>-0.388</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>EFB1</name>
+        <path>Aircraft/777/Models/Instruments/EFB/EFB.xml</path>
+        <offsets>
+            <x-m>-1.506</x-m>
+            <y-m>-1.034</y-m>
+            <z-m>0.299</z-m>
+            <pitch-deg>-27.0</pitch-deg>
+            <heading-deg>38.0</heading-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>EFB2</name>
+        <path>Aircraft/777/Models/Instruments/EFB/EFB.xml</path>
+        <offsets>
+            <x-m>-1.506</x-m>
+            <y-m>1.034</y-m>
+            <z-m>0.299</z-m>
+            <pitch-deg>-27</pitch-deg>
+            <heading-deg>-38</heading-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>OHpanel</name>
+        <path>Aircraft/777/Models/OHpanel.xml</path>
+        <offsets>
+            <x-m>-1.103</x-m>
+            <y-m>-0.007</y-m>
+            <z-m>1.289</z-m>
+            <pitch-deg>63</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>APpanel</name>
+        <path>Aircraft/777/Models/APpanel.xml</path>
+        <offsets>
+            <x-m>-1.824</x-m>
+            <y-m>-0.050</y-m>
+            <z-m>0.575</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>CTL1</name>
+        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <offsets>
+            <x-m>-1.824</x-m>
+            <y-m>-0.361</y-m>
+            <z-m>0.575</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>CTL2</name>
+        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <offsets>
+            <x-m>-1.824</x-m>
+            <y-m>0.366</y-m>
+            <z-m>0.575</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>Pclock</name>
+        <path>Aircraft/777/Models/Instruments/chronometer.xml</path>
+        <offsets>
+            <x-m>-1.844</x-m>
+            <y-m>-0.702</y-m>
+            <z-m>0.406</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>CPclock</name>
+        <path>Aircraft/777/Models/Instruments/chronometer.xml</path>
+        <offsets>
+            <x-m>-1.844</x-m>
+            <y-m>0.735</y-m>
+            <z-m>0.406</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>STDBY AI</name>
+        <path>Aircraft/777/Models/Instruments/stby-ai.xml</path>
+        <offsets>
+            <x-m>-1.853</x-m>
+            <y-m>-0.147</y-m>
+            <z-m>0.465</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>STBY ASI</name>
+        <path>Aircraft/777/Models/Instruments/stby-asi.xml</path>
+        <offsets>
+            <x-m>-1.837</x-m>
+            <y-m>-0.147</y-m>
+            <z-m>0.371</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>STBY ALT</name>
+        <path>Aircraft/777/Models/Instruments/stby-alt.xml</path>
+        <offsets>
+            <x-m>-1.82</x-m>
+            <y-m>-0.147</y-m>
+            <z-m>0.277</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>GearCTL</name>
+        <path>Aircraft/777/Models/gear-ctl.xml</path>
+        <offsets>
+            <x-m>-1.836</x-m>
+            <y-m>0.179</y-m>
+            <z-m>0.371</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <effect>
+        <inherits-from>Effects/lightmap</inherits-from>
+        <parameters>
+            <texture n="1">
+                <image>Aircraft/777/Models/Effects/lightmap-C1.png</image>
+            </texture>
+        </parameters>
+        <object-name>cockpit</object-name>
+    </effect>
+
+    <effect>
+        <inherits-from>Effects/lightmap</inherits-from>
+        <parameters>
+            <texture n="1">
+                <image>Aircraft/777/Models/Effects/lightmap-C2.png</image>
+            </texture>
+        </parameters>
+        <object-name>Panel.main</object-name>
+        <object-name>Panel.Rwall</object-name>
+        <object-name>Panel.Lwall</object-name>
+        <object-name>Panel.center</object-name>
+        <object-name>Pseat</object-name>
+        <object-name>Pseat.armrest</object-name>
+        <object-name>Cseat</object-name>
+        <object-name>Cseat.armrest</object-name>
+        <object-name>Seats</object-name>
+        <object-name>Tray</object-name>
+        <object-name>Yokeshaft</object-name>
+        <object-name>Yoke</object-name>
+        <object-name>Yoke.001</object-name>
+    </effect>
+
+<!--2d PFD-->
+    <!--model>
+        <name>panel1</name>
+        <path>Aircraft/777/Models/panel1.xml</path>
+    </model-->
+
+<!--3d PFD-->
+    <model>
+        <name>panel2</name>
+        <path>Aircraft/777/Models/panel2.xml</path>
+    </model>
+
+<!--  controls -->
+
+    <animation>
+        <type>translate</type>
+        <object-name>RHpedal</object-name>
+        <property>controls/flight/rudder</property>
+        <factor>0.05</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>LHpedal</object-name>
+        <property>controls/flight/rudder</property>
+        <factor>-0.05</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Yokeshaft</object-name> 
+        <object-name>Yoke</object-name>
+        <object-name>Yoke.001</object-name>
+        <condition>
+            <property>sim/yokes-visible</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Yokeshaft</object-name>
+        <object-name>Yoke</object-name>
+        <object-name>Yoke.001</object-name>
+        <property>controls/flight/elevator</property>
+        <factor>15</factor>
+        <center>
+            <x-m>-1.596</x-m>
+            <y-m>0</y-m>
+            <z-m>-0.257</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Yoke</object-name>
+        <property>controls/flight/aileron</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-1.574</x-m>
+            <y-m>0.559</y-m>
+            <z-m>0.336</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Yoke.001</object-name>
+        <property>controls/flight/aileron</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-1.574</x-m>
+            <y-m>-0.526</y-m>
+            <z-m>0.336</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Cseat.armrest</object-name>
+        <property>sim/model/armrest</property>
+        <factor>93</factor>
+        <center>
+            <x-m>-0.928</x-m>
+            <y-m>0</y-m>
+            <z-m>0.127</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Pseat.armrest</object-name>
+        <property>sim/model/armrest</property>
+        <factor>93</factor>
+        <center>
+            <x-m>-0.928</x-m>
+            <y-m>0</y-m>
+            <z-m>0.127</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Pseat.armrest</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/model/armrest</property>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Cseat.armrest</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/model/armrest</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>Mstr.Warning</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Weu.mute_warnings();</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Mstr.Warning.001</object-name>
+        <condition>
+            <or>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
+                <property>instrumentation/weu/light/master-warning</property>
+            </or>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>Mstr.Caution.001</object-name>
+        <condition>
+            <property>instrumentation/weu/light/master-caution</property>
+        </condition>
+    </animation>
+
+</PropertyList>

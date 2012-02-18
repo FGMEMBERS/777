@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+
+    <filter>
+        <name>Aileron PCU</name>
+        <type>noise-spike</type>
+        <max-rate-of-change>0.5</max-rate-of-change>
+        <input>/autopilot/internal/aileron-pcu-input</input>
+        <output>/controls/flight/aileron-trim</output>
+    </filter>
+
+    <filter>
+        <name>Elevator PCU</name>
+        <type>noise-spike</type>
+        <max-rate-of-change>0.5</max-rate-of-change>
+        <input>/autopilot/internal/elevator-pcu-input</input>
+        <output>/controls/flight/elevator-trim</output>
+    </filter>
+
+</PropertyList>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">KAL Korean Air</name>
+            <texture>Liveries-300/KAL.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries-300/KAL-lights.png</texture>
+        </lights>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>KAL</aircraft-operator>
+</sim>
+</PropertyList>

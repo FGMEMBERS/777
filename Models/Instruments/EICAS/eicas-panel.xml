@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>EFIS Panel</name>
+<background>Aircraft/777/Models/Instruments/EICAS/transparent.png</background>
+<w>256</w>
+<h>256</h>
+
+<instruments>
+
+    <instrument include="LHepr.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>LHepr</name>
+        <x>33.3</x>
+        <y>214.8</y>
+        <w>55</w>
+        <h>55</h>
+    </instrument>
+
+    <instrument include="RHepr.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>RHepr</name>
+        <x>99.9</x>
+        <y>214.8</y>
+        <w>55</w>
+        <h>55</h>
+    </instrument>
+
+    <instrument include="LHn1.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>LHn1</name>
+        <x>33.3</x>
+        <y>160.4</y>
+        <w>55</w>
+        <h>55</h>
+    </instrument>
+
+    <instrument include="RHn1.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>RHn1</name>
+        <x>99.9</x>
+        <y>160.4</y>
+        <w>55</w>
+        <h>55</h>
+    </instrument>
+
+<!--
+    <instrument include="LHegt.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>LHegt</name>
+        <x>33.3</x>
+        <y>105.7</y>
+        <w>55</w>
+        <h>55</h>
+    </instrument>
+
+    <instrument include="RHegt.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>RHegt</name>
+        <x>99.9</x>
+        <y>105.7</y>
+        <w>55</w>
+        <h>55</h>
+    </instrument>
+-->
+    <instrument include="Gear.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>gear-annun</name>
+        <x>199.0</x>
+        <y>118.0</y>
+        <w>28</w>
+        <h>22</h>
+    </instrument>
+
+    <instrument include="Spoilers.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <greater-than>
+                    <property>surface-positions/speedbrake-norm</property>
+                    <value>0</value>
+                </greater-than>
+            </and>
+        </condition>
+        <name>flaps</name>
+        <x>190.0</x>
+        <y>90.0</y>
+        <w>20</w>
+        <h>15</h>
+    </instrument>
+
+    <instrument include="Flaps.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <or>
+	                <greater-than>
+	                    <property>surface-positions/flap-pos-norm</property>
+	                    <value>0</value>
+	                </greater-than>
+	                <greater-than>
+	                    <property>surface-positions/speedbrake-norm</property>
+	                    <value>0</value>
+	                </greater-than>
+                </or>
+            </and>
+        </condition>
+        <name>flaps</name>
+        <x>190.0</x>
+        <y>58.0</y>
+        <w>20</w>
+        <h>40</h>
+    </instrument>
+
+</instruments>
+
+</PropertyList>

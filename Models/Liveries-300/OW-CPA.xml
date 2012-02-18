@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">CPA Cathay Pacific (One World)</name>
+            <texture>Liveries-300/OW-CPA.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries-300/OW-CPA-lights.png</texture>
+        </lights>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>CPA</aircraft-operator>
+</sim>
+</PropertyList>

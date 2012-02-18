@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">KLM Royal Dutch Airlines</name>
+            <texture>Liveries-200/KLMlow.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries-200/KLMlow-lights.png</texture>
+        </lights>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>KLM</aircraft-operator>
+</sim>
+
+</PropertyList>

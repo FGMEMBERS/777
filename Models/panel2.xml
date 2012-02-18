@@ -1,0 +1,63 @@
+<!-- 777-200
+Justin Smithies
+Syd Adams
+-->
+
+<PropertyList>
+
+    <model>
+        <name>PFD1</name>
+        <path>Aircraft/777/Models/Instruments/PFD/PFD3d.xml</path>
+        <offsets>
+            <x-m>-1.84</x-m>
+            <y-m>-0.539</y-m>
+            <z-m>0.384</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>PFD2</name>
+        <path>Aircraft/777/Models/Instruments/PFD/PFD3d.xml</path>
+        <offsets>
+            <x-m>-1.84</x-m>
+            <y-m>0.572</y-m>
+            <z-m>0.384</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>ND1</name>
+        <path>Aircraft/777/Models/Instruments/MFD/ND.xml</path>
+        <offsets>
+            <x-m>-1.84</x-m>
+            <y-m>-0.314</y-m>
+            <z-m>0.384</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>ND2</name>
+        <path>Aircraft/777/Models/Instruments/MFD/ND.xml</path>
+        <offsets>
+            <x-m>-1.84</x-m>
+            <y-m>0.346</y-m>
+            <z-m>0.384</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>EICAS</name>
+        <path>Aircraft/777/Models/Instruments/EICAS/eicas-3d.xml</path>
+        <offsets>
+            <x-m>-1.84</x-m>
+            <y-m>0.017</y-m>
+            <z-m>0.383</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+</PropertyList>

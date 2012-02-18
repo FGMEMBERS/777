@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>EFIS Panel text</name>
+<background>Aircraft/777/Models/Instruments/EICAS/transparent.png</background>
+<w>256</w>
+<h>256</h>
+
+<instruments>
+   <instrument include="Msg.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>messages</name>
+        <x>128.0</x>
+        <y>128.0</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+</instruments>
+
+</PropertyList>
