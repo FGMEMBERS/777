@@ -53,6 +53,8 @@
 		    	<value>2</value>
 			</equals>
 			<not><property>autopilot/autobrake/throttles-at-idle</property></not>
+		    <property>gear/gear[1]/wow</property>
+		    <property>gear/gear[2]/wow</property>
 		</and>
 	</R>
 	<output>controls/flight/speedbrake</output>

@@ -793,13 +793,9 @@ var AFDS = {
 			}
 			elsif(idx == 4)		# VNAV SPD
 			{
-				if(getprop("/controls/flight/flaps") > 0.033)		# flaps 5
+				if(getprop("/controls/flight/flaps") > 0)		# flaps down
 				{
-					me.ias_setting.setValue(180);
-				}
-				elsif(getprop("/controls/flight/flaps") > 0)		# flaps 1
-				{
-					me.ias_setting.setValue(195);
+					me.ias_setting.setValue(getprop("instrumentation/weu/state/stall-speed") + 35);
 				}
 				elsif(current_alt < 2000)
 				{
