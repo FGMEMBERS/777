@@ -3,8 +3,14 @@
     <sim>
         <description>Boeing 777-200</description>
         <author>Justin Smithies, Syd Adams, Thorsten Brehm</author>
-        <status>Development</status>
-        <aircraft-version>20120131</aircraft-version>
+        <status>early production</status>
+		<rating>
+			<FDM type="int">4</FDM>
+			<systems type="int">4</systems>
+			<cockpit type="int">4</cockpit>
+			<model type="int">4</model>
+		</rating>
+        <aircraft-version>20120310</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200</aero>
 		<max-payload type="double">238000</max-payload>
@@ -860,7 +866,10 @@ Service Ceiling: 43,100ft
             <pitch-engaged type="bool">1</pitch-engaged>
             <roll-engaged type="bool">1</roll-engaged>
         </locks>
-    </autopilot>
+		<constant>
+			<flare-base type="double">0.315</flare-base>
+		</constant>
+   </autopilot>
 
     <nasal>
         <b777>

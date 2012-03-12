@@ -142,6 +142,14 @@ Autopilot Control Panel
 
 	<animation>
 		<type>select</type>
+		<object-name>CLBtoggle</object-name>
+		<condition>
+			<property>instrumentation/afds/inputs/climb-continuous</property>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
 		<object-name>HDGtoggle</object-name>
 		<condition>
 			<equals>
@@ -903,11 +911,6 @@ Autopilot Control Panel
 					b777.afds.input(3,2);
 				</script>
 			</binding>
-			<binding>
-				<command>property-assign</command>
-				<property>/sim/realism/false-radio-courses-enabled</property>
-				<value>0</value>
-			</binding>
 		</action>
 	</animation>
 
@@ -989,7 +992,7 @@ Autopilot Control Panel
 		</action>
 	</animation>
 
-	<!-- animation>
+	<!--animation>
 		<type>pick</type>
 		<object-name>CLB.btn</object-name>
 		<action>

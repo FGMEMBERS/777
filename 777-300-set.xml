@@ -3,8 +3,14 @@
     <sim>
         <description>Boeing 777-300</description>
         <author>Justin Smithies, Syd Adams, Arminair</author>
-        <status>Development</status>
-        <aircraft-version>20120130</aircraft-version>
+        <status>early production</status>
+		<rating>
+			<FDM type="int">4</FDM>
+			<systems type="int">4</systems>
+			<cockpit type="int">4</cockpit>
+			<model type="int">4</model>
+		</rating>
+        <aircraft-version>20120310</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-300</aero>
 		<max-payload type="double">306400</max-payload>
@@ -968,6 +974,9 @@ Lights AS REQUIRED
             <pitch-engaged type="bool">1</pitch-engaged>
             <roll-engaged type="bool">1</roll-engaged>
         </locks>
+		<constant>
+			<flare-base type="double">0.21</flare-base>
+		</constant>
     </autopilot>
 
     <nasal>

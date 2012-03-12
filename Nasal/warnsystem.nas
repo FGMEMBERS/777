@@ -44,6 +44,7 @@ var WEU =
         m.stickshaker  = m.weu.initNode("actuators/stick-shaker",0,"BOOL");
         # status information
         m.stallspeed   = m.weu.initNode("state/stall-speed",-100,"DOUBLE");
+        m.targetspeed   = m.weu.initNode("state/target-speed",-100,"DOUBLE");
         # EICAS output 
         m.msgs_alert   = [];
         m.msgs_caution = [];
@@ -198,6 +199,7 @@ var WEU =
 #### stall warnings and other sounds ####
     update_sounds : func
     {
+		var target_speed = 0;
         var horn   = 0;
         var shaker = 0;
         var siren  = (size(me.msgs_alert)!=0);
@@ -205,21 +207,42 @@ var WEU =
 
         # calculate stall speed
         if (me.flaps<0.01)			# flap up
+		{
             stallspeed = vgrosswt * 166 + 80;
+		}
         elsif (me.flaps<0.034)		# flap 1
+		{
             stallspeed = vgrosswt * 166 + 60;
+			target_speed = vgrosswt * 166 + 80;
+		}
         elsif (me.flaps<0.167)		# flap 5
+		{
             stallspeed = vgrosswt * 166 + 40;
+			target_speed = vgrosswt * 166 + 60;
+		}
         elsif (me.flaps<0.501)		# flap 15
+		{
             stallspeed = vgrosswt * 166 + 20;
+			target_speed = vgrosswt * 166 + 40;
+		}
         elsif (me.flaps<0.667)		# flap 20
+		{
             stallspeed = vgrosswt * 180;
+			target_speed = vgrosswt * 166 + 20;
+		}
         elsif (me.flaps<0.834)		# flap 25
+		{
             stallspeed = vgrosswt * 174;
+			target_speed = vgrosswt * 180;
+		}
         else						# flap 30
+		{
             stallspeed = vgrosswt * 166;
+			target_speed = vgrosswt * 174;
+		}
 		stallspeed /= 1.3;
         me.stallspeed.setValue(stallspeed);
+        me.targetspeed.setValue(target_speed);
 
         if ((me.speed<=stallspeed)and
             (me.enabled)and

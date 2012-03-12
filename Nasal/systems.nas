@@ -775,6 +775,7 @@ var Startup = func{
    	setprop("controls/fuel/tank[1]/boost-pump[1]",1);
     setprop("/engines/engine[0]/run",1);
     setprop("/engines/engine[1]/run",1);
+	setprop("/sim/realism/false-radio-courses-enabled",0);
 }
 
 var Shutdown = func{

@@ -63,6 +63,8 @@ var AFDS = {
 		m.vs_fpa_selected = m.AFDS_inputs.initNode("vs-fpa-selected",0,"BOOL");
 		m.bank_switch = m.AFDS_inputs.initNode("bank-limit-switch",0,"INT");
 		m.vnav_descent = m.AFDS_inputs.initNode("vnav-descent",0,"BOOL");
+		m.climb_continuous = m.AFDS_inputs.initNode("climb-continuous",0,"BOOL");
+		m.indicated_vs_fpm = m.AFDS_inputs.initNode("indicated-vs-fpm",0,"DOUBLE");
 
 		m.ias_setting = m.AP_settings.initNode("target-speed-kt",200);# 100 - 399 #
 		m.mach_setting = m.AP_settings.initNode("target-speed-mach",0.40);# 0.40 - 0.95 #
@@ -290,12 +292,11 @@ var AFDS = {
 					}
 					me.auto_popup.setValue(1);
 				}
-				elsif((btn == 3) or (btn == 4))
-				{
-					btn = 0;
-					vmach = getprop("autopilot/settings/target-speed-mach");
-					copilot("Target MACH = "~vmach);
-				}
+#				elsif(btn == 3)
+#				{
+#					btn = me.autothrottle_mode.getValue();
+#					me.climb_continuous.setValue(!me.climb_continuous.getValue());
+#				}
 				elsif((current_alt
 						- getprop("autopilot/internal/airport-height")) < 400)
 				{
@@ -499,6 +500,7 @@ var AFDS = {
 		current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
 		var VS =getprop("velocities/vertical-speed-fps");
 		var TAS =getprop("velocities/uBody-fps");
+		me.indicated_vs_fpm.setValue(int((abs(VS) * 60 + 50) / 100) * 100);
 		if(TAS < 10) TAS = 10;
 		if(VS < -200) VS=-200;
 		if (abs(VS/TAS)<=1)
@@ -795,7 +797,7 @@ var AFDS = {
 			{
 				if(getprop("/controls/flight/flaps") > 0)		# flaps down
 				{
-					me.ias_setting.setValue(getprop("instrumentation/weu/state/stall-speed") + 35);
+					me.ias_setting.setValue(getprop("instrumentation/weu/state/target-speed"));
 				}
 				elsif(current_alt < 2000)
 				{
@@ -866,8 +868,7 @@ var AFDS = {
 			}
 			elsif(idx == 6)				# G/S
 			{
-				f_angle = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
-				f_angle = (0.45 + (f_angle - 105816) * 2.97127765e-6);
+				f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
 				me.flare_constant_setting.setValue(f_angle);
 				if((getprop("position/gear-agl-ft") < 50)
 					and (me.flare_armed.getValue()))
@@ -884,8 +885,7 @@ var AFDS = {
 			}
 			elsif(idx == 7)								# FLARE
 			{
-				f_angle = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
-				f_angle = (0.45 + (f_angle - 105816) * 2.97127765e-6);
+				f_angle = 0.00;
 				me.flare_constant_setting.setValue(f_angle);
 				if(me.autothrottle_mode.getValue())
 				{
@@ -990,7 +990,7 @@ var AFDS = {
 				and (getprop("engines/engine[0]/n1") < 30)		# #1Thrust is actual flight idle
 				and (getprop("engines/engine[1]/n1") < 30))		# #2Thrust is actual flight idle
 			{
-			#	me.autothrottle_mode.setValue(3);				# HOLD
+				me.autothrottle_mode.setValue(3);				# HOLD
 			}
 			# Take off mode and above baro 400 ft
 			elsif((current_alt - getprop("autopilot/internal/airport-height")) > 400)

@@ -647,6 +647,48 @@ Syd Adams
     </text>
 
     <text>
+        <name>VS-POS</name>
+        <offsets>
+            <x-m>0.010</x-m>
+            <y-m>0.078</y-m>
+            <z-m>0.056</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%4.0f</format>
+		<property>instrumentation/afds/inputs/indicated-vs-fpm</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+	<text>
+        <name>VS-NEG</name>
+        <offsets>
+            <x-m>0.010</x-m>
+            <y-m>0.078</y-m>
+            <z-m>-0.038</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%4.0f</format>
+		<property>instrumentation/afds/inputs/indicated-vs-fpm</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
         <name>RALT</name>
         <offsets>
             <x-m>0.004</x-m>
@@ -1081,6 +1123,8 @@ Syd Adams
         <object-name>ALTdigits</object-name>
         <object-name>PITCH arm</object-name>
         <object-name>ROLL arm</object-name>
+        <object-name>VS-POS</object-name>
+        <object-name>VS-NEG</object-name>
         <object-name>INHG-WHT</object-name>
         <object-name>KPA-WHT</object-name>
         <object-name>DME</object-name>
@@ -1181,6 +1225,28 @@ Syd Adams
         </condition>
     </animation-->
 
+    <animation>
+        <type>select</type>
+        <object-name>VS-POS</object-name>
+        <condition>
+			<greater-than-equals>
+ 				<property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+				<value>6.67</value>
+			</greater-than-equals>
+        </condition>
+    </animation>
+	
+    <animation>
+        <type>select</type>
+        <object-name>VS-NEG</object-name>
+        <condition>
+			<less-than-equals>
+ 				<property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+				<value>-6.67</value>
+			</less-than-equals>
+        </condition>
+    </animation>
+	
     <animation>
         <type>select</type>
         <object-name>DME</object-name>

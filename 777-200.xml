@@ -126,7 +126,7 @@ Vref30 = SQR(Landing Weight in Tonnes / 250) X 151
                     min="1" max="-1"/>
   </vstab>
 
-  <jet x="1.16" y="9.89"  z="-2.995" mass="17000" thrust="77000" spool-time="3"
+  <jet x="1.16" y="9.89"  z="-2.995" mass="13100" thrust="77000" spool-time="3"
        egt="840" tsfc="0.31 " epr="40" n1-idle="18.5" n1-max="104" n2-idle="70" n2-max="107" reverse="0.4">
     <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
@@ -135,7 +135,7 @@ Vref30 = SQR(Landing Weight in Tonnes / 250) X 151
     <actionpt x="-2.7" y="9.89" z="-2.995"/>
   </jet>
 
-  <jet x="1.16" y="-9.89"  z="-2.995" mass="17000" thrust="77000"  spool-time="3"
+  <jet x="1.16" y="-9.89"  z="-2.995" mass="13100" thrust="77000"  spool-time="3"
        egt="840" tsfc="0.31" epr="40" n1-idle="18.5" n1-max="104" n2-idle="70" n2-max="107" reverse="0.4">
     <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
