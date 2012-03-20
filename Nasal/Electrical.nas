@@ -140,7 +140,8 @@ var alternator1 = Alternator.new(0,"controls/electric/engine[0]/generator","/eng
 var alternator2 = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/rpm",20.0,28.0,60.0);
 
 #####################################
-setlistener("/sim/signals/fdm-initialized", func {
+var elec_init_listener = setlistener("/sim/signals/fdm-initialized", func {
+    removelistener(elec_init_listener);
     init_switches();
     settimer(update_electrical,5);
     print("Electrical System ... ok");
@@ -347,12 +348,11 @@ lighting = func(bv) {
         lights_output[i].setValue(bv * srvc);
     }
 
-return load;
-
+    return load;
 }
 
 update_electrical = func {
     var scnd = getprop("sim/time/delta-sec");
     update_virtual_bus( scnd );
-settimer(update_electrical, 0.2);
+    settimer(update_electrical, 0.2);
 }

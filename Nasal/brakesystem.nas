@@ -142,6 +142,7 @@ var BrakeSystem =
 var BrakeSys = BrakeSystem.new();
 
 setlistener("/sim/signals/fdm-initialized",
+            # executed on _every_ FDM reset (but not installing new listeners)
             func(idle) { BrakeSys.reset(); },
             0,0);
 

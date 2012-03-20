@@ -610,6 +610,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     settimer(start_updates,1);
 });
 
+var systems_running = 0;
 var start_updates = func {
     if (getprop("position/gear-agl-ft")>30)
     {
@@ -625,7 +626,13 @@ var start_updates = func {
         setprop("/engines/engine[0]/run",1);
         setprop("/engines/engine[1]/run",1);
     }
-    update_systems();
+
+    # start update_systems loop - but start it once only
+    if (!systems_running)
+    {
+        systems_running = 1;
+        update_systems();
+    }
 }
 
 setlistener("/sim/signals/reinit", func {

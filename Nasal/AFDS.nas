@@ -1091,7 +1091,8 @@ var AFDS = {
 
 var afds = AFDS.new();
 
-setlistener("/sim/signals/fdm-initialized", func {
+var afds_init_listener = setlistener("/sim/signals/fdm-initialized", func {
+	removelistener(afds_init_listener);
 	settimer(update_afds,6);
 	print("AFDS System ... check");
 });
