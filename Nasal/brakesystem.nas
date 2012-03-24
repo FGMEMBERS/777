@@ -29,7 +29,7 @@ var BrakeSystem =
 {
     new : func()
     {
-       m = { parents : [BrakeSystem]};
+       var m = { parents : [BrakeSystem]};
        # deceleration caused by brakes alone (knots/s2)
        m.BrakeDecel    = 1.0; # kt/s^2
        # Higher value means quicker cooling

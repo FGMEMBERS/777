@@ -110,7 +110,7 @@ var AFDS = {
 	{
 		if(getprop("/systems/electrical/outputs/avionics"))
 		{
-			current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
+			var current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
 			if(mode==0)
 			{
 				# horizontal AP controls
@@ -229,7 +229,7 @@ var AFDS = {
 					}
 					else
 					{
-						vnav_mode = me.vertical_mode.getValue();
+						var vnav_mode = me.vertical_mode.getValue();
 						if(vnav_mode == 3)			# Current mode is VNAV PTH
 						{
 						}
@@ -270,7 +270,7 @@ var AFDS = {
 						me.autothrottle_mode.setValue(4);	# A/T IDLE
 					}
 					setprop("autopilot/internal/current-pitch-deg", getprop("orientation/pitch-deg"));
-					alt = me.alt_setting.getValue();
+					var alt = me.alt_setting.getValue();
 					me.target_alt.setValue(alt);
 				}
 				me.vertical_mode.setValue(btn);
@@ -351,7 +351,7 @@ var AFDS = {
 							and !me.lnav_armed.getValue()
 							and (me.lateral_mode.getValue() != 3))
 						{
-							current_bank = getprop("orientation/roll-deg");
+							var current_bank = getprop("orientation/roll-deg");
 							if(current_bank > 5)
 							{
 								setprop("autopilot/internal/target-roll-deg", current_bank);
@@ -360,7 +360,7 @@ var AFDS = {
 							else
 							{
 								# set target to current magnetic heading
-								tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+								var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
 								me.hdg_setting.setValue(tgtHdg);
 								me.trk_setting.setValue(tgtHdg);
 								me.lateral_mode.setValue(2);		# HDG HOLD
@@ -391,7 +391,7 @@ var AFDS = {
 				{
 					if (btn==1)	#APP button
 					{
-						lgsmode = me.vertical_mode.getValue();
+						var lgsmode = me.vertical_mode.getValue();
 						if(lgsmode == 6)	# Already in G/S mode
 						{
 							me.vertical_mode.setValue(1);	# Keep current altitude
@@ -406,11 +406,11 @@ var AFDS = {
 							me.gs_armed.setValue(1);		# G/S arm
 						}
 					}
-					llocmode = me.lateral_mode.getValue();
+					var llocmode = me.lateral_mode.getValue();
 					if(llocmode == 4)		# Alrady in LOC mode
 					{
 						# set target to current magnetic heading
-						tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+						var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
 						me.hdg_setting.setValue(tgtHdg);
 						me.trk_setting.setValue(tgtHdg);
 						me.lateral_mode.setValue(2);		# Keep current headding
@@ -434,7 +434,7 @@ var AFDS = {
 	},
 ###################
 	setAP : func{
-		var output=1-me.AP.getValue();
+		var output = 1-me.AP.getValue();
 		var disabled = me.AP_disengaged.getValue();
 		if((output==0)and(getprop("position/gear-agl-ft")<200))
 		{
@@ -447,9 +447,9 @@ var AFDS = {
 			var msg="";
 			var msg2="";
 			var msg3="";
-			if (abs(getprop("controls/flight/rudder-trim"))>0.04)	msg  = "rudder";
-			if (abs(getprop("controls/flight/elevator-trim"))>0.04) msg2 = "pitch";
-			if (abs(getprop("controls/flight/aileron-trim"))>0.04)	msg3 = "aileron";
+			if (abs(getprop("controls/flight/rudder-trim"))   > 0.04) msg  = "rudder";
+			if (abs(getprop("controls/flight/elevator-trim")) > 0.04) msg2 = "pitch";
+			if (abs(getprop("controls/flight/aileron-trim"))  > 0.04) msg3 = "aileron";
 			if (msg ~ msg2 ~ msg3 != "")
 			{
 				if ((msg != "")and(msg2!=""))
@@ -471,9 +471,9 @@ var AFDS = {
 	},
 ###################
 	setbank : func{
-		var banklimit=me.bank_switch.getValue();
-		var lmt=25;
-		if(banklimit>0){lmt=banklimit * 5};
+		var banklimit = me.bank_switch.getValue();
+		var lmt = 25;
+		if(banklimit>0) {lmt = banklimit * 5};
 		me.bank_max.setValue(lmt);
 		lmt = -1 * lmt;
 		me.bank_min.setValue(lmt);
@@ -481,7 +481,7 @@ var AFDS = {
 ###################
 	updateATMode : func()
 	{
-		var idx=me.autothrottle_mode.getValue();
+		var idx = me.autothrottle_mode.getValue();
 		me.AP_speed_mode.setValue(me.spd_list[idx]);
 	},
 #################
@@ -497,9 +497,9 @@ var AFDS = {
 	},
 #################
 	ap_update : func{
-		current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
-		var VS =getprop("velocities/vertical-speed-fps");
-		var TAS =getprop("velocities/uBody-fps");
+		var current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
+		var VS = getprop("velocities/vertical-speed-fps");
+		var TAS = getprop("velocities/uBody-fps");
 		me.indicated_vs_fpm.setValue(int((abs(VS) * 60 + 50) / 100) * 100);
 		if(TAS < 10) TAS = 10;
 		if(VS < -200) VS=-200;
@@ -509,7 +509,7 @@ var AFDS = {
 			FPangle *=90;
 			setprop("autopilot/internal/fpa",FPangle);
 		}
-		var msg=" ";
+		var msg = " ";
 		if(me.FD.getValue())
 		{
 			msg="FLT DIR";
@@ -527,7 +527,8 @@ var AFDS = {
 		me.vs_display.setValue(tmp);
 		tmp = abs(me.fpa_setting.getValue());
 		me.fpa_display.setValue(tmp);
-		msg="";
+		msg = "";
+		var hdgoffset = 0;
 		if(me.hdg_trk_selected.getValue())
 		{
 			hdgoffset = me.trk_setting.getValue()-getprop("orientation/heading-magnetic-deg");
@@ -565,25 +566,25 @@ var AFDS = {
 			me.AP_pitch_arm.setValue(msg);
 
 		}elsif(me.step==1){ ### localizer armed ? ###
-			msg="";
+			msg = "";
 			if(me.loc_armed.getValue())
 			{
-				msg="LOC";
+				msg = "LOC";
 				if (getprop("instrumentation/nav/in-range"))
 				{
 
 					if(!getprop("instrumentation/nav/nav-loc"))
 					{
-						vheading = getprop("instrumentation/nav/radials/selected-deg");
-						vvor = getprop("instrumentation/nav/heading-deg");
-						vdist = getprop("instrumentation/nav/nav-distance");
-						vorient = getprop("environment/magnetic-variation-deg");
-						vmag = getprop("orientation/heading-magnetic-deg");
-						vspeed = getprop("/instrumentation/airspeed-indicator/indicated-mach");
-						deg_to_rad = math.pi / 180;
-						vdiff = abs(vheading - vvor + vorient);
+						var vheading = getprop("instrumentation/nav/radials/selected-deg");
+						var vvor = getprop("instrumentation/nav/heading-deg");
+						var vdist = getprop("instrumentation/nav/nav-distance");
+						var vorient = getprop("environment/magnetic-variation-deg");
+						var vmag = getprop("orientation/heading-magnetic-deg");
+						var vspeed = getprop("/instrumentation/airspeed-indicator/indicated-mach");
+						var deg_to_rad = math.pi / 180;
+						var vdiff = abs(vheading - vvor + vorient);
 						vdiff = abs(vdist * math.sin(vdiff * deg_to_rad));
-						vlim = vspeed / 0.3 * 1300 * abs(vheading - vmag) / 45 ;
+						var vlim = vspeed / 0.3 * 1300 * abs(vheading - vmag) / 45 ;
 						if(vdiff < vlim)
 						{
 							me.lateral_mode.setValue(4);
@@ -592,7 +593,7 @@ var AFDS = {
 					}
 					else
 					{
-						hddefl = getprop("instrumentation/nav/heading-needle-deflection");
+						var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
 						if(abs(hddefl) < 9.9)
 						{
 							me.lateral_mode.setValue(4);
@@ -622,7 +623,7 @@ var AFDS = {
 			me.AP_roll_arm.setValue(msg);
 
 		}elsif(me.step == 2){ ### check lateral modes  ###
-			vheading = getprop("orientation/heading-magnetic-deg");
+			var vheading = getprop("orientation/heading-magnetic-deg");
 			if(vheading < 0.5)
 			{
 				vheading += 360;
@@ -676,13 +677,13 @@ var AFDS = {
 			{
 				setprop("autopilot/internal/airport-height", current_alt);
 			}
-			var idx=me.vertical_mode.getValue();
-			var test_fpa=me.vs_fpa_selected.getValue();
+			var idx = me.vertical_mode.getValue();
+			var test_fpa = me.vs_fpa_selected.getValue();
 			if(idx==2 and test_fpa)idx=9;
 			if(idx==9 and !test_fpa)idx=2;
 			if ((idx==8)or(idx==1)or(idx==2)or(idx==9))
 			{
-				offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
+				var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
 				if(offset < 200)
 				{
 					offset = 200;
@@ -767,7 +768,7 @@ var AFDS = {
 						me.ias_setting.setValue(320);
 					}
 				}
-				optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
+				var optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
 								/ getprop("sim/max-payload"));
 				if(optimal_alt > 0.95) optimal_alt = 29000;
 				elsif(optimal_alt > 0.83) optimal_alt = 31000;
@@ -835,7 +836,7 @@ var AFDS = {
 						}
 					}
 				}
-				optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
+				var optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
 								/ getprop("sim/max-payload"));
 				if(optimal_alt > 0.95) optimal_alt = 29000;
 				elsif(optimal_alt > 0.83) optimal_alt = 31000;
@@ -868,7 +869,7 @@ var AFDS = {
 			}
 			elsif(idx == 6)				# G/S
 			{
-				f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
+				var f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
 				me.flare_constant_setting.setValue(f_angle);
 				if((getprop("position/gear-agl-ft") < 50)
 					and (me.flare_armed.getValue()))
@@ -885,7 +886,7 @@ var AFDS = {
 			}
 			elsif(idx == 7)								# FLARE
 			{
-				f_angle = 0.00;
+				var f_angle = 0.00;
 				me.flare_constant_setting.setValue(f_angle);
 				if(me.autothrottle_mode.getValue())
 				{
@@ -930,19 +931,17 @@ var AFDS = {
 		elsif(me.step == 4) 			### Auto Throttle mode control  ###
 		{
 			# Thrust reference rate calculation. This should be provided by FMC
-			derate = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
+			var derate = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
 			derate = 0.3 - derate * 0.00000083;
 			# Thurst limit varis on altitude
+			var thrust_lmt = 0.96;
 			if(current_alt < 35000)
 			{
 				thrust_lmt = derate / 35000 * abs(current_alt) + (0.95 - derate);
 			}
-			else
-			{
-				thrust_lmt = 0.96;
-			}
 			me.thrust_lmt.setValue(thrust_lmt);
 			# IAS and MACH number update in back ground
+			var temp = 0;
 			if(me.ias_mach_selected.getValue() == 1)
 			{
 				temp = int(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") + 0.5);
@@ -1033,15 +1032,15 @@ var AFDS = {
 		elsif(me.step==5)
 		{
 			if (getprop("/autopilot/route-manager/active")){
-				max_wpt=getprop("/autopilot/route-manager/route/num");
-				atm_wpt=getprop("/autopilot/route-manager/current-wp");
-				wpt_distance = getprop("/autopilot/route-manager/wp/dist");
+				var max_wpt = getprop("/autopilot/route-manager/route/num");
+				var atm_wpt = getprop("/autopilot/route-manager/current-wp");
+				var wpt_distance = getprop("/autopilot/route-manager/wp/dist");
 				if(wpt_distance == nil) wpt_distance = 36000;
-				max_wpt-=1;
+				max_wpt -= 1;
 				if(wpt_distance < (5 * getprop("/instrumentation/airspeed-indicator/indicated-mach")))
  				{
  					if (getprop("/autopilot/route-manager/current-wp")<=max_wpt){
-						atm_wpt+=1;
+						atm_wpt += 1;
 						props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
 					}
 				}
@@ -1052,10 +1051,11 @@ var AFDS = {
 			{
 				me.auto_popup.setValue(0);
 			}
-			ma_spd=getprop("/instrumentation/airspeed-indicator/indicated-mach");
-			banklimit=getprop("/instrumentation/afds/inputs/bank-limit-switch");
+			var ma_spd = getprop("/instrumentation/airspeed-indicator/indicated-mach");
+			var banklimit = getprop("/instrumentation/afds/inputs/bank-limit-switch");
 			if(banklimit==0)
 			{
+				var lim = 0;
 				if(ma_spd > 0.85)
 				{
 					lim=5;
@@ -1083,7 +1083,7 @@ var AFDS = {
 		}
 
 		me.step+=1;
-		if(me.step>6)me.step =0;
+		if(me.step>6) me.step =0;
 	},
 };
 #####################

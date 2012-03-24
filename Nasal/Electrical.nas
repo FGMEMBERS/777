@@ -1,7 +1,6 @@
 ####    jet engine electrical system    ####
 ####    Syd Adams    ####
-var vbus_count=0;
-var ammeter_ave = 0.0;
+var vbus_count = 0;
 var Lbus = props.globals.initNode("/systems/electrical/left-bus",0,"DOUBLE");
 var Rbus = props.globals.initNode("/systems/electrical/right-bus",0,"DOUBLE");
 var Amps = props.globals.initNode("/systems/electrical/amps",0,"DOUBLE");
@@ -33,57 +32,62 @@ aircraft.light.new("controls/lighting/beacon-state", [0.05, 2.0], beacon_switch)
 #var battery = Battery.new(switch-prop,volts,amps,amp_hours,charge_percent,charge_amps);
 var Battery = {
     new : func(swtch,vlt,amp,hr,chp,cha){
-    m = { parents : [Battery] };
-            m.switch = props.globals.getNode(swtch,1);
-            m.switch.setBoolValue(0);
-            m.ideal_volts = vlt;
-            m.ideal_amps = amp;
-            m.amp_hours = hr;
-            m.charge_percent = chp;
-            m.charge_amps = cha;
-    return m;
+        var m = { parents : [Battery] };
+
+        m.switch = props.globals.getNode(swtch,1);
+        m.switch.setBoolValue(0);
+        m.ideal_volts = vlt;
+        m.ideal_amps = amp;
+        m.amp_hours = hr;
+        m.charge_percent = chp;
+        m.charge_amps = cha;
+
+        return m;
     },
 
     apply_load : func(load,dt) {
         if(me.switch.getValue()){
-        var amphrs_used = load * dt / 3600.0;
-        var percent_used = amphrs_used / me.amp_hours;
-        me.charge_percent -= percent_used;
-        if ( me.charge_percent < 0.0 ) {
-            me.charge_percent = 0.0;
-        } elsif ( me.charge_percent > 1.0 ) {
-        me.charge_percent = 1.0;
-        }
-        var output =me.amp_hours * me.charge_percent;
-        return output;
-        }else return 0;
+            var amphrs_used = load * dt / 3600.0;
+            var percent_used = amphrs_used / me.amp_hours;
+            me.charge_percent -= percent_used;
+            if ( me.charge_percent < 0.0 ) {
+                me.charge_percent = 0.0;
+            } elsif ( me.charge_percent > 1.0 ) {
+                me.charge_percent = 1.0;
+            }
+            var output = me.amp_hours * me.charge_percent;
+            return output;
+        } else
+            return 0;
     },
 
     get_output_volts : func {
         if(me.switch.getValue()){
-        var x = 1.0 - me.charge_percent;
-        var tmp = -(3.0 * x - 1.0);
-        var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
-        var output =me.ideal_volts * factor;
-        return output;
-        }else return 0;
+            var x = 1.0 - me.charge_percent;
+            var tmp = -(3.0 * x - 1.0);
+            var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
+            var output =me.ideal_volts * factor;
+            return output;
+        } else
+            return 0;
     },
 
     get_output_amps : func {
         if(me.switch.getValue()){
-        var x = 1.0 - me.charge_percent;
-        var tmp = -(3.0 * x - 1.0);
-        var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
-        var output =me.ideal_amps * factor;
-        return output;
-        }else return 0;
+            var x = 1.0 - me.charge_percent;
+            var tmp = -(3.0 * x - 1.0);
+            var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
+            var output =me.ideal_amps * factor;
+            return output;
+        } else
+            return 0;
     }
 };
 
 # var alternator = Alternator.new(num,switch,rpm_source,rpm_threshold,volts,amps);
 var Alternator = {
     new : func (num,switch,src,thr,vlt,amp){
-        m = { parents : [Alternator] };
+        var m = { parents : [Alternator] };
         m.switch =  props.globals.getNode(switch,1);
         m.switch.setBoolValue(0);
         m.meter =  props.globals.getNode("systems/electrical/gen-load["~num~"]",1);
@@ -99,14 +103,13 @@ var Alternator = {
     },
 
     apply_load : func(load) {
-        var cur_volt=me.gen_output.getValue();
-        var cur_amp=me.meter.getValue();
+        var cur_volt = me.gen_output.getValue();
+        var cur_amp  = me.meter.getValue();
+        var gout = 0;
         if(cur_volt >1){
-            var factor=1/cur_volt;
-            gout = (load * factor);
+            var factor = 1/cur_volt;
+            var gout = (load * factor);
             if(gout>1)gout=1;
-        }else{
-            gout=0;
         }
         me.meter.setValue(gout);
     },
@@ -123,7 +126,7 @@ var Alternator = {
     },
 
     get_output_amps : func {
-        var ampout =0;
+        var ampout = 0;
         if(me.switch.getBoolValue()){
             var factor = me.rpm_source.getValue() / me.rpm_threshold or 0;
             if ( factor > 1.0 ) {
@@ -255,9 +258,9 @@ var init_switches = func{
 
 update_virtual_bus = func( dt ) {
     var PWR = getprop("systems/electrical/serviceable");
-    var xtie=0;
-    load = 0.0;
-    power_source = nil;
+    var xtie = 0;
+    var load = 0.0;
+    var power_source = nil;
     if(vbus_count==0){
         var battery_volts = battery.get_output_volts();
         lbus_volts = battery_volts;
@@ -265,14 +268,14 @@ update_virtual_bus = func( dt ) {
         if (APUgen.getValue())
         {
           power_source = "APU";
-          lbus_volts=24;
+          lbus_volts = 24;
         }
         var alternator1_volts = alternator1.get_output_volts();
         if (alternator1_volts > lbus_volts) {
             lbus_volts = alternator1_volts;
             power_source = "alternator1";
         }
-        lbus_volts *=PWR;
+        lbus_volts *= PWR;
         Lbus.setValue(lbus_volts);
         load += lh_bus(lbus_volts);
             alternator1.apply_load(load);
@@ -295,14 +298,12 @@ update_virtual_bus = func( dt ) {
         load += rh_bus(rbus_volts);
         alternator2.apply_load(load);
     }
-    vbus_count=1-vbus_count;
+    vbus_count = 1-vbus_count;
     if(rbus_volts > 5 and  lbus_volts>5) xtie=1;
     XTie.setValue(xtie);
     if(rbus_volts > 5 or  lbus_volts>5) load += lighting(24);
 
-    ammeter = 0.0;
-
-return load;
+    return load;
 }
 
 rh_bus = func(bv) {

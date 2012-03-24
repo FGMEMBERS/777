@@ -3,14 +3,14 @@
 #
 var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("/instrumentation/clock/ET-sec",1);
-vmodel = substr(getprop("sim/aero"), 3);
+var vmodel = substr(getprop("sim/aero"), 3);
 aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
 
 #EFIS specific class
 # ie: var efis = EFIS.new("instrumentation/efis");
 var EFIS = {
     new : func(prop1){
-        m = { parents : [EFIS]};
+        var m = { parents : [EFIS]};
         m.radio_list=["instrumentation/comm/frequencies","instrumentation/comm[1]/frequencies","instrumentation/nav/frequencies","instrumentation/nav[1]/frequencies"];
         m.mfd_mode_list=["APP","VOR","MAP","PLAN"];
 
@@ -63,10 +63,10 @@ var EFIS = {
 #### convert inhg to kpa ####
     calc_kpa : func{
         var kp = getprop("instrumentation/altimeter/setting-inhg");
-        kp= kp * 33.8637526;
+        kp = kp * 33.8637526;
         me.kpa_output.setValue(kp);
         kp = getprop("instrumentation/efis/inhg-previos");
-        kp= kp * 33.8637526;
+        kp = kp * 33.8637526;
         me.kpa_prevoutput.setValue(kp);
         },
 #### update temperature display ####
@@ -94,8 +94,8 @@ var EFIS = {
 #### modify efis radio standby freq ####
     set_freq : func(fdr){
         var rd = me.radio.getValue();
-        var frq =me.radio_standby.getValue();
-        var frq_step =0;
+        var frq = me.radio_standby.getValue();
+        var frq_step = 0;
         if(rd >=2){
             if(fdr ==1)frq_step = 0.05;
             if(fdr ==-1)frq_step = -0.05;
@@ -152,7 +152,7 @@ var EFIS = {
         }
         elsif(md=="mins")
         {
-            mode = me.mins_mode.getValue();
+            var mode = me.mins_mode.getValue();
             me.mins_mode.setValue(1-mode);
             if (mode)
                 me.mins_mode_txt.setValue("RADIO");
@@ -243,7 +243,7 @@ var EFIS = {
 # ie: var Eng = Engine.new(engine number);
 var Engine = {
     new : func(eng_num){
-        m = { parents : [Engine]};
+        var m = { parents : [Engine]};
         m.eng_num = eng_num;
         m.eng = props.globals.getNode("engines/engine["~eng_num~"]",1);
         m.n1 = m.eng.getNode("n1",1);
@@ -299,15 +299,16 @@ var Engine = {
             me.n2rpm.setValue(me.n2.getValue());
             me.throttle_lever.setValue(me.throttle.getValue());
             me.egt.setDoubleValue(me.egt_degf.getValue());
-            v_pph = (me.fuel_gph.getValue() * getprop("consumables/fuel/tank/density-ppg") / 1000);
+            var v_pph = (me.fuel_gph.getValue() * getprop("consumables/fuel/tank/density-ppg") / 1000);
             if(v_pph < 1.2)
             {
                 me.idle_ff();
                 v_pph=1.2;
             }
-            else v_pph = v_pph + 1.2 / (1 + v_pph);
+            else
+                v_pph = v_pph + 1.2 / (1 + v_pph);
             me.fuel_pph.setValue(v_pph);
-            v_egt = me.egt_degf.getValue() - 64;
+            var v_egt = me.egt_degf.getValue() - 64;
             if(v_egt > 0)
             {
                 v_egt = 270 - v_egt/4;
@@ -427,12 +428,12 @@ var Engine = {
         {
             Shutdown();
         }
-
     },
 
     spool_up : func{
         var rpminc = 0;
         var tmprpm = me.rpm.getValue();
+        var v_pph = 0;
         if(!me.fuel_out.getBoolValue() and !me.cutoff.getBoolValue())
         {
             v_pph = 1.2;
@@ -456,13 +457,12 @@ var Engine = {
             }
             if(tmprpm > 0)
             {
-                v_egt = tmprpm * 270 / 18.5 + me.egt_degf.getValue();
+                var v_egt = tmprpm * 270 / 18.5 + me.egt_degf.getValue();
                 me.egt.setDoubleValue(v_egt);
             }
         }
         else
         {
-            v_pph = 0;
             if(tmprpm <= 5)
             {
                 rpminc = 0.1;
@@ -476,7 +476,7 @@ var Engine = {
     },
 # This function could be removed if FG fuel flow program is fixed to consume fuel when engine idle.
     idle_ff : func{
-        v_consume = 0.001;
+        var v_consume = 0.001;
         if(me.eng_num == 0)
         {
             if(getprop("consumables/fuel/tank[0]/selected")) 
@@ -507,43 +507,47 @@ var Engine = {
 
 var Wiper = {
     new : func {
-        m = { parents : [Wiper] };
+        var m = { parents : [Wiper] };
         m.direction = 0;
         m.delay_count = 0;
         m.spd_factor = 0;
         m.node = props.globals.getNode(arg[0],1);
         m.power = props.globals.getNode(arg[1],1);
-        if(m.power.getValue()==nil)m.power.setDoubleValue(0);
+        if(m.power.getValue()==nil)
+            m.power.setDoubleValue(0);
         m.spd = m.node.getNode("arc-sec",1);
-        if(m.spd.getValue()==nil)m.spd.setDoubleValue(1);
+        if(m.spd.getValue()==nil)
+            m.spd.setDoubleValue(1);
         m.delay = m.node.getNode("delay-sec",1);
-        if(m.delay.getValue()==nil)m.delay.setDoubleValue(0);
+        if(m.delay.getValue()==nil)
+            m.delay.setDoubleValue(0);
         m.position = m.node.getNode("position-norm", 1);
         m.position.setDoubleValue(0);
         m.switch = m.node.getNode("switch", 1);
-        if (m.switch.getValue() == nil)m.switch.setBoolValue(0);
+        if (m.switch.getValue() == nil)
+            m.switch.setBoolValue(0);
         return m;
     },
     active: func{
-    if(me.power.getValue()<=5)return;
-    var spd_factor = 1/me.spd.getValue();
-    var pos = me.position.getValue();
-    if(!me.switch.getValue()){
-        if(pos <= 0.000)return;
+        if(me.power.getValue()<=5)return;
+        var spd_factor = 1/me.spd.getValue();
+        var pos = me.position.getValue();
+        if(!me.switch.getValue()){
+            if(pos <= 0.000)return;
         }
-    if(pos >=1.000){
-        me.direction=-1;
+        if(pos >=1.000){
+            me.direction=-1;
         }elsif(pos <=0.000){
-        me.direction=0;
-        me.delay_count+=getprop("/sim/time/delta-sec");
-        if(me.delay_count >= me.delay.getValue()){
-            me.delay_count=0;
-            me.direction=1;
+            me.direction=0;
+            me.delay_count+=getprop("/sim/time/delta-sec");
+            if(me.delay_count >= me.delay.getValue()){
+                me.delay_count=0;
+                me.direction=1;
             }
         }
-    var wiper_time = spd_factor*getprop("/sim/time/delta-sec");
-    pos +=(wiper_time * me.direction);
-    me.position.setValue(pos);
+        var wiper_time = spd_factor*getprop("/sim/time/delta-sec");
+        pos +=(wiper_time * me.direction);
+        me.position.setValue(pos);
     }
 };
 #####################
@@ -564,16 +568,17 @@ setlistener("/sim/signals/fdm-initialized", func {
 #    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
     setprop("/sim/flaps/current", 0);
     Shutdown();
-    capwing = getprop("consumables/fuel/tank[0]/capacity-gal_us");
+    var capwing = getprop("consumables/fuel/tank[0]/capacity-gal_us");
 # make the fuel quantity balancing
-    total_fuel = 0;
-    j = 3;
+    var total_fuel = 0;
+    var capcenter = 0;
+    var j = 3;
     if(vmodel == "-200LR")
     {
         j = 6;
         capcenter = getprop("consumables/fuel/tank[1]/capacity-gal_us");
     }
-    for(i = 0; i < j; i += 1)
+    for(var i = 0; i < j; i += 1)
     {
         total_fuel += getprop("consumables/fuel/tank["~i~"]/level-gal_us");
     }
@@ -581,7 +586,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     {
         if(total_fuel > ((capwing * 2) + capcenter))
         {
-            capaux = ((total_fuel -  ((capwing * 2) + capcenter)) / 3);
+            var capaux = ((total_fuel -  ((capwing * 2) + capcenter)) / 3);
             setprop("consumables/fuel/tank[3]/level-gal_us", capaux);
             setprop("consumables/fuel/tank[4]/level-gal_us", capaux);
             setprop("consumables/fuel/tank[5]/level-gal_us", capaux);
@@ -832,7 +837,6 @@ var Shutdown = func{
     setprop("/engines/engine[1]/n2rpm",0);
     setprop("/engines/engine[0]/fuel-flow_pph",0);
     setprop("/engines/engine[1]/fuel-flow_pph",0);
-    quick_start = 0;
 }
 
 var click_reset = func(propName) {
@@ -852,18 +856,18 @@ var update_systems = func {
     Efis.update_temp();
     LHeng.update();
     RHeng.update();
-    wiper.active();
+    #wiper.active(); # not implemented yet!
     if(getprop("controls/gear/gear-down")){
         setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
         setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
         setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
     }
-    var et_tmp = getprop("/instrumentation/clock/ET-sec");
 
+    var et_tmp = getprop("/instrumentation/clock/ET-sec");
     var et_min = int(et_tmp * 0.0166666666667);
-    var et_hr = int(et_min * 0.0166666666667) * 100;
+    var et_hr  = int(et_min * 0.0166666666667) * 100;
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
-    
+
     settimer(update_systems,0);
 }

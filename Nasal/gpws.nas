@@ -20,7 +20,7 @@ var GPWS =
 {
     new : func(prop1)
     {
-        m = { parents : [GPWS]};
+        var m = { parents : [GPWS]};
 
         m.gpws            = props.globals.getNode(prop1);
         m.self_test       = m.gpws.getNode("inputs/discretes/self-test");
@@ -157,7 +157,7 @@ var GPWS =
     },
     update_height : func()
     {
-        radio_alt = getprop("position/gear-agl-ft");
+        var radio_alt = getprop("position/gear-agl-ft");
         # "glide-slope warning inhibited" is disabled below 50 feet
         if ((radio_alt < 50.0)or(radio_alt > 1000.0))
             me.disable_gs_override();

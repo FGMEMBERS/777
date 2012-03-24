@@ -29,7 +29,7 @@ var WEU =
 {
     new : func(prop1)
     {
-        m = { parents : [WEU]};
+        var m = { parents : [WEU]};
         m.weu = props.globals.getNode(prop1);
 
         # output lights
@@ -74,7 +74,7 @@ var WEU =
         m.ap_disengaged = 0;
         me.rudder_trim  = 0;
         me.elev_trim    = 0;
-        
+
         # internal states
         m.active_warnings = 0;
         m.active_caution  = 0;
@@ -199,48 +199,49 @@ var WEU =
 #### stall warnings and other sounds ####
     update_sounds : func
     {
-		var target_speed = 0;
+        var target_speed = 0;
         var horn   = 0;
         var shaker = 0;
         var siren  = (size(me.msgs_alert)!=0);
-		vgrosswt = math.sqrt(getprop("/yasim/gross-weight-lbs")/661500);
+        var vgrosswt = math.sqrt(getprop("/yasim/gross-weight-lbs")/661500);
+        var stallspeed = 0;
 
         # calculate stall speed
-        if (me.flaps<0.01)			# flap up
-		{
+        if (me.flaps<0.01)            # flap up
+        {
             stallspeed = vgrosswt * 166 + 80;
-		}
-        elsif (me.flaps<0.034)		# flap 1
-		{
+        }
+        elsif (me.flaps<0.034)        # flap 1
+        {
             stallspeed = vgrosswt * 166 + 60;
-			target_speed = vgrosswt * 166 + 80;
-		}
-        elsif (me.flaps<0.167)		# flap 5
-		{
+            target_speed = vgrosswt * 166 + 80;
+        }
+        elsif (me.flaps<0.167)        # flap 5
+        {
             stallspeed = vgrosswt * 166 + 40;
-			target_speed = vgrosswt * 166 + 60;
-		}
-        elsif (me.flaps<0.501)		# flap 15
-		{
+            target_speed = vgrosswt * 166 + 60;
+        }
+        elsif (me.flaps<0.501)        # flap 15
+        {
             stallspeed = vgrosswt * 166 + 20;
-			target_speed = vgrosswt * 166 + 40;
-		}
-        elsif (me.flaps<0.667)		# flap 20
-		{
+            target_speed = vgrosswt * 166 + 40;
+        }
+        elsif (me.flaps<0.667)        # flap 20
+        {
             stallspeed = vgrosswt * 180;
-			target_speed = vgrosswt * 166 + 20;
-		}
-        elsif (me.flaps<0.834)		# flap 25
-		{
+            target_speed = vgrosswt * 166 + 20;
+        }
+        elsif (me.flaps<0.834)        # flap 25
+        {
             stallspeed = vgrosswt * 174;
-			target_speed = vgrosswt * 180;
-		}
-        else						# flap 30
-		{
+            target_speed = vgrosswt * 180;
+        }
+        else                          # flap 30
+        {
             stallspeed = vgrosswt * 166;
-			target_speed = vgrosswt * 174;
-		}
-		stallspeed /= 1.3;
+            target_speed = vgrosswt * 174;
+        }
+        stallspeed /= 1.3;
         me.stallspeed.setValue(stallspeed);
         me.targetspeed.setValue(target_speed);
 
@@ -249,13 +250,13 @@ var WEU =
             ((!getprop("gear/gear[1]/wow"))or
              (!getprop("gear/gear[2]/wow"))))
         {
-            horn=1;
-            shaker=1;
+            horn = 1;
+            shaker = 1;
             # disable autopilot when stalled
             setprop("autopilot/locks/passive-mode",1);
         }
 
-        caution_state = (size(me.msgs_caution)>0);
+        var caution_state = (size(me.msgs_caution)>0);
 
         if ((me.active_warnings)or(me.active_caution)or(caution_state)or(siren)or(shaker)or(horn))
         {
@@ -303,7 +304,7 @@ var WEU =
 #### update autopilot mode ####
     update_ap_mode : func()
     {
-       ap_passive = getprop("autopilot/locks/passive-mode");
+       var ap_passive = getprop("autopilot/locks/passive-mode");
        if ((ap_passive)and(!me.ap_passive))
        {
            # AP has disengaged
@@ -332,7 +333,7 @@ var WEU =
             me.flaps      = me.node_flaps.getValue();
             me.speed      = me.node_speed.getValue();
             me.flap_override = me.node_flap_override.getBoolValue();
-            
+
             me.takeoff_config_warnings();
             me.approach_config_warnings();
             me.caution_messages();
@@ -363,4 +364,3 @@ weu_update_feeder = func
 # main
 ##############################################
 Weu = WEU.new("instrumentation/weu");
-
