@@ -684,9 +684,9 @@ var AFDS = {
 			if ((idx==8)or(idx==1)or(idx==2)or(idx==9))
 			{
 				var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
-				if(offset < 200)
+				if(offset < 20)
 				{
-					offset = 200;
+					offset = 20;
 				}
 				# flight level change mode
 				if (abs(current_alt - me.alt_setting.getValue()) < offset)
@@ -706,12 +706,12 @@ var AFDS = {
 					me.ias_mach_selected.setValue(1);
 					me.mach_setting.setValue(0.840);
 				}
-				elsif((me.ias_setting.getValue() >= 310)
+				elsif((me.ias_setting.getValue() >= 320)
 					and (me.ias_mach_selected.getValue() == 1)
 					and (current_alt > me.target_alt.getValue()))
 				{
 					me.ias_mach_selected.setValue(0);
-					me.ias_setting.setValue(310);
+					me.ias_setting.setValue(320);
 				}
 				# This is not official setting. Until VNAV DECENT is implemented
 				elsif(current_alt > me.target_alt.getValue())
@@ -817,12 +817,12 @@ var AFDS = {
 						me.ias_mach_selected.setValue(1);
 						me.mach_setting.setValue(0.840);
 					}
-					elsif((me.ias_setting.getValue() >= 310)
+					elsif((me.ias_setting.getValue() >= 320)
 						and (me.ias_mach_selected.getValue() == 1)
 						and (current_alt > me.target_alt.getValue()))
 					{
 						me.ias_mach_selected.setValue(0);
-						me.ias_setting.setValue(310);
+						me.ias_setting.setValue(320);
 					}
 					elsif(me.ias_mach_selected.getValue() == 0)
 					{
@@ -855,8 +855,13 @@ var AFDS = {
 					me.alt_setting.setValue(getprop("autopilot/route-manager/cruise/altitude-ft"));
 				}
 				me.target_alt.setValue(me.alt_setting.getValue());
+				var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
+				if(offset < 20)
+				{
+					offset = 20;
+				}
 				if (abs(current_alt
-					- me.alt_setting.getValue()) < 200)
+					- me.alt_setting.getValue()) < offset)
 				{
 					# within target altitude: switch to VANV PTH mode
 					idx=3;

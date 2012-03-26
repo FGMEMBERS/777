@@ -639,6 +639,10 @@
 							<value>0</value>
 						</equals>
 					</and>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>VNAV PTH</value>
+					</equals>
 				</or>
 			</condition>
 		</enable>
@@ -667,12 +671,28 @@
 	<name>Altitude Hold (Altimeter based) Stage 2</name>
 	<debug>false</debug>
 	<enable>
-	  <condition>
-		 <equals>
-			<property>instrumentation/afds/ap-modes/pitch-mode</property>
-			<value>ALT</value>
-		  </equals>
-	 </condition>
+			<condition>
+				<or>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>ALT</value>
+					</equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>V/S</value>
+						</equals>
+						<equals>
+							<property>autopilot/settings/vertical-speed-fpm</property>
+							<value>0</value>
+						</equals>
+					</and>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>VNAV PTH</value>
+					</equals>
+				</or>
+			</condition>
 	</enable>
 	<input>
 	  <property>/velocities/vertical-speed-fps</property>
@@ -684,15 +704,24 @@
 	  <property>/autopilot/internal/target-pitch-deg</property>
 	</output>
 	<config>
-		<Kp>
-			<condition>
-				<greater-than>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<value>14000</value>
-				</greater-than>
-			</condition>
-			<value>0.2</value>
-		</Kp>
+	<Kp>
+		<condition>
+			<greater-than>
+				<property>instrumentation/altimeter/indicated-altitude-ft</property>
+				<value>26000</value>
+			</greater-than>
+		</condition>
+		<value>0.1</value>
+	</Kp>
+	<Kp>
+		<condition>
+			<greater-than>
+				<property>instrumentation/altimeter/indicated-altitude-ft</property>
+				<value>14000</value>
+			</greater-than>
+		</condition>
+		<value>0.2</value>
+	</Kp>
 	  <Kp>0.5</Kp>
 	  <beta>1.0</beta>
 	  <alpha>0.1</alpha>
@@ -779,74 +808,6 @@
 		</u_max>
 	</config>
   </pid-controller>
-
-	<pi-simple-controller>
-		<name>VNAV PTH Stage 1</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>VNAV PTH</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<property>instrumentation/altimeter/indicated-altitude-ft</property>
-		</input>
-		<reference>
-			<property>/autopilot/settings/actual-target-altitude-ft</property>
-		</reference>
-		<output>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
-		</output>
-		<config>
-			<Kp>0.15</Kp>
-			<Ki>0.0</Ki>
-			<u_min>
-				<value>-20.00</value>
-			</u_min>
-			<u_max>
-				<value>20.00</value>
-			</u_max>
-		</config>
-	</pi-simple-controller>
-
-	<pid-controller>
-		<name>VNAV PTH level flight</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>VNAV PTH</value>
-				</equals>
-			</condition>
-		</enable>
-		<input>
-			<property>/velocities/vertical-speed-fps</property>
-		</input>
-		<reference>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
-		</reference>
-		<output>
-	  		<property>/autopilot/internal/target-pitch-deg</property>
-		</output>
-		<config>
-			<Kp>0.5</Kp>
-			<beta>1.0</beta>
-			<alpha>0.1</alpha>
-			<gamma>0.0</gamma>
-			<Ti>10.0</Ti>
-			<Td>0.005</Td>
-			<u_min>
-				<property>instrumentation/afds/settings/pitch-min</property>
-			</u_min>
-			<u_max>
-				<property>instrumentation/afds/settings/pitch-max</property>
-			</u_max>
-		</config>
-	</pid-controller>
 
   <pid-controller>
 	<name>Glideslop Hold</name>
