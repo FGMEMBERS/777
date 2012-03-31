@@ -85,10 +85,10 @@ Syd Adams
         <object-name>FDroll</object-name>
         <object-name>FDpitch</object-name>
         <condition>
-			<or>
-				<property>instrumentation/afds/inputs/FD</property>
-				<property>instrumentation/afds/settings/auto-pop-up</property>
-			</or>
+            <or>
+                <property>instrumentation/afds/inputs/FD</property>
+                <property>instrumentation/afds/settings/auto-pop-up</property>
+            </or>
         </condition>
     </animation>
 
@@ -649,7 +649,7 @@ Syd Adams
     <text>
         <name>VS-POS</name>
         <offsets>
-            <x-m>0.010</x-m>
+            <x-m>0.004</x-m>
             <y-m>0.078</y-m>
             <z-m>0.056</z-m>
         </offsets>
@@ -657,7 +657,7 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%4.0f</format>
-		<property>instrumentation/afds/inputs/indicated-vs-fpm</property>
+        <property>instrumentation/afds/inputs/indicated-vs-fpm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
@@ -667,10 +667,10 @@ Syd Adams
         </font-resolution>
     </text>
 
-	<text>
+    <text>
         <name>VS-NEG</name>
         <offsets>
-            <x-m>0.010</x-m>
+            <x-m>0.004</x-m>
             <y-m>0.078</y-m>
             <z-m>-0.038</z-m>
         </offsets>
@@ -678,7 +678,7 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%4.0f</format>
-		<property>instrumentation/afds/inputs/indicated-vs-fpm</property>
+        <property>instrumentation/afds/inputs/indicated-vs-fpm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
@@ -821,7 +821,7 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%2.2f IN</format>
-		<property>instrumentation/efis/inhg-previos</property>
+        <property>instrumentation/efis/inhg-previos</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
@@ -1229,24 +1229,24 @@ Syd Adams
         <type>select</type>
         <object-name>VS-POS</object-name>
         <condition>
-			<greater-than-equals>
- 				<property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
-				<value>6.67</value>
-			</greater-than-equals>
+            <greater-than-equals>
+                 <property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+                <value>6.67</value>
+            </greater-than-equals>
         </condition>
     </animation>
-	
+
     <animation>
         <type>select</type>
         <object-name>VS-NEG</object-name>
         <condition>
-			<less-than-equals>
- 				<property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
-				<value>-6.67</value>
-			</less-than-equals>
+            <less-than-equals>
+                <property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+                <value>-6.67</value>
+            </less-than-equals>
         </condition>
     </animation>
-	
+
     <animation>
         <type>select</type>
         <object-name>DME</object-name>
@@ -1262,14 +1262,14 @@ Syd Adams
             <and>
                 <not>
                     <property>instrumentation/efis/inputs/kpa-mode</property>
-				</not>
-				<not>
-					<property>instrumentation/inputs/setting-std</property>
-				</not>
+                </not>
+                <not>
+                    <property>instrumentation/inputs/setting-std</property>
+                </not>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>14000</value>
-				</less-than-equals>
+                </less-than-equals>
             </and>
         </condition>
     </animation>
@@ -1280,14 +1280,14 @@ Syd Adams
             <and>
                 <not>
                     <property>instrumentation/efis/inputs/kpa-mode</property>
-				</not>
-				<not>
-					<property>instrumentation/inputs/setting-std</property>
-				</not>
+                </not>
+                <not>
+                    <property>instrumentation/inputs/setting-std</property>
+                </not>
                 <greater-than>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>14000</value>
-				</greater-than>
+                </greater-than>
             </and>
         </condition>
     </animation>
@@ -1298,13 +1298,13 @@ Syd Adams
         <condition>
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
-				<not>
-					<property>instrumentation/inputs/setting-std</property>
-				</not>
+                <not>
+                    <property>instrumentation/inputs/setting-std</property>
+                </not>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>14000</value>
-				</less-than-equals>
+                </less-than-equals>
             </and>
         </condition>
     </animation>
@@ -1314,13 +1314,13 @@ Syd Adams
         <condition>
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
-				<not>
-					<property>instrumentation/inputs/setting-std</property>
-				</not>
+                <not>
+                    <property>instrumentation/inputs/setting-std</property>
+                </not>
                 <greater-than>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>14000</value>
-				</greater-than>
+                </greater-than>
             </and>
         </condition>
     </animation>
@@ -1328,27 +1328,27 @@ Syd Adams
     <animation>
         <type>select</type>
         <object-name>INHG-STD</object-name>
-		<condition>
-			<and>
-			<property>instrumentation/inputs/setting-std</property>
+        <condition>
+            <and>
+            <property>instrumentation/inputs/setting-std</property>
             <greater-than>
-				<property>instrumentation/altimeter/indicated-altitude-ft</property>
-				<value>14000</value>
-			</greater-than>
-		</and>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                <value>14000</value>
+            </greater-than>
+        </and>
         </condition>
     </animation>
     <animation>
         <type>select</type>
         <object-name>INHG-STD-YEL</object-name>
-		<condition>
-			<and>
-				<property>instrumentation/inputs/setting-std</property>
-				<less-than-equals>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<value>14000</value>
-				</less-than-equals>
-			</and>
+        <condition>
+            <and>
+                <property>instrumentation/inputs/setting-std</property>
+                <less-than-equals>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>14000</value>
+                </less-than-equals>
+            </and>
         </condition>
     </animation>
 
@@ -1356,33 +1356,33 @@ Syd Adams
         <type>select</type>
         <object-name>INHG-WHT</object-name>
         <condition>
-			<and>
-				<not><property>instrumentation/efis/inputs/kpa-mode</property></not>
-				<property>instrumentation/inputs/setting-std</property>
-				<less-than-equals>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<value>14000</value>
-				</less-than-equals>
-			</and>
+            <and>
+                <not><property>instrumentation/efis/inputs/kpa-mode</property></not>
+                <property>instrumentation/inputs/setting-std</property>
+                <less-than-equals>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>14000</value>
+                </less-than-equals>
+            </and>
         </condition>
-	</animation>
+    </animation>
 
     <animation>
         <type>select</type>
         <object-name>KPA-WHT</object-name>
         <condition>
-			<and>
+            <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
-				<property>instrumentation/inputs/setting-std</property>
-				<less-than-equals>
-					<property>instrumentation/altimeter/indicated-altitude-ft</property>
-					<value>14000</value>
-				</less-than-equals>
-			</and>
+                <property>instrumentation/inputs/setting-std</property>
+                <less-than-equals>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>14000</value>
+                </less-than-equals>
+            </and>
         </condition>
     </animation>
 
-	<animation>
+    <animation>
         <type>select</type>
         <object-name>Ralt</object-name>
         <object-name>RALT</object-name>
@@ -1438,19 +1438,19 @@ Syd Adams
     <animation>
         <type>select</type>
         <object-name>HDG-annun</object-name>
-		<condition>
-			<not>
-				<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-			</not>
-		</condition>
+        <condition>
+            <not>
+                <property>instrumentation/afds/inputs/hdg-trk-selected</property>
+            </not>
+        </condition>
     </animation>
-	
-	<animation>
+
+    <animation>
         <type>select</type>
         <object-name>TRK-annun</object-name>
-		<condition>
-			<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-		</condition>
+        <condition>
+            <property>instrumentation/afds/inputs/hdg-trk-selected</property>
+        </condition>
     </animation>
 
     <!-- TCW display (time critical warnings) from GPWS -->

@@ -567,7 +567,6 @@ setlistener("/sim/signals/fdm-initialized", func {
     props.globals.initNode("/instrumentation/clock/set-knob",0,"INT");
 #    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
     setprop("/sim/flaps/current", 0);
-    Shutdown();
     var capwing = getprop("consumables/fuel/tank[0]/capacity-gal_us");
 # make the fuel quantity balancing
     var total_fuel = 0;
