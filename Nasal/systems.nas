@@ -409,12 +409,14 @@ var Engine = {
         if(me.apu_status.getValue() == 3)
         {
             me.apu_running.setBoolValue(1);
-            setprop("controls/electric/APU-generator", 1);
+            if (getprop("controls/electric/APU-generator") != 1)
+                setprop("controls/electric/APU-generator", 1);
         }
         else
         {
             me.apu_running.setBoolValue(0);
-            setprop("controls/electric/APU-generator", 0);
+            if (getprop("controls/electric/APU-generator") != 0)
+                setprop("controls/electric/APU-generator", 0);
         }
         if(me.apu_running.getBoolValue() and (getprop("consumables/fuel/tank[0]/level-lbs") > 0))
         {
