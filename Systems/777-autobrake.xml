@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <PropertyList>
-    
+
     <logic>
         <name>Disabled state</name>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <!-- ensure output is consistent when no mode is selected-->
         <enable>
             <condition>
@@ -21,9 +22,10 @@
         <input><false/></input>
         <output>autopilot/autobrake/engaged</output>
     </logic>
-    
+
     <logic>
         <name>RTO selected</name>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <input>
             <equals>
                 <property>autopilot/autobrake/step</property>
@@ -32,9 +34,10 @@
         </input>
         <output>autopilot/autobrake/rto-selected</output>
     </logic>
-    
+
     <logic>
         <name>Autobrake Selected</name>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <input>
             <greater-than>
                 <property>autopilot/autobrake/step</property>
@@ -43,27 +46,28 @@
         </input>
         <output>autopilot/autobrake/selected</output>
     </logic>
-    
+
     <logic>
         <name>Throttles At Idle</name>
-         <input>
-            <!-- engine 0 -->
+        <update-interval-secs type="double">0.2</update-interval-secs>
+        <input>
             <and>
-            <or>
-                <less-than>
-                    <property>controls/engines/engine[0]/throttle</property>
-                    <property>autopilot/autobrake/config/idle-throttle</property>
-                </less-than>
-                <property>controls/engines/engine[0]/reverser</property>
-            </or>
-           <!-- engine 1 -->    
-            <or>
-                <less-than>
-                    <property>controls/engines/engine[1]/throttle</property>
-                    <property>autopilot/autobrake/config/idle-throttle</property>
-                </less-than>
-                <property>controls/engines/engine[1]/reverser</property>
-            </or>
+                <!-- engine 0 -->
+                <or>
+                    <less-than>
+                        <property>controls/engines/engine[0]/throttle</property>
+                        <property>autopilot/autobrake/config/idle-throttle</property>
+                    </less-than>
+                    <property>controls/engines/engine[0]/reverser</property>
+                </or>
+                <!-- engine 1 -->
+                <or>
+                    <less-than>
+                        <property>controls/engines/engine[1]/throttle</property>
+                        <property>autopilot/autobrake/config/idle-throttle</property>
+                    </less-than>
+                    <property>controls/engines/engine[1]/reverser</property>
+                </or>
             </and>
         </input>
         <output>autopilot/autobrake/throttles-at-idle</output>
@@ -71,6 +75,7 @@
 
     <logic>
         <name>Airborne</name>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <input>
             <not><property>gear/gear/wow</property></not>
         </input>
@@ -79,6 +84,7 @@
 
     <logic>
         <name>High-speed</name>
+        <update-interval-secs type="double">0.3</update-interval-secs>
         <input>
             <greater-than>
                 <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
@@ -102,7 +108,7 @@
                         <property>controls/gear/copilot-brake-left</property>
                         <property>controls/gear/copilot-brake-right</property>
                     </max>
-                </expression>          
+                </expression>
             </less-than>
         </input>
         <output>autopilot/autobrake/pilot-input</output>
@@ -122,8 +128,8 @@
 
     <flipflop>
         <name>Autobrake Engage logic</name>
-        <debug>false</debug>
         <type>RS</type>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <enable>
             <condition>
                 <and>
@@ -148,6 +154,7 @@
     <filter>
         <name>RTO cancel logic</name>
         <type>gain</type>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <gain>1.0</gain>
         <!-- from the Continental manual 
         When the autobrake system disarms during takeoff, the autobrake 
@@ -156,7 +163,6 @@
         
         Let's use AGL to simulate 'after takeoff' for the moment
         -->
-        <debug>false</debug>
  
         <enable>
             <condition>
@@ -176,7 +182,7 @@
     <flipflop>
         <name>RTO engage logic</name>
         <type>RS</type>
-        <debug>false</debug>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <enable>
             <condition>
             <property>autopilot/autobrake/rto-selected</property>
@@ -191,10 +197,10 @@
         </R>
         <output>autopilot/autobrake/engaged</output>
     </flipflop>
-    
+
     <filter>
         <name>Disengage logic</name>
-        <debug>false</debug>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <type>gain</type>
         <gain>1.0</gain>
         <enable>
@@ -213,13 +219,14 @@
         <input><value>0</value></input> <!-- move to 'disarm' -->
         <output>autopilot/autobrake/step</output>
     </filter>
-    
+
     <!-- model the accelerometer portion of the AB system.
       This could differentiate indicated-airspeed, but I suspect real-
       world systems use accelerometers directly. -->
     <filter>
         <name>Deceleration Sensor</name>
         <type>noise-spike</type>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <max-rate-of-change>5.0</max-rate-of-change>
         <input>
             <scale>-1</scale> <!-- deceleration, not acceleration -->
@@ -227,13 +234,13 @@
         </input>
         <output>autopilot/autobrake/actual-decel-ftsec2</output>
     </filter>
-    
+
     <!-- translate dial setting levels into target decelerations, based upon
         information in the POH -->
     <filter>
         <name>Target Deceleration Table</name>
         <type>gain</type>
-        <debug>false</debug>
+        <update-interval-secs type="double">0.2</update-interval-secs>
         <gain>1.0</gain>
         <output>autopilot/autobrake/target-decel-ftsec2</output>
         <input>
@@ -259,7 +266,7 @@
                 </table>
             </expression>
         </input>
-        
+
         <input>
               <condition>
                   <not><property>autopilot/autobrake/rto-selected</property></not>
@@ -293,10 +300,9 @@
             <value>50</value>
         </input>
     </filter>
-    
+
     <pi-simple-controller>
         <name>Brake Effort Computer</name>
-        <debug>false</debug>
         <enable>
             <property>autopilot/autobrake/engaged</property>
         </enable>
@@ -312,13 +318,13 @@
             <Ki>0.0</Ki>
         </config>
     </pi-simple-controller>
-    
+
     <!-- left output summer -->
     <filter>
         <name>Left Output Summer</name>
         <type>gain</type>
         <gain>1.0</gain>
-        
+
         <input>
             <condition>
                 <property>autopilot/autobrake/engaged</property>
@@ -335,7 +341,7 @@
         <input>
             <property>controls/gear/brake-left</property>
         </input>
-        
+
         <output>autopilot/autobrake/left-brake-output</output>
     </filter>
     
@@ -344,7 +350,7 @@
         <name>Right Output Summer</name>
         <type>gain</type>
         <gain>1.0</gain>
-        
+
         <input>
             <condition>
                 <property>autopilot/autobrake/engaged</property>
@@ -361,8 +367,8 @@
         <input>
             <property>controls/gear/brake-right</property>
         </input>
-        
+
         <output>autopilot/autobrake/right-brake-output</output>
     </filter>
-    
+
 </PropertyList>

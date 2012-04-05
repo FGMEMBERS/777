@@ -947,7 +947,7 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%5.0f</format>
-        <property>autopilot/settings/counter-set-altitude-ft</property>
+        <property>autopilot/settings/actual-target-altitude-ft</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.011</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>

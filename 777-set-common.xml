@@ -283,11 +283,10 @@
 
         <systems>
             <path>Aircraft/777/Systems/systems.xml</path>
+
+            <!--  fast running autopilot rules (running at FDM frequency / 120Hz) -->
             <autopilot>
                 <path>Aircraft/777/Systems/777-autopilot.xml</path>
-            </autopilot>
-            <autopilot>
-                <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
             </autopilot>
             <autopilot>
                 <path>Aircraft/777/Systems/777-autothrottle.xml</path>
@@ -299,9 +298,14 @@
             <autopilot>
                 <path>Aircraft/Generic/generic-autopilot-helper.xml</path>
             </autopilot>
-            <autopilot>
+
+            <!--  slow running property-rules (running at frame rate) -->
+            <property-rule>
+                <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
+            </property-rule>
+            <property-rule>
                 <path>Aircraft/777/Systems/777-PFD.xml</path>
-            </autopilot>
+            </property-rule>
         </systems>
 
         <instrumentation>

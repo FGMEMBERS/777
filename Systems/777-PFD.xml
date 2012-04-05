@@ -5,9 +5,20 @@
   <!--                        PFD display preprocessors                -->
   <!-- =============================================================== -->
 
+<!--
+    <filter>
+        <name>Radar altimeter</name>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>/position/gear-agl-ft</input>
+        <output>instrumentation/afds/ra-ft</output>
+    </filter>
+ -->
+
   <filter>
       <name>Stall speed margin computer</name> 
       <type>gain</type>
+      <update-interval-secs type="double">0.05</update-interval-secs>
       <gain>1.0</gain>
       <input>
           <property>instrumentation/weu/state/stall-speed</property>
@@ -24,6 +35,7 @@
   <filter>
       <name>Over speed margin computer</name> 
       <type>gain</type>
+      <update-interval-secs type="double">0.05</update-interval-secs>
       <gain>-1.0</gain>
       <input>
           <property>instrumentation/afds/max-airspeed-kts</property>
@@ -43,7 +55,6 @@
 
   <predict-simple>
     <name>speed predictor (smoothed)</name>
-    <debug>false</debug>
     <input>velocities/airspeed-kt</input>
     <output>instrumentation/pfd/speed-lookahead</output>
     <seconds>10.0</seconds>
@@ -52,7 +63,6 @@
 
   <filter>
     <name>PFD preprocessor (spd trend up)</name>
-    <debug>false</debug>
     <type>gain</type>
     <input>
       <property>instrumentation/pfd/speed-lookahead</property>
@@ -69,7 +79,6 @@
 
   <filter>
     <name>PFD preprocessor (spd trend down)</name>
-    <debug>false</debug>
     <type>gain</type>
     <input>
       <property>instrumentation/pfd/speed-lookahead</property>
