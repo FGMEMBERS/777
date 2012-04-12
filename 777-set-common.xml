@@ -300,10 +300,10 @@
             </autopilot>
 
             <!--  slow running property-rules (running at frame rate) -->
-            <property-rule>
+            <property-rule n="100">
                 <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
             </property-rule>
-            <property-rule>
+            <property-rule n="101">
                 <path>Aircraft/777/Systems/777-PFD.xml</path>
             </property-rule>
         </systems>
