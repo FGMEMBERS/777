@@ -9,7 +9,7 @@ Syd Adams
 
     <nasal>
         <load>
-            var livery_update = aircraft.livery_update.new("Aircraft/777-300/Models/Liveries", 10);
+            var livery_update = aircraft.livery_update.new("Aircraft/777/Models/Liveries-300", 10);
         </load>
 
         <unload>

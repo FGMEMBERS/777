@@ -405,6 +405,16 @@
 						<property>instrumentation/afds/ap-modes/pitch-mode</property>
 						<value>VNAV SPD</value>
 					</equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV PTH</value>
+						</equals>
+						<equals>
+							<property>instrumentation/afds/inputs/vnav-path-mode</property>
+							<value>2</value>
+						</equals>
+					</and>
 				</or>
 				<not>
 					<property>/instrumentation/afds/inputs/ias-mach-selected</property>
@@ -519,6 +529,16 @@
 						<property>instrumentation/afds/ap-modes/pitch-mode</property>
 						<value>VNAV SPD</value>
 					</equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV PTH</value>
+						</equals>
+						<equals>
+							<property>instrumentation/afds/inputs/vnav-path-mode</property>
+							<value>2</value>
+						</equals>
+					</and>
 				</or>
 				<property>/instrumentation/afds/inputs/ias-mach-selected</property>
 			</and>
@@ -600,6 +620,16 @@
 						<property>instrumentation/afds/ap-modes/pitch-mode</property>
 						<value>VNAV SPD</value>
 					</equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV PTH</value>
+						</equals>
+						<equals>
+							<property>instrumentation/afds/inputs/vnav-path-mode</property>
+							<value>2</value>
+						</equals>
+					</and>
 				</or>
 			</condition>
 		</enable>
@@ -631,10 +661,16 @@
 							<value>0</value>
 						</equals>
 					</and>
-					<equals>
-						<property>instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>VNAV PTH</value>
-					</equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV PTH</value>
+						</equals>
+						<equals>
+							<property>instrumentation/afds/inputs/vnav-path-mode</property>
+							<value>0</value>
+						</equals>
+					</and>
 				</or>
 			</condition>
 		</enable>
@@ -679,10 +715,16 @@
 								<value>0</value>
 							</equals>
 						</and>
+					<and>
 						<equals>
 							<property>instrumentation/afds/ap-modes/pitch-mode</property>
 							<value>VNAV PTH</value>
 						</equals>
+						<equals>
+							<property>instrumentation/afds/inputs/vnav-path-mode</property>
+							<value>0</value>
+						</equals>
+					</and>
 					</or>
 				</condition>
 		</enable>
@@ -835,18 +877,30 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<and>
-					<equals>
-						<property>instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>V/S</value>
-					</equals>
-					<not>
+				<or>
+					<and>
 						<equals>
-							<property>autopilot/settings/vertical-speed-fpm</property>
-							<value>0</value>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>V/S</value>
 						</equals>
-					</not>
-				</and>
+						<not>
+							<equals>
+								<property>autopilot/settings/vertical-speed-fpm</property>
+								<value>0</value>
+							</equals>
+						</not>
+					</and>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV PTH</value>
+						</equals>
+						<equals>
+							<property>instrumentation/afds/inputs/vnav-path-mode</property>
+							<value>1</value>
+						</equals>
+					</and>
+				</or>
 			</condition>
 		</enable>
 		<input>

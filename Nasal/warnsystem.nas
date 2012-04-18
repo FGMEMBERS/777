@@ -53,6 +53,7 @@ var WEU =
         # inputs
         m.node_flap_override = props.globals.getNode("instrumentation/mk-viii/outputs/discretes/flap-override");
         m.node_radio_alt     = props.globals.getNode("position/gear-agl-ft");
+        m.node_flaps_tgt     = props.globals.getNode("controls/flight/flaps");
         m.node_flaps         = props.globals.getNode("surface-positions/flap-pos-norm");
         m.node_speed         = props.globals.getNode("velocities/airspeed-kt");
 
@@ -60,6 +61,7 @@ var WEU =
         m.enabled       = 0;
         m.throttle      = 0;
         m.radio_alt     = 0;
+        m.flaps_tgt     = 0;
         m.flaps         = 0;
         m.speedbrake    = 0;
         m.spdbrk_armed  = 0;
@@ -172,6 +174,10 @@ var WEU =
     {
         if (me.ap_disengaged)
             append(me.msgs_caution,">AP DISCONNECT");
+		if(getprop("instrumentation/afds/inputs/vnav-mcp-reset") == 1)
+		{
+            append(me.msgs_caution,">FMC MESSAGE");
+		}
         if ((getprop("/gear/brake-thermal-energy") or 0)>1)
             append(me.msgs_caution,">L R BRAKE OVERHEAT");
         if (me.speedbrake)
@@ -214,12 +220,10 @@ var WEU =
         elsif (me.flaps<0.034)        # flap 1
         {
             stallspeed = vgrosswt * 166 + 60;
-            target_speed = vgrosswt * 166 + 80;
         }
         elsif (me.flaps<0.167)        # flap 5
         {
             stallspeed = vgrosswt * 166 + 40;
-            target_speed = vgrosswt * 166 + 60;
         }
         elsif (me.flaps<0.501)        # flap 15
         {
@@ -229,20 +233,46 @@ var WEU =
         elsif (me.flaps<0.667)        # flap 20
         {
             stallspeed = vgrosswt * 180;
-            target_speed = vgrosswt * 166 + 20;
         }
         elsif (me.flaps<0.834)        # flap 25
         {
             stallspeed = vgrosswt * 174;
-            target_speed = vgrosswt * 180;
         }
         else                          # flap 30
         {
             stallspeed = vgrosswt * 166;
-            target_speed = vgrosswt * 174;
         }
         stallspeed /= 1.3;
         me.stallspeed.setValue(stallspeed);
+
+        # calculate flap target speed
+        if (me.flaps_tgt<0.01)            # flap up
+        {
+        }
+        elsif (me.flaps_tgt<0.034)        # flap 1
+        {
+            target_speed = vgrosswt * 166 + 80;
+        }
+        elsif (me.flaps_tgt<0.167)        # flap 5
+        {
+            target_speed = vgrosswt * 166 + 60;
+        }
+        elsif (me.flaps_tgt<0.501)        # flap 15
+        {
+            target_speed = vgrosswt * 166 + 40;
+        }
+        elsif (me.flaps_tgt<0.667)        # flap 20
+        {
+            target_speed = vgrosswt * 166 + 20;
+        }
+        elsif (me.flaps_tgt<0.834)        # flap 25
+        {
+            target_speed = vgrosswt * 180;
+        }
+        else                          # flap 30
+        {
+            target_speed = vgrosswt * 174;
+        }
         me.targetspeed.setValue(target_speed);
 
         if ((me.speed<=stallspeed)and
@@ -330,6 +360,7 @@ var WEU =
         if (me.enabled)
         {
             me.radio_alt  = me.node_radio_alt.getValue();
+            me.flaps_tgt  = me.node_flaps_tgt.getValue();
             me.flaps      = me.node_flaps.getValue();
             me.speed      = me.node_speed.getValue();
             me.flap_override = me.node_flap_override.getBoolValue();

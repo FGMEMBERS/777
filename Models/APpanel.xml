@@ -302,10 +302,19 @@ Autopilot Control Panel
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
 					<value>VNAV SPD</value>
 				</not-equals>
-				<not-equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>VNAV PTH</value>
-				</not-equals>
+				<or>
+					<not-equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>VNAV PTH</value>
+					</not-equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV PTH</value>
+						</equals>
+						<property>instrumentation/afds/settings/manual-intervention</property>
+					</and>
+				</or>
 			</and>
 		</condition>
 	</animation>
@@ -367,10 +376,19 @@ Autopilot Control Panel
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
 					<value>VNAV SPD</value>
 				</not-equals>
-				<not-equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>VNAV PTH</value>
-				</not-equals>
+				<or>
+					<not-equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>VNAV PTH</value>
+					</not-equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV PTH</value>
+						</equals>
+						<property>instrumentation/afds/settings/manual-intervention</property>
+					</and>
+				</or>
 			</and>
 		</condition>
 	</animation>
@@ -554,6 +572,10 @@ Autopilot Control Panel
 				<not>
 					<property>instrumentation/afds/inputs/vs-fpa-selected</property>
 				</not>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>V/S</value>
+				</equals>
 			</and>
 		</condition>
 	</animation>
@@ -570,6 +592,10 @@ Autopilot Control Panel
 				<property>autopilot/settings/vertical-speed-fpm</property>
 				<value>0</value>
 			</less-than>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>V/S</value>
+				</equals>
 			</and>
 		</condition>
 	</animation>
@@ -664,6 +690,10 @@ Autopilot Control Panel
 				<property>autopilot/settings/flight-path-angle</property>
 				<value>0</value>
 			</less-than>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>FPA</value>
+				</equals>
 			</and>
 		</condition>
 	</animation>
@@ -1082,8 +1112,9 @@ Autopilot Control Panel
    <animation>
 		<type>pick</type>
 	   <object-name>Pitchwheel.dec</object-name>
+	   <object-name>Pitchwheel.inc</object-name>
 		<action>
-			<button>3</button> <!--  scroll up -->
+			<button>0</button> <!--  left button -->
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
@@ -1124,9 +1155,96 @@ Autopilot Control Panel
 	<animation>
 		<type>pick</type>
 		<object-name>Pitchwheel.dec</object-name>
+		<object-name>Pitchwheel.inc</object-name>
+	   <action>
+			<button>1</button> <!--  center button -->
+			<repeatable>true</repeatable>
+			<binding>
+			<condition>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>V/S</value>
+				</equals>
+			</condition>
+			<command>property-adjust</command>
+			<property>autopilot/settings/vertical-speed-fpm</property>
+			<step>100</step>
+			<min>-8000</min>
+			<max>6000</max>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FPA</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/flight-path-angle</property>
+				<step>0.1</step>
+				<min>-9.9</min>
+				<max>9.9</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					controls.click(5);
+					b777.afds.input(1,255);
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+   <animation>
+		<type>pick</type>
+	   <object-name>Pitchwheel.dec</object-name>
+	   <object-name>Pitchwheel.inc</object-name>
+		<action>
+			<button>3</button> <!--  scroll up -->
+			<repeatable>false</repeatable>
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>V/S</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/vertical-speed-fpm</property>
+				<step>-100</step>
+				<min>-8000</min>
+				<max>6000</max>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FPA</value>
+					</equals>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/flight-path-angle</property>
+				<step>-0.1</step>
+				<min>-9.9</min>
+				<max>9.9</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					controls.click(5);
+					b777.afds.input(1,255);
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>Pitchwheel.dec</object-name>
+		<object-name>Pitchwheel.inc</object-name>
 	   <action>
 			<button>4</button> <!--  scroll down -->
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 			<condition>
 				<equals>
@@ -1165,12 +1283,122 @@ Autopilot Control Panel
 
 	<!-- Continental B777 manual, Sec. 6.4, Page 32:
 		 MCP/SPD range is 100 - 399 KIAS, 0.40 - 0.95 MACH -->
+    <animation>
+		<type>pick</type>
+		<object-name>SPD.dec</object-name>
+		<object-name>SPD.inc</object-name>
+		<object-name>IAS.dwn</object-name>
+		<object-name>IAS.up</object-name>
+		<action>
+			<button>0</button> <!--  left button -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<not>
+							<property>instrumentation/afds/inputs/ias-mach-selected</property>
+						</not>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/target-speed-kt</property>
+				<step>1</step>
+				<min>100</min>
+				<max>390</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<property>instrumentation/afds/inputs/ias-mach-selected</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/target-speed-mach</property>
+				<step>0.001</step>
+				<min>0.4</min>
+				<max>0.95</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(5);</script>
+			</binding>
+		</action>
+	</animation>
+    <animation>
+		<type>pick</type>
+		<object-name>SPD.dec</object-name>
+		<object-name>SPD.inc</object-name>
+		<object-name>IAS.dwn</object-name>
+		<object-name>IAS.up</object-name>
+		<action>
+			<button>1</button> <!--  center button -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<not>
+							<property>instrumentation/afds/inputs/ias-mach-selected</property>
+						</not>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/target-speed-kt</property>
+				<step>-1</step>
+				<min>100</min>
+				<max>390</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<property>instrumentation/afds/inputs/ias-mach-selected</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/target-speed-mach</property>
+				<step>-0.001</step>
+				<min>0.4</min>
+				<max>0.95</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(5);</script>
+			</binding>
+		</action>
+	</animation>
+
    <animation>
 		<type>pick</type>
 		<object-name>SPD.knob</object-name>
 		<action>
+			<button>0</button> <!--  manual intervention -->
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/afds/settings/manual-intervention</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					controls.click(3);
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+ <animation>
+		<type>pick</type>
+		<object-name>SPD.knob</object-name>
+		<object-name>SPD.dec</object-name>
+		<object-name>SPD.inc</object-name>
+		<object-name>IAS.dwn</object-name>
+		<object-name>IAS.up</object-name>
+		<action>
 			<button>3</button> <!--  scroll up -->
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<and>
@@ -1209,9 +1437,13 @@ Autopilot Control Panel
    <animation>
 		<type>pick</type>
 		<object-name>SPD.knob</object-name>
+		<object-name>SPD.dec</object-name>
+		<object-name>SPD.inc</object-name>
+		<object-name>IAS.dwn</object-name>
+		<object-name>IAS.up</object-name>
 		<action>
 			<button>4</button> <!--  scroll down -->
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<and>
@@ -1250,6 +1482,7 @@ Autopilot Control Panel
 	<animation>
 		<type>pick</type>
 		<object-name>HDG.inc</object-name>
+		<object-name>HDG.dec</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>true</repeatable>
@@ -1289,8 +1522,55 @@ Autopilot Control Panel
 			</binding>
 		</action>
 	</animation>
+
+		<animation>
+		<type>pick</type>
+		<object-name>HDG.inc</object-name>
+		<object-name>HDG.dec</object-name>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<not>
+							<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+						</not>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/heading-bug-deg</property>
+				<step type="int">-1</step>
+				<min type="int">1</min>
+				<max type="int">361</max>
+				<wrap type="bool">true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/track-bug-deg</property>
+				<step type="int">-1</step>
+				<min type="int">1</min>
+				<max type="int">361</max>
+				<wrap type="bool">true</wrap>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(5);</script>
+			</binding>
+		</action>
+	</animation>
+	
 	<animation>
 		<type>pick</type>
+		<object-name>HDG.inc</object-name>
+		<object-name>HDG.dec</object-name>
 		<object-name>HDG.sel</object-name>
 		<object-name>HDG.knob</object-name>
 		<action>
@@ -1335,48 +1615,8 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
+		<object-name>HDG.inc</object-name>
 		<object-name>HDG.dec</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<condition>
-					<and>
-						<property>/systems/electrical/outputs/avionics</property>
-						<not>
-							<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-						</not>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>autopilot/settings/heading-bug-deg</property>
-				<step type="int">-1</step>
-				<min type="int">1</min>
-				<max type="int">361</max>
-				<wrap type="bool">true</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<and>
-						<property>/systems/electrical/outputs/avionics</property>
-						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>autopilot/settings/track-bug-deg</property>
-				<step type="int">-1</step>
-				<min type="int">1</min>
-				<max type="int">361</max>
-				<wrap type="bool">true</wrap>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(5);</script>
-			</binding>
-		</action>
-	</animation>
-	<animation>
-		<type>pick</type>
 		<object-name>HDG.sel</object-name>
 		<object-name>HDG.knob</object-name>
 		<action>
@@ -1422,10 +1662,10 @@ Autopilot Control Panel
 	<animation>
 		<type>pick</type>
 		<object-name>Bank.inc</object-name>
-		<visible>0</visible>
+		<object-name>Bank.dec</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>false</repeatable>
+			<repeatable>true</repeatable>
 			<binding>
 				<condition>
 					<property>/systems/electrical/outputs/avionics</property>
@@ -1434,7 +1674,7 @@ Autopilot Control Panel
 				<property>instrumentation/afds/inputs/bank-limit-switch</property>
 				<step>1</step>
 				<min>0</min>
-				<max>6</max>
+				<max>5</max>
 				<wrap>false</wrap>
 			</binding>
 			<binding>
@@ -1446,11 +1686,11 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
+		<object-name>Bank.inc</object-name>
 		<object-name>Bank.dec</object-name>
-		<visible>0</visible>
 		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
+			<button>1</button>
+			<repeatable>true</repeatable>
 			<binding>
 				<condition>
 					<property>/systems/electrical/outputs/avionics</property>
@@ -1459,7 +1699,7 @@ Autopilot Control Panel
 				<property>instrumentation/afds/inputs/bank-limit-switch</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>6</max>
+				<max>5</max>
 				<wrap>false</wrap>
 			</binding>
 			<binding>
@@ -1481,7 +1721,7 @@ Autopilot Control Panel
 				<property>instrumentation/afds/inputs/bank-limit-switch</property>
 				<step>-1</step>
 				<min>0</min>
-				<max>6</max>
+				<max>5</max>
 				<wrap>false</wrap>
 			</binding>
 			<binding>
@@ -1503,7 +1743,7 @@ Autopilot Control Panel
 				<property>instrumentation/afds/inputs/bank-limit-switch</property>
 				<step>1</step>
 				<min>0</min>
-				<max>6</max>
+				<max>5</max>
 				<wrap>false</wrap>
 			</binding>
 			<binding>

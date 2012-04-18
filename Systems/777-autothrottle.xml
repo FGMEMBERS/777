@@ -80,18 +80,35 @@
         <output>instrumentation/afds/ias-target-kt</output>
     </filter>
 
-    <!-- thrust mode: IDLE -->
+    <!-- thrust mode: IDLE or HOLD -->
     <filter>
         <type>gain</type>
         <gain>1.0</gain>
         <enable>
             <condition>
                 <property>/instrumentation/afds/inputs/at-armed[0]</property>
-				<not><property>gear/gear[1]/wow</property></not>
-                <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
-                    <value>4</value>
-                </equals>
+				<not>
+	                <equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>TO/GA</value>
+					</equals>
+				</not>
+				<not>
+	                <equals>
+						<property>/instrumentation/afds/inputs/vertical-index</property>
+						<value>0</value>
+					</equals>
+				</not>
+				<or>
+	                <equals>
+    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+        	            <value>4</value>
+					</equals>
+    	            <equals>
+        	            <property>/instrumentation/afds/inputs/autothrottle-index</property>
+            	        <value>3</value>
+					</equals>
+				</or>
             </condition>
         </enable>
 
@@ -105,7 +122,7 @@
             <value>0</value>
         </input>
         <input>
-            <value>0.125</value>
+            <prop>autopilot/settings/flight-idle</prop>
         </input>
         <output>
             <prop>/controls/engines/engine[0]/throttle</prop>
@@ -118,11 +135,28 @@
         <enable>
             <condition>
                 <property>/instrumentation/afds/inputs/at-armed[1]</property>
-				<not><property>gear/gear[1]/wow</property></not>
-                <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
-                    <value>4</value>
-                </equals>
+				<not>
+	                <equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>TO/GA</value>
+					</equals>
+				</not>
+				<not>
+	                <equals>
+						<property>/instrumentation/afds/inputs/vertical-index</property>
+						<value>0</value>
+					</equals>
+				</not>
+				<or>
+	                <equals>
+    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+        	            <value>4</value>
+					</equals>
+    	            <equals>
+        	            <property>/instrumentation/afds/inputs/autothrottle-index</property>
+            	        <value>3</value>
+					</equals>
+				</or>
             </condition>
         </enable>
 
@@ -136,7 +170,7 @@
             <value>0</value>
         </input>
         <input>
-            <value>0.125</value>
+            <prop>autopilot/settings/flight-idle</prop>
         </input>
         <output>
             <prop>/controls/engines/engine[1]/throttle</prop>

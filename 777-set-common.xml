@@ -2,14 +2,14 @@
 
     <sim n="0">
         <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair</author>
-        <status>early production</status>
+        <status>production</status>
         <rating>
             <FDM type="int">4</FDM>
             <systems type="int">4</systems>
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20120310</aircraft-version>
+        <aircraft-version>20120418</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.7</fuel-fraction>
         <model n="0">

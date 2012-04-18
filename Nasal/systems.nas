@@ -263,7 +263,9 @@ var Engine = {
         m.cutoff.setBoolValue(1);
         m.fuel_out = props.globals.getNode("engines/engine["~eng_num~"]/out-of-fuel",1);
         m.fuel_out.setBoolValue(0);
-        m.starterSwitch = props.globals.getNode("controls/engines/autostart-knob["~eng_num~"]",1);
+		m.autostart = props.globals.getNode("controls/engines/autostart",1);
+		m.autostart.setBoolValue(1);
+        m.starterSwitch = props.globals.getNode("controls/engines/StartIgnition-knob["~eng_num~"]",1);
         m.starterSystem = props.globals.getNode("systems/electrical/outputs/starter["~eng_num~"]",1);
         m.generator = props.globals.getNode("controls/electric/engine["~eng_num~"]/generator",1);
         m.fuel_pph=m.eng.getNode("fuel-flow_pph",1);
@@ -277,6 +279,8 @@ var Engine = {
         m.apu_knob = m.apu.getNode("off-start-run", 1);
         m.apu_status = m.apu.getNode("apu_status", 1);
         m.apu_status.setValue(0);
+        m.apu_gen_switch = m.apu.getNode("apu-gen-switch", 1);
+        m.apu_gen_switch.setBoolValue(0);
         m.apu_running = m.apu.getNode("run", 1);
         m.apu_running.setBoolValue(0);
         return m;
@@ -828,8 +832,8 @@ var Shutdown = func{
     setprop("controls/flight/speedbrake-lever",0);
     setprop("sim/model/armrest",0);
     setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
-    setprop("controls/engines/autostart-knob[0]",0);
-    setprop("controls/engines/autostart-knob[1]",0);
+    setprop("controls/engines/StartIgnition-knob[0]",0);
+    setprop("controls/engines/StartIgnition-knob[1]",0);
     setprop("/engines/engine[0]/run",0);
     setprop("/engines/engine[1]/run",0);
     setprop("/engines/engine[0]/rpm",0);
