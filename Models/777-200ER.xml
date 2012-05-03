@@ -47,22 +47,31 @@ Syd Adams
         <object-name>RHelevator</object-name>
         <property-base>sim/model/livery</property-base>
         <texture-prop>texture</texture-prop>
-		<texture>Liveries-200/paint1.png</texture>
+        <texture>Liveries-200/paint1.png</texture>
     </animation>
 
-    <animation>
-        <type>material</type>
-        <object-name>RFdoor.001</object-name>
-        <object-name>LFdoor.001</object-name>
-        <object-name>Tail.001</object-name>
-        <object-name>Rudder.001</object-name>
-        <object-name>FuselageL</object-name>
-        <object-name>FuselageR</object-name>
-        <object-name>Fuselage.001</object-name>
-        <property-base>sim/model/lights</property-base>
-        <texture-prop>texture</texture-prop>
-        <texture>Liveries-200/lights1.png</texture>
-    </animation>
+    <effect>
+        <inherits-from>Aircraft/777/Models/Effects/reflect</inherits-from>
+        <object-name>Fuselage</object-name>
+        <object-name>Engines</object-name>
+        <object-name>Reversers</object-name>
+        <object-name>Cowling</object-name>
+        <object-name>Cowling.001</object-name>
+        <object-name>Rudder</object-name>
+        <object-name>Tail</object-name>
+        <object-name>Elevator</object-name>
+        <object-name>RHaileron</object-name>
+        <object-name>LHaileron</object-name>
+        <object-name>RHflap</object-name>
+        <object-name>LHflap</object-name>
+        <object-name>Wings</object-name>
+        <object-name>LHfront.door</object-name>
+        <object-name>RHfront.door</object-name>
+        <object-name>RHrear.door</object-name>
+        <object-name>LHrear.door</object-name>
+        <object-name>Rmain.geardoor</object-name>
+        <object-name>Lmain.geardoor</object-name>
+    </effect>
 
     <model>
         <name>flightdeck</name>
@@ -92,8 +101,8 @@ Syd Adams
         <object-name>FrtStrut</object-name>
         <object-name>Lstrut</object-name>
         <object-name>Rstrut</object-name>
-        <object-name>Rslat1.001</object-name>
-        <object-name>Lslat1.001</object-name>
+        <object-name>Rslat.001</object-name>
+        <object-name>Lslat.001</object-name>
         <object-name>Wheaters</object-name>
         <object-name>LandingLights</object-name>
         <object-name>taxiL-off</object-name>
@@ -189,23 +198,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rudder</object-name>
-        <property>controls/flight/rudder</property>
-        <factor>35</factor>
-        <center>
-            <x-m>31.265</x-m>
-            <y-m>0</y-m>
-            <z-m>2.557</z-m>
-        </center>
-        <axis>
-            <x>0.487</x>
-            <y>0</y>
-            <z>0.873</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
-        <object-name>Rudder.001</object-name>
         <property>controls/flight/rudder</property>
         <factor>35</factor>
         <center>
@@ -718,40 +710,6 @@ Syd Adams
     </animation>
 
     <animation>
-        <type>rotate</type>
-        <object-name>hinge2</object-name>
-        <property>surface-positions/flap-pos-norm</property>
-        <factor>15</factor>
-        <center>
-            <x-m>7.670</x-m>
-            <y-m>0</y-m>
-            <z-m>-1.203</z-m>
-        </center>
-        <axis>
-            <x>0.0</x>
-            <y>1.0</y>
-            <z>0</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
-        <object-name>hinge3</object-name>
-        <property>surface-positions/flap-pos-norm</property>
-        <factor>15</factor>
-        <center>
-            <x-m>10.451</x-m>
-            <y-m>0</y-m>
-            <z-m>-0.380</z-m>
-        </center>
-        <axis>
-            <x>0.0</x>
-            <y>1.0</y>
-            <z>0</z>
-        </axis>
-    </animation>
-
-    <animation>
         <type>translate</type>
         <object-name>Reversers</object-name>
         <property>sim/multiplay/generic/float[6]</property>
@@ -765,10 +723,8 @@ Syd Adams
 
     <animation>
         <type>translate</type>
-        <object-name>Rslat1</object-name>
-        <object-name>Lslat1</object-name>
-        <object-name>Rslat1.001</object-name>
-        <object-name>Lslat1.001</object-name>
+        <object-name>Rslat</object-name>
+        <object-name>Lslat</object-name>
         <property>surface-positions/slats</property>
         <factor>0.4</factor>
         <axis>
@@ -802,7 +758,7 @@ Syd Adams
         <object-name>taxiL-on</object-name>
         <condition>
             <and>
-                <property>sim/multiplay/generic/int[2]</property>
+                <property>sim/multiplay/generic/int[4]</property>
                 <equals>
                     <property>gear/gear[0]/position-norm</property>
                     <value>1.0</value>
@@ -813,7 +769,6 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>FuselageL</object-name>
         <object-name>LHLND.flare</object-name>
         <condition>
             <greater-than>
@@ -842,10 +797,9 @@ Syd Adams
     <animation>
         <type>select</type>
         <object-name>RHLND.flare</object-name>
-        <object-name>FuselageR</object-name>
         <condition>
             <greater-than>
-                <property>sim/multiplay/generic/int[6]</property>
+                <property>sim/multiplay/generic/int[4]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -856,7 +810,7 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[6]</property>
+                    <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
@@ -873,7 +827,7 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[5]</property>
+                    <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
                 </greater-than>
                 <equals>
@@ -889,7 +843,7 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[5]</property>
+                    <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
                 </greater-than>
                 <equals>
@@ -1197,47 +1151,6 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>Tail.001</object-name>
-        <condition>
-            <greater-than>
-            <property>sim/multiplay/generic/int[3]</property>
-            <value>5</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>Rudder.001</object-name>
-        <condition>
-            <greater-than>
-            <property>sim/multiplay/generic/int[3]</property>
-            <value>5</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>Fuselage.001</object-name>
-        <object-name>RFdoor.001</object-name>
-        <object-name>LFdoor.001</object-name>
-        <condition>
-            <and>
-                <or>
-                    <property>sim/multiplay/generic/int[2]</property>
-                    <property>sim/multiplay/generic/int[5]</property>
-                </or>
-                <equals>
-                    <property>gear/gear[0]/position-norm</property>
-                    <value>1.0</value>
-                </equals>
-            </and>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
         <object-name>cabinlighting</object-name>
         <condition>
                 <and>
@@ -1424,29 +1337,9 @@ Syd Adams
         </center>
     </animation>
 
-
-    <animation>
-        <type>select</type>
-        <object-name>RFdoor</object-name>
-        <object-name>LFdoor</object-name>
-        <condition>
-            <or>
-                <equals>
-                    <property>controls/lighting/taxi-lights</property>
-                    <value>0</value>
-                </equals>
-                <less-than>
-                    <property>gear/gear[0]/position-norm</property>
-                    <value>1.0</value>
-                </less-than>
-            </or>
-        </condition>
-    </animation>
-
     <animation>
         <type>rotate</type>
         <object-name>LFdoor</object-name>
-        <object-name>LFdoor.001</object-name>
         <property>gear/gear[0]/position-norm</property>
         <interpolation>
             <entry>
@@ -1481,7 +1374,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RFdoor</object-name>
-        <object-name>RFdoor.001</object-name>
         <property>gear/gear[0]/position-norm</property>
         <interpolation>
             <entry>

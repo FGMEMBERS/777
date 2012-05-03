@@ -12,10 +12,8 @@
             <path>Aircraft/777/Models/777-200ER.xml</path>
             <livery>
                 <file type="string">BA</file>
+                <texture>Liveries-200/paint1.png</texture>
             </livery>
-            <lights>
-                <file type="string">BA</file>
-            </lights>
         </model>
         <view n="0">
             <config n="0">
