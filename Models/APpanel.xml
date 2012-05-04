@@ -142,14 +142,6 @@ Autopilot Control Panel
 
 	<animation>
 		<type>select</type>
-		<object-name>CLBtoggle</object-name>
-		<condition>
-			<property>instrumentation/afds/inputs/climb-continuous</property>
-		</condition>
-	</animation>
-
-	<animation>
-		<type>select</type>
 		<object-name>HDGtoggle</object-name>
 		<condition>
 			<equals>
@@ -1377,6 +1369,12 @@ Autopilot Control Panel
 			<button>0</button> <!--  manual intervention -->
 			<repeatable>false</repeatable>
 			<binding>
+				<condition>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>VNAV PTH</value>
+					</equals>
+				</condition>
 				<command>property-toggle</command>
 				<property>instrumentation/afds/settings/manual-intervention</property>
 			</binding>
@@ -1756,24 +1754,8 @@ Autopilot Control Panel
 	<animation>
 		<type>pick</type>
 		<object-name>ALTmode.auto</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-assign</command>
-				<property>instrumentation/afds/inputs/alt-knob</property>
-				<value>0</value>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(3);</script>
-			</binding>
-		</action>
-	</animation>
-
-	<animation>
-		<type>pick</type>
 		<object-name>ALTmode.1000</object-name>
+		<object-name>ALTmode.knob</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -1788,8 +1770,31 @@ Autopilot Control Panel
 			</binding>
 		</action>
 	</animation>
+
 	<animation>
 		<type>pick</type>
+		<object-name>ALTmode.1000</object-name>
+		<object-name>ALTmode.auto</object-name>
+		<object-name>ALTmode.knob</object-name>
+		<action>
+			<button>1</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/afds/inputs/alt-knob</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(4);</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>ALTmode.auto</object-name>
+		<object-name>ALTmode.1000</object-name>
 		<object-name>ALTmode.knob</object-name>
 		<action>
 			<button>3</button> <!--  scroll up -->
@@ -1807,6 +1812,8 @@ Autopilot Control Panel
 	</animation>
 	<animation>
 		<type>pick</type>
+		<object-name>ALTmode.auto</object-name>
+		<object-name>ALTmode.1000</object-name>
 		<object-name>ALTmode.knob</object-name>
 		<action>
 			<button>4</button> <!--  scroll down -->
@@ -1825,26 +1832,10 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
-		<object-name>ALT.sel</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(5);</script>
-			</binding>
-		</action>
-	</animation>
-
-	<animation>
-		<type>pick</type>
 		<object-name>ALT.knob</object-name>
 		<action>
 			<button>4</button> <!--  scroll down -->
-			<repeatable>true</repeatable>
-		<condition>
-			<property>/systems/electrical/outputs/avionics</property>
-		</condition>
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<and>
@@ -1852,6 +1843,26 @@ Autopilot Control Panel
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
 					</and>
 				</condition>
 				<command>property-adjust</command>
@@ -1865,6 +1876,107 @@ Autopilot Control Panel
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/counter-set-altitude-ft</property>
+				<step>-1000</step>
+				<min>0</min>
+				<max>50000</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(5);</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>ALT.sel</object-name>
+		<action>
+			<button>1</button> <!--  center button  -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<not>
+							<property>instrumentation/afds/inputs/alt-knob</property>
+						</not>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/counter-set-altitude-ft</property>
+				<step>-100</step>
+				<min>0</min>
+				<max>50000</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<property>instrumentation/afds/inputs/alt-knob</property>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
 					</and>
 				</condition>
 				<command>property-adjust</command>
@@ -1885,7 +1997,7 @@ Autopilot Control Panel
 		<object-name>ALT.knob</object-name>
 		<action>
 			<button>3</button> <!--  scroll up -->
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<condition>
 					<and>
@@ -1893,6 +2005,26 @@ Autopilot Control Panel
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
 					</and>
 				</condition>
 				<command>property-adjust</command>
@@ -1906,6 +2038,107 @@ Autopilot Control Panel
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/counter-set-altitude-ft</property>
+				<step>1000</step>
+				<min>0</min>
+				<max>50000</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(5);</script>
+			</binding>
+		</action>
+	</animation>
+
+   <animation>
+		<type>pick</type>
+		<object-name>ALT.sel</object-name>
+		<action>
+			<button>0</button> <!--  left button -->
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<not>
+							<property>instrumentation/afds/inputs/alt-knob</property>
+						</not>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>autopilot/settings/counter-set-altitude-ft</property>
+				<step>100</step>
+				<min>0</min>
+				<max>50000</max>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>/systems/electrical/outputs/avionics</property>
+						<property>instrumentation/afds/inputs/alt-knob</property>
+						<or>
+							<less-than>
+								<property>instrumentation/afds/inputs/remaining-distance</property>
+								<value>200</value>
+							</less-than>
+							<and>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV SPD</value>
+								</not-equals>
+								<not-equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV ALT</value>
+								</not-equals>
+							</and>
+						</or>
 					</and>
 				</condition>
 				<command>property-adjust</command>
