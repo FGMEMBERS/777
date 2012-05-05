@@ -5,7 +5,7 @@ Syd Adams
 
 <PropertyList>
 
-    <path>777-200ER.ac</path>
+    <path>Aircraft/777/Models/777-200ER.ac</path>
 
     <nasal>
         <load>
@@ -95,7 +95,7 @@ Syd Adams
     <animation>
         <type>shader</type>
         <shader>chrome</shader>
-        <texture>chrome2.png</texture>
+        <texture>Aircraft/777/Models/chrome2.png</texture>
         <object-name>RHEngChrome</object-name>
         <object-name>LHEngChrome</object-name>
         <object-name>FrtStrut</object-name>
@@ -112,7 +112,7 @@ Syd Adams
     <animation>
         <type>shader</type>
         <shader>chrome</shader>
-        <texture>chrome1.png</texture>
+        <texture>Aircraft/777/Models/chrome1.png</texture>
         <object-name>Glass</object-name>
     </animation>
 
