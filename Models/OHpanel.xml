@@ -624,6 +624,21 @@ Syd Adams
                 <property>controls/lighting/landing-light</property>
             </binding>
             <binding>
+                <command>property-assign</command>
+                <property>controls/lighting/landing-lights</property>
+                <property>controls/lighting/landing-light</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/lighting/landing-lights[1]</property>
+                <property>controls/lighting/landing-light</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/lighting/landing-lights[2]</property>
+                <property>controls/lighting/landing-light</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>controls.click(1);</script>
             </binding>
