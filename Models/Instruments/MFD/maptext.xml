@@ -74,8 +74,9 @@
             </color>
             <chunks>
                 <chunk>
-                    <type>text-value</type>
-                    <property>autopilot/route-manager/wp/eta</property>
+                    <type>number-value</type>
+					<property>instrumentation/afds/inputs/estimated-time-arrival</property>
+                    <format>%04.0fz</format>
                 </chunk>
             </chunks>
             <transformations>

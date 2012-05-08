@@ -45,8 +45,45 @@
                 <not>
                     <property>instrumentation/efis/inputs/nd-centered</property>
                 </not>
+                <not>
+	                <property>autopilot/settings/heading-bug-active</property>
+                </not>
             </condition>
-            <name>hdgbug</name>
+            <name>hdgbug-inactive</name>
+            <emissive>true</emissive>
+            <w>12</w>
+            <h>170</h>
+            <texture>
+                <path>Aircraft/777/Models/Instruments/MFD/symbols.png</path>
+                <x1>0.391</x1>
+                <y1>0.385</y1>
+                <x2>0.440</x2>
+                <y2>0.974</y2>
+            </texture>
+           <transformations>
+            <transformation>
+                <type>y-shift</type>
+                <offset>-78</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>autopilot/internal/fdm-heading-bug-error-deg</property>
+            </transformation>
+            <transformation><!--shift rotation origin-->
+                <type>y-shift</type>
+                <offset>84</offset>
+            </transformation>
+        </transformations>
+        </layer>
+
+        <layer>
+            <condition>
+                <not>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                </not>
+                <property>autopilot/settings/heading-bug-active</property>
+            </condition>
+            <name>hdgbug-active</name>
             <emissive>true</emissive>
             <w>12</w>
             <h>170</h>
@@ -550,17 +587,20 @@
         <layer>
             <condition>
                 <property>instrumentation/efis/inputs/nd-centered</property>
+                <not>
+	                <property>autopilot/settings/heading-bug-active</property>
+                </not>
             </condition>
-            <name>hdgbug</name>
+            <name>hdgbug-inactive</name>
             <emissive>true</emissive>
-            <w>12</w>
-            <h>6</h>
+            <w>10</w>
+            <h>95</h>
             <texture>
                 <path>Aircraft/777/Models/Instruments/MFD/symbols.png</path>
-                <x1>0.078</x1>
-                <y1>0.737</y1>
-                <x2>0.125</x2>
-                <y2>0.762</y2>
+                <x1>0.391</x1>
+                <y1>0.563</y1>
+                <x2>0.440</x2>
+                <y2>0.974</y2>
             </texture>
            <transformations>
             <transformation>
@@ -573,7 +613,39 @@
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
-                <offset>92</offset>
+                <offset>48</offset>
+            </transformation>
+        </transformations>
+        </layer>
+
+        <layer>
+            <condition>
+                <property>instrumentation/efis/inputs/nd-centered</property>
+                <property>autopilot/settings/heading-bug-active</property>
+            </condition>
+            <name>hdgbug-active</name>
+            <emissive>true</emissive>
+            <w>10</w>
+            <h>95</h>
+            <texture>
+                <path>Aircraft/777/Models/Instruments/MFD/symbols.png</path>
+                <x1>0.077</x1>
+                <y1>0.352</y1>
+                <x2>0.126</x2>
+                <y2>0.763</y2>
+            </texture>
+           <transformations>
+            <transformation>
+                <type>y-shift</type>
+                <offset>-12</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>autopilot/internal/fdm-heading-bug-error-deg</property>
+            </transformation>
+            <transformation><!--shift rotation origin-->
+                <type>y-shift</type>
+                <offset>48</offset>
             </transformation>
         </transformations>
         </layer>

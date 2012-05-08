@@ -32,7 +32,8 @@ var AFDS = {
 		m.step=0;
 		m.tiller_status = 0;
 		m.descent_step=0;
-		m.remaining_distance = 0;
+		m.remaining_distance_log_last = 36000;
+		m.heading_change_rate = 0;
 
 
 		m.AFDS_node = props.globals.getNode("instrumentation/afds",1);
@@ -70,11 +71,15 @@ var AFDS = {
 		m.vnav_descent = m.AFDS_inputs.initNode("vnav-descent",0,"BOOL");
 		m.climb_continuous = m.AFDS_inputs.initNode("climb-continuous",0,"BOOL");
 		m.indicated_vs_fpm = m.AFDS_inputs.initNode("indicated-vs-fpm",0,"DOUBLE");
+		m.estimated_time_arrival = m.AFDS_inputs.initNode("estimated-time-arrival",0,"INT");
+		m.remaining_distance = m.AFDS_inputs.initNode("remaining-distance",0,"DOUBLE");;
 
 		m.ias_setting = m.AP_settings.initNode("target-speed-kt",200);# 100 - 399 #
 		m.mach_setting = m.AP_settings.initNode("target-speed-mach",0.40);# 0.40 - 0.95 #
 		m.vs_setting = m.AP_settings.initNode("vertical-speed-fpm",0); # -8000 to +6000 #
 		m.hdg_setting = m.AP_settings.initNode("heading-bug-deg",360,"INT"); # 1 to 360
+		m.hdg_setting_last = m.AP_settings.initNode("heading-bug-last",360,"INT"); # 1 to 360
+		m.hdg_setting_active = m.AP_settings.initNode("heading-bug-active",0,"BOOL");
 		m.trk_setting = m.AP_settings.initNode("track-bug-deg",360,"INT"); # 1 to 360
 		m.fpa_setting = m.AP_settings.initNode("flight-path-angle",0); # -9.9 to 9.9 #
 		m.alt_setting = m.AP_settings.initNode("counter-set-altitude-ft",10000,"DOUBLE");
@@ -258,6 +263,8 @@ var AFDS = {
 							me.vnav_mcp_reset.setValue(0);
 							me.vnav_descent.setValue(0);
 							btn = vnav_mode;
+							me.descent_step = 0;
+							me.manual_intervention.setValue(0);
 						}
 					}
 				}
@@ -602,7 +609,11 @@ var AFDS = {
 						{
 							me.lateral_mode.setValue(4);
 							me.loc_armed.setValue(0);
-							me.hdg_setting.setValue(getprop("instrumentation/nav/radials/selected-deg"));
+							var vradials = getprop("instrumentation/nav[0]/radials/target-radial-deg")
+								- getprop("environment/magnetic-variation-deg") + 0.5;
+							if(vradials < 0.5) vradials += 360;
+							elsif(vradials >= 360.5) vradials -= 360;
+							me.hdg_setting.setValue(vradials);
 						}
 					}
 				}
@@ -633,6 +644,26 @@ var AFDS = {
 				vheading += 360;
 			}
 			me.heading_magnetic.setValue(vheading);
+			var vsethdg = me.hdg_setting.getValue();
+			if(me.hdg_setting_last.getValue() != vsethdg)
+			{
+				me.hdg_setting_last.setValue(vsethdg);
+				me.hdg_setting_active.setValue(1);
+			}
+			else
+			{
+				if(me.hdg_setting_active.getValue() == 1)
+				{
+					settimer(func
+						{
+							if(me.hdg_setting_last.getValue() == vsethdg)
+							{
+								me.hdg_setting_active.setValue(0);
+							}
+
+						}, 1);
+				}
+			}
 			var idx = me.lateral_mode.getValue();
 			if ((idx == 1) or (idx == 2))
 			{
@@ -820,7 +851,7 @@ var AFDS = {
 						me.ias_setting.setValue(320);
 					}
 				}
-				if(me.remaining_distance > 200)
+				if(me.remaining_distance.getValue() > 200)
 				{
 					var optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
 									/ getprop("sim/max-payload"));
@@ -854,10 +885,6 @@ var AFDS = {
 				if(getprop("/controls/flight/flaps") > 0)		# flaps down
 				{
 					me.ias_setting.setValue(getprop("instrumentation/weu/state/target-speed"));
-				}
-				elsif(current_alt < 2000)
-				{
-					me.ias_setting.setValue(210);
 				}
 				elsif(current_alt < 10000)
 				{
@@ -1118,19 +1145,19 @@ var AFDS = {
 			if (getprop("/autopilot/route-manager/active")){
 				var max_wpt = getprop("/autopilot/route-manager/route/num");
 				var atm_wpt = getprop("/autopilot/route-manager/current-wp");
-				var wpt_distance = getprop("/autopilot/route-manager/wp/dist");
 				var destination_elevation = getprop("/autopilot/route-manager/destination/field-elevation-ft");
 				var total_distance = getprop("/autopilot/route-manager/total-distance");
-				var change_wp = 0;
 				if(me.lateral_mode.getValue() == 3)		# Current mode is LNAV
 				{
 					if(atm_wpt < (max_wpt - 1))
 					{
-						me.remaining_distance = getprop("/autopilot/route-manager/wp/remaining-distance-nm") +  getprop("autopilot/route-manager/wp/dist");
+						me.remaining_distance.setValue(getprop("/autopilot/route-manager/wp/remaining-distance-nm")
+							+ getprop("autopilot/route-manager/wp/dist"));
+						var next_course = getprop("/autopilot/route-manager/wp[1]/bearing-deg");
 					}
 					else
 					{
-						me.remaining_distance = getprop("autopilot/route-manager/wp/dist");
+						me.remaining_distance.setValue(getprop("autopilot/route-manager/wp/dist"));
 					}
 					if(me.vnav_descent.getValue() == 0)	# Calculation of Top Of Descent distance
 					{
@@ -1165,7 +1192,7 @@ var AFDS = {
 						if((me.alt_setting.getValue() > 24000)
 							and (me.alt_setting.getValue() >= current_alt))
 						{
-							if(me.remaining_distance < (top_of_descent + 10))
+							if(me.remaining_distance.getValue() < (top_of_descent + 10))
 							{
 								me.vnav_mcp_reset.setValue(1);
 								copilot("Reset MCP ALT");
@@ -1173,24 +1200,44 @@ var AFDS = {
 						}
 						else
 						{
-							if(me.remaining_distance < top_of_descent)
+							if(me.remaining_distance.getValue() < top_of_descent)
 							{
 								me.vnav_descent.setValue(1);
 							}
 						}
 					}
 				}
-				if(wpt_distance == nil) wpt_distance = 36000;
-				max_wpt -= 1;
-				if(me.loc_armed.getValue() == 0)
+				if(getprop("/autopilot/route-manager/active"))
 				{
-					change_wp = (5 * getprop("/instrumentation/airspeed-indicator/indicated-mach"));
-				}
-				if(wpt_distance < change_wp)
- 				{
- 					if (getprop("/autopilot/route-manager/current-wp")<=max_wpt){
-						atm_wpt += 1;
-						props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
+					var wpt_distance = getprop("autopilot/route-manager/wp/dist");
+					var groundspeed = getprop("/velocities/groundspeed-kt");
+					if(wpt_distance != nil)
+					{
+						var wpt_eta = (wpt_distance / groundspeed * 3600);
+						var gmt = getprop("instrumentation/clock/indicated-sec");
+						if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
+						{
+							gmt += (wpt_eta + 30);
+						}
+						var gmt_hour = int(gmt / 3600);
+						me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
+						var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
+						if(change_wp > 180) change_wp = (360 - change_wp);
+						if(((me.heading_change_rate * change_wp) > wpt_eta)
+							or (wpt_distance < 0.2)
+							or ((me.remaining_distance_log_last < wpt_distance) and (change_wp < 90)))
+ 						{
+ 							if (getprop("/autopilot/route-manager/current-wp") < max_wpt)
+							{
+								atm_wpt += 1;
+								props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
+								me.remaining_distance_log_last = 36000;
+							}
+						}
+						else
+						{
+							me.remaining_distance_log_last = wpt_distance;
+						}
 					}
 				}
 			}
@@ -1205,25 +1252,31 @@ var AFDS = {
 			if(banklimit==0)
 			{
 				var lim = 0;
+				me.heading_change_rate = 0;
 				if(ma_spd > 0.85)
 				{
 					lim=5;
+					me.heading_change_rate = 4.9 * 0.7;
 				}
 				elsif(ma_spd > 0.6666)
 				{
 					lim=10;
+					me.heading_change_rate = 2.45 * 0.7;
 				}
 				elsif(ma_spd > 0.5)
 				{
 					lim=20;
+					me.heading_change_rate = 1.125 * 0.7;
 				}
 				elsif(ma_spd > 0.3333)
 				{
 					lim=30;
+					me.heading_change_rate = 0.625 * 0.7;
 				}
 				else
 				{
 					lim=35;
+					me.heading_change_rate = 0.55 * 0.7;
 				}
 				props.globals.getNode("/instrumentation/afds/settings/bank-max").setValue(lim);
 				lim = -1 * lim;
