@@ -198,8 +198,8 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>C-Lnd.toggle[1]</object-name>
-        <property>controls/lighting/landing-light</property>
+        <object-name>C-Lnd.toggle</object-name>
+        <property>controls/lighting/landing-light[1]</property>
         <factor>30</factor>
         <center>
             <x-m>0.012</x-m>

@@ -1843,6 +1843,10 @@ Autopilot Control Panel
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -1852,10 +1856,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -1876,6 +1876,10 @@ Autopilot Control Panel
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -1885,10 +1889,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -1924,6 +1924,10 @@ Autopilot Control Panel
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -1933,10 +1937,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -1957,6 +1957,10 @@ Autopilot Control Panel
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -1966,10 +1970,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -2005,6 +2005,10 @@ Autopilot Control Panel
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -2014,10 +2018,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -2038,6 +2038,10 @@ Autopilot Control Panel
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -2047,10 +2051,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -2086,6 +2086,10 @@ Autopilot Control Panel
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -2095,10 +2099,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -2119,6 +2119,10 @@ Autopilot Control Panel
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
 						<or>
 							<less-than>
 								<property>instrumentation/afds/inputs/remaining-distance</property>
@@ -2128,10 +2132,6 @@ Autopilot Control Panel
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
 									<value>VNAV PTH</value>
-								</not-equals>
-								<not-equals>
-									<property>instrumentation/afds/ap-modes/pitch-mode</property>
-									<value>VNAV SPD</value>
 								</not-equals>
 								<not-equals>
 									<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -2153,5 +2153,4 @@ Autopilot Control Panel
 			</binding>
 		</action>
 	</animation>
-
 </PropertyList>

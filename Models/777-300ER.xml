@@ -5,7 +5,7 @@ Syd Adams
 
 <PropertyList>
 
-    <path>777-300ER.ac</path>
+    <path>Aircraft/777/Models/777-300ER.ac</path>
 
     <nasal>
         <load>

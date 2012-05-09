@@ -1218,25 +1218,25 @@ var AFDS = {
 						if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
 						{
 							gmt += (wpt_eta + 30);
-						}
-						var gmt_hour = int(gmt / 3600);
-						me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-						var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
-						if(change_wp > 180) change_wp = (360 - change_wp);
-						if(((me.heading_change_rate * change_wp) > wpt_eta)
-							or (wpt_distance < 0.2)
-							or ((me.remaining_distance_log_last < wpt_distance) and (change_wp < 90)))
- 						{
- 							if (getprop("/autopilot/route-manager/current-wp") < max_wpt)
-							{
-								atm_wpt += 1;
-								props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
+							var gmt_hour = int(gmt / 3600);
+							me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
+							var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
+							if(change_wp > 180) change_wp = (360 - change_wp);
+							if(((me.heading_change_rate * change_wp) > wpt_eta)
+								or (wpt_distance < 0.2)
+								or ((me.remaining_distance_log_last < wpt_distance) and (change_wp < 90)))
+ 	 						{
+ 	 							if (getprop("/autopilot/route-manager/current-wp") < max_wpt - 1)
+								{
+									atm_wpt += 1;
+									props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
+								}
 								me.remaining_distance_log_last = 36000;
 							}
-						}
-						else
-						{
-							me.remaining_distance_log_last = wpt_distance;
+							else
+							{
+								me.remaining_distance_log_last = wpt_distance;
+							}
 						}
 					}
 				}
