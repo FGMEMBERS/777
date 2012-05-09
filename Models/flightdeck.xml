@@ -156,22 +156,12 @@ Syd Adams
     </model>
 
     <effect>
-        <inherits-from>Effects/lightmap</inherits-from>
-        <parameters>
-            <texture n="1">
-                <image>Aircraft/777/Models/Effects/lightmap-C1.png</image>
-            </texture>
-        </parameters>
+        <inherits-from>Effects/cabin-light</inherits-from>
         <object-name>cockpit</object-name>
     </effect>
 
     <effect>
-        <inherits-from>Effects/lightmap</inherits-from>
-        <parameters>
-            <texture n="1">
-                <image>Aircraft/777/Models/Effects/lightmap-C2.png</image>
-            </texture>
-        </parameters>
+        <inherits-from>Effects/panel-light</inherits-from>
         <object-name>Panel.main</object-name>
         <object-name>Panel.Rwall</object-name>
         <object-name>Panel.Lwall</object-name>
