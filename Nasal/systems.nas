@@ -58,7 +58,7 @@ var EFIS = {
         m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
         m.update_radar_font();
         m.update_nd_center();
-    return m;
+        return m;
     },
 #### convert inhg to kpa ####
     calc_kpa : func{

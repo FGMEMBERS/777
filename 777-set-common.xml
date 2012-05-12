@@ -675,7 +675,7 @@
             <unit n="0">
                 <source-index type="int">0</source-index>
                 <source type="string">comm1</source>
-                </unit>
+            </unit>
             <unit n="1">
                 <source-index type="int">2</source-index>
                 <source type="string">nav1</source>
@@ -692,6 +692,7 @@
                 <standby-mhz n="3" type="double">110.10</standby-mhz>
                 <standby-mhz n="4" type="double">111.70</standby-mhz>
             </frequencies>
+            <volume type="double">0</volume>
         </nav>
         <nav n="1">
             <frequencies>
@@ -700,6 +701,7 @@
                 <standby-mhz n="3" type="double">110.10</standby-mhz>
                 <standby-mhz n="4" type="double">111.70</standby-mhz>
             </frequencies>
+            <volume type="double">0</volume>
         </nav>
         <dme n="0">
             <serviceable>true</serviceable>
