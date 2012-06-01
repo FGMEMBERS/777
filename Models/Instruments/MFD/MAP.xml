@@ -549,7 +549,7 @@
                 </transformation>
                 <transformation>
                     <type>rotation</type>
-                    <property>orientation/heading-magnetic</property>
+                    <property>orientation/heading-magnetic-deg</property>
                     <scale>-1</scale>
                 </transformation>
             </transformations>

@@ -22,7 +22,17 @@ Syd Adams
         <type>select</type>
         <object-name>locscale</object-name>
         <condition>
-            <property>instrumentation/nav/in-range</property>
+			<or>
+				<equals>
+					<property>instrumentation/afds/ap-modes/roll-mode</property>
+					<value>ROLLOUT</value>
+				</equals>
+				<equals>
+					<property>instrumentation/afds/ap-modes/roll-mode</property>
+					<value>LOC</value>
+				</equals>
+				<property>instrumentation/afds/inputs/loc-armed</property>
+			</or>
         </condition>
     </animation>
 
@@ -32,7 +42,17 @@ Syd Adams
         <condition>
             <and>
                 <property>instrumentation/nav/in-range</property>
-                <property>instrumentation/nav/nav-loc</property>
+				<or>
+					<equals>
+						<property>instrumentation/afds/ap-modes/roll-mode</property>
+						<value>ROLLOUT</value>
+					</equals>
+					<equals>
+						<property>instrumentation/afds/ap-modes/roll-mode</property>
+						<value>LOC</value>
+					</equals>
+					<property>instrumentation/afds/inputs/loc-armed</property>
+				</or>
             </and>
         </condition>
     </animation>
@@ -41,7 +61,17 @@ Syd Adams
         <type>select</type>
         <object-name>gsscale</object-name>
         <condition>
-            <property>instrumentation/nav/has-gs</property>
+			<or>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>FLARE</value>
+				</equals>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>G/S</value>
+				</equals>
+				<property>instrumentation/afds/inputs/gs-armed</property>
+			</or>
         </condition>
     </animation>
 
@@ -51,7 +81,17 @@ Syd Adams
         <condition>
             <and>
                 <property>instrumentation/nav/gs-in-range</property>
-                <property>instrumentation/nav/has-gs</property>
+				<or>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLARE</value>
+					</equals>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>G/S</value>
+					</equals>
+					<property>instrumentation/afds/inputs/gs-armed</property>
+				</or>
             </and>
         </condition>
     </animation>

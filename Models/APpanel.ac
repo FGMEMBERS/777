@@ -5,28 +5,7 @@ MATERIAL "emit.002" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 0  trans 0
 MATERIAL "greenglow.001" rgb 0.8 0.8 0.8  amb 0.8 0.8 0.8  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 MATERIAL "flatblack.004" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 OBJECT world
-kids 112
-OBJECT poly
-name "CLBtoggle"
-loc 0 0.0253966 -0.000109121
-data 8
-Mesh.168
-texture "APpanel.png"
-crease 30.000000
-numvert 4
-0.004926 -0.035712 0.184333
-0.004925 -0.037634 0.184333
-0.004925 -0.037634 0.172047
-0.004926 -0.035712 0.172047
-numsurf 1
-SURF 0x0
-mat 2
-refs 4
-3 0.911634 0.444195
-0 0.826591 0.444195
-1 0.826591 0.426563
-2 0.911634 0.426563
-kids 0
+kids 111
 OBJECT poly
 name "ALT.btn"
 data 8

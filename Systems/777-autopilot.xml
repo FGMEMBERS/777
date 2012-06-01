@@ -112,7 +112,7 @@
 			<property>/autopilot/internal/waypoint-bearing-error-deg</property>
 		</input>
 		<reference>
-			<property>/instrumentation/gps/wp/wp[1]/course-deviation-deg</property>
+			<property>/instrumentation/gps/wp/wp[1]/course-error-nm</property>
 			<scale>-1.5</scale>
 		</reference>
 		<output>
@@ -639,6 +639,14 @@
 		<output>
 			<property>/autopilot/internal/target-pitch-deg</property>
 		</output>
+		<config>
+			<u_min>
+				<property>instrumentation/afds/settings/pitch-min</property>
+			</u_min>
+			<u_max>
+				<property>instrumentation/afds/settings/pitch-max</property>
+			</u_max>
+		</config>
 	</filter>
 		
 	<pi-simple-controller>
@@ -671,6 +679,10 @@
 							<value>0</value>
 						</equals>
 					</and>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>VNAV ALT</value>
+					</equals>
 				</or>
 			</condition>
 		</enable>
@@ -725,6 +737,10 @@
 							<value>0</value>
 						</equals>
 					</and>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>VNAV ALT</value>
+					</equals>
 					</or>
 				</condition>
 		</enable>
@@ -782,66 +798,6 @@
 			<property>/autopilot/internal/current-vnavspeed-kt</property>
 		</output>
 	</filter>
-
-	<pi-simple-controller>
-		<name>VNAV 1</name>
-		<debug>false</debug>
-		<enable>
-			<property>instrumentation/afds/ap-modes/pitch-mode</property>
-			<value>VNAV ALT</value>
-		</enable>
-		<input>
-			<property>instrumentation/altimeter/indicated-altitude-ft</property>
-		</input>
-		<reference>
-			<property>/instrumentation/afds/settings/vnav-alt</property>
-		</reference>
-		<output>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
-		</output>
-		<config>
-			<Kp>0.3</Kp>
-			<Ki>0.0</Ki>
-			<u_min>
-			<value>-16.67</value>
-			</u_min>
-			<u_max>
-			<value>33.33</value>
-			</u_max>
-		</config>
-	</pi-simple-controller>
-
-	<pid-controller>
-		<name>VNAV 2</name>
-		<debug>false</debug>
-		<enable>
-			<property>instrumentation/afds/ap-modes/pitch-mode</property>
-			<value>VNAV ALT</value>
-		</enable>
-		<input>
-			<property>/velocities/vertical-speed-fps</property>
-		</input>
-		<reference>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
-		</reference>
-		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
-		</output>
-		<config>
-			<Kp>1</Kp>
-			<beta>1.0</beta>
-			<alpha>0.1</alpha>
-			<gamma>0.0</gamma>
-			<Ti>10.0</Ti>
-			<Td>0.00001</Td>
-			<u_min>
-				<property>instrumentation/afds/settings/pitch-min</property>
-			</u_min>
-			<u_max>
-				<property>instrumentation/afds/settings/pitch-max</property>
-			</u_max>
-		</config>
-	</pid-controller>
 
 	<pid-controller>
 		<name>Glideslop Hold</name>

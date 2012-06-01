@@ -131,7 +131,7 @@ WEIGHT/lbs  Vref
 
 <!-- GE90-115B -->
 <jet x="1.16" y="9.89"  z="-2.995" mass="19315" thrust="115540" spool-time="3"
-egt="825" tsfc="0.26" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="121" reverse="0.4">
+egt="825" tsfc="0.25" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="121" reverse="0.4">
   <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
@@ -140,7 +140,7 @@ egt="825" tsfc="0.26" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="121" re
   </jet>
 
 <jet x="1.16" y="-9.89"  z="2.995" mass="19315" thrust="115540" spool-time="3"
-egt="825" tsfc="0.26" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="121" reverse="0.4">
+egt="825" tsfc="0.25" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="121" reverse="0.4">
   <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>

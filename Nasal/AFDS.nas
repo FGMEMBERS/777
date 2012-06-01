@@ -34,6 +34,8 @@ var AFDS = {
 		m.descent_step=0;
 		m.remaining_distance_log_last = 36000;
 		m.heading_change_rate = 0;
+		m.optimal_alt = 0;
+		m.intervention_alt = 0;
 
 
 		m.AFDS_node = props.globals.getNode("instrumentation/afds",1);
@@ -95,7 +97,6 @@ var AFDS = {
 		m.bank_max = m.AFDS_settings.initNode("bank-max",25);
 		m.pitch_min = m.AFDS_settings.initNode("pitch-min",-10);
 		m.pitch_max = m.AFDS_settings.initNode("pitch-max",15);
-		m.vnav_alt = m.AFDS_settings.initNode("vnav-alt",35000);
 		m.auto_popup = m.AFDS_settings.initNode("auto-pop-up",0,"BOOL");
 		m.heading_magnetic = m.AFDS_settings.getNode("heading-magnetic",1);
 		m.manual_intervention = m.AFDS_settings.initNode("manual-intervention",0,"BOOL");
@@ -217,6 +218,19 @@ var AFDS = {
 					}
 					me.autothrottle_mode.setValue(5);	# A/T SPD
 				}
+				if(btn==4)
+				{
+					# Altitude intervention
+					if(me.alt_setting.getValue() == me.intervention_alt)
+					{
+						# clear current restriciton
+					}
+					else
+					{
+						me.intervention_alt = me.alt_setting.getValue();
+					}
+					btn = me.vertical_mode.getValue();
+				}
 				elsif(btn == 255)
 				{
 					if(me.vs_setting.getValue() == 0)
@@ -259,7 +273,7 @@ var AFDS = {
 						else
 						{	# VNAV arm
 							me.vnav_armed.setValue(1);
-							me.vnav_path_mode.setValue(0);
+							me.vnav_path_mode.setValue(0);		# VNAV PTH HOLD
 							me.vnav_mcp_reset.setValue(0);
 							me.vnav_descent.setValue(0);
 							btn = vnav_mode;
@@ -714,31 +728,40 @@ var AFDS = {
 			}
 			var idx = me.vertical_mode.getValue();
 			var test_fpa = me.vs_fpa_selected.getValue();
+			var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
+			if(offset < 20)
+			{
+				offset = 20;
+			}
+			me.optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
+							/ getprop("sim/max-payload"));
+			if(me.optimal_alt > 0.95) me.optimal_alt = 29000;
+			elsif(me.optimal_alt > 0.89) me.optimal_alt = 30000;
+			elsif(me.optimal_alt > 0.83) me.optimal_alt = 31000;
+			elsif(me.optimal_alt > 0.74) me.optimal_alt = 32000;
+			elsif(me.optimal_alt > 0.65) me.optimal_alt = 33000;
+			elsif(me.optimal_alt > 0.59) me.optimal_alt = 34000;
+			elsif(me.optimal_alt > 0.53) me.optimal_alt = 35000;
+			elsif(me.optimal_alt > 0.47) me.optimal_alt = 36000;
+			elsif(me.optimal_alt > 0.41) me.optimal_alt = 37000;
+			elsif(me.optimal_alt > 0.35) me.optimal_alt = 38000;
+			elsif(me.optimal_alt > 0.23) me.optimal_alt = 40000;
+			elsif(me.optimal_alt > 0.16) me.optimal_alt = 41000;
+			else me.optimal_alt = 43000;
 			if(idx==2 and test_fpa)idx=9;
 			if(idx==9 and !test_fpa)idx=2;
-			if ((idx==8)or(idx==1)or(idx==2)or(idx==9)
-				or ((idx == 3) and (me.vnav_path_mode.getValue() == 2)))
+			if((idx==8)or(idx==1)or(idx==2)or(idx==9))
 			{
-				var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
-				if(offset < 20)
-				{
-					offset = 20;
-				}
 				# flight level change mode
 				if (abs(current_alt - me.alt_setting.getValue()) < offset)
 				{
 					# within MCP altitude: switch to ALT HOLD mode
-					if(idx != 3)
-					{
-						idx = 1;
-					}
+					idx = 1;	# ALT
 					if(me.autothrottle_mode.getValue() != 0)
 					{
 						me.autothrottle_mode.setValue(5);	# A/T SPD
 					}
 					me.vs_setting.setValue(0);
-					me.vnav_path_mode.setValue(0);
-					me.descent_step += 1;
 				}
 				if((me.mach_setting.getValue() >= 0.840)
 					and (me.ias_mach_selected.getValue() == 0)
@@ -764,7 +787,7 @@ var AFDS = {
 					}
 				}
 			}
-			elsif(idx == 3)		# VNAV PATH
+			elsif(idx == 3)		# VNAV PTH
 			{
 				if(me.vnav_descent.getValue())
 				{
@@ -786,8 +809,8 @@ var AFDS = {
 						{
 							if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < 0.785)
 							{
-								me.vnav_path_mode.setValue(1);
-								me.target_alt.setValue(me.alt_setting.getValue());
+								me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
+								me.target_alt.setValue(me.intervention_alt);
 								me.vs_setting.setValue(-2000);
 								me.descent_step += 1;
 							}
@@ -796,8 +819,8 @@ var AFDS = {
 						{
 							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < 285)
 							{
-								me.vnav_path_mode.setValue(1);
-								me.target_alt.setValue(me.alt_setting.getValue());
+								me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
+								me.target_alt.setValue(me.intervention_alt);
 								me.vs_setting.setValue(-2000);
 								me.descent_step += 1;
 							}
@@ -823,59 +846,70 @@ var AFDS = {
 					{
 						if(current_alt < 29000)
 						{
-							me.vnav_path_mode.setValue(2);
+							me.vnav_path_mode.setValue(2);			# VNAV PTH DESCEND FLCH
 							me.descent_step += 1;
 						}
 					}
-				}
-				elsif((me.mach_setting.getValue() >= 0.840)
-					and (me.ias_mach_selected.getValue() == 0))
-				{
-					me.ias_mach_selected.setValue(1);
-					me.mach_setting.setValue(0.840);
-				}
-				elsif((me.ias_setting.getValue() >= 320)
-					and (me.ias_mach_selected.getValue() == 1))
-				{
-					me.ias_mach_selected.setValue(0);
-					me.ias_setting.setValue(320);
-				}
-				elsif(me.ias_mach_selected.getValue() == 0)
-				{
-					if(current_alt < 10000)
+					elsif(me.descent_step == 4)
 					{
-						me.ias_setting.setValue(250);
+						if((current_alt < 12000)
+							and (me.ias_setting.getValue() > 250))
+						{
+							me.ias_setting.setValue(250);
+							me.descent_step += 1;
+						}
 					}
-					else
+					# flight level change mode
+					if (abs(current_alt - me.intervention_alt) < offset)
 					{
+						if(me.autothrottle_mode.getValue() != 0)
+						{
+							me.autothrottle_mode.setValue(5);	# A/T SPD
+						}
+						me.vs_setting.setValue(0);
+						me.vnav_path_mode.setValue(0);
+						if(current_alt > (getprop("/autopilot/route-manager/destination/field-elevation-ft") + 4750))
+						{
+							idx = 5;	# VNAV ALT
+						}
+					}
+				}
+				else
+				{
+					if(me.intervention_alt != getprop("autopilot/route-manager/cruise/altitude-ft"))
+					{
+						setprop("autopilot/route-manager/cruise/altitude-ft", me.intervention_alt);
+						if(me.intervention_alt <= me.optimal_alt)
+						{
+							me.target_alt.setValue(me.intervention_alt);
+						}
+						else
+						{
+							me.target_alt.setValue(me.optimal_alt);
+						}
+						idx = 4;	# VNAV SPD
+					}
+					if((me.mach_setting.getValue() >= 0.840)
+						and (me.ias_mach_selected.getValue() == 0))
+					{
+						me.ias_mach_selected.setValue(1);
+						me.mach_setting.setValue(0.840);
+					}
+					elsif((me.ias_setting.getValue() >= 320)
+						and (me.ias_mach_selected.getValue() == 1))
+					{
+						me.ias_mach_selected.setValue(0);
 						me.ias_setting.setValue(320);
 					}
-				}
-				if(me.remaining_distance.getValue() > 200)
-				{
-					var optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
-									/ getprop("sim/max-payload"));
-					if(optimal_alt > 0.95) optimal_alt = 29000;
-					elsif(optimal_alt > 0.83) optimal_alt = 31000;
-					elsif(optimal_alt > 0.65) optimal_alt = 33000;
-					elsif(optimal_alt > 0.53) optimal_alt = 35000;
-					elsif(optimal_alt > 0.41) optimal_alt = 37000;
-					elsif(optimal_alt > 0.29) optimal_alt = 39000;
-					elsif(optimal_alt > 0.16) optimal_alt = 41000;
-					else optimal_alt = 43000;
-					if ((optimal_alt
-						- me.alt_setting.getValue()) > 1000)
+					elsif(me.ias_mach_selected.getValue() == 0)
 					{
-						if(getprop("autopilot/route-manager/cruise/altitude-ft") >= optimal_alt)
+						if(current_alt < 10000)
 						{
-							me.alt_setting.setValue(optimal_alt);
-							idx = 4;		# VNAV SPD
-							setprop("autopilot/internal/current-pitch-deg", getprop("orientation/pitch-deg"));
+							me.ias_setting.setValue(250);
 						}
-						elsif(getprop("autopilot/route-manager/cruise/altitude-ft") > (me.alt_setting.getValue() + 500))
+						else
 						{
-							idx = 4;		# VNAV SPD
-							setprop("autopilot/internal/current-pitch-deg", getprop("orientation/pitch-deg"));
+							me.ias_setting.setValue(320);
 						}
 					}
 				}
@@ -918,40 +952,60 @@ var AFDS = {
 						}
 					}
 				}
-				var optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
-								/ getprop("sim/max-payload"));
-				if(optimal_alt > 0.95) optimal_alt = 29000;
-				elsif(optimal_alt > 0.83) optimal_alt = 31000;
-				elsif(optimal_alt > 0.65) optimal_alt = 33000;
-				elsif(optimal_alt > 0.53) optimal_alt = 35000;
-				elsif(optimal_alt > 0.41) optimal_alt = 37000;
-				elsif(optimal_alt > 0.29) optimal_alt = 39000;
-				elsif(optimal_alt > 0.16) optimal_alt = 41000;
-				else optimal_alt = 43000;
-				if(getprop("autopilot/route-manager/cruise/altitude-ft") >= optimal_alt)
+				if((me.intervention_alt >= me.optimal_alt)
+					and ((me.optimal_alt - current_alt) > 1000))
 				{
-					me.alt_setting.setValue(optimal_alt);
+					if(getprop("autopilot/route-manager/cruise/altitude-ft") >= me.optimal_alt)
+					{
+						me.target_alt.setValue(me.optimal_alt);
+					}
 				}
-				else
-				{
-					me.alt_setting.setValue(getprop("autopilot/route-manager/cruise/altitude-ft"));
-				}
-				me.target_alt.setValue(me.alt_setting.getValue());
 				var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
 				if(offset < 20)
 				{
 					offset = 20;
 				}
 				if (abs(current_alt
-					- me.alt_setting.getValue()) < offset)
+					- me.target_alt.getValue()) < offset)
 				{
-					# within target altitude: switch to VANV PTH mode
-					idx=3;
+					if(abs(current_alt - getprop("autopilot/route-manager/cruise/altitude-ft")) < offset)
+					{			
+						# within target altitude: switch to VANV PTH mode
+						idx=3;
+					}
+					else
+					{
+						idx=5;				# VNAV ALT
+					}
 					if(me.autothrottle_mode.getValue() != 0)
 					{
 						me.autothrottle_mode.setValue(5);	# A/T SPD
 					}
 					me.vs_setting.setValue(0);
+				}
+			}
+			elsif(idx == 5)		# VNAV ALT
+			{
+				if(me.vnav_descent.getValue())
+				{
+					if(me.intervention_alt < (current_alt - 500))
+					{
+						idx = 3;		# VNAV PTH
+						me.descent_step = 0;
+					}
+				}
+				elsif((current_alt <  (me.optimal_alt - 500))
+					and (current_alt < (me.intervention_alt - 500)))
+				{
+					if(me.optimal_alt < me.intervention_alt)
+					{
+						me.target_alt.setValue(me.optimal_alt);
+					}
+					else
+					{
+						me.target_alt.setValue(me.intervention_alt);
+					}
+					idx = 4;		# VNAV SPD
 				}
 			}
 			elsif(idx == 6)				# G/S
@@ -999,13 +1053,29 @@ var AFDS = {
 			{
 				if(me.vnav_armed.getValue())
 				{
-					if(me.alt_setting.getValue() == int(current_alt))
+					if(me.target_alt.getValue() == int(current_alt))
 					{
-						idx = 3;		# VNAV PTH
+						if(getprop("autopilot/route-manager/cruise/altitude-ft") == int(current_alt))
+						{
+							idx = 3;		# VNAV PTH
+						}
+						else
+						{
+							idx = 5;		# VNAV ALT
+						}					
 					}
 					else
 					{
 						idx = 4;		# VNAV SPD
+					}
+					me.intervention_alt = me.alt_setting.getValue();
+					if(me.intervention_alt > getprop("autopilot/route-manager/cruise/altitude-ft"))
+					{
+						me.target_alt.setValue(getprop("autopilot/route-manager/cruise/altitude-ft"));
+					}
+					else
+					{
+						me.target_alt.setValue(me.intervention_alt);
 					}
 					me.vnav_armed.setValue(0);
 				}
@@ -1102,7 +1172,8 @@ var AFDS = {
 				elsif((me.vertical_mode.getValue() == 10)		# TO/GA
 					or ((me.autothrottle_mode.getValue() == 3)	# HOLD
 					and (me.vertical_mode.getValue() != 8)		 # not FLCH
-						and (me.vertical_mode.getValue() != 3))) # not VNAV PTH
+						and (me.vertical_mode.getValue() != 3) 	 # not VNAV PTH
+						and (me.vertical_mode.getValue() != 5))) # not VNAV ALT
 				{
 					if(getprop("/controls/flight/flaps") == 0)
 					{
@@ -1117,7 +1188,7 @@ var AFDS = {
 				{
 					me.autothrottle_mode.setValue(2);			# THR REF
 				}
-				elsif(me.vertical_mode.getValue() == 3)			# VNAV PATH
+				elsif(me.vertical_mode.getValue() == 3)			# VNAV PTH
 				{
 					if(me.vnav_path_mode.getValue() == 2)
 					{
@@ -1130,6 +1201,10 @@ var AFDS = {
 					{
 						me.autothrottle_mode.setValue(5);		# SPD
 					}
+				}
+				elsif(me.vertical_mode.getValue() == 5)			# VNAV ALT
+				{
+					me.autothrottle_mode.setValue(5);		# SPD
 				}
 			}
 			elsif((getprop("position/gear-agl-ft") > 100)		# Approach mode and above 100 ft
@@ -1203,6 +1278,7 @@ var AFDS = {
 							if(me.remaining_distance.getValue() < top_of_descent)
 							{
 								me.vnav_descent.setValue(1);
+								me.intervention_alt = me.alt_setting.getValue();
 							}
 						}
 					}
@@ -1219,6 +1295,11 @@ var AFDS = {
 						{
 							gmt += (wpt_eta + 30);
 							var gmt_hour = int(gmt / 3600);
+							if(gmt_hour > 24)
+							{
+								gmt_hour -= 24;
+								gmt -= 24 * 3600;
+							}
 							me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
 							var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
 							if(change_wp > 180) change_wp = (360 - change_wp);
