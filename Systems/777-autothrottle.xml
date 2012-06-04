@@ -218,7 +218,7 @@
 						</eauals>
 						<less-than>
 							<property>position/gear-agl-ft</property>
-							<value>400</value>
+							<value>200</value>
 						</less-than>
 					</and>
 				</condition>

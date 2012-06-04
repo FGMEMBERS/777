@@ -1319,6 +1319,24 @@ var AFDS = {
 								me.remaining_distance_log_last = wpt_distance;
 							}
 						}
+						if(getprop("/autopilot/internal/waypoint-bearing-error-deg") != nil)
+						{
+							if(abs(getprop("/position/latitude-deg")) < 80)
+							{
+	 							if(abs(getprop("/instrumentation/gps/wp/wp[1]/course-error-nm")) < 2)
+								{
+									setprop("/autopilot/internal/course-deviation", getprop("/instrumentation/gps/wp/wp[1]/course-error-nm"))
+								}
+								else
+								{
+									setprop("/autopilot/internal/course-deviation", getprop("/instrumentation/gps/wp/wp[1]/course-deviation-deg"))
+								}
+							}
+							else
+							{
+								setprop("/autopilot/internal/course-deviation", 0);
+							}
+						}
 					}
 				}
 			}

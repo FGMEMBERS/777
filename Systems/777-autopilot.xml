@@ -112,7 +112,7 @@
 			<property>/autopilot/internal/waypoint-bearing-error-deg</property>
 		</input>
 		<reference>
-			<property>/instrumentation/gps/wp/wp[1]/course-error-nm</property>
+			<property>/autopilot/internal/course-deviation</property>
 			<scale>-1.5</scale>
 		</reference>
 		<output>
@@ -372,7 +372,7 @@
 				<property>instrumentation/afds/settings/pitch-min</property>
 			</u_min>
 			<u_max>
-				<value>8</value>
+				<property>instrumentation/afds/settings/pitch-max</property>
 			</u_max>
 		</config>
 	</pid-controller>
@@ -394,6 +394,19 @@
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<max-rate-of-change>
+			<value>1.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>50</max-rate-of-change>
+		<input>instrumentation/afds/ias-target-kt</input>
+		<output>/autopilot/internal/ias-set-kt</output>
+	</filter>
+
+	<pid-controller>
+		<name>Flight Level Change IAS</name>
+		<debug>false</debug>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<enable>
 			<condition>
 			<and>
 				<or>
@@ -421,22 +434,6 @@
 				</not>
 			</and>
 			</condition>
-			<value>1.5</value>
-		</max-rate-of-change>
-		<max-rate-of-change>50</max-rate-of-change>
-		<input>instrumentation/afds/ias-target-kt</input>
-		<output>/autopilot/internal/ias-set-kt</output>
-	</filter>
-
-	<pid-controller>
-		<name>Flight Level Change IAS</name>
-		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<enable>
-			<not>
-				<property>/instrumentation/afds/inputs/ias-mach-selected</property>
-			</not>
 		</enable>
 		<input>
 			<property>/autopilot/internal/current-speed-kt</property>
@@ -518,6 +515,19 @@
 		<name>Target mach filter</name>
 		<type>noise-spike</type>
 		<max-rate-of-change>
+			<value>0.006</value>
+		</max-rate-of-change>
+		<max-rate-of-change>0.2</max-rate-of-change>
+		<input>/autopilot/settings/target-speed-mach</input>
+		<output>/autopilot/internal/mach-set</output>
+	</filter>
+
+	<pid-controller>
+		<name>Flight Level Change Mach</name>
+		<debug>false</debug>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<enable>
 		<condition>
 			<and>
 				<or>
@@ -543,20 +553,6 @@
 				<property>/instrumentation/afds/inputs/ias-mach-selected</property>
 			</and>
 			</condition>
-			<value>0.006</value>
-		</max-rate-of-change>
-		<max-rate-of-change>0.2</max-rate-of-change>
-		<input>/autopilot/settings/target-speed-mach</input>
-		<output>/autopilot/internal/mach-set</output>
-	</filter>
-
-	<pid-controller>
-		<name>Flight Level Change Mach</name>
-		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<enable>
-			<property>/instrumentation/afds/inputs/ias-mach-selected</property>
 		</enable>
 		<input>
 			<property>/autopilot/internal/current-mach</property>
@@ -711,22 +707,22 @@
 		<name>Altitude Hold (Altimeter based) Stage 2</name>
 		<debug>false</debug>
 		<enable>
-				<condition>
-					<or>
+			<condition>
+				<or>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>ALT</value>
+					</equals>
+					<and>
 						<equals>
 							<property>instrumentation/afds/ap-modes/pitch-mode</property>
-							<value>ALT</value>
+							<value>V/S</value>
 						</equals>
-						<and>
-							<equals>
-								<property>instrumentation/afds/ap-modes/pitch-mode</property>
-								<value>V/S</value>
-							</equals>
-							<equals>
-								<property>autopilot/settings/vertical-speed-fpm</property>
-								<value>0</value>
-							</equals>
-						</and>
+						<equals>
+							<property>autopilot/settings/vertical-speed-fpm</property>
+							<value>0</value>
+						</equals>
+					</and>
 					<and>
 						<equals>
 							<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -741,8 +737,8 @@
 						<property>instrumentation/afds/ap-modes/pitch-mode</property>
 						<value>VNAV ALT</value>
 					</equals>
-					</or>
-				</condition>
+				</or>
+			</condition>
 		</enable>
 		<input>
 			<property>/velocities/vertical-speed-fps</property>
@@ -995,8 +991,7 @@
 		<name>Elevator Control</name>
 		<debug>false</debug>
 		<enable>
-			<property>autopilot/locks/pitch-engaged</property>
-			<honor-passive>true</honor-passive>
+			<property>instrumentation/afds/inputs/AP</property>
 		</enable>
 		<input>
 			<property>/orientation/pitch-deg</property>
@@ -1005,7 +1000,7 @@
 			<property>/autopilot/internal/target-pitch-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/elevator-trim-filter</property>
+			<property>/controls/flight/elevator-trim</property>
 		</output>
 		<config>
 			<Kp>-0.024</Kp>
@@ -1019,48 +1014,5 @@
 			</u_max>
 		</config>
 	</pid-controller>
-
-	<filter>
-		<name>Elevator control filter</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<max-rate-of-change>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.85</value>
-				</greater-than>
-			</condition>
-			<value>0.05</value>
-		</max-rate-of-change>
-		<max-rate-of-change>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.666</value>
-				</greater-than>
-			</condition>
-			<value>0.1</value>
-		</max-rate-of-change>
-		<max-rate-of-change>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.5</value>
-				</greater-than>
-			</condition>
-			<value>0.15</value>
-		</max-rate-of-change>
-		<max-rate-of-change>0.2</max-rate-of-change>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<enable>
-			<honor-passive>true</honor-passive>
-		</enable>
-		<input>
-			<property>/controls/flight/elevator-trim-filter</property>
-		</input>
-		<output>/controls/flight/elevator-trim</output>
-	</filter>
 
 </PropertyList>
