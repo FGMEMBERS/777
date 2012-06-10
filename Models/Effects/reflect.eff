@@ -37,6 +37,6 @@
         </texture>
                 <reflection-rainbow type="float">0.05</reflection-rainbow>
                 <reflection-fresnel type="float">0.1</reflection-fresnel>
-        <ambient_correction>0.5</ambient_correction>
+        <ambient_correction>0.1</ambient_correction>
     </parameters>
 </PropertyList>

@@ -19,6 +19,7 @@ Syd Adams
 
     <sound><path>Aircraft/777/Sounds/mp-sound.xml</path></sound>
 
+
     <animation>
         <type>material</type>
         <object-name>Fuselage</object-name>
@@ -71,6 +72,27 @@ Syd Adams
         <object-name>LHrear.door</object-name>
         <object-name>Rmain.geardoor</object-name>
         <object-name>Lmain.geardoor</object-name>
+    </effect>
+
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>Glass</object-name>
+        <object-name>redflash</object-name>
+        <object-name>whiteflash</object-name>
+        <object-name>greenflash</object-name>
+        <object-name>Strobe01</object-name>
+        <object-name>Strobe02</object-name>
+        <object-name>Strobe03</object-name>
+        <object-name>Beacon01</object-name>
+        <object-name>Beacon02</object-name>
+        <object-name>LHLND.spot</object-name>
+        <object-name>LHLND.flare</object-name>
+        <object-name>CTRLND.flare</object-name>
+        <object-name>CTRLND.spot</object-name>
+        <object-name>RHLND.spot</object-name>
+        <object-name>RHLND.flare</object-name>
+        <object-name>greennav</object-name>
+        <object-name>rednav</object-name>
     </effect>
 
     <model>
