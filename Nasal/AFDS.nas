@@ -36,6 +36,7 @@ var AFDS = {
 		m.heading_change_rate = 0;
 		m.optimal_alt = 0;
 		m.intervention_alt = 0;
+		m.altitude_restriction = -9999.99;
 
 
 		m.AFDS_node = props.globals.getNode("instrumentation/afds",1);
@@ -224,6 +225,8 @@ var AFDS = {
 					if(me.alt_setting.getValue() == me.intervention_alt)
 					{
 						# clear current restriciton
+						var temp_wpt = getprop("/autopilot/route-manager/current-wp") + 1;
+						me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~temp_wpt~"]/altitude-ft");
 					}
 					else
 					{
@@ -952,7 +955,11 @@ var AFDS = {
 						}
 					}
 				}
-				if((me.intervention_alt >= me.optimal_alt)
+				if(me.altitude_restriction > 0)
+				{
+					me.target_alt.setValue(me.altitude_restriction);
+				}
+				elsif((me.intervention_alt >= me.optimal_alt)
 					and ((me.optimal_alt - current_alt) > 1000))
 				{
 					if(getprop("autopilot/route-manager/cruise/altitude-ft") >= me.optimal_alt)
@@ -992,6 +999,14 @@ var AFDS = {
 					{
 						idx = 3;		# VNAV PTH
 						me.descent_step = 0;
+					}
+				}
+				elsif(me.altitude_restriction > 0)
+				{
+					if(current_alt < (me.altitude_restriction - 500))
+					{
+						me.target_alt.setValue(me.altitude_restriction);
+						idx = 4;		# VNAV SPD
 					}
 				}
 				elsif((current_alt <  (me.optimal_alt - 500))
@@ -1307,10 +1322,11 @@ var AFDS = {
 								or (wpt_distance < 0.2)
 								or ((me.remaining_distance_log_last < wpt_distance) and (change_wp < 90)))
  	 						{
- 	 							if (getprop("/autopilot/route-manager/current-wp") < max_wpt - 1)
+ 	 							if(atm_wpt < (max_wpt - 1))
 								{
 									atm_wpt += 1;
 									props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
+									me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
 								}
 								me.remaining_distance_log_last = 36000;
 							}
@@ -1327,9 +1343,13 @@ var AFDS = {
 								{
 									setprop("/autopilot/internal/course-deviation", getprop("/instrumentation/gps/wp/wp[1]/course-error-nm"))
 								}
-								else
+								elsif(getprop("/instrumentation/gps/wp/wp[1]/course-deviation-deg") < 2)
 								{
 									setprop("/autopilot/internal/course-deviation", getprop("/instrumentation/gps/wp/wp[1]/course-deviation-deg"))
+								}
+								else
+								{
+									setprop("/autopilot/internal/course-deviation", 0);
 								}
 							}
 							else
