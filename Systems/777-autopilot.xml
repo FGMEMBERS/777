@@ -1000,7 +1000,7 @@
 			<property>/autopilot/internal/target-pitch-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/elevator-trim</property>
+			<property>/controls/flight/elevator-trim-filter</property>
 		</output>
 		<config>
 			<Kp>-0.024</Kp>
@@ -1014,5 +1014,48 @@
 			</u_max>
 		</config>
 	</pid-controller>
+
+	<filter>
+		<name>Elevator control filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<property>instrumentation/afds/inputs/AP</property>
+		</enable>
+		<max-rate-of-change>
+			<condition>
+				<greater-than>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.85</value>
+				</greater-than>
+			</condition>
+			<value>0.05</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
+				<greater-than>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.666</value>
+				</greater-than>
+			</condition>
+			<value>0.1</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
+				<greater-than>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.5</value>
+				</greater-than>
+			</condition>
+			<value>0.15</value>
+		</max-rate-of-change>
+		<max-rate-of-change>0.2</max-rate-of-change>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>
+			<property>/controls/flight/elevator-trim-filter</property>
+		</input>
+		<output>/controls/flight/elevator-trim</output>
+	</filter>
 
 </PropertyList>
