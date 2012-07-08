@@ -143,7 +143,7 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
 GEN ELEC-GE 90-94B Thrust=93700 lb Mass=16644 lb Cruise SFC 0.545 (lb/hr/lb) ??
 -->
 <jet x="1.16" y="9.89"  z="-2.995" mass="16644" thrust="93700" spool-time="3"
-egt="825" tsfc="0.31" n1-idle="18.5" n1-max="109" n2-idle="70" n2-max="117" reverse="0.4">
+egt="825" tsfc="0.30" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="117" reverse="0.4">
   <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
   <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
@@ -152,7 +152,7 @@ egt="825" tsfc="0.31" n1-idle="18.5" n1-max="109" n2-idle="70" n2-max="117" reve
 </jet>
 
 <jet x="1.16" y="-9.89"  z="-2.995" mass="16644" thrust="93700" spool-time="3"
-egt="825" tsfc="0.31" n1-idle="18.5" n1-max="109" n2-idle="70" n2-max="117" reverse="0.4">
+egt="825" tsfc="0.30" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="117" reverse="0.4">
   <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
   <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>

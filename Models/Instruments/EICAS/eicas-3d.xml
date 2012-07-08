@@ -37,18 +37,6 @@ Syd Adams
         </condition>
     </animation>
 
-    <effect>
-	<inherits-from>Effects/lightmap</inherits-from>
-	<parameters>
-		<texture n="1">
-			<image>Aircraft/777/Models/Instruments/EICAS/efis-lit.png</image>
-		</texture>
-	</parameters>
-	<object-name>EFIS.bezel</object-name>
- </effect>
-
-
-
     <model>
         <name>N1</name>
         <path>Aircraft/777/Models/Instruments/EICAS/N1.xml</path>

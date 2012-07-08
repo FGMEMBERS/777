@@ -24,12 +24,12 @@ Syd Adams
         <condition>
 			<or>
 				<equals>
-					<property>instrumentation/afds/ap-modes/roll-mode</property>
-					<value>ROLLOUT</value>
+					<property>instrumentation/afds/inputs/lateral-index</property>
+					<value>4</value>
 				</equals>
 				<equals>
-					<property>instrumentation/afds/ap-modes/roll-mode</property>
-					<value>LOC</value>
+					<property>instrumentation/afds/inputs/lateral-index</property>
+					<value>5</value>
 				</equals>
 				<property>instrumentation/afds/inputs/loc-armed</property>
 			</or>
@@ -44,17 +44,17 @@ Syd Adams
                 <property>instrumentation/nav/in-range</property>
 				<or>
 					<equals>
-						<property>instrumentation/afds/ap-modes/roll-mode</property>
-						<value>ROLLOUT</value>
+						<property>instrumentation/afds/inputs/lateral-index</property>
+						<value>4</value>
 					</equals>
 					<equals>
-						<property>instrumentation/afds/ap-modes/roll-mode</property>
-						<value>LOC</value>
+						<property>instrumentation/afds/inputs/lateral-index</property>
+						<value>5</value>
 					</equals>
 					<property>instrumentation/afds/inputs/loc-armed</property>
 				</or>
-            </and>
-        </condition>
+			</and>
+       </condition>
     </animation>
 
     <animation>
@@ -63,12 +63,12 @@ Syd Adams
         <condition>
 			<or>
 				<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>FLARE</value>
+					<property>instrumentation/afds/inputs/vertical-index</property>
+					<value>6</value>
 				</equals>
 				<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>G/S</value>
+					<property>instrumentation/afds/inputs/vertical-index</property>
+					<value>7</value>
 				</equals>
 				<property>instrumentation/afds/inputs/gs-armed</property>
 			</or>
@@ -83,12 +83,12 @@ Syd Adams
                 <property>instrumentation/nav/gs-in-range</property>
 				<or>
 					<equals>
-						<property>instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>FLARE</value>
+						<property>instrumentation/afds/inputs/vertical-index</property>
+						<value>6</value>
 					</equals>
 					<equals>
-						<property>instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>G/S</value>
+						<property>instrumentation/afds/inputs/vertical-index</property>
+						<value>7</value>
 					</equals>
 					<property>instrumentation/afds/inputs/gs-armed</property>
 				</or>
