@@ -4,7 +4,7 @@
 <PropertyList>
 	<name>Introduction: Autopilot</name>
 	<description>
-Welcome aboard your 777-200ER aircraft!
+Welcome aboard your 777 aircraft!
 
 Require an aircraft type conversion? Need an upgrade from another aircraft type (or older fgfs sim)?
 This tutorial quickly walks you through the features of the autopilot.
@@ -29,7 +29,7 @@ This tutorial quickly walks you through the features of the autopilot.
 		</set>
 		<set>
 			<property>/autopilot/settings/counter-set-altitude-ft</property>
-			<value>0</value>
+			<value>10000</value>
 		</set>
 		<set>
 			<property>autopilot/locks/passive-mode</property>
@@ -381,7 +381,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>Heading hold. Fly fixed heading. Press button to engange/disengage heading hold mode.</message>
+	<message>Heading hold. Fly fixed heading. Press button to hold current heading.</message>
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>
@@ -400,7 +400,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>Outer switch: Target heading selector. Use left/middle mouse button to change target heading. Select heading 300 now (click)!</message> 
+	<message>Inner switch: Target heading selector. Use left/middle mouse button to change target heading. Select heading 300 now (click)!</message> 
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>
@@ -427,7 +427,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>Inner switch: bank limit selector. Use mouse scroll wheel to select maximum roll angle for autopilot. Select 30 degrees (max) now!</message>
+	<message>Outer switch: bank limit selector. Use mouse scroll wheel to select maximum roll angle for autopilot. Select 25 degrees (max) now!</message>
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>
@@ -446,8 +446,8 @@ This tutorial quickly walks you through the features of the autopilot.
 	<exit>
 		<condition>
 			<equals>
-				<property>/instrumentation/afds/settings/bank-max</property>
-				<value>30</value>
+				<property>instrumentation/afds/inputs/bank-limit-switch</property>
+				<value>5</value>
 			</equals>
 		</condition>
 	</exit>
@@ -530,7 +530,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>Altitude selector. Use mouse scroll wheel to change target altitude. Select 1500ft now (click)!</message>
+	<message>Altitude selector. Use mouse scroll wheel to change target altitude. Select 15000ft now (click)!</message>
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>
@@ -550,7 +550,7 @@ This tutorial quickly walks you through the features of the autopilot.
 		<condition>
 			<equals>
 				<property>/autopilot/settings/counter-set-altitude-ft</property>
-				<value>1500</value>
+				<value>15000</value>
 			</equals>
 		</condition>
 	</exit>

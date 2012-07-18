@@ -53,7 +53,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
@@ -78,7 +78,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.3</x-offset-m>
 			<y-offset-m>0.7</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
@@ -90,7 +90,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
@@ -113,7 +113,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
@@ -159,7 +159,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.5</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 			<field-of-view>14.8</field-of-view>
 		</view>
 	</step>
@@ -186,7 +186,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 			<field-of-view>70</field-of-view>
 		</view>
 	</step>
@@ -213,7 +213,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
@@ -225,7 +225,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
@@ -259,12 +259,12 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
 	<step>
-		<message>When above 110kts: rotate!</message>
+		<message>When above 130kts: rotate!</message>
 		<exit>
 			<condition>
 				<greater-than>
@@ -279,7 +279,7 @@ Are you ready for takeoff?
 			<roll-offset-deg>0.0</roll-offset-deg>
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
+			<z-offset-m>-28.0381</z-offset-m>
 		</view>
 	</step>
 
@@ -289,7 +289,7 @@ Are you ready for takeoff?
 			<condition>
 				<greater-than>
 					<property>/orientation/pitch-deg</property>
-					<value>10</value>
+					<value>5</value>
 				</greater-than>
 			</condition>
 		</exit>
@@ -363,7 +363,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/position/altitude-agl-ft</property>
+					<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					<value>4000</value>
 				</greater-than>
 			</condition>

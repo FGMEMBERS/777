@@ -3,7 +3,7 @@
 
 <PropertyList>
 	<name>Introduction: PFD</name>
-	<description>Welcome aboard your 777-200ER aircraft!
+	<description>Welcome aboard your 777 aircraft!
 
 This tutorial shows the features of the cockpit's main instrument: the primary flight display (PFD).
 </description>
@@ -31,7 +31,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	<marker>
@@ -50,7 +50,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	<marker>
@@ -69,7 +69,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -89,7 +89,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -110,7 +110,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -134,7 +134,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 
@@ -158,7 +158,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 
@@ -182,7 +182,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -204,7 +204,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -226,7 +226,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -246,7 +246,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -266,7 +266,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -287,7 +287,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 
@@ -309,7 +309,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -329,7 +329,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -349,7 +349,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -369,7 +369,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
@@ -390,7 +390,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.6</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
 
@@ -413,7 +413,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.5</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>44.1</field-of-view>
 	</view>
 
@@ -444,7 +444,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.5</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>44.1</field-of-view>
 	</view>
 
@@ -465,7 +465,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<roll-offset-deg>0.0</roll-offset-deg>
 		<x-offset-m>-0.5</x-offset-m>
 		<y-offset-m>0.8</y-offset-m>
-		<z-offset-m>-22.8</z-offset-m>
+		<z-offset-m>-28.0381</z-offset-m>
 		<field-of-view>44.1</field-of-view>
 	</view>
 

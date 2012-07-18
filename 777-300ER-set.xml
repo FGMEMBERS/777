@@ -33,44 +33,6 @@
             </config>
         </view>
 
-        <help n="0">
-            <title>777-300ER</title>
-            <text>=== Tutorials ===
-Interactive tutorials are available to introduce you to this aircraft and its cockpit instruments.
-See main menu: "Help" - "Tutorials".
- 
-=== Takeoff Procedure ===
-Pre-departure:
-1. - Allocate your fuel, passengers and weight under Equipment/fuel and payload
-   - Ensure a complete systems checklist is carried out
-   - Use Pushback truck to taxi away from the terminal
-
-Departure:
-2. Select 777-300ER/Autostart (or press 's') to get the engines running
-3. Set your flaps suitably for the conditions and runway length
-4. Release parking brakes
-5. Apply throttle gently, until at 75% throttle
-6. Rotate at around 140-160kt
-7. Raise landing gear at positive climb
-8. Maintain positive climb
-
-=== Cruising ===
-Cruising Speed: Mach 0.84 (905 km/h, 490 knots, 560 mph) at 35,000 ft
-Service Ceiling: 43,100ft
-
-=== Landing ===
-1. Arm auto speedbrakes and suitable autobrake level (or decide to operate manually)
-2. Switch off cabin lights. Switch on landing lights if necessary
-3. Decend through 200kt, reaching roughly 160kt 1mile before reaching the apron
-4. Set flaps accordingly
-5. Land at roughly 140kt, touch down carefully and smoothly at 135kt
-6. Apply speedbrakes (when operating manually)
-7. Apply thrust reversal and apply throttle
-8. Lower throttle and deactivate thrust reversers
-9. If necessary, emergency brakes should be used (avoid overheating the brakes)
-</text>
-        </help>
-
         <menubar n="0">
             <default n="0">
                 <menu n="100">
@@ -78,6 +40,16 @@ Service Ceiling: 43,100ft
                 </menu>
             </default>
         </menubar>
+
+        <tutorials>
+            <tutorial include="Tutorials/300/777-cockpit-overview.xml"/>
+            <tutorial include="Tutorials/300/777-cockpit-pfd.xml"/>
+            <tutorial include="Tutorials/300/777-cockpit-autopilot.xml"/>
+            <tutorial include="Tutorials/300/777-preflight.xml"/>
+            <tutorial include="Tutorials/300/777-pushback-startup.xml"/>
+            <tutorial include="Tutorials/300/777-takeoff.xml"/>
+            <!-- <tutorial include="Tutorials/300/777-approach-landing.xml"/> -->
+        </tutorials>
 
         <weight n="1">
             <!--  365 pax max @ 180 lbs-->

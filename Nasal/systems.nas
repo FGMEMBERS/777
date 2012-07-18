@@ -1,4 +1,4 @@
-# 777-200 systems
+777 systems
 #Syd Adams
 #
 var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
@@ -265,7 +265,7 @@ var Engine = {
         m.fuel_out.setBoolValue(0);
 		m.autostart = props.globals.getNode("controls/engines/autostart",1);
 		m.autostart.setBoolValue(1);
-        m.starterSwitch = props.globals.getNode("controls/engines/StartIgnition-knob["~eng_num~"]",1);
+        m.starterSwitch = props.globals.getNode("controls/engines/autostart-knob["~eng_num~"]",1);
         m.starterSystem = props.globals.getNode("systems/electrical/outputs/starter["~eng_num~"]",1);
         m.generator = props.globals.getNode("controls/electric/engine["~eng_num~"]/generator",1);
         m.fuel_pph=m.eng.getNode("fuel-flow_pph",1);
