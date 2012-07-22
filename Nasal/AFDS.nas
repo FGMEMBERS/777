@@ -417,7 +417,29 @@ var AFDS = {
 				}
 				else
 				{
-					if (btn==1)	#APP button
+					var llocmode = me.lateral_mode.getValue();
+					if(btn==0)
+					{
+						if(llocmode == 4)		# Alrady in LOC mode
+						{
+							# set target to current magnetic heading
+							var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+							me.hdg_setting.setValue(tgtHdg);
+							me.trk_setting.setValue(tgtHdg);
+							me.lateral_mode.setValue(2);		# Keep current headding
+							me.loc_armed.setValue(0);			# Disarm
+						}
+						elsif(me.loc_armed.getValue())			# LOC armed but not captured yet
+						{
+							me.loc_armed.setValue(0);			# Disarm
+						}
+						else
+						{
+							me.loc_armed.setValue(1);			# LOC arm
+							me.tiller_status = getprop("/controls/gear/tiller-enabled");
+						}
+					}
+					elsif (btn==1)	#APP button
 					{
 						var lgsmode = me.vertical_mode.getValue();
 						if(lgsmode == 6)	# Already in G/S mode
@@ -428,33 +450,29 @@ var AFDS = {
 						elsif(me.gs_armed.getValue())		# G/S armed but not captured yet
 						{
 							me.gs_armed.setValue(0);		# Disarm
+							if(llocmode == 4)		# Alrady in LOC mode
+							{
+								# set target to current magnetic heading
+								var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+								me.hdg_setting.setValue(tgtHdg);
+								me.trk_setting.setValue(tgtHdg);
+								me.lateral_mode.setValue(2);		# Keep current headding
+								me.loc_armed.setValue(0);			# Disarm
+							}
+							else
+							{
+								me.loc_armed.setValue(0);			# Disarm
+							}
 						}
 						else
 						{
 							me.gs_armed.setValue(1);		# G/S arm
+							if(me.loc_armed.getValue() == 0)
+							{
+								me.loc_armed.setValue(1);		# LOC arm
+								me.tiller_status = getprop("/controls/gear/tiller-enabled");
+							}
 						}
-					}
-					var llocmode = me.lateral_mode.getValue();
-					if(llocmode == 4)		# Alrady in LOC mode
-					{
-						# set target to current magnetic heading
-						var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
-						me.hdg_setting.setValue(tgtHdg);
-						me.trk_setting.setValue(tgtHdg);
-						me.lateral_mode.setValue(2);		# Keep current headding
-						me.loc_armed.setValue(0);			# Disarm
-					}
-					elsif(me.loc_armed.getValue())			# LOC armed but not captured yet
-					{
-						if(!me.gs_armed.getValue())			# G/S not armed
-						{
-							me.loc_armed.setValue(0);		# Disarm
-						}
-					}
-					else
-					{
-						me.loc_armed.setValue(1);			# LOC arm
-						me.tiller_status = getprop("/controls/gear/tiller-enabled");
 					}
 				}
 			}
