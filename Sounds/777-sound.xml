@@ -168,7 +168,7 @@
         <rumblefront>
             <name>nose wheel rumble</name>
             <mode>looped</mode>
-            <path>Sounds/rumble.wav</path>
+            <path>Sounds/rattleroll.wav</path>
             <condition>
                 <and>
                     <property>gear/gear[0]/wow</property>
