@@ -200,14 +200,13 @@ Service Ceiling: 43,100ft
                 <menu n="100">
                     <enabled type="bool">true</enabled>
                     <item>
-                        <label>Autostart</label>
+                        <name>autostart</name>
                         <binding>
                             <command>nasal</command>
                             <script>controls.autostart();</script>
                         </binding>
                     </item>
                     <item >
-                        <label>Pushback</label>
                         <name>pushback</name>
                         <binding>
                             <command>dialog-show</command>
@@ -215,21 +214,21 @@ Service Ceiling: 43,100ft
                         </binding>
                     </item>
                     <item>
-                        <label>Select Livery</label>
+                        <name>select-livery</name>
                         <binding>
                             <command>nasal</command>
                             <script>aircraft.livery.dialog.toggle()</script>
                         </binding>
                     </item>
                     <item>
-                        <label>Tiller Steering</label>
+                        <name>tiller-steering</name>
                         <binding>
                             <command>nasal</command>
                             <script>dialogs.tiller_steering.open()</script>
                         </binding>
                     </item>
                     <item>
-                        <label>Show/Hide Yokes</label>
+                        <name>show-hide-yokes</name>
                         <binding>
                             <command>property-toggle</command>
                             <property>sim/yokes-visible</property>
