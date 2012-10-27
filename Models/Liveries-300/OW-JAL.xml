@@ -7,11 +7,8 @@
             <name type="string">JAL Japan Air Lines (One World)</name>
             <texture>Liveries-300/OW-JAL.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/OW-JAL-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
-    <aircraft-operator>JAL</aircraft-operator>
+    <aircraft-operator>HYDETECH</aircraft-operator>
 </sim>
 </PropertyList>

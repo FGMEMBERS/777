@@ -2,6 +2,28 @@
 
     <path>gear-ctl.ac</path>
 
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>Gearlettering</object-name>
+	</effect>
+
+ 	<animation>
+		<type>material</type>
+		<object-name>Gearlettering</object-name>
+		<condition>
+			 <greater-than>
+				<property>systems/electrical/CPT-FLT-INST</property>
+				<value>24.0</value>
+			 </greater-than>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.6</green>
+			<blue>0.2</blue>
+			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+		</emission>
+	</animation>
+
     <animation>
         <type>rotate</type>
         <object-name>AutoBrake.knob</object-name>
@@ -42,9 +64,9 @@
             </entry>
         </interpolation>
         <center>
-            <x-m>0</x-m>
-            <y-m>-0.012</y-m>
-            <z-m>-0.102</z-m>
+            <x-m>0.01677</x-m>
+            <y-m>-0.01336</y-m>
+            <z-m>-0.1072</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -60,8 +82,8 @@
         <factor>30</factor>
         <center>
             <x-m>-0.035</x-m>
-            <y-m>0</y-m>
-            <z-m>0.015</z-m>
+            <y-m>-0.02636</y-m>
+            <z-m>0.01077</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -91,7 +113,7 @@
         </condition>
     </animation>
 
-    <animation>
+    <!--animation>
         <type>select</type>
         <object-name>Ground.prox.001</object-name>
         <condition>
@@ -107,7 +129,7 @@
                 </not-equals>
             </and>
         </condition>
-    </animation>
+    </animation-->
 
     <animation>
         <type>select</type>
@@ -193,6 +215,72 @@
         </condition>
     </animation>
 -->
+    <animation>
+        <type>rotate</type>
+        <object-name>BlockAltGr_Cover</object-name>
+        <property>aaa/gearctl/BlockAltGr_Cover</property>
+        <factor>90</factor>
+        <center>
+            <x-m>0.008429</x-m>
+            <y-m>0.03153</y-m>
+            <z-m>-0.04394</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+   <animation>
+        <type>rotate</type>
+        <object-name>FlapOvride.Cover</object-name>
+        <property>aaa/gearctl/FlapOvride_Cover</property>
+        <factor>-90</factor>
+        <center>
+            <x-m>0.01353</x-m>
+            <y-m>-0.00194</y-m>
+            <z-m>0.1022</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>GearOvride.Cover</object-name>
+        <property>aaa/gearctl/GearOvride_Cover</property>
+        <factor>-90</factor>
+        <center>
+            <x-m>0.01353</x-m>
+            <y-m>0.02906</y-m>
+            <z-m>0.1022</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Terrain.inhibit.Cover</object-name>
+        <property>aaa/gearctl/Terrain.inhibit_Cover</property>
+        <factor>-90</factor>
+        <center>
+            <x-m>0.01353</x-m>
+            <y-m>0.02906</y-m>
+            <z-m>0.05094</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
 <!-- OSG hotspots -->
 
     <!-- G/S INHIBIT button -->
@@ -389,5 +477,83 @@
             </binding>
         </action>
     </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BlockAltGr_Cover</object-name>
+        <property>aaa/gearctl/BlockAltGr_Cover</property>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>aaa/gearctl/BlockAltGr_Cover</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(7);
+		    </script>
+            </binding>			
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>FlapOvride.Cover</object-name>
+        <property>aaa/gearctl/FlapOvride_Cover</property>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>aaa/gearctl/FlapOvride_Cover</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+		    </script>
+            </binding>			
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>GearOvride.Cover</object-name>
+        <property>aaa/gearctl/GearOvride_Cover</property>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>aaa/gearctl/GearOvride_Cover</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+		    </script>
+            </binding>			
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>Terrain.inhibit.Cover</object-name>
+        <property>aaa/gearctl/Terrain.inhibit_Cover</property>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>aaa/gearctl/Terrain.inhibit_Cover</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+		    </script>
+            </binding>			
+        </action>
+    </animation>
+
 
 </PropertyList>

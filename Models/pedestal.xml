@@ -7,7 +7,7 @@ Syd Adams
 
     <path>pedestal.ac</path>
 
-    <effect>
+    <!--effect>
 	<inherits-from>Effects/lightmap</inherits-from>
 	<parameters>
 		<texture n="1">
@@ -16,14 +16,14 @@ Syd Adams
 	</parameters>
         <object-name>Pedestal</object-name>
         <object-name>LHthrottle</object-name>
-        <object-name>LHthrottle.001</object-name>
+		<object-name>LHthrottle.001</object-name>
         <object-name>RHthrottle</object-name>
         <object-name>RHthrottle.001</object-name>
         <object-name>BrkLever</object-name>
         <object-name>PitchTrim</object-name>
         <object-name>SpdBrkLever</object-name>
         <object-name>FlapLever</object-name>
-    </effect>
+    </effect-->
 
     <model>
         <name>NDB</name>
@@ -39,7 +39,7 @@ Syd Adams
     
     <model>
         <name>CDU1</name>
-        <path>Aircraft/Instruments-3d/cdu/boeing.xml</path>
+        <path>Aircraft/777/Models/Instruments/CDU/boeing.xml</path>
         <offsets>
             <x-m>-0.423</x-m>
             <y-m>-0.175</y-m>
@@ -71,7 +71,7 @@ Syd Adams
     </animation>
     <model>
         <name>CDU2</name>
-        <path>Aircraft/Instruments-3d/cdu/boeing.xml</path>
+        <path>Aircraft/777/Models/Instruments/CDU/boeing.xml</path>
         <offsets>
             <x-m>-0.423</x-m>
             <y-m>0.175</y-m>
@@ -103,7 +103,7 @@ Syd Adams
     </animation>
     <model>
         <name>CDU3</name>
-        <path>Aircraft/Instruments-3d/cdu/boeing.xml</path>
+        <path>Aircraft/777/Models/Instruments/CDU/boeing.xml</path>
         <offsets>
             <x-m>0.183</x-m>
             <y-m>0.0</y-m>
@@ -133,41 +133,8 @@ Syd Adams
             <z-m>0.401</z-m>
         </center>
     </animation>
-<!--
-    <model>
-        <name>CDU1</name>
-        <path>Aircraft/777/Models/Instruments/cdu.xml</path>
-        <offsets>
-            <x-m>-0.433</x-m>
-            <y-m>-0.177</y-m>
-            <z-m>0.561</z-m>
-            <pitch-deg>-60</pitch-deg>
-        </offsets>
-    </model>
 
-    <model>
-        <name>CDU2</name>
-        <path>Aircraft/777/Models/Instruments/cdu.xml</path>
-        <offsets>
-            <x-m>-0.433</x-m>
-            <y-m>0.177</y-m>
-            <z-m>0.561</z-m>
-            <pitch-deg>-60</pitch-deg>
-        </offsets>
-    </model>
-
-    <model>
-        <name>CDU3</name>
-        <path>Aircraft/777/Models/Instruments/cdu.xml</path>
-        <offsets>
-            <x-m>0.193</x-m>
-            <y-m>0</y-m>
-            <z-m>0.401</z-m>
-            <pitch-deg>-88.2</pitch-deg>
-        </offsets>
-    </model>
--->
-    <model>
+	<model>
         <name>Radio1</name>
         <path>Aircraft/777/Models/Instruments/radio1.xml</path>
         <offsets>

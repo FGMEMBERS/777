@@ -58,6 +58,9 @@ var EFIS = {
         m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
         m.update_radar_font();
         m.update_nd_center();
+		setprop("controls/lighting/overhead-intencity",0.5);
+		setprop("controls/lighting/panel-flood-intencity",0.5);
+		setprop("controls/lighting/dome-intencity",0.5);
         return m;
     },
 #### convert inhg to kpa ####
@@ -265,7 +268,7 @@ var Engine = {
         m.fuel_out.setBoolValue(0);
 		m.autostart = props.globals.getNode("controls/engines/autostart",1);
 		m.autostart.setBoolValue(1);
-        m.starterSwitch = props.globals.getNode("controls/engines/autostart-knob["~eng_num~"]",1);
+        m.starterSwitch = props.globals.getNode("controls/engines/StartIgnition-knob["~eng_num~"]",1);
         m.starterSystem = props.globals.getNode("systems/electrical/outputs/starter["~eng_num~"]",1);
         m.generator = props.globals.getNode("controls/electric/engine["~eng_num~"]/generator",1);
         m.fuel_pph=m.eng.getNode("fuel-flow_pph",1);
@@ -291,7 +294,6 @@ var Engine = {
         {
             me.running.setBoolValue(0);
             me.egt.setDoubleValue(me.egt_degf.getValue());
-            me.generator.setBoolValue(0);
         }
         if(me.running.getBoolValue())
         {
@@ -330,7 +332,10 @@ var Engine = {
             {
                 if(getprop("controls/electric/APU-generator")
                         or getprop("engines/engine[0]/run")
-                        or getprop("engines/engine[1]/run"))
+                        or getprop("engines/engine[1]/run")
+                        or getprop("/controls/electric/external-power")
+                        or getprop("/controls/electric/external-power[1]")
+						)
                 {
                     me.spool_up();
                 }
@@ -401,9 +406,7 @@ var Engine = {
         }
         else
         {
-            if((me.apu_status.getValue() == 1)    # ARM
-                and ((getprop("controls/electric/battery-switch") == 1)
-                    or (me.running.getBoolValue())))
+            if(me.apu_status.getValue() == 1)    # ARM
             {
                 me.apu_status.setValue(2);        # START
                 settimer(func { me.apu_status.setValue(3);}, 20);
@@ -415,12 +418,14 @@ var Engine = {
             me.apu_running.setBoolValue(1);
             if (getprop("controls/electric/APU-generator") != 1)
                 setprop("controls/electric/APU-generator", 1);
+				setprop("/systems/electrical/APB", 1);
         }
         else
         {
             me.apu_running.setBoolValue(0);
             if (getprop("controls/electric/APU-generator") != 0)
                 setprop("controls/electric/APU-generator", 0);
+				setprop("/systems/electrical/APB", 0);
         }
         if(me.apu_running.getBoolValue() and (getprop("consumables/fuel/tank[0]/level-lbs") > 0))
         {
@@ -456,8 +461,7 @@ var Engine = {
             {
                 controls.click(1);
                 me.starterSwitch.setValue(0);
-                   me.running.setBoolValue(1);
-                me.generator.setBoolValue(1);
+                me.running.setBoolValue(1);
                 setprop("controls/lighting/cabin-lights",1);
                 setprop("controls/lighting/strobe",1);
             }
@@ -573,50 +577,18 @@ setlistener("/sim/signals/fdm-initialized", func {
     props.globals.initNode("/instrumentation/clock/set-knob",0,"INT");
 #    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
     setprop("/sim/flaps/current", 0);
-    var capwing = getprop("consumables/fuel/tank[0]/capacity-gal_us");
-# make the fuel quantity balancing
-    var total_fuel = 0;
-    var capcenter = 0;
-    var j = 3;
-    if(vmodel == "-200LR")
-    {
-        j = 6;
-        capcenter = getprop("consumables/fuel/tank[1]/capacity-gal_us");
-    }
-    for(var i = 0; i < j; i += 1)
-    {
-        total_fuel += getprop("consumables/fuel/tank["~i~"]/level-gal_us");
-    }
-    if(j == 6)
-    {
-        if(total_fuel > ((capwing * 2) + capcenter))
-        {
-            var capaux = ((total_fuel -  ((capwing * 2) + capcenter)) / 3);
-            setprop("consumables/fuel/tank[3]/level-gal_us", capaux);
-            setprop("consumables/fuel/tank[4]/level-gal_us", capaux);
-            setprop("consumables/fuel/tank[5]/level-gal_us", capaux);
-            total_fuel -= (capaux * 3);
-        }
-        else
-        {
-            setprop("consumables/fuel/tank[3]/level-gal_us", 0);
-            setprop("consumables/fuel/tank[4]/level-gal_us", 0);
-            setprop("consumables/fuel/tank[5]/level-gal_us", 0);
-        }
-    }
-    if(total_fuel > (capwing * 2))
-    {
-        setprop("consumables/fuel/tank[0]/level-gal_us", capwing);
-        setprop("consumables/fuel/tank[1]/level-gal_us", (total_fuel - (capwing * 2)));
-        setprop("consumables/fuel/tank[2]/level-gal_us", capwing);
-    }
-    else
-    {
-        setprop("consumables/fuel/tank[0]/level-gal_us", (total_fuel / 2));
-        setprop("consumables/fuel/tank[1]/level-gal_us", 0);
-        setprop("consumables/fuel/tank[2]/level-gal_us", (total_fuel / 2));
-    }
+	balance_fuel();
 #    setprop("/controls/gear/tiller-enabled", 0);
+    setprop("controls/fuel/tank[0]/boost-pump[0]",1);
+    setprop("controls/fuel/tank[0]/boost-pump[1]",1);
+    setprop("controls/fuel/tank[2]/boost-pump[0]",1);
+    setprop("controls/fuel/tank[2]/boost-pump[1]",1);
+    setprop("controls/fuel/tank[1]/boost-pump[0]",1);
+    setprop("controls/fuel/tank[1]/boost-pump[1]",1);
+	setprop("controls/hydraulic/system[0]/primary-pump",1);
+	setprop("controls/hydraulic/system[1]/primary-pump",1);
+	setprop("controls/hydraulic/system[2]/primary-pump",1);
+	setprop("controls/hydraulic/system[3]/primary-pump",1);
     settimer(start_updates,1);
 });
 
@@ -757,6 +729,52 @@ controls.toggleLandingLights = func()
     setprop("controls/lighting/landing-light[2]",!state);
 }
 
+var balance_fuel = func{
+    var capwing = getprop("consumables/fuel/tank[0]/capacity-gal_us");
+# make the fuel quantity balancing
+    var total_fuel = 0;
+    var capcenter = 0;
+    var j = 3;
+    if(vmodel == "-200LR")
+    {
+        j = 6;
+        capcenter = getprop("consumables/fuel/tank[1]/capacity-gal_us");
+    }
+    for(var i = 0; i < j; i += 1)
+    {
+        total_fuel += getprop("consumables/fuel/tank["~i~"]/level-gal_us");
+    }
+    if(j == 6)
+    {
+        if(total_fuel > ((capwing * 2) + capcenter))
+        {
+            var capaux = ((total_fuel -  ((capwing * 2) + capcenter)) / 3);
+            setprop("consumables/fuel/tank[3]/level-gal_us", capaux);
+            setprop("consumables/fuel/tank[4]/level-gal_us", capaux);
+            setprop("consumables/fuel/tank[5]/level-gal_us", capaux);
+            total_fuel -= (capaux * 3);
+        }
+        else
+        {
+            setprop("consumables/fuel/tank[3]/level-gal_us", 0);
+            setprop("consumables/fuel/tank[4]/level-gal_us", 0);
+            setprop("consumables/fuel/tank[5]/level-gal_us", 0);
+        }
+    }
+    if(total_fuel > (capwing * 2))
+    {
+        setprop("consumables/fuel/tank[0]/level-gal_us", capwing);
+        setprop("consumables/fuel/tank[1]/level-gal_us", (total_fuel - (capwing * 2)));
+        setprop("consumables/fuel/tank[2]/level-gal_us", capwing);
+    }
+    else
+    {
+        setprop("consumables/fuel/tank[0]/level-gal_us", (total_fuel / 2));
+        setprop("consumables/fuel/tank[1]/level-gal_us", 0);
+        setprop("consumables/fuel/tank[2]/level-gal_us", (total_fuel / 2));
+    }
+}
+
 var Startup = func{
     setprop("sim/model/armrest",1);
     setprop("controls/electric/engine[0]/generator",1);
@@ -784,23 +802,12 @@ var Startup = func{
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
-    setprop("controls/fuel/tank[0]/boost-pump[0]",1);
-    setprop("controls/fuel/tank[0]/boost-pump[1]",1);
-    setprop("controls/fuel/tank[2]/boost-pump[0]",1);
-    setprop("controls/fuel/tank[2]/boost-pump[1]",1);
-    setprop("controls/fuel/tank[1]/boost-pump[0]",1);
-    setprop("controls/fuel/tank[1]/boost-pump[1]",1);
     setprop("/engines/engine[0]/run",1);
     setprop("/engines/engine[1]/run",1);
-    setprop("/sim/realism/false-radio-courses-enabled",0);
 }
 
 var Shutdown = func{
     setprop("/controls/gear/brake-parking",1);
-    setprop("controls/electric/engine[0]/generator",0);
-    setprop("controls/electric/engine[1]/generator",0);
-    setprop("controls/electric/engine[0]/bus-tie",0);
-    setprop("controls/electric/engine[1]/bus-tie",0);
     setprop("controls/electric/APU-generator",0);
     setprop("/systems/electrical/outputs/avionics",0);
     setprop("controls/electric/battery-switch",0);
@@ -820,12 +827,6 @@ var Shutdown = func{
     setprop("controls/lighting/beacon",0);
     setprop("controls/engines/engine[0]/cutoff",1);
     setprop("controls/engines/engine[1]/cutoff",1);
-    setprop("controls/fuel/tank/boost-pump",0);
-    setprop("controls/fuel/tank/boost-pump[1]",0);
-    setprop("controls/fuel/tank[1]/boost-pump",0);
-    setprop("controls/fuel/tank[1]/boost-pump[1]",0);
-    setprop("controls/fuel/tank[2]/boost-pump",0);
-    setprop("controls/fuel/tank[2]/boost-pump[1]",0);
     setprop("controls/flight/elevator-trim",0);
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
@@ -856,6 +857,325 @@ controls.click = func(button) {
     settimer(func { click_reset(propName) },0.4);
 }
 
+switch_ind = func() {
+	if(getprop("controls/electric/battery-switch") == 0)
+	{
+		if(bat.getValue() > 24)
+		{
+			setprop("controls/electric/b_batt", 1);
+		}
+		else
+		{
+			setprop("controls/electric/b_batt", 0);
+		}
+	}
+	else
+	{
+		if(bat.getValue() > 24)
+		{
+			setprop("controls/electric/b_batt", -1);
+		}
+		else
+		{
+			setprop("controls/electric/b_batt", 2);
+		}
+	}
+	if(primary_external.getValue() == 1)
+	{
+		if(pri_epc.getValue() == 1)
+		{
+			setprop("controls/electric/b_ext_power_p", 2);
+		}
+		else
+		{
+			setprop("controls/electric/b_ext_power_p", 1);
+		}
+	}
+	else
+	{
+		pri_epc.setValue(0);
+		setprop("controls/electric/b_ext_power_p", 0);
+	}
+	if(secondary_external.getValue() == 1)
+	{
+		if(sec_epc.getValue() == 0)
+		{
+			setprop("controls/electric/b_ext_power_s", 1);
+		}
+		else
+		{
+			setprop("controls/electric/b_ext_power_s", 2);
+		}
+	}
+	else
+	{
+		sec_epc.setValue(0);
+		setprop("controls/electric/b_ext_power_s", 0);
+	}
+	if(cpt_flt_inst.getValue() < 24)
+	{
+		if(getprop("controls/electric/engine/generator") == 0)
+		{
+			setprop("controls/electric/b_lidg", -1);
+		}
+		else
+		{
+			setprop("controls/electric/b_lidg", -2);
+		}
+	}
+	elsif(getprop("controls/electric/engine/generator") == 0)
+	{
+		if(lidg.get_output_volts() > 80)
+		{
+			setprop("controls/electric/b_lidg", -1);
+		}
+		else
+		{
+			setprop("controls/electric/b_lidg", 0);
+		}
+	}
+	else
+	{
+		if(lidg.get_output_volts() > 80)
+		{
+			setprop("controls/electric/b_lidg", -2);
+		}
+		else
+		{
+			setprop("controls/electric/b_lidg", 1);
+		}
+	}
+	if(cpt_flt_inst.getValue() < 24)
+	{
+		if(getprop("controls/electric/engine[1]/generator") == 0)
+		{
+			setprop("controls/electric/b_ridg", -1);
+		}
+		else
+		{
+			setprop("controls/electric/b_ridg", -2);
+		}
+	}
+	elsif(getprop("controls/electric/engine[1]/generator") == 0)
+	{
+		if(ridg.get_output_volts() > 80)
+		{
+			setprop("controls/electric/b_ridg", -1);
+		}
+		else
+		{
+			setprop("controls/electric/b_ridg", 0);
+		}
+	}
+	else
+	{
+		if(ridg.get_output_volts() > 80)
+		{
+			setprop("controls/electric/b_ridg", -2);
+		}
+		else
+		{
+			setprop("controls/electric/b_ridg", 1);
+		}
+	}
+	if(bat.getValue() < 24)
+	{
+		if(getprop("controls/electric/engine/bus-tie") == 0)
+		{
+			setprop("controls/electric/b-lbus-tie", 2);
+		}
+		else
+		{
+			setprop("controls/electric/b-lbus-tie", -1);
+		}
+	}
+	else
+	{
+		if(getprop("controls/electric/engine/bus-tie") == 0)
+		{
+			setprop("controls/electric/b-lbus-tie", 0);
+		}
+		else
+		{
+			setprop("controls/electric/b-lbus-tie", -1);
+		}
+	}
+	if(bat.getValue() < 24)
+	{
+		if(getprop("controls/electric/engine[1]/bus-tie") == 0)
+		{
+			setprop("controls/electric/b-rbus-tie", 2);
+		}
+		else
+		{
+			setprop("controls/electric/b-rbus-tie", -1);
+		}
+	}
+	else
+	{
+		if(getprop("controls/electric/engine[1]/bus-tie") == 0)
+		{
+			setprop("controls/electric/b-rbus-tie", 0);
+		}
+		else
+		{
+			setprop("controls/electric/b-rbus-tie", -1);
+		}
+	}
+	if(bat.getValue() < 24)
+	{
+		if(getprop("controls/APU/apu-gen-switch") == 0)
+		{
+			setprop("controls/electric/b-apugen", -1);
+		}
+		else
+		{
+			setprop("controls/electric/b-apugen", -2);
+		}
+	}
+	else
+	{
+		if(ac_tie_bus.getValue() > 80)
+		{
+			if(getprop("controls/APU/apu-gen-switch") == 0)
+			{
+				setprop("controls/electric/b-apugen", -1);
+			}
+			else
+			{
+				setprop("controls/electric/b-apugen", -2);
+			}
+		}
+		else
+		{
+			if(getprop("controls/APU/apu-gen-switch") == 0)
+			{
+				setprop("controls/electric/b-apugen", 0);
+			}
+			else
+			{
+				setprop("controls/electric/b-apugen", 1);
+			}
+		}
+	}
+# Fuel control panel indication
+	if(getprop("controls/fuel/tank[0]/boost-pump[0]") == 1)
+	{
+		if((l_xfr.getValue() > 80)
+				or ((hot_bat.getValue() > 24) and (getprop("controls/APU/off-start-run") != 0)))
+		{
+			setprop("controls/fuel/tank[0]/b-boost-pump[0]", 1);
+		}
+		elsif(cpt_flt_inst.getValue() > 24)
+		{
+			setprop("controls/fuel/tank[0]/b-boost-pump[0]", -1);
+		}
+		else
+		{
+			setprop("controls/fuel/tank[0]/b-boost-pump[0]", 1);
+		}
+	}
+	else
+	{
+		setprop("controls/fuel/tank[0]/b-boost-pump[0]", 0);
+	}
+	if(getprop("controls/fuel/tank[0]/boost-pump[1]"))
+	{
+		if(l_xfr.getValue() > 80)
+		{
+			setprop("controls/fuel/tank[0]/b-boost-pump[1]", 1);
+		}
+		elsif(cpt_flt_inst.getValue() > 24)
+		{
+			setprop("controls/fuel/tank[0]/b-boost-pump[1]", -1);
+		}
+		else
+		{
+			setprop("controls/fuel/tank[0]/b-boost-pump[1]", 1);
+		}
+	}
+	else
+	{
+		setprop("controls/fuel/tank[0]/b-boost-pump[1]", 0);
+	}
+	if(getprop("controls/fuel/tank[2]/boost-pump[0]"))
+	{
+		if(l_xfr.getValue() > 80)
+		{
+			setprop("controls/fuel/tank[2]/b-boost-pump[0]", 1);
+		}
+		elsif(cpt_flt_inst.getValue() > 24)
+		{
+			setprop("controls/fuel/tank[2]/b-boost-pump[0]", -1);
+		}
+		else
+		{
+			setprop("controls/fuel/tank[2]/b-boost-pump[0]", 1);
+		}
+	}
+	else
+	{
+		setprop("controls/fuel/tank[2]/b-boost-pump[0]", 0);
+	}
+	if(getprop("controls/fuel/tank[2]/boost-pump[1]"))
+	{
+		if(l_xfr.getValue() > 80)
+		{
+			setprop("controls/fuel/tank[2]/b-boost-pump[1]", 1);
+		}
+		elsif(cpt_flt_inst.getValue() > 24)
+		{
+			setprop("controls/fuel/tank[2]/b-boost-pump[1]", -1);
+		}
+		else
+		{
+			setprop("controls/fuel/tank[2]/b-boost-pump[1]", 1);
+		}
+	}
+	else
+	{
+		setprop("controls/fuel/tank[2]/b-boost-pump[1]", 0);
+	}
+	if(getprop("controls/fuel/tank[1]/boost-pump[0]"))
+	{
+		if(l_xfr.getValue() > 80)
+		{
+			setprop("controls/fuel/tank[1]/b-boost-pump[0]", 1);
+		}
+		elsif(cpt_flt_inst.getValue() > 24)
+		{
+			setprop("controls/fuel/tank[1]/b-boost-pump[0]", -1);
+		}
+		else
+		{
+			setprop("controls/fuel/tank[1]/b-boost-pump[0]", 1);
+		}
+	}
+	else
+	{
+		setprop("controls/fuel/tank[1]/b-boost-pump[0]", 0);
+	}
+	if(getprop("controls/fuel/tank[1]/boost-pump[1]"))
+	{
+		if(l_xfr.getValue() > 80)
+		{
+			setprop("controls/fuel/tank[1]/b-boost-pump[1]", 1);
+		}
+		elsif(cpt_flt_inst.getValue() > 24)
+		{
+			setprop("controls/fuel/tank[1]/b-boost-pump[1]", -1);
+		}
+		else
+		{
+			setprop("controls/fuel/tank[1]/b-boost-pump[1]", 1);
+		}
+	}
+	else
+	{
+		setprop("controls/fuel/tank[1]/b-boost-pump[1]", 0);
+	}
+}
+
 var update_systems = func {
     Efis.calc_kpa();
     Efis.update_temp();
@@ -873,6 +1193,7 @@ var update_systems = func {
     var et_hr  = int(et_min * 0.0166666666667) * 100;
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
+	switch_ind();
 
     settimer(update_systems,0);
 }

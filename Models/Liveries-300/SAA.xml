@@ -7,9 +7,6 @@
             <name type="string">SAA South African</name>
             <texture>Liveries-300/SAA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/SAA-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>SAA</aircraft-operator>

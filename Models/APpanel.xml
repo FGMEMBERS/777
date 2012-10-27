@@ -8,17 +8,53 @@ Autopilot Control Panel
 
 <path>APpanel.ac</path>
 
-	<animation>
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>APletters</object-name>
+		<object-name>ias.ind</object-name>
+		<object-name>mach.ind</object-name>
+		<object-name>MACH.led1</object-name>
+		<object-name>MACH.led2</object-name>
+		<object-name>MACH.led3</object-name>
+		<object-name>IAS.led1</object-name>
+		<object-name>IAS.led2</object-name>
+		<object-name>IAS.led3</object-name>
+		<object-name>hdg.ind</object-name>
+		<object-name>trk.ind</object-name>
+		<object-name>TRK.led1</object-name>
+		<object-name>TRK.led2</object-name>
+		<object-name>TRK.led3</object-name>
+		<object-name>HDG.led1</object-name>
+		<object-name>HDG.led2</object-name>
+		<object-name>HDG.led3</object-name>
+		<object-name>vs.ind</object-name>
+		<object-name>fpa.ind</object-name>
+		<object-name>VS.ledminus</object-name>
+		<object-name>VS.led1</object-name>
+		<object-name>VS.led2</object-name>
+		<object-name>VS.led3</object-name>
+		<object-name>VS.led4</object-name>
+		<object-name>FPA.ledminus</object-name>
+		<object-name>FPA.led1</object-name>
+		<object-name>FPA.led2</object-name>
+		<object-name>ALT.led1</object-name>
+		<object-name>ALT.led2</object-name>
+		<object-name>ALT.led3</object-name>
+		<object-name>ALT.led4</object-name>
+		<object-name>ALT.led5</object-name>
+	</effect>
+
+ 	<animation>
 		<type>rotate</type>
 		<object-name>BLimit.knob</object-name>
 		<object-name>BLimit.knob.001</object-name>
 		<property>instrumentation/afds/inputs/bank-limit-switch</property>
-		<factor>-20.0</factor>
+		<factor>-30.0</factor>
 		<center>
-			<x-m>0</x-m>
-			<y-m>-0.007</y-m>
-			<z-m>-0.006</z-m>
-		</center>
+            <x-m>0.01733</x-m>
+            <y-m>-0.01295</y-m>
+            <z-m>-0.007311</z-m>
+ 		</center>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -28,8 +64,7 @@ Autopilot Control Panel
 
 	<animation>
 		<type>rotate</type>
-		<object-name>IAS.knob</object-name>
-		<object-name>IAS.knob.001</object-name>
+		<object-name>SPEED.knob</object-name>
 		<property>instrumentation/afds/inputs/speed-src</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
@@ -38,10 +73,10 @@ Autopilot Control Panel
 			<entry><ind>3</ind><dep>239</dep></entry>
 		</interpolation>
 		<center>
-			<x-m>0</x-m>
-			<y-m>-0.133</y-m>
-			<z-m>-0.018</z-m>
-		</center>
+            <x-m>0.01043</x-m>
+            <y-m>-0.1370</y-m>
+            <z-m>-0.01980</z-m>
+ 		</center>
 		<axis>
 			<x>1</x>
 			<y>0</y>
@@ -56,10 +91,10 @@ Autopilot Control Panel
 		<property>instrumentation/afds/inputs/alt-knob</property>
 		<factor>100</factor>
 		<center>
-			<x-m>0</x-m>
-			<y-m>0.135</y-m>
-			<z-m>-0.007</z-m>
-		</center>
+            <x-m>0.01406</x-m>
+            <y-m>0.1315</y-m>
+            <z-m>-0.007567</z-m>
+ 		</center>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -118,6 +153,23 @@ Autopilot Control Panel
 		</axis>
 	</animation>
 
+ 	<animation>
+		<type>material</type>
+		<object-name>APletters</object-name>
+		<condition>
+			 <greater-than>
+				<property>systems/electrical/CPT-FLT-INST</property>
+				<value>24.0</value>
+			 </greater-than>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.6</green>
+			<blue>0.2</blue>
+			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+		</emission>
+	</animation>
+
 	<animation>
 		<type>translate</type>
 		<object-name>AP.disengage</object-name>
@@ -134,9 +186,7 @@ Autopilot Control Panel
 		<type>select</type>
 		<object-name>APtoggle</object-name>
 		<condition>
-			<not>
-				<property>autopilot/locks/passive-mode</property>
-			</not>
+			<property>instrumentation/afds/inputs/AP</property>
 		</condition>
 	</animation>
 
@@ -195,22 +245,22 @@ Autopilot Control Panel
 		<object-name>VNAV.toggle</object-name>
 		<condition>
 			<or>
-			<equals>
-				<property>instrumentation/afds/ap-modes/pitch-mode</property>
-				<value>VNAV ALT</value>
-			</equals>
-			<equals>
-				<property>instrumentation/afds/ap-modes/pitch-mode</property>
-				<value>VNAV SPD</value>
-			</equals>
-			<equals>
-				<property>instrumentation/afds/ap-modes/pitch-mode</property>
-				<value>VNAV PTH</value>
-			</equals>
-			<equals>
-			  	<property>instrumentation/afds/ap-modes/pitch-mode-arm</property>
-				<value>VNAV</value>
-			</equals>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>VNAV ALT</value>
+				</equals>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>VNAV SPD</value>
+				</equals>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>VNAV PTH</value>
+				</equals>
+				<equals>
+				  	<property>instrumentation/afds/ap-modes/pitch-mode-arm</property>
+					<value>VNAV</value>
+				</equals>
 			</or>
 		</condition>
 	</animation>
@@ -580,10 +630,10 @@ Autopilot Control Panel
 			   <not>
 					<property>instrumentation/afds/inputs/vs-fpa-selected</property>
 			   </not>
-			<less-than>
-				<property>autopilot/settings/vertical-speed-fpm</property>
-				<value>0</value>
-			</less-than>
+				<less-than>
+					<property>autopilot/settings/vertical-speed-fpm</property>
+					<value>0</value>
+				</less-than>
 				<equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
 					<value>V/S</value>
@@ -905,13 +955,6 @@ Autopilot Control Panel
 			<binding>
 				<command>property-toggle</command>
 				<property>instrumentation/afds/inputs/AP</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>
-					controls.click(3);
-					b777.afds.input(3,3);
-				</script>
 			</binding>
 		</action>
 	</animation>
@@ -1275,7 +1318,7 @@ Autopilot Control Panel
 
 	<!-- Continental B777 manual, Sec. 6.4, Page 32:
 		 MCP/SPD range is 100 - 399 KIAS, 0.40 - 0.95 MACH -->
-    <animation>
+   <animation>
 		<type>pick</type>
 		<object-name>SPD.dec</object-name>
 		<object-name>SPD.inc</object-name>
@@ -1318,7 +1361,8 @@ Autopilot Control Panel
 			</binding>
 		</action>
 	</animation>
-    <animation>
+
+   <animation>
 		<type>pick</type>
 		<object-name>SPD.dec</object-name>
 		<object-name>SPD.inc</object-name>
@@ -1364,7 +1408,7 @@ Autopilot Control Panel
 
    <animation>
 		<type>pick</type>
-		<object-name>SPD.knob</object-name>
+		<object-name>SPEED.knob</object-name>
 		<action>
 			<button>0</button> <!--  manual intervention -->
 			<repeatable>false</repeatable>
@@ -1387,9 +1431,9 @@ Autopilot Control Panel
 		</action>
 	</animation>
 
- <animation>
+   <animation>
 		<type>pick</type>
-		<object-name>SPD.knob</object-name>
+		<object-name>SPEED.knob</object-name>
 		<object-name>SPD.dec</object-name>
 		<object-name>SPD.inc</object-name>
 		<object-name>IAS.dwn</object-name>
@@ -1434,7 +1478,7 @@ Autopilot Control Panel
 
    <animation>
 		<type>pick</type>
-		<object-name>SPD.knob</object-name>
+		<object-name>SPEED.knob</object-name>
 		<object-name>SPD.dec</object-name>
 		<object-name>SPD.inc</object-name>
 		<object-name>IAS.dwn</object-name>
@@ -1709,8 +1753,8 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
-		<object-name>BLimit.knob</object-name>
-		<object-name>BLimit.knob.001</object-name>
+		<object-name>Bank.inc</object-name>
+		<object-name>Bank.dec</object-name>
 		<action>
 			<button>4</button> <!--  scroll down -->
 			<repeatable>false</repeatable>
@@ -1731,8 +1775,8 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
-		<object-name>BLimit.knob</object-name>
-		<object-name>BLimit.knob.001</object-name>
+		<object-name>Bank.inc</object-name>
+		<object-name>Bank.dec</object-name>
 		<action>
 			<button>3</button> <!--  scroll up -->
 			<repeatable>false</repeatable>
@@ -1862,6 +1906,8 @@ Autopilot Control Panel
 	<animation>
 		<type>pick</type>
 		<object-name>ALT.knob</object-name>
+		<object-name>ALT.inc</object-name>
+		<object-name>ALT.dec</object-name>
 		<action>
 			<button>4</button> <!--  scroll down -->
 			<repeatable>false</repeatable>
@@ -1903,6 +1949,8 @@ Autopilot Control Panel
    <animation>
 		<type>pick</type>
 		<object-name>ALT.knob</object-name>
+		<object-name>ALT.inc</object-name>
+		<object-name>ALT.dec</object-name>
 		<action>
 			<button>3</button> <!--  scroll up -->
 			<repeatable>false</repeatable>
@@ -1943,7 +1991,8 @@ Autopilot Control Panel
 
    <animation>
 		<type>pick</type>
-		<object-name>ALT.sel</object-name>
+		<object-name>ALT.inc</object-name>
+		<object-name>ALT.dec</object-name>
 		<action>
 			<button>0</button> <!--  left button -->
 			<repeatable>true</repeatable>
@@ -1984,7 +2033,8 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
-		<object-name>ALT.sel</object-name>
+		<object-name>ALT.inc</object-name>
+		<object-name>ALT.dec</object-name>
 		<action>
 			<button>1</button> <!--  center button  -->
 			<repeatable>true</repeatable>
@@ -2022,5 +2072,4 @@ Autopilot Control Panel
 			</binding>
 		</action>
 	</animation>
-
 </PropertyList>

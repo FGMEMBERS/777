@@ -49,9 +49,9 @@ Syd Adams
         <name>OHpanel</name>
         <path>Aircraft/777/Models/OHpanel.xml</path>
         <offsets>
-            <x-m>-1.103</x-m>
+            <x-m>-1.281</x-m>
             <y-m>-0.007</y-m>
-            <z-m>1.289</z-m>
+            <z-m>1.190</z-m>
             <pitch-deg>63</pitch-deg>
         </offsets>
     </model>
@@ -68,6 +68,17 @@ Syd Adams
     </model>
 
     <model>
+        <name>Panel3</name>
+        <path>Aircraft/777/Models/Panel3.xml</path>
+        <offsets>
+            <x-m>-1.7839</x-m>
+            <y-m>-0.3562</y-m>
+            <z-m>0.2434</z-m>
+            <pitch-deg>-44</pitch-deg>
+        </offsets>
+    </model>
+
+     <model>
         <name>CTL1</name>
         <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl.xml</path>
         <offsets>
@@ -90,12 +101,34 @@ Syd Adams
     </model>
 
     <model>
+        <name>P_MidSidePanel</name>
+        <path>Aircraft/777/Models/L_MidSidePanel_Base.xml</path>
+        <offsets>
+            <x-m>-1.84</x-m>
+            <y-m>-0.706</y-m>
+            <z-m>0.385</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>CP_MidSidePanel</name>
+        <path>Aircraft/777/Models/R_MidSidePanel_Base.xml</path>
+        <offsets>
+            <x-m>-1.84</x-m>
+            <y-m>0.740</y-m>
+            <z-m>0.385</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
         <name>Pclock</name>
         <path>Aircraft/777/Models/Instruments/chronometer.xml</path>
         <offsets>
-            <x-m>-1.844</x-m>
-            <y-m>-0.702</y-m>
-            <z-m>0.406</z-m>
+            <x-m>-1.838</x-m>
+            <y-m>-0.706</y-m>
+            <z-m>0.417</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
@@ -104,9 +137,9 @@ Syd Adams
         <name>CPclock</name>
         <path>Aircraft/777/Models/Instruments/chronometer.xml</path>
         <offsets>
-            <x-m>-1.844</x-m>
-            <y-m>0.735</y-m>
-            <z-m>0.406</z-m>
+            <x-m>-1.838</x-m>
+            <y-m>0.740</y-m>
+            <z-m>0.417</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
@@ -149,13 +182,24 @@ Syd Adams
         <path>Aircraft/777/Models/gear-ctl.xml</path>
         <offsets>
             <x-m>-1.836</x-m>
-            <y-m>0.179</y-m>
-            <z-m>0.371</z-m>
+            <y-m>0.182</y-m>
+            <z-m>0.369</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
 
-    <effect>
+    <model>
+		<name>Dome light</name>
+		<path>Aircraft/777/Models/Lights/dome_cone.xml</path>
+		<offsets>
+			<x-m>-1.16</x-m>
+			<y-m>0</y-m>
+			<z-m>0.9</z-m>
+			<pitch-deg>-50</pitch-deg>
+		</offsets>
+	</model>
+
+    <!--effect>
         <inherits-from>Effects/cabin-light</inherits-from>
         <object-name>cockpit</object-name>
     </effect>
@@ -175,18 +219,11 @@ Syd Adams
         <object-name>Yokeshaft</object-name>
         <object-name>Yoke</object-name>
         <object-name>Yoke.001</object-name>
-    </effect>
+    </effect-->
 
-<!--2d PFD-->
-    <!--model>
-        <name>panel1</name>
-        <path>Aircraft/777/Models/panel1.xml</path>
-    </model-->
-
-<!--3d PFD-->
     <model>
         <name>panel2</name>
-        <path>Aircraft/777/Models/panel2.xml</path>
+        <path>Aircraft/777/Models/panel.xml</path>
     </model>
 
 <!--  controls -->
@@ -367,5 +404,72 @@ Syd Adams
             <property>instrumentation/weu/light/master-caution</property>
         </condition>
     </animation>
+
+    <!--animation>
+        <type>pick</type>
+        <object-name>Knob.002</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/instrumentation/efis/mfd/display-mode")!="HYDRAULIC" and getprop("/instrumentation/efis/mfd/display-mode")!="FUEL" and getprop("/instrumentation/efis/mfd/display-mode")!="GEAR" and getprop("/instrumentation/efis/mfd/display-mode")!="ELECTRIC" and getprop("/instrumentation/efis/mfd/display-mode")!="PRESURE" and getprop("/instrumentation/efis/mfd/display-mode")!="INFORMATION" and getprop("/instrumentation/efis/mfd/display-mode")!="DOORS" and getprop("/instrumentation/efis/mfd/display-mode")!="GMCS")
+				setprop("/instrumentation/efis/mfd/display-mode", "FUEL");			
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="FUEL")
+				setprop("/instrumentation/efis/mfd/display-mode", "GEAR");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GEAR")
+				setprop("/instrumentation/efis/mfd/display-mode", "ELECTRIC");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="ELECTRIC")
+				setprop("/instrumentation/efis/mfd/display-mode", "PRESURE");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="PRESURE")
+				setprop("/instrumentation/efis/mfd/display-mode", "INFORMATION");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="INFORMATION")
+				setprop("/instrumentation/efis/mfd/display-mode", "GMCS");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GMCS")
+				setprop("/instrumentation/efis/mfd/display-mode", "DOORS");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="DOORS")
+				setprop("/instrumentation/efis/mfd/display-mode", "HYDRAULIC");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="HYDRAULIC")
+				setprop("/instrumentation/efis/mfd/display-mode", "FUEL");				
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation-->	
+	
+
+<!--animation>
+        <type>pick</type>
+        <object-name>Knob.002</object-name>
+        <action>
+            <button>1</button>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/instrumentation/efis/mfd/display-mode")!="HYDRAULIC" and getprop("/instrumentation/efis/mfd/display-mode")!="FUEL" and getprop("/instrumentation/efis/mfd/display-mode")!="GEAR" and getprop("/instrumentation/efis/mfd/display-mode")!="ELECTRIC" and getprop("/instrumentation/efis/mfd/display-mode")!="PRESURE" and getprop("/instrumentation/efis/mfd/display-mode")!="INFORMATION" and getprop("/instrumentation/efis/mfd/display-mode")!="DOORS" and getprop("/instrumentation/efis/mfd/display-mode")!="GMCS")
+				setprop("/instrumentation/efis/mfd/display-mode", "HYDRAULIC");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="HYDRAULIC")
+				setprop("/instrumentation/efis/mfd/display-mode", "DOORS");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="DOORS")
+				setprop("/instrumentation/efis/mfd/display-mode", "GMCS");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GMCS")
+				setprop("/instrumentation/efis/mfd/display-mode", "INFORMATION");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="INFORMATION")
+				setprop("/instrumentation/efis/mfd/display-mode", "PRESURE");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="PRESURE")
+				setprop("/instrumentation/efis/mfd/display-mode", "ELECTRIC");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="ELECTRIC")
+				setprop("/instrumentation/efis/mfd/display-mode", "GEAR");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GEAR")
+				setprop("/instrumentation/efis/mfd/display-mode", "FUEL");
+				else if (getprop("/instrumentation/efis/mfd/display-mode")=="FUEL")
+				setprop("/instrumentation/efis/mfd/display-mode", "HYDRAULIC");
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation-->
 
 </PropertyList>

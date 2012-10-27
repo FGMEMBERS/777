@@ -380,7 +380,7 @@ var AFDS = {
 							and (me.lateral_mode.getValue() != 3))
 						{
 							var current_bank = getprop("orientation/roll-deg");
-							if(current_bank > 5)
+							if(abs(current_bank) > 5)
 							{
 								setprop("autopilot/internal/target-roll-deg", current_bank);
 								me.lateral_mode.setValue(8);		# ATT
@@ -508,12 +508,62 @@ var AFDS = {
 					msg = msg ~ msg3;
 				copilot("Captain, autopilot disengaged. Careful, check " ~ msg ~ " trim!");
 			}
+			me.rollout_armed.setValue(0);
+			me.flare_armed.setValue(0);
+			me.loc_armed.setValue(0);			# Disarm
+			me.gs_armed.setValue(0);			# Disarm
+			if(!me.FD.getValue())
+			{
+				me.lateral_mode.setValue(0);		# NO MODE
+				me.vertical_mode.setValue(0);		# NO MODE
+			}
+			else
+			{
+				me.lateral_mode.setValue(2);		# HDG HOLD
+				me.vertical_mode.setValue(1);		# ALT
+			}
 		}
 		else
-			if(me.lateral_mode.getValue() != 3) me.input(0,1);
-		setprop("autopilot/internal/target-pitch-deg",0);
-		setprop("autopilot/internal/target-roll-deg",0);
-		me.AP_passive.setValue(output);
+		{
+			if(!me.FD.getValue()
+				and !me.lnav_armed.getValue()
+				and (me.lateral_mode.getValue() != 3))
+			{
+				var current_bank = getprop("orientation/roll-deg");
+				if(abs(current_bank) > 5)
+				{
+					setprop("autopilot/internal/target-roll-deg", current_bank);
+					me.lateral_mode.setValue(8);		# ATT
+				}
+				else
+				{
+					# set target to current magnetic heading
+					var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+					me.hdg_setting.setValue(tgtHdg);
+					me.trk_setting.setValue(tgtHdg);
+					me.lateral_mode.setValue(2);		# HDG HOLD
+				}
+			}
+			if(!me.vnav_armed.getValue()
+				and (me.vertical_mode.getValue() == 0))
+			{
+				# hold current vertical speed
+				var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
+				vs = int(vs/100)*100;
+				if (vs<-8000) vs = -8000;
+				if (vs>6000) vs = 6000;
+				me.vs_setting.setValue(vs);
+				if(vs == 0)
+				{
+					me.target_alt.setValue(getprop("instrumentation/altimeter/indicated-altitude-ft"));
+				}
+				else
+				{
+					me.target_alt.setValue(me.alt_setting.getValue());
+				}
+				me.vertical_mode.setValue(2);		# V/S
+			}
+		}
 	},
 ###################
 	setbank : func{
@@ -1121,17 +1171,17 @@ var AFDS = {
 		elsif(me.step == 4) 			### Auto Throttle mode control  ###
 		{
 			# Thrust reference rate calculation. This should be provided by FMC
-			var grossweight = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
-			var derate = 0.3 - grossweight * 0.00000083;
+			var payload = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
+			var derate = 0.3 - payload * 0.00000083;
 			if(me.ias_setting.getValue() < 251)
 			{
 				var vflight_idle = (getprop("autopilot/constant/descent-profile-low-base")
-					+ (getprop("autopilot/constant/descent-profile-low-rate") * grossweight / 1000));
+					+ (getprop("autopilot/constant/descent-profile-low-rate") * payload / 1000));
 			}
 			else
 			{
 				var vflight_idle = (getprop("autopilot/constant/descent-profile-high-base")
-					+ (getprop("autopilot/constant/descent-profile-high-rate") * grossweight / 1000));
+					+ (getprop("autopilot/constant/descent-profile-high-rate") * payload / 1000));
 			}
 			if(vflight_idle < 0.00) vflight_idle = 0.00;
 			me.flight_idle.setValue(vflight_idle);

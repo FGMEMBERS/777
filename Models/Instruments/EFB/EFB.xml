@@ -1,6 +1,6 @@
 <!--
 Syd Adams
-777-200 Navigation display
+777-200LR Navigation display
 -->
 
 <PropertyList>
@@ -68,9 +68,226 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>dialogs.EFB.toggle();</script>
+                <script>setprop("/aaa/efb/mode", "main_menu");</script>
+            </binding>
+        </action>
+    </animation>
+	
+    <animation>
+        <type>pick</type>
+        <object-name>PWR_btn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="off")
+				setprop("/aaa/efb/mode", "main_menu")
+				else
+				setprop("/aaa/efb/mode", "off");
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BtnRH.001</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="main_menu")
+				setprop("/aaa/efb/mode", "video_surveillance");
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+    <animation>
+        <type>pick</type>
+        <object-name>BtnLH.006</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="main_menu")
+				setprop("/aaa/efb/mode", "operations_man1");
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BtnLH.006</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="operations_man13")
+				setprop("/aaa/efb/mode", "operations_man12");
+				else if (getprop("/aaa/efb/mode")=="operations_man12")
+				setprop("/aaa/efb/mode", "operations_man11");
+				else if (getprop("/aaa/efb/mode")=="operations_man11")
+				setprop("/aaa/efb/mode", "operations_man10");
+				else if (getprop("/aaa/efb/mode")=="operations_man10")
+				setprop("/aaa/efb/mode", "operations_man9");
+				else if (getprop("/aaa/efb/mode")=="operations_man9")
+				setprop("/aaa/efb/mode", "operations_man8");
+				else if (getprop("/aaa/efb/mode")=="operations_man8")
+				setprop("/aaa/efb/mode", "operations_man7");
+				else if (getprop("/aaa/efb/mode")=="operations_man7")
+				setprop("/aaa/efb/mode", "operations_man6");
+				else if (getprop("/aaa/efb/mode")=="operations_man6")
+				setprop("/aaa/efb/mode", "operations_man5");
+				else if (getprop("/aaa/efb/mode")=="operations_man5")
+				setprop("/aaa/efb/mode", "operations_man4");
+				else if (getprop("/aaa/efb/mode")=="operations_man4")
+				setprop("/aaa/efb/mode", "operations_man3");
+				else if (getprop("/aaa/efb/mode")=="operations_man3")
+				setprop("/aaa/efb/mode", "operations_man2");
+				else if (getprop("/aaa/efb/mode")=="operations_man2")
+				setprop("/aaa/efb/mode", "operations_man1");
+				
+				else if (getprop("/aaa/efb/mode")=="main_menu")
+				setprop("/aaa/efb/mode", "operations_man1");
+				
+				if (getprop("/aaa/efb/mode")=="startup3")
+				setprop("/aaa/efb/mode", "startup2");
+				else if (getprop("/aaa/efb/mode")=="startup2")
+				setprop("/aaa/efb/mode", "startup1");	
+
+				if (getprop("/aaa/efb/mode")=="cl8")
+				setprop("/aaa/efb/mode", "cl7");
+				else if (getprop("/aaa/efb/mode")=="cl7")
+				setprop("/aaa/efb/mode", "cl6");
+				else if (getprop("/aaa/efb/mode")=="cl6")
+				setprop("/aaa/efb/mode", "cl5");
+				else if (getprop("/aaa/efb/mode")=="cl5")
+				setprop("/aaa/efb/mode", "cl4");
+				else if (getprop("/aaa/efb/mode")=="cl4")
+				setprop("/aaa/efb/mode", "cl3");
+				else if (getprop("/aaa/efb/mode")=="cl3")
+				setprop("/aaa/efb/mode", "cl2");
+				else if (getprop("/aaa/efb/mode")=="cl2")
+				setprop("/aaa/efb/mode", "cl1");				
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BtnLH.007</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="operations_man1")
+				setprop("/aaa/efb/mode", "operations_man2");
+				else if (getprop("/aaa/efb/mode")=="operations_man2")
+				setprop("/aaa/efb/mode", "operations_man3");
+				else if (getprop("/aaa/efb/mode")=="operations_man3")
+				setprop("/aaa/efb/mode", "operations_man4");
+				else if (getprop("/aaa/efb/mode")=="operations_man4")
+				setprop("/aaa/efb/mode", "operations_man5");
+				else if (getprop("/aaa/efb/mode")=="operations_man5")
+				setprop("/aaa/efb/mode", "operations_man6");
+				else if (getprop("/aaa/efb/mode")=="operations_man6")
+				setprop("/aaa/efb/mode", "operations_man7");
+				else if (getprop("/aaa/efb/mode")=="operations_man7")
+				setprop("/aaa/efb/mode", "operations_man8");
+				else if (getprop("/aaa/efb/mode")=="operations_man8")
+				setprop("/aaa/efb/mode", "operations_man9");
+				else if (getprop("/aaa/efb/mode")=="operations_man9")
+				setprop("/aaa/efb/mode", "operations_man10");
+				else if (getprop("/aaa/efb/mode")=="operations_man10")
+				setprop("/aaa/efb/mode", "operations_man11");
+				else if (getprop("/aaa/efb/mode")=="operations_man11")
+				setprop("/aaa/efb/mode", "operations_man12");
+				else if (getprop("/aaa/efb/mode")=="operations_man12")
+				setprop("/aaa/efb/mode", "operations_man13");
+
+				if (getprop("/aaa/efb/mode")=="startup1")
+				setprop("/aaa/efb/mode", "startup2");
+				else if (getprop("/aaa/efb/mode")=="startup2")
+				setprop("/aaa/efb/mode", "startup3");	
+
+				if (getprop("/aaa/efb/mode")=="cl1")
+				setprop("/aaa/efb/mode", "cl2");
+				else if (getprop("/aaa/efb/mode")=="cl2")
+				setprop("/aaa/efb/mode", "cl3");
+				else if (getprop("/aaa/efb/mode")=="cl3")
+				setprop("/aaa/efb/mode", "cl4");
+				else if (getprop("/aaa/efb/mode")=="cl4")
+				setprop("/aaa/efb/mode", "cl5");
+				else if (getprop("/aaa/efb/mode")=="cl5")
+				setprop("/aaa/efb/mode", "cl6");
+				else if (getprop("/aaa/efb/mode")=="cl6")
+				setprop("/aaa/efb/mode", "cl7");
+				else if (getprop("/aaa/efb/mode")=="cl7")
+				setprop("/aaa/efb/mode", "cl8");				
+				</script>
+            </binding>
+        </action>
+    </animation>		
+	
+    <animation>
+        <type>pick</type>
+        <object-name>BtnRH.005</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="main_menu")
+				setprop("/aaa/efb/mode", "startup1");
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BtnLH.004</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="main_menu")
+				setprop("/aaa/efb/mode", "airport_display");
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BtnRH.006</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/efb/mode")=="main_menu")
+				setprop("/aaa/efb/mode", "cl1");
+				</script>
             </binding>
         </action>
     </animation-->
-
+	
 </PropertyList>

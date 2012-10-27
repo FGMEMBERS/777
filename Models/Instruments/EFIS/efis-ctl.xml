@@ -7,6 +7,28 @@ Syd Adams
 
  <path>efis-ctl.ac</path>
 
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>efisletters</object-name>
+	</effect>
+
+ 	<animation>
+		<type>material</type>
+		<object-name>efisletters</object-name>
+		<condition>
+			 <greater-than>
+				<property>systems/electrical/CPT-FLT-INST</property>
+				<value>24.0</value>
+			 </greater-than>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.6</green>
+			<blue>0.2</blue>
+			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+		</emission>
+	</animation>
+
     <animation>
         <type>rotate</type>
         <object-name>BARO.knob</object-name>
@@ -14,9 +36,9 @@ Syd Adams
         <property>instrumentation/efis/inputs/kpa-mode</property>
         <factor>80</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>0.041</y-m>
-            <z-m>0.028</z-m>
+            <x-m>0.02324</x-m>
+            <y-m>0.04439</y-m>
+            <z-m>0.02781</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -40,9 +62,9 @@ Syd Adams
             <entry><ind>640</ind><dep>180</dep></entry>
         </interpolation>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>0.022</y-m>
-            <z-m>-0.001</z-m>
+            <x-m>0.01246</x-m>
+            <y-m>0.02425</y-m>
+            <z-m>-0.002298</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -58,9 +80,9 @@ Syd Adams
         <property>instrumentation/efis/inputs/minimums-mode</property>
         <factor>80</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>-0.041</y-m>
-            <z-m>0.028</z-m>
+            <x-m>0.02322</x-m>
+            <y-m>-0.042224</y-m>
+            <z-m>0.02781</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -81,9 +103,9 @@ Syd Adams
             <entry><ind>3</ind><dep>90</dep></entry>
         </interpolation>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>-0.020</y-m>
-            <z-m>-0.001</z-m>
+            <x-m>0.01234</x-m>
+            <y-m>-0.02134</y-m>
+            <z-m>-0.002082</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -98,9 +120,9 @@ Syd Adams
         <property>instrumentation/efis/inputs/lh-vor-adf</property>
         <factor>0.003</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>-0.048</y-m>
-            <z-m>-0.0</z-m>
+            <x-m>-0.000672</x-m>
+            <y-m>-0.0371</y-m>
+            <z-m>-0.002628</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -115,9 +137,9 @@ Syd Adams
         <property>instrumentation/efis/inputs/rh-vor-adf</property>
         <factor>0.003</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>0.052</y-m>
-            <z-m>0.0</z-m>
+            <x-m>-0.000824</x-m>
+            <y-m>0.0017</y-m>
+            <z-m>-0.002628</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -349,14 +371,18 @@ Syd Adams
 
     <animation>
         <type>pick</type>
+        <object-name>rng.inc</object-name>
+        <object-name>rng2.inc</object-name>
         <object-name>rng.dec</object-name>
         <object-name>rng2.dec</object-name>
+        <object-name>Range.knob</object-name>
+        <object-name>Range.knob.001</object-name>
         <action>
             <button>0</button>
-            <repeatable>false</repeatable>
+            <repeatable>true</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("range",-1);</script>
+                <script>b777.Efis.ctl_func("range",1);</script>
             </binding>
         </action>
     </animation>
@@ -365,12 +391,16 @@ Syd Adams
         <type>pick</type>
         <object-name>rng.inc</object-name>
         <object-name>rng2.inc</object-name>
+        <object-name>rng.dec</object-name>
+        <object-name>rng2.dec</object-name>
+        <object-name>Range.knob</object-name>
+        <object-name>Range.knob.001</object-name>
         <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
+            <button>1</button>
+            <repeatable>true</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("range",1);</script>
+                <script>b777.Efis.ctl_func("range",-1);</script>
             </binding>
         </action>
     </animation>
@@ -432,9 +462,29 @@ Syd Adams
 
     <animation>
         <type>pick</type>
+        <object-name>baro.inc</object-name>
         <object-name>baro.dec</object-name>
         <action>
             <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/efis/inputs/kpa-mode</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+
+     <animation>
+        <type>pick</type>
+        <object-name>baro.inc</object-name>
+        <object-name>baro.dec</object-name>
+        <action>
+            <button>1</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
@@ -448,37 +498,24 @@ Syd Adams
         </action>
     </animation>
 
-    <animation>
+   <animation>
         <type>pick</type>
-        <object-name>baro.inc</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-assign</command>
-                <property>instrumentation/efis/inputs/kpa-mode</property>
-                <value>1</value>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(3);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>baro.inc</object-name>
-        <object-name>baro.dec</object-name>
-        <object-name>BARO.knob</object-name>
+        <object-name>inhg.inc</object-name>
+        <object-name>inhg.dec</object-name>
         <object-name>BARO.knob.001</object-name>
         <action>
-            <button>3</button>
-            <repeatable>false</repeatable>
+            <button>0</button> <!--  left button -->
+            <repeatable>true</repeatable>
             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/efis/inputs/kpa-mode</property>
-                <value>0</value>
+				<condition>
+					<not><property>instrumentation/inputs/setting-std</property></not>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -489,21 +526,26 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>baro.inc</object-name>
-        <object-name>baro.dec</object-name>
-        <object-name>BARO.knob</object-name>
+        <object-name>inhg.inc</object-name>
+        <object-name>inhg.dec</object-name>
         <object-name>BARO.knob.001</object-name>
         <action>
-            <button>4</button>
-            <repeatable>false</repeatable>
+            <button>1</button> <!--  right button -->
+            <repeatable>true</repeatable>
             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/efis/inputs/kpa-mode</property>
-                <value>1</value>
+				<condition>
+					<not><property>instrumentation/inputs/setting-std</property></not>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>-0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(3);</script>
+                <script>controls.click(4);</script>
             </binding>
         </action>
     </animation>
@@ -513,6 +555,7 @@ Syd Adams
         <object-name>inhg.inc</object-name>
         <object-name>inhg.dec</object-name>
         <object-name>inhg.reset</object-name>
+        <object-name>BARO.knob.001</object-name>
         <action>
             <button>3</button> <!--  scroll up -->
             <repeatable>false</repeatable>
@@ -529,16 +572,17 @@ Syd Adams
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(3);</script>
+                <script>controls.click(4);</script>
             </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>inhg.dec</object-name>
         <object-name>inhg.inc</object-name>
+        <object-name>inhg.dec</object-name>
         <object-name>inhg.reset</object-name>
+        <object-name>BARO.knob.001</object-name>
         <action>
             <button>4</button> <!--  scroll down -->
             <repeatable>false</repeatable>
@@ -597,7 +641,7 @@ Syd Adams
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(3);</script>
+                <script>controls.click(4);</script>
             </binding>
         </action>
     </animation>
@@ -628,9 +672,36 @@ Syd Adams
         </action>
     </animation>
 
+	<animation>
+        <type>pick</type>
+        <object-name>Mins.dec</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Mins.inc</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",1);</script>
+            </binding>
+        </action>
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>minset.inc</object-name>
+        <object-name>minset.dec</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
@@ -643,9 +714,10 @@ Syd Adams
 
     <animation>
         <type>pick</type>
+        <object-name>minset.inc</object-name>
         <object-name>minset.dec</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
             <repeatable>true</repeatable>
             <binding>
                 <command>nasal</command>
@@ -664,7 +736,7 @@ Syd Adams
             <repeatable>true</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("dh",-10);</script>
+                <script>b777.Efis.ctl_func("dh",10);</script>
             </binding>
         </action>
     </animation>
@@ -679,7 +751,7 @@ Syd Adams
             <repeatable>true</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("dh",10);</script>
+                <script>b777.Efis.ctl_func("dh",-10);</script>
             </binding>
         </action>
     </animation>
@@ -701,10 +773,12 @@ Syd Adams
     <animation>
         <type>pick</type>
         <object-name>Mode.inc</object-name>
+        <object-name>Mode.dec</object-name>
         <object-name>Mode2.inc</object-name>
+        <object-name>Mode2.dec</object-name>
         <action>
             <button>0</button>
-            <repeatable>false</repeatable>
+            <repeatable>true</repeatable>
             <binding>
                 <command>nasal</command>
                 <script>b777.Efis.ctl_func("display",1);</script>
@@ -714,11 +788,13 @@ Syd Adams
 
     <animation>
         <type>pick</type>
+        <object-name>Mode.inc</object-name>
         <object-name>Mode.dec</object-name>
+        <object-name>Mode2.inc</object-name>
         <object-name>Mode2.dec</object-name>
         <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
+            <button>1</button>
+            <repeatable>true</repeatable>
             <binding>
                 <command>nasal</command>
                 <script>b777.Efis.ctl_func("display",-1);</script>

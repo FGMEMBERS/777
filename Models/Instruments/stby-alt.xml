@@ -5,6 +5,37 @@
 <PropertyList>
  <path>stby-alt.ac</path>
 
+ 	<animation>
+		<type>material</type>
+		<object-name>atxt1</object-name>
+		<object-name>atxt10</object-name>
+		<object-name>atxt100</object-name>
+		<object-name>atxt1000</object-name>
+		<object-name>atxt10000</object-name>
+		<object-name>in1</object-name>
+		<object-name>in10</object-name>
+		<object-name>in100</object-name>
+		<object-name>in1000</object-name>
+		<object-name>kpa1</object-name>
+		<object-name>kpa10</object-name>
+		<object-name>kpa100</object-name>
+		<object-name>kpa1000</object-name>
+		<object-name>StbyAltface</object-name>
+		<object-name>StbyAltneedle</object-name>
+		<condition>
+			 <greater-than>
+				<property>systems/electrical/CPT-FLT-INST</property>
+				<value>24.0</value>
+			 </greater-than>
+		</condition>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+		</emission>
+	</animation>
+
   <animation>
    <type>textranslate</type>
    <object-name>atxt10000</object-name>

@@ -7,9 +7,6 @@
             <name type="string">AFR Air France</name>
             <texture>Liveries-300/AFR.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/AFR-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>AFR</aircraft-operator>

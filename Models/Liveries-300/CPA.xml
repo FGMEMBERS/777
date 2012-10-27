@@ -7,9 +7,6 @@
             <name type="string">CPA Cathay Pacific</name>
             <texture>Liveries-300/CPA-paint.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/CPA-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>CPA</aircraft-operator>

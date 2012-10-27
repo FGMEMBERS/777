@@ -7,9 +7,6 @@
             <name type="string">TAM</name>
             <texture>Liveries-300/TAM.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/TAM-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>TAM</aircraft-operator>

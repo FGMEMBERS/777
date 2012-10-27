@@ -7,7 +7,7 @@ OBJECT poly
 name "Gr-on"
 data 9
 Plane.030
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 6
@@ -37,7 +37,7 @@ OBJECT poly
 name "flap-on"
 data 9
 Plane.017
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -128,7 +128,7 @@ OBJECT poly
 name "flap.slider"
 data 9
 Plane.018
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -149,7 +149,7 @@ OBJECT poly
 name "gearlocked"
 data 9
 Plane.031
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -170,7 +170,7 @@ OBJECT poly
 name "ind1.on"
 data 9
 Plane.195
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -209,7 +209,7 @@ OBJECT poly
 name "ind1.set"
 data 9
 Plane.194
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -248,7 +248,7 @@ OBJECT poly
 name "ind15.on"
 data 9
 Plane.197
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -287,7 +287,7 @@ OBJECT poly
 name "ind15.set"
 data 9
 Plane.192
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -326,7 +326,7 @@ OBJECT poly
 name "ind20.on"
 data 9
 Plane.198
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -365,7 +365,7 @@ OBJECT poly
 name "ind20.set"
 data 9
 Plane.191
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -404,7 +404,7 @@ OBJECT poly
 name "ind25.on"
 data 9
 Plane.199
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -443,7 +443,7 @@ OBJECT poly
 name "ind25.set"
 data 9
 Plane.190
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -482,7 +482,7 @@ OBJECT poly
 name "ind30.on"
 data 9
 Plane.200
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -521,7 +521,7 @@ OBJECT poly
 name "ind30.set"
 data 9
 Plane.021
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -560,7 +560,7 @@ OBJECT poly
 name "ind5.on"
 data 9
 Plane.196
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -599,7 +599,7 @@ OBJECT poly
 name "ind5.set"
 data 9
 Plane.193
-texture "efis-frame.png"
+texture "efis.png"
 texrep 1 1
 crease 30.000000
 numvert 8

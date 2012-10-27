@@ -1,16 +1,39 @@
 ####    jet engine electrical system    ####
 ####    Syd Adams    ####
+var l_main_ac = props.globals.initNode("/systems/electrical/L-MAIN-AC",0,"DOUBLE");
+var r_main_ac = props.globals.initNode("/systems/electrical/R-MAIN-AC",0,"DOUBLE");
+var l_xfr = props.globals.initNode("/systems/electrical/L-XFR",0,"DOUBLE");
+var r_xfr = props.globals.initNode("/systems/electrical/R-XFR",0,"DOUBLE");
+var l_dc = props.globals.initNode("/systems/electrical/L-DC",0,"DOUBLE");
+var r_dc = props.globals.initNode("/systems/electrical/R-DC",0,"DOUBLE");
+var hot_bat = props.globals.initNode("/systems/electrical/HOT-BAT",0,"DOUBLE");
+var bat = props.globals.initNode("/systems/electrical/BAT",0,"DOUBLE");
+var cpt_flt_inst = props.globals.initNode("/systems/electrical/CPT-FLT-INST",0,"DOUBLE");
+var fo_flt_inst = props.globals.initNode("/systems/electrical/FO-FLT-INST",0,"DOUBLE");
+var l_gcb = props.globals.initNode("/systems/electrical/L-GCB",0,"BOOL");
+var r_gcb = props.globals.initNode("/systems/electrical/R-GCB",0,"BOOL");
+var apb = props.globals.initNode("/systems/electrical/APB",0,"BOOL");
+var pri_epc = props.globals.initNode("/systems/electrical/PRI-EPC",0,"BOOL");
+var sec_epc = props.globals.initNode("/systems/electrical/SEC-EPC",0,"BOOL");
+var l_btb = props.globals.initNode("/systems/electrical/L-BTB",0,"BOOL");
+var r_btb = props.globals.initNode("/systems/electrical/R-BTB",0,"BOOL");
+var main_bat_rly = props.globals.initNode("/systems/electrical/MAIN-BAT-RLY",0,"BOOL");
+var dc_bus_tie_rly = props.globals.initNode("/systems/electrical/DC_BUS_TIE_RLY",1,"BOOL");
+var bat_cpt_isln_rely = props.globals.initNode("/systems/electrical/BAT-CPT-ISLN-RLY",1,"BOOL");
+var cpt_fo_bus_tie_rely = props.globals.initNode("/systems/electrical/CPT-FO-BUS-TIE-RLY",0,"BOOL");
+var primary_external  = props.globals.initNode("/controls/electric/external-power",0,"BOOL");
+var secondary_external  = props.globals.initNode("/controls/electric/external-power[1]",0,"BOOL");
+var ac_tie_bus = props.globals.initNode("/systems/electrical/AC_TIE_BUS",0,"DOUBLE");
+
 var vbus_count = 0;
 var Lbus = props.globals.initNode("/systems/electrical/left-bus",0,"DOUBLE");
 var Rbus = props.globals.initNode("/systems/electrical/right-bus",0,"DOUBLE");
-var Amps = props.globals.initNode("/systems/electrical/amps",0,"DOUBLE");
-var EXT  = props.globals.initNode("/controls/electric/external-power",0,"DOUBLE");
-var XTie  = props.globals.initNode("/systems/electrical/xtie",0,"BOOL");
 var AVswitch=props.globals.initNode("/systems/electrical/outputs/avionics",0,"BOOL");
 var APUgen=props.globals.initNode("controls/electric/APU-generator",0,"BOOL");
 var CDUswitch=props.globals.initNode("instrumentation/cdu/serviceable",0,"BOOL");
-var lbus_volts = 0.0;
-var rbus_volts = 0.0;
+var DomeLtControl=props.globals.initNode("controls/lighting/dome-intencity",0,"DOUBLE");
+var DomeLtIntencity=props.globals.initNode("systems/electrical/domelight-int",0,"DOUBLE");
+var landinglights=props.globals.initNode("controls/lighting/landing-lights",0,"BOOL");
 
 var lbus_input=[];
 var lbus_output=[];
@@ -29,13 +52,76 @@ aircraft.light.new("controls/lighting/strobe-state", [0.05, 1.30], strobe_switch
 var beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
 aircraft.light.new("controls/lighting/beacon-state", [0.05, 2.0], beacon_switch);
 
-#var battery = Battery.new(switch-prop,volts,amps,amp_hours,charge_percent,charge_amps);
+var APU = {
+	new : func(generator)
+	{
+		var m = { parents : [APU] };
+		m.generator = generator;
+		m.valid = 0;
+		return m;
+	},
+	
+	get_transition : func
+	{
+		var switched = 0;
+		if(me.valid == 0)
+		{
+			if(me.generator.getValue() == 1)
+			{
+				apb.setValue(1);
+				me.valid = 1;
+				switched = 1;
+			}
+		}
+		else
+		{
+			if(me.generator.getValue() == 0)
+			{
+				apb.setValue(0);
+				me.valid = 0;
+				switched = 1;
+			}
+		}
+		return switched;
+	}
+};
+
+var External = {
+	new : func(switch)
+	{
+		var m = { parents : [External] };
+		m.valid = 0;
+		m.switch = switch;
+		return m;
+	},
+	
+	get_transition : func
+	{
+		var switched = 0;
+		if(me.valid == 0)
+		{
+			if(me.switch.getValue() == 1)
+			{
+				me.valid = 1;
+				switched = 1;
+			}
+		}
+		else
+		{
+			if(me.switch.getValue() == 0)
+			{
+				me.valid = 0;
+				switched = 1;
+			}
+		}
+		return switched;
+	}
+};
+
 var Battery = {
-    new : func(swtch,vlt,amp,hr,chp,cha){
+    new : func(vlt,amp,hr,chp,cha){
         var m = { parents : [Battery] };
 
-        m.switch = props.globals.getNode(swtch,1);
-        m.switch.setBoolValue(0);
         m.ideal_volts = vlt;
         m.ideal_amps = amp;
         m.amp_hours = hr;
@@ -62,25 +148,19 @@ var Battery = {
     },
 
     get_output_volts : func {
-        if(me.switch.getValue()){
             var x = 1.0 - me.charge_percent;
             var tmp = -(3.0 * x - 1.0);
             var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
             var output =me.ideal_volts * factor;
             return output;
-        } else
-            return 0;
     },
 
     get_output_amps : func {
-        if(me.switch.getValue()){
             var x = 1.0 - me.charge_percent;
             var tmp = -(3.0 * x - 1.0);
             var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
             var output =me.ideal_amps * factor;
             return output;
-        } else
-            return 0;
     }
 };
 
@@ -90,15 +170,15 @@ var Alternator = {
         var m = { parents : [Alternator] };
         m.switch =  props.globals.getNode(switch,1);
         m.switch.setBoolValue(0);
-        m.meter =  props.globals.getNode("systems/electrical/gen-load["~num~"]",1);
+	    m.meter =  props.globals.getNode("systems/electrical/gen-load["~num~"]",1);
+    	m.gen_output =  props.globals.getNode("engines/engine["~num~"]/amp-v",1);
         m.meter.setDoubleValue(0);
-        m.gen_output =  props.globals.getNode("engines/engine["~num~"]/amp-v",1);
         m.gen_output.setDoubleValue(0);
-        m.meter.setDoubleValue(0);
         m.rpm_source =  props.globals.getNode(src,1);
         m.rpm_threshold = thr;
         m.ideal_volts = vlt;
         m.ideal_amps = amp;
+		m.valid = 0;
         return m;
     },
 
@@ -135,12 +215,37 @@ var Alternator = {
             ampout = me.ideal_amps * factor;
         }
         return ampout;
-    }
+    },
+
+	get_transition : func
+	{
+	var switched = 0;
+		if(me.valid == 0)
+		{
+			if(me.get_output_volts() > 90)
+			{
+				me.valid = 1;
+				switched = 1;
+			}
+		}
+		else
+		{
+			if(me.get_output_volts() < 70)
+			{
+				me.valid = 0;
+				switched = 1;
+			}
+		}
+		return switched;
+	}
 };
 
-var battery = Battery.new("/controls/electric/battery-switch",24,30,34,1.0,7.0);
-var alternator1 = Alternator.new(0,"controls/electric/engine[0]/generator","/engines/engine[0]/rpm",20.0,28.0,60.0);
-var alternator2 = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/rpm",20.0,28.0,60.0);
+var battery = Battery.new(24,30,34,1.0,7.0);
+var lidg = Alternator.new(0,"controls/electric/engine[0]/generator","/engines/engine[0]/rpm",17.0,115.0,60.0);
+var ridg = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/rpm",17.0,115.0,60.0);
+var external_primary = External.new(pri_epc);
+var external_secondary = External.new(sec_epc);
+var apu = APU.new(APUgen);
 
 #####################################
 var elec_init_listener = setlistener("/sim/signals/fdm-initialized", func {
@@ -156,10 +261,17 @@ var init_switches = func{
     props.globals.initNode("controls/electric/ammeter-switch",0,"BOOL");
     props.globals.getNode("systems/electrical/serviceable",0,"BOOL");
     props.globals.getNode("controls/electric/external-power",0,"BOOL");
+    props.globals.getNode("controls/electric/external-power[1]",0,"BOOL");
     setprop("controls/lighting/instrument-lights-norm",0.8);
     setprop("controls/lighting/efis-norm",0.8);
     setprop("controls/lighting/panel-norm",0.8);
-
+    setprop("controls/electric/battery-switch",0);
+    setprop("controls/electric/engine/generator",1);
+    setprop("controls/electric/engine[1]/generator",1);
+    setprop("controls/electric/engine/bus-tie",1);
+    setprop("controls/electric/engine[1]/bus-tie",1);
+    setprop("controls/APU/apu-gen-switch",1);
+	landinglights.setValue(0);
     append(lights_input,props.globals.initNode("controls/lighting/landing-light[0]",0,"BOOL"));
     append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-light[0]",0,"DOUBLE"));
     append(lights_load,1);
@@ -215,11 +327,11 @@ var init_switches = func{
     append(rbus_input,AVswitch);
     append(rbus_output,props.globals.initNode("systems/electrical/outputs/KNS80",0,"DOUBLE"));
     append(rbus_load,1);
-    append(rbus_input,AVswitch);
-    append(rbus_output,props.globals.initNode("systems/electrical/outputs/efis",0,"DOUBLE"));
-    append(rbus_load,1);
 
 
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/efis",0,"DOUBLE"));
+    append(lbus_load,1);
     append(lbus_input,AVswitch);
     append(lbus_output,props.globals.initNode("systems/electrical/outputs/adf",0,"DOUBLE"));
     append(lbus_load,1);
@@ -255,53 +367,200 @@ var init_switches = func{
     append(lbus_load,1);
 }
 
-
 update_virtual_bus = func( dt ) {
     var PWR = getprop("systems/electrical/serviceable");
     var xtie = 0;
     var load = 0.0;
     var power_source = nil;
-    if(vbus_count==0){
-        var battery_volts = battery.get_output_volts();
-        lbus_volts = battery_volts;
-        power_source = "battery";
-        if (APUgen.getValue())
-        {
-          power_source = "APU";
-          lbus_volts = 24;
-        }
-        var alternator1_volts = alternator1.get_output_volts();
-        if (alternator1_volts > lbus_volts) {
-            lbus_volts = alternator1_volts;
-            power_source = "alternator1";
-        }
-        lbus_volts *= PWR;
-        Lbus.setValue(lbus_volts);
-        load += lh_bus(lbus_volts);
-            alternator1.apply_load(load);
-    }else{
-        var battery_volts = battery.get_output_volts();
-        rbus_volts = battery_volts;
-        power_source = "battery";
-        if (APUgen.getValue())
-        {
-          power_source = "APU";
-          rbus_volts=24;
-        }
-        var alternator2_volts = alternator2.get_output_volts();
-        if (alternator2_volts > rbus_volts) {
-            rbus_volts = alternator2_volts;
-            power_source = "alternator2";
-        }
-        rbus_volts *=PWR;
-        Rbus.setValue(rbus_volts);
-        load += rh_bus(rbus_volts);
-        alternator2.apply_load(load);
+	if(lidg.get_transition())
+	{
+		l_gcb.setValue(lidg.valid);
+		if(lidg.valid)
+		{
+			apb.setValue(0);
+			pri_epc.setValue(0);
+			sec_epc.setValue(0);
+			l_btb.setValue(1);
+			r_btb.setValue(1);
+		}
+	}
+	elsif(ridg.get_transition())
+	{
+		r_gcb.setValue(ridg.valid);
+		if(ridg.valid)
+		{
+			apb.setValue(0);
+			pri_epc.setValue(0);
+			sec_epc.setValue(0);
+			l_btb.setValue(1);
+			r_btb.setValue(1);
+		}
+	}
+	elsif(external_primary.get_transition())
+	{
+		if(external_primary.valid)
+		{
+			r_gcb.setValue(0);
+			if(external_secondary.valid)
+			{
+				r_btb.setValue(0);
+			}
+			else
+			{
+				l_gcb.setValue(0);
+				apb.setValue(0);
+				l_btb.setValue(1);
+				r_btb.setValue(1);
+			}
+		}
+	}
+	elsif(external_secondary.get_transition())
+	{
+		if(external_secondary.valid)
+		{
+			apb.setValue(0);
+			l_gcb.setValue(0);
+			l_btb.setValue(1);
+			if(external_primary.valid)
+			{
+				r_btb.setValue(0);
+			}
+			else
+			{
+				r_gcb.setValue(0)
+			}
+		}
+	}
+	elsif(apu.get_transition())
+	{
+		if(apu.valid)
+		{
+			sec_epc.setValue(0);
+			l_btb.setValue(1);
+			if(external_primary.valid)
+			{
+				r_btb.setValue(0);
+			}
+			else
+			{
+				r_gcb.setValue(0);
+			}
+		}
+	}
+
+	if(lidg.valid)
+	{
+		l_main_ac.setValue(lidg.get_output_volts());
+	}
+	elsif(apu.valid)
+	{
+		l_main_ac.setValue(115);
+	}
+	elsif(external_secondary.valid)
+	{
+		l_main_ac.setValue(115);
+	}
+	elsif(external_primary.valid)
+	{
+		l_main_ac.setValue(115);
+	}
+	elsif(ridg.valid)
+	{
+		l_main_ac.setValue(ridg.get_output_volts());
+	}
+	else
+	{
+		l_main_ac.setValue(0);
+	}
+	l_xfr.setValue(l_main_ac.getValue());
+		
+	if(ridg.valid)
+	{
+		r_main_ac.setValue(ridg.get_output_volts());
+	}
+	elsif(external_primary.valid)
+	{
+		r_main_ac.setValue(115);
+	}
+	elsif(external_secondary.valid)
+	{
+		r_main_ac.setValue(115);
+	}
+	elsif(apu.valid)
+	{
+		r_main_ac.setValue(115);
+	}
+	elsif(lidg.valid)
+	{
+		r_main_ac.setValue(lidg.get_output_volts());
+	}
+	else
+	{
+		r_main_ac.setValue(0);
+	}
+	r_xfr.setValue(r_main_ac.getValue());
+
+	if(lidg.valid or apu.valid or external_secondary.valid or external_primary.valid or ridg.valid)
+	{
+		ac_tie_bus.setValue(115);
+	}
+	else
+	{
+		ac_tie_bus.setValue(0);
+	}
+
+	if(vbus_count==0)
+	{
+        hot_bat.setValue(battery.get_output_volts());
+		main_bat_rly.setValue(getprop("controls/electric/battery-switch"));
+		bat.setValue(hot_bat.getValue() * main_bat_rly.getValue());
+		if(l_xfr.getValue() > 80)
+		{
+			l_dc.setValue(l_xfr.getValue() * 28 /115);
+			cpt_flt_inst.setValue(l_xfr.getValue() * 28 /115);
+			lidg.apply_load(load);
+		}
+		else
+		{
+			l_dc.setValue(0);
+			cpt_flt_inst.setValue(bat.getValue() * bat_cpt_isln_rely.getValue());
+#			battery.apply_load(load);
+		}
+		load += lh_bus(cpt_flt_inst.getValue());
+    }
+	else
+	{
+		if(r_xfr.getValue() > 80)
+		{
+			r_dc.setValue(r_xfr.getValue() * 28 /115);
+			fo_flt_inst.setValue(r_xfr.getValue() * 28 /115);
+			ridg.apply_load(load);
+		}
+		else
+		{
+			r_dc.setValue(0);
+			fo_flt_inst.setValue(cpt_flt_inst.getValue() * cpt_fo_bus_tie_rely.getValue());
+#			battery.apply_load(load);
+		}
+		load += rh_bus(fo_flt_inst.getValue());
     }
     vbus_count = 1-vbus_count;
-    if(rbus_volts > 5 and  lbus_volts>5) xtie=1;
-    XTie.setValue(xtie);
-    if(rbus_volts > 5 or  lbus_volts>5) load += lighting(24);
+    if(l_dc.getValue() > 5 and r_dc.getValue() > 5) xtie=1;
+    dc_bus_tie_rly.setValue(xtie);
+	if(l_dc.getValue() > 5 or r_dc.getValue() > 5) load += lighting(28);
+
+	if(r_xfr.getValue() > 80)
+	{
+		DomeLtIntencity.setValue(DomeLtControl.getValue());
+	}
+	elsif(cpt_flt_inst.getValue() > 24)
+	{
+		DomeLtIntencity.setValue(0.5);
+	}
+	else
+	{
+		DomeLtIntencity.setValue(0);
+	}
 
     return load;
 }

@@ -6,6 +6,40 @@
  
     <path>clock.ac</path>
 
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>Plane.002</object-name>
+	</effect>
+
+ 	<animation>
+		<type>material</type>
+		<object-name>Chrono.needle</object-name>
+		<object-name>colon</object-name>
+		<object-name>colon.001</object-name>
+		<object-name>ET.01</object-name>
+		<object-name>ET.10</object-name>
+		<object-name>ET.hld</object-name>
+		<object-name>ET.reset</object-name>
+		<object-name>ET.run</object-name>
+		<object-name>Hr.01</object-name>
+		<object-name>Hr.10</object-name>
+		<object-name>Mn.01</object-name>
+		<object-name>Mn.10</object-name>
+		<object-name>Plane.001</object-name>
+		<condition>
+			 <greater-than>
+				<property>systems/electrical/CPT-FLT-INST</property>
+				<value>24.0</value>
+			 </greater-than>
+		</condition>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+		</emission>
+	</animation>
+
     <animation>
         <type>rotate</type>
         <object-name>Chrono.needle</object-name>

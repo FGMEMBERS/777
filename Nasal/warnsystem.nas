@@ -72,7 +72,7 @@ var WEU =
         m.gear_down     = 0;
         m.gear_override = 0;
         m.flap_override = 0;
-        m.ap_passive    = 1;
+        m.ap_mode       = 0;
         m.ap_disengaged = 0;
         me.rudder_trim  = 0;
         me.elev_trim    = 0;
@@ -97,7 +97,7 @@ var WEU =
 
         setlistener("instrumentation/mk-viii/inputs/discretes/gear-override", func { Weu.update_listener_inputs() } );
         setlistener("controls/engines/engine/throttle", func { Weu.update_throttle_input() } );
-        setlistener("autopilot/locks/passive-mode",     func { Weu.update_ap_mode();});
+        setlistener("instrumentation/afds/inputs/AP",     func { Weu.update_ap_mode();});
         m.update_listener_inputs();
         
         # update inputs now and then...
@@ -335,8 +335,8 @@ var WEU =
 #### update autopilot mode ####
     update_ap_mode : func()
     {
-       var ap_passive = getprop("autopilot/locks/passive-mode");
-       if ((ap_passive)and(!me.ap_passive))
+       var ap_mode = getprop("instrumentation/afds/inputs/AP");
+       if ((!ap_mode)and(me.ap_mode))
        {
            # AP has disengaged
            me.ap_disengaged = 1;
@@ -348,7 +348,7 @@ var WEU =
            me.ap_disengaged = 0;
        }
        me.apwarning.setBoolValue(me.ap_disengaged);
-       me.ap_passive = ap_passive;
+       me.ap_mode = ap_mode;
     },
 
 #### main WEU update ####

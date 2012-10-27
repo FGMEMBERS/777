@@ -7,9 +7,6 @@
             <name type="string">White</name>
             <texture>Liveries-300/paint1.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/lights1.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

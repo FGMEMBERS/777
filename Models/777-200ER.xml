@@ -19,7 +19,6 @@ Syd Adams
 
     <sound><path>Aircraft/777/Sounds/mp-sound.xml</path></sound>
 
-
     <animation>
         <type>material</type>
         <object-name>Fuselage</object-name>
@@ -74,9 +73,14 @@ Syd Adams
         <object-name>Lmain.geardoor</object-name>
     </effect>
 
+   <!-- Transparent Surfaces for Rembrandt rendering -->
+   <effect>
+       <inherits-from>Aircraft/777/Models/Effects/glass</inherits-from>
+       <object-name>Glass</object-name>
+   </effect>
+
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
-        <object-name>Glass</object-name>
         <object-name>redflash</object-name>
         <object-name>whiteflash</object-name>
         <object-name>greenflash</object-name>
@@ -85,11 +89,8 @@ Syd Adams
         <object-name>Strobe03</object-name>
         <object-name>Beacon01</object-name>
         <object-name>Beacon02</object-name>
-        <object-name>LHLND.spot</object-name>
         <object-name>LHLND.flare</object-name>
         <object-name>CTRLND.flare</object-name>
-        <object-name>CTRLND.spot</object-name>
-        <object-name>RHLND.spot</object-name>
         <object-name>RHLND.flare</object-name>
         <object-name>greennav</object-name>
         <object-name>rednav</object-name>
@@ -103,6 +104,26 @@ Syd Adams
             <y-m>0</y-m>
             <z-m>0</z-m>
             <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>LandingLights</name>
+        <path>Aircraft/777/Models/Lights/light-coneLR.xml</path>
+        <offsets>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>LandingLights</name>
+        <path>Aircraft/777/Models/Lights/light-coneC.xml</path>
+        <offsets>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
         </offsets>
     </model>
 
@@ -799,11 +820,13 @@ Syd Adams
             </greater-than>
         </condition>
     </animation>
+
     <animation>
         <type>select</type>
         <object-name>LHLND.spot</object-name>
         <condition>
             <and>
+				<not><property>/sim/rendering/rembrandt/enabled</property></not>
                 <greater-than>
                     <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
@@ -826,13 +849,15 @@ Syd Adams
             </greater-than>
         </condition>
     </animation>
-    <animation>
+
+     <animation>
         <type>select</type>
         <object-name>RHLND.spot</object-name>
         <condition>
             <and>
+				<not><property>/sim/rendering/rembrandt/enabled</property></not>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[4]</property>
+                    <property>sim/multiplay/generic/int[6]</property>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
@@ -842,7 +867,7 @@ Syd Adams
             </and>
         </condition>
     </animation>
-        
+
     <animation>
         <type>select</type>
         <object-name>CTRLND.flare</object-name>
@@ -859,13 +884,15 @@ Syd Adams
             </and>
         </condition>
     </animation>
+
     <animation>
         <type>select</type>
         <object-name>CTRLND.spot</object-name>
         <condition>
             <and>
+				<not><property>/sim/rendering/rembrandt/enabled</property></not>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[4]</property>
+                    <property>sim/multiplay/generic/int[5]</property>
                     <value>5</value>
                 </greater-than>
                 <equals>
@@ -878,17 +905,6 @@ Syd Adams
                 </greater-than>
             </and>
         </condition>
-    </animation>
-
-    <animation>
-        <type>translate</type>
-        <object-name>whiteflash</object-name>
-        <offset-m>37.68</offset-m>
-        <axis>
-            <x>1.0</x>
-            <y>0</y>
-            <z>0.020</z>
-        </axis>
     </animation>
 
     <animation>

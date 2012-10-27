@@ -1,5 +1,5 @@
 <!--
-777-200 Standby Altimeter 
+777-200LR Standby Altimeter 
 -->
 
 <PropertyList>
@@ -31,6 +31,18 @@
        <z>-1</z>
      </axis>
    </transform>
+
  </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>StbyAI.screenoff</object-name>
+        <condition>
+            <less-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </less-than>
+        </condition>
+    </animation>
 
 </PropertyList>

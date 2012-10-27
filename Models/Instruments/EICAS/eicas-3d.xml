@@ -31,8 +31,8 @@ Syd Adams
         <object-name>EFIS.screenoff</object-name>
         <condition>
             <less-than>
-                <property>systems/electrical/left-bus</property>
-                <value>5</value>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
             </less-than>
         </condition>
     </animation>

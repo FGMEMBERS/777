@@ -641,6 +641,32 @@
             <reference-dist>60.0</reference-dist>
             <max-dist>6000.0</max-dist>
         </engines>
+	<chime>
+		<name>nosomoking</name>
+		<mode>once</mode>
+		<type>avionics</type>
+		<path>Aircraft/777/Sounds/cabinalert.wav</path>
+		<condition>
+			<equals>
+                <property>controls/cabin/NoSmoking-knob</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</chime>	   
+   
+	<chime>
+		<name>seatbelt</name>
+		<mode>once</mode>
+		<type>avionics</type>
+		<path>Aircraft/777/Sounds/cabinalert.wav</path>
+		<condition>
+			<equals>
+                <property>controls/cabin/SeatBelt-knob</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</chime>	   
+	
         <warningsiren>
             <name>warning-siren</name>
             <mode>looped</mode>

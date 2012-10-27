@@ -7,9 +7,6 @@
             <name type="string">SIA Singapore Airlines</name>
             <texture>Liveries-200/SIA-Livery.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/SIA-Lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>SIA</aircraft-operator>

@@ -236,6 +236,9 @@
 		<name>Aileron control filter</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
+		<enable>
+			<property>instrumentation/afds/inputs/AP</property>
+		</enable>
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
@@ -273,11 +276,7 @@
 			<value>0.9</value>
 		</max-rate-of-change>
 		<max-rate-of-change>1</max-rate-of-change>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<enable>
-			<honor-passive>true</honor-passive>
-		</enable>
 		<input>
 			<property>/controls/flight/aileron-filter</property>
 		</input>
@@ -404,7 +403,6 @@
 	<pid-controller>
 		<name>Flight Level Change IAS</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
@@ -525,7 +523,6 @@
 	<pid-controller>
 		<name>Flight Level Change Mach</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
 		<condition>
@@ -1050,7 +1047,6 @@
 			<value>0.15</value>
 		</max-rate-of-change>
 		<max-rate-of-change>0.2</max-rate-of-change>
-		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<input>
 			<property>/controls/flight/elevator-trim-filter</property>

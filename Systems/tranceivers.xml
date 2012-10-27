@@ -112,12 +112,17 @@
             <binding>
                 <command>dialog-update</command>
             </binding>
+             <binding>
+                <command>nasal</command>
+                <script>b777.Efis.set_radio_mode(0)</script>
+            </binding>
         </button>
 
         <input>
             <row>0</row>
             <col>3</col>
             <name>comm1</name>
+            <live>true</live>
             <property>instrumentation/comm/frequencies/standby-mhz</property>
             <binding>
                 <command>dialog-apply</command>
@@ -174,13 +179,21 @@
             <binding>
                 <command>dialog-update</command>
             </binding>
+             <binding>
+                <command>nasal</command>
+                <script>b777.Efis.set_radio_mode(1)</script>
+            </binding>
         </button>
 
         <input>
             <row>1</row>
             <col>3</col>
             <name>comm2</name>
+            <live>true</live>
             <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
         </input>
 
         <dial>
@@ -233,13 +246,21 @@
             <binding>
                 <command>dialog-update</command>
             </binding>
+             <binding>
+                <command>nasal</command>
+                <script>b777.Efis.set_radio_mode(2)</script>
+            </binding>
         </button>
 
         <input>
             <row>2</row>
             <col>3</col>
             <name>nav1</name>
+            <live>true</live>
             <property>instrumentation/nav/frequencies/standby-mhz</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
         </input>
 
         <dial>
@@ -266,11 +287,9 @@
             <row>2</row>
             <col>6</col>
             <property>instrumentation/nav[0]/radials/selected-deg</property>
+            <live>true</live>
             <binding>
                 <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>dialog-update</command>
             </binding>
         </input>
 
@@ -310,13 +329,21 @@
             <binding>
                 <command>dialog-update</command>
             </binding>
+             <binding>
+                <command>nasal</command>
+                <script>b777.Efis.set_radio_mode(3)</script>
+            </binding>
         </button>
 
         <input>
             <row>3</row>
             <col>3</col>
             <name>nav2</name>
+            <live>true</live>
             <property>instrumentation/nav[1]/frequencies/standby-mhz</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
         </input>
 
         <dial>
@@ -343,11 +370,9 @@
             <row>3</row>
             <col>6</col>
             <property>instrumentation/nav[1]/radials/selected-deg</property>
+            <live>true</live>
             <binding>
                 <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>dialog-update</command>
             </binding>
         </input>
 
@@ -392,7 +417,11 @@
             <row>4</row>
             <col>3</col>
             <name>adf1</name>
+            <live>true</live>
             <property>instrumentation/adf/frequencies/standby-khz</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
         </input>
 
         <dial>
@@ -459,7 +488,11 @@
             <row>5</row>
             <col>3</col>
             <name>adf2</name>
+            <live>true</live>
             <property>instrumentation/adf[1]/frequencies/standby-khz</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
         </input>
 
         <dial>
@@ -526,7 +559,11 @@
             <row>6</row>
             <col>3</col>
             <name>transponder</name>
+            <live>true</live>
             <property>instrumentation/transponder/standby-id-code</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
         </input>
 
     </group>

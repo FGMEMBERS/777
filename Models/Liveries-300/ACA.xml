@@ -7,9 +7,6 @@
             <name type="string">ACA Air Canada</name>
 			<texture>Liveries-300/ACA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/ACA-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>ACA</aircraft-operator>

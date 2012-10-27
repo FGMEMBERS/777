@@ -184,8 +184,8 @@
                     <command>property-adjust</command>
                     <property>autopilot/settings/heading-bug-deg</property>
                     <step type="double">-10.0</step>
-                    <min>0</min>
-                    <max>360</max>
+                    <min>1</min>
+                    <max>361</max>
                     <wrap>true</wrap>
                 </binding>
                 <binding>
@@ -202,8 +202,8 @@
                     <command>property-adjust</command>
                     <property>autopilot/settings/heading-bug-deg</property>
                     <step type="double">-1.0</step>
-                    <min>0</min>
-                    <max>360</max>
+                    <min>1</min>
+                    <max>361</max>
                     <wrap>true</wrap>
                 </binding>
                 <binding>
@@ -216,6 +216,7 @@
                 <pref-width>50</pref-width>
                 <pref-height>25</pref-height>
                 <property>autopilot/settings/heading-bug-deg</property>
+                <live>true</live>
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
@@ -230,8 +231,8 @@
                     <command>property-adjust</command>
                     <property>autopilot/settings/heading-bug-deg</property>
                     <step type="double">1.0</step>
-                    <min>0</min>
-                    <max>360</max>
+                    <min>1</min>
+                    <max>361</max>
                     <wrap>true</wrap>
                 </binding>
                 <binding>
@@ -248,8 +249,8 @@
                     <command>property-adjust</command>
                     <property>autopilot/settings/heading-bug-deg</property>
                     <step type="double">10.0</step>
-                    <min>0</min>
-                    <max>360</max>
+                    <min>1</min>
+                    <max>361</max>
                     <wrap>true</wrap>
                 </binding>
                 <binding>
@@ -291,10 +292,11 @@
                 <pref-width>55</pref-width>
                 <pref-height>25</pref-height>
                 <halign>left</halign>
+                <one-shot>true</one-shot>
                 <legend>LOC</legend>
                 <binding>
-                    <command>nasal</command>
-                    <script>b777.afds.input(0,4);</script>
+				<command>nasal</command>
+				<script>controls.click(4);b777.afds.input(3,0);</script>
                 </binding>
             </button>
 
@@ -319,11 +321,9 @@
                 <pref-height>20</pref-height>
                 <property>instrumentation/nav/radials/selected-deg</property>
                 <format>%03.0f</format>
+                <live>true</live>
                 <binding>
                     <command>dialog-apply</command>
-                </binding>
-                <binding>
-                    <command>dialog-update</command>
                 </binding>
             </input>
 
@@ -334,11 +334,9 @@
                 <pref-height>20</pref-height>
                 <property>instrumentation/nav[1]/radials/selected-deg</property>
                 <format>%03.0f</format>
+                <live>true</live>
                 <binding>
                     <command>dialog-apply</command>
-                </binding>
-                <binding>
-                    <command>dialog-update</command>
                 </binding>
             </input>
 
@@ -415,6 +413,7 @@
                 <pref-height>25</pref-height>
                 <name>altset</name>
                 <property>autopilot/settings/counter-set-altitude-ft</property>
+                <live>true</live>
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
@@ -512,6 +511,7 @@
                 <pref-width>70</pref-width>
                  <pref-height>25</pref-height>
                  <name>vs-set</name>
+                <live>true</live>
                 <property>autopilot/settings/vertical-speed-fpm</property>
                 <binding>
                     <command>dialog-apply</command>
@@ -563,29 +563,13 @@
                 <pref-width>45</pref-width>
                  <pref-height>25</pref-height>
                  <halign>left</halign>
+                <one-shot>true</one-shot>
                 <legend>APP</legend>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/gs-armed</property>
-                </binding>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/loc-armed</property>
-                </binding>
+			<binding>
+				<command>nasal</command>
+				<script>controls.click(4);b777.afds.input(3,1);</script>
+			</binding>
             </button>
-
-            <checkbox>
-                <label>LOC armed</label>
-                <property>instrumentation/afds/inputs/loc-armed</property>
-                <live>true</live>
-            </checkbox>
-
-            <checkbox>
-                <label>GS armed</label>
-                <property>instrumentation/afds/inputs/gs-armed</property>
-                <live>true</live>
-            </checkbox>
-
         </group>
 
         <group>
@@ -678,6 +662,7 @@
             <input>
                 <pref-width>50</pref-width>
                 <property>autopilot/settings/target-speed-kt</property>
+                <live>true</live>
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
@@ -763,6 +748,7 @@
             <input>
                  <pref-width>55</pref-width>
                <property>autopilot/settings/target-speed-mach</property>
+                <live>true</live>
                 <binding>
                     <command>dialog-apply</command>
                 </binding>

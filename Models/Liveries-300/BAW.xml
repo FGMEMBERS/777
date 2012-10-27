@@ -7,9 +7,6 @@
             <name type="string">BAW British Airways</name>
             <texture>Liveries-300/BAW.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/BAW-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>BAW</aircraft-operator>

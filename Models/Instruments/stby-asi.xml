@@ -5,6 +5,27 @@
 <PropertyList>
  <path>stby-asi.ac</path>
 
+ 	<animation>
+		<type>material</type>
+		<object-name>StbyAiface</object-name>
+		<object-name>Stbyneedle</object-name>
+		<object-name>stbytxt.1</object-name>
+		<object-name>stbytxt.10</object-name>
+		<object-name>stbytxt.100</object-name>
+		<condition>
+			 <greater-than>
+				<property>systems/electrical/CPT-FLT-INST</property>
+				<value>24.0</value>
+			 </greater-than>
+		</condition>
+		<emission>
+			<red>1.0</red>
+			<green>1.0</green>
+			<blue>1.0</blue>
+			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+		</emission>
+	</animation>
+
  <animation>
    <type>textranslate</type>
    <object-name>stbytxt.100</object-name>

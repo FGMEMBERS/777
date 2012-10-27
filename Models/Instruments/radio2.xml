@@ -27,7 +27,7 @@ Syd Adams
         <object-name>stby.006</object-name>
         <condition>
             <greater-than>
-                <property>systems/electrical/left-bus</property>
+                <property>systems/electrical/CPT-FLT-INST</property>
                 <value>5</value>
             </greater-than>
         </condition>
