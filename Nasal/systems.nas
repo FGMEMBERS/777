@@ -576,7 +576,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     props.globals.initNode("/instrumentation/clock/et-knob",0,"INT");
     props.globals.initNode("/instrumentation/clock/set-knob",0,"INT");
 #    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
-    setprop("/sim/flaps/current", 0);
+    setprop("/sim/flaps/current-setting", 0);
 	balance_fuel();
 #    setprop("/controls/gear/tiller-enabled", 0);
     setprop("controls/fuel/tank[0]/boost-pump[0]",1);
@@ -604,9 +604,17 @@ var start_updates = func {
         setprop("instrumentation/afds/ap-modes/roll-mode", "TO/GA");
         setprop("instrumentation/afds/inputs/vertical-index", 10);
         setprop("instrumentation/afds/inputs/lateral-index", 9);
+    	setprop("instrumentation/afds/inputs/at-armed", 1);
+    	setprop("instrumentation/afds/inputs/at-armed[1]", 1);
+		setprop("instrumentation/afds/inputs/AP", 1);
         setprop("autopilot/internal/airport-height", 0);
         setprop("/engines/engine[0]/run",1);
         setprop("/engines/engine[1]/run",1);
+    	setprop("/sim/flaps/current-setting", 0);
+		setprop("autopilot/settings/target-speed-kt", getprop("sim/presets/airspeed-kt"));
+		b777.afds.input(1,1);
+		setprop("autopilot/settings/actual-target-altitude-ft", getprop("sim/presets/altitude-ft"));
+		b777.afds.input(0,2);
     }
 
     # start update_systems loop - but start it once only
