@@ -9,7 +9,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20121030</aircraft-version>
+        <aircraft-version>20121109</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.7</fuel-fraction>
         <model n="0">
@@ -438,26 +438,26 @@ Service Ceiling: 43,100ft
             </key>
             <key n="1">
                 <name>Ctrl-A</name>
-                <desc>toggle autopilot altitude lock</desc>
+                <desc>enter altitude hold mode</desc>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/alt-hold</property>
+                    <command>nasal</command>
+                    <script>b777.afds.input(1,1);</script>
                 </binding>
             </key>
              <key n="7">
                 <name>Ctrl-G</name>
-                <desc>toggle autopilot glide slope lock</desc>
+                <desc>APP mode arm</desc>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/app-hold</property>
+					<command>nasal</command>
+					<script>b777.afds.input(3,1);</script>
                 </binding>
             </key>
             <key n="8">
                 <name>Ctrl-H</name>
-                <desc>toggle autopilot heading lock</desc>
+                <desc>engage heading hold mode</desc>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/hdg-hold</property>
+                    <command>nasal</command>
+                    <script>b777.afds.input(0,1);</script>
                 </binding>
             </key>
             <key n="9">
@@ -478,34 +478,34 @@ Service Ceiling: 43,100ft
             </key>
             <key n="14">
                 <name>Ctrl-N</name>
-                <desc>toggle LNAV lock</desc>
+                <desc>LNAV</desc>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/lnav-hold</property>
+                    <command>nasal</command>
+                    <script>b777.afds.input(0,3);</script>
                 </binding>
             </key>
             <key n="15">
                 <name>Ctrl-o</name>
-                <desc>A/P ~ Passive</desc>
+                <desc>A/P ~ Engage/Disengage</desc>
                 <binding>
                     <command>property-toggle</command>
-                    <property>autopilot/locks/passive-mode</property>
+ 					<property>instrumentation/afds/inputs/AP</property>
                 </binding>
             </key>
             <key n="16">
                 <name>Ctrl-P</name>
-                <desc>toggle VS</desc>
+                <desc>enter VS mode</desc>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/vs-fpa-hold</property>
+                    <command>nasal</command>
+                    <script>b777.afds.input(1,2);</script>
                 </binding>
             </key>
             <key n="19">
                 <name>Ctrl-S</name>
                 <desc>toggle autothrottle</desc>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>instrumentation/afds/inputs/at-hold</property>
+                    <command>nasal</command>
+                    <script>b777.afds.input(2,5);</script>
                 </binding>
             </key>
             <key n="20">

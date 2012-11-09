@@ -164,9 +164,7 @@
 		<enable>
 			<condition>
 				<and>
-					<not>
-						<property>autopilot/locks/passive-mode</property>
-					</not>
+					<property>instrumentation/afds/inputs/AP</property>
 					<equals>
 						<property>instrumentation/afds/ap-modes/roll-mode</property>
 						<value>ROLLOUT</value>
@@ -287,12 +285,12 @@
 		<name>Rudder Control</name>
 		<debug>false</debug>
 		<enable>
-				<condition>
+			<condition>
 				<and>
-					<not><property>autopilot/locks/passive-mode</property></not>
+					<property>instrumentation/afds/inputs/AP</property>
 					<not><property>gear/gear[1]/wow</property></not>
 				</and>
-				</condition>
+			</condition>
 		</enable>
 		<input>
 			<property>instrumentation/slip-skid-ball/indicated-slip-skid</property>

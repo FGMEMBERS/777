@@ -1387,7 +1387,7 @@ var AFDS = {
 							var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
 							if(change_wp > 180) change_wp = (360 - change_wp);
 							if(((me.heading_change_rate * change_wp) > wpt_eta)
-								or (wpt_distance < 0.2)
+								or (wpt_distance < 0.4)
 								or ((me.remaining_distance_log_last < wpt_distance) and (change_wp < 90)))
  	 						{
  	 							if(atm_wpt < (max_wpt - 1))
