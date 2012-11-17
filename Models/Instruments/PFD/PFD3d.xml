@@ -1373,7 +1373,7 @@ Syd Adams
                 </not>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
         </condition>
@@ -1391,7 +1391,7 @@ Syd Adams
                 </not>
                 <greater-than>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
                 </greater-than>
             </and>
         </condition>
@@ -1408,7 +1408,7 @@ Syd Adams
                 </not>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
         </condition>
@@ -1424,7 +1424,7 @@ Syd Adams
                 </not>
                 <greater-than>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
                 </greater-than>
             </and>
         </condition>
@@ -1438,7 +1438,7 @@ Syd Adams
             <property>instrumentation/inputs/setting-std</property>
             <greater-than>
                 <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
             </greater-than>
         </and>
         </condition>
@@ -1451,7 +1451,7 @@ Syd Adams
                 <property>instrumentation/inputs/setting-std</property>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
         </condition>
@@ -1466,7 +1466,7 @@ Syd Adams
                 <property>instrumentation/inputs/setting-std</property>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
         </condition>
@@ -1481,7 +1481,7 @@ Syd Adams
                 <property>instrumentation/inputs/setting-std</property>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
+					<property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
         </condition>

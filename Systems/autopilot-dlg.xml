@@ -570,6 +570,21 @@
 				<script>controls.click(4);b777.afds.input(3,1);</script>
 			</binding>
             </button>
+
+            <text>
+                <label>Transition alt</label>
+            </text>
+            <input>
+                <halign>left</halign>
+                <pref-width>60</pref-width>
+                 <pref-height>20</pref-height>
+                 <name>transition-alt</name>
+                <live>true</live>
+                <property>autopilot/settings/transition-altitude</property>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </input>
         </group>
 
         <group>

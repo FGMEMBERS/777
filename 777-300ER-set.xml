@@ -72,6 +72,7 @@
     <autopilot n="0">
         <constant>
             <flare-base type="double">0.2</flare-base>
+			<derate-lowalt type="double">0.77</derate-lowalt>
 			<descent-profile-high-base type="double">0.19</descent-profile-high-base>
 			<descent-profile-high-rate type="double">-0.00080214</descent-profile-high-rate>
 			<descent-profile-low-base type="double">0.15</descent-profile-low-base>

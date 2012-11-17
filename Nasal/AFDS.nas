@@ -1190,6 +1190,11 @@ var AFDS = {
 			if(current_alt < 25000)
 			{
 				thrust_lmt = derate / 25000 * abs(current_alt) + (0.95 - derate);
+				if((current_alt < 10000)
+						and (getprop("gear/gear/position-norm") == 0))
+				{
+					thrust_lmt *= getprop("autopilot/constant/derate-lowalt");
+				}
 			}
 			me.thrust_lmt.setValue(thrust_lmt);
 			# IAS and MACH number update in back ground
@@ -1387,7 +1392,7 @@ var AFDS = {
 							var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
 							if(change_wp > 180) change_wp = (360 - change_wp);
 							if(((me.heading_change_rate * change_wp) > wpt_eta)
-								or (wpt_distance < 0.4)
+								or (wpt_distance < 0.6)
 								or ((me.remaining_distance_log_last < wpt_distance) and (change_wp < 90)))
  	 						{
  	 							if(atm_wpt < (max_wpt - 1))
