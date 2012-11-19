@@ -9,7 +9,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20121117</aircraft-version>
+        <aircraft-version>20121119</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.7</fuel-fraction>
         <model n="0">
