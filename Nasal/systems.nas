@@ -615,6 +615,9 @@ var start_updates = func {
 		b777.afds.input(1,1);
 		setprop("autopilot/settings/actual-target-altitude-ft", getprop("sim/presets/altitude-ft"));
 		b777.afds.input(0,2);
+		setprop("controls/flight/rudder-trim", 0);
+		setprop("controls/flight/elevator-trim", 0);
+		setprop("controls/flight/aileron-trim", 0);
     }
 
     # start update_systems loop - but start it once only

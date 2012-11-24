@@ -1032,6 +1032,10 @@
                 <type>rotation</type>
                 <property>environment/wind-from-heading-deg</property>
             </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>environment/magnetic-variation-deg</property>
+            </transformation>
             </transformations>
         </layer>
 
