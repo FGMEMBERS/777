@@ -744,7 +744,7 @@ Syd Adams
         <property>instrumentation/afds/ap-modes/mode-annunciator</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.01</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
             <height type="int">64</height>
@@ -1042,20 +1042,41 @@ Syd Adams
     </text>
 
     <text>
-        <name>ALT-annun</name>
+        <name>ALT-annunFL</name>
         <offsets>
             <x-m>0.004</x-m>
-            <y-m>0.058</y-m>
-            <z-m>0.0754</z-m>
+            <y-m>0.056</y-m>
+            <z-m>0.0767</z-m>
         </offsets>
-        <alignment>center-center</alignment>
+        <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <format type="string">%5.0f</format>
-        <property>autopilot/settings/actual-target-altitude-ft</property>
+        <format type="string">%2.0f</format>
+        <property>autopilot/settings/actual-target-altitude-FL</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.011</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.010</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
+        <name>ALT-annun100</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.0675</y-m>
+            <z-m>0.0758</z-m>
+        </offsets>
+        <alignment>right-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%03.0f</format>
+        <property>autopilot/settings/actual-target-altitude-100</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1067,7 +1088,7 @@ Syd Adams
         <offsets>
             <x-m>0.004</x-m>
             <y-m>-0.076</y-m>
-            <z-m>0.0754</z-m>
+            <z-m>0.0764</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
@@ -1075,8 +1096,8 @@ Syd Adams
         <format type="string">%3.0f</format>
         <property>autopilot/settings/target-speed-kt</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.011</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.010</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1109,7 +1130,7 @@ Syd Adams
         <offsets>
             <x-m>0.004</x-m>
             <y-m>-0.076</y-m>
-            <z-m>0.0754</z-m>
+            <z-m>0.0764</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
@@ -1117,8 +1138,8 @@ Syd Adams
         <format type="string">%0.3f</format>
         <property>autopilot/settings/target-speed-mach</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.011</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.010</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1257,7 +1278,8 @@ Syd Adams
 
     <animation>
         <type>material</type><!--magenta-->
-        <object-name>ALT-annun</object-name>
+        <object-name>ALT-annunFL</object-name>
+        <object-name>ALT-annun100</object-name>
         <object-name>IAS-annun</object-name>
         <object-name>MACH-annun</object-name>
         <object-name>HDG-annun</object-name>
@@ -1531,7 +1553,8 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>ALT-annun</object-name>
+        <object-name>ALT-annunFL</object-name>
+        <object-name>ALT-annun100</object-name>
         <condition>
             <not-equals>
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>

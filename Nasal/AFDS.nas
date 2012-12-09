@@ -87,6 +87,8 @@ var AFDS = {
 		m.fpa_setting = m.AP_settings.initNode("flight-path-angle",0); # -9.9 to 9.9 #
 		m.alt_setting = m.AP_settings.initNode("counter-set-altitude-ft",10000,"DOUBLE");
 		m.target_alt = m.AP_settings.initNode("actual-target-altitude-ft",10000,"DOUBLE");
+		m.target_alt_FL = m.AP_settings.initNode("actual-target-altitude-FL",10,"INT");
+		m.target_alt_100 = m.AP_settings.initNode("actual-target-altitude-100",000,"INT");
 		m.auto_brake_setting = m.AP_settings.initNode("autobrake",0.000,"DOUBLE");
 		m.flare_constant_setting = m.AP_settings.initNode("flare-constant",0.000,"DOUBLE");
 		m.thrust_lmt = m.AP_settings.initNode("thrust-lmt",1,"DOUBLE");
@@ -793,6 +795,8 @@ var AFDS = {
 			me.AP_roll_engaged.setBoolValue(idx > 0);
 
 		}elsif(me.step==3){ ### check vertical modes  ###
+			me.target_alt_FL.setValue(me.target_alt.getValue() / 1000);
+			me.target_alt_100.setValue(me.target_alt.getValue() - (me.target_alt_FL.getValue() * 1000));
 			if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 100)
 			{
 				setprop("autopilot/internal/airport-height", current_alt);
@@ -1034,6 +1038,14 @@ var AFDS = {
 					{
 						me.target_alt.setValue(me.optimal_alt);
 					}
+					else
+					{
+						me.target_alt.setValue(me.intervention_alt);
+					}
+				}
+				else
+				{
+					me.target_alt.setValue(me.intervention_alt);
 				}
 				var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
 				if(offset < 20)
