@@ -997,7 +997,101 @@ Syd Adams
         </font-resolution>
     </text>
 
-    <text>
+	<animation>
+		<type>textranslate</type>
+		<object-name>Asitext.100</object-name>
+		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<scroll>1</scroll>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>Asitext.010</object-name>
+		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<factor>0.01</factor>
+		<step>10</step>
+		<scroll>1</scroll>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>Asitext.001</object-name>
+		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<factor>0.1</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>Alttext10</object-name>
+		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<factor>0.01</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>Alttext100</object-name>
+		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<scroll>10</scroll>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>Alttext1000</object-name>
+		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<factor>0.0001</factor>
+		<step>1000</step>
+		<scroll>10</scroll>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>Alttext10000</object-name>
+		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<factor>0.00001</factor>
+		<step>10000</step>
+		<scroll>10</scroll>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+    <!--text>
         <name>ASIdigits</name>
         <offsets>
             <x-m>0.004</x-m>
@@ -1039,7 +1133,7 @@ Syd Adams
             <width type="int">32</width>
             <height type="int">32</height>
         </font-resolution>
-    </text>
+    </text-->
 
     <text>
         <name>ALT-annunFL</name>
