@@ -937,7 +937,7 @@ Syd Adams
     </text>
 
     <text>
-        <name>KPA</name>
+        <name>HPA</name>
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.058</y-m>
@@ -946,7 +946,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <format type="string">%4.1f KP</format>
+        <format type="string">%4.0f HPA</format>
         <property>instrumentation/efis/inhg-kpa</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
@@ -957,7 +957,7 @@ Syd Adams
         </font-resolution>
     </text>
     <text>
-        <name>KPA-YEL</name>
+        <name>HPA-YEL</name>
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.058</y-m>
@@ -966,7 +966,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <format type="string">%4.1f KP</format>
+        <format type="string">%4.0f HPA</format>
         <property>instrumentation/efis/inhg-kpa</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
@@ -977,7 +977,7 @@ Syd Adams
         </font-resolution>
     </text>
     <text>
-        <name>KPA-WHT</name>
+        <name>HPA-WHT</name>
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.058</y-m>
@@ -986,7 +986,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <format type="string">%4.1f KP</format>
+        <format type="string">%4.0f HPA</format>
         <property>instrumentation/efis/inhg-kpa-previous</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
@@ -1040,7 +1040,7 @@ Syd Adams
 	<animation>
 		<type>textranslate</type>
 		<object-name>Alttext10</object-name>
-		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<property>/instrumentation/altimeter/indicator-altitude-ft</property>
 		<factor>0.01</factor>
 		<axis>
 			<x>0</x>
@@ -1052,10 +1052,10 @@ Syd Adams
 	<animation>
 		<type>textranslate</type>
 		<object-name>Alttext100</object-name>
-		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<property>/instrumentation/altimeter/indicator-altitude-ft</property>
 		<factor>0.001</factor>
 		<step>100</step>
-		<scroll>10</scroll>
+		<scroll>20</scroll>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1066,10 +1066,10 @@ Syd Adams
 	<animation>
 		<type>textranslate</type>
 		<object-name>Alttext1000</object-name>
-		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<property>/instrumentation/altimeter/indicator-altitude-ft</property>
 		<factor>0.0001</factor>
 		<step>1000</step>
-		<scroll>10</scroll>
+		<scroll>20</scroll>
 		<axis>
 			<x>0</x>
 			<y>1</y>
@@ -1080,60 +1080,16 @@ Syd Adams
 	<animation>
 		<type>textranslate</type>
 		<object-name>Alttext10000</object-name>
-		<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+		<property>/instrumentation/altimeter/indicator-altitude-ft</property>
 		<factor>0.00001</factor>
 		<step>10000</step>
-		<scroll>10</scroll>
+		<scroll>20</scroll>
 		<axis>
 			<x>0</x>
 			<y>1</y>
 			<z>0</z>
 		</axis>
 	</animation>
-
-    <!--text>
-        <name>ASIdigits</name>
-        <offsets>
-            <x-m>0.004</x-m>
-            <y-m>-0.079</y-m>
-            <z-m>0.010</z-m>
-        </offsets>
-        <alignment>center-center</alignment>
-        <axis-alignment>yz-plane</axis-alignment>
-        <type type="string">number-value</type>
-        <format type="string">%3.0f</format>
-        <truncate>true</truncate>
-        <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-        <font>helvetica_bold.txf</font>
-        <character-size>0.011</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
-        <font-resolution>
-            <width type="int">32</width>
-            <height type="int">32</height>
-        </font-resolution>
-    </text>
-
-    <text>
-        <name>ALTdigits</name>
-        <offsets>
-            <x-m>0.004</x-m>
-            <y-m>0.062</y-m>
-            <z-m>0.010</z-m>
-        </offsets>
-        <alignment>center-center</alignment>
-        <axis-alignment>yz-plane</axis-alignment>
-        <type type="string">number-value</type>
-        <format type="string">%05.0f</format>
-        <truncate>true</truncate>
-        <property>instrumentation/altimeter/indicated-altitude-ft</property>
-        <font>helvetica_bold.txf</font>
-        <character-size>0.011</character-size>
-        <character-aspect-ratio type="double">1.6</character-aspect-ratio>
-        <font-resolution>
-            <width type="int">32</width>
-            <height type="int">32</height>
-        </font-resolution>
-    </text-->
 
     <text>
         <name>ALT-annunFL</name>
@@ -1310,7 +1266,7 @@ Syd Adams
         <object-name>AP-annun</object-name>
         <object-name>INHG</object-name>
         <object-name>INHG-STD</object-name>
-        <object-name>KPA</object-name>
+        <object-name>HPA</object-name>
         <object-name>MAG-annun</object-name>
         <object-name>mins</object-name>
         <emission>
@@ -1346,7 +1302,7 @@ Syd Adams
         <object-name>VS-POS</object-name>
         <object-name>VS-NEG</object-name>
         <object-name>INHG-WHT</object-name>
-        <object-name>KPA-WHT</object-name>
+        <object-name>HPA-WHT</object-name>
         <object-name>DME</object-name>
         <emission>
             <red>0.7</red>
@@ -1404,7 +1360,7 @@ Syd Adams
         <type>material</type><!--yellow-->
         <object-name>INHG-STD-YEL</object-name>
         <object-name>INHG-YEL</object-name>
-        <object-name>KPA-YEL</object-name>
+        <object-name>HPA-YEL</object-name>
         <emission>
             <red>0.9</red>
             <green>0.7</green>
@@ -1515,7 +1471,7 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>KPA</object-name>
+        <object-name>HPA</object-name>
         <condition>
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
@@ -1531,7 +1487,7 @@ Syd Adams
     </animation>
     <animation>
         <type>select</type>
-        <object-name>KPA-YEL</object-name>
+        <object-name>HPA-YEL</object-name>
         <condition>
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
@@ -1590,7 +1546,7 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>KPA-WHT</object-name>
+        <object-name>HPA-WHT</object-name>
         <condition>
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>

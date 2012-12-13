@@ -12,7 +12,7 @@ kids 42
 OBJECT poly
 name "Alttext10000"
 loc 0.0027 0.00550085 -0.13052
-texture "numbers.png"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/numbers.png"
 crease 30.000000
 numvert 4
 0 -0.00437715 0.0794216
@@ -31,7 +31,7 @@ kids 0
 OBJECT poly
 name "Alttext100"
 loc 0.0028 0.00692589 -0.117538
-texture "numbers.png"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/numbers.png"
 crease 30.000000
 numvert 4
 0 -0.00297142 0.0556832
@@ -50,7 +50,7 @@ kids 0
 OBJECT poly
 name "Alttext10"
 loc 0.0028 0.0050737 -0.180504
-texture "numbers.png"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/numbers.png"
 crease 30.000000
 numvert 4
 0 0.0129334 0.107648
@@ -69,7 +69,7 @@ kids 0
 OBJECT poly
 name "Asitext.100"
 loc 0.004 0.00478613 0.000653576
-texture "numbers.png"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/numbers.png"
 crease 30.000000
 numvert 4
 -0.0015 0.0135245 0.0806803
@@ -80,15 +80,15 @@ numsurf 1
 SURF 0x0
 mat 7
 refs 4
-0 0.862335 0.115234
-2 0.800561 0.115234
-3 0.800561 -0.0205078
-1 0.862335 -0.0205078
+0 0.732335 0.115234
+2 0.670561 0.115234
+3 0.670561 -0.0205078
+1 0.732335 -0.0205078
 kids 0
 OBJECT poly
 name "Asitext.010"
 loc 0.004 0.00481325 -0.00466305
-texture "numbers.png"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/numbers.png"
 crease 30.000000
 numvert 4
 -0.0015 -0.00493085 0.0864304
@@ -107,7 +107,7 @@ kids 0
 OBJECT poly
 name "Asitext.001"
 loc 0.004 0.00465477 -0.0101551
-texture "numbers.png"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/numbers.png"
 crease 30.000000
 numvert 4
 -0.0015 -0.00492946 0.0864304
@@ -2884,7 +2884,7 @@ kids 0
 OBJECT poly
 name "Alttext1000"
 loc 0.0028 0.00560338 -0.135666
-texture "numbers.png"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/numbers.png"
 crease 30.000000
 numvert 4
 0 0.0112771 0.0741112

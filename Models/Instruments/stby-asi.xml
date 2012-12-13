@@ -5,33 +5,13 @@
 <PropertyList>
  <path>stby-asi.ac</path>
 
- 	<animation>
-		<type>material</type>
-		<object-name>StbyAiface</object-name>
-		<object-name>Stbyneedle</object-name>
-		<object-name>stbytxt.1</object-name>
-		<object-name>stbytxt.10</object-name>
-		<object-name>stbytxt.100</object-name>
-		<condition>
-			 <greater-than>
-				<property>systems/electrical/CPT-FLT-INST</property>
-				<value>24.0</value>
-			 </greater-than>
-		</condition>
-		<emission>
-			<red>1.0</red>
-			<green>1.0</green>
-			<blue>1.0</blue>
-			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
-		</emission>
-	</animation>
-
  <animation>
    <type>textranslate</type>
    <object-name>stbytxt.100</object-name>
    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <factor>0.001</factor>
    <step>100</step>
+		<scroll>1</scroll>
    <axis>
      <x>0</x>
      <y>1</y>
@@ -45,6 +25,7 @@
    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <factor>0.01</factor>
    <step>10</step>
+		<scroll>1</scroll>
    <axis>
      <x>0</x>
      <y>1</y>
@@ -57,7 +38,6 @@
    <object-name>stbytxt.1</object-name>
    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <factor>0.1</factor>
-   <step>1</step>
    <axis>
      <x>0</x>
      <y>1</y>
@@ -71,7 +51,7 @@
    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
    <interpolation>
     <entry>
-      <ind>0</ind>
+      <ind>30</ind>
       <dep>0</dep>
     </entry>
     <entry>
@@ -107,5 +87,15 @@
    </axis>
  </animation>
 
+    <animation>
+        <type>select</type>
+        <object-name>StbyAsi.screenoff</object-name>
+        <condition>
+            <less-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </less-than>
+        </condition>
+    </animation>
 
 </PropertyList>

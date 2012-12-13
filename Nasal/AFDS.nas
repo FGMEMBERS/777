@@ -599,6 +599,18 @@ var AFDS = {
 		var VS = getprop("velocities/vertical-speed-fps");
 		var TAS = getprop("velocities/uBody-fps");
 		me.indicated_vs_fpm.setValue(int((abs(VS) * 60 + 50) / 100) * 100);
+		if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 30)
+		{
+			setprop("instrumentation/airspeed-indicator/indicated-speed-kt", 30);
+		}
+		if(current_alt < 0)
+		{
+			setprop("instrumentation/altimeter/indicator-altitude-ft", abs(current_alt) + 90000);
+		}
+		else
+		{
+			setprop("instrumentation/altimeter/indicator-altitude-ft", current_alt);
+		}
 		if(TAS < 10) TAS = 10;
 		if(VS < -200) VS=-200;
 		if (abs(VS/TAS)<=1)
