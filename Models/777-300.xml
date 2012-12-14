@@ -1365,8 +1365,8 @@ Outboard Aileron Lockout Schedule
     <animation>
 	<type>rotate</type>
 	<object-name>Frontgear</object-name>
-	<property>controls/flight/rudder</property>
-	<factor>60</factor>
+        <property>controls/gear/nosegear-steering-cmd-norm</property>
+        <factor>70</factor>
 	<center>
 	    <x-m>-24.5221</x-m>
 	    <y-m>0.0</y-m>
