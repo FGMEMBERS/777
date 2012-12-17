@@ -20,6 +20,70 @@ Syd Adams
 
     <animation>
         <type>select</type>
+        <object-name>Box-alt-alert</object-name>
+        <condition>
+			<property>autopilot/internal/alt-alert</property>
+		</condition>
+    </animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>Display_0</object-name>
+		<property>autopilot/internal/alt-alert</property>
+		<factor>0.070</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!--animation>
+		<type>textranslate</type>
+		<object-name>Display_0</object-name>
+		<property>autopilot/internal/alt-alert-deviate</property>
+		<factor>0.0730</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation-->
+
+    <animation>
+        <type>select</type>
+        <object-name>Box-mode</object-name>
+        <condition>
+			<property>autopilot/settings/autopilot-transition</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Box-pitch</object-name>
+        <condition>
+			<property>autopilot/settings/pitch-transition</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Box-roll</object-name>
+        <condition>
+			<property>autopilot/settings/roll-transition</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Box-speed</object-name>
+        <condition>
+			<property>autopilot/settings/speed-transition</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
         <object-name>locscale</object-name>
         <condition>
 			<or>
@@ -643,8 +707,8 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/speed-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.4</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
             <height type="int">64</height>
@@ -663,8 +727,8 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/roll-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.4</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
             <height type="int">64</height>
@@ -675,7 +739,7 @@ Syd Adams
         <name>PITCH</name>
         <offsets>
             <x-m>0.004</x-m>
-            <y-m>0.025</y-m>
+            <y-m>0.024</y-m>
             <z-m>0.088</z-m>
         </offsets>
         <alignment>center-center</alignment>
@@ -683,8 +747,8 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/pitch-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.4</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
             <height type="int">64</height>
@@ -703,8 +767,8 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/roll-mode-arm</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.4</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
             <height type="int">64</height>
@@ -715,7 +779,7 @@ Syd Adams
         <name>PITCH arm</name>
         <offsets>
             <x-m>0.004</x-m>
-            <y-m>0.025</y-m>
+            <y-m>0.024</y-m>
             <z-m>0.081</z-m>
         </offsets>
         <alignment>center-center</alignment>
@@ -723,8 +787,8 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/pitch-mode-arm</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.4</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
             <height type="int">64</height>
@@ -765,7 +829,7 @@ Syd Adams
         <property>instrumentation/afds/inputs/indicated-vs-fpm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -786,7 +850,7 @@ Syd Adams
         <property>instrumentation/afds/inputs/indicated-vs-fpm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -797,16 +861,16 @@ Syd Adams
         <name>RALT</name>
         <offsets>
             <x-m>0.004</x-m>
-            <y-m>-0.012</y-m>
+            <y-m>-0.0105</y-m>
             <z-m>-0.029</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <format type="string">%4.0f</format>
+        <format type="string">%0.0f</format>
         <offset>0.1</offset> <!--avoid some quirky "-0" indications-->
         <truncate type="bool">true</truncate>
-        <property>position/gear-agl-ft</property>
+        <property>autopilot/settings/radio-altimeter-indication</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.009</character-size>
         <character-aspect-ratio type="double">1.4</character-aspect-ratio>
@@ -826,11 +890,11 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <format type="string">%0.3f M</format>
-        <property>instrumentation/airspeed-indicator/indicated-mach</property>
+        <format type="string">.%03.0f</format>
+        <property>autopilot/settings/pfd-mach-indication</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.009</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-size>0.010</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -851,7 +915,7 @@ Syd Adams
         <property>instrumentation/altimeter/setting-inhg</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -871,7 +935,7 @@ Syd Adams
         <property>instrumentation/altimeter/setting-inhg</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -890,7 +954,7 @@ Syd Adams
         <text>STD</text>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -909,7 +973,7 @@ Syd Adams
         <text>STD</text>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -929,7 +993,7 @@ Syd Adams
         <property>instrumentation/efis/inhg-previos</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -950,7 +1014,7 @@ Syd Adams
         <property>instrumentation/efis/inhg-kpa</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -970,7 +1034,7 @@ Syd Adams
         <property>instrumentation/efis/inhg-kpa</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -990,7 +1054,7 @@ Syd Adams
         <property>instrumentation/efis/inhg-kpa-previous</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1168,7 +1232,7 @@ Syd Adams
         <property>/instrumentation/dme/indicated-distance-nm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1185,8 +1249,9 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <format type="string">%0.3f</format>
-        <property>autopilot/settings/target-speed-mach</property>
+        <format type="string">.%03.0f</format>
+        <property>autopilot/settings/pfd-mach-target-indication</property>
+		<factor>1000.0</factor>
         <font>helvetica_bold.txf</font>
         <character-size>0.010</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
@@ -1210,7 +1275,7 @@ Syd Adams
         <property>autopilot/settings/heading-bug-deg</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.006</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1231,7 +1296,7 @@ Syd Adams
         <property>autopilot/settings/track-bug-deg</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.006</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1251,7 +1316,7 @@ Syd Adams
         <text>MAG</text>
         <font>helvetica_bold.txf</font>
         <character-size>0.006</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1645,7 +1710,7 @@ Syd Adams
         <property>instrumentation/mk-viii/outputs/warning</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.01</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
             <height type="int">64</height>
@@ -1689,7 +1754,7 @@ Syd Adams
         <property>instrumentation/efis/minimums-mode-text</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.006</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1709,7 +1774,7 @@ Syd Adams
         <property>instrumentation/efis/minimums</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>

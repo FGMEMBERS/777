@@ -37,7 +37,8 @@ var AFDS = {
 		m.optimal_alt = 0;
 		m.intervention_alt = 0;
 		m.altitude_restriction = -9999.99;
-
+		m.altitude_alert_from_out = 0;
+		m.altitude_alert_from_in = 0;
 
 		m.AFDS_node = props.globals.getNode("instrumentation/afds",1);
 		m.AFDS_inputs = m.AFDS_node.getNode("inputs",1);
@@ -89,6 +90,9 @@ var AFDS = {
 		m.target_alt = m.AP_settings.initNode("actual-target-altitude-ft",10000,"DOUBLE");
 		m.target_alt_FL = m.AP_settings.initNode("actual-target-altitude-FL",10,"INT");
 		m.target_alt_100 = m.AP_settings.initNode("actual-target-altitude-100",000,"INT");
+		m.radio_alt_ind = m.AP_settings.initNode("radio-altimeter-indication",000,"INT");
+		m.pfd_mach_ind = m.AP_settings.initNode("pfd-mach-indication",000,"INT");
+		m.pfd_mach_target = m.AP_settings.initNode("pfd-mach-target-indication",000,"INT");
 		m.auto_brake_setting = m.AP_settings.initNode("autobrake",0.000,"DOUBLE");
 		m.flare_constant_setting = m.AP_settings.initNode("flare-constant",0.000,"DOUBLE");
 		m.thrust_lmt = m.AP_settings.initNode("thrust-lmt",1,"DOUBLE");
@@ -580,6 +584,15 @@ var AFDS = {
 	updateATMode : func()
 	{
 		var idx = me.autothrottle_mode.getValue();
+		if((me.AP_speed_mode.getValue() != me.spd_list[idx])
+				and (idx > 0))
+		{
+			setprop("autopilot/settings/speed-transition", 1);
+			settimer(func
+			{
+				setprop("autopilot/settings/speed-transition", 0);
+			}, 10);
+		}
 		me.AP_speed_mode.setValue(me.spd_list[idx]);
 	},
 #################
@@ -632,6 +645,15 @@ var AFDS = {
 				msg="LAND 3";
 			}
 		}
+		if((me.AP_annun.getValue() != msg)
+				and (msg != " "))
+		{
+			setprop("autopilot/settings/autopilot-transition", 1);
+			settimer(func
+			{
+				setprop("autopilot/settings/autopilot-transition", 0);
+			}, 10);
+		}
 		me.AP_annun.setValue(msg);
 		var tmp = abs(me.vs_setting.getValue());
 		me.vs_display.setValue(tmp);
@@ -652,6 +674,16 @@ var AFDS = {
 		setprop("autopilot/internal/fdm-heading-bug-error-deg",hdgoffset);
 
 		if(me.step==0){ ### glideslope armed ?###
+			var gear_agl_ft = getprop("position/gear-agl-ft");
+			if(gear_agl_ft > 500)
+			{
+				gear_agl_ft = int(gear_agl_ft / 20) * 20; 
+			}
+			elsif(gear_agl_ft > 100)
+			{
+				gear_agl_ft = int(gear_agl_ft / 10) * 10; 
+			}
+			me.radio_alt_ind.setValue(gear_agl_ft); 
 			msg="";
 			if(me.gs_armed.getValue())
 			{
@@ -803,6 +835,15 @@ var AFDS = {
 				}
 			}
 			me.lateral_mode.setValue(idx);
+			if((me.AP_roll_mode.getValue() != me.roll_list[idx])
+					and (idx > 0))
+			{
+				setprop("autopilot/settings/roll-transition", 1);
+				settimer(func
+				{
+					setprop("autopilot/settings/roll-transition", 0);
+				}, 10);
+			}
 			me.AP_roll_mode.setValue(me.roll_list[idx]);
 			me.AP_roll_engaged.setBoolValue(idx > 0);
 
@@ -813,6 +854,38 @@ var AFDS = {
 			{
 				setprop("autopilot/internal/airport-height", current_alt);
 			}
+			### altitude alert ###
+			var alt_deviation = abs(me.target_alt.getValue() - current_alt);
+			if((alt_deviation > 900)
+					or (me.vertical_mode.getValue() == 6)			# G/S mode
+					or (getprop("gear/gear/position-norm") == 1)) 	# Gear down and locked
+			{
+				me.altitude_alert_from_out = 0;
+				me.altitude_alert_from_in = 0;
+				setprop("autopilot/internal/alt-alert", 0);
+			}
+			elsif(alt_deviation > 200)
+			{
+				if((me.altitude_alert_from_out == 0)
+						and (me.altitude_alert_from_in == 0))
+				{
+					me.altitude_alert_from_out = 1;
+					setprop("autopilot/internal/alt-alert", 1);
+				}
+				elsif((me.altitude_alert_from_out == 1)
+						and (me.altitude_alert_from_in == 1))
+				{
+					me.altitude_alert_from_out = 0;
+					setprop("autopilot/internal/alt-alert", 2);
+				}
+			}
+			else
+			{
+				me.altitude_alert_from_out = 1;
+				me.altitude_alert_from_in = 1;
+				setprop("autopilot/internal/alt-alert", 0);
+			}
+
 			var idx = me.vertical_mode.getValue();
 			var test_fpa = me.vs_fpa_selected.getValue();
 			var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
@@ -1188,6 +1261,15 @@ var AFDS = {
 				}
 			}
 			me.vertical_mode.setValue(idx);
+			if((me.AP_pitch_mode.getValue() != me.pitch_list[idx])
+					and (idx > 0))
+			{
+				setprop("autopilot/settings/pitch-transition", 1);
+				settimer(func
+				{
+					setprop("autopilot/settings/pitch-transition", 0);
+				}, 10);
+			}
 			me.AP_pitch_mode.setValue(me.pitch_list[idx]);
 			me.AP_pitch_engaged.setBoolValue(idx>0);
 
@@ -1325,6 +1407,15 @@ var AFDS = {
 				me.autothrottle_mode.setValue(5);				# SPD
 			}
 			idx = me.autothrottle_mode.getValue();
+			if((me.AP_speed_mode.getValue() != me.spd_list[idx])
+					and (idx > 0))
+			{
+				setprop("autopilot/settings/speed-transition", 1);
+				settimer(func
+				{
+					setprop("autopilot/settings/speed-transition", 0);
+				}, 10);
+			}
 			me.AP_speed_mode.setValue(me.spd_list[idx]);
 		}
 		elsif(me.step==5)
@@ -1464,6 +1555,8 @@ var AFDS = {
 				me.auto_popup.setValue(0);
 			}
 			var ma_spd = getprop("/instrumentation/airspeed-indicator/indicated-mach");
+			me.pfd_mach_ind.setValue(ma_spd * 1000);
+			me.pfd_mach_target.setValue(getprop("autopilot/settings/target-speed-mach") * 1000);
 			var banklimit = getprop("/instrumentation/afds/inputs/bank-limit-switch");
 			if(banklimit==0)
 			{
