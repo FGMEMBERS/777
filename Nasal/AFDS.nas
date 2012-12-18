@@ -746,6 +746,11 @@ var AFDS = {
 							elsif(vradials >= 360.5) vradials -= 360;
 							me.hdg_setting.setValue(vradials);
 						}
+						else
+						{
+							setprop("autopilot/internal/presision-loc", 0);
+     						setprop("instrumentation/nav/heading-needle-deflection-ptr", getprop("instrumentation/nav/heading-needle-deflection-norm"));
+						}
 					}
 				}
 			}
@@ -815,6 +820,17 @@ var AFDS = {
 					me.rollout_armed.setValue(0);
 					idx = 5;	# ROLLOUT
 					setprop("/controls/gear/tiller-enabled", 1);
+				}
+				var deflection = getprop("instrumentation/nav/heading-needle-deflection-norm");
+				if(abs(deflection) < 0.5233)
+				{
+					setprop("autopilot/internal/presision-loc", 1);
+     				setprop("instrumentation/nav/heading-needle-deflection-ptr", (deflection * 1.728));
+				}
+				else
+				{
+					setprop("autopilot/internal/presision-loc", 0);
+     				setprop("instrumentation/nav/heading-needle-deflection-ptr", deflection);
 				}
 			}
 			elsif(idx == 5)									# ROLLOUT
@@ -1350,8 +1366,8 @@ var AFDS = {
 			elsif((me.autothrottle_mode.getValue() == 4)		# Auto throttle mode IDLE 
 				and ((me.vertical_mode.getValue() == 8)			# FLCH SPD mode
 					or (me.vertical_mode.getValue() == 3))		# VNAV PTH mode
-				and (me.flight_idle.getValue() == getprop("/controls/engines/engine[0]/throttle"))		# #1Thrust is actual flight idle
-				and (me.flight_idle.getValue() == getprop("/controls/engines/engine[1]/throttle")))		# #2Thrust is actual flight idle
+				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[0]/throttle") * 1000))		# #1Thrust is actual flight idle
+				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[0]/throttle") * 1000)))		# #2Thrust is actual flight idle
 			{
 				me.autothrottle_mode.setValue(3);				# HOLD
 			}

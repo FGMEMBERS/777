@@ -38,18 +38,6 @@ Syd Adams
 		</axis>
 	</animation>
 
-	<!--animation>
-		<type>textranslate</type>
-		<object-name>Display_0</object-name>
-		<property>autopilot/internal/alt-alert-deviate</property>
-		<factor>0.0730</factor>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation-->
-
     <animation>
         <type>select</type>
         <object-name>Box-mode</object-name>
@@ -100,7 +88,19 @@ Syd Adams
         </condition>
     </animation>
 
-    <animation>
+ 	<animation>
+		<type>textranslate</type>
+		<object-name>locscale</object-name>
+		<property>autopilot/internal/presision-loc</property>
+		<factor>0.055</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+   <animation>
         <type>select</type>
         <object-name>locpointer_rembrandt</object-name>
         <condition>
@@ -357,7 +357,7 @@ Syd Adams
         <type>translate</type>
         <object-name>locpointer</object-name>
         <object-name>locpointer_rembrandt</object-name>
-        <property>instrumentation/nav/heading-needle-deflection-norm</property>
+        <property>instrumentation/nav/heading-needle-deflection-ptr</property>
         <factor>-0.0272</factor>
         <axis>
             <x>0</x>
