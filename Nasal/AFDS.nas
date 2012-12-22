@@ -443,6 +443,8 @@ var AFDS = {
 						{
 							me.loc_armed.setValue(1);			# LOC arm
 							me.tiller_status = getprop("/controls/gear/tiller-enabled");
+							setprop("autopilot/internal/presision-loc", 0);
+     						setprop("instrumentation/nav/heading-needle-deflection-ptr", getprop("instrumentation/nav/heading-needle-deflection-norm"));
 						}
 					}
 					elsif (btn==1)	#APP button
@@ -1132,8 +1134,7 @@ var AFDS = {
 				{
 					me.target_alt.setValue(me.altitude_restriction);
 				}
-				elsif((me.intervention_alt >= me.optimal_alt)
-					and ((me.optimal_alt - current_alt) > 1000))
+				elsif(me.intervention_alt >= me.optimal_alt)
 				{
 					if(getprop("autopilot/route-manager/cruise/altitude-ft") >= me.optimal_alt)
 					{

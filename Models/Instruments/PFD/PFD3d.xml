@@ -880,6 +880,17 @@ Syd Adams
         </font-resolution>
     </text>
 
+    <animation>
+        <type>select</type>
+        <object-name>MACH</object-name>
+        <condition>
+            <greater-than>
+		        <property>autopilot/settings/pfd-mach-indication</property>
+                <value>379</value>
+            </greater-than>
+        </condition>
+    </animation>
+
     <text>
         <name>MACH</name>
         <offsets>
