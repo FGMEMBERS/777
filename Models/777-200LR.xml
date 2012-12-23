@@ -915,12 +915,12 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>redflash</object-name>
-        <offset-m>34.02</offset-m>
-        <axis>
-            <x>0.449</x>
-            <y>-0.892</y>
-            <z>0.046</z>
-        </axis>
+		<offset-m>34.78</offset-m>
+		<axis>
+			<x>0.607</x>
+			<y>-1.21</y>
+			<z>0.0637</z>
+		</axis>
     </animation>
 
     <animation>
@@ -931,12 +931,12 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>greenflash</object-name>
-        <offset-m>34.02</offset-m>
-        <axis>
-            <x>0.449</x>
-            <y>0.892</y>
-            <z>0.046</z>
-        </axis>
+		<offset-m>34.78</offset-m>
+		<axis>
+			<x>0.607</x>
+			<y>1.21</y>
+			<z>0.0637</z>
+		</axis>
     </animation>
 
     <animation>
@@ -959,11 +959,12 @@ Syd Adams
         <type>translate</type>
         <object-name>Strobe01</object-name>
         <offset-m>34.26</offset-m>
-        <axis>
-            <x>0.455</x>
-            <y>-0.889</y>
-            <z>0.046</z>
-        </axis>
+		<offset-m>35.2</offset-m>
+		<axis>
+		    <x>0.607</x>
+	    	<y>-1.21</y>
+			<z>0.0637</z>
+		</axis>
     </animation>
 
     <animation>
@@ -994,12 +995,12 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>Strobe02</object-name>
-        <offset-m>34.26</offset-m>
-        <axis>
-            <x>0.455</x>
-            <y>0.889</y>
-            <z>0.046</z>
-        </axis>
+		<offset-m>35.2</offset-m>
+		<axis>
+		    <x>0.607</x>
+		    <y>1.21</y>
+		    <z>0.0637</z>
+		</axis>
     </animation>
 
     <animation>
