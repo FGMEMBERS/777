@@ -16,6 +16,13 @@
             <armrest type="double">0</armrest>
         </model>
 
+		<navdb>
+			<!-- exclude any airports with runways shorter than this from
+			searches, NavDisplay, etc. Note this is a lower-limit - real (safe)
+			value is much higher depending on load, fuel, OAT -->
+			<min-runway-length-ft>4500</min-runway-length-ft>
+		</navdb>
+
         <view n="0">
             <name>Pilot View</name>
             <type>lookfrom</type>
@@ -781,8 +788,10 @@ Service Ceiling: 43,100ft
         </gps>
         <nd>
             <radar-texture-path type="string">Aircraft/777/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
-            <symbol-texture-path type="string">Aircraft/777/Models/Instruments/MFD/boeing-nd.png</symbol-texture-path>
-            <font>
+            <symbol-texture-path type="string">Aircraft/777/Models/Instruments/MFD/nd_symbols.png</symbol-texture-path>
+            <symbol-texture-size type="int">512</symbol-texture-size>
+			
+			<font>
                 <color>
                     <red type="float">0.7</red>
                     <green type="float">0.7</green>
@@ -790,7 +799,7 @@ Service Ceiling: 43,100ft
                     <alpha type="float">1</alpha>
                 </color>
                 <name type="string">helvetica_bold.txf</name>
-                <size type="float">12</size>
+                <size type="float">14</size>
                 <line-spacing type="float">0.01</line-spacing>
             </font>
             <serviceable type="bool">true</serviceable>
@@ -799,6 +808,7 @@ Service Ceiling: 43,100ft
             <heading-up-deg type="float">0.01</heading-up-deg>
             <x-center type="float">0.5</x-center>
             <y-center type="float">0.5</y-center>
+			<line-width type="double">3</line-width>
         </nd>
     </instrumentation>
 

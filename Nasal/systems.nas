@@ -29,6 +29,7 @@ var EFIS = {
         m.alt_meters = m.efis.initNode("inputs/alt-meters",0,"BOOL");
         m.fpv = m.efis.initNode("inputs/fpv",0,"BOOL");
         m.nd_centered = m.efis.initNode("inputs/nd-centered",0,"BOOL");
+		
         m.mins_mode = m.efis.initNode("inputs/minimums-mode",0,"BOOL");
         m.mins_mode_txt = m.efis.initNode("minimums-mode-text","RADIO","STRING");
         m.minimums = m.efis.initNode("minimums",250,"INT");
@@ -43,7 +44,8 @@ var EFIS = {
         m.terr = m.efis.initNode("inputs/terr",0,"BOOL");
         m.rh_vor_adf = m.efis.initNode("inputs/rh-vor-adf",0,"INT");
         m.lh_vor_adf = m.efis.initNode("inputs/lh-vor-adf",0,"INT");
-
+		m.nd_plan_wpt = m.efis.initNode("inputs/plan-wpt-index", 0, "INT");
+		
         m.radio = m.efis.getNode("radio-mode",1);
         m.radio.setIntValue(0);
         m.radio_selected = m.efis.getNode("radio-selected",1);
@@ -51,6 +53,8 @@ var EFIS = {
         m.radio_standby = m.efis.getNode("radio-standby",1);
         m.radio_standby.setDoubleValue(getprop("instrumentation/comm/frequencies/standby-mhz"));
 
+		m.wptIndexL = setlistener("instrumentation/efis/inputs/plan-wpt-index", func m.update_nd_plan_center());
+		
         m.kpaL = setlistener("instrumentation/altimeter/setting-inhg", func m.calc_kpa());
 
         m.eicas_msg_alert   = m.eicas.initNode("msg/alert"," ","STRING");
@@ -170,6 +174,13 @@ var EFIS = {
             if(num>3)num=3;
             me.mfd_mode_num.setValue(num);
             me.mfd_display_mode.setValue(me.mfd_mode_list[num]);
+			
+			# for all modes except plan, acft is up. For PLAN,
+			# north is up.
+			setprop("instrumentation/nd/aircraft-heading-up", num < 3);
+			setprop("instrumentation/nd/user-position", num == 3);
+			me.nd_plan_wpt.setValue(getprop("autopilot/route-manager/current-wp"));
+			me.update_nd_plan_center();
         }
         elsif(md=="rhvor")
         {
@@ -214,6 +225,15 @@ var EFIS = {
         } else {
             setprop("instrumentation/nd/y-center", 0.5);
         }
+    },
+	
+    update_nd_plan_center : func {
+        # find wpt lat, lon
+		var index = me.nd_plan_wpt.getValue();
+		var lat = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/latitude-deg");
+		var lon = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/longitude-deg");
+		setprop("instrumentation/nd/user-longitude-deg", lon);
+		setprop("instrumentation/nd/user-latitude-deg", lat);
     },
 #### update EICAS messages ####
     update_eicas : func(alertmsgs,cautionmsgs,infomsgs) {
