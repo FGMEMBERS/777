@@ -809,6 +809,15 @@ Service Ceiling: 43,100ft
             <x-center type="float">0.5</x-center>
             <y-center type="float">0.5</y-center>
 			<line-width type="double">3</line-width>
+			
+			<symbols>
+				<!--
+				<td>
+					<longitude-deg>-122.5011667</longitude-deg>
+					<latitude-deg>37.5134444</latitude-deg>
+				</td>
+				-->
+			</symbols>
         </nd>
     </instrumentation>
 
