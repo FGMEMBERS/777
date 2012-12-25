@@ -112,8 +112,7 @@
 			<property>/autopilot/internal/waypoint-bearing-error-deg</property>
 		</input>
 		<reference>
-			<property>/autopilot/internal/course-deviation</property>
-			<scale>-1.5</scale>
+			<value>0.0</value>
 		</reference>
 		<output>
 			<property>/autopilot/internal/target-roll-deg</property>
