@@ -90,13 +90,10 @@
 
     <instrument include="radar.xml">
         <condition>
-            <and>
-                <property>instrumentation/efis/inputs/tfc</property>
-                <greater-than>
-                    <property>systems/electrical/outputs/efis</property>
-                    <value>15</value>
-                </greater-than>
-            </and>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
         </condition>
         <name>radar</name>
         <x>128</x>

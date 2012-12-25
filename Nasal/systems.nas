@@ -232,8 +232,8 @@ var EFIS = {
 		var index = me.nd_plan_wpt.getValue();
 		var lat = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/latitude-deg");
 		var lon = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/longitude-deg");
-		setprop("instrumentation/nd/user-longitude-deg", lon);
-		setprop("instrumentation/nd/user-latitude-deg", lat);
+		if(lon!=nil) setprop("instrumentation/nd/user-longitude-deg", lon);
+		if(lat!=nil) setprop("instrumentation/nd/user-latitude-deg", lat);
     },
 #### update EICAS messages ####
     update_eicas : func(alertmsgs,cautionmsgs,infomsgs) {
@@ -833,6 +833,9 @@ var Startup = func{
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
+	setprop("instrumentation/efis/inputs/tfc",1);
+	setprop("instrumentation/efis/inputs/arpt",1);
+	setprop("instrumentation/efis/inputs/sta",1);
     setprop("/engines/engine[0]/run",1);
     setprop("/engines/engine[1]/run",1);
 }
@@ -864,7 +867,12 @@ var Shutdown = func{
     setprop("controls/flight/speedbrake-lever",0);
     setprop("sim/model/armrest",0);
     setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
-    setprop("controls/engines/StartIgnition-knob[0]",0);
+	setprop("instrumentation/efis/inputs/arpt",0);
+	setprop("instrumentation/efis/inputs/sta",0);
+ 	setprop("instrumentation/efis/inputs/tfc",0);
+	setprop("instrumentation/efis/inputs/wpt",0);
+	setprop("instrumentation/efis/inputs/wxr",0);
+   setprop("controls/engines/StartIgnition-knob[0]",0);
     setprop("controls/engines/StartIgnition-knob[1]",0);
     setprop("/engines/engine[0]/run",0);
     setprop("/engines/engine[1]/run",0);

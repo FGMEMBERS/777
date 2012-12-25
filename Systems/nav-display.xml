@@ -412,8 +412,6 @@ Configure the nav-display symbology
 
 <symbol>
     <type type="string">td</type>
-
-        
     <width type="float">24</width>
     <texture-size type="int">512</texture-size>
     <u0 type="float">6.0</u0>
@@ -421,9 +419,9 @@ Configure the nav-display symbology
     <u1 type="float">58</u1>
     <v1 type="float">58</v1>
     <color>
-        <red type="float">1</red>
-        <green type="float">0.5</green>
-        <blue type="float">0.5</blue>
+        <red type="float">0</red>
+        <green type="float">1</green>
+        <blue type="float">0</blue>
     </color>
     <text type="string">T/D</text>
     <text-align type="string">left-top</text-align>

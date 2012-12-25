@@ -9,7 +9,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20121223</aircraft-version>
+        <aircraft-version>20121225</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.7</fuel-fraction>
         <model n="0">
@@ -698,11 +698,11 @@ Service Ceiling: 43,100ft
         </tcas>
         <efis>
             <inputs>
-                <tfc  type="bool">true</tfc>
-                <sta  type="bool">true</sta>
-                <arpt type="bool">true</arpt>
-                <wpt  type="bool">true</wpt>
-                <wxr  type="bool">true</wxr>
+                <tfc  type="bool">false</tfc>
+                <sta  type="bool">false</sta>
+                <arpt type="bool">false</arpt>
+                <wpt  type="bool">false</wpt>
+                <wxr  type="bool">false</wxr>
                 <range type="int">10</range>
             </inputs>
             <eicas>
@@ -799,7 +799,7 @@ Service Ceiling: 43,100ft
                     <alpha type="float">1</alpha>
                 </color>
                 <name type="string">helvetica_bold.txf</name>
-                <size type="float">14</size>
+                <size type="float">20</size>
                 <line-spacing type="float">0.01</line-spacing>
             </font>
             <serviceable type="bool">true</serviceable>
