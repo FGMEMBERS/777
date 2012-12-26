@@ -121,6 +121,10 @@ var AFDS = {
 		m.LTMode = setlistener(m.autothrottle_mode, func m.updateATMode(),0,0);
 		m.WpChanged = setlistener(props.globals.getNode("/autopilot/route-manager/wp/id",1), func m.wpChanged(),0,0);
 		m.RmDisabled = setlistener(props.globals.getNode("/autopilot/route-manager/active",1), func m.wpChanged(),0,0);
+        
+        
+        m.NDSymbols = props.globals.getNode("/instrumentation/nd/symbols", 1);
+        
 		return m;
 	},
 
@@ -675,6 +679,20 @@ var AFDS = {
 		if(hdgoffset > 180) hdgoffset +=-360;
 		setprop("autopilot/internal/fdm-heading-bug-error-deg",hdgoffset);
 
+        if (flightplan().getPlanSize() > 2)
+        {
+            var topClimb = flightplan().pathGeod(0, 120);
+            var topDescent = flightplan().pathGeod(-1, -100);
+        
+            var tcNode = me.NDSymbols.getNode("tc", 1);
+            tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
+            tcNode.getNode("latitude-deg", 1).setValue(topClimb.lat);
+
+            var tdNode = me.NDSymbols.getNode("td", 1);
+            tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
+            tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
+        }
+        
 		if(me.step==0){ ### glideslope armed ?###
 			var gear_agl_ft = getprop("position/gear-agl-ft");
 			if(gear_agl_ft > 500)
