@@ -5,15 +5,37 @@
   <!--                        PFD display preprocessors                -->
   <!-- =============================================================== -->
 
-<!--
-    <filter>
-        <name>Radar altimeter</name>
-        <type>gain</type>
-        <gain>1.0</gain>
-        <input>/position/gear-agl-ft</input>
-        <output>instrumentation/afds/ra-ft</output>
-    </filter>
- -->
+	<filter>
+    	<name>Altitude cursor icon positioning</name> 
+      <type>gain</type>
+      <update-interval-secs type="double">0.05</update-interval-secs>
+      <gain>1.0</gain>
+      <input>
+        <property>autopilot/settings/actual-target-altitude-ft</property>
+      </input>
+      <reference>
+		<property>/instrumentation/altimeter/indicator-altitude-ft</property>
+      </reference>
+      <output>instrumentation/pfd/target-altitude-diff</output>
+      <min>-430</min>
+      <max>430</max>
+  </filter>
+
+	<filter>
+    	<name>Target Speed icon positioning</name> 
+      <type>gain</type>
+      <update-interval-secs type="double">0.05</update-interval-secs>
+      <gain>1.0</gain>
+      <input>
+        <property>autopilot/settings/target-speed-kt</property>
+      </input>
+      <reference>
+		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+      </reference>
+      <output>instrumentation/pfd/target-speed-diff</output>
+      <min>-60</min>
+      <max>60</max>
+  </filter>
 
   <filter>
       <name>Stall speed margin computer</name> 
@@ -25,7 +47,7 @@
       </input>
       <reference>
           <property>velocities/airspeed-kt</property>
-          <offset>85</offset>
+          <offset>70</offset>
       </reference>
       <output>instrumentation/pfd/stallspeed-diff</output>
       <min>-205</min>
@@ -42,7 +64,7 @@
       </input>
       <reference>
           <property>velocities/airspeed-kt</property>
-          <offset>-95</offset>
+          <offset>-65</offset>
       </reference>
       <output>instrumentation/pfd/overspeed-diff</output>
       <min>-200</min>

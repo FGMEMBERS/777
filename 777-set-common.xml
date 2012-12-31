@@ -9,7 +9,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20121225</aircraft-version>
+        <aircraft-version>20121231</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.7</fuel-fraction>
         <model n="0">
@@ -831,6 +831,10 @@ Service Ceiling: 43,100ft
             <autostart-knob type="int" n="0">0</autostart-knob>
             <autostart-knob type="int" n="1">0</autostart-knob>
         </engines>
+		<cabin>
+			<NoSmoking-knob type="int" >1 </NoSmoking-knob>
+			<SeatBelt-knob type="int" >1 </SeatBelt-knob>
+		</cabin>
     </controls>
 
     <autopilot n="0">

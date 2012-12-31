@@ -647,10 +647,22 @@
 		<type>avionics</type>
 		<path>Aircraft/777/Sounds/cabinalert.wav</path>
 		<condition>
-			<equals>
-                <property>controls/cabin/NoSmoking-knob</property>
-				<value>1</value>
-			</equals>
+			<and>
+	            <greater-than>
+		            <property>systems/electrical/outputs/efis</property>
+    		        <value>15</value>
+   	         </greater-than>
+				<or>
+					<equals>
+    	    	        <property>controls/cabin/NoSmoking-knob</property>
+						<value>1</value>
+					</equals>
+					<equals>
+    	    	        <property>controls/cabin/NoSmoking-knob</property>
+						<value>-1</value>
+					</equals>
+				</or>
+			</and>
 		</condition>
 	</chime>	   
    
@@ -660,10 +672,22 @@
 		<type>avionics</type>
 		<path>Aircraft/777/Sounds/cabinalert.wav</path>
 		<condition>
-			<equals>
-                <property>controls/cabin/SeatBelt-knob</property>
-				<value>1</value>
-			</equals>
+			<and>
+	            <greater-than>
+		            <property>systems/electrical/outputs/efis</property>
+    		        <value>15</value>
+   	         </greater-than>
+				<or>
+					<equals>
+    		            <property>controls/cabin/SeatBelt-knob</property>
+						<value>1</value>
+					</equals>
+					<equals>
+    		            <property>controls/cabin/SeatBelt-knob</property>
+						<value>-1</value>
+					</equals>
+				</or>
+			</and>
 		</condition>
 	</chime>	   
 	

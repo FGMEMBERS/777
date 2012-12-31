@@ -321,6 +321,18 @@ Syd Adams
     </animation>
 
     <animation>
+        <object-name>SpeedTarget</object-name>
+        <property>instrumentation/pfd/target-speed-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+
+    <animation>
         <object-name>StallSpeedInd</object-name>
         <property>instrumentation/pfd/stallspeed-diff</property>
         <type>translate</type>
@@ -329,7 +341,7 @@ Syd Adams
             <y>0</y>
             <z>1</z>
         </axis>
-        <factor>0.000646</factor>
+        <factor>0.0010</factor>
     </animation>
     <animation>
         <type>select</type>
@@ -350,7 +362,7 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
-        <factor>0.0013</factor>
+        <factor>0.00197</factor>
     </animation>
 
     <animation>
@@ -691,6 +703,18 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+    </animation>
+
+    <animation>
+        <object-name>AltitudeCursor</object-name>
+        <property>instrumentation/pfd/target-altitude-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.000142</factor>
     </animation>
 
 <!-- Text -->

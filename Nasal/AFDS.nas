@@ -39,6 +39,7 @@ var AFDS = {
 		m.altitude_restriction = -9999.99;
 		m.altitude_alert_from_out = 0;
 		m.altitude_alert_from_in = 0;
+		m.top_of_descent = 0;
 
 		m.AFDS_node = props.globals.getNode("instrumentation/afds",1);
 		m.AFDS_inputs = m.AFDS_node.getNode("inputs",1);
@@ -124,7 +125,7 @@ var AFDS = {
         
         
         m.NDSymbols = props.globals.getNode("/instrumentation/nd/symbols", 1);
-        
+		setprop("autopilot/internal/waypoint-bearing-error-deg", 0);
 		return m;
 	},
 
@@ -361,6 +362,8 @@ var AFDS = {
 						{
 							me.lateral_mode.setValue(0);		# Clear
 							me.vertical_mode.setValue(0);		# Clear
+							setprop("autopilot/settings/roll-transition", 0);
+							setprop("autopilot/settings/pitch-transition", 0);
 						}
 					}
 				}
@@ -376,6 +379,8 @@ var AFDS = {
 						{
 							me.lateral_mode.setValue(0);		# NO MODE
 							me.vertical_mode.setValue(0);		# NO MODE
+							setprop("autopilot/settings/roll-transition", 0);
+							setprop("autopilot/settings/pitch-transition", 0);
 						}
 						else
 						{
@@ -528,6 +533,8 @@ var AFDS = {
 			{
 				me.lateral_mode.setValue(0);		# NO MODE
 				me.vertical_mode.setValue(0);		# NO MODE
+				setprop("autopilot/settings/roll-transition", 0);
+				setprop("autopilot/settings/pitch-transition", 0);
 			}
 			else
 			{
@@ -651,8 +658,11 @@ var AFDS = {
 				msg="LAND 3";
 			}
 		}
-		if((me.AP_annun.getValue() != msg)
-				and (msg != " "))
+		if(msg == " ")
+		{
+			setprop("autopilot/settings/autopilot-transition", 0);
+		}
+		elsif(me.AP_annun.getValue() != msg)
 		{
 			setprop("autopilot/settings/autopilot-transition", 1);
 			settimer(func
@@ -679,20 +689,6 @@ var AFDS = {
 		if(hdgoffset > 180) hdgoffset +=-360;
 		setprop("autopilot/internal/fdm-heading-bug-error-deg",hdgoffset);
 
-        if (flightplan().getPlanSize() > 2)
-        {
-            var topClimb = flightplan().pathGeod(0, 120);
-            var topDescent = flightplan().pathGeod(-1, -100);
-        
-            var tcNode = me.NDSymbols.getNode("tc", 1);
-            tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
-            tcNode.getNode("latitude-deg", 1).setValue(topClimb.lat);
-
-            var tdNode = me.NDSymbols.getNode("td", 1);
-            tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
-            tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
-        }
-        
 		if(me.step==0){ ### glideslope armed ?###
 			var gear_agl_ft = getprop("position/gear-agl-ft");
 			if(gear_agl_ft > 500)
@@ -772,6 +768,10 @@ var AFDS = {
      						setprop("instrumentation/nav/heading-needle-deflection-ptr", getprop("instrumentation/nav/heading-needle-deflection-norm"));
 						}
 					}
+				}
+				else
+				{
+					setprop("autopilot/internal/presision-loc", 0);
 				}
 			}
 			elsif(me.lnav_armed.getValue())
@@ -1354,11 +1354,13 @@ var AFDS = {
 			if((me.at1.getValue() == 0) or (me.at2.getValue() == 0))
 			{
 				me.autothrottle_mode.setValue(0);
+				setprop("autopilot/settings/speed-transition", 0);
 			}
 			# auto-throttle disengaged when reverser is enabled
 			elsif (getprop("controls/engines/engine/reverser"))
 			{
 				me.autothrottle_mode.setValue(0);
+				setprop("autopilot/settings/speed-transition", 0);
 			}
 			elsif(me.autothrottle_mode.getValue() == 2)		# THR REF
 			{
@@ -1474,38 +1476,38 @@ var AFDS = {
 					}
 					if(me.vnav_descent.getValue() == 0)	# Calculation of Top Of Descent distance
 					{
-						var top_of_descent = 16;
+						me.top_of_descent = 16;
 						if(current_alt > 10000)
 						{
-							top_of_descent += 21;
+							me.top_of_descent += 21;
 							if(current_alt > 29000)
 							{
-								top_of_descent += 41.8;
+								me.top_of_descent += 41.8;
 								if(current_alt > 36000)
 								{
-									top_of_descent += 28;
-									top_of_descent += (current_alt - 36000) / 1000 * 3.8;
+									me.top_of_descent += 28;
+									me.top_of_descent += (current_alt - 36000) / 1000 * 3.8;
 								}
 								else
 								{
-									top_of_descent += (current_alt - 29000) / 1000 * 4;
+									me.top_of_descent += (current_alt - 29000) / 1000 * 4;
 								}
 							}
 							else
 							{
-								top_of_descent += (current_alt - 10000) / 1000 * 2.2;
+								me.top_of_descent += (current_alt - 10000) / 1000 * 2.2;
 							}
-							top_of_descent += 6.7;
+							me.top_of_descent += 6.7;
 						}
 						else
 						{
-							top_of_descent += (current_alt - 3000) / 1000 * 3;
+							me.top_of_descent += (current_alt - 3000) / 1000 * 3;
 						}
-						top_of_descent -= (destination_elevation / 1000 * 3);
+						me.top_of_descent -= (destination_elevation / 1000 * 3);
 						if((me.alt_setting.getValue() > 24000)
 							and (me.alt_setting.getValue() >= current_alt))
 						{
-							if(me.remaining_distance.getValue() < (top_of_descent + 10))
+							if(me.remaining_distance.getValue() < (me.top_of_descent + 10))
 							{
 								me.vnav_mcp_reset.setValue(1);
 								copilot("Reset MCP ALT");
@@ -1513,7 +1515,7 @@ var AFDS = {
 						}
 						else
 						{
-							if(me.remaining_distance.getValue() < top_of_descent)
+							if(me.remaining_distance.getValue() < me.top_of_descent)
 							{
 								me.vnav_descent.setValue(1);
 								me.intervention_alt = me.alt_setting.getValue();
@@ -1523,11 +1525,28 @@ var AFDS = {
 				}
 				if(getprop("/autopilot/route-manager/active"))
 				{
-					var wpt_distance = getprop("autopilot/route-manager/wp/dist");
 					var groundspeed = getprop("/velocities/groundspeed-kt");
-					if(wpt_distance != nil)
+					var f= flightplan(); 
+#					var topClimb = f.pathGeod(0, 100);
+					var topDescent = f.pathGeod(-1, -me.top_of_descent);
+					var targetCourse = f.pathGeod(-1, -me.remaining_distance.getValue());
+					var leg = f.currentWP(); 
+					var enroute = leg.courseAndDistanceFrom(targetCourse);
+					setprop("autopilot/internal/course-deg", enroute[0]);
+					var CourseError = (getprop("autopilot/route-manager/wp/true-bearing-deg") 
+								- enroute[0]) * enroute[1] * 0.2;
+					setprop("autopilot/internal/course-error", CourseError);
+        
+#					var tcNode = me.NDSymbols.getNode("tc", 1);
+#					tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
+#					tcNode.getNode("latitude-deg", 1).setValue(topClimb.lat);
+
+					var tdNode = me.NDSymbols.getNode("td", 1);
+					tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
+					tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
+					if(enroute[1] != nil)
 					{
-						var wpt_eta = (wpt_distance / groundspeed * 3600);
+						var wpt_eta = (enroute[1] / groundspeed * 3600);
 						var gmt = getprop("instrumentation/clock/indicated-sec");
 						if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
 						{
@@ -1542,20 +1561,24 @@ var AFDS = {
 							var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
 							if(change_wp > 180) change_wp = (360 - change_wp);
 							if(((me.heading_change_rate * change_wp) > wpt_eta)
-								or (wpt_distance < 0.6)
-								or ((me.remaining_distance_log_last < wpt_distance) and (change_wp < 90)))
+								or (enroute[1] < 0.6)
+								or ((me.remaining_distance_log_last < enroute[1]) and (change_wp < 90)))
  	 						{
  	 							if(atm_wpt < (max_wpt - 1))
 								{
 									atm_wpt += 1;
 									props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
 									me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
+									if(me.altitude_restriction > 0)
+									{
+										me.altitude_restriction += int((getprop("autopilot/internal/airport-height") + 50) / 100 )* 100;
+									}
 								}
 								me.remaining_distance_log_last = 36000;
 							}
 							else
 							{
-								me.remaining_distance_log_last = wpt_distance;
+								me.remaining_distance_log_last = enroute[1];
 							}
 						}
 					}

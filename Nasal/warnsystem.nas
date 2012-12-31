@@ -242,7 +242,6 @@ var WEU =
         {
             stallspeed = vgrosswt * 166;
         }
-        stallspeed /= 1.3;
         me.stallspeed.setValue(stallspeed);
 
         # calculate flap target speed
@@ -279,12 +278,13 @@ var WEU =
         if ((me.speed<=stallspeed)and
             (me.enabled)and
             ((!getprop("gear/gear[1]/wow"))or
-             (!getprop("gear/gear[2]/wow"))))
+             (!getprop("gear/gear[2]/wow")))
+			and (getprop("position/gear-agl-ft")) > 400)
         {
             horn = 1;
             shaker = 1;
             # disable autopilot when stalled
-            setprop("autopilot/locks/passive-mode",1);
+			setprop("instrumentation/afds/inputs/AP", 0);
         }
 
         var caution_state = (size(me.msgs_caution)>0);
