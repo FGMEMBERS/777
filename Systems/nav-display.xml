@@ -12,6 +12,10 @@ Configure the nav-display symbology
     <type type="string">airport</type>
     <enable>
         <property>instrumentation/efis/inputs/arpt</property>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
     </enable>
     
     <state type="string">!departure</state>
@@ -57,6 +61,13 @@ Configure the nav-display symbology
     <type type="string">waypoint</type>
     <state type="string">current-wp</state>
     
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+    </enable>
+    
     <width type="float">40</width>
     <u0 type="float">0</u0>
     <v0 type="float">64</v0>
@@ -82,6 +93,13 @@ Configure the nav-display symbology
 </symbol>
     
 <symbol>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+    </enable>
+    
     <type type="string">waypoint</type>
     <state type="string">on-active-route</state>
     <state type="string">!current-wp</state>
@@ -113,6 +131,13 @@ Configure the nav-display symbology
     <type type="string">VOR</type>
     <state type="string">tuned</state>
     
+    <enable>
+        <equals>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>2</value> <!-- MAP mode -->
+        </equals>
+    </enable>
+    
     <width type="float">32</width>
     <u0 type="float">192</u0>
     <v0 type="float">64</v0>
@@ -133,6 +158,12 @@ Configure the nav-display symbology
 <symbol>
     <type type="string">VOR</type>
     <enable>
+        <!-- FLT INSTM DSP, Sec. 6.10 Page 30 - non-tuned stations only
+            displayed in MAP mode -->
+        <equals>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>2</value>
+        </equals>
         <property>instrumentation/efis/inputs/sta</property>
     </enable>
     <state type="string">!tuned</state>
@@ -159,6 +190,15 @@ Configure the nav-display symbology
     <type type="string">fix</type>
     <enable>
         <property>instrumentation/efis/inputs/wpt</property>
+        <!-- FLT INSTM DSP Sec. 6.10 Page 33 : MAP mode, range 10, 20 or 40Nm -->
+        <equals>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>2</value>
+        </equals>
+        <less-than>
+            <property>instrumentation/efis/inputs/range</property>
+            <value>80</value>
+        </less-than>
     </enable>
     <state type="string">!on-active-route</state>
     <width type="float">16</width>
@@ -183,6 +223,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">!descending</state>
     <state type="string">!climbing</state>
@@ -202,6 +246,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-0</state>
     <state type="string">climbing</state>
@@ -221,6 +269,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-0</state>
     <state type="string">descending</state>
@@ -240,6 +292,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-1</state>
     <state type="string">!climbing</state>
@@ -260,6 +316,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-1</state>
     <state type="string">climbing</state>
@@ -279,6 +339,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-1</state>
     <state type="string">descending</state>
@@ -298,6 +362,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-2</state>
     <state type="string">!descending</state>
@@ -318,6 +386,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-2</state>
     <state type="string">climbing</state>
@@ -337,6 +409,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-2</state>
     <state type="string">descending</state>
@@ -356,6 +432,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-3</state>
     <state type="string">!climbing</state>
@@ -376,6 +456,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-3</state>
     <state type="string">climbing</state>
@@ -395,6 +479,10 @@ Configure the nav-display symbology
     <type type="string">ai-aircraft</type>
     <enable>
         <property>instrumentation/efis/inputs/tfc</property>
+        <less-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>3</value> <!-- any mode except PLAN -->
+        </less-than>
     </enable>
     <state type="string">tcas-threat-level-3</state>
     <state type="string">descending</state>
@@ -410,7 +498,13 @@ Configure the nav-display symbology
     </color>
 </symbol>
 
+<!-- VNAV climb / descent symbols -->
 <symbol>
+    <equals>
+        <property>instrumentation/efis/mfd/mode-num</property>
+        <value>2</value> <!-- MAP mode -->
+    </equals>
+    
     <type type="string">tc</type>
     <width type="float">24</width>
     <texture-size type="int">512</texture-size>
@@ -430,6 +524,11 @@ Configure the nav-display symbology
 </symbol>
 
 <symbol>
+    <equals>
+        <property>instrumentation/efis/mfd/mode-num</property>
+        <value>2</value> <!-- MAP mode -->
+    </equals>
+    
     <type type="string">td</type>
     <width type="float">24</width>
     <texture-size type="int">512</texture-size>

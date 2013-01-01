@@ -177,9 +177,12 @@ var EFIS = {
 			
 			# for all modes except plan, acft is up. For PLAN,
 			# north is up.
-			setprop("instrumentation/nd/aircraft-heading-up", num < 3);
-			setprop("instrumentation/nd/user-position", num == 3);
+            var isPLAN = (num == 3);
+			setprop("instrumentation/nd/aircraft-heading-up", !isPLAN);
+			setprop("instrumentation/nd/user-position", isPLAN);
 			me.nd_plan_wpt.setValue(getprop("autopilot/route-manager/current-wp"));
+            
+            me.update_nd_center();
 			me.update_nd_plan_center();
         }
         elsif(md=="rhvor")
@@ -199,7 +202,7 @@ var EFIS = {
             me.lh_vor_adf.setValue(num);
         }
         elsif(md=="center")
-        {
+        {            
             var num =me.nd_centered.getValue();
             num = 1 - num;
             me.nd_centered.setValue(num);
@@ -219,11 +222,13 @@ var EFIS = {
         setprop("instrumentation/radar/font/line-spacing",linespacing);
     },
     update_nd_center : func {
-        if (me.nd_centered.getValue() == 0)
+        # PLAN mode is always centered
+        var isPLAN = (me.mfd_mode_num.getValue() == 3);        
+        if (isPLAN or me.nd_centered.getValue())
         {
-            setprop("instrumentation/nd/y-center", 0.15);
-        } else {
             setprop("instrumentation/nd/y-center", 0.5);
+        } else {
+            setprop("instrumentation/nd/y-center", 0.15);
         }
     },
 	
