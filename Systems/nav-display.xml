@@ -38,24 +38,129 @@ Configure the nav-display symbology
     <text-offset-y>0</text-offset-y>
 </symbol>
 
-<!--
+<rule>
+    <type>runway</type>
+    <state>destination</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <greater-than> <!-- range 80nm or higher -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </greater-than>
+    </enable>
+    <symbol>dep-arr-airport</symbol>
+</rule>
+
+<rule>
+    <type>runway</type>
+    <state>departure</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <greater-than> <!-- range 80nm or higher -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </greater-than>
+    </enable>
+    <symbol>dep-arr-airport</symbol>
+</rule>
+
+<rule>
+    <type>runway</type>
+    <state>destination</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <less-than> <!-- range 40nm or less -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </less-than>
+    </enable>
+    <symbol>dep-arr-runway</symbol>
+</rule>
+
+<rule>
+    <type>runway</type>
+    <state>departure</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/mfd/mode-num</property>
+            <value>1</value> <!-- map or plan modes -->
+        </greater-than>
+        <less-than> <!-- range 40nm or less -->
+            <property>instrumentation/efis/inputs/range</property>
+            <value>78</value>
+        </less-than>
+    </enable>
+    <symbol>dep-arr-runway</symbol>
+</rule>
+
+
 <symbol>
-    <type type="string">runway</type>
-    <state type="string">departure</state>
-    <width type="float">16</width>
+    <id type="string">dep-arr-runway</id>
+    
     <rotate-to-heading type="bool">true</rotate-to-heading>
-    <texture-size type="int">512</texture-size>
-    <u0 type="float">64</u0>
-    <v0 type="float">8</v0>
-    <u1 type="float">128</u1>
-    <v1 type="float">56</v1>
+    <stretch-symbol type="bool">true</stretch-symbol>
+    
+    <u0 type="float">410.0</u0>
+    <v0 type="float">20.0</v0>
+    <u1 type="float">464.0</u1>
+    <v1 type="float">126</v1>
+    
+    <x0 type="float">-25</x0>
+    <y0 type="float">-50</y0>
+    
+    <x1 type="float">25</x1>
+    <y1 type="float">0.0</y1>
+    
+    <!-- stretch data -->
+    <v2 type="float">302.0</v2>
+    <y2 type="float">0.0</y2>
+    
+    <v3 type="float">408.0</v3>
+    <y3 type="float">50</y3>
+    
     <color>
         <red type="float">1</red>
         <green type="float">1</green>
         <blue type="float">1</blue>
     </color>
+    
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>18</text-offset-y>
 </symbol>
--->
+
+<symbol>
+    <id type="string">dep-arr-airport</id>
+    
+    <width type="float">50</width>
+    <rotate-to-heading type="bool">true</rotate-to-heading>
+    
+    <u0 type="float">250.0</u0>
+    <v0 type="float">13.0</v0>
+    <u1 type="float">350.0</u1>
+    <v1 type="float">128</v1>
+    
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+    
+    <text type="string">{id}</text>
+    <text-align type="string">left-top</text-align>
+    <text-offset-x>18</text-offset-x>
+    <text-offset-y>18</text-offset-y>
+</symbol>
 
 <symbol>
     <type type="string">waypoint</type>
