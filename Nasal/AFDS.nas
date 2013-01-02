@@ -238,6 +238,10 @@ var AFDS = {
 						# clear current restriciton
 						var temp_wpt = getprop("/autopilot/route-manager/current-wp") + 1;
 						me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~temp_wpt~"]/altitude-ft");
+						if(me.altitude_restriction > 0)
+						{
+							me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
+						}
 					}
 					else
 					{
@@ -1227,7 +1231,7 @@ var AFDS = {
 			{
 				var f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
 				me.flare_constant_setting.setValue(f_angle);
-				if((getprop("position/gear-agl-ft") < 50)
+				if((getprop("position/gear-agl-ft") < 10)
 					and (me.flare_armed.getValue()))
 				{
 					me.flare_armed.setValue(0);
@@ -1571,7 +1575,7 @@ var AFDS = {
 									me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
 									if(me.altitude_restriction > 0)
 									{
-										me.altitude_restriction += int((getprop("autopilot/internal/airport-height") + 50) / 100 )* 100;
+										me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
 									}
 								}
 								me.remaining_distance_log_last = 36000;

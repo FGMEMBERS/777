@@ -45,6 +45,7 @@ var WEU =
         # status information
         m.stallspeed   = m.weu.initNode("state/stall-speed",-100,"DOUBLE");
         m.targetspeed   = m.weu.initNode("state/target-speed",-100,"DOUBLE");
+		m.stall_warning = m.weu.initNode("state/stall-warning", 0, "BOOL");
         # EICAS output 
         m.msgs_alert   = [];
         m.msgs_caution = [];
@@ -272,14 +273,22 @@ var WEU =
         {
             target_speed = vgrosswt * 174;
         }
+
 		if(target_speed > 250) target_speed = 250;
         me.targetspeed.setValue(target_speed);
 
-        if ((me.speed<=stallspeed)and
-            (me.enabled)and
-            ((!getprop("gear/gear[1]/wow"))or
-             (!getprop("gear/gear[2]/wow")))
-			and (getprop("position/gear-agl-ft")) > 400)
+		if((me.stall_warning.getValue() == 0) and (getprop("position/gear-agl-ft") > 400))
+		{
+			me.stall_warning.setValue(1);
+		}
+		elsif(getprop("gear/gear[1]/wow") or getprop("gear/gear[2]/wow"))
+		{
+			me.stall_warning.setValue(0);
+		}
+
+        if ((me.speed <= (stallspeed - 10))
+				and (me.enabled)
+				and (me.stall_warning.getValue() == 1))
         {
             horn = 1;
             shaker = 1;

@@ -347,10 +347,7 @@ Syd Adams
         <type>select</type>
         <object-name>StallSpeedInd</object-name>
         <condition>
-            <greater-than>
-                <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-                <value>40</value>
-            </greater-than>
+			<property>instrumentation/weu/state/stall-warning</property>
         </condition>
     </animation>
 
