@@ -1537,10 +1537,25 @@ var AFDS = {
 					var leg = f.currentWP(); 
 					var enroute = leg.courseAndDistanceFrom(targetCourse);
 					setprop("autopilot/internal/course-deg", enroute[0]);
-					var CourseError = (getprop("autopilot/route-manager/wp/true-bearing-deg") 
-								- enroute[0]) * enroute[1] * 0.2;
+
+					var courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon); 
+					var geocoord = geo.aircraft_position(); 
+					var CourseError = (geocoord.course_to(courseCoord) - getprop("orientation/heading-deg"));
+					if(CourseError < -180) CourseError += 360;
+					elsif(CourseError > 180) CourseError -= 360;
+					if(CourseError > 0)
+					{
+						CourseError = geocoord.distance_to(courseCoord);
+					}
+					else
+					{
+						CourseError = (geocoord.distance_to(courseCoord) * -1);
+					}
+					CourseError *= 0.01;
+					if(CourseError > 4.0) CourseError = 4.0;
+					elsif(CourseError < -4.0) CourseError = -4.0;
 					setprop("autopilot/internal/course-error", CourseError);
-        
+
 #					var tcNode = me.NDSymbols.getNode("tc", 1);
 #					tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
 #					tcNode.getNode("latitude-deg", 1).setValue(topClimb.lat);
@@ -1548,7 +1563,7 @@ var AFDS = {
 					var tdNode = me.NDSymbols.getNode("td", 1);
 					tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
 					tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
-					if(enroute[1] != nil)
+					if(enroute[1] != nil)	# Course deg
 					{
 						var wpt_eta = (enroute[1] / groundspeed * 3600);
 						var gmt = getprop("instrumentation/clock/indicated-sec");
