@@ -321,6 +321,152 @@ Syd Adams
     </animation>
 
     <animation>
+        <object-name>VrefMark</object-name>
+        <property>instrumentation/pfd/vref-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+
+    <animation>
+        <object-name>vref-text</object-name>
+        <property>instrumentation/pfd/vref-text-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+
+    <animation>
+        <object-name>v1-text</object-name>
+        <property>instrumentation/pfd/v1-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+
+    <animation>
+        <object-name>vr-text</object-name>
+        <property>instrumentation/pfd/vr-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+
+    <animation>
+        <object-name>v2-text</object-name>
+        <property>instrumentation/pfd/v2-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>v1-text</object-name>
+        <object-name>vr-text</object-name>
+        <object-name>v2-text</object-name>
+        <condition>
+			<property>instrumentation/weu/state/takeoff-mode</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <object-name>flup-text</object-name>
+        <property>instrumentation/pfd/flup-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>flup-text</object-name>
+        <condition>
+			<property>instrumentation/weu/state/flup-on</property>
+		</condition>
+    </animation>
+
+    <animation>
+        <object-name>fl1-text</object-name>
+        <property>instrumentation/pfd/fl1-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>fl1-text</object-name>
+        <condition>
+			<property>instrumentation/weu/state/fl1-on</property>
+		</condition>
+    </animation>
+
+    <animation>
+        <object-name>fl5-text</object-name>
+        <property>instrumentation/pfd/fl5-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>fl5-text</object-name>
+        <condition>
+			<property>instrumentation/weu/state/fl5-on</property>
+		</condition>
+    </animation>
+
+    <animation>
+        <object-name>fl15-text</object-name>
+        <property>instrumentation/pfd/fl15-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>fl15-text</object-name>
+        <condition>
+			<property>instrumentation/weu/state/fl15-on</property>
+		</condition>
+    </animation>
+
+    <animation>
         <object-name>SpeedTarget</object-name>
         <property>instrumentation/pfd/target-speed-diff</property>
         <type>translate</type>
@@ -1366,6 +1512,15 @@ Syd Adams
         <object-name>HPA</object-name>
         <object-name>MAG-annun</object-name>
         <object-name>mins</object-name>
+        <object-name>vref-text</object-name>
+        <object-name>vref</object-name>
+        <object-name>v1-text</object-name>
+        <object-name>vr-text</object-name>
+        <object-name>v2-text</object-name>
+        <object-name>flup-text</object-name>
+        <object-name>fl1-text</object-name>
+        <object-name>fl5-text</object-name>
+        <object-name>fl15-text</object-name>
         <emission>
             <red>0</red>
             <green>0.8</green>
@@ -1774,6 +1929,189 @@ Syd Adams
     </animation>
 
     <text>
+        <name>vref-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.063</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>REF</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>vref</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.062</y-m>
+            <z-m>-0.049</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%3.0f</format>
+        <property>instrumentation/weu/state/vref</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>select</type>
+        <object-name>vref</object-name>
+        <condition>
+			<less-than>
+		      <property>instrumentation/pfd/vref-diff</property>
+			  <value>-55</value>
+			</less-than>
+		</condition>
+    </animation>
+
+    <text>
+        <name>v1-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>- V1</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>vr-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>- VR</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>v2-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>- V2</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>flup-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>- UP</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>fl1-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>- 1</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>fl5-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>- 5</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>fl15-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+		<type>literal</type>
+		<text>- 15</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
         <name>mins</name>
         <offsets>
             <x-m>0.004</x-m>
@@ -1819,7 +2157,7 @@ Syd Adams
         <type>textranslate</type>
         <axis>
             <x>0</x>
-            <y>1</y>
+            <y>0.8</y>
         </axis>
         <factor>1</factor> <!-- 0.048/+70knots-->
     </animation>
@@ -1833,5 +2171,24 @@ Syd Adams
         </axis>
         <factor>1</factor> <!-- 0.048/+70knots-->
     </animation>
-
+    <animation>
+        <type>select</type>
+        <object-name>speedtrend.up</object-name>
+        <condition>
+			<less-than>
+   				<property>instrumentation/pfd/speed-trend-up</property>
+				<value>0.239</value>
+			</less-than>
+		</condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>speedtrend.down</object-name>
+        <condition>
+			<greater-than>
+				<property>instrumentation/pfd/speed-trend-down</property>
+				<value>-0.239</value>
+			</greater-than>
+		</condition>
+    </animation>
 </PropertyList>

@@ -643,6 +643,7 @@ var start_updates = func {
 		setprop("controls/flight/rudder-trim", 0);
 		setprop("controls/flight/elevator-trim", 0);
 		setprop("controls/flight/aileron-trim", 0);
+	    setprop("instrumentation/weu/state/takeoff-mode",0);
     }
 
     # start update_systems loop - but start it once only
@@ -887,6 +888,7 @@ var Shutdown = func{
     setprop("/engines/engine[1]/n2rpm",0);
     setprop("/engines/engine[0]/fuel-flow_pph",0);
     setprop("/engines/engine[1]/fuel-flow_pph",0);
+    setprop("instrumentation/weu/state/takeoff-mode",1);
 }
 
 var click_reset = func(propName) {

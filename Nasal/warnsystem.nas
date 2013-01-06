@@ -43,9 +43,22 @@ var WEU =
         # actuators
         m.stickshaker  = m.weu.initNode("actuators/stick-shaker",0,"BOOL");
         # status information
+		m.takeoff_mode = m.weu.initNode("state/takeoff-mode",1,"BOOL");
         m.stallspeed   = m.weu.initNode("state/stall-speed",-100,"DOUBLE");
         m.targetspeed   = m.weu.initNode("state/target-speed",-100,"DOUBLE");
 		m.stall_warning = m.weu.initNode("state/stall-warning", 0, "BOOL");
+		m.vref = m.weu.initNode("state/vref",0,"DOUBLE");
+		m.v1 = m.weu.initNode("state/v1",0,"DOUBLE");
+		m.vr = m.weu.initNode("state/vr",0,"DOUBLE");
+		m.v2 = m.weu.initNode("state/v2",0,"DOUBLE");
+		m.flup = m.weu.initNode("state/flup",0,"DOUBLE");
+		m.fl1 = m.weu.initNode("state/fl1",0,"DOUBLE");
+		m.fl5 = m.weu.initNode("state/fl5",0,"DOUBLE");
+		m.fl15 = m.weu.initNode("state/fl15",0,"DOUBLE");
+		m.flup_on = m.weu.initNode("state/flup-on",0,"BOOL");
+		m.fl1_on = m.weu.initNode("state/fl1-on",0,"BOOL");
+		m.fl5_on = m.weu.initNode("state/fl5-on",0,"BOOL");
+		m.fl15_on = m.weu.initNode("state/fl15-on",0,"BOOL");
         # EICAS output 
         m.msgs_alert   = [];
         m.msgs_caution = [];
@@ -210,60 +223,56 @@ var WEU =
         var horn   = 0;
         var shaker = 0;
         var siren  = (size(me.msgs_alert)!=0);
-        var vgrosswt = math.sqrt(getprop("/yasim/gross-weight-lbs")/661500);
-        var stallspeed = 0;
+        var vgrosswt = math.sqrt(getprop("/yasim/gross-weight-lbs")/730284);
+		me.vref.setValue(vgrosswt * 166);
+        # calculate Flap Maneuver Speed
+		me.flup.setValue(vgrosswt * 166 + 80);
+		me.fl1.setValue(vgrosswt * 166 + 60);
+		me.fl5.setValue(vgrosswt * 166 + 40);
+		me.fl15.setValue(vgrosswt * 166 + 20);
 
         # calculate stall speed
-        if (me.flaps<0.01)            # flap up
-        {
-            stallspeed = vgrosswt * 166 + 80;
-        }
-        elsif (me.flaps<0.034)        # flap 1
-        {
-            stallspeed = vgrosswt * 166 + 60;
-        }
-        elsif (me.flaps<0.167)        # flap 5
-        {
-            stallspeed = vgrosswt * 166 + 40;
-        }
-        elsif (me.flaps<0.501)        # flap 15
-        {
-            stallspeed = vgrosswt * 166 + 20;
-            target_speed = vgrosswt * 166 + 40;
-        }
-        elsif (me.flaps<0.667)        # flap 20
-        {
-            stallspeed = vgrosswt * 180;
-        }
-        elsif (me.flaps<0.834)        # flap 25
-        {
-            stallspeed = vgrosswt * 174;
-        }
-        else                          # flap 30
-        {
-            stallspeed = vgrosswt * 166;
-        }
-        me.stallspeed.setValue(stallspeed);
+		var vref_table = [
+			[0, vgrosswt * 166 + 80],
+			[0.033, vgrosswt * 166 + 60],
+			[0.166, vgrosswt * 166 + 40],
+			[0.500, vgrosswt * 166 + 20],
+			[0.666, vgrosswt * 180],
+			[0.833, vgrosswt * 174],
+			[1.000, vgrosswt * 166]];
+
+		var vref_flap = interpolate_table(vref_table, me.flaps);
+		var stallspeed = (vref_flap - 10 + getprop("instrumentation/altimeter/indicated-altitude-ft") / 1000);
+		me.stallspeed.setValue(stallspeed);
+
+		var weight_diff = getprop("/yasim/gross-weight-lbs")-308700;
+		me.v1.setValue(weight_diff*0.00018424+92);
+		me.vr.setValue(weight_diff*0.000164399+104);
+		me.v2.setValue(weight_diff*0.000138889+119);
 
         # calculate flap target speed
         if (me.flaps_tgt<0.01)            # flap up
         {
+			if(!(getprop("gear/gear[1]/wow") or getprop("gear/gear[2]/wow")))
+			{
+				me.takeoff_mode.setValue(0);
+			}
         }
         elsif (me.flaps_tgt<0.034)        # flap 1
         {
-            target_speed = vgrosswt * 166 + 80;
+            target_speed = me.flup.getValue();
         }
         elsif (me.flaps_tgt<0.167)        # flap 5
         {
-            target_speed = vgrosswt * 166 + 60;
+            target_speed = me.fl1.getValue();
         }
         elsif (me.flaps_tgt<0.501)        # flap 15
         {
-            target_speed = vgrosswt * 166 + 40;
+            target_speed = me.fl5.getValue();
         }
         elsif (me.flaps_tgt<0.667)        # flap 20
         {
-            target_speed = vgrosswt * 166 + 20;
+            target_speed = me.fl15.getValue();
         }
         elsif (me.flaps_tgt<0.834)        # flap 25
         {
@@ -273,10 +282,23 @@ var WEU =
         {
             target_speed = vgrosswt * 174;
         }
+		target_speed += 5;
 
 		if(target_speed > 250) target_speed = 250;
         me.targetspeed.setValue(target_speed);
 
+		# Flap placard speed display switch
+		target_speed = getprop("autopilot/settings/target-speed-kt");
+		if(abs(target_speed - me.flup.getValue()) < 30) me.flup_on.setValue(1);
+		else me.flup_on.setValue(0);
+		if(abs(target_speed - me.fl1.getValue()) < 30) me.fl1_on.setValue(1);
+		else me.fl1_on.setValue(0);
+		if(abs(target_speed - me.fl5.getValue()) < 30) me.fl5_on.setValue(1);
+		else me.fl5_on.setValue(0);
+		if(abs(target_speed - me.fl15.getValue()) < 30) me.fl15_on.setValue(1);
+		else me.fl15_on.setValue(0);
+
+		# Stall warning display switch
 		if((me.stall_warning.getValue() == 0) and (getprop("position/gear-agl-ft") > 400))
 		{
 			me.stall_warning.setValue(1);
@@ -286,7 +308,7 @@ var WEU =
 			me.stall_warning.setValue(0);
 		}
 
-        if ((me.speed <= (stallspeed - 10))
+        if ((me.speed <= (stallspeed - 5))
 				and (me.enabled)
 				and (me.stall_warning.getValue() == 1))
         {
@@ -393,6 +415,19 @@ var WEU =
     },
 };
 
+# interpolates a value
+var interpolate_table = func(table, v)
+ {
+ var x = 0;
+ forindex (i; table)
+  {
+  if (v >= table[i][0])
+   {
+   x = i + 1 < size(table) ? (v - table[i][0]) / (table[i + 1][0] - table[i][0]) * (table[i + 1][1] - table[i][1]) + table[i][1] : table[i][1];
+   }
+  }
+ return x;
+ };
 ##############################################
 # timer callbacks
 ##############################################

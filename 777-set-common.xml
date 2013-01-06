@@ -9,7 +9,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20130102</aircraft-version>
+        <aircraft-version>20130105</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.7</fuel-fraction>
         <model n="0">
@@ -649,7 +649,7 @@ Service Ceiling: 43,100ft
                    255 <!-- aircraft type T1, fast turbofan -->
                 </category-1>
                 <category-4>                    <!-- ALTITUDE_CALLOUTS -->
-                    13 <!-- enable all altitude callouts -->
+                    11 <!-- enable all altitude callouts -->
                 </category-4>
                 <category-8>                    <!-- RADIO_ALTITUDE_INPUT_SELECT -->
                      3 <!-- use precise (but YASim-specific) gear altitude -->
