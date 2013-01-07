@@ -297,6 +297,13 @@ var WEU =
 		else me.fl5_on.setValue(0);
 		if(abs(target_speed - me.fl15.getValue()) < 30) me.fl15_on.setValue(1);
 		else me.fl15_on.setValue(0);
+		if(me.flaps_tgt >= 0.833)
+		{
+			me.flup_on.setValue(0);
+			me.fl1_on.setValue(0);
+			me.fl5_on.setValue(0);
+			me.fl15_on.setValue(0);
+		}
 
 		# Stall warning display switch
 		if((me.stall_warning.getValue() == 0) and (getprop("position/gear-agl-ft") > 400))
