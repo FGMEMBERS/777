@@ -114,10 +114,16 @@
 
         <input>
             <condition>
-               	<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>FLARE</value>
-               	</equals>
+				<and>
+	               	<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLARE</value>
+            	   	</equals>
+					<less-than>
+						<property>position/gear-agl-ft</property>
+						<value>20</value>
+					</less-than>
+				</and>
             </condition>
             <value>0</value>
         </input>

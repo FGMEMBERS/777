@@ -1232,7 +1232,7 @@ var AFDS = {
 			{
 				var f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
 				me.flare_constant_setting.setValue(f_angle);
-				if((getprop("position/gear-agl-ft") < 20)
+				if((getprop("position/gear-agl-ft") < 50)
 					and (me.flare_armed.getValue()))
 				{
 					me.flare_armed.setValue(0);
