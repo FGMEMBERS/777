@@ -32,7 +32,6 @@ var AFDS = {
 		m.step=0;
 		m.tiller_status = 0;
 		m.descent_step=0;
-		m.remaining_distance_log_last = 36000;
 		m.heading_change_rate = 0;
 		m.optimal_alt = 0;
 		m.intervention_alt = 0;
@@ -1552,10 +1551,10 @@ var AFDS = {
 					{
 						CourseError = (geocoord.distance_to(courseCoord) * -1);
 					}
-					CourseError *= 0.01;
-					if(CourseError > 4.0) CourseError = 4.0;
-					elsif(CourseError < -4.0) CourseError = -4.0;
-					setprop("autopilot/internal/course-error", CourseError);
+					var cCourseError = CourseError * 0.01;
+					if(cCourseError > 4.0) cCourseError = 4.0;
+					elsif(cCourseError < -4.0) cCourseError = -4.0;
+					setprop("autopilot/internal/course-error", cCourseError);
 
 #					var tcNode = me.NDSymbols.getNode("tc", 1);
 #					tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
@@ -1581,8 +1580,7 @@ var AFDS = {
 							var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
 							if(change_wp > 180) change_wp = (360 - change_wp);
 							if(((me.heading_change_rate * change_wp) > wpt_eta)
-								or (enroute[1] < 0.6)
-								or ((me.remaining_distance_log_last < enroute[1]) and (change_wp < 90)))
+								or (enroute[1] < 0.6))
  	 						{
  	 							if(atm_wpt < (max_wpt - 1))
 								{
@@ -1594,11 +1592,6 @@ var AFDS = {
 										me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
 									}
 								}
-								me.remaining_distance_log_last = 36000;
-							}
-							else
-							{
-								me.remaining_distance_log_last = enroute[1];
 							}
 						}
 					}
