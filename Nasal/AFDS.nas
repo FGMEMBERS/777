@@ -500,6 +500,10 @@ var AFDS = {
 	},
 ###################
 	setAP : func{
+		if(me.heading_magnetic.getValue() == nil)
+		{
+			me.heading_magnetic.setValue(getprop("sim/presets/heading-deg"));
+		}
 		var output = 1-me.AP.getValue();
 		var disabled = me.AP_disengaged.getValue();
 		if((output==0)and(getprop("position/gear-agl-ft")<200))
