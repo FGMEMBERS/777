@@ -61,7 +61,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind1.001</object-name>
-        <property>engines/engine[0]/egt</property>
+        <property>engines/engine[1]/egt</property>
         <factor>0.2142</factor>
         <center>
             <x-m>0</x-m>
@@ -78,7 +78,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind2.001</object-name>
-        <property>engines/engine[0]/egt</property>
+        <property>engines/engine[1]/egt</property>
         <factor>0.1428</factor>
         <center>
             <x-m>0</x-m>
@@ -95,7 +95,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind3.001</object-name>
-        <property>engines/engine[0]/egt</property>
+        <property>engines/engine[1]/egt</property>
         <factor>0.07</factor>
         <center>
             <x-m>0</x-m>
