@@ -628,6 +628,13 @@ var AFDS = {
 	},
 #################
 	ap_update : func{
+		var Vcal = func(M)
+		{
+			var p = getprop("/environment/pressure-inhg") * 3386.388640341;
+			var pt = p * math.pow(1 + 0.2 * M*M,3.5);
+			var Vc =  math.sqrt((math.pow((pt-p)/101325+1,0.285714286) -1 ) * 7 * 101325 /1.225) / 0.5144;
+			return (Vc);
+		}
 		var current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
 		var VS = getprop("velocities/vertical-speed-fps");
 		var TAS = getprop("velocities/uBody-fps");
@@ -999,7 +1006,10 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							me.mach_setting.setValue(0.780);
+							if(Vcal(0.780) > (getprop("instrumentation/weu/state/stall-speed") + 5))
+							{
+								me.mach_setting.setValue(0.780);
+							}
 						}
 						else
 						{
@@ -1011,7 +1021,17 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < 0.785)
+							if(me.mach_setting.getValue() == 0.780)
+							{
+								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < 0.785)
+								{
+									me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
+									me.target_alt.setValue(me.intervention_alt);
+									me.vs_setting.setValue(-2000);
+									me.descent_step += 1;
+								}
+							}
+							else
 							{
 								me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 								me.target_alt.setValue(me.intervention_alt);
@@ -1039,6 +1059,11 @@ var AFDS = {
 								me.ias_mach_selected.setValue(0);
 								me.ias_setting.setValue(280);
 								me.descent_step += 1;
+							}
+							elsif((me.mach_setting.getValue() != 0.780)
+								and (Vcal(0.780) > (getprop("instrumentation/weu/state/stall-speed") + 5)))
+							{
+								me.mach_setting.setValue(0.780);
 							}
 						}
 						else
@@ -1350,8 +1375,7 @@ var AFDS = {
 			var temp = 0;
 			if(me.ias_mach_selected.getValue() == 1)
 			{
-				temp = int(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") + 0.5);
-				me.ias_setting.setValue(temp);
+				me.ias_setting.setValue(Vcal(me.mach_setting.getValue()));
 			}
 			else
 			{
@@ -1523,6 +1547,7 @@ var AFDS = {
 						}
 						else
 						{
+							me.vnav_mcp_reset.setValue(0);
 							if(me.remaining_distance.getValue() < me.top_of_descent)
 							{
 								me.vnav_descent.setValue(1);
