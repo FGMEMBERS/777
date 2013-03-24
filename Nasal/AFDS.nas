@@ -719,9 +719,9 @@ var AFDS = {
 			if(me.gs_armed.getValue())
 			{
 				msg="G/S";
-				var gsdefl = getprop("instrumentation/nav/gs-needle-deflection");
+				var gsdefl = getprop("instrumentation/nav/gs-needle-deflection-deg");
 				var gsrange = getprop("instrumentation/nav/gs-in-range");
-				if ((gsdefl< 0.5 and gsdefl>-0.5)and
+				if ((gsdefl< 0.1 and gsdefl>-0.1)and
 					gsrange)
 				{
 					me.vertical_mode.setValue(6);
