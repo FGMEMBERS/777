@@ -265,6 +265,10 @@ var WEU =
         elsif (me.flaps_tgt<0.167)        # flap 5
         {
             target_speed = me.fl1.getValue();
+			if(getprop("gear/gear[1]/wow") and getprop("gear/gear[2]/wow"))
+			{
+				me.takeoff_mode.setValue(1);
+			}
         }
         elsif (me.flaps_tgt<0.501)        # flap 15
         {
