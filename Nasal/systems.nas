@@ -202,12 +202,21 @@ var EFIS = {
             me.lh_vor_adf.setValue(num);
         }
         elsif(md=="center")
-        {            
-            var num =me.nd_centered.getValue();
-            num = 1 - num;
-            me.nd_centered.setValue(num);
-            me.update_radar_font();
-            me.update_nd_center();
+        {
+			if(me.mfd_mode_num.getValue() == 3)
+			{
+				var index = me.nd_plan_wpt.getValue() + 1;
+				if(index >= getprop("autopilot/route-manager/route/num")) index = getprop("autopilot/route-manager/current-wp");
+				me.nd_plan_wpt.setValue(index);
+			}
+			else
+			{
+            	var num =me.nd_centered.getValue();
+            	num = 1 - num;
+            	me.nd_centered.setValue(num);
+            	me.update_radar_font();
+            	me.update_nd_center();
+			}
         }
         else
         {
