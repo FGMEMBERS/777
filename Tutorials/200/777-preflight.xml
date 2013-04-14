@@ -202,9 +202,9 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 			</condition>
 		</exit>
 		<marker>
-			<x-m>-1.1450</x-m>
+			<x-m>-1.2350</x-m>
 			<y-m>-0.3492</y-m>
-			<z-m>1.2375</z-m>
+			<z-m>1.2075</z-m>
 			<scale>3.0000</scale>
 		</marker>
 		<view>
@@ -238,9 +238,9 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 			</condition>
 		</exit>
 		<marker>
-			<x-m>-1.1353</x-m>
+			<x-m>-1.2353</x-m>
 			<y-m>-0.2467</y-m>
-			<z-m>1.2275</z-m>
+			<z-m>1.2175</z-m>
 			<scale>3.0000</scale>
 		</marker>
 		<view>
@@ -264,9 +264,9 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 			</condition>
 		</exit>
 		<marker>
-			<x-m>-1.2133</x-m>
-			<y-m>-0.3033</y-m>
-			<z-m>1.2300</z-m>
+			<x-m>-1.2833</x-m>
+			<y-m>-0.2933</y-m>
+			<z-m>1.1900</z-m>
 			<scale>7.0000</scale>
 		</marker>
 	</step>
@@ -333,9 +333,9 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 			</condition>
 		</exit>
 		<marker>
-			<x-m>-1.8483</x-m>
-			<y-m>0.1450</y-m>
-			<z-m>0.4633</z-m>
+			<x-m>-1.7583</x-m>
+			<y-m>0.0750</y-m>
+			<z-m>0.4933</z-m>
 			<scale>2.4333</scale>
 		</marker>
 	</step>

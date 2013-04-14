@@ -161,7 +161,7 @@ Are you ready to take controls?
 			</condition>
 		</exit>
 		<marker>
-			<x-m>-1.2792</x-m>
+			<x-m>-1.3492</x-m>
 			<y-m>0.0908</y-m>
 			<z-m>1.1758</z-m>
 			<scale>7.4000</scale>
@@ -181,7 +181,7 @@ Are you ready to take controls?
 		<exit>
 			<condition>
 				<equals>
-					<property>controls/engines/autostart-knob[0]</property>
+					<property>controls/engines/StartIgnition-knob[0]</property>
 					<value>-1</value>
 				</equals>
 			</condition>
@@ -196,9 +196,9 @@ Are you ready to take controls?
 			<field-of-view>65.5</field-of-view>
 		</view>
 		<marker>
-			<x-m>-1.0817</x-m>
+			<x-m>-1.1617</x-m>
 			<y-m>0.0383</y-m>
-			<z-m>1.2945</z-m>
+			<z-m>1.2645</z-m>
 			<scale>2.6500</scale>
 		</marker>
 	</step>
@@ -225,6 +225,7 @@ Are you ready to take controls?
 			<x-offset-m>-0.6</x-offset-m>
 			<y-offset-m>0.8</y-offset-m>
 			<z-offset-m>-22.8</z-offset-m>
+            <field-of-view>68.5</field-of-view>
 		</view>
 	</step>
 
@@ -233,7 +234,7 @@ Are you ready to take controls?
 		<exit>
 			<condition>
 				<equals>
-					<property>controls/engines/autostart-knob[1]</property>
+					<property>controls/engines/StartIgnition-knob[1]</property>
 					<value>-1</value>
 				</equals>
 			</condition>
@@ -248,9 +249,9 @@ Are you ready to take controls?
 			<field-of-view>65.5</field-of-view>
 		</view>
 		<marker>
-			<x-m>-1.0817</x-m>
+			<x-m>-1.1517</x-m>
 			<y-m>0.1353</y-m>
-			<z-m>1.2945</z-m>
+			<z-m>1.2645</z-m>
 			<scale>2.6500</scale>
 		</marker>
 	</step>
@@ -300,7 +301,7 @@ Are you ready to take controls?
 	</step>
 
 	<step>
-		<message>Wait for power generator cross-feeds ON</message>
+		<message>Power generator cross-feeds ON</message>
 		<exit>
 			<condition>
 				<and>
@@ -310,20 +311,21 @@ Are you ready to take controls?
 			</condition>
 		</exit>
 		<marker>
-			<x-m>-1.3217</x-m>
+			<x-m>-1.3517</x-m>
 			<y-m>-0.2950</y-m>
-			<z-m>1.2075</z-m>
+			<z-m>1.1575</z-m>
 			<scale>7.0000</scale>
 		</marker>
-		<view>
-			<heading-offset-deg>301.3</heading-offset-deg>
-			<pitch-offset-deg>50.7</pitch-offset-deg>
-			<roll-offset-deg>0.0</roll-offset-deg>
-			<x-offset-m>-0.6</x-offset-m>
-			<y-offset-m>0.8</y-offset-m>
-			<z-offset-m>-22.8</z-offset-m>
-		</view>
-	</step>
+        <view>
+            <heading-offset-deg>301.3</heading-offset-deg>
+            <pitch-offset-deg>50.7</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <x-offset-m>-0.6</x-offset-m>
+            <y-offset-m>0.8</y-offset-m>
+            <z-offset-m>-22.8</z-offset-m>
+            <field-of-view>65.5</field-of-view>
+        </view>
+</step>
 
 	<step>
 		<message>Check: auxiliary power unit (APU) OFF (main engines providing power now)</message>
@@ -335,9 +337,9 @@ Are you ready to take controls?
 			</condition>
 		</exit>
 		<marker>
-			<x-m>-1.1353</x-m>
+			<x-m>-1.2353</x-m>
 			<y-m>-0.2467</y-m>
-			<z-m>1.2275</z-m>
+			<z-m>1.2175</z-m>
 			<scale>3.0000</scale>
 		</marker>
 	</step>
