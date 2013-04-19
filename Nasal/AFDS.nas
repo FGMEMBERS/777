@@ -545,8 +545,14 @@ var AFDS = {
 			}
 			else
 			{
-				me.lateral_mode.setValue(2);		# HDG HOLD
-				me.vertical_mode.setValue(1);		# ALT
+				if(me.lateral_mode.getValue() == 0)
+				{
+					me.lateral_mode.setValue(2);		# HDG HOLD
+				}
+				if(me.vertical_mode.getValue() == 0)
+				{
+					me.vertical_mode.setValue(1);		# ALT
+				}
 			}
 		}
 		else
@@ -1260,8 +1266,7 @@ var AFDS = {
 			{
 				var f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
 				me.flare_constant_setting.setValue(f_angle);
-				if((getprop("position/gear-agl-ft") < 50)
-					and (me.flare_armed.getValue()))
+				if(getprop("position/gear-agl-ft") < 50)
 				{
 					me.flare_armed.setValue(0);
 					idx = 7;			# FLARE
