@@ -51,11 +51,11 @@ var WEU =
 		m.v1 = m.weu.initNode("state/v1",0,"DOUBLE");
 		m.vr = m.weu.initNode("state/vr",0,"DOUBLE");
 		m.v2 = m.weu.initNode("state/v2",0,"DOUBLE");
-		m.flup = m.weu.initNode("state/flup",0,"DOUBLE");
+		m.flap = m.weu.initNode("state/flap",0,"DOUBLE");
 		m.fl1 = m.weu.initNode("state/fl1",0,"DOUBLE");
 		m.fl5 = m.weu.initNode("state/fl5",0,"DOUBLE");
 		m.fl15 = m.weu.initNode("state/fl15",0,"DOUBLE");
-		m.flup_on = m.weu.initNode("state/flup-on",0,"BOOL");
+		m.flap_on = m.weu.initNode("state/flap-on",0,"BOOL");
 		m.fl1_on = m.weu.initNode("state/fl1-on",0,"BOOL");
 		m.fl5_on = m.weu.initNode("state/fl5-on",0,"BOOL");
 		m.fl15_on = m.weu.initNode("state/fl15-on",0,"BOOL");
@@ -226,7 +226,7 @@ var WEU =
         var vgrosswt = math.sqrt(getprop("/yasim/gross-weight-lbs")/730284);
 		me.vref.setValue(vgrosswt * 166);
         # calculate Flap Maneuver Speed
-		me.flup.setValue(vgrosswt * 166 + 80);
+		me.flap.setValue(vgrosswt * 166 + 80);
 		me.fl1.setValue(vgrosswt * 166 + 60);
 		me.fl5.setValue(vgrosswt * 166 + 40);
 		me.fl15.setValue(vgrosswt * 166 + 20);
@@ -260,7 +260,7 @@ var WEU =
         }
         elsif (me.flaps_tgt<0.034)        # flap 1
         {
-            target_speed = me.flup.getValue();
+            target_speed = me.flap.getValue();
         }
         elsif (me.flaps_tgt<0.167)        # flap 5
         {
@@ -293,8 +293,8 @@ var WEU =
 
 		# Flap placard speed display switch
 		target_speed = getprop("autopilot/settings/target-speed-kt");
-		if(abs(target_speed - me.flup.getValue()) < 30) me.flup_on.setValue(1);
-		else me.flup_on.setValue(0);
+		if(abs(target_speed - me.flap.getValue()) < 30) me.flap_on.setValue(1);
+		else me.flap_on.setValue(0);
 		if(abs(target_speed - me.fl1.getValue()) < 30) me.fl1_on.setValue(1);
 		else me.fl1_on.setValue(0);
 		if(abs(target_speed - me.fl5.getValue()) < 30) me.fl5_on.setValue(1);
@@ -303,7 +303,7 @@ var WEU =
 		else me.fl15_on.setValue(0);
 		if(me.flaps_tgt >= 0.833)
 		{
-			me.flup_on.setValue(0);
+			me.flap_on.setValue(0);
 			me.fl1_on.setValue(0);
 			me.fl5_on.setValue(0);
 			me.fl15_on.setValue(0);

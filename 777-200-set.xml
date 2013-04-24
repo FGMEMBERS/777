@@ -5,7 +5,7 @@
         <aero>777-200</aero>
 	    <max-payload type="double">238000</max-payload>
         <startup>
-            <splash-texture>Aircraft/777/splash-200ER.png</splash-texture>
+            <splash-texture>Aircraft/777/splash-200.png</splash-texture>
         </startup>
 
         <model n="0">

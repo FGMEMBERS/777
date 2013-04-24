@@ -391,8 +391,8 @@ Syd Adams
     </animation>
 
     <animation>
-        <object-name>flup-text</object-name>
-        <property>instrumentation/pfd/flup-diff</property>
+        <object-name>flap-text</object-name>
+        <property>instrumentation/pfd/flap-diff</property>
         <type>translate</type>
         <axis>
             <x>0</x>
@@ -403,9 +403,9 @@ Syd Adams
     </animation>
     <animation>
         <type>select</type>
-        <object-name>flup-text</object-name>
+        <object-name>flap-text</object-name>
         <condition>
-			<property>instrumentation/weu/state/flup-on</property>
+			<property>instrumentation/weu/state/flap-on</property>
 		</condition>
     </animation>
 
@@ -1517,7 +1517,7 @@ Syd Adams
         <object-name>v1-text</object-name>
         <object-name>vr-text</object-name>
         <object-name>v2-text</object-name>
-        <object-name>flup-text</object-name>
+        <object-name>flap-text</object-name>
         <object-name>fl1-text</object-name>
         <object-name>fl5-text</object-name>
         <object-name>fl15-text</object-name>
@@ -2036,7 +2036,7 @@ Syd Adams
         </font-resolution>
     </text>
     <text>
-        <name>flup-text</name>
+        <name>flap-text</name>
         <offsets>
             <x-m>0.0025</x-m>
             <y-m>-0.067</y-m>

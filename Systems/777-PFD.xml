@@ -157,12 +157,12 @@
 		<update-interval-secs type="double">0.05</update-interval-secs>
 		<gain>1.0</gain>
 		<input>
-			<property>instrumentation/weu/state/flup</property>
+			<property>instrumentation/weu/state/flap</property>
 		</input>
 		<reference>
 			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
-		<output>instrumentation/pfd/flup-diff</output>
+		<output>instrumentation/pfd/flap-diff</output>
 		<min>-64</min>
 		<max>60</max>
 	</filter>
