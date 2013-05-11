@@ -55,8 +55,8 @@ Syd Adams
 	<object-name>Fuselage</object-name>
 	<object-name>Engines</object-name>
 	<object-name>Reversers</object-name>
-	<object-name>Cowling</object-name>
-	<object-name>Cowling.001</object-name>
+    <object-name>LHEngChrome</object-name>
+    <object-name>RHEngChrome</object-name>
 	<object-name>Rudder</object-name>
 	<object-name>Tail</object-name>
 	<object-name>Elevator</object-name>
@@ -1244,13 +1244,7 @@ Outboard Aileron Lockout Schedule
 	<type>select</type>
 	<object-name>cabinlighting</object-name>
 	<condition>
-		<and>
-		    <greater-than>
-			<property>/sim/time/sun-angle-rad</property>
-			<value>1.55</value>
-		    </greater-than>
-		    <property>sim/multiplay/generic/int[8]</property>
-		</and>
+            <property>sim/multiplay/generic/int[8]</property>
 	</condition>
     </animation>
 	
