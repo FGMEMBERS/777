@@ -1513,36 +1513,37 @@ var AFDS = {
 					}
 					if(me.vnav_descent.getValue() == 0)	# Calculation of Top Of Descent distance
 					{
+						var cruise_alt = getprop("autopilot/route-manager/cruise/altitude-ft");
 						me.top_of_descent = 16;
-						if(current_alt > 10000)
+						if(cruise_alt > 10000)
 						{
 							me.top_of_descent += 21;
-							if(current_alt > 29000)
+							if(cruise_alt > 29000)
 							{
 								me.top_of_descent += 41.8;
-								if(current_alt > 36000)
+								if(cruise_alt > 36000)
 								{
 									me.top_of_descent += 28;
-									me.top_of_descent += (current_alt - 36000) / 1000 * 3.8;
+									me.top_of_descent += (cruise_alt - 36000) / 1000 * 3.8;
 								}
 								else
 								{
-									me.top_of_descent += (current_alt - 29000) / 1000 * 4;
+									me.top_of_descent += (cruise_alt - 29000) / 1000 * 4;
 								}
 							}
 							else
 							{
-								me.top_of_descent += (current_alt - 10000) / 1000 * 2.2;
+								me.top_of_descent += (cruise_alt - 10000) / 1000 * 2.2;
 							}
 							me.top_of_descent += 6.7;
 						}
 						else
 						{
-							me.top_of_descent += (current_alt - 3000) / 1000 * 3;
+							me.top_of_descent += (cruise_alt - 3000) / 1000 * 3;
 						}
 						me.top_of_descent -= (destination_elevation / 1000 * 3);
 						if((me.alt_setting.getValue() > 24000)
-							and (me.alt_setting.getValue() >= current_alt))
+							and (me.alt_setting.getValue() >= cruise_alt))
 						{
 							if(me.remaining_distance.getValue() < (me.top_of_descent + 10))
 							{
