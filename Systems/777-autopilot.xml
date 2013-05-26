@@ -197,7 +197,7 @@
 	</pi-simple-controller>
 
 	<pi-simple-controller>
-		<name>ROLLOUT</name>
+		<name>ROLLOUT-rudder-air</name>
 		<debug>false</debug>
 		<enable>
 			<condition>
@@ -207,10 +207,39 @@
 						<property>instrumentation/afds/ap-modes/roll-mode</property>
 						<value>ROLLOUT</value>
 					</equals>
-					<greater-than>
-						<property>velocities/groundspeed-kt</property>
-						<value>5</value>
-					</greater-than>
+					<not><property>gear/gear[0]/wow</property></not>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>/orientation/heading-deg</property>
+		</input>
+		<reference>
+			<property>/instrumentation/nav/heading-deg</property>
+		</reference>
+		<output>
+			<property>/controls/flight/rudder</property>
+		</output>
+		<config>
+			<Kp>0.05</Kp>
+			<Ki>0.01</Ki>
+			<u_min>-5.0</u_min>
+			<u_max>5.0</u_max>
+		</config>
+	</pi-simple-controller>
+
+	<pi-simple-controller>
+		<name>ROLLOUT-rudder-gnd</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<and>
+					<property>instrumentation/afds/inputs/AP</property>
+					<equals>
+						<property>instrumentation/afds/ap-modes/roll-mode</property>
+						<value>ROLLOUT</value>
+					</equals>
+					<property>gear/gear[0]/wow</property>
 				</and>
 			</condition>
 		</enable>
@@ -228,6 +257,41 @@
 			<Ki>0.0</Ki>
 			<u_min>-5.0</u_min>
 			<u_max>5.0</u_max>
+		</config>
+	</pi-simple-controller>
+
+	<pi-simple-controller>
+		<name>ROLLOUT-aileron</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<and>
+					<property>instrumentation/afds/inputs/AP</property>
+					<equals>
+						<property>instrumentation/afds/ap-modes/roll-mode</property>
+						<value>ROLLOUT</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>/orientation/roll-deg</property>
+		</input>
+		<reference>
+			<value>0.0</value>
+		</reference>
+		<output>
+			<property>/autopilot/internal/target-roll-deg</property>
+		</output>
+		<config>
+			<Kp>5.0</Kp>
+			<Ki>0.0</Ki>
+			<u_min>
+				<property>instrumentation/afds/settings/bank-min</property>
+			</u_min>
+			<u_max>
+				<property>instrumentation/afds/settings/bank-max</property>
+			</u_max>
 		</config>
 	</pi-simple-controller>
 
@@ -327,6 +391,12 @@
 				<and>
 					<property>instrumentation/afds/inputs/AP</property>
 					<not><property>gear/gear[1]/wow</property></not>
+					<not>
+						<equals>
+							<property>instrumentation/afds/ap-modes/roll-mode</property>
+							<value>ROLLOUT</value>
+						</equals>
+					</not>
 				</and>
 			</condition>
 		</enable>
@@ -828,6 +898,24 @@
 		</output>
 	</filter>
 
+	<filter>
+		<name>Current GSVspped local</name> 
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<greater-than>
+				<property>position/gear-agl-ft</property>
+				<value>150</value>
+			</greater-than>
+		</enable>
+		<input>
+			<property>/instrumentation/nav[0]/gs-rate-of-climb</property>
+		</input>
+		<output>
+			<property>/autopilot/internal/current-gs-rate-of-climb</property>
+		</output>
+	</filter>
+
 	<pid-controller>
 		<name>Glideslop Hold</name>
 		<debug>false</debug>
@@ -839,7 +927,7 @@
 			<property>/velocities/vertical-speed-fps</property>
 		</input>
 		<reference>
-			<property>/instrumentation/nav[0]/gs-rate-of-climb</property>
+			<property>/autopilot/internal/current-gs-rate-of-climb</property>
 		</reference>
 		<output>
 			<property>/autopilot/internal/target-pitch-deg</property>

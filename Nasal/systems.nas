@@ -653,6 +653,7 @@ var start_updates = func {
 		setprop("controls/flight/elevator-trim", 0);
 		setprop("controls/flight/aileron-trim", 0);
 	    setprop("instrumentation/weu/state/takeoff-mode",0);
+		setprop("instrumentation/altimeter/setting-inhg", getprop("environment/metar/pressure-inhg"));
     }
 
     # start update_systems loop - but start it once only

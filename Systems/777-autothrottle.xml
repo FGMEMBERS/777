@@ -332,7 +332,7 @@
 				<value>0.08</value>
 			</Kp>
 			<Kp>0.16</Kp>
-           <Td>0.0001</Td>
+           <Td>0.00001</Td>
             <Ti>
             	<condition>
 					<greater-than>

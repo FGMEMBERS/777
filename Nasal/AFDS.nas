@@ -856,7 +856,7 @@ var AFDS = {
 			elsif(idx == 4)		# LOC
 			{
 				if((me.rollout_armed.getValue())
-					and (getprop("position/gear-agl-ft") < 5))
+					and (getprop("position/gear-agl-ft") < 50))
 				{
 					me.rollout_armed.setValue(0);
 					idx = 5;	# ROLLOUT
@@ -876,6 +876,11 @@ var AFDS = {
 			}
 			elsif(idx == 5)									# ROLLOUT
 			{
+				if(getprop("gear/gear[0]/wow")
+						and me.AP.getValue())
+				{
+					setprop("/controls/gear/tiller-enabled", 1);
+				}
 				if(getprop("velocities/groundspeed-kt") < 50)
 				{
 					setprop("/controls/gear/tiller-enabled", me.tiller_status);
