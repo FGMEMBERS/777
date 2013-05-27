@@ -1331,6 +1331,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<not>
 							<property>instrumentation/afds/inputs/ias-mach-selected</property>
 						</not>
@@ -1346,6 +1367,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<property>instrumentation/afds/inputs/ias-mach-selected</property>
 					</and>
 				</condition>
@@ -1375,6 +1417,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<not>
 							<property>instrumentation/afds/inputs/ias-mach-selected</property>
 						</not>
@@ -1390,6 +1453,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<property>instrumentation/afds/inputs/ias-mach-selected</property>
 					</and>
 				</condition>
@@ -1445,6 +1529,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<not>
 							<property>instrumentation/afds/inputs/ias-mach-selected</property>
 						</not>
@@ -1460,6 +1565,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<property>instrumentation/afds/inputs/ias-mach-selected</property>
 					</and>
 				</condition>
@@ -1490,6 +1616,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<not>
 							<property>instrumentation/afds/inputs/ias-mach-selected</property>
 						</not>
@@ -1505,6 +1652,27 @@ Autopilot Control Panel
 				<condition>
 					<and>
 						<property>/systems/electrical/outputs/avionics</property>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV ALT</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</not-equals>
+						<or>
+							<not-equals>
+								<property>instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</not-equals>
+							<and>
+								<equals>
+									<property>instrumentation/afds/ap-modes/pitch-mode</property>
+									<value>VNAV PTH</value>
+								</equals>
+								<property>instrumentation/afds/settings/manual-intervention</property>
+							</and>
+						</or>
 						<property>instrumentation/afds/inputs/ias-mach-selected</property>
 					</and>
 				</condition>

@@ -221,7 +221,7 @@
 			<property>/controls/flight/rudder</property>
 		</output>
 		<config>
-			<Kp>0.05</Kp>
+			<Kp>0.03</Kp>
 			<Ki>0.01</Ki>
 			<u_min>-5.0</u_min>
 			<u_max>5.0</u_max>
@@ -278,13 +278,13 @@
 			<property>/orientation/roll-deg</property>
 		</input>
 		<reference>
-			<value>0.0</value>
+			<value>/orientation/side-slip-deg</value>
 		</reference>
 		<output>
 			<property>/autopilot/internal/target-roll-deg</property>
 		</output>
 		<config>
-			<Kp>5.0</Kp>
+			<Kp>15.0</Kp>
 			<Ki>0.0</Ki>
 			<u_min>
 				<property>instrumentation/afds/settings/bank-min</property>
@@ -324,10 +324,10 @@
 			<Ti>5</Ti>
 			<Td>0.0</Td>
 			<u_min>
-				<value>-0.5</value>
+				<value>-1.0</value>
 			</u_min>
 			<u_max>
-				<value>0.5</value>
+				<value>1.0</value>
 			</u_max>
 		</config>
 	</pid-controller>
@@ -900,13 +900,16 @@
 
 	<filter>
 		<name>Current GSVspped local</name> 
+		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<enable>
-			<greater-than>
-				<property>position/gear-agl-ft</property>
-				<value>150</value>
-			</greater-than>
+			<condition>
+				<greater-than>
+					<property>position/gear-agl-ft</property>
+					<value>150.0</value>
+				</greater-than>
+			</condition>
 		</enable>
 		<input>
 			<property>/instrumentation/nav[0]/gs-rate-of-climb</property>

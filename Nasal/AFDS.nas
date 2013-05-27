@@ -880,6 +880,7 @@ var AFDS = {
 						and me.AP.getValue())
 				{
 					setprop("/controls/gear/tiller-enabled", 1);
+					setprop("controls/flight/aileron", 0);	# Aileron set neutral
 				}
 				if(getprop("velocities/groundspeed-kt") < 50)
 				{
