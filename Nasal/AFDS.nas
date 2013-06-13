@@ -228,6 +228,11 @@ var AFDS = {
 						me.target_alt.setValue(me.alt_setting.getValue());
 					}
 					me.autothrottle_mode.setValue(5);	# A/T SPD
+					setprop("/autopilot/locks/pitch-lock", 1);
+					settimer(func
+					{
+						setprop("autopilot/locks/pitch-lock", 0);
+					}, 5);
 				}
 				if(btn==4)
 				{
@@ -319,6 +324,11 @@ var AFDS = {
 					setprop("autopilot/internal/current-pitch-deg", getprop("orientation/pitch-deg"));
 					var alt = me.alt_setting.getValue();
 					me.target_alt.setValue(alt);
+					setprop("/autopilot/locks/pitch-lock", 1);
+					settimer(func
+					{
+						setprop("autopilot/locks/pitch-lock", 0);
+					}, 5);
 				}
 				me.vertical_mode.setValue(btn);
 			}
@@ -690,6 +700,14 @@ var AFDS = {
 			{
 				setprop("autopilot/settings/autopilot-transition", 0);
 			}, 10);
+			if(me.AP_annun.getValue() != "LAND 3")
+			{
+				setprop("/autopilot/locks/pitch-lock", 1);
+				settimer(func
+				{
+					setprop("autopilot/locks/pitch-lock", 0);
+				}, 5);
+			}
 		}
 		me.AP_annun.setValue(msg);
 		var tmp = abs(me.vs_setting.getValue());
@@ -1035,7 +1053,7 @@ var AFDS = {
 						{
 							if(me.mach_setting.getValue() == 0.780)
 							{
-								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < 0.785)
+								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < 0.795)
 								{
 									me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 									me.target_alt.setValue(me.intervention_alt);
@@ -1053,7 +1071,7 @@ var AFDS = {
 						}
 						else
 						{
-							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < 285)
+							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < 295)
 							{
 								me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 								me.target_alt.setValue(me.intervention_alt);
@@ -1281,13 +1299,11 @@ var AFDS = {
 				{
 					me.rollout_armed.setValue(1);		# ROLLOUT
 					me.flare_armed.setValue(1);			# FLARE
-					setprop("autopilot/settings/flare-speed-fps", 0);
+					setprop("autopilot/settings/flare-speed-fps", 5);
 				}
 			}
 			elsif(idx == 7)								# FLARE
 			{
-				var f_angle = 0.00;
-				me.flare_constant_setting.setValue(f_angle);
 				if(me.autothrottle_mode.getValue())
 				{
 					if(getprop("position/gear-agl-ft") < 25)

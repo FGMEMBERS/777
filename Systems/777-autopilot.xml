@@ -1026,7 +1026,7 @@
 			</condition>
 		</enable>
 		<input>
-			<value>0</value>
+			<value>-3.0</value>
 		</input>
 		<output>
 			<property>/autopilot/internal/target-pitch-deg</property>
@@ -1111,7 +1111,21 @@
 		</config>
 	</pid-controller>
 
-	<pid-controller>
+	<filter>
+		<name>AP:Pitch sample and hold</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<property>autopilot/locks/pitch-lock</property>
+			</condition>
+		</enable>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/orientation/pitch-deg</input>
+		<output>/autopilot/internal/target-pitch-deg</output>
+	</filter>
+ 
+ 	<pid-controller>
 		<name>Elevator Control</name>
 		<debug>false</debug>
 		<enable>
@@ -1131,10 +1145,10 @@
 			<Ti>2.0</Ti>
 			<Td>0.0</Td>
 			<u_min>
-				<value>-0.8</value>
+				<value>-1.0</value>
 			</u_min>
 			<u_max>
-				<value>0.8</value>
+				<value>1.0</value>
 			</u_max>
 		</config>
 	</pid-controller>
