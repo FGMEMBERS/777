@@ -9,7 +9,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20130612</aircraft-version>
+        <aircraft-version>20130617</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
@@ -284,6 +284,7 @@ Service Ceiling: 43,100ft
         </multiplay>
 
         <flight-recorder include="Systems/flight-recorder.xml"/>
+		<checklists include="777-checklists.xml"/>
 
         <dimensions>
             <radius-m type="double">32</radius-m>
@@ -905,5 +906,5 @@ Service Ceiling: 43,100ft
         <max-positive-g>2.5</max-positive-g>
         <max-negative-g>-1.76</max-negative-g>
     </limits>
-
+	
 </PropertyList>

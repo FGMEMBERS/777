@@ -1,0 +1,280 @@
+<PropertyList>
+    <checklist>
+        <title>Before Starting Engine</title>
+        <item>
+            <name>Parking Brake</name>
+            <value>Test and Set</value>
+            <condition>
+                <equals>
+                    <property>/controls/gear/brake-parking</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Throttle</name>
+            <value>Idle</value>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/controls/engines/engine[0]/throttle</property>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property>/controls/engines/engine[1]/throttle</property>
+                        <value>0</value>
+                    </equals>
+                </and>
+            </condition>
+        </item>
+        <item>
+            <name>Fuel flow</name>
+            <value>Cut Off</value>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/controls/engines/engine[0]/cutoff</property>
+                        <value>true</value>
+                    </equals>
+                    <equals>
+                        <property>/controls/engines/engine[1]/cutoff</property>
+                        <value>true</value>
+                    </equals>
+                </and>
+            </condition>
+        </item>
+        <item>
+            <name>BATT Master Switch</name>
+            <value>On</value>
+            <condition>
+                <equals>
+                    <property>/controls/electric/battery-switch</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Start APU</name>
+            <value>On</value>
+            <condition>
+                <property>/controls/APU/run</property>
+            </condition>
+        </item>
+        <item>
+            <name>left/right power-bus cross-feeds</name>
+            <value>On</value>
+            <condition>
+                <and>
+                    <property>controls/electric/engine[0]/bus-tie</property>
+                    <property>controls/electric/engine[1]/bus-tie</property>
+                </and>
+            </condition>
+        </item>
+        <item>
+            <name>Landing Gear Lever</name>
+            <value>Check Down</value>
+            <condition>
+                <equals>
+                    <property>/controls/gear/gear-down</property>
+                    <value>true</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Flaps</name>
+            <value>Up</value>
+            <condition>
+                <equals>
+                    <property>/controls/flight/flaps</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Spoiler</name>
+            <value>Retracted</value>
+            <condition>
+                <equals>
+                    <property>/controls/flight/speedbrake</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Fuel Quantity</name>
+            <value>Check</value>
+        </item>
+        <item>
+            <name>Engine Instruments</name>
+            <value>Check</value>
+        </item>
+        <item>
+            <name>Flight Controls</name>
+            <value>Free and Correct</value>
+        </item>
+        <item>
+            <name>Avionics</name>
+            <value>On</value>
+        </item>
+        <item>
+            <name>Fasten Seat Belts</name>
+            <value>On</value>
+            <condition>
+                <equals>
+                    <property>/controls/cabin/SeatBelt-knob</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>No Smoking</name>
+            <value>On</value>
+            <condition>
+                <equals>
+                    <property>/controls/cabin/NoSmoking-knob</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Check Weather</name>
+            <value>Atis Flight Service</value>
+        </item>
+        <item>
+            <name>Altimeter</name>
+            <value>Check</value>
+            <condition>
+                <greater-than>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>-1</value>
+                </greater-than>
+            </condition>
+        </item>
+        <item>
+            <name>GPWS self-test (press and hold for 5 seconds)</name>
+            <value>Done</value>
+            <condition>
+                <property>/instrumentation/mk-viii/inputs/discretes/self-test</property>
+            </condition>
+        </item>
+        <item>
+            <name>Anti-ice</name>
+            <value>Test/check</value>
+        </item>
+        <item>
+            <name>Request Clearance</name>
+            <value>Done</value>
+        </item>
+        <item>
+            <name>Transponder</name>
+            <value>Standby</value>
+            <condition>
+                <equals>
+                    <property>/instrumentation/transponder/mode-switch</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+
+        </item>
+        <item>
+            <name>Beacon</name>
+            <value>On</value>
+            <condition>
+                <equals>
+                    <property>/controls/lighting/beacon</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </item>
+
+    </checklist>
+    <checklist>
+        <title>Pushback/Startup</title>
+        <item>
+            <name>Left/right/center fuel pumps ON (6 switches)</name>
+            <value>On</value>
+            <condition>
+                <and>
+                    <property>/controls/fuel/tank/boost-pump</property>
+                    <property>/controls/fuel/tank/boost-pump[1]</property>
+                    <property>/controls/fuel/tank[1]/boost-pump</property>
+                    <property>/controls/fuel/tank[1]/boost-pump[1]</property>
+                    <property>/controls/fuel/tank[2]/boost-pump</property>
+                    <property>/controls/fuel/tank[2]/boost-pump[1]</property>
+                </and>
+            </condition>
+        </item>
+        <item>
+            <name>Set #1(left)Engine start knob to</name>
+            <value>Start</value>
+            <condition>
+                <equals>
+                    <property>controls/engines/StartIgnition-knob[0]</property>
+                    <value>-1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>At N2 > 20 % fuel flow engine</name>
+            <value>Check</value>
+            <condition>
+                <equals>
+                    <property>/controls/engines/engine[0]/cutoff</property>
+                    <value>false</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>N1 is increasing as N2 incr.</name>
+            <value>Check</value>
+        </item>
+        <item>
+            <name>Set #2(Right)Engine start knob to</name>
+            <value>Start</value>
+            <condition>
+                <equals>
+                    <property>controls/engines/StartIgnition-knob[1]</property>
+                    <value>-1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>At N2 > 20 % fuel flow engine</name>
+            <value>Check</value>
+            <condition>
+                <equals>
+                    <property>/controls/engines/engine[1]/cutoff</property>
+                    <value>false</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>N1 is increasing as N2 incr.</name>
+            <value>Check</value>
+        </item>
+        <item>
+            <name>Switch Off APU</name>
+            <value>Check</value>
+            <condition>
+                <equals>
+                    <property>/controls/APU/run</property>
+                    <value>false</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>BATT Master Switch</name>
+            <value>Off</value>
+            <condition>
+                <equals>
+                    <property>/controls/electric/battery-switch</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </item>
+    </checklist>
+    <checklist>
+        <title>Take off</title>
+    </checklist>
+</PropertyList>
+
