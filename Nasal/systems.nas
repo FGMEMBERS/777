@@ -612,7 +612,6 @@ setlistener("/sim/signals/fdm-initialized", func {
 #    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
     setprop("/sim/flaps/current-setting", 0);
 	balance_fuel();
-#    setprop("/controls/gear/tiller-enabled", 0);
     setprop("controls/fuel/tank[0]/boost-pump[0]",1);
     setprop("controls/fuel/tank[0]/boost-pump[1]",1);
     setprop("controls/fuel/tank[2]/boost-pump[0]",1);

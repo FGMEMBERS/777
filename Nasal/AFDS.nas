@@ -30,7 +30,6 @@ var AFDS = {
 		"VNAV ALT","G/S","FLARE","FLCH SPD","FPA","TO/GA"];
 
 		m.step=0;
-		m.tiller_status = 0;
 		m.descent_step=0;
 		m.heading_change_rate = 0;
 		m.optimal_alt = 0;
@@ -355,6 +354,10 @@ var AFDS = {
 					btn=0;
 					copilot("Captain, auto-throttle won't engage below 400ft.");
 				}
+				if(btn == 2)
+				{
+					setprop("autopilot/locks/takeoff-mode", 1);
+				}
 				me.autothrottle_mode.setValue(btn);
 			}
 			elsif(mode==3)	#FD, LOC or G/S button
@@ -464,7 +467,6 @@ var AFDS = {
 						else
 						{
 							me.loc_armed.setValue(1);			# LOC arm
-							me.tiller_status = getprop("/controls/gear/tiller-enabled");
 							setprop("autopilot/internal/presision-loc", 0);
      						setprop("instrumentation/nav/heading-needle-deflection-ptr", getprop("instrumentation/nav/heading-needle-deflection-norm"));
 						}
@@ -500,7 +502,6 @@ var AFDS = {
 							if(me.loc_armed.getValue() == 0)
 							{
 								me.loc_armed.setValue(1);		# LOC arm
-								me.tiller_status = getprop("/controls/gear/tiller-enabled");
 							}
 						}
 					}
@@ -878,7 +879,6 @@ var AFDS = {
 				{
 					me.rollout_armed.setValue(0);
 					idx = 5;	# ROLLOUT
-					setprop("/controls/gear/tiller-enabled", 1);
 				}
 				var deflection = getprop("instrumentation/nav/heading-needle-deflection-norm");
 				if(abs(deflection) < 0.5233)
@@ -897,11 +897,9 @@ var AFDS = {
 				if(getprop("gear/gear[0]/wow")
 						and me.AP.getValue())
 				{
-					setprop("/controls/gear/tiller-enabled", 1);
 				}
 				if(getprop("velocities/groundspeed-kt") < 50)
 				{
-					setprop("/controls/gear/tiller-enabled", me.tiller_status);
 					me.AP.setValue(0);						# Autopilot off
 					setprop("controls/flight/aileron", 0);	# Aileron set neutral
 					setprop("controls/flight/rudder", 0);	# Rudder set neutral
@@ -1302,24 +1300,24 @@ var AFDS = {
 					setprop("autopilot/settings/flare-speed-fps", 5);
 				}
 			}
-			elsif(idx == 7)								# FLARE
+			else
 			{
-				if(me.autothrottle_mode.getValue())
+				if(me.autothrottle_mode.getValue() == 5)	# SPD
 				{
 					if(getprop("position/gear-agl-ft") < 25)
 					{
 						me.autothrottle_mode.setValue(4);	# A/T IDLE
 					}
-				}
-				if(getprop("velocities/groundspeed-kt") < 30)
-				{
-					if(!me.FD.getValue())
+					if(getprop("velocities/groundspeed-kt") < 30)
 					{
-						idx = 0;	# NO MODE
-					}
-					else
-					{
-						idx = 1; 	# ALT
+						if(!me.FD.getValue())
+						{
+							idx = 0;	# NO MODE
+						}
+						else
+						{
+							idx = 1; 	# ALT
+						}
 					}
 				}
 			}
@@ -1454,6 +1452,7 @@ var AFDS = {
 			# Take off mode and above baro 400 ft
 			elsif((current_alt - getprop("autopilot/internal/airport-height")) > 400)
 			{
+				setprop("autopilot/locks/takeoff-mode", 0);
 				if(me.autothrottle_mode.getValue() == 1)		# THR
 				{
 					setprop("/controls/engines/engine[0]/throttle", thrust_lmt);

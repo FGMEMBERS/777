@@ -87,18 +87,7 @@
         <enable>
             <condition>
                 <property>/instrumentation/afds/inputs/at-armed[0]</property>
-				<not>
-	                <equals>
-						<property>instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>TO/GA</value>
-					</equals>
-				</not>
-				<not>
-	                <equals>
-						<property>/instrumentation/afds/inputs/vertical-index</property>
-						<value>0</value>
-					</equals>
-				</not>
+				<not><property>/autopilot/locks/takeoff-mode</property></not>
 				<or>
 	                <equals>
     	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
@@ -115,13 +104,13 @@
         <input>
             <condition>
 				<and>
-	               	<equals>
-						<property>instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>FLARE</value>
-            	   	</equals>
+	                <equals>
+    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+        	            <value>4</value>
+					</equals>
 					<less-than>
 						<property>position/gear-agl-ft</property>
-						<value>20</value>
+						<value>25</value>
 					</less-than>
 				</and>
             </condition>
@@ -141,18 +130,7 @@
         <enable>
             <condition>
                 <property>/instrumentation/afds/inputs/at-armed[1]</property>
-				<not>
-	                <equals>
-						<property>instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>TO/GA</value>
-					</equals>
-				</not>
-				<not>
-	                <equals>
-						<property>/instrumentation/afds/inputs/vertical-index</property>
-						<value>0</value>
-					</equals>
-				</not>
+				<not><property>/autopilot/locks/takeoff-mode</property></not>
 				<or>
 	                <equals>
     	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
@@ -168,10 +146,16 @@
 
         <input>
             <condition>
-               	<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>FLARE</value>
-               	</equals>
+				<and>
+	                <equals>
+    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+        	            <value>4</value>
+					</equals>
+					<less-than>
+						<property>position/gear-agl-ft</property>
+						<value>25</value>
+					</less-than>
+				</and>
             </condition>
             <value>0</value>
         </input>

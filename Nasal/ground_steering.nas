@@ -31,7 +31,9 @@ var GroundSteeringManager = {
 		var nosegear_steering_cmd_norm = 0.0;
 		var maingear_steering_cmd_norm = 0.0;
 
-		if (!me.tiller_switch.getValue())
+		if (!me.tiller_switch.getValue()
+				or (getprop("velocities/groundspeed-kt") > 50))
+
 			tiller_cmd_norm = rudder_cmd_norm;
 
 		if (abs(tiller_cmd_norm) > 0.000001) {
