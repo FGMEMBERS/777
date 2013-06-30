@@ -208,7 +208,7 @@
 						</eauals>
 						<less-than>
 							<property>position/gear-agl-ft</property>
-							<value>200</value>
+							<value>400</value>
 						</less-than>
 					</and>
 				</condition>
@@ -336,6 +336,7 @@
             	</condition>
 				<value>0.06</value>
 			</u_min>
+            <u_min>0.125</u_min>
 			<u_max>
             	<condition>
                 	<equals>
@@ -345,7 +346,6 @@
             	</condition>
 				<prop>/controls/engines/engine[1]/throttle</prop>
 			</u_max>
-            <u_min>0.125</u_min>
 			<u_max>
 				<prop>autopilot/settings/thrust-lmt</prop>
 			</u_max>

@@ -646,6 +646,7 @@ var start_updates = func {
     	setprop("/sim/flaps/current-setting", 0);
 		setprop("autopilot/settings/target-speed-kt", getprop("sim/presets/airspeed-kt"));
 		b777.afds.input(1,1);
+		setprop("autopilot/settings/counter-set-altitude-ft", getprop("sim/presets/altitude-ft"));
 		setprop("autopilot/settings/actual-target-altitude-ft", getprop("sim/presets/altitude-ft"));
 		b777.afds.input(0,2);
 		setprop("controls/flight/rudder-trim", 0);
