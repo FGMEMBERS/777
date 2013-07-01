@@ -421,11 +421,11 @@ Service Ceiling: 43,100ft
                 <desc>Toggle Reversers</desc>
                 <binding>
                     <command>property-toggle</command>
-                    <property>controls/engines/engine[0]/reverser</property>
+                    <property>controls/engines/engine[0]/reverser-cmd</property>
                 </binding>
                 <binding>
                     <command>property-toggle</command>
-                    <property>controls/engines/engine[1]/reverser</property>
+                    <property>controls/engines/engine[1]/reverser-cmd</property>
                 </binding>
             </key>
             <key n="267">

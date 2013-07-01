@@ -21,8 +21,8 @@ Max Landing weight: 492,000 lbs
 
   <!-- Approach configuration -->
   <approach speed="132" alt="0.0" aoa="5.0" fuel="0.2" glide-angle="0.0">
-      <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.25"/>
-      <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.25"/>
+      <control-setting axis="/controls/engines/engine[0]/throttle-act" value="0.25"/>
+      <control-setting axis="/controls/engines/engine[1]/throttle-act" value="0.25"/>
       <control-setting axis="/controls/flight/flaps" value="1"/>
       <control-setting axis="/surface-positions/slats" value="1"/>
       <control-setting axis="/controls/gear/gear-down" value="1"/>
@@ -32,8 +32,8 @@ Max Landing weight: 492,000 lbs
 
   <!-- Cruise configuration -->
   <cruise speed="512" alt="35000" fuel="0.8" glide-angle="0.0">
-      <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.95"/>
-      <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.95"/>
+      <control-setting axis="/controls/engines/engine[0]/throttle-act" value="0.95"/>
+      <control-setting axis="/controls/engines/engine[1]/throttle-act" value="0.95"/>
       <control-setting axis="/controls/flight/flaps" value="0.0"/>
       <control-setting axis="/controls/gear/gear-down" value="0"/>
       <solve-weight idx="0" weight="360"/>
@@ -120,7 +120,7 @@ Performance
 
   <jet x="1.16" y="9.89"  z="-2.995" mass="18260" thrust="115540" spool-time="3"
        egt="840" tsfc="0.23 " epr="40" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="107">
-    <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
+    <control-input axis="/controls/engines/engine[0]/throttle-act" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
     <control-speed control="REVERSE_THRUST" transition-time="4"/>
@@ -129,7 +129,7 @@ Performance
 
   <jet x="1.16" y="-9.89"  z="-2.995" mass="18260" thrust="115540"  spool-time="3"
        egt="840" tsfc="0.23" epr="40" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="107">
-    <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
+    <control-input axis="/controls/engines/engine[1]/throttle-act" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
     <control-speed control="REVERSE_THRUST" transition-time="4"/>

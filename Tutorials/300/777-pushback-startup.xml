@@ -126,11 +126,11 @@ Are you ready to take controls?
 			<condition>
 				<and>
 					<less-than>
-						<property>controls/engines/engine[0]/throttle</property>
+						<property>controls/engines/engine[0]/throttle-lever</property>
 						<value>0.1</value>
 					</less-than>
 					<less-than>
-						<property>controls/engines/engine[1]/throttle</property>
+						<property>controls/engines/engine[1]/throttle-lever</property>
 						<value>0.1</value>
 					</less-than>
 				</and>

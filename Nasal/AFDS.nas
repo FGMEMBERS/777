@@ -1444,8 +1444,8 @@ var AFDS = {
 			elsif((me.autothrottle_mode.getValue() == 4)		# Auto throttle mode IDLE 
 				and ((me.vertical_mode.getValue() == 8)			# FLCH SPD mode
 					or (me.vertical_mode.getValue() == 3))		# VNAV PTH mode
-				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[0]/throttle") * 1000))		# #1Thrust is actual flight idle
-				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[1]/throttle") * 1000)))		# #2Thrust is actual flight idle
+				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[0]/throttle-act") * 1000))		# #1Thrust is actual flight idle
+				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[1]/throttle-act") * 1000)))		# #2Thrust is actual flight idle
 			{
 				me.autothrottle_mode.setValue(3);				# HOLD
 			}

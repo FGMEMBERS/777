@@ -241,7 +241,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/controls/engines/engine[0]/throttle</property>
+					<property>/controls/engines/engine[0]/throttle-lever</property>
 					<value>0.75</value>
 				</greater-than>
 			</condition>

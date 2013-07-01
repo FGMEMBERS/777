@@ -216,14 +216,16 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>LHthrottle</object-name>
         <object-name>LHthrottle.001</object-name>
-        <property>controls/engines/engine/throttle</property>
-        <factor>-50</factor>
+		<condition>
+			<property>controls/engines/engine/reverser</property>
+		</condition>
+        <property>controls/engines/engine/throttle-lever</property>
+        <factor>50</factor>
         <center>
-            <x-m>-0.140</x-m>
+            <x-m>0.020</x-m>
             <y-m>0</y-m>
-            <z-m>0.420</z-m>
+            <z-m>0.530</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -234,9 +236,53 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
+        <object-name>RHthrottle.001</object-name>
+		<condition>
+			<property>controls/engines/engine[1]/reverser</property>
+		</condition>
+        <property>controls/engines/engine[1]/throttle-lever</property>
+        <factor>50</factor>
+        <center>
+            <x-m>0.020</x-m>
+            <y-m>0</y-m>
+            <z-m>0.530</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>LHthrottle</object-name>
+        <object-name>LHthrottle.001</object-name>
+		<condition>
+			<not><property>controls/engines/engine/reverser</property></not>
+		</condition>
+        <property>controls/engines/engine/throttle-lever</property>
+        <factor>50</factor>
+        <center>
+            <x-m>-0.140</x-m>
+            <y-m>0</y-m>
+            <z-m>0.420</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
         <object-name>RHthrottle</object-name>
         <object-name>RHthrottle.001</object-name>
-        <property>controls/engines/engine[1]/throttle</property>
+		<condition>
+			<not><property>controls/engines/engine[1]/reverser</property></not>
+		</condition>
+        <property>controls/engines/engine[1]/throttle-lever</property>
         <factor>50</factor>
         <center>
             <x-m>-0.140</x-m>

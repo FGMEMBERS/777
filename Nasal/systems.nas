@@ -292,9 +292,10 @@ var Engine = {
         m.egt_degf = m.eng.getNode("egt-degf",1);
         m.egt = m.eng.getNode("egt",1);
         m.egt.setDoubleValue(0);
-        m.throttle_lever = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle-lever",1);
-        m.throttle_lever.setDoubleValue(0);
-        m.throttle = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle",1);
+        m.reverser_cmd = props.globals.getNode("controls/engines/engine["~eng_num~"]/reverser-cmd",1);
+		m.reverser_cmd.setBoolValue(0);
+        m.reverser = props.globals.getNode("controls/engines/engine["~eng_num~"]/reverser",1);
+        m.throttle = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle-act",1);
         m.throttle.setDoubleValue(0);
         m.cutoff = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff",1);
         m.cutoff.setBoolValue(1);
@@ -337,7 +338,14 @@ var Engine = {
             }
             me.rpm.setValue(me.n1.getValue());
             me.n2rpm.setValue(me.n2.getValue());
-            me.throttle_lever.setValue(me.throttle.getValue());
+			if(me.throttle.getValue() == 0)
+			{
+				var reverser_cmd = me.reverser_cmd.getValue();
+				if(reverser_cmd != me.reverser.getValue())
+				{
+					me.reverser.setValue(reverser_cmd);
+				}
+			}
             me.egt.setDoubleValue(me.egt_degf.getValue());
             var v_pph = (me.fuel_gph.getValue() * getprop("consumables/fuel/tank/density-ppg") / 1000);
             if(v_pph < 1.2)
@@ -361,7 +369,7 @@ var Engine = {
         }
         else
         {
-            me.throttle_lever.setValue(0);
+#            me.throttle_lever.setValue(0);
             if(me.starterSwitch.getValue() == -1)
             {
                 if(getprop("controls/electric/APU-generator")

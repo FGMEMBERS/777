@@ -17,11 +17,11 @@
             <condition>
                 <and>
                     <equals>
-                        <property>/controls/engines/engine[0]/throttle</property>
+                        <property>/controls/engines/engine[0]/throttle-lever</property>
                         <value>0</value>
                     </equals>
                     <equals>
-                        <property>/controls/engines/engine[1]/throttle</property>
+                        <property>/controls/engines/engine[1]/throttle-lever</property>
                         <value>0</value>
                     </equals>
                 </and>

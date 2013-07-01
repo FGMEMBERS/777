@@ -59,8 +59,8 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
  772ER FG default + reference difference.
 -->
 <approach speed="145" aoa="3" fuel="0.2">
-    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.25"/>
-    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.25"/>
+    <control-setting axis="/controls/engines/engine[0]/throttle-act" value="0.25"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle-act" value="0.25"/>
     <control-setting axis="/controls/flight/flaps" value="1"/>
     <control-setting axis="/surface-positions/slats" value="1"/>
     <control-setting axis="/controls/gear/gear-down" value="1"/>
@@ -70,8 +70,8 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
 
 <!-- Cruise configuration -->
 <cruise speed="490" alt="38000" fuel="0.8">
-    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.95"/>
-    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.95"/>
+    <control-setting axis="/controls/engines/engine[0]/throttle-act" value="0.95"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle-act" value="0.95"/>
     <control-setting axis="/controls/flight/flaps" value="0.0"/>
     <control-setting axis="/controls/flight/elevator-trim" value="0"/>
     <control-setting axis="/controls/gear/gear-down" value="0"/>
@@ -144,7 +144,7 @@ GEN ELEC-GE 90-94B Thrust=93700 lb Mass=16644 lb Cruise SFC 0.545 (lb/hr/lb) ??
 -->
 <jet x="1.16" y="9.89"  z="-2.995" mass="16644" thrust="93700" spool-time="3"
 egt="825" tsfc="0.38" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="117" reverse="0.4">
-  <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
+  <control-input axis="/controls/engines/engine[0]/throttle-act" control="THROTTLE"/>
   <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
     <control-speed control="REVERSE_THRUST" transition-time="4"/>
@@ -153,7 +153,7 @@ egt="825" tsfc="0.38" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="117" re
 
 <jet x="1.16" y="-9.89"  z="-2.995" mass="16644" thrust="93700" spool-time="3"
 egt="825" tsfc="0.38" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="117" reverse="0.4">
-  <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
+  <control-input axis="/controls/engines/engine[1]/throttle-act" control="THROTTLE"/>
   <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
     <control-speed control="REVERSE_THRUST" transition-time="4"/>

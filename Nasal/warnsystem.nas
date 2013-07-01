@@ -110,7 +110,7 @@ var WEU =
         setlistener(prop1 ~ "/serviceable",             func { Weu.update_listener_inputs() } );
 
         setlistener("instrumentation/mk-viii/inputs/discretes/gear-override", func { Weu.update_listener_inputs() } );
-        setlistener("controls/engines/engine/throttle", func { Weu.update_throttle_input() } );
+        setlistener("controls/engines/engine/throttle-act", func { Weu.update_throttle_input() } );
         setlistener("instrumentation/afds/inputs/AP",     func { Weu.update_ap_mode();});
         m.update_listener_inputs();
         
@@ -371,7 +371,7 @@ var WEU =
 #### update throttle input ####
     update_throttle_input : func()
     {
-        me.throttle = getprop("controls/engines/engine/throttle");
+        me.throttle = getprop("controls/engines/engine/throttle-act");
     },
 
 #### update autopilot mode ####
