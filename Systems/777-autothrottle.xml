@@ -208,7 +208,7 @@
 						</eauals>
 						<less-than>
 							<property>position/gear-agl-ft</property>
-							<value>200</value>
+							<value>150</value>
 						</less-than>
 					</and>
 				</condition>
@@ -300,7 +300,7 @@
 						</eauals>
 						<less-than>
 							<property>position/gear-agl-ft</property>
-							<value>200</value>
+							<value>150</value>
 						</less-than>
 					</and>
 				</condition>
@@ -509,7 +509,7 @@
 						</eauals>
 						<less-than>
 							<property>position/gear-agl-ft</property>
-							<value>200</value>
+							<value>150</value>
 						</less-than>
 					</and>
 			 </condition>
@@ -592,7 +592,7 @@
 						</eauals>
 						<less-than>
 							<property>position/gear-agl-ft</property>
-							<value>200</value>
+							<value>150</value>
 						</less-than>
 					</and>
 			 </condition>

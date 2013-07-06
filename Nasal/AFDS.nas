@@ -1304,7 +1304,7 @@ var AFDS = {
 			{
 				if(me.autothrottle_mode.getValue() == 5)	# SPD
 				{
-					if(getprop("position/gear-agl-ft") < 25)
+					if(getprop("position/gear-agl-ft") < 50)
 					{
 						me.autothrottle_mode.setValue(4);	# A/T IDLE
 					}
