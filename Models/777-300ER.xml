@@ -47,7 +47,7 @@ Syd Adams
 	<object-name>RHelevator</object-name>
 	<property-base>sim/model/livery</property-base>
 	<texture-prop>texture</texture-prop>
-		<texture>Liveries-300/paint1.png</texture>
+		<texture>Liveries-300/JAL.png</texture>
     </animation>
 
     <effect>

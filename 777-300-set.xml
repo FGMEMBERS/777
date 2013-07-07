@@ -11,11 +11,9 @@
         <model n="0">
             <path>Aircraft/777/Models/777-300.xml</path>
             <livery>
-                <file type="string">arminair</file>
+                <file type="string">JAL</file>
+                <texture>Liveries-300/paint1.png</texture>
             </livery>
-            <lights>
-                <file type="string">arminair</file>
-            </lights>
         </model>
         <view n="0">
             <config n="0">

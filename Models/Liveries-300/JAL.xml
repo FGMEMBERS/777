@@ -5,7 +5,7 @@
     <model>
         <livery>
             <name type="string">JAL Japan Airlines</name>
-            <texture>Liveries-300/JAL.png</texture>
+            <texture>Liveries-300/paint1.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>

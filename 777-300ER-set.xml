@@ -11,11 +11,9 @@
         <model n="0">
             <path>Aircraft/777/Models/777-300ER.xml</path>
             <livery>
-                <file type="string">White</file>
+                <file type="string">JAL</file>
+                <texture>Liveries-300/paint1.png</texture>
             </livery>
-            <lights>
-                <file type="string">White</file>
-            </lights>
         </model>
         <view n="0">
             <config n="0">
