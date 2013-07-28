@@ -1111,20 +1111,6 @@
 		</config>
 	</pid-controller>
 
-	<filter>
-		<name>AP:Pitch sample and hold</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<property>autopilot/locks/pitch-lock</property>
-			</condition>
-		</enable>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>/orientation/pitch-deg</input>
-		<output>/autopilot/internal/target-pitch-deg</output>
-	</filter>
- 
  	<pid-controller>
 		<name>Elevator Control</name>
 		<debug>false</debug>
@@ -1138,7 +1124,7 @@
 			<property>/autopilot/internal/target-pitch-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/elevator-trim-filter</property>
+			<property>/controls/flight/elevator-filter</property>
 		</output>
 		<config>
 			<Kp>-0.024</Kp>
@@ -1190,9 +1176,36 @@
 		<max-rate-of-change>0.2</max-rate-of-change>
 		<initialize-to>output</initialize-to>
 		<input>
-			<property>/controls/flight/elevator-trim-filter</property>
+			<property>/controls/flight/elevator-filter</property>
 		</input>
-		<output>/controls/flight/elevator-trim</output>
+		<output>/controls/flight/elevator</output>
 	</filter>
 
+ 	<pid-controller>
+		<name>Stabilizer Control</name>
+		<debug>false</debug>
+		<enable>
+			<property>instrumentation/afds/inputs/AP</property>
+		</enable>
+		<input>
+			<property>/controls/flight/elevator</property>
+		</input>
+		<reference>
+			<value>0</value>
+		</reference>
+		<output>
+			<property>/controls/flight/elevator-trim</property>
+		</output>
+		<config>
+			<Kp>-0.05</Kp>
+			<Ti>10.0</Ti>
+			<Td>0.0</Td>
+			<u_min>
+				<value>-1.0</value>
+			</u_min>
+			<u_max>
+				<value>1.0</value>
+			</u_max>
+		</config>
+	</pid-controller>
 </PropertyList>

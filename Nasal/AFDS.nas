@@ -227,11 +227,6 @@ var AFDS = {
 						me.target_alt.setValue(me.alt_setting.getValue());
 					}
 					me.autothrottle_mode.setValue(5);	# A/T SPD
-					setprop("/autopilot/locks/pitch-lock", 1);
-					settimer(func
-					{
-						setprop("autopilot/locks/pitch-lock", 0);
-					}, 5);
 				}
 				if(btn==4)
 				{
@@ -323,11 +318,6 @@ var AFDS = {
 					setprop("autopilot/internal/current-pitch-deg", getprop("orientation/pitch-deg"));
 					var alt = me.alt_setting.getValue();
 					me.target_alt.setValue(alt);
-					setprop("/autopilot/locks/pitch-lock", 1);
-					settimer(func
-					{
-						setprop("autopilot/locks/pitch-lock", 0);
-					}, 5);
 				}
 				me.vertical_mode.setValue(btn);
 			}
@@ -701,14 +691,6 @@ var AFDS = {
 			{
 				setprop("autopilot/settings/autopilot-transition", 0);
 			}, 10);
-			if(me.AP_annun.getValue() != "LAND 3")
-			{
-				setprop("/autopilot/locks/pitch-lock", 1);
-				settimer(func
-				{
-					setprop("autopilot/locks/pitch-lock", 0);
-				}, 5);
-			}
 		}
 		me.AP_annun.setValue(msg);
 		var tmp = abs(me.vs_setting.getValue());
