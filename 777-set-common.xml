@@ -9,7 +9,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20130728</aircraft-version>
+        <aircraft-version>20130801</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
@@ -773,15 +773,9 @@ Service Ceiling: 43,100ft
             <display>IDENT</display>
             <input type="string"/>
         </cdu>
-        <fmc>
-            <to-flap type="double">0.66</to-flap>
-            <vspeeds>
-                <V1 type="double">100</V1>
-                <VR type="double">130</VR>
-                <V2 type="double">140</V2>
-                <Vref type="double">140</Vref>
-            </vspeeds>
-        </fmc>
+		<fmc>
+		    <to-flap type="double">15</to-flap>
+		</fmc>
         <gps>
             <config>
                 <min-runway-length-ft type="double">5000</min-runway-length-ft>
@@ -873,7 +867,7 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Nasal/dialogs.nas</file>
         </dialogs>
         <cdu>
-            <file>Aircraft/Instruments-3d/cdu/boeing.nas</file>
+            <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
         </cdu>
     </nasal>
 

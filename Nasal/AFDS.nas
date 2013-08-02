@@ -998,15 +998,6 @@ var AFDS = {
 					me.ias_mach_selected.setValue(0);
 					me.ias_setting.setValue(320);
 				}
-				# This is not official setting. Until VNAV DECENT is implemented
-				elsif(current_alt > me.target_alt.getValue())
-				{
-					if((current_alt < 12000)
-						and (me.ias_setting.getValue() > 250))
-					{
-						me.ias_setting.setValue(250);
-					}
-				}
 			}
 			elsif(idx == 3)		# VNAV PTH
 			{
@@ -1370,11 +1361,25 @@ var AFDS = {
 			var thrust_lmt = 0.96;
 			if(current_alt < 25000)
 			{
-				thrust_lmt = derate / 25000 * abs(current_alt) + (0.95 - derate);
-				if((current_alt < 10000)
-						and (getprop("gear/gear/position-norm") == 0))
+				if((me.vertical_mode.getValue() == 8)			# FLCH SPD mode
+					or(me.vertical_mode.getValue() == 4))		# VNAV SPD mode
 				{
-					thrust_lmt *= getprop("autopilot/constant/derate-lowalt");
+					if(me.vertical_mode.getValue() == 4)		# VNAV SPD mode
+					{
+						thrust_lmt = derate / 25000 * abs(current_alt) + (0.95 - derate);
+					}
+					if(getprop("/controls/flight/flaps") == 0)
+					{
+						thrust_lmt *= (me.ias_setting.getValue() / 320);
+					}
+					else
+					{
+						thrust_lmt *= 0.78125;
+					}
+				}
+				elsif(me.vertical_mode.getValue() != 2)			# not V/S mode
+				{
+					thrust_lmt = derate / 25000 * abs(current_alt) + (0.95 - derate);
 				}
 			}
 			me.thrust_lmt.setValue(thrust_lmt);

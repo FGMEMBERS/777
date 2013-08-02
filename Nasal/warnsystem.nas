@@ -17,10 +17,6 @@
 #
 ##########################################################################
 
-# TODOs:
-#  Check overspeed (EICAS message "OVERSPEED" + clicking sound)
-#  Need more detailed flap/speed and flap/speed/stall envelopes
-
 ##############################################
 # WEU specific class
 # ie: var Weu = WEU.new("instrumentation/weu");
@@ -249,6 +245,9 @@ var WEU =
 		me.v1.setValue(weight_diff*0.00018424+92);
 		me.vr.setValue(weight_diff*0.000164399+104);
 		me.v2.setValue(weight_diff*0.000138889+119);
+		setprop("/instrumentation/fmc/vspeeds/V1", me.v1.getValue());
+		setprop("/instrumentation/fmc/vspeeds/VR", me.vr.getValue());
+		setprop("/instrumentation/fmc/vspeeds/V2", me.v2.getValue());
 
         # calculate flap target speed
         if (me.flaps_tgt<0.01)            # flap up
@@ -325,8 +324,6 @@ var WEU =
         {
             horn = 1;
             shaker = 1;
-            # disable autopilot when stalled
-			setprop("instrumentation/afds/inputs/AP", 0);
         }
 
         var caution_state = (size(me.msgs_caution)>0);

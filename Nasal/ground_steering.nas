@@ -32,8 +32,7 @@ var GroundSteeringManager = {
 		var maingear_steering_cmd_norm = 0.0;
 
 		if (!me.tiller_switch.getValue()
-				or (getprop("velocities/groundspeed-kt") > 50))
-
+				or abs(tiller_cmd_norm) < abs(rudder_cmd_norm))
 			tiller_cmd_norm = rudder_cmd_norm;
 
 		if (abs(tiller_cmd_norm) > 0.000001) {

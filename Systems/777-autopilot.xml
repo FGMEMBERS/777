@@ -577,7 +577,7 @@
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
-				<property>autopilot/internal/current-pitch-deg</property>
+				<value>0</value>
 			</u_min>
 			<u_min>
 				<value>-7.0</value>
@@ -677,7 +677,7 @@
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
-				<property>autopilot/internal/current-pitch-deg</property>
+				<value>0</value>
 			</u_min>
 			<u_min>
 				<value>-7.0</value>
