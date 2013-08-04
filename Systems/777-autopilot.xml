@@ -1127,6 +1127,24 @@
 			<property>/controls/flight/elevator-filter</property>
 		</output>
 		<config>
+			<Kp>
+				<condition>
+					<greater-than>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<value>0.785</value>
+					</greater-than>
+				</condition>
+				<value>-0.006</value>
+			</Kp>
+			<Kp>
+				<condition>
+					<greater-than>
+						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<value>0.666</value>
+					</greater-than>
+				</condition>
+				<value>-0.012</value>
+			</Kp>
 			<Kp>-0.024</Kp>
 			<Ti>2.0</Ti>
 			<Td>0.0</Td>
