@@ -1370,7 +1370,14 @@ var AFDS = {
 					}
 					if(getprop("/controls/flight/flaps") == 0)
 					{
-						thrust_lmt *= (me.ias_setting.getValue() / 320);
+						if(me.ias_mach_selected.getValue())
+						{
+							thrust_lmt *= (me.mach_setting.getValue() / 0.84);
+						}
+						else
+						{
+							thrust_lmt *= (me.ias_setting.getValue() / 320);
+						}
 					}
 					else
 					{
