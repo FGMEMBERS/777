@@ -279,6 +279,7 @@
 		</input>
 		<reference>
 			<value>/orientation/side-slip-deg</value>
+			<scale>-1.0</scale> <!-- change in side-slip sign as reported by yasim, see bug #901 -->
 		</reference>
 		<output>
 			<property>/autopilot/internal/target-roll-deg</property>
