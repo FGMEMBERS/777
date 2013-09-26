@@ -9,7 +9,7 @@
 		<enable>
 			<condition>
 				<and>
-					<not><property>autopilot/autobrake/throttles-at-idle</property></not>
+					<property>controls/engines/engine[0]/throttle-lever</property>
 					<property>gear/gear[1]/wow</property>
 					<property>gear/gear[2]/wow</property>
 					<equals>
@@ -37,7 +37,6 @@
 					<property>controls/flight/speedbrake-lever</property>
 					<value>1</value>
 				</equals>
-				<property>autopilot/autobrake/throttles-at-idle</property>
 				<or>
 					<property>gear/gear[1]/wow</property>
 					<property>gear/gear[2]/wow</property>
@@ -54,13 +53,56 @@
 					<property>controls/flight/speedbrake-lever</property>
 					<value>2</value>
 				</equals>
-				<not><property>autopilot/autobrake/throttles-at-idle</property></not>
+				<not><property>controls/engines/engine[0]/reverser-cmd</property></not>
+				<property>controls/engines/engine[0]/throttle-lever</property>
 				<property>gear/gear[1]/wow</property>
 				<property>gear/gear[2]/wow</property>
 			</and>
 		</R>
 		<output>controls/flight/speedbrake</output>
 	</flipflop>
+
+	<filter>
+		<name>Speedbrake Extend in air</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.2</update-interval-secs>
+		<gain>0.8</gain>
+		<enable>
+			<condition>
+				<and>
+					<not><property>gear/gear[1]/wow</property></not>
+					<not><property>gear/gear[2]/wow</property></not>
+				</and>
+			</condition>
+		</enable>
+		<input>
+	        <property>sim/multiplay/generic/float[5]</property>
+		</input>
+		<output>
+			<property>controls/flight/speedbrake-angle</property>
+		</output>
+	</filter>
+
+	<filter>
+		<name>Speedbrake Extend on ground</name>
+		<type>gain</type>
+		<update-interval-secs type="double">0.2</update-interval-secs>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<or>
+					<property>gear/gear[1]/wow</property>
+					<property>gear/gear[2]/wow</property>
+				</or>
+			</condition>
+		</enable>
+		<input>
+	        <property>sim/multiplay/generic/float[5]</property>
+		</input>
+		<output>
+			<property>controls/flight/speedbrake-angle</property>
+		</output>
+	</filter>
 
 	<!-- flap protection -->
 

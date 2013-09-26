@@ -3,6 +3,7 @@
     <sim n="0">
         <description>Boeing 777-300</description>
         <aero>777-300</aero>
+	    <liveries-path type="string">Models/Liveries-300</liveries-path>
         <max-payload type="double">306400</max-payload>
         <startup>
             <splash-texture>Aircraft/777/splash-300.png</splash-texture>

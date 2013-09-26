@@ -405,7 +405,13 @@ Syd Adams
         <type>select</type>
         <object-name>flap-text</object-name>
         <condition>
-			<property>instrumentation/weu/state/flap-on</property>
+			<and>
+				<property>instrumentation/weu/state/flap-on</property>
+				<less-than>
+	        		<property>instrumentation/altimeter/indicated-altitude-ft</property>
+					<value>20000</value>
+				</less-than>
+			</and>
 		</condition>
     </animation>
 

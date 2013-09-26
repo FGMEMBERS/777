@@ -469,7 +469,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rbrake</object-name>
-        <property>sim/multiplay/generic/float[5]</property>
+		<property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -485,7 +485,7 @@ Syd Adams
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>-30</dep>
+                <dep>-60</dep>
             </entry>
         </interpolation>
         <axis>
@@ -501,7 +501,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rbrake1</object-name>
-        <property>sim/multiplay/generic/float[5]</property>
+		<property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -517,7 +517,7 @@ Syd Adams
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>-30</dep>
+                <dep>-60</dep>
             </entry>
         </interpolation>
         <axis>
@@ -593,7 +593,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Lbrake</object-name>
-        <property>sim/multiplay/generic/float[5]</property>
+		<property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -609,7 +609,7 @@ Syd Adams
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>-30</dep>
+                <dep>-60</dep>
             </entry>
         </interpolation>
         <axis>
@@ -625,7 +625,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Lbrake1</object-name>
-        <property>sim/multiplay/generic/float[5]</property>
+		<property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -641,7 +641,7 @@ Syd Adams
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>-30</dep>
+                <dep>-60</dep>
             </entry>
         </interpolation>
         <axis>

@@ -630,6 +630,8 @@ setlistener("/sim/signals/fdm-initialized", func {
 	setprop("controls/hydraulic/system[1]/primary-pump",1);
 	setprop("controls/hydraulic/system[2]/primary-pump",1);
 	setprop("controls/hydraulic/system[3]/primary-pump",1);
+	setprop("autopilot/route-manager/cruise/speed-kts",320);
+	setprop("autopilot/route-manager/cruise/speed-mach",0.840);
     settimer(start_updates,1);
 });
 

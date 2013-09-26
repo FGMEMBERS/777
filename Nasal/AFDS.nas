@@ -50,6 +50,10 @@ var AFDS = {
 		m.AP_passive = props.globals.initNode("autopilot/locks/passive-mode",1,"BOOL");
 		m.AP_pitch_engaged = props.globals.initNode("autopilot/locks/pitch-engaged",1,"BOOL");
 		m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
+		m.AP_cruise_ias = props.globals.initNode("autopilot/route-manager/cruise/speed-kts",320,"DOUBLE");
+		m.AP_cruise_mach = props.globals.initNode("autopilot/route-manager/cruise/speed-mach",0.840,"DOUBLE");
+		m.AP_descent_ias = props.globals.initNode("autopilot/route-manager/descent/speed-kts",280,"DOUBLE");
+		m.AP_descent_mach = props.globals.initNode("autopilot/route-manager/descent/speed-mach",0.780,"DOUBLE");
 
 		m.FD = m.AFDS_inputs.initNode("FD",0,"BOOL");
 		m.at1 = m.AFDS_inputs.initNode("at-armed[0]",0,"BOOL");
@@ -984,19 +988,19 @@ var AFDS = {
 					}
 					me.vs_setting.setValue(0);
 				}
-				if((me.mach_setting.getValue() >= 0.840)
+				if((me.mach_setting.getValue() >= me.AP_cruise_mach.getValue())
 					and (me.ias_mach_selected.getValue() == 0)
 					and (current_alt < me.target_alt.getValue()))
 				{
 					me.ias_mach_selected.setValue(1);
-					me.mach_setting.setValue(0.840);
+					me.mach_setting.setValue(me.AP_cruise_mach.getValue());
 				}
-				elsif((me.ias_setting.getValue() >= 320)
+				elsif((me.ias_setting.getValue() >= me.AP_cruise_ias.getValue())
 					and (me.ias_mach_selected.getValue() == 1)
 					and (current_alt > me.target_alt.getValue()))
 				{
 					me.ias_mach_selected.setValue(0);
-					me.ias_setting.setValue(320);
+					me.ias_setting.setValue(me.AP_cruise_ias.getValue());
 				}
 			}
 			elsif(idx == 3)		# VNAV PTH
@@ -1007,14 +1011,14 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							if(Vcal(0.780) > (getprop("instrumentation/weu/state/stall-speed") + 5))
+							if(Vcal(me.AP_descent_mach.getValue()) > (getprop("instrumentation/weu/state/stall-speed") + 5))
 							{
-								me.mach_setting.setValue(0.780);
+								me.mach_setting.setValue(me.AP_descent_mach.getValue());
 							}
 						}
 						else
 						{
-							me.ias_setting.setValue(280);
+							me.ias_setting.setValue(me.AP_descent_ias.getValue());
 						}
 						me.descent_step += 1;
 					}
@@ -1022,9 +1026,9 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							if(me.mach_setting.getValue() == 0.780)
+							if(me.mach_setting.getValue() == me.AP_descent_mach.getValue())
 							{
-								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < 0.795)
+								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < (me.AP_descent_mach.getValue() + 0.015))
 								{
 									me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 									me.target_alt.setValue(me.intervention_alt);
@@ -1042,7 +1046,7 @@ var AFDS = {
 						}
 						else
 						{
-							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < 295)
+							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < (me.AP_descent_ias.getValue() + 15))
 							{
 								me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 								me.target_alt.setValue(me.intervention_alt);
@@ -1055,16 +1059,16 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") >= 280)
+							if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") >= me.AP_descent_ias.getValue())
 							{
 								me.ias_mach_selected.setValue(0);
-								me.ias_setting.setValue(280);
+								me.ias_setting.setValue(me.AP_descent_ias.getValue());
 								me.descent_step += 1;
 							}
-							elsif((me.mach_setting.getValue() != 0.780)
-								and (Vcal(0.780) > (getprop("instrumentation/weu/state/stall-speed") + 5)))
+							elsif((me.mach_setting.getValue() != me.AP_descent_mach.getValue())
+								and (Vcal(me.AP_descent_mach.getValue()) > (getprop("instrumentation/weu/state/stall-speed") + 5)))
 							{
-								me.mach_setting.setValue(0.780);
+								me.mach_setting.setValue(me.AP_descent_mach.getValue());
 							}
 						}
 						else
@@ -1119,17 +1123,17 @@ var AFDS = {
 						}
 						idx = 4;	# VNAV SPD
 					}
-					if((me.mach_setting.getValue() >= 0.840)
+					if((me.mach_setting.getValue() >= me.AP_cruise_mach.getValue())
 						and (me.ias_mach_selected.getValue() == 0))
 					{
 						me.ias_mach_selected.setValue(1);
-						me.mach_setting.setValue(0.840);
+						me.mach_setting.setValue(me.AP_cruise_mach.getValue());
 					}
-					elsif((me.ias_setting.getValue() >= 320)
+					elsif((me.ias_setting.getValue() >= me.AP_cruise_ias.getValue())
 						and (me.ias_mach_selected.getValue() == 1))
 					{
 						me.ias_mach_selected.setValue(0);
-						me.ias_setting.setValue(320);
+						me.ias_setting.setValue(me.AP_cruise_ias.getValue());
 					}
 					elsif(me.ias_mach_selected.getValue() == 0)
 					{
@@ -1139,7 +1143,7 @@ var AFDS = {
 						}
 						else
 						{
-							me.ias_setting.setValue(320);
+							me.ias_setting.setValue(me.AP_cruise_ias.getValue());
 						}
 					}
 				}
@@ -1156,19 +1160,19 @@ var AFDS = {
 				}
 				else
 				{
-					if((me.mach_setting.getValue() >= 0.840)
+					if((me.mach_setting.getValue() >= me.AP_cruise_mach.getValue())
 						and (me.ias_mach_selected.getValue() == 0)
 						and (current_alt < me.target_alt.getValue()))
 					{
 						me.ias_mach_selected.setValue(1);
-						me.mach_setting.setValue(0.840);
+						me.mach_setting.setValue(me.AP_cruise_mach.getValue());
 					}
-					elsif((me.ias_setting.getValue() >= 320)
+					elsif((me.ias_setting.getValue() >= me.AP_cruise_ias.getValue())
 						and (me.ias_mach_selected.getValue() == 1)
 						and (current_alt > me.target_alt.getValue()))
 					{
 						me.ias_mach_selected.setValue(0);
-						me.ias_setting.setValue(320);
+						me.ias_setting.setValue(me.AP_cruise_ias.getValue());
 					}
 					elsif(me.ias_mach_selected.getValue() == 0)
 					{
@@ -1178,7 +1182,7 @@ var AFDS = {
 						}
 						else
 						{
-							me.ias_setting.setValue(320);
+							me.ias_setting.setValue(me.AP_cruise_ias.getValue());
 						}
 					}
 				}
