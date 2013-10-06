@@ -788,7 +788,10 @@
 	<filter>
 		<name>Engin response:throttle1</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
+        <enable>
+			<property>engines/engine[0]/run</property>
+        </enable>
+		<feedback-if-disabled>false</feedback-if-disabled>
 		<input>/controls/engines/engine[0]/throttle-lever</input>
 		<output>
 			<prop>/controls/engines/engine[0]/throttle-act</prop>
@@ -799,7 +802,10 @@
 	<filter>
 		<name>Engin response:throttle2</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
+        <enable>
+			<property>engines/engine[1]/run</property>
+        </enable>
+		<feedback-if-disabled>false</feedback-if-disabled>
 		<input>/controls/engines/engine[1]/throttle-lever</input>
 		<output>
 			<prop>/controls/engines/engine[1]/throttle-act</prop>
