@@ -1128,7 +1128,7 @@
 			<property>/controls/flight/elevator-filter</property>
 		</output>
 		<config>
-			<Kp>-0.024</Kp>
+			<Kp>-0.018</Kp>
 			<Ti>2.0</Ti>
 			<Td>0.0</Td>
 			<u_min>
