@@ -2,7 +2,7 @@
 <PropertyList>
 
 <name>EFIS Panel</name>
-<background>Aircraft/777/Models/Instruments/EICAS/transparent.png</background>
+<background>Aircraft/777/Models/Instruments/UEICAS/transparent.png</background>
 <w>256</w>
 <h>256</h>
 

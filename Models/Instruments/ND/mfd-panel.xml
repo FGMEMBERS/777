@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <PropertyList>
 
-<name>MFD Panel</name>
-<background>Aircraft/777/Models/Instruments/MFD/black.png</background>
+<name>ND Panel</name>
+<background>Aircraft/777/Models/Instruments/ND/black.png</background>
 <w>256</w>
 <h>256</h>
 

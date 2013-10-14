@@ -6,7 +6,7 @@ OBJECT world
 kids 7
 OBJECT poly
 name "EFIS.screenoff"
-texture "../efis-frame.png"
+texture "../mfd-frame.png"
 crease 45.000000
 numvert 4
 0.005 0.0967688 0.0945454
@@ -24,7 +24,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Gr-on.001"
-texture "../efis-frame.png"
+texture "../mfd-frame.png"
 crease 45.000000
 numvert 6
 0.000585 -0.017508 -0.047415
@@ -68,7 +68,7 @@ refs 4
 kids 0
 OBJECT poly
 name "tatlabel"
-texture "efis.png"
+texture "ueicas.png"
 crease 45.000000
 numvert 8
 0.002541 -0.054834 -0.090764
@@ -97,7 +97,7 @@ refs 4
 kids 0
 OBJECT poly
 name "EFIS.screen"
-texture "../efis-frame.png"
+texture "../mfd-frame.png"
 crease 45.000000
 numvert 4
 0.002 0.10173 -0.10158
@@ -322,7 +322,7 @@ kids 0
 OBJECT poly
 name "EFIS.bezel"
 loc 0.005351 0.0155034 0.0002536
-texture "../efis-frame.png"
+texture "../mfd-frame.png"
 crease 45.000000
 numvert 50
 -0.0022186 -0.101477 0.0900968

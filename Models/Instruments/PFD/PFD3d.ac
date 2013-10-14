@@ -777,7 +777,7 @@ OBJECT poly
 name "EFIS.bezel"
 data 4
 Mesh
-texture "../efis-frame.png"
+texture "../mfd-frame.png"
 crease 40.000000
 numvert 76
 0.003134 -0.086432 0.092154

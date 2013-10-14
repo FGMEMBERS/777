@@ -14,7 +14,7 @@
             <w>364</w>
             <h>400</h>
             <texture>
-                <path>Aircraft/777/Models/Instruments/NDB/NDB.png</path>
+                <path>Aircraft/777/Models/Instruments/LEICAS/leicas.png</path>
                 <x1>0.0</x1>
                 <y1>0.0</y1>
                 <x2>1.0</x2>

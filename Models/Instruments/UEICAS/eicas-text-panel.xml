@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <PropertyList>
 
-<name>EFIS Panel text</name>
-<background>Aircraft/777/Models/Instruments/EICAS/transparent.png</background>
+<name>UEICAS Panel text</name>
+<background>Aircraft/777/Models/Instruments/UEICAS/transparent.png</background>
 <w>256</w>
 <h>256</h>
 

@@ -3,10 +3,10 @@
 -->
 
 <PropertyList>
- <path>EFIS.ac</path>
+ <path>LEICAS.ac</path>
 
     <panel>
-        <path>Aircraft/777/Models/Instruments/NDB/NDB-panel.xml</path>
+        <path>Aircraft/777/Models/Instruments/LEICAS/leicas-panel.xml</path>
         <bottom-left>
             <x-m>0.003</x-m>
             <y-m>-0.090</y-m>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <PropertyList>
 
-<name>MFD text</name>
-<background>Aircraft/777/Models/Instruments/MFD/transparent.png</background>
+<name>ND text</name>
+<background>Aircraft/777/Models/Instruments/ND/transparent.png</background>
 <w>400</w>
 <h>256</h>
 
@@ -21,7 +21,7 @@
                 </equals>
             </and>
         </condition>
-        <name>MFD</name>
+        <name>ND</name>
         <x>200</x>
         <y>128</y>
         <w>400</w>
@@ -41,7 +41,7 @@
                 </equals>
             </and>
         </condition>
-        <name>MFD</name>
+        <name>ND</name>
         <x>200</x>
         <y>128</y>
         <w>400</w>
@@ -61,7 +61,7 @@
                 </equals>
             </and>
         </condition>
-        <name>MFD</name>
+        <name>ND</name>
         <x>200</x>
         <y>128</y>
         <w>400</w>
@@ -81,7 +81,7 @@
                 </equals>
             </and>
         </condition>
-        <name>MFD</name>
+        <name>ND</name>
         <x>200</x>
         <y>128</y>
         <w>400</w>

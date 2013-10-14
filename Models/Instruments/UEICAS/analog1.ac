@@ -7,7 +7,7 @@ OBJECT poly
 name "LH_ind1.001"
 data 10
 Circle.008
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 6
@@ -42,7 +42,7 @@ OBJECT poly
 name "LH_ind2.001"
 data 10
 Circle.009
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 6
@@ -77,7 +77,7 @@ OBJECT poly
 name "LH_ind3.001"
 data 10
 Circle.006
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 12
@@ -154,7 +154,7 @@ OBJECT poly
 name "LHredline.001"
 data 9
 Plane.019
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -175,7 +175,7 @@ OBJECT poly
 name "LHredline.002"
 data 9
 Plane.022
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -196,7 +196,7 @@ OBJECT poly
 name "LHredline.003"
 data 9
 Plane.024
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -217,7 +217,7 @@ OBJECT poly
 name "RH_ind1.001"
 data 10
 Circle.016
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 6
@@ -252,7 +252,7 @@ OBJECT poly
 name "RH_ind2.001"
 data 10
 Circle.015
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 6
@@ -287,7 +287,7 @@ OBJECT poly
 name "RH_ind3.001"
 data 10
 Circle.010
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 12
@@ -364,7 +364,7 @@ OBJECT poly
 name "RHredline.001"
 data 9
 Plane.020
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -385,7 +385,7 @@ OBJECT poly
 name "RHredline.002"
 data 9
 Plane.023
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -406,7 +406,7 @@ OBJECT poly
 name "RHredline.003"
 data 9
 Plane.025
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -427,7 +427,7 @@ OBJECT poly
 name "analog.gauge.003"
 data 10
 Circle.007
-texture "efis.png"
+texture "ueicas.png"
 texrep 1 1
 crease 30.000000
 numvert 116

@@ -2526,7 +2526,8 @@ refs 4
 17 0.967896 0.474258
 kids 0
 OBJECT poly
-name "EFIS.screen"
+name "LEICAS.screen"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/mfd-frame.png"
 crease 45.000000
 numvert 4
 0.002183 -0.10173 0.10158
@@ -2537,10 +2538,10 @@ numsurf 1
 SURF 0x20
 mat 3
 refs 4
-0 0 0
-3 0 0
-2 0 0
-1 0 0
+0 0.904297 0.142578
+3 0.115234 0.142578
+2 0.115234 0.882812
+1 0.904297 0.882812
 kids 0
 OBJECT poly
 name "EFIS_bezel"

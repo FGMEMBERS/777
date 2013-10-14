@@ -27,7 +27,7 @@ Syd Adams
 
     <model>
         <name>NDB</name>
-        <path>Aircraft/777/Models/Instruments/NDB/ndb.xml</path>
+        <path>Aircraft/777/Models/Instruments/LEICAS/leicas.xml</path>
         <offsets>
             <x-m>-0.4252</x-m>
             <y-m>0</y-m>

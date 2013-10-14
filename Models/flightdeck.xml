@@ -191,6 +191,9 @@ Syd Adams
     <model>
 		<name>Dome light</name>
 		<path>Aircraft/777/Models/Lights/dome_cone.xml</path>
+        <condition>
+            <property>sim/current-view/internal</property>
+        </condition>
 		<offsets>
 			<x-m>-1.16</x-m>
 			<y-m>0</y-m>
