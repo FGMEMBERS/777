@@ -167,8 +167,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>velocities/uBody-fps</property>
-                    <scale>0.59248380</scale>
+                    <property>instrumentation/airspeed-indicator/true-speed-kt</property>
                     <format>TAS%3.0f</format>
                 </chunk>
             </chunks>
