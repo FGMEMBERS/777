@@ -127,7 +127,7 @@ var WEU =
     takeoff_config_warnings : func
     {
         if (me.speed >= getprop("instrumentation/afds/max-airspeed-kts")+5)
-            append(me.msgs_alert,">OVERSPEED");
+            append(me.msgs_alert,"OVERSPEED");
 
         if (me.radio_alt<=30)
         {
@@ -143,21 +143,21 @@ var WEU =
                # Take-off attempt!
                if ((!me.flap_override)and
                    ((me.flaps<0.16)or(me.flaps>0.7)))
-                 append(me.msgs_alert,">CONFIG FLAPS");
+                 append(me.msgs_alert,"CONFIG FLAPS");
 
                # 777 manual: The EICAS warning message CONFIG SPOILERS indicates
                # that the speedbrake lever is not in its down detent
                # when either the left or right engine thrust exceeds the
                # takeoff threshold and the airplane is on the ground.
                if (me.speedbrake>0.1)
-                 append(me.msgs_alert,">CONFIG SPOILERS");
+                 append(me.msgs_alert,"CONFIG SPOILERS");
 
                # 777 manual: Rudder trim must be within 2 units from center at T/O.
                if (abs(me.rudder_trim)>0.04)
-                 append(me.msgs_alert,">CONFIG RUDDER TRIM");
+                 append(me.msgs_alert,"CONFIG RUDDER TRIM");
 
                if (abs(me.elev_trim)>0.04)
-                 append(me.msgs_alert,">CONFIG ELEV TRIM");
+                 append(me.msgs_alert,"CONFIG ELEV TRIM");
            }
         }
     },
@@ -174,7 +174,7 @@ var WEU =
             if ((!me.gear_override)and
                 (!me.gear_down))
             {
-                append(me.msgs_alert,">CONFIG GEAR");
+                append(me.msgs_alert,"CONFIG GEAR");
             }
          }
     },
@@ -183,13 +183,13 @@ var WEU =
     caution_messages : func
     {
         if (me.ap_disengaged)
-            append(me.msgs_caution,">AP DISCONNECT");
+            append(me.msgs_caution,"AP DISCONNECT");
 		if(getprop("instrumentation/afds/inputs/vnav-mcp-reset") == 1)
 		{
-            append(me.msgs_caution,">FMC MESSAGE");
+            append(me.msgs_caution,"FMC MESSAGE");
 		}
         if ((getprop("/gear/brake-thermal-energy") or 0)>1)
-            append(me.msgs_caution,">L R BRAKE OVERHEAT");
+            append(me.msgs_caution,"L R BRAKE OVERHEAT");
         if (me.speedbrake)
         {
             # 777 manual: EICAS caution message SPEEDBRAKE EXTENDED indicates
@@ -200,16 +200,16 @@ var WEU =
                 (me.radio_alt<800)and
                 (me.throttle>0.1)and
                 (me.flaps>0.6))
-                append(me.msgs_caution,">SPEEDBRAKE EXTENDED");
+                append(me.msgs_caution,"SPEEDBRAKE EXTENDED");
         }
         if (me.parkbrake)
-            append(me.msgs_info,">PARK BRK SET");
+            append(me.msgs_info,"PARK BRK SET");
         if (me.reverser)
-            append(me.msgs_info,">L R THRUST REV SET");
+            append(me.msgs_info,"L R THRUST REV SET");
         if (me.spdbrk_armed)
-            append(me.msgs_info,">SPEEDBRAKE ARMED");
+            append(me.msgs_info,"SPEEDBRAKE ARMED");
         if (me.apu_running)
-            append(me.msgs_info,">APU RUNNING");
+            append(me.msgs_info,"APU RUNNING");
     },
 
 #### stall warnings and other sounds ####
@@ -411,7 +411,7 @@ var WEU =
             me.caution_messages();
 
             if ((me.parkbrake>0.1)and((me.throttle>=0.667)or(me.radio_alt>30)))
-                append(me.msgs_alert,">CONFIG PARK BRK");
+                append(me.msgs_alert,"CONFIG PARK BRK");
         }
 
         me.update_sounds();

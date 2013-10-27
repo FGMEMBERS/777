@@ -5,7 +5,7 @@ MATERIAL "VtxPaint" rgb 0.8 0.8 0.8  amb 0.5 0.5 0.5  emis 0 0 0  spec 1 1 1  sh
 OBJECT world
 kids 7
 OBJECT poly
-name "UEICAS.screen"
+name "EFIS.screenoff"
 texture "../mfd-frame.png"
 crease 45.000000
 numvert 4
@@ -17,10 +17,10 @@ numsurf 1
 SURF 0x0
 mat 1
 refs 4
-3 0.379289 0.499771
-0 0.268967 0.499771
-1 0.268967 0.393116
-2 0.379289 0.393116
+3 0.912492 0.91774
+0 0.0951388 0.91774
+1 0.0951388 0.111866
+2 0.912492 0.111866
 kids 0
 OBJECT poly
 name "Gr-on.001"
@@ -96,8 +96,8 @@ refs 4
 6 0.568213 0.809065
 kids 0
 OBJECT poly
-name "EFIS.screen"
-texture "../mfd-frame.png"
+name "EICAS.screen"
+texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/screen.png"
 crease 45.000000
 numvert 4
 0.002 0.10173 -0.10158
@@ -108,10 +108,10 @@ numsurf 1
 SURF 0x0
 mat 1
 refs 4
-0 0.313668 0.432613
-3 0.256928 0.432613
-2 0.256928 0.377759
-1 0.313668 0.377759
+0 0.999955 0.998528
+3 4.45247e-05 0.998528
+2 4.45247e-05 -0.00243407
+1 0.999955 -0.00243407
 kids 0
 OBJECT poly
 name "Logo_Placard"

@@ -862,6 +862,7 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Nasal/brakesystem.nas</file>
             <file>Aircraft/777/Nasal/ground_steering.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
+		    <file>Aircraft/777/Models/Instruments/UEICAS/primary.nas</file>
         </b777>
         <dialogs>
             <file>Aircraft/777/Nasal/dialogs.nas</file>
