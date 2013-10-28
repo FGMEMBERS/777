@@ -97,7 +97,7 @@ refs 4
 kids 0
 OBJECT poly
 name "EICAS.screen"
-texture "/home/hyde/work/FlightGear/fgdata/Aircraft/777/Models/Instruments/screen.png"
+texture "../screen.png"
 crease 45.000000
 numvert 4
 0.002 0.10173 -0.10158
