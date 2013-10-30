@@ -14,7 +14,7 @@
             <w>364</w>
             <h>400</h>
             <texture>
-                <path>Aircraft/777/Models/Instruments/LEICAS/leicas.png</path>
+                <path>Aircraft/777/Models/Instruments/LEICAS/FCTL.png</path>
                 <x1>0.0</x1>
                 <y1>0.0</y1>
                 <x2>1.0</x2>
@@ -23,7 +23,7 @@
             <transformations>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>-50</offset>
+                    <offset>50</offset>
                 </transformation>
             </transformations>
         </layer>
@@ -43,6 +43,7 @@
             <transformation>
                 <type>x-shift</type>
                 <property>controls/flight/rudder</property>
+                <scale>-1</scale>
                 <interpolation>
                     <entry><ind>-1</ind><dep>32</dep></entry>
                     <entry><ind>0</ind><dep>0</dep></entry>
@@ -51,7 +52,7 @@
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>y-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>80</offset>                    <!-- amount of shift -->
+				<offset>-80</offset>                    <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -72,12 +73,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>controls/flight/elevator</property>
-                <scale>18</scale>
-				<offset>77</offset>
+                <scale>-18</scale>
+				<offset>-77</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>44</offset>                   <!-- amount of shift -->
+				<offset>-44</offset>                   <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -98,12 +99,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>controls/flight/elevator</property>
-                <scale>18</scale>
-				<offset>77</offset>
+                <scale>-18</scale>
+				<offset>-77</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>-39</offset>                   <!-- amount of shift -->
+				<offset>39</offset>                   <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -124,12 +125,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>controls/flight/aileron</property>
-                <scale>18</scale>
-				<offset>-22</offset>
+                <scale>-18</scale>
+				<offset>22</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>108</offset>                   <!-- amount of shift -->
+				<offset>-108</offset>                   <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -150,12 +151,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>controls/flight/aileron</property>
-                <scale>-18</scale>
-				<offset>-22</offset>
+                <scale>18</scale>
+				<offset>22</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>-100</offset>                   <!-- amount of shift -->
+				<offset>100</offset>                   <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -178,12 +179,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>/engines/engine[0]/oilt-norm</property>
-				<scale>-19</scale>
-				<offset>-74</offset>
+				<scale>19</scale>
+				<offset>74</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>125</offset>                <!-- amount of shift -->
+				<offset>-125</offset>                <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -204,12 +205,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>/engines/engine[0]/oilp-norm</property>
-				<scale>-19</scale>
-				<offset>-74</offset>
+				<scale>19</scale>
+				<offset>74</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>103</offset>                <!-- amount of shift -->
+				<offset>-103</offset>                <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -230,12 +231,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>/engines/engine[1]/oilp-norm</property>
-				<scale>-19</scale>
-				<offset>-74</offset>
+				<scale>19</scale>
+				<offset>74</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>-95</offset>                <!-- amount of shift -->
+				<offset>95</offset>                <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>
@@ -256,12 +257,12 @@
             <transformation>
                 <type>y-shift</type>
                 <property>/engines/engine[1]/oilt-norm</property>
-				<scale>-19</scale>
-				<offset>-74</offset>
+				<scale>19</scale>
+				<offset>74</offset>
             </transformation>
 			<transformation>                          <!-- this one shifts the fulcrum of the needle -->
 				<type>x-shift</type>                     <!-- y-shift relative to needle -->
-				<offset>-122</offset>                <!-- amount of shift -->
+				<offset>122</offset>                <!-- amount of shift -->
 			</transformation>			
         </transformations>
         <emissive>true</emissive>

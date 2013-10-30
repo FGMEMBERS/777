@@ -3,7 +3,7 @@
 -->
 
 <PropertyList>
- <path>LEICAS.ac</path>
+ <path>leicas.ac</path>
 
     <panel>
         <path>Aircraft/777/Models/Instruments/LEICAS/leicas-panel.xml</path>
