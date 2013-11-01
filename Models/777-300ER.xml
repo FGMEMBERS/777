@@ -323,7 +323,7 @@ Syd Adams
 	<condition>
 			<or>
 	    	<less-than>
-	    	    <property>velocities/mach</property>
+	    	    <property>instrumentation/airspeed-indicator/indicated-mach</property>
 	    	    <value>0.59</value>
 	    	</less-than>
 	    	<less-than>
@@ -652,7 +652,7 @@ Syd Adams
 	<condition>
 			<or>
 	    	<less-than>
-	    	    <property>velocities/mach</property>
+	    	    <property>instrumentation/airspeed-indicator/indicated-mach</property>
 	    	    <value>0.59</value>
 	    	</less-than>
 	    	<less-than>

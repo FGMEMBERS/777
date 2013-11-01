@@ -190,7 +190,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>velocities/mach</property>
+                    <property>instrumentation/airspeed-indicator/indicated-mach</property>
                     <format>%0.3f</format>
                 </chunk>
             </chunks>
