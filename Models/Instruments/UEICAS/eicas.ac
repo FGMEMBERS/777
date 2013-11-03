@@ -5,7 +5,7 @@ MATERIAL "VtxPaint" rgb 0.8 0.8 0.8  amb 0.5 0.5 0.5  emis 0 0 0  spec 1 1 1  sh
 OBJECT world
 kids 7
 OBJECT poly
-name "UEICAS.screen"
+name "EFIS.screenoff"
 texture "../mfd-frame.png"
 crease 45.000000
 numvert 4

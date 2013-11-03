@@ -5,7 +5,26 @@ Syd Adams
 
 <PropertyList>
 
- <path>ueicas.ac</path>
+ <path>eicas.ac</path>
+
+<panel>
+        <path>Aircraft/777/Models/Instruments/UEICAS/eicas-text-panel.xml</path>
+        <bottom-left>
+            <x-m>0.003</x-m>
+            <y-m>0.001</y-m>
+            <z-m>0.001</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>0.003</x-m>
+            <y-m>0.091</y-m>
+            <z-m>0.001</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>0.003</x-m>
+            <y-m>0.001</y-m>
+            <z-m>0.091</z-m>
+        </top-left>
+    </panel>
 
     <animation>
         <type>select</type>
