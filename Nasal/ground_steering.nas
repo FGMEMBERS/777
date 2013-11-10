@@ -18,8 +18,8 @@ var GroundSteeringManager = {
 		var m = { parents: [GroundSteeringManager] };
 		m.rudder_node = props.globals.getNode("/controls/flight/rudder", 1);
 		m.tiller_node = props.globals.getNode("/controls/gear/tiller-cmd-norm", 1);
-		m.nosegear_steering_node = props.globals.getNode("/controls/gear/nosegear-steering-cmd-norm", 1);
-		m.maingear_steering_node = props.globals.getNode("/controls/gear/maingear-steering-cmd-norm", 1);
+		m.nosegear_steering_node = props.globals.getNode("/controls/gear/nosegear-steering-cmd", 1);
+		m.maingear_steering_node = props.globals.getNode("/controls/gear/maingear-steering-cmd", 1);
 		m.tiller_switch = props.globals.getNode("/controls/gear/tiller-enabled", 1);
 		return m;
 	},

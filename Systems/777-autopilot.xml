@@ -502,7 +502,6 @@
 		<max-rate-of-change>
 			<value>1.5</value>
 		</max-rate-of-change>
-		<max-rate-of-change>50</max-rate-of-change>
 		<input>instrumentation/afds/ias-target-kt</input>
 		<output>/autopilot/internal/ias-set-kt</output>
 	</filter>
@@ -622,7 +621,6 @@
 		<max-rate-of-change>
 			<value>0.006</value>
 		</max-rate-of-change>
-		<max-rate-of-change>0.2</max-rate-of-change>
 		<input>/autopilot/settings/target-speed-mach</input>
 		<output>/autopilot/internal/mach-set</output>
 	</filter>
@@ -1218,4 +1216,27 @@
 			</u_max>
 		</config>
 	</pid-controller>
+
+	<filter>
+		<name>Tiller control filter nose</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<value>0.2</value>
+		</max-rate-of-change>
+		<input>controls/gear/nosegear-steering-cmd</input>
+		<output>controls/gear/nosegear-steering-cmd-norm</output>
+	</filter>
+
+	<filter>
+		<name>Tiller control filter main</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<value>0.2</value>
+		</max-rate-of-change>
+		<input>controls/gear/maingear-steering-cmd</input>
+		<output>controls/gear/maingear-steering-cmd-norm</output>
+	</filter>
+
 </PropertyList>
