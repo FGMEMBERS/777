@@ -627,7 +627,7 @@ Syd Adams
         <transform>
             <property>orientation/pitch-deg</property>
             <subtype>textranslate</subtype>
-            <factor>0.00473764</factor>
+            <factor>0.00468234</factor>
             <axis>
                 <x>0</x>
                 <y>1</y>

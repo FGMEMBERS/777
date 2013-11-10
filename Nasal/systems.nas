@@ -244,29 +244,27 @@ var EFIS = {
     update_nd_plan_center : func {
         # find wpt lat, lon
 		var index = me.nd_plan_wpt.getValue();
-		var lat = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/latitude-deg");
-		var lon = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/longitude-deg");
-		if(lon!=nil) setprop("instrumentation/nd/user-longitude-deg", lon);
-		if(lat!=nil) setprop("instrumentation/nd/user-latitude-deg", lat);
+		if(index >= 0)
+		{
+			var lat = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/latitude-deg");
+			var lon = getprop("autopilot/route-manager/route/wp[" ~ index ~ "]/longitude-deg");
+			if(lon!=nil) setprop("instrumentation/nd/user-longitude-deg", lon);
+			if(lat!=nil) setprop("instrumentation/nd/user-latitude-deg", lat);
+		}
     },
 #### update EICAS messages ####
     update_eicas : func(alertmsgs,cautionmsgs,infomsgs) {
         var msg="";
-        var spacer="";
         for(var i=0; i<size(alertmsgs); i+=1)
         {
             msg = msg ~ alertmsgs[i] ~ "\n";
-            spacer = spacer ~ "\n";
         }
         me.eicas_msg_alert.setValue(msg);
-        msg=spacer;
         for(var i=0; i<size(cautionmsgs); i+=1)
         {
             msg = msg ~ cautionmsgs[i] ~ "\n";
-            spacer = spacer ~ "\n";
         }
         me.eicas_msg_caution.setValue(msg);
-        msg=spacer;
         for(var i=0; i<size(infomsgs); i+=1)
         {
             msg = msg ~ infomsgs[i] ~ "\n";

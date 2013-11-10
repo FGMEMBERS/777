@@ -8,7 +8,7 @@ MATERIAL "magenta" rgb 0 0 0  amb 0 0 0  emis 0.835 0.498 0.498  spec 0 0 0  shi
 MATERIAL "orange" rgb 0 0 0  amb 0 0 0  emis 0.798 0.598 0  spec 0 0 0  shi 0  trans 0
 MATERIAL "Lights" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 0  trans 0
 OBJECT world
-kids 85
+kids 86
 OBJECT poly
 name "Mode_announciator"
 loc 0.0023435 0.0035665 -9.2499e-05
@@ -1132,10 +1132,10 @@ numsurf 1
 SURF 0x0
 mat 0
 refs 4
-3 0.379147 0.629147
-0 0.120853 0.629147
-1 0.120853 0.370853
-2 0.379147 0.370853
+3 0.361858 0.616246
+0 0.129368 0.616246
+1 0.129368 0.383754
+2 0.361858 0.383754
 kids 0
 OBJECT poly
 name "ASI"
@@ -2411,6 +2411,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Slip.needle"
+loc 0 0 0.0001
 data 9
 Plane.018
 crease 30.000000
@@ -4017,4 +4018,25 @@ refs 4
 245 0.678153 0.0321994
 246 0.678153 0.0321994
 247 0.678153 0.0321994
+kids 0
+OBJECT poly
+name "AI"
+loc 0.001856 0.0488318 0
+data 9
+Plane.001
+texture "pfd3d_mask.png"
+crease 30.000000
+numvert 4
+0 0.00731616 -0.03607
+0 -0.00492578 -0.03607
+0 -0.00492578 0.05788
+0 0.00731616 0.05788
+numsurf 1
+SURF 0x0
+mat 0
+refs 4
+0 0.36115 0.616246
+3 0.130451 0.616246
+2 0.130451 0.586879
+1 0.36115 0.586879
 kids 0

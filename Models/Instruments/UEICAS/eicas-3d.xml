@@ -7,25 +7,6 @@ Syd Adams
 
  <path>eicas.ac</path>
 
-<panel>
-        <path>Aircraft/777/Models/Instruments/UEICAS/eicas-text-panel.xml</path>
-        <bottom-left>
-            <x-m>0.003</x-m>
-            <y-m>0.001</y-m>
-            <z-m>0.001</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>0.003</x-m>
-            <y-m>0.091</y-m>
-            <z-m>0.001</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>0.003</x-m>
-            <y-m>0.001</y-m>
-            <z-m>0.091</z-m>
-        </top-left>
-    </panel>
-
     <animation>
         <type>select</type>
         <object-name>EFIS.screenoff</object-name>
@@ -336,6 +317,7 @@ Syd Adams
 		<object-name>N2R</object-name>	
 		<object-name>FF0</object-name>	
 		<object-name>FF1</object-name>		
+		<object-name>info messages</object-name>		
         <emission>
 			<red>0.9</red>
 			<green>0.9</green>
@@ -385,4 +367,143 @@ Syd Adams
 		</specular>
     </animation>	
 	
+    <animation>
+        <name>blueish</name>
+        <type>material</type>
+		<object-name>N2</object-name>
+		<object-name>FF</object-name>		
+        <emission>
+			<red>0.3</red>
+			<green>0.6</green>
+			<blue>0.9</blue>
+		</emission>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<diffuse>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</diffuse>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+    </animation>	
+	
+    <animation>
+        <name>red</name>
+        <type>material</type>
+		<object-name>alert messages</object-name>
+        <emission>
+			<red>0.9</red>
+			<green>0</green>
+			<blue>0</blue>
+		</emission>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<diffuse>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</diffuse>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+    </animation>	
+	
+    <animation>
+        <name>yellow</name>
+        <type>material</type>
+		<object-name>caution messages</object-name>
+        <emission>
+			<red>0.6</red>
+			<green>0.6</green>
+			<blue>0</blue>
+		</emission>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<diffuse>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</diffuse>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+    </animation>	
+
+    <text>
+        <name>info messages</name>
+        <offsets>
+            <x-m>0.00210</x-m>
+            <y-m>0.010</y-m>
+            <z-m>0.085</z-m>
+        </offsets>
+        <alignment>left-top</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+		<property>instrumentation/efis/eicas/msg/info</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
+        <name>caution messages</name>
+        <offsets>
+            <x-m>0.00212</x-m>
+            <y-m>0.010</y-m>
+            <z-m>0.085</z-m>
+        </offsets>
+        <alignment>left-top</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+                <property>instrumentation/efis/eicas/msg/caution</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+	
+    <text>
+        <name>alert messages</name>
+        <offsets>
+            <x-m>0.00214</x-m>
+            <y-m>0.010</y-m>
+            <z-m>0.085</z-m>
+        </offsets>
+        <alignment>left-top</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+		<property>instrumentation/efis/eicas/msg/alert</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
 </PropertyList>
