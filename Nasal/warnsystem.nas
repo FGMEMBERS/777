@@ -215,11 +215,13 @@ var WEU =
 #### stall warnings and other sounds ####
     update_sounds : func
     {
+		var grosswt = getprop("/yasim/gross-weight-lbs");
+		if(grosswt == nil) return;
         var target_speed = 0;
         var horn   = 0;
         var shaker = 0;
         var siren  = (size(me.msgs_alert)!=0);
-        var vgrosswt = math.sqrt(getprop("/yasim/gross-weight-lbs")/730284);
+        var vgrosswt = math.sqrt(grosswt/730284);
 		var altitude_compensate = (getprop("instrumentation/altimeter/indicated-altitude-ft") / 1000);
 		me.vref.setValue(vgrosswt * 166 + altitude_compensate);
         # calculate Flap Maneuver Speed
@@ -242,7 +244,7 @@ var WEU =
 		var stallspeed = (vref_flap - 10 + altitude_compensate);
 		me.stallspeed.setValue(stallspeed);
 
-		var weight_diff = getprop("/yasim/gross-weight-lbs")-308700;
+		var weight_diff = grosswt-308700;
 		me.v1.setValue(weight_diff*0.00018424+92 + altitude_compensate);
 		me.vr.setValue(weight_diff*0.000164399+104 + altitude_compensate);
 		me.v2.setValue(weight_diff*0.000138889+119 + altitude_compensate);

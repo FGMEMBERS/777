@@ -158,9 +158,12 @@ var GPWS =
     update_height : func()
     {
         var radio_alt = getprop("position/gear-agl-ft");
-        # "glide-slope warning inhibited" is disabled below 50 feet
-        if ((radio_alt < 50.0)or(radio_alt > 1000.0))
-            me.disable_gs_override();
+		if(radio_alt != nil)
+		{
+	        # "glide-slope warning inhibited" is disabled below 50 feet
+    	    if ((radio_alt < 50.0)or(radio_alt > 1000.0))
+        	    me.disable_gs_override();
+		}
     },
 };
 
