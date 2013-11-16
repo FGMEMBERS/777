@@ -1589,6 +1589,12 @@ var AFDS = {
 					var topDescent = f.pathGeod(-1, -me.top_of_descent);
 					var targetCourse = f.pathGeod(-1, -me.remaining_distance.getValue());
 					var leg = f.currentWP(); 
+					if(leg == nil)
+					{
+						me.step+=1;
+						if(me.step>6) me.step =0;
+						return;
+					}
 					var enroute = leg.courseAndDistanceFrom(targetCourse);
 					setprop("autopilot/internal/course-deg", enroute[0]);
 
