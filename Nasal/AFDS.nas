@@ -50,10 +50,15 @@ var AFDS = {
 		m.AP_passive = props.globals.initNode("autopilot/locks/passive-mode",1,"BOOL");
 		m.AP_pitch_engaged = props.globals.initNode("autopilot/locks/pitch-engaged",1,"BOOL");
 		m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
-		m.AP_cruise_ias = props.globals.initNode("autopilot/route-manager/cruise/speed-kts",320,"DOUBLE");
-		m.AP_cruise_mach = props.globals.initNode("autopilot/route-manager/cruise/speed-mach",0.840,"DOUBLE");
-		m.AP_descent_ias = props.globals.initNode("autopilot/route-manager/descent/speed-kts",280,"DOUBLE");
-		m.AP_descent_mach = props.globals.initNode("autopilot/route-manager/descent/speed-mach",0.780,"DOUBLE");
+
+		m.FMC = props.globals.getNode("autopilot/route-manager", 1);
+		m.FMC_cruise_alt = m.FMC.initNode("cruise/altitude-ft",10000,"DOUBLE");
+		m.FMC_cruise_ias = m.FMC.initNode("cruise/speed-kts",320,"DOUBLE");
+		m.FMC_cruise_mach = m.FMC.initNode("cruise/speed-mach",0.840,"DOUBLE");
+		m.FMC_descent_ias = m.FMC.initNode("descent/speed-kts",280,"DOUBLE");
+		m.FMC_descent_mach = m.FMC.initNode("descent/speed-mach",0.780,"DOUBLE");
+		m.FMC_active = m.FMC.initNode("active",0,"BOOL");
+		m.FMC_current_wp = m.FMC.initNode("current-wp",0,"INT");
 
 		m.FD = m.AFDS_inputs.initNode("FD",0,"BOOL");
 		m.at1 = m.AFDS_inputs.initNode("at-armed[0]",0,"BOOL");
@@ -122,8 +127,8 @@ var AFDS = {
 		m.APdisl = setlistener(m.AP_disengaged, func m.setAP(),0,0);
 		m.Lbank = setlistener(m.bank_switch, func m.setbank(),0,0);
 		m.LTMode = setlistener(m.autothrottle_mode, func m.updateATMode(),0,0);
-		m.WpChanged = setlistener(props.globals.getNode("/autopilot/route-manager/wp/id",1), func m.wpChanged(),0,0);
-		m.RmDisabled = setlistener(props.globals.getNode("/autopilot/route-manager/active",1), func m.wpChanged(),0,0);
+		m.WpChanged = setlistener(m.FMC.getNode("wp/id",1), func m.wpChanged(),0,0);
+		m.RmDisabled = setlistener(m.FMC.getNode("active",1), func m.wpChanged(),0,0);
         
         
         m.NDSymbols = props.globals.getNode("/instrumentation/nd/symbols", 1);
@@ -165,8 +170,8 @@ var AFDS = {
 				}
 				elsif(btn==3)		# LNAV button
 				{
-					if ((!getprop("/autopilot/route-manager/active"))or
-						(getprop("/autopilot/route-manager/current-wp")<0)or
+					if(!me.FMC_active.getValue() or
+						me.FMC_current_wp.getValue()<0 or
 						(getprop("/autopilot/route-manager/wp/id")==""))
 					{
 						# Oops, route manager isn't active. Keep current mode.
@@ -238,7 +243,7 @@ var AFDS = {
 					if(me.alt_setting.getValue() == me.intervention_alt)
 					{
 						# clear current restriciton
-						var temp_wpt = getprop("/autopilot/route-manager/current-wp") + 1;
+						var temp_wpt = me.FMC_current_wp.getValue() + 1;
 						me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~temp_wpt~"]/altitude-ft");
 						if(me.altitude_restriction > 0)
 						{
@@ -265,8 +270,8 @@ var AFDS = {
 				}
 				if(btn==5)		# VNAV
 				{
-					if ((!getprop("/autopilot/route-manager/active"))or
-						(getprop("/autopilot/route-manager/current-wp")<0)or
+					if (!me.FMC_active.getValue() or
+						me.FMC_current_wp.getValue()<0 or
 						(getprop("/autopilot/route-manager/wp/id")==""))
 					{
 						# Oops, route manager isn't active. Keep current mode.
@@ -628,9 +633,9 @@ var AFDS = {
 	},
 #################
 	wpChanged : func{
-		if (((getprop("/autopilot/route-manager/wp/id")=="")or
-			(!getprop("/autopilot/route-manager/active")))and
-			(me.lateral_mode.getValue() == 3)and
+		if((getprop("/autopilot/route-manager/wp/id")=="") or
+			!me.FMC_active.getValue() and
+			(me.lateral_mode.getValue() == 3) and
 			me.AP.getValue())
 		{
 			# LNAV active, but route manager is disabled now => switch to HDG HOLD (current heading)
@@ -988,19 +993,19 @@ var AFDS = {
 					}
 					me.vs_setting.setValue(0);
 				}
-				if((me.mach_setting.getValue() >= me.AP_cruise_mach.getValue())
+				if((me.mach_setting.getValue() >= me.FMC_cruise_mach.getValue())
 					and (me.ias_mach_selected.getValue() == 0)
 					and (current_alt < me.target_alt.getValue()))
 				{
 					me.ias_mach_selected.setValue(1);
-					me.mach_setting.setValue(me.AP_cruise_mach.getValue());
+					me.mach_setting.setValue(me.FMC_cruise_mach.getValue());
 				}
-				elsif((me.ias_setting.getValue() >= me.AP_cruise_ias.getValue())
+				elsif((me.ias_setting.getValue() >= me.FMC_cruise_ias.getValue())
 					and (me.ias_mach_selected.getValue() == 1)
 					and (current_alt > me.target_alt.getValue()))
 				{
 					me.ias_mach_selected.setValue(0);
-					me.ias_setting.setValue(me.AP_cruise_ias.getValue());
+					me.ias_setting.setValue(me.FMC_cruise_ias.getValue());
 				}
 			}
 			elsif(idx == 3)		# VNAV PTH
@@ -1011,14 +1016,14 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							if(Vcal(me.AP_descent_mach.getValue()) > (getprop("instrumentation/weu/state/stall-speed") + 5))
+							if(Vcal(me.FMC_descent_mach.getValue()) > (getprop("instrumentation/weu/state/stall-speed") + 5))
 							{
-								me.mach_setting.setValue(me.AP_descent_mach.getValue());
+								me.mach_setting.setValue(me.FMC_descent_mach.getValue());
 							}
 						}
 						else
 						{
-							me.ias_setting.setValue(me.AP_descent_ias.getValue());
+							me.ias_setting.setValue(me.FMC_descent_ias.getValue());
 						}
 						me.descent_step += 1;
 					}
@@ -1026,9 +1031,9 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							if(me.mach_setting.getValue() == me.AP_descent_mach.getValue())
+							if(me.mach_setting.getValue() == me.FMC_descent_mach.getValue())
 							{
-								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < (me.AP_descent_mach.getValue() + 0.015))
+								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < (me.FMC_descent_mach.getValue() + 0.015))
 								{
 									me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 									me.target_alt.setValue(me.intervention_alt);
@@ -1046,7 +1051,7 @@ var AFDS = {
 						}
 						else
 						{
-							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < (me.AP_descent_ias.getValue() + 15))
+							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < (me.FMC_descent_ias.getValue() + 15))
 							{
 								me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 								me.target_alt.setValue(me.intervention_alt);
@@ -1059,16 +1064,16 @@ var AFDS = {
 					{
 						if(me.ias_mach_selected.getValue() == 1)
 						{
-							if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") >= me.AP_descent_ias.getValue())
+							if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") >= me.FMC_descent_ias.getValue())
 							{
 								me.ias_mach_selected.setValue(0);
-								me.ias_setting.setValue(me.AP_descent_ias.getValue());
+								me.ias_setting.setValue(me.FMC_descent_ias.getValue());
 								me.descent_step += 1;
 							}
-							elsif((me.mach_setting.getValue() != me.AP_descent_mach.getValue())
-								and (Vcal(me.AP_descent_mach.getValue()) > (getprop("instrumentation/weu/state/stall-speed") + 5)))
+							elsif((me.mach_setting.getValue() != me.FMC_descent_mach.getValue())
+								and (Vcal(me.FMC_descent_mach.getValue()) > (getprop("instrumentation/weu/state/stall-speed") + 5)))
 							{
-								me.mach_setting.setValue(me.AP_descent_mach.getValue());
+								me.mach_setting.setValue(me.FMC_descent_mach.getValue());
 							}
 						}
 						else
@@ -1110,9 +1115,9 @@ var AFDS = {
 				}
 				else
 				{
-					if(me.intervention_alt != getprop("autopilot/route-manager/cruise/altitude-ft"))
+					if(me.intervention_alt != me.FMC_cruise_alt.getValue())
 					{
-						setprop("autopilot/route-manager/cruise/altitude-ft", me.intervention_alt);
+						me.FMC_cruise_alt.setValue(me.intervention_alt);
 						if(me.intervention_alt <= me.optimal_alt)
 						{
 							me.target_alt.setValue(me.intervention_alt);
@@ -1123,17 +1128,17 @@ var AFDS = {
 						}
 						idx = 4;	# VNAV SPD
 					}
-					if((me.mach_setting.getValue() >= me.AP_cruise_mach.getValue())
+					if((me.mach_setting.getValue() >= me.FMC_cruise_mach.getValue())
 						and (me.ias_mach_selected.getValue() == 0))
 					{
 						me.ias_mach_selected.setValue(1);
-						me.mach_setting.setValue(me.AP_cruise_mach.getValue());
+						me.mach_setting.setValue(me.FMC_cruise_mach.getValue());
 					}
-					elsif((me.ias_setting.getValue() >= me.AP_cruise_ias.getValue())
+					elsif((me.ias_setting.getValue() >= me.FMC_cruise_ias.getValue())
 						and (me.ias_mach_selected.getValue() == 1))
 					{
 						me.ias_mach_selected.setValue(0);
-						me.ias_setting.setValue(me.AP_cruise_ias.getValue());
+						me.ias_setting.setValue(me.FMC_cruise_ias.getValue());
 					}
 					elsif(me.ias_mach_selected.getValue() == 0)
 					{
@@ -1143,7 +1148,7 @@ var AFDS = {
 						}
 						else
 						{
-							me.ias_setting.setValue(me.AP_cruise_ias.getValue());
+							me.ias_setting.setValue(me.FMC_cruise_ias.getValue());
 						}
 					}
 				}
@@ -1160,19 +1165,19 @@ var AFDS = {
 				}
 				else
 				{
-					if((me.mach_setting.getValue() >= me.AP_cruise_mach.getValue())
+					if((me.mach_setting.getValue() >= me.FMC_cruise_mach.getValue())
 						and (me.ias_mach_selected.getValue() == 0)
 						and (current_alt < me.target_alt.getValue()))
 					{
 						me.ias_mach_selected.setValue(1);
-						me.mach_setting.setValue(me.AP_cruise_mach.getValue());
+						me.mach_setting.setValue(me.FMC_cruise_mach.getValue());
 					}
-					elsif((me.ias_setting.getValue() >= me.AP_cruise_ias.getValue())
+					elsif((me.ias_setting.getValue() >= me.FMC_cruise_ias.getValue())
 						and (me.ias_mach_selected.getValue() == 1)
 						and (current_alt > me.target_alt.getValue()))
 					{
 						me.ias_mach_selected.setValue(0);
-						me.ias_setting.setValue(me.AP_cruise_ias.getValue());
+						me.ias_setting.setValue(me.FMC_cruise_ias.getValue());
 					}
 					elsif(me.ias_mach_selected.getValue() == 0)
 					{
@@ -1182,7 +1187,7 @@ var AFDS = {
 						}
 						else
 						{
-							me.ias_setting.setValue(me.AP_cruise_ias.getValue());
+							me.ias_setting.setValue(me.FMC_cruise_ias.getValue());
 						}
 					}
 				}
@@ -1192,7 +1197,7 @@ var AFDS = {
 				}
 				elsif(me.intervention_alt >= me.optimal_alt)
 				{
-					if(getprop("autopilot/route-manager/cruise/altitude-ft") >= me.optimal_alt)
+					if(mr.FMC_cruise_alt.getValue() >= me.optimal_alt)
 					{
 						me.target_alt.setValue(me.optimal_alt);
 					}
@@ -1213,7 +1218,7 @@ var AFDS = {
 				if (abs(current_alt
 					- me.target_alt.getValue()) < offset)
 				{
-					if(abs(current_alt - getprop("autopilot/route-manager/cruise/altitude-ft")) < offset)
+					if(abs(current_alt - me.FMC_cruise_alt.getValue()) < offset)
 					{			
 						# within target altitude: switch to VANV PTH mode
 						idx=3;
@@ -1305,7 +1310,7 @@ var AFDS = {
 				{
 					if(me.target_alt.getValue() == int(current_alt))
 					{
-						if(getprop("autopilot/route-manager/cruise/altitude-ft") == int(current_alt))
+						if(me.FMC_cruise_alt.getValue() == int(current_alt))
 						{
 							idx = 3;		# VNAV PTH
 						}
@@ -1319,9 +1324,9 @@ var AFDS = {
 						idx = 4;		# VNAV SPD
 					}
 					me.intervention_alt = me.alt_setting.getValue();
-					if(me.intervention_alt > getprop("autopilot/route-manager/cruise/altitude-ft"))
+					if(me.intervention_alt > me.FMC_cruise_alt.getValue())
 					{
-						me.target_alt.setValue(getprop("autopilot/route-manager/cruise/altitude-ft"));
+						me.target_alt.setValue(me.FMC_cruise_alt.getValue());
 					}
 					else
 					{
@@ -1513,9 +1518,9 @@ var AFDS = {
 		}
 		elsif(me.step==5)
 		{
-			if (getprop("/autopilot/route-manager/active")){
+			if (me.FMC_active.getValue()){
 				var max_wpt = getprop("/autopilot/route-manager/route/num");
-				var atm_wpt = getprop("/autopilot/route-manager/current-wp");
+				var atm_wpt = me.FMC_current_wp.getValue();
 				var destination_elevation = getprop("/autopilot/route-manager/destination/field-elevation-ft");
 				var total_distance = getprop("/autopilot/route-manager/total-distance");
 				if(me.lateral_mode.getValue() == 3)		# Current mode is LNAV
@@ -1532,7 +1537,7 @@ var AFDS = {
 					}
 					if(me.vnav_descent.getValue() == 0)	# Calculation of Top Of Descent distance
 					{
-						var cruise_alt = getprop("autopilot/route-manager/cruise/altitude-ft");
+						var cruise_alt = me.FMC_cruise_alt.getValue();
 						me.top_of_descent = 16;
 						if(cruise_alt > 10000)
 						{
@@ -1581,7 +1586,7 @@ var AFDS = {
 						}
 					}
 				}
-				if(getprop("/autopilot/route-manager/active"))
+				if(me.FMC_active.getValue())
 				{
 					var groundspeed = getprop("/velocities/groundspeed-kt");
 					var f= flightplan(); 
@@ -1596,7 +1601,14 @@ var AFDS = {
 						return;
 					}
 					var enroute = leg.courseAndDistanceFrom(targetCourse);
-					setprop("autopilot/internal/course-deg", enroute[0]);
+					if(me.FMC_current_wp.getValue() == 0)
+					{
+						setprop("autopilot/internal/course-deg", getprop("orientation/heading-deg"));
+					}
+					else
+					{
+						setprop("autopilot/internal/course-deg", enroute[0]);
+					}
 
 					var courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon); 
 					var geocoord = geo.aircraft_position(); 
@@ -1645,7 +1657,7 @@ var AFDS = {
  	 							if(atm_wpt < (max_wpt - 1))
 								{
 									atm_wpt += 1;
-									props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
+									me.FMC_current_wp.setValue(atm_wpt);
 									me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
 									if(me.altitude_restriction > 0)
 									{

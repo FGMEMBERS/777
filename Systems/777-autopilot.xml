@@ -98,8 +98,7 @@
 		<name>LNAV waypoint error computer/normalizer</name>
 		<debug>false</debug>
 		<enable>
-			<property>instrumentation/afds/ap-modes/roll-mode</property>
-			<value>LNAV</value>
+			<property>/autopilot/route-manager/active</property>
 		</enable>
 		<type>gain</type>
 		<input>
@@ -296,11 +295,11 @@
 		</config>
 	</pi-simple-controller>
 
-	<pid-controller>
+	<pi-simple-controller>
 		<name>Aileron Control</name>
 		<debug>false</debug>
 		<enable>
-			<property>autopilot/locks/roll-engaged</property>
+			<property>instrumentation/afds/inputs/AP</property>
 		</enable>
 		<input>
 			<property>/orientation/roll-deg</property>
@@ -309,7 +308,7 @@
 			<property>/autopilot/internal/target-roll-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/aileron-filter</property>
+			<property>/controls/flight/aileron</property>
 		</output>
 		<config>
 			<Kp>
@@ -319,10 +318,10 @@
 						<value>0.666</value>
 					</greater-than>
 				</condition>
-				<value>0.04</value>
+				<value>0.01</value>
 			</Kp>
-			<Kp>0.08</Kp>
-			<Ti>5</Ti>
+			<Kp>0.02</Kp>
+			<Ti>10</Ti>
 			<Td>0.0</Td>
 			<u_min>
 				<value>-1.0</value>
@@ -331,58 +330,7 @@
 				<value>1.0</value>
 			</u_max>
 		</config>
-	</pid-controller>
-
-	<filter>
-		<name>Aileron control filter</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<enable>
-			<property>instrumentation/afds/inputs/AP</property>
-		</enable>
-		<max-rate-of-change>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.85</value>
-				</greater-than>
-			</condition>
-			<value>0.15</value>
-		</max-rate-of-change>
-		<max-rate-of-change>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.666</value>
-				</greater-than>
-			</condition>
-			<value>0.4</value>
-		</max-rate-of-change>
-		<max-rate-of-change>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.5</value>
-				</greater-than>
-			</condition>
-			<value>0.8</value>
-		</max-rate-of-change>
-		<max-rate-of-change>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
-					<value>0.333</value>
-				</greater-than>
-			</condition>
-			<value>0.9</value>
-		</max-rate-of-change>
-		<max-rate-of-change>1</max-rate-of-change>
-		<initialize-to>output</initialize-to>
-		<input>
-			<property>/controls/flight/aileron-filter</property>
-		</input>
-		<output>/controls/flight/aileron</output>
-	</filter>
+	</pi-simple-controller>
 
 	<pi-simple-controller>
 		<name>Rudder Control</name>

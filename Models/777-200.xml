@@ -329,16 +329,10 @@ Syd Adams
         <type>rotate</type>
         <object-name>Raileron</object-name>
         <condition>
-            <or>
-                <less-than>
-                    <property>instrumentation/airspeed-indicator/indicated-mach</property>
-                    <value>0.59</value>
-                </less-than>
-                <less-than>
-                    <property>velocities/airspeed-kt</property>
-                    <value>278</value>
-                </less-than>
-            </or>
+			<greater-than>
+		        <property>surface-positions/flap-pos-norm</property>
+				<value>0</value>
+			</greater-than>
         </condition>
         <property>surface-positions/right-aileron-pos-norm</property>
         <factor>-15</factor>
@@ -361,7 +355,7 @@ Syd Adams
         <interpolation>
             <entry> 
                 <ind>-1.0</ind>  
-                <dep>0.0</dep> 
+                <dep>-3.0</dep> 
             </entry> 
             <entry>  
                 <ind>0</ind>  
@@ -658,16 +652,10 @@ Syd Adams
         <type>rotate</type>
         <object-name>Laileron</object-name>
         <condition>
-            <or>
-                <less-than>
-                    <property>instrumentation/airspeed-indicator/indicated-mach</property>
-                    <value>0.59</value>
-                </less-than>
-                <less-than>
-                    <property>velocities/airspeed-kt</property>
-                    <value>278</value>
-                </less-than>
-            </or>
+			<greater-than>
+		        <property>surface-positions/flap-pos-norm</property>
+				<value>0</value>
+			</greater-than>
         </condition>
         <property>surface-positions/left-aileron-pos-norm</property>
         <factor>15</factor>
@@ -690,7 +678,7 @@ Syd Adams
         <interpolation>
             <entry> 
                 <ind>-1.0</ind>  
-                <dep>0.0</dep> 
+                <dep>3.0</dep> 
             </entry> 
             <entry>  
                 <ind>0</ind>  
