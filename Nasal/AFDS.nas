@@ -1197,7 +1197,7 @@ var AFDS = {
 				}
 				elsif(me.intervention_alt >= me.optimal_alt)
 				{
-					if(mr.FMC_cruise_alt.getValue() >= me.optimal_alt)
+					if(me.FMC_cruise_alt.getValue() >= me.optimal_alt)
 					{
 						me.target_alt.setValue(me.optimal_alt);
 					}
