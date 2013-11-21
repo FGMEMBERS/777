@@ -293,16 +293,16 @@ Service Ceiling: 43,100ft
         <aircraft-class type="string">gate</aircraft-class>
         <aircraft-operator>BAW</aircraft-operator>
         <aircraft-data>
-            <path>/sim/dimensions/radius-m</path>
-            <path>/sim/dimensions/parkpos-offset-m</path>
-            <path>/sim/aircraft-class</path>
-            <path>/sim/aircraft-operator</path>
-            <path>/sim/view[100]/enabled</path>
-            <path>/sim/view[101]/enabled</path>
-            <path>/sim/yokes-visible</path>
-            <path>/controls/gear/tiller-enabled</path>
-            <path>/sim/weight[0]/weight-lb</path>
-            <path>/sim/weight[1]/weight-lb</path>
+            <path>sim/dimensions/radius-m</path>
+            <path>sim/dimensions/parkpos-offset-m</path>
+            <path>sim/aircraft-class</path>
+            <path>sim/aircraft-operator</path>
+            <path>sim/view[100]/enabled</path>
+            <path>sim/view[101]/enabled</path>
+            <path>sim/yokes-visible</path>
+            <path>controls/gear/tiller-enabled</path>
+            <path>sim/weight[0]/weight-lb</path>
+            <path>sim/weight[1]/weight-lb</path>
         </aircraft-data>
         <weight n="0"><weight-lb type="double">400</weight-lb></weight>
 
@@ -538,7 +538,7 @@ Service Ceiling: 43,100ft
                 <desc>Roll trim-- Left</desc>
                 <binding>
                     <command>property-adjust</command>
-                    <property>/controls/flight/aileron-trim</property>
+                    <property>controls/flight/aileron-trim</property>
                     <step type="double">-0.012</step>
                 </binding>
             </key>
@@ -548,7 +548,7 @@ Service Ceiling: 43,100ft
                 <desc>Roll trim++ Right</desc>
                 <binding>
                     <command>property-adjust</command>
-                    <property>/controls/flight/aileron-trim</property>
+                    <property>controls/flight/aileron-trim</property>
                     <step type="double">0.012</step>
                 </binding>
             </key>

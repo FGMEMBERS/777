@@ -120,7 +120,7 @@
     <animation>
         <type>translate</type>
         <object-name>R_OIL_T</object-name>
-		<property>/engines/engine[0]/oilt-norm</property>
+		<property>engines/engine[0]/oilt-norm</property>
         <factor>-0.011</factor>
         <axis>
             <x>0</x>
@@ -132,7 +132,7 @@
     <animation>
         <type>translate</type>
         <object-name>R_OIL_P</object-name>
-		<property>/engines/engine[0]/oilp-norm</property>
+		<property>engines/engine[0]/oilp-norm</property>
         <factor>-0.011</factor>
         <axis>
             <x>0</x>
@@ -144,7 +144,7 @@
     <animation>
         <type>translate</type>
         <object-name>L_OIL_T</object-name>
-		<property>/engines/engine[1]/oilt-norm</property>
+		<property>engines/engine[1]/oilt-norm</property>
         <factor>-0.011</factor>
         <axis>
             <x>0</x>
@@ -156,7 +156,7 @@
     <animation>
         <type>translate</type>
         <object-name>L_OIL_P</object-name>
-		<property>/engines/engine[1]/oilp-norm</property>
+		<property>engines/engine[1]/oilp-norm</property>
         <factor>-0.011</factor>
         <axis>
             <x>0</x>

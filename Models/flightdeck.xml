@@ -417,24 +417,24 @@ Syd Adams
                 <command>nasal</command>
                 <script>
 				setprop("instrumentation/radar/switch", "off");
-				if (getprop("/instrumentation/efis/mfd/display-mode")!="HYDRAULIC" and getprop("/instrumentation/efis/mfd/display-mode")!="FUEL" and getprop("/instrumentation/efis/mfd/display-mode")!="GEAR" and getprop("/instrumentation/efis/mfd/display-mode")!="ELECTRIC" and getprop("/instrumentation/efis/mfd/display-mode")!="PRESURE" and getprop("/instrumentation/efis/mfd/display-mode")!="INFORMATION" and getprop("/instrumentation/efis/mfd/display-mode")!="DOORS" and getprop("/instrumentation/efis/mfd/display-mode")!="GMCS")
-				setprop("/instrumentation/efis/mfd/display-mode", "FUEL");			
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="FUEL")
-				setprop("/instrumentation/efis/mfd/display-mode", "GEAR");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GEAR")
-				setprop("/instrumentation/efis/mfd/display-mode", "ELECTRIC");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="ELECTRIC")
-				setprop("/instrumentation/efis/mfd/display-mode", "PRESURE");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="PRESURE")
-				setprop("/instrumentation/efis/mfd/display-mode", "INFORMATION");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="INFORMATION")
-				setprop("/instrumentation/efis/mfd/display-mode", "GMCS");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GMCS")
-				setprop("/instrumentation/efis/mfd/display-mode", "DOORS");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="DOORS")
-				setprop("/instrumentation/efis/mfd/display-mode", "HYDRAULIC");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="HYDRAULIC")
-				setprop("/instrumentation/efis/mfd/display-mode", "FUEL");				
+				if (getprop("instrumentation/efis/mfd/display-mode")!="HYDRAULIC" and getprop("instrumentation/efis/mfd/display-mode")!="FUEL" and getprop("instrumentation/efis/mfd/display-mode")!="GEAR" and getprop("instrumentation/efis/mfd/display-mode")!="ELECTRIC" and getprop("instrumentation/efis/mfd/display-mode")!="PRESURE" and getprop("instrumentation/efis/mfd/display-mode")!="INFORMATION" and getprop("instrumentation/efis/mfd/display-mode")!="DOORS" and getprop("instrumentation/efis/mfd/display-mode")!="GMCS")
+				setprop("instrumentation/efis/mfd/display-mode", "FUEL");			
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="FUEL")
+				setprop("instrumentation/efis/mfd/display-mode", "GEAR");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="GEAR")
+				setprop("instrumentation/efis/mfd/display-mode", "ELECTRIC");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="ELECTRIC")
+				setprop("instrumentation/efis/mfd/display-mode", "PRESURE");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="PRESURE")
+				setprop("instrumentation/efis/mfd/display-mode", "INFORMATION");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="INFORMATION")
+				setprop("instrumentation/efis/mfd/display-mode", "GMCS");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="GMCS")
+				setprop("instrumentation/efis/mfd/display-mode", "DOORS");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="DOORS")
+				setprop("instrumentation/efis/mfd/display-mode", "HYDRAULIC");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="HYDRAULIC")
+				setprop("instrumentation/efis/mfd/display-mode", "FUEL");				
 				controls.click(2);
 				</script>
             </binding>
@@ -451,24 +451,24 @@ Syd Adams
                 <command>nasal</command>
                 <script>
 				setprop("instrumentation/radar/switch", "off");
-				if (getprop("/instrumentation/efis/mfd/display-mode")!="HYDRAULIC" and getprop("/instrumentation/efis/mfd/display-mode")!="FUEL" and getprop("/instrumentation/efis/mfd/display-mode")!="GEAR" and getprop("/instrumentation/efis/mfd/display-mode")!="ELECTRIC" and getprop("/instrumentation/efis/mfd/display-mode")!="PRESURE" and getprop("/instrumentation/efis/mfd/display-mode")!="INFORMATION" and getprop("/instrumentation/efis/mfd/display-mode")!="DOORS" and getprop("/instrumentation/efis/mfd/display-mode")!="GMCS")
-				setprop("/instrumentation/efis/mfd/display-mode", "HYDRAULIC");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="HYDRAULIC")
-				setprop("/instrumentation/efis/mfd/display-mode", "DOORS");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="DOORS")
-				setprop("/instrumentation/efis/mfd/display-mode", "GMCS");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GMCS")
-				setprop("/instrumentation/efis/mfd/display-mode", "INFORMATION");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="INFORMATION")
-				setprop("/instrumentation/efis/mfd/display-mode", "PRESURE");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="PRESURE")
-				setprop("/instrumentation/efis/mfd/display-mode", "ELECTRIC");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="ELECTRIC")
-				setprop("/instrumentation/efis/mfd/display-mode", "GEAR");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="GEAR")
-				setprop("/instrumentation/efis/mfd/display-mode", "FUEL");
-				else if (getprop("/instrumentation/efis/mfd/display-mode")=="FUEL")
-				setprop("/instrumentation/efis/mfd/display-mode", "HYDRAULIC");
+				if (getprop("instrumentation/efis/mfd/display-mode")!="HYDRAULIC" and getprop("instrumentation/efis/mfd/display-mode")!="FUEL" and getprop("instrumentation/efis/mfd/display-mode")!="GEAR" and getprop("instrumentation/efis/mfd/display-mode")!="ELECTRIC" and getprop("instrumentation/efis/mfd/display-mode")!="PRESURE" and getprop("instrumentation/efis/mfd/display-mode")!="INFORMATION" and getprop("instrumentation/efis/mfd/display-mode")!="DOORS" and getprop("instrumentation/efis/mfd/display-mode")!="GMCS")
+				setprop("instrumentation/efis/mfd/display-mode", "HYDRAULIC");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="HYDRAULIC")
+				setprop("instrumentation/efis/mfd/display-mode", "DOORS");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="DOORS")
+				setprop("instrumentation/efis/mfd/display-mode", "GMCS");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="GMCS")
+				setprop("instrumentation/efis/mfd/display-mode", "INFORMATION");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="INFORMATION")
+				setprop("instrumentation/efis/mfd/display-mode", "PRESURE");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="PRESURE")
+				setprop("instrumentation/efis/mfd/display-mode", "ELECTRIC");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="ELECTRIC")
+				setprop("instrumentation/efis/mfd/display-mode", "GEAR");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="GEAR")
+				setprop("instrumentation/efis/mfd/display-mode", "FUEL");
+				else if (getprop("instrumentation/efis/mfd/display-mode")=="FUEL")
+				setprop("instrumentation/efis/mfd/display-mode", "HYDRAULIC");
 				controls.click(2);
 				</script>
             </binding>

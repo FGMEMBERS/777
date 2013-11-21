@@ -126,7 +126,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>/instrumentation/dme/indicated-distance-nm</property>
+                    <property>instrumentation/dme/indicated-distance-nm</property>
                     <format>%03.1f</format>
                 </chunk>
             </chunks>

@@ -52,8 +52,8 @@ var BrakeSystem =
     reset : func()
     {
         # Initial thermal energy
-        setprop("/gear/brake-thermal-energy",0.0);
-        setprop("/gear/brake-smoke",0);
+        setprop("gear/brake-thermal-energy",0.0);
+        setprop("gear/brake-smoke",0);
         setprop("sim/animation/fire-services",0);
         me.LastSimTime = 0.0;
     },
@@ -61,22 +61,22 @@ var BrakeSystem =
     # update brake energy
     update : func()
     {
-        var CurrentTime = getprop("/sim/time/elapsed-sec");
+        var CurrentTime = getprop("sim/time/elapsed-sec");
         var dt = CurrentTime - me.LastSimTime;
 
         if (dt<1.0)
         {
-            var OnGround = getprop("/gear/gear[1]/wow");
-            var ThermalEnergy = getprop("/gear/brake-thermal-energy");
-            if (getprop("/controls/gear/brake-parking"))
+            var OnGround = getprop("gear/gear[1]/wow");
+            var ThermalEnergy = getprop("gear/brake-thermal-energy");
+            if (getprop("controls/gear/brake-parking"))
                 var BrakeLevel=1.0;
             else
-                var BrakeLevel = (getprop("/autopilot/autobrake/left-brake-output")+getprop("/autopilot/autobrake/right-brake-output"))/2;
+                var BrakeLevel = (getprop("autopilot/autobrake/left-brake-output")+getprop("autopilot/autobrake/right-brake-output"))/2;
             if ((OnGround)and(BrakeLevel>0))
             {
                 # absorb more energy
-                var V1 = getprop("/velocities/groundspeed-kt");
-                var Mass = getprop("/yasim/gross-weight-lbs")/me.ScalingDivisor;
+                var V1 = getprop("velocities/groundspeed-kt");
+                var Mass = getprop("yasim/gross-weight-lbs")/me.ScalingDivisor;
                 # absorb some kinetic energy:
                 # dE= 1/2 * m * V1^2 - 1/2 * m * V2^2) 
                 var V2 = V1 - me.BrakeDecel*dt * BrakeLevel;
@@ -88,7 +88,7 @@ var BrakeSystem =
             # cooling effect: reduce thermal energy by factor (1-m.CoolingFactor)^dt
             ThermalEnergy = ThermalEnergy * math.exp(me.LnCoolFactor * dt);
 
-            setprop("/gear/brake-thermal-energy",ThermalEnergy);
+            setprop("gear/brake-thermal-energy",ThermalEnergy);
             
             if ((ThermalEnergy>1)and(!me.SmokeActive))
             {
@@ -106,17 +106,17 @@ var BrakeSystem =
     # smoke processing
     smoke : func()
     {
-        if ((me.SmokeActive)and(getprop("/gear/brake-thermal-energy")>1))
+        if ((me.SmokeActive)and(getprop("gear/brake-thermal-energy")>1))
         {
             # make density of smoke effect depend on energy level  
             var SmokeDelay=0;
-            var ThermalEnergy = getprop("/gear/brake-thermal-energy");
+            var ThermalEnergy = getprop("gear/brake-thermal-energy");
             if (ThermalEnergy < 1.5)
                 SmokeDelay=(1.5-ThermalEnergy);
             else
                 setprop("sim/animation/fire-services",1);
             # No smoke when gear retracted
-            var SmokeValue = (getprop("/gear/gear[1]/position-norm")>0.5);
+            var SmokeValue = (getprop("gear/gear[1]/position-norm")>0.5);
             # toggle smoke to interpolate different densities 
             if (SmokeDelay>0.05)
             {
@@ -126,13 +126,13 @@ var BrakeSystem =
                 else
                     SmokeDelay = 0;
             }
-            setprop("/gear/brake-smoke",SmokeValue);
+            setprop("gear/brake-smoke",SmokeValue);
             settimer(func { BrakeSys.smoke(); },SmokeDelay);
         }
         else
         {
             # stop smoke processing
-            setprop("/gear/brake-smoke",0);
+            setprop("gear/brake-smoke",0);
             setprop("sim/animation/fire-services",0);
             me.SmokeActive = 0;
         }
@@ -141,7 +141,7 @@ var BrakeSystem =
 
 var BrakeSys = BrakeSystem.new();
 
-setlistener("/sim/signals/fdm-initialized",
+setlistener("sim/signals/fdm-initialized",
             # executed on _every_ FDM reset (but not installing new listeners)
             func(idle) { BrakeSys.reset(); },
             0,0);

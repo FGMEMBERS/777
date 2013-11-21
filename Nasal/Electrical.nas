@@ -1,34 +1,34 @@
 ####    jet engine electrical system    ####
 ####    Syd Adams    ####
-var l_main_ac = props.globals.initNode("/systems/electrical/L-MAIN-AC",0,"DOUBLE");
-var r_main_ac = props.globals.initNode("/systems/electrical/R-MAIN-AC",0,"DOUBLE");
-var l_xfr = props.globals.initNode("/systems/electrical/L-XFR",0,"DOUBLE");
-var r_xfr = props.globals.initNode("/systems/electrical/R-XFR",0,"DOUBLE");
-var l_dc = props.globals.initNode("/systems/electrical/L-DC",0,"DOUBLE");
-var r_dc = props.globals.initNode("/systems/electrical/R-DC",0,"DOUBLE");
-var hot_bat = props.globals.initNode("/systems/electrical/HOT-BAT",0,"DOUBLE");
-var bat = props.globals.initNode("/systems/electrical/BAT",0,"DOUBLE");
-var cpt_flt_inst = props.globals.initNode("/systems/electrical/CPT-FLT-INST",0,"DOUBLE");
-var fo_flt_inst = props.globals.initNode("/systems/electrical/FO-FLT-INST",0,"DOUBLE");
-var l_gcb = props.globals.initNode("/systems/electrical/L-GCB",0,"BOOL");
-var r_gcb = props.globals.initNode("/systems/electrical/R-GCB",0,"BOOL");
-var apb = props.globals.initNode("/systems/electrical/APB",0,"BOOL");
-var pri_epc = props.globals.initNode("/systems/electrical/PRI-EPC",0,"BOOL");
-var sec_epc = props.globals.initNode("/systems/electrical/SEC-EPC",0,"BOOL");
-var l_btb = props.globals.initNode("/systems/electrical/L-BTB",0,"BOOL");
-var r_btb = props.globals.initNode("/systems/electrical/R-BTB",0,"BOOL");
-var main_bat_rly = props.globals.initNode("/systems/electrical/MAIN-BAT-RLY",0,"BOOL");
-var dc_bus_tie_rly = props.globals.initNode("/systems/electrical/DC_BUS_TIE_RLY",1,"BOOL");
-var bat_cpt_isln_rely = props.globals.initNode("/systems/electrical/BAT-CPT-ISLN-RLY",1,"BOOL");
-var cpt_fo_bus_tie_rely = props.globals.initNode("/systems/electrical/CPT-FO-BUS-TIE-RLY",0,"BOOL");
-var primary_external  = props.globals.initNode("/controls/electric/external-power",0,"BOOL");
-var secondary_external  = props.globals.initNode("/controls/electric/external-power[1]",0,"BOOL");
-var ac_tie_bus = props.globals.initNode("/systems/electrical/AC_TIE_BUS",0,"DOUBLE");
+var l_main_ac = props.globals.initNode("systems/electrical/L-MAIN-AC",0,"DOUBLE");
+var r_main_ac = props.globals.initNode("systems/electrical/R-MAIN-AC",0,"DOUBLE");
+var l_xfr = props.globals.initNode("systems/electrical/L-XFR",0,"DOUBLE");
+var r_xfr = props.globals.initNode("systems/electrical/R-XFR",0,"DOUBLE");
+var l_dc = props.globals.initNode("systems/electrical/L-DC",0,"DOUBLE");
+var r_dc = props.globals.initNode("systems/electrical/R-DC",0,"DOUBLE");
+var hot_bat = props.globals.initNode("systems/electrical/HOT-BAT",0,"DOUBLE");
+var bat = props.globals.initNode("systems/electrical/BAT",0,"DOUBLE");
+var cpt_flt_inst = props.globals.initNode("systems/electrical/CPT-FLT-INST",0,"DOUBLE");
+var fo_flt_inst = props.globals.initNode("systems/electrical/FO-FLT-INST",0,"DOUBLE");
+var l_gcb = props.globals.initNode("systems/electrical/L-GCB",0,"BOOL");
+var r_gcb = props.globals.initNode("systems/electrical/R-GCB",0,"BOOL");
+var apb = props.globals.initNode("systems/electrical/APB",0,"BOOL");
+var pri_epc = props.globals.initNode("systems/electrical/PRI-EPC",0,"BOOL");
+var sec_epc = props.globals.initNode("systems/electrical/SEC-EPC",0,"BOOL");
+var l_btb = props.globals.initNode("systems/electrical/L-BTB",0,"BOOL");
+var r_btb = props.globals.initNode("systems/electrical/R-BTB",0,"BOOL");
+var main_bat_rly = props.globals.initNode("systems/electrical/MAIN-BAT-RLY",0,"BOOL");
+var dc_bus_tie_rly = props.globals.initNode("systems/electrical/DC_BUS_TIE_RLY",1,"BOOL");
+var bat_cpt_isln_rely = props.globals.initNode("systems/electrical/BAT-CPT-ISLN-RLY",1,"BOOL");
+var cpt_fo_bus_tie_rely = props.globals.initNode("systems/electrical/CPT-FO-BUS-TIE-RLY",0,"BOOL");
+var primary_external  = props.globals.initNode("controls/electric/external-power",0,"BOOL");
+var secondary_external  = props.globals.initNode("controls/electric/external-power[1]",0,"BOOL");
+var ac_tie_bus = props.globals.initNode("systems/electrical/AC_TIE_BUS",0,"DOUBLE");
 
 var vbus_count = 0;
-var Lbus = props.globals.initNode("/systems/electrical/left-bus",0,"DOUBLE");
-var Rbus = props.globals.initNode("/systems/electrical/right-bus",0,"DOUBLE");
-var AVswitch=props.globals.initNode("/systems/electrical/outputs/avionics",0,"BOOL");
+var Lbus = props.globals.initNode("systems/electrical/left-bus",0,"DOUBLE");
+var Rbus = props.globals.initNode("systems/electrical/right-bus",0,"DOUBLE");
+var AVswitch=props.globals.initNode("systems/electrical/outputs/avionics",0,"BOOL");
 var APUgen=props.globals.initNode("controls/electric/APU-generator",0,"BOOL");
 var CDUswitch=props.globals.initNode("instrumentation/cdu/serviceable",0,"BOOL");
 var DomeLtControl=props.globals.initNode("controls/lighting/dome-intencity",0,"DOUBLE");
@@ -248,7 +248,7 @@ var external_secondary = External.new(sec_epc);
 var apu = APU.new(APUgen);
 
 #####################################
-var elec_init_listener = setlistener("/sim/signals/fdm-initialized", func {
+var elec_init_listener = setlistener("sim/signals/fdm-initialized", func {
     removelistener(elec_init_listener);
     init_switches();
     settimer(update_electrical,5);

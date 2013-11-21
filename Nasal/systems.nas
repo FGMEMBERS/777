@@ -1,8 +1,8 @@
 #777 systems
 #Syd Adams
 #
-var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
-var chronometer = aircraft.timer.new("/instrumentation/clock/ET-sec",1);
+var SndOut = props.globals.getNode("sim/sound/Ovolume",1);
+var chronometer = aircraft.timer.new("instrumentation/clock/ET-sec",1);
 var vmodel = substr(getprop("sim/aero"), 3);
 aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
 
@@ -78,7 +78,7 @@ var EFIS = {
         },
 #### update temperature display ####
     update_temp : func{
-        var tmp = getprop("/environment/temperature-degc");
+        var tmp = getprop("environment/temperature-degc");
         if(tmp < 0.00){
             tmp = -1 * tmp;
         }
@@ -302,6 +302,7 @@ var Engine = {
 		m.autostart = props.globals.getNode("controls/engines/autostart",1);
 		m.autostart.setBoolValue(1);
         m.starterSwitch = props.globals.getNode("controls/engines/StartIgnition-knob["~eng_num~"]",1);
+        m.starter = props.globals.getNode("controls/engines/engine["~eng_num~"]/starter",1);
         m.starterSystem = props.globals.getNode("systems/electrical/outputs/starter["~eng_num~"]",1);
         m.generator = props.globals.getNode("controls/electric/engine["~eng_num~"]/generator",1);
         m.fuel_pph=m.eng.getNode("fuel-flow_pph",1);
@@ -328,6 +329,8 @@ var Engine = {
             me.running.setBoolValue(0);
             me.egt.setDoubleValue(me.egt_degf.getValue());
         }
+	if(getprop("sim/flight-model") == "yasim")
+	{
         if(me.running.getBoolValue())
         {
             if(me.starterSwitch.getValue() == -1)
@@ -373,8 +376,8 @@ var Engine = {
                 if(getprop("controls/electric/APU-generator")
                         or getprop("engines/engine[0]/run")
                         or getprop("engines/engine[1]/run")
-                        or getprop("/controls/electric/external-power")
-                        or getprop("/controls/electric/external-power[1]")
+                        or getprop("controls/electric/external-power")
+                        or getprop("controls/electric/external-power[1]")
 						)
                 {
                     me.spool_up();
@@ -394,6 +397,14 @@ var Engine = {
         if(hpsi>60)
             hpsi = 60;
         me.hpump.setValue(hpsi);
+	}
+	if(getprop("sim/flight-model") == "jsb")
+	{
+		if(me.starterSwitch.getValue() == -1)
+		{
+			me.starter.setValue(1);
+		}
+	}
 
         if(vmodel == "-200LR")
         {
@@ -462,18 +473,18 @@ var Engine = {
             me.apu_running.setBoolValue(1);
             if (getprop("controls/electric/APU-generator") != 1)
                 setprop("controls/electric/APU-generator", 1);
-				setprop("/systems/electrical/APB", 1);
+				setprop("systems/electrical/APB", 1);
         }
         else
         {
             me.apu_running.setBoolValue(0);
             if (getprop("controls/electric/APU-generator") != 0)
                 setprop("controls/electric/APU-generator", 0);
-				setprop("/systems/electrical/APB", 0);
+				setprop("systems/electrical/APB", 0);
         }
         if(me.apu_running.getBoolValue() and (getprop("consumables/fuel/tank[0]/level-lbs") > 0))
         {
-            setprop("/consumables/fuel/tank[0]/level-gal_us", getprop("/consumables/fuel/tank[0]/level-gal_us")-0.0006);
+            setprop("consumables/fuel/tank[0]/level-gal_us", getprop("consumables/fuel/tank[0]/level-gal_us")-0.0006);
         }
         if(getprop("controls/lighting/cabin-lights") == 1
             and getprop("controls/electric/APU-generator") == 0
@@ -609,13 +620,13 @@ var Wiper = {
             me.direction=-1;
         }elsif(pos <=0.000){
             me.direction=0;
-            me.delay_count+=getprop("/sim/time/delta-sec");
+            me.delay_count+=getprop("sim/time/delta-sec");
             if(me.delay_count >= me.delay.getValue()){
                 me.delay_count=0;
                 me.direction=1;
             }
         }
-        var wiper_time = spd_factor*getprop("/sim/time/delta-sec");
+        var wiper_time = spd_factor*getprop("sim/time/delta-sec");
         pos +=(wiper_time * me.direction);
         me.position.setValue(pos);
     }
@@ -627,16 +638,16 @@ var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
 var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
 
-setlistener("/sim/signals/fdm-initialized", func {
+setlistener("sim/signals/fdm-initialized", func {
     SndOut.setDoubleValue(0.15);
     chronometer.stop();
-    props.globals.initNode("/instrumentation/clock/ET-display",0,"INT");
-    props.globals.initNode("/instrumentation/clock/time-display",0,"INT");
-    props.globals.initNode("/instrumentation/clock/time-knob",0,"INT");
-    props.globals.initNode("/instrumentation/clock/et-knob",0,"INT");
-    props.globals.initNode("/instrumentation/clock/set-knob",0,"INT");
-#    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
-    setprop("/sim/flaps/current-setting", 0);
+    props.globals.initNode("instrumentation/clock/ET-display",0,"INT");
+    props.globals.initNode("instrumentation/clock/time-display",0,"INT");
+    props.globals.initNode("instrumentation/clock/time-knob",0,"INT");
+    props.globals.initNode("instrumentation/clock/et-knob",0,"INT");
+    props.globals.initNode("instrumentation/clock/set-knob",0,"INT");
+#    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
+    setprop("sim/flaps/current-setting", 0);
 	balance_fuel();
     setprop("controls/fuel/tank[0]/boost-pump[0]",1);
     setprop("controls/fuel/tank[0]/boost-pump[1]",1);
@@ -659,7 +670,7 @@ var start_updates = func {
     {
         # airborne startup
         Startup();
-        setprop("/controls/gear/brake-parking",0);
+        setprop("controls/gear/brake-parking",0);
         controls.gearDown(-1);
         setprop("instrumentation/afds/ap-modes/pitch-mode", "TO/GA");
         setprop("instrumentation/afds/ap-modes/roll-mode", "TO/GA");
@@ -669,9 +680,9 @@ var start_updates = func {
     	setprop("instrumentation/afds/inputs/at-armed[1]", 1);
 		setprop("instrumentation/afds/inputs/AP", 1);
         setprop("autopilot/internal/airport-height", 0);
-        setprop("/engines/engine[0]/run",1);
-        setprop("/engines/engine[1]/run",1);
-    	setprop("/sim/flaps/current-setting", 0);
+        setprop("engines/engine[0]/run",1);
+        setprop("engines/engine[1]/run",1);
+    	setprop("sim/flaps/current-setting", 0);
 		setprop("autopilot/settings/target-speed-kt", getprop("sim/presets/airspeed-kt"));
 		b777.afds.input(1,1);
 		setprop("autopilot/settings/counter-set-altitude-ft", getprop("sim/presets/altitude-ft"));
@@ -695,12 +706,12 @@ var start_updates = func {
     }
 }
 
-setlistener("/sim/signals/reinit", func {
+setlistener("sim/signals/reinit", func {
     SndOut.setDoubleValue(0.15);
     Shutdown();
 });
 
-#setlistener("/autopilot/route-manager/route/num", func(wp){
+#setlistener("autopilot/route-manager/route/num", func(wp){
 #    var wpt= wp.getValue() -1;
 #
 #    if(wpt>-1){
@@ -710,7 +721,7 @@ setlistener("/sim/signals/reinit", func {
 #    }
 #},1,0);
 
-setlistener("/sim/current-view/internal", func(vw){
+setlistener("sim/current-view/internal", func(vw){
     if(vw.getValue()){
         SndOut.setDoubleValue(0.3);
     }else{
@@ -719,7 +730,7 @@ setlistener("/sim/current-view/internal", func(vw){
 },1,0);
 
 controls.autostart = func() {
-    var run = !(getprop("/engines/engine[0]/run") or getprop("/engines/engine[1]/run"));
+    var run = !(getprop("engines/engine[0]/run") or getprop("engines/engine[1]/run"));
     if(run){
         Startup();
     }else{
@@ -727,7 +738,7 @@ controls.autostart = func() {
     }
 }
 
-setlistener("/instrumentation/clock/et-knob", func(et){
+setlistener("instrumentation/clock/et-knob", func(et){
     var tmp = et.getValue();
     if(tmp == -1){
         chronometer.reset();
@@ -790,12 +801,12 @@ controls.toggleAutoSpoilers = func() {
 }
 
 setlistener("controls/flight/flaps", func { controls.click(6) } );
-setlistener("/controls/gear/gear-down", func { controls.click(8) } );
+setlistener("controls/gear/gear-down", func { controls.click(8) } );
 controls.gearDown = func(v) {
     if (v < 0) {
-        if(!getprop("gear/gear[1]/wow"))setprop("/controls/gear/gear-down", 0);
+        if(!getprop("gear/gear[1]/wow"))setprop("controls/gear/gear-down", 0);
     } elsif (v > 0) {
-      setprop("/controls/gear/gear-down", 1);
+      setprop("controls/gear/gear-down", 1);
     }
 }
 
@@ -859,7 +870,7 @@ var Startup = func{
     setprop("controls/electric/engine[1]/generator",1);
     setprop("controls/electric/engine[0]/bus-tie",1);
     setprop("controls/electric/engine[1]/bus-tie",1);
-    setprop("/systems/electrical/outputs/avionics",1);
+    setprop("systems/electrical/outputs/avionics",1);
     setprop("controls/electric/inverter-switch",1);
     setprop("controls/lighting/instrument-norm",0.8);
     setprop("controls/lighting/nav-lights",1);
@@ -883,14 +894,14 @@ var Startup = func{
 	setprop("instrumentation/efis/inputs/tfc",1);
 	setprop("instrumentation/efis/inputs/arpt",1);
 	setprop("instrumentation/efis/inputs/sta",1);
-    setprop("/engines/engine[0]/run",1);
-    setprop("/engines/engine[1]/run",1);
+    setprop("engines/engine[0]/run",1);
+    setprop("engines/engine[1]/run",1);
 }
 
 var Shutdown = func{
-    setprop("/controls/gear/brake-parking",1);
+    setprop("controls/gear/brake-parking",1);
     setprop("controls/electric/APU-generator",0);
-    setprop("/systems/electrical/outputs/avionics",0);
+    setprop("systems/electrical/outputs/avionics",0);
     setprop("controls/electric/battery-switch",0);
     setprop("controls/electric/inverter-switch",0);
     setprop("controls/lighting/instruments-norm",0);
@@ -921,14 +932,14 @@ var Shutdown = func{
 	setprop("instrumentation/efis/inputs/wxr",0);
    setprop("controls/engines/StartIgnition-knob[0]",0);
     setprop("controls/engines/StartIgnition-knob[1]",0);
-    setprop("/engines/engine[0]/run",0);
-    setprop("/engines/engine[1]/run",0);
-    setprop("/engines/engine[0]/rpm",0);
-    setprop("/engines/engine[1]/rpm",0);
-    setprop("/engines/engine[0]/n2rpm",0);
-    setprop("/engines/engine[1]/n2rpm",0);
-    setprop("/engines/engine[0]/fuel-flow_pph",0);
-    setprop("/engines/engine[1]/fuel-flow_pph",0);
+    setprop("engines/engine[0]/run",0);
+    setprop("engines/engine[1]/run",0);
+    setprop("engines/engine[0]/rpm",0);
+    setprop("engines/engine[1]/rpm",0);
+    setprop("engines/engine[0]/n2rpm",0);
+    setprop("engines/engine[1]/n2rpm",0);
+    setprop("engines/engine[0]/fuel-flow_pph",0);
+    setprop("engines/engine[1]/fuel-flow_pph",0);
     setprop("instrumentation/weu/state/takeoff-mode",1);
 }
 
@@ -1275,7 +1286,7 @@ var update_systems = func {
         setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
     }
 
-    var et_tmp = getprop("/instrumentation/clock/ET-sec");
+    var et_tmp = getprop("instrumentation/clock/ET-sec");
     var et_min = int(et_tmp * 0.0166666666667);
     var et_hr  = int(et_min * 0.0166666666667) * 100;
     et_tmp = et_hr+et_min;

@@ -78,7 +78,7 @@
             <chunks>
                 <chunk>
                     <type>text-value</type>
-                    <property>/sim/airport/closest-airport-id</property>
+                    <property>sim/airport/closest-airport-id</property>
                     <!--property>instrumentation/groundradar/id</property-->
                 </chunk>
             </chunks>

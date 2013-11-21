@@ -14,7 +14,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 			<value>1</value>
 		</set>
 		<set>
-			<property>/instrumentation/mk-viii/inputs/arinc429/decision-height</property>
+			<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
 			<value>250</value>
 		</set>
 		<set>
@@ -429,7 +429,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 	<exit>
 		<condition>
 			<equals>
-				<property>/instrumentation/mk-viii/inputs/arinc429/decision-height</property>
+				<property>instrumentation/mk-viii/inputs/arinc429/decision-height</property>
 				<value>300</value>
 			</equals>
 		</condition>

@@ -20,11 +20,11 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 			<value>0</value>
 		</set>
 		<set>
-			<property>/controls/flight/flaps</property>
+			<property>controls/flight/flaps</property>
 			<value>0.0</value>
 		</set>
 		<set>
-			<property>/controls/electric/APU-generator</property>
+			<property>controls/electric/APU-generator</property>
 			<value>0</value>
 		</set>
 		<set>
@@ -52,7 +52,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 			<value>0</value>
 		</set>
 		<set>
-			<property>/sim/model/armrest</property>
+			<property>sim/model/armrest</property>
 			<value>0</value>
 		</set>
 		<set>
@@ -162,7 +162,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 		<message>Lower arm rests (click)!</message>
 		<exit>
 			<condition>
-				<property>/sim/model/armrest</property>
+				<property>sim/model/armrest</property>
 			</condition>
 		</exit>
 		<marker>
@@ -234,7 +234,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 		<message>Check: auxiliary power unit (APU) to START momently</message>
 		<exit>
 			<condition>
-				<property>/controls/electric/APU-generator</property>
+				<property>controls/electric/APU-generator</property>
 			</condition>
 		</exit>
 		<marker>
@@ -282,7 +282,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 		<exit>
 			<condition>
 				<equals>
-					<property>/instrumentation/transponder/mode-switch</property>
+					<property>instrumentation/transponder/mode-switch</property>
 					<value>0</value>
 				</equals>
 			</condition>
@@ -309,7 +309,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+					<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					<value>-1</value>
 				</greater-than>
 			</condition>
@@ -329,7 +329,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 		<message>Check: GPWS self-test (press and hold for 5 seconds)</message>
 		<exit>
 			<condition>
-				<property>/instrumentation/mk-viii/inputs/discretes/self-test</property>
+				<property>instrumentation/mk-viii/inputs/discretes/self-test</property>
 			</condition>
 		</exit>
 		<marker>

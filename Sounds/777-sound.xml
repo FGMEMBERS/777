@@ -741,7 +741,7 @@
             <path>/Sounds/avionics-400Hz.wav</path>
             <mode>looped</mode>
             <type>avionics</type>
-            <property>/systems/electrical/outputs/avionics</property>
+            <property>systems/electrical/outputs/avionics</property>
             <volume>
                 <factor>0.2</factor>
             </volume>

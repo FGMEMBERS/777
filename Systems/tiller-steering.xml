@@ -8,12 +8,12 @@
 
 	<nasal>
 		<open>
-			props.globals.initNode("/sim/gui/dialogs/tiller-steering/value", 0);
-			setprop("/controls/gear/tiller-cmd-norm", 0.0);
+			props.globals.initNode("sim/gui/dialogs/tiller-steering/value", 0);
+			setprop("controls/gear/tiller-cmd-norm", 0.0);
 		</open>
 		<close>
-			setprop("/sim/gui/dialogs/tiller-steering/value", 0.0);
-			setprop("/controls/gear/tiller-cmd-norm", 0.0);
+			setprop("sim/gui/dialogs/tiller-steering/value", 0.0);
+			setprop("controls/gear/tiller-cmd-norm", 0.0);
 		</close>
 	</nasal>
 
@@ -52,7 +52,7 @@
 		<checkbox>
 			<halign>left</halign>
 			<label>Enable tiller steering</label>
-			<property>/controls/gear/tiller-enabled</property>
+			<property>controls/gear/tiller-enabled</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -63,7 +63,7 @@
 			<halign>center</halign>
 			<text>
 				<pref-width>30</pref-width>
-				<property>/sim/gui/dialogs/tiller-steering/value</property>
+				<property>sim/gui/dialogs/tiller-steering/value</property>
 				<format>%2.0f</format>
 				<live>true</live>
 			</text>
@@ -77,15 +77,15 @@
 			<min>-70</min>
 			<max>70</max>
 			<pref-width>290</pref-width>
-			<property>/sim/gui/dialogs/tiller-steering/value</property>
+			<property>sim/gui/dialogs/tiller-steering/value</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
 			<binding>
 				<command>nasal</command>
 				<script><![CDATA[
-					setprop("/controls/gear/tiller-cmd-norm",
-					getprop("/sim/gui/dialogs/tiller-steering/value") / 70.0);
+					setprop("controls/gear/tiller-cmd-norm",
+					getprop("sim/gui/dialogs/tiller-steering/value") / 70.0);
 					]]>
 				</script>
 			</binding>
@@ -97,8 +97,8 @@
 			<binding>
 				<command>nasal</command>
 				<script>
-					setprop("/sim/gui/dialogs/tiller-steering/value", 0.0);
-					setprop("/controls/gear/tiller-cmd-norm", 0.0);
+					setprop("sim/gui/dialogs/tiller-steering/value", 0.0);
+					setprop("controls/gear/tiller-cmd-norm", 0.0);
 				</script>
 			</binding>
 			<binding>

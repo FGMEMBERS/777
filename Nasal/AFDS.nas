@@ -15,7 +15,7 @@
 
 #Usage : var afds = AFDS.new();
 
-var copilot = func(msg) { setprop("/sim/messages/copilot",msg);}
+var copilot = func(msg) { setprop("sim/messages/copilot",msg);}
 
 var AFDS = {
 	new : func{
@@ -131,7 +131,7 @@ var AFDS = {
 		m.RmDisabled = setlistener(m.FMC.getNode("active",1), func m.wpChanged(),0,0);
         
         
-        m.NDSymbols = props.globals.getNode("/instrumentation/nd/symbols", 1);
+        m.NDSymbols = props.globals.getNode("instrumentation/nd/symbols", 1);
 		setprop("autopilot/internal/waypoint-bearing-error-deg", 0);
 		return m;
 	},
@@ -140,7 +140,7 @@ var AFDS = {
 ###################
 	input : func(mode,btn)
 	{
-		if(getprop("/systems/electrical/outputs/avionics"))
+		if(getprop("systems/electrical/outputs/avionics"))
 		{
 			var current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
 			if(mode==0)
@@ -172,7 +172,7 @@ var AFDS = {
 				{
 					if(!me.FMC_active.getValue() or
 						me.FMC_current_wp.getValue()<0 or
-						(getprop("/autopilot/route-manager/wp/id")==""))
+						(getprop("autopilot/route-manager/wp/id")==""))
 					{
 						# Oops, route manager isn't active. Keep current mode.
 						btn = me.lateral_mode.getValue();
@@ -244,7 +244,7 @@ var AFDS = {
 					{
 						# clear current restriciton
 						var temp_wpt = me.FMC_current_wp.getValue() + 1;
-						me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~temp_wpt~"]/altitude-ft");
+						me.altitude_restriction = getprop("autopilot/route-manager/route/wp["~temp_wpt~"]/altitude-ft");
 						if(me.altitude_restriction > 0)
 						{
 							me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
@@ -272,7 +272,7 @@ var AFDS = {
 				{
 					if (!me.FMC_active.getValue() or
 						me.FMC_current_wp.getValue()<0 or
-						(getprop("/autopilot/route-manager/wp/id")==""))
+						(getprop("autopilot/route-manager/wp/id")==""))
 					{
 						# Oops, route manager isn't active. Keep current mode.
 						btn = me.vertical_mode.getValue();
@@ -341,7 +341,7 @@ var AFDS = {
 				elsif(btn == 2)		# TOGA
 				{
 					if((getprop("instrumentation/airspeed-indicator/indicated-speed-kt") > 50)
-						or (getprop("/controls/flight/flaps") == 0))
+						or (getprop("controls/flight/flaps") == 0))
 					{
 						btn = 0;
 					}
@@ -633,7 +633,7 @@ var AFDS = {
 	},
 #################
 	wpChanged : func{
-		if((getprop("/autopilot/route-manager/wp/id")=="") or
+		if((getprop("autopilot/route-manager/wp/id")=="") or
 			!me.FMC_active.getValue() and
 			(me.lateral_mode.getValue() == 3) and
 			me.AP.getValue())
@@ -646,7 +646,7 @@ var AFDS = {
 	ap_update : func{
 		var Vcal = func(M)
 		{
-			var p = getprop("/environment/pressure-inhg") * 3386.388640341;
+			var p = getprop("environment/pressure-inhg") * 3386.388640341;
 			var pt = p * math.pow(1 + 0.2 * M*M,3.5);
 			var Vc =  math.sqrt((math.pow((pt-p)/101325+1,0.285714286) -1 ) * 7 * 101325 /1.225) / 0.5144;
 			return (Vc);
@@ -769,7 +769,7 @@ var AFDS = {
 						var vdist = getprop("instrumentation/nav/nav-distance");
 						var vorient = getprop("environment/magnetic-variation-deg");
 						var vmag = getprop("orientation/heading-magnetic-deg");
-						var vspeed = getprop("/instrumentation/airspeed-indicator/indicated-mach");
+						var vspeed = getprop("instrumentation/airspeed-indicator/indicated-mach");
 						var deg_to_rad = math.pi / 180;
 						var vdiff = abs(vheading - vvor + vorient);
 						vdiff = abs(vdist * math.sin(vdiff * deg_to_rad));
@@ -963,7 +963,7 @@ var AFDS = {
 			{
 				offset = 20;
 			}
-			me.optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb"))
+			me.optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("sim/weight[0]/weight-lb") + getprop("sim/weight[1]/weight-lb"))
 							/ getprop("sim/max-payload"));
 			if(me.optimal_alt > 0.95) me.optimal_alt = 29000;
 			elsif(me.optimal_alt > 0.89) me.optimal_alt = 30000;
@@ -1033,7 +1033,7 @@ var AFDS = {
 						{
 							if(me.mach_setting.getValue() == me.FMC_descent_mach.getValue())
 							{
-								if(getprop("/instrumentation/airspeed-indicator/indicated-mach") < (me.FMC_descent_mach.getValue() + 0.015))
+								if(getprop("instrumentation/airspeed-indicator/indicated-mach") < (me.FMC_descent_mach.getValue() + 0.015))
 								{
 									me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 									me.target_alt.setValue(me.intervention_alt);
@@ -1051,7 +1051,7 @@ var AFDS = {
 						}
 						else
 						{
-							if(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") < (me.FMC_descent_ias.getValue() + 15))
+							if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < (me.FMC_descent_ias.getValue() + 15))
 							{
 								me.vnav_path_mode.setValue(1);		# VNAV PTH DESCEND VS
 								me.target_alt.setValue(me.intervention_alt);
@@ -1107,7 +1107,7 @@ var AFDS = {
 						}
 						me.vs_setting.setValue(0);
 						me.vnav_path_mode.setValue(0);
-						if(current_alt > (getprop("/autopilot/route-manager/destination/field-elevation-ft") + 4750))
+						if(current_alt > (getprop("autopilot/route-manager/destination/field-elevation-ft") + 4750))
 						{
 							idx = 5;	# VNAV ALT
 						}
@@ -1155,7 +1155,7 @@ var AFDS = {
 			}
 			elsif(idx == 4)		# VNAV SPD
 			{
-				if(getprop("/controls/flight/flaps") > 0)		# flaps down
+				if(getprop("controls/flight/flaps") > 0)		# flaps down
 				{
 					me.ias_setting.setValue(getprop("instrumentation/weu/state/target-speed"));
 				}
@@ -1352,7 +1352,7 @@ var AFDS = {
 		elsif(me.step == 4) 			### Auto Throttle mode control  ###
 		{
 			# Thrust reference rate calculation. This should be provided by FMC
-			var payload = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
+			var payload = getprop("consumables/fuel/total-fuel-lbs") + getprop("sim/weight[0]/weight-lb") + getprop("sim/weight[1]/weight-lb");
 			var derate = 0.3 - payload * 0.00000083;
 			if(me.ias_setting.getValue() < 251)
 			{
@@ -1377,7 +1377,7 @@ var AFDS = {
 					{
 						thrust_lmt = derate / 25000 * abs(current_alt) + (0.95 - derate);
 					}
-					if(getprop("/controls/flight/flaps") == 0)
+					if(getprop("controls/flight/flaps") == 0)
 					{
 						if(me.ias_mach_selected.getValue())
 						{
@@ -1432,23 +1432,23 @@ var AFDS = {
 				elsif((me.vertical_mode.getValue() != 3)		# not VNAV PTH
 					and (me.vertical_mode.getValue() != 5))		# not VNAV ALT
 				{
-					if((getprop("/controls/flight/flaps") == 0)		# FLAPs up
+					if((getprop("controls/flight/flaps") == 0)		# FLAPs up
 						and (me.vertical_mode.getValue() != 4))		# not VNAV SPD
 					{
 						me.autothrottle_mode.setValue(5);		# SPD
 					}
 					else
 					{
-						setprop("/controls/engines/engine[0]/throttle", thrust_lmt);
-						setprop("/controls/engines/engine[1]/throttle", thrust_lmt);
+						setprop("controls/engines/engine[0]/throttle", thrust_lmt);
+						setprop("controls/engines/engine[1]/throttle", thrust_lmt);
 					}
 				}
 			}
 			elsif((me.autothrottle_mode.getValue() == 4)		# Auto throttle mode IDLE 
 				and ((me.vertical_mode.getValue() == 8)			# FLCH SPD mode
 					or (me.vertical_mode.getValue() == 3))		# VNAV PTH mode
-				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[0]/throttle-act") * 1000))		# #1Thrust is actual flight idle
-				and (int(me.flight_idle.getValue() * 1000) == int(getprop("/controls/engines/engine[1]/throttle-act") * 1000)))		# #2Thrust is actual flight idle
+				and (int(me.flight_idle.getValue() * 1000) == int(getprop("controls/engines/engine[0]/throttle-act") * 1000))		# #1Thrust is actual flight idle
+				and (int(me.flight_idle.getValue() * 1000) == int(getprop("controls/engines/engine[1]/throttle-act") * 1000)))		# #2Thrust is actual flight idle
 			{
 				me.autothrottle_mode.setValue(3);				# HOLD
 			}
@@ -1458,8 +1458,8 @@ var AFDS = {
 				setprop("autopilot/locks/takeoff-mode", 0);
 				if(me.autothrottle_mode.getValue() == 1)		# THR
 				{
-					setprop("/controls/engines/engine[0]/throttle", thrust_lmt);
-					setprop("/controls/engines/engine[1]/throttle", thrust_lmt);
+					setprop("controls/engines/engine[0]/throttle", thrust_lmt);
+					setprop("controls/engines/engine[1]/throttle", thrust_lmt);
 				}
 				elsif((me.vertical_mode.getValue() == 10)		# TO/GA
 					or ((me.autothrottle_mode.getValue() == 3)	# HOLD
@@ -1467,7 +1467,7 @@ var AFDS = {
 						and (me.vertical_mode.getValue() != 3) 	 # not VNAV PTH
 						and (me.vertical_mode.getValue() != 5))) # not VNAV ALT
 				{
-					if(getprop("/controls/flight/flaps") == 0)
+					if(getprop("controls/flight/flaps") == 0)
 					{
 						me.autothrottle_mode.setValue(5);		# SPD
 					}
@@ -1519,17 +1519,17 @@ var AFDS = {
 		elsif(me.step==5)
 		{
 			if (me.FMC_active.getValue()){
-				var max_wpt = getprop("/autopilot/route-manager/route/num");
+				var max_wpt = getprop("autopilot/route-manager/route/num");
 				var atm_wpt = me.FMC_current_wp.getValue();
-				var destination_elevation = getprop("/autopilot/route-manager/destination/field-elevation-ft");
-				var total_distance = getprop("/autopilot/route-manager/total-distance");
+				var destination_elevation = getprop("autopilot/route-manager/destination/field-elevation-ft");
+				var total_distance = getprop("autopilot/route-manager/total-distance");
 				if(me.lateral_mode.getValue() == 3)		# Current mode is LNAV
 				{
 					if(atm_wpt < (max_wpt - 1))
 					{
-						me.remaining_distance.setValue(getprop("/autopilot/route-manager/wp/remaining-distance-nm")
+						me.remaining_distance.setValue(getprop("autopilot/route-manager/wp/remaining-distance-nm")
 							+ getprop("autopilot/route-manager/wp/dist"));
-						var next_course = getprop("/autopilot/route-manager/wp[1]/bearing-deg");
+						var next_course = getprop("autopilot/route-manager/wp[1]/bearing-deg");
 					}
 					else
 					{
@@ -1588,7 +1588,7 @@ var AFDS = {
 				}
 				if(me.FMC_active.getValue())
 				{
-					var groundspeed = getprop("/velocities/groundspeed-kt");
+					var groundspeed = getprop("velocities/groundspeed-kt");
 					var f= flightplan(); 
 #					var topClimb = f.pathGeod(0, 100);
 					var topDescent = f.pathGeod(-1, -me.top_of_descent);
@@ -1649,7 +1649,7 @@ var AFDS = {
 								gmt -= 24 * 3600;
 							}
 							me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-							var change_wp = abs(getprop("/autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
+							var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
 							if(change_wp > 180) change_wp = (360 - change_wp);
 							if(((me.heading_change_rate * change_wp) > wpt_eta)
 								or (enroute[1] < 0.6))
@@ -1658,7 +1658,7 @@ var AFDS = {
 								{
 									atm_wpt += 1;
 									me.FMC_current_wp.setValue(atm_wpt);
-									me.altitude_restriction = getprop("/autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
+									me.altitude_restriction = getprop("autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
 									if(me.altitude_restriction > 0)
 									{
 										me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
@@ -1671,14 +1671,14 @@ var AFDS = {
 			}
 		}elsif(me.step==6)
 		{
-			if(getprop("/controls/flight/flaps") == 0)
+			if(getprop("controls/flight/flaps") == 0)
 			{
 				me.auto_popup.setValue(0);
 			}
-			var ma_spd = getprop("/instrumentation/airspeed-indicator/indicated-mach");
+			var ma_spd = getprop("instrumentation/airspeed-indicator/indicated-mach");
 			me.pfd_mach_ind.setValue(ma_spd * 1000);
 			me.pfd_mach_target.setValue(getprop("autopilot/settings/target-speed-mach") * 1000);
-			var banklimit = getprop("/instrumentation/afds/inputs/bank-limit-switch");
+			var banklimit = getprop("instrumentation/afds/inputs/bank-limit-switch");
 			if(banklimit==0)
 			{
 				var lim = 0;
@@ -1708,9 +1708,9 @@ var AFDS = {
 					lim=35;
 					me.heading_change_rate = 0.55 * 0.7;
 				}
-				props.globals.getNode("/instrumentation/afds/settings/bank-max").setValue(lim);
+				props.globals.getNode("instrumentation/afds/settings/bank-max").setValue(lim);
 				lim = -1 * lim;
-				props.globals.getNode("/instrumentation/afds/settings/bank-min").setValue(lim);
+				props.globals.getNode("instrumentation/afds/settings/bank-min").setValue(lim);
 			}
 		}
 
@@ -1723,7 +1723,7 @@ var AFDS = {
 
 var afds = AFDS.new();
 
-var afds_init_listener = setlistener("/sim/signals/fdm-initialized", func {
+var afds_init_listener = setlistener("sim/signals/fdm-initialized", func {
 	removelistener(afds_init_listener);
 	settimer(update_afds,6);
 	print("AFDS System ... check");

@@ -20,14 +20,14 @@
         <input>
             <condition>
                 <greater-than>
-                    <property>/controls/flight/flaps</property>
+                    <property>controls/flight/flaps</property>
                     <value>0.0</value>
                 </greater-than>
             </condition>
 
             <expression>
                 <table>
-                    <property>/controls/flight/flaps</property> 
+                    <property>controls/flight/flaps</property> 
                     <entry><ind>0.033</ind><dep>255</dep></entry>
                     <entry><ind>0.166</ind><dep>235</dep></entry>
                     <entry><ind>0.5</ind><dep>215</dep></entry>
@@ -41,7 +41,7 @@
         <input>
             <condition>
                 <greater-than>
-                    <property>/gear/gear/position-norm</property>
+                    <property>gear/gear/position-norm</property>
                     <value>0.0</value>
                 </greater-than>
             </condition>
@@ -71,7 +71,7 @@
         <input>
             <expression>
                 <min>
-                    <property>/autopilot/settings/target-speed-kt</property>
+                    <property>autopilot/settings/target-speed-kt</property>
                     <property>instrumentation/afds/max-airspeed-kts</property>
                 </min>
             </expression>
@@ -86,15 +86,15 @@
         <gain>1.0</gain>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[0]</property>
-				<not><property>/autopilot/locks/takeoff-mode</property></not>
+                <property>instrumentation/afds/inputs/at-armed[0]</property>
+				<not><property>autopilot/locks/takeoff-mode</property></not>
 				<or>
 	                <equals>
-    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+    	                <property>instrumentation/afds/inputs/autothrottle-index</property>
         	            <value>4</value>
 					</equals>
     	            <equals>
-        	            <property>/instrumentation/afds/inputs/autothrottle-index</property>
+        	            <property>instrumentation/afds/inputs/autothrottle-index</property>
             	        <value>3</value>
 					</equals>
 				</or>
@@ -105,7 +105,7 @@
             <condition>
 				<and>
 	                <equals>
-    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+    	                <property>instrumentation/afds/inputs/autothrottle-index</property>
         	            <value>4</value>
 					</equals>
 					<less-than>
@@ -129,15 +129,15 @@
         <gain>1.0</gain>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[1]</property>
-				<not><property>/autopilot/locks/takeoff-mode</property></not>
+                <property>instrumentation/afds/inputs/at-armed[1]</property>
+				<not><property>autopilot/locks/takeoff-mode</property></not>
 				<or>
 	                <equals>
-    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+    	                <property>instrumentation/afds/inputs/autothrottle-index</property>
         	            <value>4</value>
 					</equals>
     	            <equals>
-        	            <property>/instrumentation/afds/inputs/autothrottle-index</property>
+        	            <property>instrumentation/afds/inputs/autothrottle-index</property>
             	        <value>3</value>
 					</equals>
 				</or>
@@ -148,7 +148,7 @@
             <condition>
 				<and>
 	                <equals>
-    	                <property>/instrumentation/afds/inputs/autothrottle-index</property>
+    	                <property>instrumentation/afds/inputs/autothrottle-index</property>
         	            <value>4</value>
 					</equals>
 					<less-than>
@@ -173,13 +173,13 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[0]</property>
+                <property>instrumentation/afds/inputs/at-armed[0]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
                 <not>
-                    <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 </not>
                 <honor-passive>true</honor-passive>
 				<not-equals>
@@ -217,7 +217,7 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>instrumentation/afds/ias-target-kt</property>
 					</greater-than>
             	</condition>
@@ -228,7 +228,7 @@
             <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>instrumentation/afds/ias-target-kt</property>
 					</greater-than>
             	</condition>
@@ -265,13 +265,13 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[1]</property>
+                <property>instrumentation/afds/inputs/at-armed[1]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
                 <not>
-                    <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 </not>
                 <honor-passive>true</honor-passive>
 				<not-equals>
@@ -309,7 +309,7 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>instrumentation/afds/ias-target-kt</property>
 					</greater-than>
             	</condition>
@@ -320,7 +320,7 @@
             <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>instrumentation/afds/ias-target-kt</property>
 					</greater-than>
             	</condition>
@@ -358,12 +358,12 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[0]</property>
+                <property>instrumentation/afds/inputs/at-armed[0]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
-                <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 <honor-passive>true</honor-passive>
 				<not-equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -385,8 +385,8 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
- 						<property>/autopilot/settings/target-speed-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
+ 						<property>autopilot/settings/target-speed-mach</property>
 					</greater-than>
             	</condition>
 				<value>20.00</value>
@@ -395,8 +395,8 @@
            <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
- 						<property>/autopilot/settings/target-speed-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
+ 						<property>autopilot/settings/target-speed-mach</property>
 					</greater-than>
             	</condition>
 				<value>10.00</value>
@@ -415,12 +415,12 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[1]</property>
+                <property>instrumentation/afds/inputs/at-armed[1]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
-                <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 <honor-passive>true</honor-passive>
 				<not-equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -442,8 +442,8 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
- 						<property>/autopilot/settings/target-speed-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
+ 						<property>autopilot/settings/target-speed-mach</property>
 					</greater-than>
             	</condition>
 				<value>20.00</value>
@@ -452,8 +452,8 @@
            <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
- 						<property>/autopilot/settings/target-speed-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
+ 						<property>autopilot/settings/target-speed-mach</property>
 					</greater-than>
             	</condition>
 				<value>10.00</value>
@@ -474,13 +474,13 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[0]</property>
+                <property>instrumentation/afds/inputs/at-armed[0]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
                 <not>
-                    <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 </not>
                 <honor-passive>true</honor-passive>
 				<equals>
@@ -518,7 +518,7 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>autopilot/fmc/target_speed</property>
 					</greater-than>
             	</condition>
@@ -529,7 +529,7 @@
             <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>autopilot/fmc/target_speed</property>
 					</greater-than>
             	</condition>
@@ -557,13 +557,13 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[1]</property>
+                <property>instrumentation/afds/inputs/at-armed[1]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
                 <not>
-                    <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 </not>
                 <honor-passive>true</honor-passive>
 				<equals>
@@ -601,7 +601,7 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>autopilot/fmc/target_speed</property>
 					</greater-than>
             	</condition>
@@ -612,7 +612,7 @@
             <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+						<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
  						<property>autopilot/fmc/target_speed</property>
 					</greater-than>
             	</condition>
@@ -641,12 +641,12 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[0]</property>
+                <property>instrumentation/afds/inputs/at-armed[0]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
-                <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 <honor-passive>true</honor-passive>
 				<equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -668,7 +668,7 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
  						<property>autopilot/fmc/target_mach</property>
 					</greater-than>
             	</condition>
@@ -678,7 +678,7 @@
            <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
  						<property>autopilot/fmc/target_mach</property>
 					</greater-than>
             	</condition>
@@ -698,12 +698,12 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/afds/inputs/at-armed[1]</property>
+                <property>instrumentation/afds/inputs/at-armed[1]</property>
                 <equals>
-                    <property>/instrumentation/afds/inputs/autothrottle-index</property>
+                    <property>instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
                 </equals>
-                <property>/instrumentation/afds/inputs/ias-mach-selected</property>
+                <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 <honor-passive>true</honor-passive>
 				<equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -725,7 +725,7 @@
 			<Kp>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
  						<property>autopilot/fmc/target_mach</property>
 					</greater-than>
             	</condition>
@@ -735,7 +735,7 @@
            <Ti>
             	<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
  						<property>autopilot/fmc/target_mach</property>
 					</greater-than>
             	</condition>
@@ -756,12 +756,12 @@
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<input>/controls/engines/engine[0]/throttle</input>
 		<output>
-			<property>/controls/engines/engine[0]/throttle-lever</property>
+			<property>controls/engines/engine[0]/throttle-lever</property>
 		</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
-				<property>/controls/engines/engine[0]/reverser</property>
+				<property>controls/engines/engine[0]/reverser</property>
 			</condition>
 			<value>2.0</value>
 		</max-rate-of-change>
@@ -773,12 +773,12 @@
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<input>/controls/engines/engine[1]/throttle</input>
 		<output>
-			<property>/controls/engines/engine[1]/throttle-lever</property>
+			<property>controls/engines/engine[1]/throttle-lever</property>
 		</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
-				<property>/controls/engines/engine[1]/reverser</property>
+				<property>controls/engines/engine[1]/reverser</property>
 			</condition>
 			<value>2.0</value>
 		</max-rate-of-change>

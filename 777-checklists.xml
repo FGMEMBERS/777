@@ -6,7 +6,7 @@
             <value>Test and Set</value>
             <condition>
                 <equals>
-                    <property>/controls/gear/brake-parking</property>
+                    <property>controls/gear/brake-parking</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -17,11 +17,11 @@
             <condition>
                 <and>
                     <equals>
-                        <property>/controls/engines/engine[0]/throttle-lever</property>
+                        <property>controls/engines/engine[0]/throttle-lever</property>
                         <value>0</value>
                     </equals>
                     <equals>
-                        <property>/controls/engines/engine[1]/throttle-lever</property>
+                        <property>controls/engines/engine[1]/throttle-lever</property>
                         <value>0</value>
                     </equals>
                 </and>
@@ -33,11 +33,11 @@
             <condition>
                 <and>
                     <equals>
-                        <property>/controls/engines/engine[0]/cutoff</property>
+                        <property>controls/engines/engine[0]/cutoff</property>
                         <value>true</value>
                     </equals>
                     <equals>
-                        <property>/controls/engines/engine[1]/cutoff</property>
+                        <property>controls/engines/engine[1]/cutoff</property>
                         <value>true</value>
                     </equals>
                 </and>
@@ -48,7 +48,7 @@
             <value>On</value>
             <condition>
                 <equals>
-                    <property>/controls/electric/battery-switch</property>
+                    <property>controls/electric/battery-switch</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -57,7 +57,7 @@
             <name>Start APU</name>
             <value>On</value>
             <condition>
-                <property>/controls/APU/run</property>
+                <property>controls/APU/run</property>
             </condition>
         </item>
         <item>
@@ -75,7 +75,7 @@
             <value>Check Down</value>
             <condition>
                 <equals>
-                    <property>/controls/gear/gear-down</property>
+                    <property>controls/gear/gear-down</property>
                     <value>true</value>
                 </equals>
             </condition>
@@ -85,7 +85,7 @@
             <value>Up</value>
             <condition>
                 <equals>
-                    <property>/controls/flight/flaps</property>
+                    <property>controls/flight/flaps</property>
                     <value>0</value>
                 </equals>
             </condition>
@@ -95,7 +95,7 @@
             <value>Retracted</value>
             <condition>
                 <equals>
-                    <property>/controls/flight/speedbrake</property>
+                    <property>controls/flight/speedbrake</property>
                     <value>0</value>
                 </equals>
             </condition>
@@ -121,7 +121,7 @@
             <value>On</value>
             <condition>
                 <equals>
-                    <property>/controls/cabin/SeatBelt-knob</property>
+                    <property>controls/cabin/SeatBelt-knob</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -131,7 +131,7 @@
             <value>On</value>
             <condition>
                 <equals>
-                    <property>/controls/cabin/NoSmoking-knob</property>
+                    <property>controls/cabin/NoSmoking-knob</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -145,7 +145,7 @@
             <value>Check</value>
             <condition>
                 <greater-than>
-                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>-1</value>
                 </greater-than>
             </condition>
@@ -154,7 +154,7 @@
             <name>GPWS self-test (press and hold for 5 seconds)</name>
             <value>Done</value>
             <condition>
-                <property>/instrumentation/mk-viii/inputs/discretes/self-test</property>
+                <property>instrumentation/mk-viii/inputs/discretes/self-test</property>
             </condition>
         </item>
         <item>
@@ -170,7 +170,7 @@
             <value>Standby</value>
             <condition>
                 <equals>
-                    <property>/instrumentation/transponder/mode-switch</property>
+                    <property>instrumentation/transponder/mode-switch</property>
                     <value>0</value>
                 </equals>
             </condition>
@@ -181,7 +181,7 @@
             <value>On</value>
             <condition>
                 <equals>
-                    <property>/controls/lighting/beacon</property>
+                    <property>controls/lighting/beacon</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -195,12 +195,12 @@
             <value>On</value>
             <condition>
                 <and>
-                    <property>/controls/fuel/tank/boost-pump</property>
-                    <property>/controls/fuel/tank/boost-pump[1]</property>
-                    <property>/controls/fuel/tank[1]/boost-pump</property>
-                    <property>/controls/fuel/tank[1]/boost-pump[1]</property>
-                    <property>/controls/fuel/tank[2]/boost-pump</property>
-                    <property>/controls/fuel/tank[2]/boost-pump[1]</property>
+                    <property>controls/fuel/tank/boost-pump</property>
+                    <property>controls/fuel/tank/boost-pump[1]</property>
+                    <property>controls/fuel/tank[1]/boost-pump</property>
+                    <property>controls/fuel/tank[1]/boost-pump[1]</property>
+                    <property>controls/fuel/tank[2]/boost-pump</property>
+                    <property>controls/fuel/tank[2]/boost-pump[1]</property>
                 </and>
             </condition>
         </item>
@@ -219,7 +219,7 @@
             <value>Check</value>
             <condition>
                 <equals>
-                    <property>/controls/engines/engine[0]/cutoff</property>
+                    <property>controls/engines/engine[0]/cutoff</property>
                     <value>false</value>
                 </equals>
             </condition>
@@ -243,7 +243,7 @@
             <value>Check</value>
             <condition>
                 <equals>
-                    <property>/controls/engines/engine[1]/cutoff</property>
+                    <property>controls/engines/engine[1]/cutoff</property>
                     <value>false</value>
                 </equals>
             </condition>
@@ -257,7 +257,7 @@
             <value>Check</value>
             <condition>
                 <equals>
-                    <property>/controls/APU/run</property>
+                    <property>controls/APU/run</property>
                     <value>false</value>
                 </equals>
             </condition>
@@ -267,7 +267,7 @@
             <value>Off</value>
             <condition>
                 <equals>
-                    <property>/controls/electric/battery-switch</property>
+                    <property>controls/electric/battery-switch</property>
                     <value>0</value>
                 </equals>
             </condition>

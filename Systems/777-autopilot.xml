@@ -21,7 +21,7 @@
 			<value>0.0</value>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
+			<property>autopilot/internal/target-roll-deg</property>
 		</output>
 		<config>
 			<Ts>0.05</Ts>
@@ -64,7 +64,7 @@
 			<value>0</value>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
+			<property>autopilot/internal/target-roll-deg</property>
 		</output>
 		<config>
 			<Kp>-1.75</Kp>
@@ -98,13 +98,13 @@
 		<name>LNAV waypoint error computer/normalizer</name>
 		<debug>false</debug>
 		<enable>
-			<property>/autopilot/route-manager/active</property>
+			<property>autopilot/route-manager/active</property>
 		</enable>
 		<type>gain</type>
 		<input>
 			<property>autopilot/internal/course-deg</property>
 			<offset>
-				<property>/orientation/heading-deg</property>
+				<property>orientation/heading-deg</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>
@@ -147,13 +147,13 @@
 			<value>LNAV</value>
 		</enable>
 		<input>
-			<property>/autopilot/internal/course-error-deg</property>
+			<property>autopilot/internal/course-error-deg</property>
 		</input>
 		<reference>
 			<value>0.0</value>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
+			<property>autopilot/internal/target-roll-deg</property>
 		</output>
 		<config>
 			<Kp>-1.75</Kp>
@@ -175,13 +175,13 @@
 			<value>LOC</value>
 		</enable>
 		<input>
-			<property>/autopilot/internal/nav1-heading-error-deg</property>
+			<property>autopilot/internal/nav1-heading-error-deg</property>
 		</input>
 		<reference>
 			<value>0.0</value>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
+			<property>autopilot/internal/target-roll-deg</property>
 		</output>
 		<config>
 			<Kp>-3.0</Kp>
@@ -211,13 +211,13 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/orientation/heading-deg</property>
+			<property>orientation/heading-deg</property>
 		</input>
 		<reference>
-			<property>/instrumentation/nav/heading-deg</property>
+			<property>instrumentation/nav/heading-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/rudder</property>
+			<property>controls/flight/rudder</property>
 		</output>
 		<config>
 			<Kp>0.03</Kp>
@@ -243,13 +243,13 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/autopilot/internal/nav1-heading-error-deg</property>
+			<property>autopilot/internal/nav1-heading-error-deg</property>
 		</input>
 		<reference>
 			<value>0.0</value>
 		</reference>
 		<output>
-			<property>/controls/flight/rudder</property>
+			<property>controls/flight/rudder</property>
 		</output>
 		<config>
 			<Kp>-0.10</Kp>
@@ -274,14 +274,14 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/orientation/roll-deg</property>
+			<property>orientation/roll-deg</property>
 		</input>
 		<reference>
 			<value>/orientation/side-slip-deg</value>
 			<scale>-1.0</scale> <!-- change in side-slip sign as reported by yasim, see bug #901 -->
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
+			<property>autopilot/internal/target-roll-deg</property>
 		</output>
 		<config>
 			<Kp>5.0</Kp>
@@ -302,19 +302,19 @@
 			<property>instrumentation/afds/inputs/AP</property>
 		</enable>
 		<input>
-			<property>/orientation/roll-deg</property>
+			<property>orientation/roll-deg</property>
 		</input>
 		<reference>
-			<property>/autopilot/internal/target-roll-deg</property>
+			<property>autopilot/internal/target-roll-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/aileron</property>
+			<property>controls/flight/aileron</property>
 		</output>
 		<config>
 			<Kp>
 				<condition>
 					<greater-than>
-						<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+						<property>instrumentation/airspeed-indicator/indicated-mach</property>
 						<value>0.666</value>
 					</greater-than>
 				</condition>
@@ -356,7 +356,7 @@
 			<value>0.0</value>
 		</reference>
 		<output>
-			<property>/controls/flight/rudder</property>
+			<property>controls/flight/rudder</property>
 		</output>
 		<config>
 			<Kp>-0.5</Kp>
@@ -384,7 +384,7 @@
 			<value>10000</value>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
+			<property>autopilot/internal/target-climb-rate-fps</property>
 		</output>
 		<config>
 			<Kp>0.3</Kp>
@@ -406,13 +406,13 @@
 			<value>TO/GA</value>
 		</enable>
 		<input>
-			<property>/velocities/vertical-speed-fps</property>
+			<property>velocities/vertical-speed-fps</property>
 		</input>
 		<reference>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
+			<property>autopilot/internal/target-climb-rate-fps</property>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
 			<Ts>0.05</Ts>
@@ -436,10 +436,10 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</input>
 		<output>
-			<property>/autopilot/internal/current-speed-kt</property>
+			<property>autopilot/internal/current-speed-kt</property>
 		</output>
 	</filter>
 
@@ -482,26 +482,26 @@
 					</and>
 				</or>
 				<not>
-					<property>/instrumentation/afds/inputs/ias-mach-selected</property>
+					<property>instrumentation/afds/inputs/ias-mach-selected</property>
 				</not>
 			</and>
 			</condition>
 		</enable>
 		<input>
-			<property>/autopilot/internal/current-speed-kt</property>
+			<property>autopilot/internal/current-speed-kt</property>
 		</input>
 		<reference>
-			<property>/autopilot/internal/ias-set-kt</property>
+			<property>autopilot/internal/ias-set-kt</property>
 		</reference>
 		<output>
-			<property>/autopilot/internal/flch-pitch-deg</property>
+			<property>autopilot/internal/flch-pitch-deg</property>
 		</output>
 		<config>
 			<Kp>-0.25</Kp>
 			<Ti>
 				<condition>
 					<greater-than>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -511,7 +511,7 @@
 			<Td>
 				<condition>
 					<greater-than>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -521,7 +521,7 @@
 			<u_min>
 				<condition>
 					<greater-than>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -533,7 +533,7 @@
 			<u_max>
 				<condition>
 					<greater-than>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -543,7 +543,7 @@
 				<condition>
 					<greater-than>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 					</greater-than>
 				</condition>
 				<property>autopilot/internal/current-pitch-deg</property>
@@ -556,10 +556,10 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+			<property>instrumentation/airspeed-indicator/indicated-mach</property>
 		</input>
 		<output>
-			<property>/autopilot/internal/current-mach</property>
+			<property>autopilot/internal/current-mach</property>
 		</output>
 	</filter>
 
@@ -600,18 +600,18 @@
 						</equals>
 					</and>
 				</or>
-				<property>/instrumentation/afds/inputs/ias-mach-selected</property>
+				<property>instrumentation/afds/inputs/ias-mach-selected</property>
 			</and>
 			</condition>
 		</enable>
 		<input>
-			<property>/autopilot/internal/current-mach</property>
+			<property>autopilot/internal/current-mach</property>
 		</input>
 		<reference>
 			<prop>/autopilot/internal/mach-set</prop>
 		</reference>
 		<output>
-			<property>/autopilot/internal/flch-pitch-deg</property>
+			<property>autopilot/internal/flch-pitch-deg</property>
 		</output>
 		<config>
 			<Kp>-75.0</Kp>
@@ -620,7 +620,7 @@
 			<u_min>
 				<condition>
 					<greater-than>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -632,7 +632,7 @@
 			<u_max>
 				<condition>
 					<greater-than>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -642,7 +642,7 @@
 				<condition>
 					<greater-than>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
-						<property>/autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/actual-target-altitude-ft</property>
 					</greater-than>
 				</condition>
 				<property>autopilot/internal/current-pitch-deg</property>
@@ -680,10 +680,10 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/autopilot/internal/flch-pitch-deg</property>
+			<property>autopilot/internal/flch-pitch-deg</property>
 		</input>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
 			<u_min>
@@ -736,10 +736,10 @@
 			<property>instrumentation/altimeter/indicated-altitude-ft</property>
 		</input>
 		<reference>
-			<property>/autopilot/settings/actual-target-altitude-ft</property>
+			<property>autopilot/settings/actual-target-altitude-ft</property>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
+			<property>autopilot/internal/target-climb-rate-fps</property>
 		</output>
 		<config>
 			<Kp>0.15</Kp>
@@ -791,13 +791,13 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/velocities/vertical-speed-fps</property>
+			<property>velocities/vertical-speed-fps</property>
 		</input>
 		<reference>
-			<property>/autopilot/internal/target-climb-rate-fps</property>
+			<property>autopilot/internal/target-climb-rate-fps</property>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
 		<Kp>
@@ -838,10 +838,10 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</input>
 		<output>
-			<property>/autopilot/internal/current-vnavspeed-kt</property>
+			<property>autopilot/internal/current-vnavspeed-kt</property>
 		</output>
 	</filter>
 
@@ -859,10 +859,10 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/instrumentation/nav[0]/gs-rate-of-climb</property>
+			<property>instrumentation/nav[0]/gs-rate-of-climb</property>
 		</input>
 		<output>
-			<property>/autopilot/internal/current-gs-rate-of-climb</property>
+			<property>autopilot/internal/current-gs-rate-of-climb</property>
 		</output>
 	</filter>
 
@@ -874,13 +874,13 @@
 			<value>G/S</value>
 		</enable>
 		<input>
-			<property>/velocities/vertical-speed-fps</property>
+			<property>velocities/vertical-speed-fps</property>
 		</input>
 		<reference>
-			<property>/autopilot/internal/current-gs-rate-of-climb</property>
+			<property>autopilot/internal/current-gs-rate-of-climb</property>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
 			<Kp>0.45</Kp>
@@ -927,14 +927,14 @@
 			</condition>
 		</enable>
 		<input>
-			<property>/velocities/vertical-speed-fps</property>
+			<property>velocities/vertical-speed-fps</property>
 		</input>
 		<reference>
-			<property>/autopilot/settings/vertical-speed-fpm</property>
+			<property>autopilot/settings/vertical-speed-fpm</property>
 			<scale>0.01666666</scale>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
 			<Ts>0.05</Ts>
@@ -976,7 +976,7 @@
 			<value>-3.0</value>
 		</input>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 	</filter>
 
@@ -998,13 +998,13 @@
 				</condition>
 		</enable>
 		<input>
-			<property>/velocities/vertical-speed-fps</property>
+			<property>velocities/vertical-speed-fps</property>
 		</input>
 		<reference>
-			<property>/autopilot/settings/flare-speed-fps</property>
+			<property>autopilot/settings/flare-speed-fps</property>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
 			<Ts>0.05</Ts>
@@ -1036,10 +1036,10 @@
 			<property>autopilot/internal/fpa</property>
 		</input>
 		<reference>
-			<property>/autopilot/settings/flight-path-angle</property>
+			<property>autopilot/settings/flight-path-angle</property>
 		</reference>
 		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
 			<Ts>0.05</Ts>
@@ -1065,13 +1065,13 @@
 			<property>instrumentation/afds/inputs/AP</property>
 		</enable>
 		<input>
-			<property>/orientation/pitch-deg</property>
+			<property>orientation/pitch-deg</property>
 		</input>
 		<reference>
-			<property>/autopilot/internal/target-pitch-deg</property>
+			<property>autopilot/internal/target-pitch-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/elevator-filter</property>
+			<property>controls/flight/elevator-filter</property>
 		</output>
 		<config>
 			<Kp>
@@ -1105,7 +1105,7 @@
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<property>instrumentation/airspeed-indicator/indicated-mach</property>
 					<value>0.85</value>
 				</greater-than>
 			</condition>
@@ -1114,7 +1114,7 @@
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<property>instrumentation/airspeed-indicator/indicated-mach</property>
 					<value>0.666</value>
 				</greater-than>
 			</condition>
@@ -1123,7 +1123,7 @@
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
-					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<property>instrumentation/airspeed-indicator/indicated-mach</property>
 					<value>0.5</value>
 				</greater-than>
 			</condition>
@@ -1132,7 +1132,7 @@
 		<max-rate-of-change>0.2</max-rate-of-change>
 		<initialize-to>output</initialize-to>
 		<input>
-			<property>/controls/flight/elevator-filter</property>
+			<property>controls/flight/elevator-filter</property>
 		</input>
 		<output>/controls/flight/elevator</output>
 	</filter>
@@ -1144,13 +1144,13 @@
 			<property>instrumentation/afds/inputs/AP</property>
 		</enable>
 		<input>
-			<property>/controls/flight/elevator</property>
+			<property>controls/flight/elevator</property>
 		</input>
 		<reference>
 			<value>0</value>
 		</reference>
 		<output>
-			<property>/controls/flight/elevator-trim</property>
+			<property>controls/flight/elevator-trim</property>
 		</output>
 		<config>
 			<Kp>-0.05</Kp>

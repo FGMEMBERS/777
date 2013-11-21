@@ -36,7 +36,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<equals>
-					<property>/controls/flight/flaps</property>
+					<property>controls/flight/flaps</property>
 					<value>0.666</value>
 				</equals>
 			</condition>
@@ -62,7 +62,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<not>
-					<property>/controls/gear/brake-parking</property>
+					<property>controls/gear/brake-parking</property>
 				</not>
 			</condition>
 		</exit>
@@ -98,7 +98,7 @@ Are you ready for takeoff?
 		<message>Check: NAV lights ON</message>
 		<exit>
 			<condition>
-				<property>/controls/lighting/nav-lights</property>
+				<property>controls/lighting/nav-lights</property>
 			</condition>
 		</exit>
 		<marker>
@@ -121,7 +121,7 @@ Are you ready for takeoff?
 		<message>Check: strobe light ON</message>
 		<!--exit>
 			<condition>
-				<property>/controls/lighting/strobe</property>
+				<property>controls/lighting/strobe</property>
 			</condition>
 		</exit-->
 	</step>
@@ -131,7 +131,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<not>
-					<property>/controls/lighting/cabin-lights</property>
+					<property>controls/lighting/cabin-lights</property>
 				</not>
 			</condition>
 		</exit>
@@ -241,7 +241,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/controls/engines/engine[0]/throttle-lever</property>
+					<property>controls/engines/engine[0]/throttle-lever</property>
 					<value>0.75</value>
 				</greater-than>
 			</condition>
@@ -268,7 +268,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/velocities/airspeed-kt</property>
+					<property>velocities/airspeed-kt</property>
 					<value>110</value>
 				</greater-than>
 			</condition>
@@ -288,7 +288,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/orientation/pitch-deg</property>
+					<property>orientation/pitch-deg</property>
 					<value>5</value>
 				</greater-than>
 			</condition>
@@ -300,7 +300,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/position/altitude-agl-ft</property>
+					<property>position/altitude-agl-ft</property>
 					<value>200</value>
 				</greater-than>
 			</condition>
@@ -312,7 +312,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<not>
-					<property>/controls/gear/gear-down</property>
+					<property>controls/gear/gear-down</property>
 				</not>
 			</condition>
 		</exit>
@@ -333,7 +333,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<greater-than>
-					<property>/velocities/airspeed-kt</property>
+					<property>velocities/airspeed-kt</property>
 					<value>170</value>
 				</greater-than>
 			</condition>
@@ -345,7 +345,7 @@ Are you ready for takeoff?
 		<exit>
 			<condition>
 				<equals>
-					<property>/controls/flight/flaps</property>
+					<property>controls/flight/flaps</property>
 					<value>0</value>
 				</equals>
 			</condition>

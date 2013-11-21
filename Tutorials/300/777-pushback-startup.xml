@@ -18,19 +18,19 @@ Are you ready to take controls?
 			<value>1</value>
 		</set>
 		<set>
-			<property>/controls/flight/flaps</property>
+			<property>controls/flight/flaps</property>
 			<value>0.0</value>
 		</set>
 		<set>
-			<property>/controls/APU/off-start-run</property>
+			<property>controls/APU/off-start-run</property>
 			<value>1</value>
 		</set>
 		<set>
-			<property>/controls/APU/apu_status</property>
+			<property>controls/APU/apu_status</property>
 			<value>3</value>
 		</set>
 		<set>
-			<property>/controls/electric/APU-generator</property>
+			<property>controls/electric/APU-generator</property>
 			<value>1</value>
 		</set>
 		<set>
@@ -58,7 +58,7 @@ Are you ready to take controls?
 			<value>0</value>
 		</set>
 		<set>
-			<property>/sim/model/armrest</property>
+			<property>sim/model/armrest</property>
 			<value>1</value>
 		</set>
 	</init>
@@ -101,7 +101,7 @@ Are you ready to take controls?
 		</marker>
 		<exit>
 			<condition>
-				<property>/controls/gear/brake-parking</property>
+				<property>controls/gear/brake-parking</property>
 			</condition>
 		</exit>
 		<view>
@@ -330,7 +330,7 @@ Are you ready to take controls?
 		<exit>
 			<condition>
 				<not>
-					<property>/controls/electric/APU-generator</property>
+					<property>controls/electric/APU-generator</property>
 				</not>
 			</condition>
 		</exit>

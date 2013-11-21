@@ -9,7 +9,7 @@
         <object-name>LandingLightCone_L</object-name>
         <condition>
             <and>
-				<property>/sim/rendering/rembrandt/enabled</property>
+				<property>sim/rendering/rembrandt/enabled</property>
                 <greater-than>
                     <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
@@ -75,7 +75,7 @@
         <object-name>LandingLightCone_R</object-name>
         <condition>
             <and>
-				<property>/sim/rendering/rembrandt/enabled</property>
+				<property>sim/rendering/rembrandt/enabled</property>
                 <greater-than>
                     <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>

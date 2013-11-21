@@ -99,7 +99,7 @@ var WEU =
         setlistener("controls/gear/brake-parking",      func { Weu.update_listener_inputs() } );
         setlistener("controls/engines/engine/reverser", func { Weu.update_listener_inputs() } );
         setlistener("controls/electric/APU-generator",  func { Weu.update_listener_inputs() } );
-        setlistener("/systems/electrical/outputs/avionics",func { Weu.update_listener_inputs() } );
+        setlistener("systems/electrical/outputs/avionics",func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/rudder-trim",      func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/elevator-trim",    func { Weu.update_listener_inputs() } );
         setlistener("sim/freeze/replay-state",          func { Weu.update_listener_inputs() } );
@@ -188,7 +188,7 @@ var WEU =
 		{
             append(me.msgs_caution,"FMC MESSAGE");
 		}
-        if ((getprop("/gear/brake-thermal-energy") or 0)>1)
+        if ((getprop("gear/brake-thermal-energy") or 0)>1)
             append(me.msgs_caution,"L R BRAKE OVERHEAT");
         if (me.speedbrake)
         {
@@ -215,7 +215,7 @@ var WEU =
 #### stall warnings and other sounds ####
     update_sounds : func
     {
-		var grosswt = getprop("/yasim/gross-weight-lbs");
+		var grosswt = getprop("yasim/gross-weight-lbs");
 		if(grosswt == nil) return;
         var target_speed = 0;
         var horn   = 0;
@@ -248,9 +248,9 @@ var WEU =
 		me.v1.setValue(weight_diff*0.00018424+92 + altitude_compensate);
 		me.vr.setValue(weight_diff*0.000164399+104 + altitude_compensate);
 		me.v2.setValue(weight_diff*0.000138889+119 + altitude_compensate);
-		setprop("/instrumentation/fmc/vspeeds/V1", me.v1.getValue());
-		setprop("/instrumentation/fmc/vspeeds/VR", me.vr.getValue());
-		setprop("/instrumentation/fmc/vspeeds/V2", me.v2.getValue());
+		setprop("instrumentation/fmc/vspeeds/V1", me.v1.getValue());
+		setprop("instrumentation/fmc/vspeeds/VR", me.vr.getValue());
+		setprop("instrumentation/fmc/vspeeds/V2", me.v2.getValue());
 
         # calculate flap target speed
         if (me.flaps_tgt<0.01)            # flap up
@@ -354,7 +354,7 @@ var WEU =
     update_listener_inputs : func()
     {
         # be nice to sim: some inputs rarely change. use listeners.
-        me.enabled       = (getprop("/systems/electrical/outputs/avionics") and
+        me.enabled       = (getprop("systems/electrical/outputs/avionics") and
                             (getprop("sim/freeze/replay-state")!=1) and
                             me.serviceable.getValue());
         me.speedbrake    = getprop("controls/flight/speedbrake");

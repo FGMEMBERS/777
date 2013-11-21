@@ -79,14 +79,14 @@ This tutorial quickly walks you through the features of the cockpit in general.
 		<field-of-view>56.1</field-of-view>
 	</view>
 	<set>
-		<property>/instrumentation/weu/actuators/stick-shaker</property>
+		<property>instrumentation/weu/actuators/stick-shaker</property>
 		<value>1</value>
 	</set>
 </step>
 
 <step>
 	<set>
-		<property>/instrumentation/weu/actuators/stick-shaker</property>
+		<property>instrumentation/weu/actuators/stick-shaker</property>
 		<value>0</value>
 	</set>
 
@@ -127,30 +127,30 @@ This tutorial quickly walks you through the features of the cockpit in general.
 		<scale>1.7167</scale>
 	</marker>
 	<set>
-		<property>/instrumentation/weu/light/master-caution</property>
+		<property>instrumentation/weu/light/master-caution</property>
 		<value>1</value>
 	</set>
 	<set>
-		<property>/instrumentation/weu/light/master-warning</property>
+		<property>instrumentation/weu/light/master-warning</property>
 		<value>1</value>
 	</set>
 	<set>
-		<property>/instrumentation/weu/sound/stall-horn</property>
+		<property>instrumentation/weu/sound/stall-horn</property>
 		<value>1</value>
 	</set>
 </step>
 
 <step>
 	<set>
-		<property>/instrumentation/weu/light/master-caution</property>
+		<property>instrumentation/weu/light/master-caution</property>
 		<value>0</value>
 	</set>
 	<set>
-		<property>/instrumentation/weu/light/master-warning</property>
+		<property>instrumentation/weu/light/master-warning</property>
 		<value>0</value>
 	</set>
 	<set>
-		<property>/instrumentation/weu/sound/stall-horn</property>
+		<property>instrumentation/weu/sound/stall-horn</property>
 		<value>0</value>
 	</set>
 	
@@ -314,14 +314,14 @@ This tutorial quickly walks you through the features of the cockpit in general.
 		<scale>9.9500</scale>
 	</marker>
 	<set>
-		<property>/instrumentation/mk-viii/inputs/discretes/self-test</property>
+		<property>instrumentation/mk-viii/inputs/discretes/self-test</property>
 		<value>1</value>
 	</set>
 </step>
 
 <step>
 	<set>
-		<property>/instrumentation/mk-viii/inputs/discretes/self-test</property>
+		<property>instrumentation/mk-viii/inputs/discretes/self-test</property>
 		<value>0</value>
 	</set>
 
@@ -438,18 +438,18 @@ This tutorial quickly walks you through the features of the cockpit in general.
 		<scale>4.6834</scale>
 	</marker>
 	<set>
-		<property>/instrumentation/tcas/inputs/mode</property>
+		<property>instrumentation/tcas/inputs/mode</property>
 		<value>1</value>
 	</set>
 	<set>
-		<property>/instrumentation/tcas/inputs/self-test</property>
+		<property>instrumentation/tcas/inputs/self-test</property>
 		<value>1</value>
 	</set>
 </step>
 
 <step>
 	<set>
-		<property>/instrumentation/tcas/inputs/self-test</property>
+		<property>instrumentation/tcas/inputs/self-test</property>
 		<value>0</value>
 	</set>
 

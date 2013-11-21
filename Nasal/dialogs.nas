@@ -1,10 +1,10 @@
-var Radio = gui.Dialog.new("/sim/gui/dialogs/radios/dialog",
+var Radio = gui.Dialog.new("sim/gui/dialogs/radios/dialog",
         "Aircraft/777/Systems/tranceivers.xml");
 
-var ap_settings = gui.Dialog.new("/sim/gui/dialogs/autopilot/dialog",
+var ap_settings = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog",
         "Aircraft/777/Systems/autopilot-dlg.xml");
 
-var tiller_steering = gui.Dialog.new("/sim/gui/dialogs/tiller-steering/dialog",
+var tiller_steering = gui.Dialog.new("sim/gui/dialogs/tiller-steering/dialog",
         "Aircraft/777/Systems/tiller-steering.xml");
 
 var ground_services = gui.Dialog.new("sim/gui/dialogs/ground_services/dialog",
@@ -18,7 +18,7 @@ gui.menuBind("fuel-and-payload", "dialogs.showWeightDialog()");
 # Dynamically generates a weight & fuel configuration dialog specific to
 # the aircraft.
 #
-var fdm = getprop("/sim/flight-model");
+var fdm = getprop("sim/flight-model");
 var dialog = {};
 var showWeightDialog = func {
     var name = "WeightAndFuel";
@@ -83,7 +83,7 @@ var showWeightDialog = func {
     limits.set("halign", "center");
     var row = 0;
 
-    var massLimits = props.globals.getNode("/limits/mass-and-balance");
+    var massLimits = props.globals.getNode("limits/mass-and-balance");
 
     var tablerow = func(name, node, format ) {
 
@@ -130,7 +130,7 @@ var showWeightDialog = func {
         }
 
         if( fdmdata.cg != nil ) {
-        var n = props.globals.getNode("/limits/mass-and-balance/cg/dimension");
+        var n = props.globals.getNode("limits/mass-and-balance/cg/dimension");
         tablerow("Center of Gravity", fdmdata.cg, "%.1f " ~ (n == nil ? "in" : n.getValue()));
     }
 
@@ -171,7 +171,7 @@ var showWeightDialog = func {
     tcell(fuelTable, "text", 0, 4).set("label", "Gallons");
     tcell(fuelTable, "text", 0, 5).set("label", "Fraction");
 
-    var tanks = props.globals.getNode("/consumables/fuel").getChildren("tank");
+    var tanks = props.globals.getNode("consumables/fuel").getChildren("tank");
     for(var i=0; i<size(tanks); i+=1) {
         var t = tanks[i];
 

@@ -14,7 +14,7 @@
         <property>autopilot/settings/actual-target-altitude-ft</property>
       </input>
       <reference>
-		<property>/instrumentation/altimeter/indicator-altitude-ft</property>
+		<property>instrumentation/altimeter/indicator-altitude-ft</property>
       </reference>
       <output>instrumentation/pfd/target-altitude-diff</output>
       <min>-430</min>
@@ -30,7 +30,7 @@
         <property>autopilot/settings/target-speed-kt</property>
       </input>
       <reference>
-		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
       </reference>
       <output>instrumentation/pfd/target-speed-diff</output>
       <min>-60</min>
@@ -80,7 +80,7 @@
         <property>instrumentation/weu/state/vref</property>
       </input>
       <reference>
-		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
       </reference>
       <output>instrumentation/pfd/vref-diff</output>
       <min>-62</min>
@@ -96,7 +96,7 @@
         <property>instrumentation/weu/state/vref</property>
       </input>
       <reference>
-		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
       </reference>
       <output>instrumentation/pfd/vref-text-diff</output>
       <min>-55</min>
@@ -112,7 +112,7 @@
 			<property>instrumentation/weu/state/v1</property>
 		</input>
 		<reference>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
 		<output>instrumentation/pfd/v1-diff</output>
 		<min>-64</min>
@@ -128,7 +128,7 @@
 			<property>instrumentation/weu/state/vr</property>
 		</input>
 		<reference>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
 		<output>instrumentation/pfd/vr-diff</output>
 		<min>-64</min>
@@ -144,7 +144,7 @@
 			<property>instrumentation/weu/state/v2</property>
 		</input>
 		<reference>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
 		<output>instrumentation/pfd/v2-diff</output>
 		<min>-64</min>
@@ -160,7 +160,7 @@
 			<property>instrumentation/weu/state/flap</property>
 		</input>
 		<reference>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
 		<output>instrumentation/pfd/flap-diff</output>
 		<min>-64</min>
@@ -176,7 +176,7 @@
 			<property>instrumentation/weu/state/fl1</property>
 		</input>
 		<reference>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
 		<output>instrumentation/pfd/fl1-diff</output>
 		<min>-64</min>
@@ -192,7 +192,7 @@
 			<property>instrumentation/weu/state/fl5</property>
 		</input>
 		<reference>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
 		<output>instrumentation/pfd/fl5-diff</output>
 		<min>-64</min>
@@ -208,7 +208,7 @@
 			<property>instrumentation/weu/state/fl15</property>
 		</input>
 		<reference>
-			<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
 		</reference>
 		<output>instrumentation/pfd/fl15-diff</output>
 		<min>-64</min>

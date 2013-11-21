@@ -1034,7 +1034,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value type="string">INIT_REF</value>
 		</binding>
 	</action>
@@ -1048,7 +1048,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value type="string">RTE1_1</value>
 		</binding>
 	</action>
@@ -1062,7 +1062,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value type="string">NAV_RAD</value>
 		</binding>
 	</action>
@@ -1076,7 +1076,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value type="string">DEP_ARR_INDEX</value>
 		</binding>
 	</action>
@@ -1090,7 +1090,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value type="string">RTE1_LEGS</value>
 		</binding>
 	</action>
@@ -1104,7 +1104,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value type="string">MENU</value>
 		</binding>
 	</action>
@@ -1119,12 +1119,12 @@
 		<binding>
 			<condition>
 				<equals>
-					<property>/instrumentation/cdu/display</property>
+					<property>instrumentation/cdu/display</property>
 					<value>RTE1_2</value>
 				</equals>
 			</condition>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value>RTE1_1</value>
 		</binding>
 	</action>
@@ -1139,12 +1139,12 @@
 		<binding>
 			<condition>
 				<equals>
-					<property>/instrumentation/cdu/display</property>
+					<property>instrumentation/cdu/display</property>
 					<value>RTE1_1</value>
 				</equals>
 			</condition>
 			<command>property-assign</command>
-			<property>/instrumentation/cdu/display</property>
+			<property>instrumentation/cdu/display</property>
 			<value>RTE1_2</value>
 		</binding>
 	</action>
@@ -1683,7 +1683,7 @@
 		<binding>
 			<condition>
 				<equals>
-					<property>/instrumentation/cdu/display</property>
+					<property>instrumentation/cdu/display</property>
 					<value>RTE1_LEGS</value>
 				</equals>
 			</condition>
@@ -1701,7 +1701,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>nasal</command>
-			<script>setprop("/instrumentation/cdu/input","");</script>
+			<script>setprop("instrumentation/cdu/input","");</script>
 		</binding>
 	</action>
 </animation>

@@ -814,13 +814,13 @@ Syd Adams
         <object-name>LHLND.spot</object-name>
         <condition>
             <and>
-				<not><property>/sim/rendering/rembrandt/enabled</property></not>
+				<not><property>sim/rendering/rembrandt/enabled</property></not>
                 <greater-than>
                     <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
-                    <property>/sim/time/sun-angle-rad</property>
+                    <property>sim/time/sun-angle-rad</property>
                     <value>1.55</value>
                 </greater-than>
             </and>
@@ -843,13 +843,13 @@ Syd Adams
         <object-name>RHLND.spot</object-name>
         <condition>
             <and>
-				<not><property>/sim/rendering/rembrandt/enabled</property></not>
+				<not><property>sim/rendering/rembrandt/enabled</property></not>
                 <greater-than>
                     <property>sim/multiplay/generic/int[6]</property>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
-                    <property>/sim/time/sun-angle-rad</property>
+                    <property>sim/time/sun-angle-rad</property>
                     <value>1.55</value>
                 </greater-than>
             </and>
@@ -878,7 +878,7 @@ Syd Adams
         <object-name>CTRLND.spot</object-name>
         <condition>
             <and>
-				<not><property>/sim/rendering/rembrandt/enabled</property></not>
+				<not><property>sim/rendering/rembrandt/enabled</property></not>
                 <greater-than>
                     <property>sim/multiplay/generic/int[5]</property>
                     <value>5</value>
@@ -888,7 +888,7 @@ Syd Adams
                     <value>1.0</value>
                 </equals>
                 <greater-than>
-                    <property>/sim/time/sun-angle-rad</property>
+                    <property>sim/time/sun-angle-rad</property>
                     <value>1.55</value>
                 </greater-than>
             </and>
@@ -1755,7 +1755,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LHwheel.3</object-name>
-        <property>/controls/gear/maingear-steering-cmd-norm</property>
+        <property>controls/gear/maingear-steering-cmd-norm</property>
         <factor>-8</factor>
         <axis>
             <x>0</x>
@@ -2055,7 +2055,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RHwheel.3</object-name>
-        <property>/controls/gear/maingear-steering-cmd-norm</property>
+        <property>controls/gear/maingear-steering-cmd-norm</property>
         <factor>-8</factor>
         <axis>
             <x>0</x>
