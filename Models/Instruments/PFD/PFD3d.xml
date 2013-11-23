@@ -260,7 +260,7 @@ Syd Adams
         <object-name>FDpitch</object-name>
         <object-name>FDpitch_rembrandt</object-name>
         <property>autopilot/internal/target-pitch-deg</property>
-        <factor>0.00168</factor>
+        <factor>0.00187</factor>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -273,7 +273,7 @@ Syd Adams
         <object-name>FDpitch</object-name>
         <object-name>FDpitch_rembrandt</object-name>
         <property>orientation/pitch-deg</property>
-        <factor>0.00168</factor>
+        <factor>0.00187</factor>
         <axis>
             <x>0</x>
             <y>0</y>
