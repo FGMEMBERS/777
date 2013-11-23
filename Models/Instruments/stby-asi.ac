@@ -7,7 +7,7 @@ kids 14
 OBJECT poly
 name "StbyAsi.screenoff"
 loc 0.0039826 3.49246e-09 1.74623e-09
-texture "stby-ai_1.png"
+texture "stby-ai.png"
 crease 45.000000
 numvert 12
 -0.0005826 -0.0344004 -0.0360568
