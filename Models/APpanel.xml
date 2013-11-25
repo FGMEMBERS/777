@@ -1147,7 +1147,6 @@ Autopilot Control Panel
    <animation>
 		<type>pick</type>
 	   <object-name>Pitchwheel.dec</object-name>
-	   <object-name>Pitchwheel.inc</object-name>
 		<action>
 			<button>0</button> <!--  left button -->
 			<repeatable>true</repeatable>
@@ -1189,10 +1188,9 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
-		<object-name>Pitchwheel.dec</object-name>
 		<object-name>Pitchwheel.inc</object-name>
 	   <action>
-			<button>1</button> <!--  center button -->
+			<button>0</button> <!--  left button -->
 			<repeatable>true</repeatable>
 			<binding>
 			<condition>
@@ -1232,8 +1230,7 @@ Autopilot Control Panel
 
    <animation>
 		<type>pick</type>
-	   <object-name>Pitchwheel.dec</object-name>
-	   <object-name>Pitchwheel.inc</object-name>
+	   <object-name>Pitch_Wheel.knob</object-name>
 		<action>
 			<button>3</button> <!--  scroll up -->
 			<repeatable>false</repeatable>
@@ -1246,7 +1243,7 @@ Autopilot Control Panel
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/vertical-speed-fpm</property>
-				<step>-100</step>
+				<step>100</step>
 				<min>-8000</min>
 				<max>6000</max>
 			</binding>
@@ -1259,7 +1256,7 @@ Autopilot Control Panel
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/flight-path-angle</property>
-				<step>-0.1</step>
+				<step>0.1</step>
 				<min>-9.9</min>
 				<max>9.9</max>
 			</binding>
@@ -1275,8 +1272,7 @@ Autopilot Control Panel
 
 	<animation>
 		<type>pick</type>
-		<object-name>Pitchwheel.dec</object-name>
-		<object-name>Pitchwheel.inc</object-name>
+	   <object-name>Pitch_Wheel.knob</object-name>
 	   <action>
 			<button>4</button> <!--  scroll down -->
 			<repeatable>false</repeatable>
@@ -1289,7 +1285,7 @@ Autopilot Control Panel
 			</condition>
 			<command>property-adjust</command>
 			<property>autopilot/settings/vertical-speed-fpm</property>
-			<step>100</step>
+			<step>-100</step>
 			<min>-8000</min>
 			<max>6000</max>
 			</binding>
@@ -1302,7 +1298,7 @@ Autopilot Control Panel
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/flight-path-angle</property>
-				<step>0.1</step>
+				<step>-0.1</step>
 				<min>-9.9</min>
 				<max>9.9</max>
 			</binding>

@@ -462,10 +462,11 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>baro.inc</object-name>
-        <object-name>baro.dec</object-name>
+        <object-name>BARO.knob</object-name>
+        <object-name>BARO.knob.001</object-name>
         <action>
             <button>0</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
@@ -481,10 +482,11 @@ Syd Adams
 
      <animation>
         <type>pick</type>
-        <object-name>baro.inc</object-name>
-        <object-name>baro.dec</object-name>
+        <object-name>BARO.knob</object-name>
+        <object-name>BARO.knob.001</object-name>
         <action>
             <button>1</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
@@ -502,7 +504,6 @@ Syd Adams
         <type>pick</type>
         <object-name>inhg.inc</object-name>
         <object-name>inhg.dec</object-name>
-        <object-name>BARO.knob.001</object-name>
         <action>
             <button>0</button> <!--  left button -->
             <repeatable>true</repeatable>
@@ -528,9 +529,8 @@ Syd Adams
         <type>pick</type>
         <object-name>inhg.inc</object-name>
         <object-name>inhg.dec</object-name>
-        <object-name>BARO.knob.001</object-name>
         <action>
-            <button>1</button> <!--  right button -->
+            <button>1</button> <!--  center button -->
             <repeatable>true</repeatable>
             <binding>
 				<condition>
@@ -555,7 +555,6 @@ Syd Adams
         <object-name>inhg.inc</object-name>
         <object-name>inhg.dec</object-name>
         <object-name>inhg.reset</object-name>
-        <object-name>BARO.knob.001</object-name>
         <action>
             <button>3</button> <!--  scroll up -->
             <repeatable>false</repeatable>
@@ -582,7 +581,6 @@ Syd Adams
         <object-name>inhg.inc</object-name>
         <object-name>inhg.dec</object-name>
         <object-name>inhg.reset</object-name>
-        <object-name>BARO.knob.001</object-name>
         <action>
             <button>4</button> <!--  scroll down -->
             <repeatable>false</repeatable>
