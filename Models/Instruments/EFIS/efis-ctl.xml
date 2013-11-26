@@ -649,6 +649,7 @@ Syd Adams
         <object-name>Mins.dec</object-name>
         <action>
             <button>0</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
@@ -662,6 +663,7 @@ Syd Adams
         <object-name>Mins.inc</object-name>
         <action>
             <button>0</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
@@ -675,6 +677,7 @@ Syd Adams
         <object-name>Mins.dec</object-name>
         <action>
             <button>1</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
@@ -688,6 +691,7 @@ Syd Adams
         <object-name>Mins.inc</object-name>
         <action>
             <button>1</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
