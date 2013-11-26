@@ -159,12 +159,11 @@ var EFIS = {
         }
         elsif(md=="mins")
         {
-            var mode = me.mins_mode.getValue();
-            me.mins_mode.setValue(1-mode);
-            if (mode)
-                me.mins_mode_txt.setValue("RADIO");
-            else
+            me.mins_mode.setValue(val);
+            if (val)
                 me.mins_mode_txt.setValue("BARO");
+            else
+                me.mins_mode_txt.setValue("RADIO");
         }
         elsif(md=="display")
         {

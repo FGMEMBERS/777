@@ -646,21 +646,8 @@ Syd Adams
 
 	<animation>
         <type>pick</type>
-        <object-name>Mins.dec</object-name>
-        <action>
-            <button>0</button>
-            <button>3</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>nasal</command>
-                <script>b777.Efis.ctl_func("mins",0);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
         <object-name>Mins.inc</object-name>
+        <object-name>Mins.dec</object-name>
         <action>
             <button>0</button>
             <button>3</button>
@@ -674,6 +661,7 @@ Syd Adams
 
 	<animation>
         <type>pick</type>
+        <object-name>Mins.inc</object-name>
         <object-name>Mins.dec</object-name>
         <action>
             <button>1</button>
@@ -682,20 +670,6 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>b777.Efis.ctl_func("mins",0);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>Mins.inc</object-name>
-        <action>
-            <button>1</button>
-            <button>4</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>nasal</command>
-                <script>b777.Efis.ctl_func("mins",1);</script>
             </binding>
         </action>
     </animation>

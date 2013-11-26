@@ -239,14 +239,12 @@
         <gearlock>
             <name>gear-lock</name>
             <path>Sounds/gear-lck.wav</path>
+			<enable><property>sim/current-view/internal</property></enable>
             <condition>
-                <and>
-                    <equals>
-                        <property>gear/gear[0]/position-norm</property>
-                        <value>0</value>
-                    </equals>
-                    <property>sim/current-view/internal</property>
-                </and>
+				<equals>
+					<property>gear/gear[0]/position-norm</property>
+					<value>0</value>
+				</equals>
             </condition>
             <pitch>
                 <factor>0.0001</factor>
