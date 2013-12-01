@@ -288,7 +288,7 @@ var WEU =
         {
             target_speed = vgrosswt * 174;
         }
-		target_speed += 5;
+		target_speed -= 5;
 
 		if(target_speed > 250) target_speed = 250;
         me.targetspeed.setValue(target_speed);

@@ -152,7 +152,7 @@ var EFIS = {
             }else{
                 num+=val;
                 if(num<0)num=0;
-                if(num>1000)num=1000;
+                if(num>12000)num=12000;
             }
             me.minimums.setValue(num);
             me.mk_minimums.setValue(num);
