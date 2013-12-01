@@ -280,6 +280,7 @@ Autopilot Control Panel
 		<type>select</type>
 		<object-name>LOC.toggle</object-name>
 		<condition>
+			<and>
 			<or>
 				<equals>
 					<property>instrumentation/afds/ap-modes/roll-mode</property>
@@ -287,6 +288,16 @@ Autopilot Control Panel
 				</equals>
 				<property>instrumentation/afds/inputs/loc-armed</property>
 			</or>
+			<not>
+			<or>
+				<equals>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>G/S</value>
+				</equals>
+				<property>instrumentation/afds/inputs/gs-armed</property>
+			</or>
+			</not>
+			</and>
 		</condition>
 	</animation>
 

@@ -409,20 +409,7 @@ var AFDS = {
 							and !me.lnav_armed.getValue()
 							and (me.lateral_mode.getValue() != 3))
 						{
-							var current_bank = getprop("orientation/roll-deg");
-							if(abs(current_bank) > 5)
-							{
-								setprop("autopilot/internal/target-roll-deg", current_bank);
-								me.lateral_mode.setValue(8);		# ATT
-							}
-							else
-							{
-								# set target to current magnetic heading
-								var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
-								me.hdg_setting.setValue(tgtHdg);
-								me.trk_setting.setValue(tgtHdg);
-								me.lateral_mode.setValue(2);		# HDG HOLD
-							}
+							me.lateral_mode.setValue(8);		# ATT
 						}
 						if(!me.vnav_armed.getValue()
 							and (me.vertical_mode.getValue() == 0))
@@ -448,16 +435,28 @@ var AFDS = {
 				else
 				{
 					var llocmode = me.lateral_mode.getValue();
+					var lgsmode = me.vertical_mode.getValue();
 					if(btn==0)
 					{
-						if(llocmode == 4)		# Alrady in LOC mode
+						if(me.loc_armed.getValue())			# LOC armed but not captured yet
 						{
-							# set target to current magnetic heading
-							var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
-							me.hdg_setting.setValue(tgtHdg);
-							me.trk_setting.setValue(tgtHdg);
-							me.lateral_mode.setValue(2);		# Keep current headding
-							me.loc_armed.setValue(0);			# Disarm
+							if(me.gs_armed.getValue())			# GS armed but not captured yet
+							{
+								me.gs_armed.setValue(0);
+							}
+							me.loc_armed.setValue(0);
+						}
+						elsif(llocmode == 4)		# Alrady in LOC mode
+						{
+							if(me.gs_armed.getValue())
+							{
+								me.gs_armed.setValue(0);
+							}
+							elsif((lgsmode != 6)
+								and (getprop("position/gear-agl-ft") > 1500))
+							{
+								me.lateral_mode.setValue(8);		# Default roll mode (ATT)
+							}
 						}
 						elsif(me.loc_armed.getValue())			# LOC armed but not captured yet
 						{
@@ -472,36 +471,24 @@ var AFDS = {
 					}
 					elsif (btn==1)	#APP button
 					{
-						var lgsmode = me.vertical_mode.getValue();
-						if(lgsmode == 6)	# Already in G/S mode
+						if((llocmode == 4)	# Already in LOC mode
+								and (me.gs_armed.getValue(1)		# GS armed
+									or (lgsmode == 4))
+								and (getprop("position/gear-agl-ft") > 1500))
 						{
-							me.vertical_mode.setValue(1);	# Keep current altitude
+							me.lateral_mode.setValue(8);	# Default roll mode (ATT)
+							me.vertical_mode.setValue(2);	# Default pich mode (V/S)
 							me.gs_armed.setValue(0);		# Disarm
 						}
-						elsif(me.gs_armed.getValue())		# G/S armed but not captured yet
+						elsif(me.loc_armed.getValue())		# loc armed but not captured yet
 						{
 							me.gs_armed.setValue(0);		# Disarm
-							if(llocmode == 4)		# Alrady in LOC mode
-							{
-								# set target to current magnetic heading
-								var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
-								me.hdg_setting.setValue(tgtHdg);
-								me.trk_setting.setValue(tgtHdg);
-								me.lateral_mode.setValue(2);		# Keep current headding
-								me.loc_armed.setValue(0);			# Disarm
-							}
-							else
-							{
-								me.loc_armed.setValue(0);			# Disarm
-							}
+							me.loc_armed.setValue(0);		# Disarm
 						}
 						else
 						{
 							me.gs_armed.setValue(1);		# G/S arm
-							if(me.loc_armed.getValue() == 0)
-							{
-								me.loc_armed.setValue(1);		# LOC arm
-							}
+							me.loc_armed.setValue(1);		# LOC arm
 						}
 					}
 				}
@@ -572,19 +559,7 @@ var AFDS = {
 				and (me.lateral_mode.getValue() != 3))
 			{
 				var current_bank = getprop("orientation/roll-deg");
-				if(abs(current_bank) > 5)
-				{
-					setprop("autopilot/internal/target-roll-deg", current_bank);
-					me.lateral_mode.setValue(8);		# ATT
-				}
-				else
-				{
-					# set target to current magnetic heading
-					var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
-					me.hdg_setting.setValue(tgtHdg);
-					me.trk_setting.setValue(tgtHdg);
-					me.lateral_mode.setValue(2);		# HDG HOLD
-				}
+				me.lateral_mode.setValue(8);		# ATT
 			}
 			if(!me.vnav_armed.getValue()
 				and (me.vertical_mode.getValue() == 0))
@@ -735,13 +710,23 @@ var AFDS = {
 			if(me.gs_armed.getValue())
 			{
 				msg="G/S";
-				var gsdefl = getprop("instrumentation/nav/gs-needle-deflection-deg");
-				var gsrange = getprop("instrumentation/nav/gs-in-range");
-				if ((gsdefl< 0.1 and gsdefl>-0.1)and
-					gsrange)
+				if(me.lateral_mode.getValue() == 4)	#LOC already captured
 				{
-					me.vertical_mode.setValue(6);
-					me.gs_armed.setValue(0);
+					var vradials = (getprop("instrumentation/nav[0]/radials/target-radial-deg")
+							- getprop("orientation/heading-deg"));
+					if(vradials < -180) vradials += 360;
+					elsif(vradials >= 180) vradials -= 360;
+					if(abs(vradials) < 80)
+					{
+						var gsdefl = getprop("instrumentation/nav/gs-needle-deflection-deg");
+						var gsrange = getprop("instrumentation/nav/gs-in-range");
+						if ((gsdefl< 0.1 and gsdefl>-0.1)and
+							gsrange)
+						{
+							me.vertical_mode.setValue(6);
+							me.gs_armed.setValue(0);
+						}
+					}
 				}
 			}
 			elsif(me.flare_armed.getValue())
@@ -782,21 +767,28 @@ var AFDS = {
 					}
 					else
 					{
-						var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
-						if(abs(hddefl) < 9.9)
+						var vradials = (getprop("instrumentation/nav[0]/radials/target-radial-deg")
+								- getprop("orientation/heading-deg"));
+						if(vradials < -180) vradials += 360;
+						elsif(vradials >= 180) vradials -= 360;
+						if(abs(vradials) < 120)
 						{
-							me.lateral_mode.setValue(4);
-							me.loc_armed.setValue(0);
-							var vradials = getprop("instrumentation/nav[0]/radials/target-radial-deg")
-								- getprop("environment/magnetic-variation-deg") + 0.5;
-							if(vradials < 0.5) vradials += 360;
-							elsif(vradials >= 360.5) vradials -= 360;
-							me.hdg_setting.setValue(vradials);
-						}
-						else
-						{
-							setprop("autopilot/internal/presision-loc", 0);
-     						setprop("instrumentation/nav/heading-needle-deflection-ptr", getprop("instrumentation/nav/heading-needle-deflection-norm"));
+							var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
+							if(abs(hddefl) < 9.9)
+							{
+								me.lateral_mode.setValue(4);
+								me.loc_armed.setValue(0);
+								vradials = getprop("instrumentation/nav[0]/radials/target-radial-deg")
+									- getprop("environment/magnetic-variation-deg") + 0.5;
+								if(vradials < 0.5) vradials += 360;
+								elsif(vradials >= 360.5) vradials -= 360;
+								me.hdg_setting.setValue(vradials);
+							}
+							else
+							{
+								setprop("autopilot/internal/presision-loc", 0);
+     							setprop("instrumentation/nav/heading-needle-deflection-ptr", getprop("instrumentation/nav/heading-needle-deflection-norm"));
+							}
 						}
 					}
 				}
@@ -885,10 +877,6 @@ var AFDS = {
 			}
 			elsif(idx == 5)									# ROLLOUT
 			{
-				if(getprop("gear/gear[0]/wow")
-						and me.AP.getValue())
-				{
-				}
 				if(getprop("velocities/groundspeed-kt") < 50)
 				{
 					me.AP.setValue(0);						# Autopilot off
@@ -902,6 +890,33 @@ var AFDS = {
 					{
 						idx = 1; 	# HDG SEL
 					}
+				}
+			}
+			elsif(idx == 8)									# ATT
+			{
+				var current_bank = getprop("orientation/roll-deg");
+				if(current_bank > 30)
+				{
+					setprop("autopilot/internal/target-roll-deg", 30);
+				}
+				elsif(current_bank < -30)
+				{
+					setprop("autopilot/internal/target-roll-deg", -30);
+				}
+				elsif((abs(current_bank) > 5) and (abs(current_bank) <= 30))
+				{
+					setprop("autopilot/internal/target-roll-deg", current_bank);
+				}
+				elsif(abs(current_bank) <= 5)
+				{
+					setprop("autopilot/internal/target-roll-deg", 0);
+				}
+				if(abs(current_bank) <= 3)
+				{
+					var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+					me.hdg_setting.setValue(tgtHdg);
+					me.trk_setting.setValue(tgtHdg);
+					idx = 2;							# HDG HOLD
 				}
 			}
 			me.lateral_mode.setValue(idx);
