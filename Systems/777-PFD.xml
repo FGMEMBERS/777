@@ -14,12 +14,44 @@
         <property>autopilot/settings/actual-target-altitude-ft</property>
       </input>
       <reference>
-		<property>instrumentation/altimeter/indicator-altitude-ft</property>
+		<property>instrumentation/altimeter/indicated-altitude-ft</property>
       </reference>
       <output>instrumentation/pfd/target-altitude-diff</output>
       <min>-430</min>
       <max>430</max>
   </filter>
+
+	<filter>
+		<name>Landing runway reference</name> 
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<property>autopilot/route-manager/landing-rwy-elevation</property>
+		</input>
+		<reference>
+			<property>instrumentation/altimeter/indicated-altitude-ft</property>
+		</reference>
+		<output>instrumentation/pfd/runway-elevation-diff</output>
+		<min>-2000</min>
+		<max>2000</max>
+	</filter>
+
+	<filter>
+		<name>Baro altitude Minimum</name> 
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>
+			<property>instrumentation/efis/minimums-baro</property>
+		</input>
+		<reference>
+			<property>instrumentation/altimeter/indicated-altitude-ft</property>
+		</reference>
+		<output>instrumentation/pfd/minimum-diff</output>
+		<min>-480</min>
+		<max>480</max>
+	</filter>
 
 	<filter>
     	<name>Target Speed icon positioning</name> 

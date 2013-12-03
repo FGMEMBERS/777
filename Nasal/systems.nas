@@ -33,6 +33,8 @@ var EFIS = {
         m.mins_mode = m.efis.initNode("inputs/minimums-mode",0,"BOOL");
         m.mins_mode_txt = m.efis.initNode("minimums-mode-text","RADIO","STRING");
         m.minimums = m.efis.initNode("minimums",250,"INT");
+        m.minimums_baro= m.efis.initNode("minimums-baro",250,"INT");
+        m.minimums_radio= m.efis.initNode("minimums-radio",250,"INT");
         m.mk_minimums = props.globals.getNode("instrumentation/mk-viii/inputs/arinc429/decision-height");
         m.wxr = m.efis.initNode("inputs/wxr",0,"BOOL");
         m.range = m.efis.initNode("inputs/range",0);
@@ -146,14 +148,36 @@ var EFIS = {
         }
         elsif(md=="dh")
         {
-            var num =me.minimums.getValue();
-            if(val==0){
-                num=250;
-            }else{
-                num+=val;
-                if(num<0)num=0;
-                if(num>12000)num=12000;
-            }
+			if(me.mins_mode.getValue())
+			{
+	            if(val==0)
+				{
+    	            num=250;
+            	}
+				else
+				{
+	            	num = me.minimums_baro.getValue();
+                	num+=val;
+                	if(num<0)num=0;
+                	if(num>12000)num=12000;
+            	}
+	            me.minimums_baro.setValue(num);
+			}
+			else
+			{
+            	if(val==0)
+				{
+                	num=250;
+            	}
+				else
+				{
+	            	num =me.minimums_radio.getValue();
+                	num+=val;
+                	if(num<0)num=0;
+                	if(num>2500)num=2500;
+            	}
+	            me.minimums_radio.setValue(num);
+			}
             me.minimums.setValue(num);
             me.mk_minimums.setValue(num);
         }
@@ -161,9 +185,15 @@ var EFIS = {
         {
             me.mins_mode.setValue(val);
             if (val)
+			{
                 me.mins_mode_txt.setValue("BARO");
+	            me.minimums.setValue(me.minimums_baro.getValue());
+			}
             else
+			{
                 me.mins_mode_txt.setValue("RADIO");
+	            me.minimums.setValue(me.minimums_radio.getValue());
+			}
         }
         elsif(md=="display")
         {

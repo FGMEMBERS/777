@@ -581,6 +581,9 @@ Service Ceiling: 43,100ft
     </input>
 
     <instrumentation n="0">
+		<altimeter>
+			<source-barometric type="string">L</source-barometric>
+		</altimeter>
         <inst-vertical-speed-indicator>
             <serviceable type="bool">true</serviceable>
         </inst-vertical-speed-indicator>

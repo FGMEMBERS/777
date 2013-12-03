@@ -866,6 +866,91 @@ Syd Adams
         <factor>0.000142</factor>
     </animation>
 
+    <animation>
+        <type>translate</type>
+        <object-name>runway</object-name>
+        <property>instrumentation/pfd/runway-elevation-diff</property>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.000142</factor>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>runway_bar</object-name>
+        <property>instrumentation/pfd/runway-elevation-diff</property>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <factor>0.00038</factor>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>minimum_head</object-name>
+        <condition>
+			<less-than>
+				<property>instrumentation/pfd/minimum-diff</property>
+				<value>0</value>
+			</less-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>minimum_tail</object-name>
+        <condition>
+			<property>instrumentation/efis/inputs/minimums-mode</property>
+			<less-than>
+				<property>instrumentation/pfd/minimum-diff</property>
+				<value>0</value>
+			</less-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>minimum_head_a</object-name>
+        <condition>
+			<greater-than>
+				<property>instrumentation/pfd/minimum-diff</property>
+				<value>0</value>
+			</greater-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>minimum_tail_a</object-name>
+        <condition>
+			<property>instrumentation/efis/inputs/minimums-mode</property>
+			<greater-than>
+				<property>instrumentation/pfd/minimum-diff</property>
+				<value>0</value>
+			</greater-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>minimum_head</object-name>
+        <object-name>minimum_tail</object-name>
+        <object-name>minimum_head_a</object-name>
+        <object-name>minimum_tail_a</object-name>
+        <property>instrumentation/pfd/minimum-diff</property>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.000142</factor>
+    </animation>
+
 <!-- Text -->
 
     <text>
@@ -1085,6 +1170,25 @@ Syd Adams
         </font-resolution>
     </text>
 
+    <text>
+        <name>BARO-source</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.038</y-m>
+            <z-m>-0.061</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/altimeter/source-barometric</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
     <text>
         <name>INHG</name>
         <offsets>
@@ -1350,7 +1454,7 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%2.0f</format>
-        <property>autopilot/settings/actual-target-altitude-FL</property>
+        <property>autopilot/settings/counter-set-altitude-FL</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.010</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
@@ -1371,7 +1475,7 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%03.0f</format>
-        <property>autopilot/settings/actual-target-altitude-100</property>
+        <property>autopilot/settings/counter-set-altitude-100</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
@@ -1559,6 +1663,7 @@ Syd Adams
         <object-name>ROLL arm</object-name>
         <object-name>VS-POS</object-name>
         <object-name>VS-NEG</object-name>
+        <object-name>BARO-source</object-name>
         <object-name>INHG-WHT</object-name>
         <object-name>HPA-WHT</object-name>
         <object-name>DME</object-name>

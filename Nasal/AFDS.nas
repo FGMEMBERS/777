@@ -60,6 +60,7 @@ var AFDS = {
 		m.FMC_active = m.FMC.initNode("active",0,"BOOL");
 		m.FMC_current_wp = m.FMC.initNode("current-wp",0,"INT");
 		m.FMC_destination_ils = m.FMC.initNode("destination-ils",0,"BOOL");
+		m.FMC_landing_rwy_elevation = m.FMC.initNode("landing-rwy-elevation",0,"DOUBLE");
 
 		m.FD = m.AFDS_inputs.initNode("FD",0,"BOOL");
 		m.at1 = m.AFDS_inputs.initNode("at-armed[0]",0,"BOOL");
@@ -96,9 +97,9 @@ var AFDS = {
 		m.trk_setting = m.AP_settings.initNode("track-bug-deg",360,"INT"); # 1 to 360
 		m.fpa_setting = m.AP_settings.initNode("flight-path-angle",0); # -9.9 to 9.9 #
 		m.alt_setting = m.AP_settings.initNode("counter-set-altitude-ft",10000,"DOUBLE");
+		m.alt_setting_FL = m.AP_settings.initNode("counter-set-altitude-FL",10,"INT");
+		m.alt_setting_100 = m.AP_settings.initNode("counter-set-altitude-100",000,"INT");
 		m.target_alt = m.AP_settings.initNode("actual-target-altitude-ft",10000,"DOUBLE");
-		m.target_alt_FL = m.AP_settings.initNode("actual-target-altitude-FL",10,"INT");
-		m.target_alt_100 = m.AP_settings.initNode("actual-target-altitude-100",000,"INT");
 		m.radio_alt_ind = m.AP_settings.initNode("radio-altimeter-indication",000,"INT");
 		m.pfd_mach_ind = m.AP_settings.initNode("pfd-mach-indication",000,"INT");
 		m.pfd_mach_target = m.AP_settings.initNode("pfd-mach-target-indication",000,"INT");
@@ -934,14 +935,14 @@ var AFDS = {
 			me.AP_roll_engaged.setBoolValue(idx > 0);
 
 		}elsif(me.step==3){ ### check vertical modes  ###
-			me.target_alt_FL.setValue(me.target_alt.getValue() / 1000);
-			me.target_alt_100.setValue(me.target_alt.getValue() - (me.target_alt_FL.getValue() * 1000));
+			me.alt_setting_FL.setValue(me.alt_setting.getValue() / 1000);
+			me.alt_setting_100.setValue(me.alt_setting.getValue() - (me.alt_setting_FL.getValue() * 1000));
 			if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 100)
 			{
 				setprop("autopilot/internal/airport-height", current_alt);
 			}
 			### altitude alert ###
-			var alt_deviation = abs(me.target_alt.getValue() - current_alt);
+			var alt_deviation = abs(me.alt_setting.getValue() - current_alt);
 			if((alt_deviation > 900)
 					or (me.vertical_mode.getValue() == 6)			# G/S mode
 					or (getprop("gear/gear/position-norm") == 1)) 	# Gear down and locked
@@ -1039,7 +1040,10 @@ var AFDS = {
 						}
 						else
 						{
-							me.ias_setting.setValue(me.FMC_descent_ias.getValue());
+							if(current_alt > 12000)
+							{
+								me.ias_setting.setValue(me.FMC_descent_ias.getValue());
+							}
 						}
 						me.descent_step += 1;
 					}
@@ -1700,11 +1704,21 @@ var AFDS = {
 						}
 					}
 				}
+				var distance = getprop("autopilot/route-manager/route/wp/distance-nm");
+				if((distance > 400) or (distance > (total_distance / 2)))
+				{
+					me.FMC_landing_rwy_elevation.setValue(destination_elevation);
+				}
+				else
+				{
+					me.FMC_landing_rwy_elevation.setValue(getprop("autopilot/route-manager/departure/field-elevation-ft"));
+				}
 			}
 			else
 			{
 				# Reset flag when not active
 				if(me.FMC_destination_ils.getValue() == 1) me.FMC_destination_ils.setValue(0);
+				me.FMC_landing_rwy_elevation.setValue(getprop("autopilot/route-manager/departure/field-elevation-ft"));
 			}
 		}elsif(me.step==6)
 		{
