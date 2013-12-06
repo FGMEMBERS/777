@@ -663,6 +663,7 @@ var Wiper = {
 #####################
 
 var Efis = EFIS.new("instrumentation/efis");
+var Efis2 = EFIS.new("instrumentation/efis[1]");
 var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
 var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
@@ -920,9 +921,6 @@ var Startup = func{
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
-	setprop("instrumentation/efis/inputs/tfc",1);
-	setprop("instrumentation/efis/inputs/arpt",1);
-	setprop("instrumentation/efis/inputs/sta",1);
     setprop("engines/engine[0]/run",1);
     setprop("engines/engine[1]/run",1);
 }
@@ -954,12 +952,7 @@ var Shutdown = func{
     setprop("controls/flight/speedbrake-lever",0);
     setprop("sim/model/armrest",0);
     setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
-	setprop("instrumentation/efis/inputs/arpt",0);
-	setprop("instrumentation/efis/inputs/sta",0);
- 	setprop("instrumentation/efis/inputs/tfc",0);
-	setprop("instrumentation/efis/inputs/wpt",0);
-	setprop("instrumentation/efis/inputs/wxr",0);
-   setprop("controls/engines/StartIgnition-knob[0]",0);
+    setprop("controls/engines/StartIgnition-knob[0]",0);
     setprop("controls/engines/StartIgnition-knob[1]",0);
     setprop("engines/engine[0]/run",0);
     setprop("engines/engine[1]/run",0);

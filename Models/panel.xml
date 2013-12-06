@@ -29,7 +29,7 @@ Syd Adams
 
     <model>
         <name>ND1</name>
-        <path>Aircraft/777/Models/Instruments/ND/ND.xml</path>
+        <path>Aircraft/777/Models/Instruments/ND/ND1.xml</path>
         <offsets>
             <x-m>-1.84</x-m>
             <y-m>-0.314</y-m>
@@ -40,7 +40,7 @@ Syd Adams
 
     <model>
         <name>ND2</name>
-        <path>Aircraft/777/Models/Instruments/ND/ND.xml</path>
+        <path>Aircraft/777/Models/Instruments/ND/ND2.xml</path>
         <offsets>
             <x-m>-1.84</x-m>
             <y-m>0.346</y-m>

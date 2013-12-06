@@ -80,7 +80,7 @@ Syd Adams
 
      <model>
         <name>CTL1</name>
-        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl1.xml</path>
         <offsets>
             <x-m>-1.824</x-m>
             <y-m>-0.361</y-m>
@@ -91,7 +91,7 @@ Syd Adams
 
     <model>
         <name>CTL2</name>
-        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl2.xml</path>
         <offsets>
             <x-m>-1.824</x-m>
             <y-m>0.366</y-m>
