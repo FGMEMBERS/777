@@ -39,6 +39,10 @@ var AFDS = {
 		m.altitude_alert_from_in = 0;
 		m.top_of_descent = 0;
 
+		m.heading_reference=props.globals.initNode("systems/navigation/hdgref/reference",0,"BOOL");
+		m.crab_angle=props.globals.initNode("orientation/crab-angle", 0, "DOUBLE");
+		m.crab_angle_total=props.globals.initNode("orientation/crab-angle-total", 0, "DOUBLE");
+		m.rwy_align_limit=props.globals.initNode("orientation/rwy-align-limit", 0, "DOUBLE");
 		m.AFDS_node = props.globals.getNode("instrumentation/afds",1);
 		m.AFDS_inputs = m.AFDS_node.getNode("inputs",1);
 		m.AFDS_apmodes = m.AFDS_node.getNode("ap-modes",1);
@@ -115,7 +119,7 @@ var AFDS = {
 		m.pitch_min = m.AFDS_settings.initNode("pitch-min",-10);
 		m.pitch_max = m.AFDS_settings.initNode("pitch-max",15);
 		m.auto_popup = m.AFDS_settings.initNode("auto-pop-up",0,"BOOL");
-		m.heading_magnetic = m.AFDS_settings.getNode("heading-magnetic",1);
+		m.heading = m.AFDS_settings.initNode("heading",360,"INT");
 		m.manual_intervention = m.AFDS_settings.initNode("manual-intervention",0,"BOOL");
 
 		m.AP_roll_mode = m.AFDS_apmodes.initNode("roll-mode","TO/GA");
@@ -157,8 +161,8 @@ var AFDS = {
 				}
 				elsif(btn == 2)		# Heading Hold button
 				{
-					# set target to current magnetic heading
-					var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+					# set target to current heading
+					var tgtHdg = int(me.heading.getValue() + 0.50);
 					me.hdg_setting.setValue(tgtHdg);
 					me.trk_setting.setValue(tgtHdg);
 					if(getprop("position/gear-agl-ft") < 50)
@@ -184,8 +188,8 @@ var AFDS = {
 					{
 						if(me.lateral_mode.getValue() == 3)		# Current mode is LNAV
 						{
-							# set target to current magnetic heading
-							var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+							# set target to current heading
+							var tgtHdg = int(me.heading.getValue() + 0.50);
 							me.hdg_setting.setValue(tgtHdg);
 							me.trk_setting.setValue(tgtHdg);
 							btn = 1;	# Heading sel
@@ -499,9 +503,9 @@ var AFDS = {
 	},
 ###################
 	setAP : func{
-		if(me.heading_magnetic.getValue() == nil)
+		if(me.heading.getValue() == nil)
 		{
-			me.heading_magnetic.setValue(getprop("sim/presets/heading-deg"));
+			me.heading.setValue(getprop("sim/presets/heading-deg"));
 		}
 		var output = 1-me.AP.getValue();
 		var disabled = me.AP_disengaged.getValue();
@@ -687,11 +691,11 @@ var AFDS = {
 		var hdgoffset = 0;
 		if(me.hdg_trk_selected.getValue())
 		{
-			hdgoffset = me.trk_setting.getValue()-getprop("orientation/heading-magnetic-deg");
+			hdgoffset = (me.trk_setting.getValue()-me.heading.getValue());
 		}
 		else
 		{
-			hdgoffset = me.hdg_setting.getValue()-getprop("orientation/heading-magnetic-deg");
+			hdgoffset = (me.hdg_setting.getValue()-me.heading.getValue());
 		}
 		if(hdgoffset < -180) hdgoffset +=360;
 		if(hdgoffset > 180) hdgoffset +=-360;
@@ -749,18 +753,22 @@ var AFDS = {
 				if (getprop("instrumentation/nav/in-range"))
 				{
 
+					var vorient = 0;
+					if(me.heading_reference.getValue() == 0)
+					{
+						vorient = getprop("environment/magnetic-variation-deg");
+					}
 					if(!getprop("instrumentation/nav/nav-loc"))
 					{
 						var vheading = getprop("instrumentation/nav/radials/selected-deg");
 						var vvor = getprop("instrumentation/nav/heading-deg");
 						var vdist = getprop("instrumentation/nav/nav-distance");
-						var vorient = getprop("environment/magnetic-variation-deg");
-						var vmag = getprop("orientation/heading-magnetic-deg");
+						var vheading = getprop("orientation/heading-deg");
 						var vspeed = getprop("instrumentation/airspeed-indicator/indicated-mach");
 						var deg_to_rad = math.pi / 180;
 						var vdiff = abs(vheading - vvor + vorient);
 						vdiff = abs(vdist * math.sin(vdiff * deg_to_rad));
-						var vlim = vspeed / 0.3 * 1300 * abs(vheading - vmag) / 45 ;
+						var vlim = vspeed / 0.3 * 1300 * abs(vheading - vheading) / 45 ;
 						if(vdiff < vlim)
 						{
 							me.lateral_mode.setValue(4);
@@ -780,8 +788,7 @@ var AFDS = {
 							{
 								me.lateral_mode.setValue(4);
 								me.loc_armed.setValue(0);
-								vradials = getprop("instrumentation/nav[0]/radials/target-radial-deg")
-									- getprop("environment/magnetic-variation-deg") + 0.5;
+								vradials = getprop("instrumentation/nav[0]/radials/target-radial-deg") - vorient + 0.5;
 								if(vradials < 0.5) vradials += 360;
 								elsif(vradials >= 360.5) vradials -= 360;
 								me.hdg_setting.setValue(vradials);
@@ -819,12 +826,21 @@ var AFDS = {
 			me.AP_roll_arm.setValue(msg);
 
 		}elsif(me.step == 2){ ### check lateral modes  ###
-			var vheading = getprop("orientation/heading-magnetic-deg");
+			if(me.heading_reference.getValue() == 0)
+			{
+				vheading = getprop("orientation/heading-magnetic-deg");
+				vorient = getprop("environment/magnetic-variation-deg");
+			}
+			else
+			{
+				vheading = getprop("orientation/heading-deg");
+				var vorient = 0;
+			}
 			if(vheading < 0.5)
 			{
 				vheading += 360;
 			}
-			me.heading_magnetic.setValue(vheading);
+			me.heading.setValue(vheading);
 			var vsethdg = me.hdg_setting.getValue();
 			if(me.hdg_setting_last.getValue() != vsethdg)
 			{
@@ -851,7 +867,7 @@ var AFDS = {
 				if(getprop("position/gear-agl-ft") > 50)
 				{
 					# switch between HDG SEL to HDG HOLD
-					if (abs(getprop("orientation/heading-magnetic-deg")-me.hdg_setting.getValue())<2)
+					if (abs(getprop("orientation/heading-deg")-me.hdg_setting.getValue())<2)
 						idx = 2; # HDG HOLD
 					else
 						idx = 1; # HDG SEL
@@ -860,7 +876,7 @@ var AFDS = {
 			elsif(idx == 4)		# LOC
 			{
 				if((me.rollout_armed.getValue())
-					and (getprop("position/gear-agl-ft") < 50))
+					and (getprop("position/gear-agl-ft") < 2))
 				{
 					me.rollout_armed.setValue(0);
 					idx = 5;	# ROLLOUT
@@ -875,6 +891,16 @@ var AFDS = {
 				{
 					setprop("autopilot/internal/presision-loc", 0);
      				setprop("instrumentation/nav/heading-needle-deflection-ptr", deflection);
+				}
+				me.crab_angle.setValue(me.heading.getValue() - getprop("instrumentation/nav[0]/radials/target-radial-deg") + vorient);
+				me.crab_angle_total.setValue(abs(me.crab_angle.getValue() + getprop("orientation/side-slip-deg")));
+				if(me.crab_angle.getValue() > 0)
+				{
+					me.rwy_align_limit.setValue(5.0);
+				}
+				else
+				{
+					me.rwy_align_limit.setValue(-5.0);
 				}
 			}
 			elsif(idx == 5)									# ROLLOUT
@@ -915,7 +941,7 @@ var AFDS = {
 				}
 				if(abs(current_bank) <= 3)
 				{
-					var tgtHdg = int(me.heading_magnetic.getValue() + 0.50);
+					var tgtHdg = int(me.heading.getValue() + 0.50);
 					me.hdg_setting.setValue(tgtHdg);
 					me.trk_setting.setValue(tgtHdg);
 					idx = 2;							# HDG HOLD
@@ -1669,7 +1695,7 @@ var AFDS = {
 							gmt -= 24 * 3600;
 						}
 						me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-						var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading_magnetic.getValue());
+						var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading.getValue());
 						if(change_wp > 180) change_wp = (360 - change_wp);
 						if(((me.heading_change_rate * change_wp) > wpt_eta)
 							or (enroute[1] < 0.6))
