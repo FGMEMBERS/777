@@ -501,7 +501,7 @@
 			<Ti>
 				<condition>
 					<greater-than>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -511,7 +511,7 @@
 			<Td>
 				<condition>
 					<greater-than>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -521,7 +521,7 @@
 			<u_min>
 				<condition>
 					<greater-than>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -533,7 +533,7 @@
 			<u_max>
 				<condition>
 					<greater-than>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -543,7 +543,7 @@
 				<condition>
 					<greater-than>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 					</greater-than>
 				</condition>
 				<property>autopilot/internal/current-pitch-deg</property>
@@ -620,7 +620,7 @@
 			<u_min>
 				<condition>
 					<greater-than>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -632,7 +632,7 @@
 			<u_max>
 				<condition>
 					<greater-than>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
 					</greater-than>
 				</condition>
@@ -642,7 +642,7 @@
 				<condition>
 					<greater-than>
 						<property>instrumentation/altimeter/indicated-altitude-ft</property>
-						<property>autopilot/settings/actual-target-altitude-ft</property>
+						<property>autopilot/settings/target-altitude-ft</property>
 					</greater-than>
 				</condition>
 				<property>autopilot/internal/current-pitch-deg</property>
@@ -736,7 +736,7 @@
 			<property>instrumentation/altimeter/indicated-altitude-ft</property>
 		</input>
 		<reference>
-			<property>autopilot/settings/actual-target-altitude-ft</property>
+			<property>autopilot/settings/target-altitude-ft</property>
 		</reference>
 		<output>
 			<property>autopilot/internal/target-climb-rate-fps</property>

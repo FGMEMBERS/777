@@ -134,9 +134,6 @@
                 <type>float</type><property type="string">instrumentation/pfd/stallspeed-diff</property>
             </signal>
             <signal>
-                <type>int</type><property type="string">autopilot/settings/actual-target-altitude-ft</property>
-            </signal>
-            <signal>
                 <type>int</type><property type="string">autopilot/settings/target-altitude-ft</property>
             </signal>
             <signal>
