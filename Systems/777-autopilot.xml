@@ -54,11 +54,19 @@
 						<property>instrumentation/afds/ap-modes/roll-mode</property>
 						<value>HDG HOLD</value>
 					</equals>
+					<equals>
+						<property>instrumentation/afds/ap-modes/roll-mode</property>
+						<value>TRK SEL</value>
+					</equals>
+					<equals>
+						<property>instrumentation/afds/ap-modes/roll-mode</property>
+						<value>TRK HOLD</value>
+					</equals>
 				</or>
 			</condition>
 		</enable>
 		<input>
-			<property>autopilot/internal/fdm-heading-bug-error-deg</property>
+			<property>autopilot/internal/heading-bug-error-deg</property>
 		</input>
 		<reference>
 			<value>0</value>
@@ -166,6 +174,24 @@
 			</u_max>
 		</config>
 	</pi-simple-controller>
+  <filter>
+    <name>nav1 heading error computer/normalizer</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <property>instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
+      <offset>
+        <property>orientation/heading-deg</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/nav1-heading-error-deg</output>
+    <period>
+      <min>-180</min>
+      <max>180</max>
+    </period>
+    <gain>1.0</gain>
+  </filter>
 
 	<pi-simple-controller>
 		<name>LOC1</name>

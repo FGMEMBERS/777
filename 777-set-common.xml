@@ -340,9 +340,6 @@ Service Ceiling: 43,100ft
                 <name>Autobrake system</name>
                 <path>Aircraft/777/Systems/777-autobrake.xml</path>
             </autopilot>
-            <autopilot>
-                <path>Aircraft/Generic/generic-autopilot-helper.xml</path>
-            </autopilot>
 
             <!--  slow running property-rules (running at frame rate) -->
             <property-rule n="100">
@@ -852,7 +849,7 @@ Service Ceiling: 43,100ft
         </locks>
 		<settings>
             <transition-altitude type="double">18000</transition-altitude>
-            <true-heading-deg type="double">90</true-heading-deg>
+			<true-heading-deg type="double">90</true-heading-deg>
 		</settings>
     </autopilot>
 

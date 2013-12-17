@@ -33,8 +33,8 @@
 			<property>instrumentation/altimeter/indicated-altitude-ft</property>
 		</reference>
 		<output>instrumentation/pfd/runway-elevation-diff</output>
-		<min>-2000</min>
-		<max>2000</max>
+		<min>-1500</min>
+		<max>512</max>
 	</filter>
 
 	<filter>
@@ -50,7 +50,7 @@
 		</reference>
 		<output>instrumentation/pfd/minimum-diff</output>
 		<min>-480</min>
-		<max>480</max>
+		<max>512</max>
 	</filter>
 
 	<filter>

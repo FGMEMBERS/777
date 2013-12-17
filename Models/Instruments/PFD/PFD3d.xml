@@ -74,17 +74,10 @@ Syd Adams
         <type>select</type>
         <object-name>locscale</object-name>
         <condition>
-			<or>
-				<equals>
-					<property>instrumentation/afds/inputs/lateral-index</property>
-					<value>4</value>
-				</equals>
-				<equals>
-					<property>instrumentation/afds/inputs/lateral-index</property>
-					<value>5</value>
-				</equals>
-				<property>instrumentation/afds/inputs/loc-armed</property>
-			</or>
+			<and>
+				<property>instrumentation/nav/in-range</property>
+				<property>instrumentation/nav/nav-loc</property>
+			</and>
         </condition>
     </animation>
 
@@ -100,47 +93,41 @@ Syd Adams
 		</axis>
 	</animation>
 
-   <animation>
+    <animation>
         <type>select</type>
-        <object-name>locpointer_rembrandt</object-name>
+        <object-name>locpointer</object-name>
         <condition>
             <and>
-				<property>sim/rendering/rembrandt/enabled</property>
-                <property>instrumentation/nav/in-range</property>
-				<or>
-					<equals>
-						<property>instrumentation/afds/inputs/lateral-index</property>
-						<value>4</value>
-					</equals>
-					<equals>
-						<property>instrumentation/afds/inputs/lateral-index</property>
-						<value>5</value>
-					</equals>
-					<property>instrumentation/afds/inputs/loc-armed</property>
-				</or>
+				<greater-than>
+					<property>instrumentation/nav/signal-quality-norm</property>
+					<value>0.99</value>
+				</greater-than>
+				<less-than>
+					<property>instrumentation/nav/heading-needle-deflection-ptr</property>
+					<value>0.92</value>
+				</less-than>
+				<greater-than>
+					<property>instrumentation/nav/heading-needle-deflection-ptr</property>
+					<value>-0.92</value>
+				</greater-than>
 			</and>
        </condition>
     </animation>
 
     <animation>
         <type>select</type>
-        <object-name>locpointer</object-name>
+        <object-name>coarseLocPointer</object-name>
         <condition>
-			<not><property>sim/rendering/rembrandt/enabled</property></not>
-            <and>
-                <property>instrumentation/nav/in-range</property>
-				<or>
-					<equals>
-						<property>instrumentation/afds/inputs/lateral-index</property>
-						<value>4</value>
-					</equals>
-					<equals>
-						<property>instrumentation/afds/inputs/lateral-index</property>
-						<value>5</value>
-					</equals>
-					<property>instrumentation/afds/inputs/loc-armed</property>
-				</or>
-			</and>
+			<or>
+				<greater-than>
+					<property>instrumentation/nav/heading-needle-deflection-ptr</property>
+					<value>0.92</value>
+				</greater-than>
+				<less-than>
+					<property>instrumentation/nav/heading-needle-deflection-ptr</property>
+					<value>-0.92</value>
+				</less-than>
+			</or>
        </condition>
     </animation>
 
@@ -148,60 +135,49 @@ Syd Adams
         <type>select</type>
         <object-name>gsscale</object-name>
         <condition>
-			<or>
-				<equals>
-					<property>instrumentation/afds/inputs/vertical-index</property>
-					<value>6</value>
-				</equals>
-				<equals>
-					<property>instrumentation/afds/inputs/vertical-index</property>
-					<value>7</value>
-				</equals>
-				<property>instrumentation/afds/inputs/gs-armed</property>
-			</or>
+			<and>
+				<property>instrumentation/nav/in-range</property>
+				<property>instrumentation/nav/has-gs</property>
+			</and>
         </condition>
     </animation>
 
     <animation>
         <type>select</type>
-        <object-name>gspointer_rembrandt</object-name>
-        <condition>
-            <and>
-				<property>sim/rendering/rembrandt/enabled</property>
-                <property>instrumentation/nav/gs-in-range</property>
-				<or>
-					<equals>
-						<property>instrumentation/afds/inputs/vertical-index</property>
-						<value>6</value>
-					</equals>
-					<equals>
-						<property>instrumentation/afds/inputs/vertical-index</property>
-						<value>7</value>
-					</equals>
-					<property>instrumentation/afds/inputs/gs-armed</property>
-				</or>
-            </and>
-        </condition>
-    </animation>
-    <animation>
-        <type>select</type>
         <object-name>gspointer</object-name>
         <condition>
-            <and>
-				<not><property>sim/rendering/rembrandt/enabled</property></not>
-                <property>instrumentation/nav/gs-in-range</property>
-				<or>
-					<equals>
-						<property>instrumentation/afds/inputs/vertical-index</property>
-						<value>6</value>
-					</equals>
-					<equals>
-						<property>instrumentation/afds/inputs/vertical-index</property>
-						<value>7</value>
-					</equals>
-					<property>instrumentation/afds/inputs/gs-armed</property>
-				</or>
-            </and>
+            <property>instrumentation/nav/gs-in-range</property>
+			<and>
+				<greater-than>
+			        <property>instrumentation/nav/gs-needle-deflection-norm</property>
+					<value>-0.976</value>
+				</greater-than>
+				<less-than>
+			        <property>instrumentation/nav/gs-needle-deflection-norm</property>
+					<value>0.976</value>
+				</less-than>
+			</and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>coarseGSPointer</object-name>
+        <condition>
+			<or>
+				<greater-than>
+			        <property>instrumentation/nav/gs-needle-deflection-norm</property>
+					<value>0.976</value>
+				</greater-than>
+				<less-than>
+			        <property>instrumentation/nav/gs-needle-deflection-norm</property>
+					<value>-0.976</value>
+				</less-than>
+			</or>
+        </condition>
+        <property>instrumentation/nav/gs-needle-deflection-norm</property>
+        <condition>
+            <not><property>instrumentation/nav/gs-in-range</property></not>
         </condition>
     </animation>
 
@@ -310,9 +286,9 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>gspointer</object-name>
-        <object-name>gspointer_rembrandt</object-name>
+        <object-name>coarseGSPointer</object-name>
         <property>instrumentation/nav/gs-needle-deflection-norm</property>
-        <factor>0.0272</factor>
+        <factor>0.04</factor>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -517,9 +493,9 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>locpointer</object-name>
-        <object-name>locpointer_rembrandt</object-name>
+        <object-name>coarseLocPointer</object-name>
         <property>instrumentation/nav/heading-needle-deflection-ptr</property>
-        <factor>-0.0272</factor>
+        <factor>-0.04</factor>
         <axis>
             <x>0</x>
             <y>-1</y>
@@ -570,11 +546,10 @@ Syd Adams
         </axis>
     </animation>
 
-
     <animation>
         <type>rotate</type>
-        <object-name>hdg-bug</object-name>
-        <property>autopilot/internal/fdm-heading-bug-error-deg</property>
+        <object-name>Heading_mark</object-name>
+        <property>autopilot/internal/crab-angle-hdg</property>
         <interpolation>
             <entry><ind>-54</ind><dep>-54</dep></entry>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -587,6 +562,48 @@ Syd Adams
         </center>
         <axis>
             <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>hdg-bug</object-name>
+        <property>autopilot/internal/heading-bug-error-deg</property>
+        <interpolation>
+            <entry><ind>-54</ind><dep>-54</dep></entry>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>54</ind><dep>54</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>0.002</x-m>
+            <y-m>-0.012</y-m>
+            <z-m>-0.120</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Track</object-name>
+        <property>autopilot/internal/crab-angle-trk</property>
+        <interpolation>
+            <entry><ind>-54</ind><dep>-54</dep></entry>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>54</ind><dep>54</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>0.002</x-m>
+            <y-m>-0.012</y-m>
+            <z-m>-0.120</z-m>
+        </center>
+        <axis>
+            <x>1</x>
             <y>0</y>
             <z>0</z>
         </axis>
@@ -651,7 +668,7 @@ Syd Adams
     <animation>
         <type>texrotate</type>
         <object-name>Hsi</object-name>
-        <property>orientation/heading-magnetic-deg</property>
+        <property>instrumentation/afds/inputs/reference-deg</property>
         <center>
             <x>0.75</x>
             <y>0.75</y>
@@ -1611,6 +1628,26 @@ Syd Adams
         </font-resolution>
     </text>
 
+    <text>
+        <name>TRU-annun</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.001</y-m>
+            <z-m>-0.080</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>TRU</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
     <animation>
         <type>material</type><!--green-->
         <object-name>SPD</object-name>
@@ -1621,6 +1658,7 @@ Syd Adams
         <object-name>INHG-STD</object-name>
         <object-name>HPA</object-name>
         <object-name>MAG-annun</object-name>
+        <object-name>TRU-annun</object-name>
         <object-name>mins</object-name>
         <object-name>vref-text</object-name>
         <object-name>vref</object-name>
@@ -1746,24 +1784,6 @@ Syd Adams
         </specular>
     </animation>
 
-    <!--animation>
-        <type>select</type>
-        <object-name>SPD</object-name>
-        <object-name>ROLL</object-name>
-        <object-name>PITCH</object-name>
-        <object-name>AP-annun</object-name>
-        <object-name>MACH</object-name>
-        <object-name>SPD-annun</object-name>
-        <object-name>ALT-annun</object-name>
-        <object-name>HDG-annun</object-name>
-        <object-name>MAG-annun</object-name>
-        <condition>
-            <greater-than>
-                <property>systems/electrical/outputs/efis</property>
-                <value>15</value>
-            </greater-than>
-        </condition>
-    </animation-->
 
     <animation>
         <type>select</type>
@@ -1973,6 +1993,22 @@ Syd Adams
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>
                 <value>""</value>
             </not-equals>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>MAG-annun</object-name>
+        <condition>
+			<not><property>systems/navigation/hdgref/reference</property></not>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>TRU-annun</object-name>
+        <condition>
+			<property>systems/navigation/hdgref/reference</property>
         </condition>
     </animation>
 
