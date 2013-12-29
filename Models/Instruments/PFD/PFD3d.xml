@@ -1295,7 +1295,7 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%2.2f IN</format>
-        <property>instrumentation/efis/inhg-previos</property>
+        <property>instrumentation/efis/inhg-previous</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>

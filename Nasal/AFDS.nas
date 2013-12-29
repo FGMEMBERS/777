@@ -164,7 +164,7 @@ var AFDS = {
 				elsif(btn == 2)		# Heading Hold button
 				{
 					# set target to current heading
-					var tgtHdg = int(me.reference_deg.getValue());
+					var tgtHdg = me.heading.getValue();
 					me.trk_setting.setValue(tgtHdg);
 					me.hdg_setting.setValue(tgtHdg);
 					if(getprop("position/gear-agl-ft") < 50)
@@ -198,7 +198,7 @@ var AFDS = {
 						if(me.lateral_mode.getValue() == 3)		# Current mode is LNAV
 						{
 							# set target to current heading
-							var tgtHdg = int(me.reference_deg.getValue());
+							var tgtHdg = me.heading.getValue();
 							if(me.hdg_trk_selected.getValue())
 							{
 								me.trk_setting.setValue(tgtHdg);
@@ -526,7 +526,7 @@ var AFDS = {
 					me.referenceChange();
 					if(me.hdg_trk_selected.getValue())
 					{
-						me.trk_setting.setValue(me.reference_deg.getValue());
+						me.trk_setting.setValue(me.heading.getValue());
 						if((me.lateral_mode.getValue() == 1)
 							or (me.lateral_mode.getValue() == 2))
 						{
@@ -535,7 +535,7 @@ var AFDS = {
 					}
 					else
 					{
-						me.hdg_setting.setValue(me.reference_deg.getValue());
+						me.hdg_setting.setValue(me.heading.getValue());
 						if((me.lateral_mode.getValue() == 6)
 							or (me.lateral_mode.getValue() == 7))
 						{
@@ -1938,10 +1938,8 @@ var AFDS = {
 
 var afds = AFDS.new();
 
-var afds_init_listener = setlistener("sim/signals/fdm-initialized", func {
-	removelistener(afds_init_listener);
+	setlistener("sim/signals/fdm-initialized", func {
 	settimer(update_afds,6);
-	print("AFDS System ... check");
 });
 
 var update_afds = func {

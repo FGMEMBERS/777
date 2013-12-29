@@ -21,7 +21,7 @@ var EFIS = {
         m.mfd_mode_num = m.mfd.initNode("mode-num",2,"INT");
         m.mfd_display_mode = m.mfd.initNode("display-mode",m.mfd_mode_list[2]);
         m.std_mode = m.efis.initNode("inputs/setting-std",0,"BOOL");
-        m.previous_set = m.efis.initNode("inhg-previos",29.92);
+        m.previous_set = m.efis.initNode("inhg-previous",29.92);
         m.kpa_mode = m.efis.initNode("inputs/kpa-mode",0,"BOOL");
         m.kpa_output = m.efis.initNode("inhg-kpa",29.92);
         m.kpa_prevoutput = m.efis.initNode("inhg-kpa-previous",29.92);
@@ -74,7 +74,7 @@ var EFIS = {
         var kp = getprop("instrumentation/altimeter/setting-inhg");
         kp = kp * 33.8637526;
         me.kpa_output.setValue(kp);
-        kp = getprop("instrumentation/efis/inhg-previos");
+        kp = getprop("instrumentation/efis/inhg-previous");
         kp = kp * 33.8637526;
         me.kpa_prevoutput.setValue(kp);
         },

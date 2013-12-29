@@ -113,7 +113,6 @@ var WEU =
         # update inputs now and then...
         settimer(weu_update_feeder,0.5);
 
-        print("Warning Electronic System ... ok");
         return m;
     },
 

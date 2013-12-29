@@ -252,7 +252,6 @@ var elec_init_listener = setlistener("sim/signals/fdm-initialized", func {
     removelistener(elec_init_listener);
     init_switches();
     settimer(update_electrical,5);
-    print("Electrical System ... ok");
 });
 
 var init_switches = func{

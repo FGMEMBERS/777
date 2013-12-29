@@ -32,7 +32,14 @@ setlistener("sim/signals/fdm-initialized", func() {
 	'toggle_position': 	{path: '/inputs/pos', value:0, type:'BOOL'},
 	'toggle_data': 		{path: '/inputs/data',value:0, type:'BOOL'},
 	'toggle_terrain': 	{path: '/inputs/terr',value:0, type:'BOOL'},
-	'toggle_traffic': 	{path: '/inputs/tcas',value:0, type:'BOOL'},
+	'toggle_traffic': 		{path: '/inputs/tfc',value:0, type:'BOOL'},
+	'toggle_centered': 		{path: '/inputs/nd-centered',value:0, type:'BOOL'},
+	'toggle_weather': 		{path: '/inputs/wxr',value:0, type:'BOOL'},
+	'toggle_waypoints': 	{path: '/inputs/wpt',value:0, type:'BOOL'},
+	'toggle_airports': 		{path: '/inputs/arpt',value:0, type:'BOOL'},
+	'toggle_stations': 		{path: '/inputs/sta',value:0, type:'BOOL'},
+	'toggle_lh_vor_adf':	{path: '/inputs/lh-vor-adf',value:0, type:'INT'},
+	'toggle_rh_vor_adf':	{path: '/inputs/rh-vor-adf',value:0, type:'INT'},
 	'toggle_display_mode': 	{path: '/mfd/display-mode', value:'MAP', type:'STRING'},
 	# add new switches here
       };

@@ -618,7 +618,7 @@ Syd Adams
 					<property>instrumentation/inputs/setting-std</property>
 				</condition>
                 <command>property-assign</command>
-                <property>instrumentation/efis/inhg-previos</property>
+                <property>instrumentation/efis/inhg-previous</property>
                 <property>instrumentation/altimeter/setting-inhg</property>
             </binding>
 			<binding>
@@ -635,7 +635,7 @@ Syd Adams
 				</condition>
                 <command>property-assign</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
-                <property>instrumentation/efis/inhg-previos</property>
+                <property>instrumentation/efis/inhg-previous</property>
             </binding>
             <binding>
                 <command>nasal</command>
