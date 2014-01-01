@@ -699,9 +699,9 @@ Service Ceiling: 43,100ft
         </tcas>
         <efis>
             <inputs>
-                <tfc  type="bool">true</tfc>
-                <sta  type="bool">true</sta>
-                <arpt type="bool">true</arpt>
+                <tfc  type="bool">false</tfc>
+                <sta  type="bool">false</sta>
+                <arpt type="bool">false</arpt>
                 <wpt  type="bool">false</wpt>
                 <wxr  type="bool">false</wxr>
                 <range type="int">10</range>
@@ -709,9 +709,9 @@ Service Ceiling: 43,100ft
         </efis>
         <efis n="1">
             <inputs>
-                <tfc  type="bool">true</tfc>
-                <sta  type="bool">true</sta>
-                <arpt type="bool">true</arpt>
+                <tfc  type="bool">false</tfc>
+                <sta  type="bool">false</sta>
+                <arpt type="bool">false</arpt>
                 <wpt  type="bool">false</wpt>
                 <wxr  type="bool">false</wxr>
                 <range type="int">10</range>

@@ -565,7 +565,7 @@ Autopilot Control Panel
 	<animation>
 		<type>textranslate</type>
 		<object-name>TRK.led1</object-name>
-		<property>autopilot/settings/track-bug-deg</property>
+		<property>autopilot/settings/heading-bug-deg</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -578,7 +578,7 @@ Autopilot Control Panel
 	<animation>
 		<type>textranslate</type>
 		<object-name>TRK.led2</object-name>
-		<property>autopilot/settings/track-bug-deg</property>
+		<property>autopilot/settings/heading-bug-deg</property>
 		<factor>0.01</factor>
 		<step>10</step>
 		<axis>
@@ -591,7 +591,7 @@ Autopilot Control Panel
 	<animation>
 		<type>textranslate</type>
 		<object-name>TRK.led3</object-name>
-		<property>autopilot/settings/track-bug-deg</property>
+		<property>autopilot/settings/heading-bug-deg</property>
 		<factor>0.1</factor>
 		<step>1</step>
 		<axis>
@@ -1714,29 +1714,10 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<not>
-							<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-						</not>
-					</and>
+					<property>systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
-				<step type="int">1</step>
-				<min type="int">1</min>
-				<max type="int">361</max>
-				<wrap type="bool">true</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>autopilot/settings/track-bug-deg</property>
 				<step type="int">1</step>
 				<min type="int">1</min>
 				<max type="int">361</max>
@@ -1758,29 +1739,10 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<not>
-							<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-						</not>
-					</and>
+					<property>systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
-				<step type="int">-1</step>
-				<min type="int">1</min>
-				<max type="int">361</max>
-				<wrap type="bool">true</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>autopilot/settings/track-bug-deg</property>
 				<step type="int">-1</step>
 				<min type="int">1</min>
 				<max type="int">361</max>
@@ -1804,29 +1766,10 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<not>
-							<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-						</not>
-					</and>
+					<property>systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
-				<step type="int">1</step>
-				<min type="int">1</min>
-				<max type="int">361</max>
-				<wrap type="bool">true</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>autopilot/settings/track-bug-deg</property>
 				<step type="int">1</step>
 				<min type="int">1</min>
 				<max type="int">361</max>
@@ -1850,29 +1793,10 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<not>
-							<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-						</not>
-					</and>
+					<property>systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
-				<step type="int">-1</step>
-				<min type="int">1</min>
-				<max type="int">361</max>
-				<wrap type="bool">true</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<and>
-						<property>systems/electrical/outputs/avionics</property>
-						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
-					</and>
-				</condition>
-				<command>property-adjust</command>
-				<property>autopilot/settings/track-bug-deg</property>
 				<step type="int">-1</step>
 				<min type="int">1</min>
 				<max type="int">361</max>

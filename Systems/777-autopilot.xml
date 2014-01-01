@@ -909,7 +909,7 @@
 			<property>autopilot/internal/target-pitch-deg</property>
 		</output>
 		<config>
-			<Kp>0.45</Kp>
+			<Kp>0.63</Kp>
 			<Td>0.0007</Td>
 			<Ti>50.0</Ti>
 			<u_min>

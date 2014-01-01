@@ -100,7 +100,6 @@ var AFDS = {
 		m.hdg_setting = m.AP_settings.initNode("heading-bug-deg",360,"INT"); # 1 to 360
 		m.hdg_setting_last = m.AP_settings.initNode("heading-bug-last",360,"INT"); # 1 to 360
 		m.hdg_setting_active = m.AP_settings.initNode("heading-bug-active",0,"BOOL");
-		m.trk_setting = m.AP_settings.initNode("track-bug-deg",360,"INT"); # 1 to 360
 		m.fpa_setting = m.AP_settings.initNode("flight-path-angle",0); # -9.9 to 9.9 #
 		m.alt_setting = m.AP_settings.initNode("counter-set-altitude-ft",10000,"DOUBLE");
 		m.alt_setting_FL = m.AP_settings.initNode("counter-set-altitude-FL",10,"INT");
@@ -165,7 +164,6 @@ var AFDS = {
 				{
 					# set target to current heading
 					var tgtHdg = me.heading.getValue();
-					me.trk_setting.setValue(tgtHdg);
 					me.hdg_setting.setValue(tgtHdg);
 					if(getprop("position/gear-agl-ft") < 50)
 					{
@@ -199,14 +197,7 @@ var AFDS = {
 						{
 							# set target to current heading
 							var tgtHdg = me.heading.getValue();
-							if(me.hdg_trk_selected.getValue())
-							{
-								me.trk_setting.setValue(tgtHdg);
-							}
-							else
-							{
-								me.hdg_setting.setValue(tgtHdg);
-							}
+							me.hdg_setting.setValue(tgtHdg);
 							btn = 1;	# Heading sel
 						}
 						elsif(me.lnav_armed.getValue())
@@ -524,9 +515,9 @@ var AFDS = {
 				if(btn==0)
 				{
 					me.referenceChange();
+					me.hdg_setting.setValue(me.heading.getValue());
 					if(me.hdg_trk_selected.getValue())
 					{
-						me.trk_setting.setValue(me.heading.getValue());
 						if((me.lateral_mode.getValue() == 1)
 							or (me.lateral_mode.getValue() == 2))
 						{
@@ -535,7 +526,6 @@ var AFDS = {
 					}
 					else
 					{
-						me.hdg_setting.setValue(me.heading.getValue());
 						if((me.lateral_mode.getValue() == 6)
 							or (me.lateral_mode.getValue() == 7))
 						{
@@ -655,6 +645,27 @@ var AFDS = {
 		{
 			me.heading_reference.setValue(0);
 		}
+		if(getprop("velocities/groundspeed-kt") > 5)
+		{
+			vheading = (getprop("orientation/heading-deg") - getprop("orientation/track-deg"));
+			if(vheading < -180) vheading +=360;
+			if(vheading > 180) vheading +=-360;
+			if(me.hdg_trk_selected.getValue())
+			{
+				setprop("autopilot/internal/crab-angle-hdg", vheading);
+				setprop("autopilot/internal/crab-angle-trk", 0);
+			}
+			else
+			{
+				setprop("autopilot/internal/crab-angle-trk", vheading);
+				setprop("autopilot/internal/crab-angle-hdg", 0);
+			}
+		}
+		else
+		{
+			setprop("autopilot/internal/crab-angle-hdg", 0);
+			setprop("autopilot/internal/crab-angle-trk", 0);
+		}
 		if(me.heading_reference.getValue())
 		{
 			if((me.hdg_trk_selected.getValue())
@@ -685,8 +696,10 @@ var AFDS = {
 		# VOR, ADF direction calculation
 		setprop("instrumentation/efis/mfd/lvordirection", (getprop("instrumentation/nav/heading-deg") - vheading - me.vorient));
 		setprop("instrumentation/efis/mfd/rvordirection", (getprop("instrumentation/nav[1]/heading-deg") - vheading - me.vorient));
-		setprop("instrumentation/efis/mfd/ladfdirection", (getprop("instrumentation/adf/indicated-bearing-deg") - vheading - me.vorient));
-		setprop("instrumentation/efis/mfd/radfdirection", (getprop("instrumentation/adf[1]/indicated-bearing-deg") - vheading - me.vorient));
+		setprop("instrumentation/efis/mfd/ladfdirection", (getprop("instrumentation/adf/indicated-bearing-deg")
+					+ getprop("autopilot/internal/crab-angle-hdg")));
+		setprop("instrumentation/efis/mfd/radfdirection", (getprop("instrumentation/adf[1]/indicated-bearing-deg")
+					+ getprop("autopilot/internal/crab-angle-hdg")));
 		# Wind direction and bearing calculation
 		setprop("instrumentation/efis/mfd/winddirection", (getprop("environment/wind-from-heading-deg") - vheading - me.vorient));
 		vheading = int(vheading + 0.5);
@@ -702,27 +715,6 @@ var AFDS = {
 			vheading += 360;
 		}
 		setprop("instrumentation/efis/mfd/windbearing", vheading);
-		if(getprop("velocities/groundspeed-kt") > 5)
-		{
-			vheading = (getprop("orientation/heading-deg") - getprop("orientation/track-deg"));
-			if(vheading < -180) vheading +=360;
-			if(vheading > 180) vheading +=-360;
-			if(me.hdg_trk_selected.getValue())
-			{
-				setprop("autopilot/internal/crab-angle-hdg", vheading);
-				setprop("autopilot/internal/crab-angle-trk", 0);
-			}
-			else
-			{
-				setprop("autopilot/internal/crab-angle-trk", vheading);
-				setprop("autopilot/internal/crab-angle-hdg", 0);
-			}
-		}
-		else
-		{
-			setprop("autopilot/internal/crab-angle-hdg", 0);
-			setprop("autopilot/internal/crab-angle-trk", 0);
-		}
 	},
 	
 ###################
@@ -820,17 +812,22 @@ var AFDS = {
 		me.referenceChange();
 		# Heading bug position calculation
 		var hdgoffset = 0;
-		if(me.hdg_trk_selected.getValue())
-		{
-			hdgoffset = (me.trk_setting.getValue()-me.reference_deg.getValue());
-		}
-		else
-		{
-			hdgoffset = (me.hdg_setting.getValue()-me.reference_deg.getValue());
-		}
+		hdgoffset = (me.hdg_setting.getValue()-me.reference_deg.getValue());
 		if(hdgoffset < -180) hdgoffset +=360;
 		if(hdgoffset > 180) hdgoffset +=-360;
 		setprop("autopilot/internal/heading-bug-error-deg",hdgoffset);
+		# Calculation of localizer pointer
+		var deflection = getprop("instrumentation/nav/heading-needle-deflection-norm");
+		if((abs(deflection) < 0.5233) and (getprop("instrumentation/nav/signal-quality-norm") > 0.99))
+		{
+			setprop("autopilot/internal/presision-loc", 1);
+  				setprop("instrumentation/nav/heading-needle-deflection-ptr", (deflection * 1.728));
+		}
+		else
+		{
+			setprop("autopilot/internal/presision-loc", 0);
+			setprop("instrumentation/nav/heading-needle-deflection-ptr", deflection);
+		}
 
 		if(me.step==0){ ### glideslope armed ?###
 			var gear_agl_ft = getprop("position/gear-agl-ft");
@@ -878,17 +875,6 @@ var AFDS = {
 
 		}elsif(me.step==1){ ### localizer armed ? ###
 			msg = "";
-			var deflection = getprop("instrumentation/nav/heading-needle-deflection-norm");
-			if((abs(deflection) < 0.5233) and (getprop("instrumentation/nav/signal-quality-norm") > 0.99))
-			{
-				setprop("autopilot/internal/presision-loc", 1);
-   				setprop("instrumentation/nav/heading-needle-deflection-ptr", (deflection * 1.728));
-			}
-			else
-			{
-				setprop("autopilot/internal/presision-loc", 0);
-   				setprop("instrumentation/nav/heading-needle-deflection-ptr", deflection);
-			}
 			if(me.loc_armed.getValue())
 			{
 				msg = "LOC";
@@ -929,7 +915,6 @@ var AFDS = {
 								if(vradials < 0.5) vradials += 360;
 								elsif(vradials >= 360.5) vradials -= 360;
 								me.hdg_setting.setValue(vradials);
-								me.trk_setting.setValue(vradials);
 							}
 							else
 							{
@@ -963,6 +948,7 @@ var AFDS = {
 			me.AP_roll_arm.setValue(msg);
 
 		}elsif(me.step == 2){ ### check lateral modes  ###
+			# Heading bug line enable control
 			var vsethdg = me.hdg_setting.getValue();
 			if(me.hdg_setting_last.getValue() != vsethdg)
 			{
@@ -971,20 +957,27 @@ var AFDS = {
 			}
 			else
 			{
-				if((getprop("instrumentation/efis/mfd/display-mode") == "MAP")
-					and (me.lateral_mode.getValue() == 3
+				if(getprop("instrumentation/efis/mfd/display-mode") == "MAP")
+				{
+					if(me.lateral_mode.getValue() == 3
 						or me.lateral_mode.getValue() == 4
 						or me.lateral_mode.getValue() == 5)
-					and me.hdg_setting_active.getValue() == 1)
-				{
-					settimer(func
+					{
+						if(me.hdg_setting_active.getValue() == 1)
 						{
-							if(me.hdg_setting_last.getValue() == vsethdg)
+							settimer(func
 							{
-								me.hdg_setting_active.setValue(0);
-							}
-
-						}, 10);
+								if(me.hdg_setting_last.getValue() == vsethdg)
+								{
+									me.hdg_setting_active.setValue(0);
+								}
+							}, 10);
+						}
+					}
+					else
+					{
+						me.hdg_setting_active.setValue(1);
+					}
 				}
 			}
 			var idx = me.lateral_mode.getValue();
@@ -1005,7 +998,7 @@ var AFDS = {
 				if((idx == 6) or (idx == 7))
 				{
 					# switch between TRK SEL and TRK HOLD
-					if (abs(me.reference_deg.getValue() - me.trk_setting.getValue())<2)
+					if (abs(me.reference_deg.getValue() - me.hdg_setting.getValue())<2)
 					{
 						idx = 7; # TRK HOLD
 					}
@@ -1018,7 +1011,7 @@ var AFDS = {
 			if(idx == 4)		# LOC
 			{
 				if((me.rollout_armed.getValue())
-					and (getprop("position/gear-agl-ft") < 2))
+					and (getprop("position/gear-agl-ft") < 50))
 				{
 					me.rollout_armed.setValue(0);
 					idx = 5;	# ROLLOUT
