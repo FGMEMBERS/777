@@ -1,9 +1,9 @@
 var fctl_canvas = {};
 
 var aileronPosLeft = {};
-var elevonPosLeft = {};
+var flaperonPosLeft = {};
 var aileronPosRight = {};
-var elevonPosRight = {};
+var flaperonPosRight = {};
 var rudderPos = {};
 var elevPosLeft = {};
 var elevPosRight = {};
@@ -30,9 +30,9 @@ var canvas_fctl = {
 	initSvgIds: func(group)
 	{
 		aileronPosLeft = group.getElementById("aileronPosLeft");
-		elevonPosLeft = group.getElementById("flaperonPosLeft");
+		flaperonPosLeft = group.getElementById("flaperonPosLeft");
 		aileronPosRight = group.getElementById("aileronPosRight");
-		elevonPosRight = group.getElementById("flaperonPosRight");
+		flaperonPosRight = group.getElementById("flaperonPosRight");
 		rudderPos = group.getElementById("rudderPos");
 		elevPosLeft = group.getElementById("elevPosLeft");
 		elevPosRight = group.getElementById("elevPosRight");
@@ -62,21 +62,30 @@ var canvas_fctl = {
 		var spbangle = getprop("controls/flight/speedbrake-angle") or 0.00;
 		var spoilerCurrentHeight = spbangle*spoilerTotalHeight;
 		spoilers_scale.setScale(1,spbangle);
-		spoilers_scale.setTranslation(0,(spoilerCurrentHeight-spoilerTotalHeight)/2);
+		spoilers_scale.setTranslation(0,(spoilerTotalHeight-spoilerCurrentHeight)/2);
+	},
+	updateFlaperons: func()
+	{
+		var pos = getprop("controls/flight/aileron");
+		if (pos > 0) {
+			flaperonPosLeft.setTranslation(0,62*getprop("controls/flight/aileron"));
+		}
+		else {
+			flaperonPosRight.setTranslation(0,-62*getprop("controls/flight/aileron"));
+		}
 	},
 	update: func()
 	{
 		rudderPos.setTranslation(130*getprop("controls/flight/rudder"),0);
 		aileronPosLeft.setTranslation(0,62*getprop("controls/flight/aileron"));
 		aileronPosRight.setTranslation(0,-62*getprop("controls/flight/aileron"));
-		elevonPosLeft.setTranslation(0,62*getprop("controls/flight/aileron"));
-		elevonPosRight.setTranslation(0,-62*getprop("controls/flight/aileron"));
 		elevPosLeft.setTranslation(0,62*getprop("controls/flight/elevator"));
 		elevPosRight.setTranslation(0,62*getprop("controls/flight/elevator"));
 		elevatorTrim.setText(sprintf("%3.2f",getprop("controls/flight/elevator-trim")));
 
 		me.updateRudderTrim();
 		me.updateSpoilers();
+		me.updateFlaperons();
 
 		settimer(func me.update(), 0);
 	}
