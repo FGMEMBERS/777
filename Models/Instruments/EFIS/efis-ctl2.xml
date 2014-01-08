@@ -51,7 +51,7 @@ Syd Adams
         <type>rotate</type>
         <object-name>Range.knob</object-name>
         <object-name>Range.knob.001</object-name>
-        <property>instrumentation/efis[1]/inputs/range</property>
+        <property>instrumentation/efis[1]/inputs/range-nm</property>
         <interpolation>
             <entry><ind>10</ind><dep>0</dep></entry>
             <entry><ind>20</ind><dep>30</dep></entry>

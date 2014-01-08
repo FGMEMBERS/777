@@ -704,8 +704,11 @@ Service Ceiling: 43,100ft
                 <arpt type="bool">false</arpt>
                 <wpt  type="bool">false</wpt>
                 <wxr  type="bool">false</wxr>
-                <range type="int">10</range>
+                <range-nm type="int">10</range-nm>
             </inputs>
+            <mfd>
+                <display-type type="string">LCD</display-type>
+            </mfd>
         </efis>
         <efis n="1">
             <inputs>
@@ -714,8 +717,11 @@ Service Ceiling: 43,100ft
                 <arpt type="bool">false</arpt>
                 <wpt  type="bool">false</wpt>
                 <wxr  type="bool">false</wxr>
-                <range type="int">10</range>
+                <range-nm type="int">10</range-nm>
             </inputs>
+            <mfd>
+                <display-type type="string">LCD</display-type>
+            </mfd>
         </efis>
         <rmu>
             <unit n="0">
