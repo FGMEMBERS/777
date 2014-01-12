@@ -2180,4 +2180,28 @@ Autopilot Control Panel
 			</binding>
 		</action>
 	</animation>
+	<animation>
+        <type>pick</type>
+        <object-name>DSP.eng</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.mfdShow("eng");</script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>DSP.fctl</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.mfdShow("fctl");</script>
+            </binding>
+        </action>
+    </animation>
 </PropertyList>

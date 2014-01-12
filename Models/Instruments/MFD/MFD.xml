@@ -35,7 +35,7 @@
 		<repeatable>false</repeatable>
 		<binding>
 			<command>nasal</command>
-			<script>b777.showMfd();</script>
+			<script>b777.mfdTogglePopup();</script>
 		</binding>
 	</action>
 </animation>

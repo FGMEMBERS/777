@@ -4222,7 +4222,7 @@ kids 0
 OBJECT poly
 name "MFD.screen"
 loc 0.0000000 0.0001148 0.0005741
-texture "FCTL.png"
+texture "screen.png"
 texrep 1 1
 numvert 4
 0.0020000 -0.0958083 0.0956585

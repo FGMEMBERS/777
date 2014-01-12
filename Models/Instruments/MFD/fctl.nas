@@ -16,16 +16,10 @@ var spoilers_scale = {};
 var canvas_fctl = {
 	new : func(canvas_group)
 	{
-		var m = { parents: [canvas_fctl] };
-		var fctl = canvas_group;
-		var font_mapper = func(family, weight)
-		{
-			if( family == "Liberation Sans" and weight == "normal" )
-				return "LiberationFonts/LiberationSans-Regular.ttf";
-		};
-		canvas.parsesvg(fctl, "Aircraft/777/Models/Instruments/MFD/fctl.svg", {'font-mapper': font_mapper});
-		me.initSvgIds(fctl);
-		return m;
+        var m = { parents: [canvas_fctl, MfDPanel.new("fctl",canvas_group,"Aircraft/777/Models/Instruments/MFD/fctl.svg",canvas_fctl.update)] };
+        m.context = m;
+        m.initSvgIds(m.group);
+        return m;
 	},
 	initSvgIds: func(group)
 	{
@@ -86,7 +80,5 @@ var canvas_fctl = {
 		me.updateRudderTrim();
 		me.updateSpoilers();
 		me.updateFlaperons();
-
-		settimer(func me.update(), 0);
-	}
+	},
 };
