@@ -1853,13 +1853,16 @@ var AFDS = {
 						or (me.remaining_distance.getValue() < (me.top_of_descent + 50))
 						or (me.vnav_descent.getValue() == 1))
 					{
-						var freq = flightplan().destination_runway.ils_frequency_mhz;
-						if(freq != nil)
+						if(getprop("autopilot/route-manager/destination-ils"))
 						{
-							setprop("instrumentation/nav/frequencies/standby-mhz", freq);
-							b777.Efis.set_radio_mode(2);
-							b777.Efis.swap_freq();
-							me.FMC_destination_ils.setValue(1);
+							var freq = flightplan().destination_runway.ils_frequency_mhz;
+							if(freq != nil)
+							{
+								setprop("instrumentation/nav/frequencies/standby-mhz", freq);
+								b777.Efis.set_radio_mode(2);
+								b777.Efis.swap_freq();
+								me.FMC_destination_ils.setValue(1);
+							}
 						}
 					}
 				}
