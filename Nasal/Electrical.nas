@@ -241,15 +241,14 @@ var Alternator = {
 };
 
 var battery = Battery.new(24,30,34,1.0,7.0);
-var lidg = Alternator.new(0,"controls/electric/engine[0]/generator","/engines/engine[0]/rpm",17.0,115.0,60.0);
-var ridg = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/rpm",17.0,115.0,60.0);
+var lidg = Alternator.new(0,"controls/electric/engine[0]/gen-switch","/engines/engine[0]/rpm",17.0,115.0,60.0);
+var ridg = Alternator.new(1,"controls/electric/engine[1]/gen-switch","/engines/engine[1]/rpm",17.0,115.0,60.0);
 var external_primary = External.new(pri_epc);
 var external_secondary = External.new(sec_epc);
 var apu = APU.new(APUgen);
 
 #####################################
-var elec_init_listener = setlistener("sim/signals/fdm-initialized", func {
-    removelistener(elec_init_listener);
+setlistener("sim/signals/fdm-initialized", func {
     init_switches();
     settimer(update_electrical,5);
 });
@@ -265,11 +264,15 @@ var init_switches = func{
     setprop("controls/lighting/efis-norm",0.8);
     setprop("controls/lighting/panel-norm",0.8);
     setprop("controls/electric/battery-switch",0);
-    setprop("controls/electric/engine/generator",1);
-    setprop("controls/electric/engine[1]/generator",1);
+    setprop("controls/electric/engine/gen-switch",1);
+    setprop("controls/electric/engine[1]/gen-switch",1);
     setprop("controls/electric/engine/bus-tie",1);
     setprop("controls/electric/engine[1]/bus-tie",1);
     setprop("controls/APU/apu-gen-switch",1);
+    setprop("controls/electric/engine/gen-bu-switch",1);
+    setprop("controls/electric/engine[1]/gen-bu-switch",1);
+    setprop("controls/lighting/nav-lights",0);
+    setprop("controls/lighting/beacon",0);
 	landinglights.setValue(0);
     append(lights_input,props.globals.initNode("controls/lighting/landing-light[0]",0,"BOOL"));
     append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-light[0]",0,"DOUBLE"));
@@ -317,10 +320,10 @@ var init_switches = func{
     append(rbus_input,props.globals.initNode("controls/engines/engine[1]/fuel-pump",0,"BOOL"));
     append(rbus_output,props.globals.initNode("systems/electrical/outputs/fuel-pump[1]",0,"DOUBLE"));
     append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/engines/autostart-knob[0]",0,"DOUBLE"));
+    append(rbus_input,props.globals.initNode("controls/engines/StartIgnition-knob[0]",0,"DOUBLE"));
     append(rbus_output,props.globals.initNode("systems/electrical/outputs/starter",0,"DOUBLE"));
     append(rbus_load,1);
-    append(rbus_input,props.globals.initNode("controls/engines/autostart-knob[1]",0,"DOUBLE"));
+    append(rbus_input,props.globals.initNode("controls/engines/StartIgnition-knob[1]",0,"DOUBLE"));
     append(rbus_output,props.globals.initNode("systems/electrical/outputs/starter[1]",0,"DOUBLE"));
     append(rbus_load,1);
     append(rbus_input,AVswitch);

@@ -216,6 +216,30 @@ var Engine = {
                 and (getprop("consumables/fuel/tank[2]/level-gal_us") > 0.1)
                 and (getprop("controls/fuel/tank[2]/boost-pump[0]") or getprop("controls/fuel/tank[2]/boost-pump[1]"))));
         }
+        if(me.eng_num == 0)
+        {
+			if((getprop("consumables/fuel/tank[0]/level-gal_us") > 0) 
+					or (getprop("consumables/fuel/tank[1]/level-gal_us") > 0))
+			{
+				me.fuel_out.setBoolValue(0);
+			}
+			else
+			{
+				me.fuel_out.setBoolValue(1);
+			}
+		}
+		else
+		{
+			if((getprop("consumables/fuel/tank[2]/level-gal_us") > 0) 
+					or (getprop("consumables/fuel/tank[1]/level-gal_us") > 0))
+			{
+				me.fuel_out.setBoolValue(0);
+			}
+			else
+			{
+				me.fuel_out.setBoolValue(1);
+			}
+		}
         if(me.apu_knob.getValue() == 0)
         {
             me.apu_status.setValue(0);            # OFF

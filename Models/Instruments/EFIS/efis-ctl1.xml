@@ -9,12 +9,22 @@ Syd Adams
 
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>efisletters</object-name>
+		<object-name>EFIS_Lettering</object-name>
+		<object-name>EFIS_Lettering_Btns</object-name>
 	</effect>
+ <animation>
+	<object-name>EFIS_Lettering</object-name>
+	<object-name>EFIS_Lettering_Btns</object-name>
+ 	<type>range</type>
+	<min-m>0</min-m>
+	<max-m>5</max-m>
+	<max-property>sim/rendering/static-lod/detailed</max-property>
+ </animation>
 
  	<animation>
 		<type>material</type>
-		<object-name>efisletters</object-name>
+		<object-name>EFIS_Lettering</object-name>
+		<object-name>EFIS_Lettering_Btns</object-name>
 		<condition>
 			 <greater-than>
 				<property>systems/electrical/CPT-FLT-INST</property>

@@ -181,7 +181,7 @@ Are you ready to take controls?
 		<exit>
 			<condition>
 				<equals>
-					<property>controls/engines/autostart-knob[0]</property>
+					<property>controls/engines/StartIgnition-knob[0]</property>
 					<value>-1</value>
 				</equals>
 			</condition>
@@ -233,7 +233,7 @@ Are you ready to take controls?
 		<exit>
 			<condition>
 				<equals>
-					<property>controls/engines/autostart-knob[1]</property>
+					<property>controls/engines/StartIgnition-knob[1]</property>
 					<value>-1</value>
 				</equals>
 			</condition>

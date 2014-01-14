@@ -114,7 +114,7 @@
             <condition>
                 <and>
 					<equals>
-						<property>controls/engines/autostart-knob[0]</property>
+						<property>controls/engines/StartIgnition-knob[0]</property>
 						<value>-1</value>
 					</equals>
 					<not><property>engines/engine[0]/run</property></not>
@@ -143,7 +143,7 @@
             <condition>
                 <and>
 					<equals>
-						<property>controls/engines/autostart-knob[1]</property>
+						<property>controls/engines/StartIgnition-knob[1]</property>
 						<value>-1</value>
 					</equals>
 					<not><property>engines/engine[1]/run</property></not>

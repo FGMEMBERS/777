@@ -370,18 +370,33 @@ setlistener("sim/signals/fdm-initialized", func {
 #    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
     setprop("sim/flaps/current-setting", 0);
 	balance_fuel();
-    setprop("controls/fuel/tank[0]/boost-pump[0]",1);
-    setprop("controls/fuel/tank[0]/boost-pump[1]",1);
-    setprop("controls/fuel/tank[2]/boost-pump[0]",1);
-    setprop("controls/fuel/tank[2]/boost-pump[1]",1);
-    setprop("controls/fuel/tank[1]/boost-pump[0]",1);
-    setprop("controls/fuel/tank[1]/boost-pump[1]",1);
-	setprop("controls/hydraulic/system[0]/primary-pump",1);
-	setprop("controls/hydraulic/system[1]/primary-pump",1);
-	setprop("controls/hydraulic/system[2]/primary-pump",1);
-	setprop("controls/hydraulic/system[3]/primary-pump",1);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[0]",1);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[1]",1);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[0]",1);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[1]",1);
 	setprop("autopilot/route-manager/cruise/speed-kts",320);
 	setprop("autopilot/route-manager/cruise/speed-mach",0.840);
+	setprop("controls/engines/autostart",1);
+	setprop("controls/engines/engine/eec-switch",1);
+	setprop("controls/engines/engine[1]/eec-switch",1);
+#Fuel Jittson Arm
+	setprop("controls/fuel/b-jtsnarm", 1);
+	setprop("controls/fuel/tank[0]/b-nozzle", 1);
+	setprop("controls/fuel/tank[2]/b-nozzle", 1);
+#XFD valve
+	setprop("controls/fuel/b-xfdfwd-vlv", 1);
+	setprop("controls/fuel/b-xfdaft-vlv", 1);
+	setprop("controls/fuel/b-xfdaft-vlv", 1);
+	setprop("controls/anti-ice/window-heat-ls-switch", 1);
+	setprop("controls/anti-ice/window-heat-lf-switch", 1);
+	setprop("controls/anti-ice/window-heat-rf-switch", 1);
+	setprop("controls/anti-ice/window-heat-rs-switch", 1);
+
+	setprop("controls/flight/adiru-switch", 1);
+	setprop("controls/flight/thrust-asym-switch", 1);
+	setprop("controls/switches/fire/cargo-fwd-switch", 0);
+	setprop("controls/switches/fire/cargo-aft-switch", 0);
+	setprop("controls/switches/fire/apu-discharged", 1);
     settimer(start_updates,1);
 });
 
@@ -614,6 +629,12 @@ var Startup = func{
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
     setprop("engines/engine[0]/run",1);
     setprop("engines/engine[1]/run",1);
+	setprop("controls/hydraulics/system[1]/C1ELEC-switch", 1);
+	setprop("controls/hydraulics/system[1]/C2ELEC-switch", 1);
+	setprop("controls/hydraulics/system/LACMP-switch", 1);
+	setprop("controls/hydraulics/system[1]/C1ADP-switch", 1);
+	setprop("controls/hydraulics/system[1]/C2ADP-switch", 1);
+	setprop("controls/hydraulics/system[2]/RACMP-switch", 1);
 }
 
 var Shutdown = func{
@@ -633,8 +654,6 @@ var Shutdown = func{
     setprop("controls/lighting/landing-light[0]",0);
     setprop("controls/lighting/landing-light[1]",0);
     setprop("controls/lighting/landing-light[2]",0);
-    setprop("controls/lighting/strobe",0);
-    setprop("controls/lighting/beacon",0);
     setprop("controls/engines/engine[0]/cutoff",1);
     setprop("controls/engines/engine[1]/cutoff",1);
     setprop("controls/flight/elevator-trim",0);
@@ -654,6 +673,12 @@ var Shutdown = func{
     setprop("engines/engine[0]/fuel-flow_pph",0);
     setprop("engines/engine[1]/fuel-flow_pph",0);
     setprop("instrumentation/weu/state/takeoff-mode",1);
+	setprop("controls/hydraulics/system[1]/C1ELEC-switch", 0);
+	setprop("controls/hydraulics/system[1]/C2ELEC-switch", 0);
+	setprop("controls/hydraulics/system/LACMP-switch", 0);
+	setprop("controls/hydraulics/system[1]/C1ADP-switch", 0);
+	setprop("controls/hydraulics/system[1]/C2ADP-switch", 0);
+	setprop("controls/hydraulics/system[2]/RACMP-switch", 0);
 }
 
 var click_reset = func(propName) {
@@ -669,28 +694,23 @@ controls.click = func(button) {
 }
 
 switch_ind = func() {
+# Battery switch
 	if(getprop("controls/electric/battery-switch") == 0)
 	{
 		if(bat.getValue() > 24)
 		{
-			setprop("controls/electric/b_batt", 1);
+			setprop("controls/electric/b_batt", 0);
 		}
 		else
 		{
-			setprop("controls/electric/b_batt", 0);
+			setprop("controls/electric/b_batt", 1);
 		}
 	}
 	else
 	{
-		if(bat.getValue() > 24)
-		{
-			setprop("controls/electric/b_batt", -1);
+		setprop("controls/electric/b_batt", 1);
 		}
-		else
-		{
-			setprop("controls/electric/b_batt", 2);
-		}
-	}
+# Primary external power switch
 	if(primary_external.getValue() == 1)
 	{
 		if(pri_epc.getValue() == 1)
@@ -707,6 +727,7 @@ switch_ind = func() {
 		pri_epc.setValue(0);
 		setprop("controls/electric/b_ext_power_p", 0);
 	}
+# Secondary external power switch
 	if(secondary_external.getValue() == 1)
 	{
 		if(sec_epc.getValue() == 0)
@@ -723,82 +744,76 @@ switch_ind = func() {
 		sec_epc.setValue(0);
 		setprop("controls/electric/b_ext_power_s", 0);
 	}
+# Left generator switch
 	if(cpt_flt_inst.getValue() < 24)
 	{
-		if(getprop("controls/electric/engine/generator") == 0)
-		{
-			setprop("controls/electric/b_lidg", -1);
-		}
-		else
-		{
-			setprop("controls/electric/b_lidg", -2);
-		}
+		setprop("controls/electric/b-lidg", 1);
 	}
-	elsif(getprop("controls/electric/engine/generator") == 0)
+	elsif(getprop("controls/electric/engine/gen-switch") == 0)
 	{
-		if(lidg.get_output_volts() > 80)
-		{
-			setprop("controls/electric/b_lidg", -1);
-		}
-		else
-		{
-			setprop("controls/electric/b_lidg", 0);
-		}
+		setprop("controls/electric/b-lidg", 0);
 	}
 	else
 	{
 		if(lidg.get_output_volts() > 80)
 		{
-			setprop("controls/electric/b_lidg", -2);
+			setprop("controls/electric/b-lidg", 1);
 		}
 		else
 		{
-			setprop("controls/electric/b_lidg", 1);
+			setprop("controls/electric/b-lidg", 0);
 		}
 	}
+# Right generator switch
 	if(cpt_flt_inst.getValue() < 24)
 	{
-		if(getprop("controls/electric/engine[1]/generator") == 0)
-		{
-			setprop("controls/electric/b_ridg", -1);
-		}
-		else
-		{
-			setprop("controls/electric/b_ridg", -2);
-		}
+		setprop("controls/electric/b-ridg", 1);
 	}
-	elsif(getprop("controls/electric/engine[1]/generator") == 0)
+	elsif(getprop("controls/electric/engine[1]/gen-switch") == 0)
 	{
-		if(ridg.get_output_volts() > 80)
-		{
-			setprop("controls/electric/b_ridg", -1);
-		}
-		else
-		{
-			setprop("controls/electric/b_ridg", 0);
-		}
+		setprop("controls/electric/b-ridg", 0);
 	}
 	else
 	{
 		if(ridg.get_output_volts() > 80)
 		{
-			setprop("controls/electric/b_ridg", -2);
+			setprop("controls/electric/b-ridg", 1);
 		}
 		else
 		{
-			setprop("controls/electric/b_ridg", 1);
+			setprop("controls/electric/b-ridg", 0);
 		}
 	}
+# Left backup generator switch
+	if(cpt_flt_inst.getValue() < 24)
+	{
+		setprop("controls/electric/b-lbugen", 1);
+	}
+	elsif(getprop("controls/electric/engine/gen-bu-switch") == 0)
+	{
+		setprop("controls/electric/b-lbugen", 0);
+	}
+	else
+	{
+		setprop("controls/electric/b-lbugen", 1);
+	}
+# Right backup generator switch
+	if(cpt_flt_inst.getValue() < 24)
+	{
+		setprop("controls/electric/b-rbugen", 1);
+	}
+	elsif(getprop("controls/electric/engine[1]/gen-bu-switch") == 0)
+	{
+		setprop("controls/electric/b-rbugen", 0);
+	}
+	else
+	{
+		setprop("controls/electric/b-rbugen", 1);
+	}
+# Left BTR switch
 	if(bat.getValue() < 24)
 	{
-		if(getprop("controls/electric/engine/bus-tie") == 0)
-		{
-			setprop("controls/electric/b-lbus-tie", 2);
-		}
-		else
-		{
-			setprop("controls/electric/b-lbus-tie", -1);
-		}
+		setprop("controls/electric/b-lbus-tie", 1);
 	}
 	else
 	{
@@ -808,19 +823,13 @@ switch_ind = func() {
 		}
 		else
 		{
-			setprop("controls/electric/b-lbus-tie", -1);
+			setprop("controls/electric/b-lbus-tie", 1);
 		}
 	}
+# Right BTR switch
 	if(bat.getValue() < 24)
 	{
-		if(getprop("controls/electric/engine[1]/bus-tie") == 0)
-		{
-			setprop("controls/electric/b-rbus-tie", 2);
-		}
-		else
-		{
-			setprop("controls/electric/b-rbus-tie", -1);
-		}
+		setprop("controls/electric/b-rbus-tie", 1);
 	}
 	else
 	{
@@ -830,34 +839,17 @@ switch_ind = func() {
 		}
 		else
 		{
-			setprop("controls/electric/b-rbus-tie", -1);
+			setprop("controls/electric/b-rbus-tie", 1);
 		}
 	}
+# APU generator switch
 	if(bat.getValue() < 24)
 	{
-		if(getprop("controls/APU/apu-gen-switch") == 0)
-		{
-			setprop("controls/electric/b-apugen", -1);
-		}
-		else
-		{
-			setprop("controls/electric/b-apugen", -2);
-		}
+		setprop("controls/electric/b-apugen", 1);
 	}
 	else
 	{
 		if(ac_tie_bus.getValue() > 80)
-		{
-			if(getprop("controls/APU/apu-gen-switch") == 0)
-			{
-				setprop("controls/electric/b-apugen", -1);
-			}
-			else
-			{
-				setprop("controls/electric/b-apugen", -2);
-			}
-		}
-		else
 		{
 			if(getprop("controls/APU/apu-gen-switch") == 0)
 			{
@@ -868,122 +860,245 @@ switch_ind = func() {
 				setprop("controls/electric/b-apugen", 1);
 			}
 		}
-	}
-# Fuel control panel indication
-	if(getprop("controls/fuel/tank[0]/boost-pump[0]") == 1)
-	{
-		if((l_xfr.getValue() > 80)
-				or ((hot_bat.getValue() > 24) and (getprop("controls/APU/off-start-run") != 0)))
-		{
-			setprop("controls/fuel/tank[0]/b-boost-pump[0]", 1);
-		}
-		elsif(cpt_flt_inst.getValue() > 24)
-		{
-			setprop("controls/fuel/tank[0]/b-boost-pump[0]", -1);
-		}
 		else
 		{
-			setprop("controls/fuel/tank[0]/b-boost-pump[0]", 1);
+			if(getprop("controls/APU/run") == 1)
+			{
+				setprop("controls/electric/b-apugen", 0);
+			}
+			else
+			{
+				setprop("controls/electric/b-apugen", 1);
+			}
 		}
 	}
+# Fuel control panel indication
+# LH boost #1
+	if((getprop("consumables/fuel/tank[0]/level-gal_us") > 0)
+		and	((getprop("controls/fuel/tank/boost-pump-switch")
+				and (l_xfr.getValue() > 80))
+			or ((hot_bat.getValue() > 24) 
+				and (getprop("controls/APU/off-start-run") != 0))))
+	{
+		setprop("controls/fuel/tank[0]/boost-pump[0]", 1);
+	}
 	else
+	{
+		setprop("controls/fuel/tank[0]/boost-pump[0]", 0);
+	}
+	if((getprop("controls/fuel/tank[0]/boost-pump[0]") == 0)
+		and (cpt_flt_inst.getValue() > 24))
 	{
 		setprop("controls/fuel/tank[0]/b-boost-pump[0]", 0);
 	}
-	if(getprop("controls/fuel/tank[0]/boost-pump[1]"))
+	else
 	{
-		if(l_xfr.getValue() > 80)
-		{
-			setprop("controls/fuel/tank[0]/b-boost-pump[1]", 1);
-		}
-		elsif(cpt_flt_inst.getValue() > 24)
-		{
-			setprop("controls/fuel/tank[0]/b-boost-pump[1]", -1);
-		}
-		else
-		{
-			setprop("controls/fuel/tank[0]/b-boost-pump[1]", 1);
-		}
+		setprop("controls/fuel/tank[0]/b-boost-pump[0]", 1);
+	}
+# LH boost #2
+	if((getprop("consumables/fuel/tank[0]/level-gal_us") > 0)
+			and getprop("controls/fuel/tank/boost-pump-switch[1]")
+			and (l_xfr.getValue() > 80))
+	{
+		setprop("controls/fuel/tank[0]/boost-pump[1]", 1);
 	}
 	else
+	{
+		setprop("controls/fuel/tank[0]/boost-pump[1]", 0);
+	}
+	if((getprop("controls/fuel/tank[0]/boost-pump[1]") == 0)
+		and (cpt_flt_inst.getValue() > 24))
 	{
 		setprop("controls/fuel/tank[0]/b-boost-pump[1]", 0);
 	}
-	if(getprop("controls/fuel/tank[2]/boost-pump[0]"))
+	else
 	{
-		if(l_xfr.getValue() > 80)
-		{
-			setprop("controls/fuel/tank[2]/b-boost-pump[0]", 1);
-		}
-		elsif(cpt_flt_inst.getValue() > 24)
-		{
-			setprop("controls/fuel/tank[2]/b-boost-pump[0]", -1);
-		}
-		else
-		{
-			setprop("controls/fuel/tank[2]/b-boost-pump[0]", 1);
-		}
+		setprop("controls/fuel/tank[0]/b-boost-pump[1]", 1);
+	}
+# RH boost #1
+	if((getprop("consumables/fuel/tank[2]/level-gal_us") > 0)
+			and getprop("controls/fuel/tank[2]/boost-pump-switch[0]")
+			and (l_xfr.getValue() > 80))
+	{
+		setprop("controls/fuel/tank[2]/boost-pump[0]", 1);
 	}
 	else
+	{
+		setprop("controls/fuel/tank[2]/boost-pump[0]", 0);
+	}
+	if((getprop("controls/fuel/tank[2]/boost-pump[0]") == 0)
+		and (cpt_flt_inst.getValue() > 24))
 	{
 		setprop("controls/fuel/tank[2]/b-boost-pump[0]", 0);
 	}
-	if(getprop("controls/fuel/tank[2]/boost-pump[1]"))
+	else
 	{
-		if(l_xfr.getValue() > 80)
-		{
-			setprop("controls/fuel/tank[2]/b-boost-pump[1]", 1);
-		}
-		elsif(cpt_flt_inst.getValue() > 24)
-		{
-			setprop("controls/fuel/tank[2]/b-boost-pump[1]", -1);
-		}
-		else
-		{
-			setprop("controls/fuel/tank[2]/b-boost-pump[1]", 1);
-		}
+		setprop("controls/fuel/tank[2]/b-boost-pump[0]", 1);
+	}
+#RH boost #2
+	if((getprop("consumables/fuel/tank[2]/level-gal_us") > 0)
+			and getprop("controls/fuel/tank[2]/boost-pump-switch[1]")
+			and (l_xfr.getValue() > 80))
+	{
+		setprop("controls/fuel/tank[2]/boost-pump[1]", 1);
 	}
 	else
+	{
+		setprop("controls/fuel/tank[2]/boost-pump[1]", 0);
+	}
+	if((getprop("controls/fuel/tank[2]/boost-pump[1]") == 0)
+		and (cpt_flt_inst.getValue() > 24))
 	{
 		setprop("controls/fuel/tank[2]/b-boost-pump[1]", 0);
 	}
-	if(getprop("controls/fuel/tank[1]/boost-pump[0]"))
+	else
 	{
-		if(l_xfr.getValue() > 80)
-		{
-			setprop("controls/fuel/tank[1]/b-boost-pump[0]", 1);
-		}
-		elsif(cpt_flt_inst.getValue() > 24)
-		{
-			setprop("controls/fuel/tank[1]/b-boost-pump[0]", -1);
-		}
-		else
-		{
-			setprop("controls/fuel/tank[1]/b-boost-pump[0]", 1);
-		}
+		setprop("controls/fuel/tank[2]/b-boost-pump[1]", 1);
+	}
+#CTR boost #1
+	if((getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+			and getprop("controls/fuel/tank[1]/boost-pump-switch[0]")
+			and (l_xfr.getValue() > 80))
+	{
+		setprop("controls/fuel/tank[1]/boost-pump[0]", 1);
 	}
 	else
+	{
+		setprop("controls/fuel/tank[1]/boost-pump[0]", 0);
+	}
+	if((getprop("controls/fuel/tank[1]/boost-pump[0]") == 0)
+		and (cpt_flt_inst.getValue() > 24)
+		and getprop("controls/fuel/tank[1]/boost-pump-switch"))
 	{
 		setprop("controls/fuel/tank[1]/b-boost-pump[0]", 0);
 	}
-	if(getprop("controls/fuel/tank[1]/boost-pump[1]"))
+	else
 	{
-		if(l_xfr.getValue() > 80)
-		{
-			setprop("controls/fuel/tank[1]/b-boost-pump[1]", 1);
-		}
-		elsif(cpt_flt_inst.getValue() > 24)
-		{
-			setprop("controls/fuel/tank[1]/b-boost-pump[1]", -1);
-		}
-		else
-		{
-			setprop("controls/fuel/tank[1]/b-boost-pump[1]", 1);
-		}
+		setprop("controls/fuel/tank[1]/b-boost-pump[0]", 1);
+	}
+#CTR boost #2
+	if((getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+			and getprop("controls/fuel/tank[1]/boost-pump-switch[1]")
+			and (l_xfr.getValue() > 80))
+	{
+		setprop("controls/fuel/tank[1]/boost-pump[1]", 1);
 	}
 	else
 	{
+		setprop("controls/fuel/tank[1]/boost-pump[1]", 0);
+	}
+	if((getprop("controls/fuel/tank[1]/boost-pump[1]") == 0)
+		and (cpt_flt_inst.getValue() > 24)
+		and getprop("controls/fuel/tank[1]/boost-pump-switch[1]"))
+	{
 		setprop("controls/fuel/tank[1]/b-boost-pump[1]", 0);
+	}
+	else
+	{
+		setprop("controls/fuel/tank[1]/b-boost-pump[1]", 1);
+	}
+#EEC Autostart
+	if((getprop("controls/engines/autostart") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/engines/b-autostart", 0);
+	}
+	else
+	{
+		setprop("controls/engines/b-autostart", 1);
+	}
+#EEC Left
+	if((getprop("controls/engines/engine/eec-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/engines/engine/b-eec-switch", 0);
+	}
+	else
+	{
+		setprop("controls/engines/engine/b-eec-switch", 1);
+	}
+#EEC Right
+	if((getprop("controls/engines/engine[1]/eec-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/engines/engine[1]/b-eec-switch", 0);
+	}
+	else
+	{
+		setprop("controls/engines/engine[1]/b-eec-switch", 1);
+	}
+#WINDOWS HEAT
+	if((getprop("controls/anti-ice/window-heat-ls-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/anti-ice/window-heat-ls", 0);
+	}
+	else
+	{
+		setprop("controls/anti-ice/window-heat-ls", 1);
+	}
+	if((getprop("controls/anti-ice/window-heat-lf-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/anti-ice/window-heat-lf", 0);
+	}
+	else
+	{
+		setprop("controls/anti-ice/window-heat-lf", 1);
+	}
+	if((getprop("controls/anti-ice/window-heat-rf-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/anti-ice/window-heat-rf", 0);
+	}
+	else
+	{
+		setprop("controls/anti-ice/window-heat-rf", 1);
+	}
+	if((getprop("controls/anti-ice/window-heat-rs-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/anti-ice/window-heat-rs", 0);
+	}
+	else
+	{
+		setprop("controls/anti-ice/window-heat-rs", 1);
+	}
+	if((getprop("controls/flight/adiru-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/flight/adiru", 0);
+	}
+	else
+	{
+		setprop("controls/flight/adiru", 1);
+	}
+	if((getprop("controls/flight/thrust-asym-switch") == 0)
+			and (cpt_flt_inst.getValue() > 24))
+	{
+		setprop("controls/flight/thrust-asym", 0);
+	}
+	else
+	{
+		setprop("controls/flight/thrust-asym", 1);
+	}
+	if((cpt_flt_inst.getValue() < 24)
+			or (getprop("controls/switches/fire/cargo-fwd-switch") == 0))
+	{
+		setprop("controls/switches/fire/cargo-fwd", 1);
+	}
+	else
+	{
+		setprop("controls/switches/fire/cargo-fwd", 0);
+	}
+	if((cpt_flt_inst.getValue() < 24)
+			or (getprop("controls/switches/fire/cargo-aft-switch") == 0))
+	{
+		setprop("controls/switches/fire/cargo-aft", 1);
+	}
+	else
+	{
+		setprop("controls/switches/fire/cargo-aft", 0);
 	}
 }
 

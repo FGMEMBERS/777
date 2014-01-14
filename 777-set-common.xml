@@ -15,6 +15,7 @@
         <model n="0">
             <armrest type="double">0</armrest>
         </model>
+		<shutterspeed type="double">0.18</shutterspeed>
 
 		<navdb>
 			<!-- exclude any airports with runways shorter than this from
@@ -128,6 +129,127 @@
             </config>
         </view>
 
+	<view n="102">
+	    <name>OH Panel</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>60</pitch-offset-deg>
+            <x-offset-m type="double">0</x-offset-m>
+            <y-offset-m type="double">0.36</y-offset-m>
+            <z-offset-m type="double">-22.46</z-offset-m>
+		</config>
+	</view>
+
+ 	<view n="103">
+	    <name>Right side view</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>		
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">4.371291667</x-offset-m>
+            <y-offset-m type="double">0.911</y-offset-m>
+            <z-offset-m type="double">-7.109888889</z-offset-m>
+		</config>
+	</view>
+	
+	<view n="104">
+	    <name>Front gear view</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">0.0025</x-offset-m>
+            <y-offset-m type="double">-3.2</y-offset-m>
+            <z-offset-m type="double">-21.5</z-offset-m>
+		</config>
+	</view>	
+	
+	<view n="105">
+	    <name>Observer 1 view</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-1.125</pitch-offset-deg>
+            <x-offset-m type="double">0.10544875</x-offset-m>
+            <y-offset-m type="double">0.8</y-offset-m>
+            <z-offset-m type="double">-21.66375</z-offset-m>
+		</config>
+	</view>	
+	
+	<view n="106">
+	    <name>Observer 2 view</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-8.775</pitch-offset-deg>
+            <goal-heading-offset-deg>16.875</goal-heading-offset-deg>
+            <x-offset-m type="double">1.1171875</x-offset-m>
+            <y-offset-m type="double">0.8675</y-offset-m>
+            <z-offset-m type="double">-21.74</z-offset-m>
+		</config>
+	</view>
+
+	<view n="107">
+	    <name>Top Left view</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-19.125</pitch-offset-deg>
+            <goal-heading-offset-deg>333</goal-heading-offset-deg>
+            <x-offset-m type="double">-0.65625</x-offset-m>
+            <y-offset-m type="double">1.2175</y-offset-m>
+            <z-offset-m type="double">-22.31125</z-offset-m>
+		</config>
+	</view>		
+
+<view n="108">
+    <name>Wing View</name>
+    <type>lookfrom</type>
+    <internal archive="y">true</internal>
+    <config>
+      <from-model type="bool">true</from-model>
+      <from-model-idx type="int">0</from-model-idx>
+      <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
+      <default-field-of-view-deg type="double">55</default-field-of-view-deg>
+      <pitch-offset-deg>-8.0</pitch-offset-deg>
+      <heading-offset-deg type="double">90</heading-offset-deg> <!-- parallel to the panel -->
+      <x-offset-m archive="y"> -2.74375 </x-offset-m> <!--Left/Right-->
+      <y-offset-m archive="y"> 1.298888889 </y-offset-m> <!--Up/Down-->
+      <z-offset-m archive="y"> 9.153333333 </z-offset-m> <!--Fdw/Back-->
+    </config>
+  </view>
+
+<view n="109">
+    <name>Tail View</name>
+    <type>lookfrom</type>
+    <internal archive="y">true</internal>
+    <config>
+      <from-model type="bool">true</from-model>
+      <from-model-idx type="int">0</from-model-idx>
+      <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
+      <default-field-of-view-deg type="double">90</default-field-of-view-deg>
+      <pitch-offset-deg>-10.0</pitch-offset-deg>
+      <heading-offset-deg type="double">0</heading-offset-deg> 
+      <x-offset-m archive="y"> 0 </x-offset-m> <!--Left/Right-->
+      <y-offset-m archive="y"> 12.74 </y-offset-m> <!--Up/Down-->
+      <z-offset-m archive="y"> 35.436 </z-offset-m> <!--Fdw/Back-->
+    </config>
+  </view>
         <help n="0">
             <title>777</title>
             <text>=== Tutorials ===
@@ -213,6 +335,14 @@ Service Ceiling: 43,100ft
                             <script>controls.autostart();</script>
                         </binding>
                     </item>
+                    <item >
+						<label>Handy Viewer</label>
+						<name>handyviewer</name>
+						<binding>
+							<command>dialog-show</command>
+							<dialog-name>handyviewer</dialog-name>
+						</binding>
+					</item>
                     <item >
                         <label>Ground Services Control</label>
                         <binding>
@@ -356,7 +486,7 @@ Service Ceiling: 43,100ft
 
         <sound>
             <path>Aircraft/777/Sounds/777-sound.xml</path>
-            <stall-horn type="bool">0</stall-horn>
+            <stall type="bool">0</stall>
             <click1 type="bool">0</click1>
             <click2 type="bool">0</click2>
             <click3 type="bool">0</click3>
@@ -365,6 +495,8 @@ Service Ceiling: 43,100ft
             <click6 type="bool">0</click6>
             <click7 type="bool">0</click7>
             <click8 type="bool">0</click8>
+            <FastenSeatbelt type="bool">0</FastenSeatbelt>
+            <cabinalert type="bool">0</cabinalert>
         </sound>
 
         <hud>
@@ -828,11 +960,6 @@ Service Ceiling: 43,100ft
         <flight>
             <speedbrake-lever type="int">0</speedbrake-lever>
         </flight>
-        <engines>
-            <autostart-button type="bool">0</autostart-button>
-            <autostart-knob type="int" n="0">0</autostart-knob>
-            <autostart-knob type="int" n="1">0</autostart-knob>
-        </engines>
 		<cabin>
 			<NoSmoking-knob type="int" >1 </NoSmoking-knob>
 			<SeatBelt-knob type="int" >1 </SeatBelt-knob>
@@ -860,8 +987,10 @@ Service Ceiling: 43,100ft
 
     <nasal n="0">
         <b777>
+            <file>Aircraft/777/Nasal/Air.nas</file>
             <file>Aircraft/777/Nasal/Electrical.nas</file>
             <file>Aircraft/777/Nasal/engine.nas</file>
+            <file>Aircraft/777/Nasal/Hydraulics.nas</file>
             <file>Aircraft/777/Nasal/systems.nas</file>
             <file>Aircraft/777/Nasal/AFDS.nas</file>
             <file>Aircraft/777/Nasal/tyresmoke.nas</file>
@@ -873,6 +1002,7 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Models/Instruments/MFD/mfd.nas</file>
             <file>Aircraft/777/Models/Instruments/MFD/fctl.nas</file>
             <file>Aircraft/777/Models/Instruments/MFD/eng.nas</file>
+            <file>Aircraft/777/Nasal/SWanimation.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
         </b777>
         <dialogs>

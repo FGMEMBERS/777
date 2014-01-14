@@ -645,6 +645,8 @@ var AFDS = {
 		{
 			me.heading_reference.setValue(0);
 		}
+		setprop("instrumentation/efis/mfd/true-north", me.heading_reference.getValue());
+		setprop("instrumentation/efis[1]/mfd/true-north", me.heading_reference.getValue());
 		if(getprop("velocities/groundspeed-kt") > 5)
 		{
 			vheading = (getprop("orientation/heading-deg") - getprop("orientation/track-deg"));
@@ -880,7 +882,6 @@ var AFDS = {
 				msg = "LOC";
 				if (getprop("instrumentation/nav/in-range"))
 				{
-
 					if(!getprop("instrumentation/nav/nav-loc"))
 					{
 						var vheading = getprop("instrumentation/nav/radials/selected-deg");
@@ -951,6 +952,7 @@ var AFDS = {
 			# Heading bug line enable control
 			var vsethdg = me.hdg_setting.getValue();
 			if(me.hdg_setting_last.getValue() != vsethdg)
+
 			{
 				me.hdg_setting_last.setValue(vsethdg);
 				me.hdg_setting_active.setValue(1);

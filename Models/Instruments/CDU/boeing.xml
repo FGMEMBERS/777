@@ -88,6 +88,41 @@
 	<object-name>Btn.side.r.6</object-name>
 </effect-->
 
+<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>Lettering_Cdu</object-name>
+		<object-name>Lettering_Alpha</object-name>
+		<object-name>Lettering_Numbers</object-name>
+		<object-name>Lettering_Commands</object-name>
+		<object-name>Lettering_Btns</object-name>
+</effect>
+
+
+<animation>
+		<type>material</type>
+		<object-name>Lettering_Cdu</object-name>
+		<object-name>Lettering_Alpha</object-name>
+		<object-name>Lettering_Numbers</object-name>
+		<object-name>Lettering_Commands</object-name>
+		<object-name>Lettering_Btns</object-name>
+		<condition>
+			 <greater-than>
+<!--				<property>systems/electrical/CPT-FLT-INST</property>
+				<value>24.0</value>
+-->    
+<property>/sim/time/sun-angle-rad</property>
+    <value>1.70</value>
+			 </greater-than>
+		</condition>
+		<emission>
+			<red>0.0</red>
+			<green>0.8</green>
+			<blue>0.0</blue>
+			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+		</emission>
+	</animation>
+
+
 <model>
 	<path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
 	<offsets>
@@ -1034,7 +1069,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value type="string">INIT_REF</value>
 		</binding>
 	</action>
@@ -1048,7 +1083,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value type="string">RTE1_1</value>
 		</binding>
 	</action>
@@ -1062,7 +1097,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value type="string">NAV_RAD</value>
 		</binding>
 	</action>
@@ -1076,7 +1111,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value type="string">DEP_ARR_INDEX</value>
 		</binding>
 	</action>
@@ -1090,7 +1125,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value type="string">RTE1_LEGS</value>
 		</binding>
 	</action>
@@ -1104,7 +1139,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value type="string">MENU</value>
 		</binding>
 	</action>
@@ -1119,12 +1154,12 @@
 		<binding>
 			<condition>
 				<equals>
-					<property>instrumentation/cdu/display</property>
+					<property>/instrumentation/cdu/display</property>
 					<value>RTE1_2</value>
 				</equals>
 			</condition>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value>RTE1_1</value>
 		</binding>
 	</action>
@@ -1139,12 +1174,12 @@
 		<binding>
 			<condition>
 				<equals>
-					<property>instrumentation/cdu/display</property>
+					<property>/instrumentation/cdu/display</property>
 					<value>RTE1_1</value>
 				</equals>
 			</condition>
 			<command>property-assign</command>
-			<property>instrumentation/cdu/display</property>
+			<property>/instrumentation/cdu/display</property>
 			<value>RTE1_2</value>
 		</binding>
 	</action>
@@ -1683,7 +1718,7 @@
 		<binding>
 			<condition>
 				<equals>
-					<property>instrumentation/cdu/display</property>
+					<property>/instrumentation/cdu/display</property>
 					<value>RTE1_LEGS</value>
 				</equals>
 			</condition>
@@ -1701,7 +1736,7 @@
 		<repeatable>false</repeatable>  
 		<binding>
 			<command>nasal</command>
-			<script>setprop("instrumentation/cdu/input","");</script>
+			<script>setprop("/instrumentation/cdu/input","");</script>
 		</binding>
 	</action>
 </animation>
