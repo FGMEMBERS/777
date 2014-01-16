@@ -320,7 +320,7 @@ Service Ceiling: 43,100ft
                 <desc>toggle spoilers</desc>
             </key>
             <key>
-                <name>Ctrl-I</name>
+                <name>=</name>
                 <desc>toggle auto spoilers</desc>
             </key>
             <key>
