@@ -1853,9 +1853,10 @@ var AFDS = {
 						or (me.remaining_distance.getValue() < (me.top_of_descent + 50))
 						or (me.vnav_descent.getValue() == 1))
 					{
-						if(getprop("autopilot/route-manager/destination-ils"))
+						var dist_run = flightplan().destination_runway;
+						if(dist_run != nil)
 						{
-							var freq = flightplan().destination_runway.ils_frequency_mhz;
+							var freq = dist_run.ils_frequency_mhz;
 							if(freq != nil)
 							{
 								setprop("instrumentation/nav/frequencies/standby-mhz", freq);

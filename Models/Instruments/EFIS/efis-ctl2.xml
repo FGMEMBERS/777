@@ -42,13 +42,12 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>BARO.knob</object-name>
-        <object-name>BARO.knob.001</object-name>
         <property>instrumentation/efis[1]/inputs/kpa-mode</property>
         <factor>80</factor>
         <center>
-            <x-m>0.02324</x-m>
-            <y-m>0.04439</y-m>
-            <z-m>0.02781</z-m>
+            <x-m>0.0126</x-m>
+            <y-m>0.0438</y-m>
+            <z-m>0.0278</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -60,7 +59,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Range.knob</object-name>
-        <object-name>Range.knob.001</object-name>
         <property>instrumentation/efis[1]/inputs/range-nm</property>
         <interpolation>
             <entry><ind>10</ind><dep>0</dep></entry>
@@ -72,9 +70,9 @@ Syd Adams
             <entry><ind>640</ind><dep>180</dep></entry>
         </interpolation>
         <center>
-            <x-m>0.01246</x-m>
-            <y-m>0.02425</y-m>
-            <z-m>-0.002298</z-m>
+            <x-m>0.0125</x-m>
+            <y-m>0.0237</y-m>
+            <z-m>-0.0025</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -86,13 +84,12 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>MINS.knob</object-name>
-        <object-name>MINS.knob.001</object-name>
-        <property>instrumentation/efis[1]/inputs/minimums-mode</property>
+         <property>instrumentation/efis[1]/inputs/minimums-mode</property>
         <factor>80</factor>
         <center>
-            <x-m>0.02322</x-m>
-            <y-m>-0.042224</y-m>
-            <z-m>0.02781</z-m>
+            <x-m>0.0126</x-m>
+            <y-m>-0.0430</y-m>
+            <z-m>0.0278</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -104,7 +101,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>MODE.knob</object-name>
-        <object-name>MODE.knob.001</object-name>
         <property>instrumentation/efis[1]/mfd/mode-num</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -113,9 +109,9 @@ Syd Adams
             <entry><ind>3</ind><dep>90</dep></entry>
         </interpolation>
         <center>
-            <x-m>0.01234</x-m>
-            <y-m>-0.02134</y-m>
-            <z-m>-0.002082</z-m>
+            <x-m>0.0123</x-m>
+            <y-m>-0.0218</y-m>
+            <z-m>-0.0023</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -386,7 +382,6 @@ Syd Adams
         <object-name>rng.dec</object-name>
         <object-name>rng2.dec</object-name>
         <object-name>Range.knob</object-name>
-        <object-name>Range.knob.001</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
@@ -404,7 +399,6 @@ Syd Adams
         <object-name>rng.dec</object-name>
         <object-name>rng2.dec</object-name>
         <object-name>Range.knob</object-name>
-        <object-name>Range.knob.001</object-name>
         <action>
             <button>1</button>
             <repeatable>true</repeatable>
@@ -423,7 +417,6 @@ Syd Adams
         <object-name>rng2.dec</object-name>
         <object-name>TFC</object-name>
         <object-name>Range.knob</object-name>
-        <object-name>Range.knob.001</object-name>
         <action>
             <button>3</button> <!--  scroll up -->
             <repeatable>false</repeatable>
@@ -442,7 +435,6 @@ Syd Adams
         <object-name>rng2.dec</object-name>
         <object-name>TFC</object-name>
         <object-name>Range.knob</object-name>
-        <object-name>Range.knob.001</object-name>
         <action>
             <button>4</button> <!--  scroll down -->
             <repeatable>false</repeatable>
@@ -473,7 +465,6 @@ Syd Adams
     <animation>
         <type>pick</type>
         <object-name>BARO.knob</object-name>
-        <object-name>BARO.knob.001</object-name>
         <action>
             <button>0</button>
             <button>3</button>
@@ -493,7 +484,6 @@ Syd Adams
      <animation>
         <type>pick</type>
         <object-name>BARO.knob</object-name>
-        <object-name>BARO.knob.001</object-name>
         <action>
             <button>1</button>
             <button>4</button>

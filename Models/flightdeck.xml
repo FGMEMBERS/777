@@ -502,6 +502,30 @@ Syd Adams
         </condition>
     </animation>
 
+    <animation>
+        <type>pick</type>
+        <object-name>Tray_Left</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/model/tray-left</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>Tray_Right</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/model/tray-right</property>
+            </binding>
+        </action>
+    </animation>
+    
     <!--animation>
         <type>pick</type>
         <object-name>Knob.002</object-name>

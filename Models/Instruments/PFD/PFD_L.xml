@@ -118,16 +118,20 @@ Syd Adams
         <type>select</type>
         <object-name>coarseLocPointer</object-name>
         <condition>
-			<or>
-				<greater-than>
-					<property>instrumentation/nav/heading-needle-deflection-ptr</property>
-					<value>0.92</value>
-				</greater-than>
-				<less-than>
-					<property>instrumentation/nav/heading-needle-deflection-ptr</property>
-					<value>-0.92</value>
-				</less-than>
-			</or>
+			<and>
+				<property>instrumentation/nav/in-range</property>
+				<property>instrumentation/nav/nav-loc</property>
+				<or>
+					<greater-than>
+						<property>instrumentation/nav/heading-needle-deflection-ptr</property>
+						<value>0.92</value>
+					</greater-than>
+					<less-than>
+						<property>instrumentation/nav/heading-needle-deflection-ptr</property>
+						<value>-0.92</value>
+					</less-than>
+				</or>
+			</and>
        </condition>
     </animation>
 

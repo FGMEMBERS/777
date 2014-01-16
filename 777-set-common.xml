@@ -218,7 +218,7 @@
 	</view>		
 
 <view n="108">
-    <name>Wing View</name>
+    <name>LWing View</name>
     <type>lookfrom</type>
     <internal archive="y">true</internal>
     <config>
@@ -235,6 +235,23 @@
   </view>
 
 <view n="109">
+    <name>RWing View</name>
+    <type>lookfrom</type>
+    <internal archive="y">true</internal>
+    <config>
+      <from-model type="bool">true</from-model>
+      <from-model-idx type="int">0</from-model-idx>
+      <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
+      <default-field-of-view-deg type="double">55</default-field-of-view-deg>
+      <pitch-offset-deg>-8.0</pitch-offset-deg>
+      <heading-offset-deg type="double">270</heading-offset-deg> <!-- parallel to the panel -->
+      <x-offset-m archive="y"> 2.74375 </x-offset-m> <!--Left/Right-->
+      <y-offset-m archive="y"> 1.298888889 </y-offset-m> <!--Up/Down-->
+      <z-offset-m archive="y"> 9.153333333 </z-offset-m> <!--Fdw/Back-->
+    </config>
+  </view>
+
+<view n="110">
     <name>Tail View</name>
     <type>lookfrom</type>
     <internal archive="y">true</internal>
@@ -597,14 +614,6 @@ Service Ceiling: 43,100ft
                     <script>b777.afds.input(0,1);</script>
                 </binding>
             </key>
-            <key n="9">
-                <name>Ctrl-I</name>
-                <desc>toggle auto spoilers</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>controls.toggleAutoSpoilers();</script>
-                </binding>
-            </key>
             <key n="12">
                 <name>Ctrl-L</name>
                 <desc>toggle cabin lights</desc>
@@ -681,7 +690,14 @@ Service Ceiling: 43,100ft
                     <step type="double">0.012</step>
                 </binding>
             </key>
-
+            <key n="61">
+                <name>=</name>
+                <desc>toggle auto spoilers</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>controls.toggleAutoSpoilers();</script>
+                </binding>
+            </key>
              <key n="108">
                 <name>l</name>
                 <desc>toggle landing lights</desc>
