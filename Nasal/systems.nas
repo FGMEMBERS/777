@@ -64,9 +64,10 @@ var EFIS = {
         m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
         m.update_radar_font();
         m.update_nd_center();
-#		setprop("controls/lighting/overhead-intencity",0.5);
-#		setprop("controls/lighting/panel-flood-intencity",0.5);
-#		setprop("controls/lighting/dome-intencity",0.5);
+		setprop("controls/lighting/overhead-intencity",0.5);
+		setprop("controls/lighting/CB-intencity",0.5);
+		setprop("controls/lighting/panel-flood-intencity",0.5);
+		setprop("controls/lighting/dome-intencity",0.5);
         return m;
     },
 #### convert inhg to kpa ####

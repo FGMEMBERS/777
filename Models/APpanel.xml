@@ -217,6 +217,10 @@ Autopilot Control Panel
 		<object-name>AP_Lettering.001</object-name>
 		<object-name>AP_Lettering.002</object-name>
 		<condition>
+			<greater-than>   
+				<property>/sim/time/sun-angle-rad</property>
+				<value>1.70</value>
+			</greater-than>
 			 <greater-than>
 				<property>systems/electrical/CPT-FLT-INST</property>
 				<value>24.0</value>

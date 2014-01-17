@@ -78,10 +78,13 @@ Syd Adams
  	<animation>
 		<type>material</type>
 		<object-name>OHpanel.Lettering_Day</object-name>
-		<object-name>Lettering_CB</object-name>
 		<object-name>Lettering_Maint</object-name>
 		<object-name>Placard</object-name>
 		<condition>
+			<greater-than>   
+				<property>/sim/time/sun-angle-rad</property>
+				<value>1.70</value>
+			</greater-than>
 			 <greater-than>
 				<property>systems/electrical/CPT-FLT-INST</property>
 				<value>24.0</value>
@@ -94,15 +97,14 @@ Syd Adams
 			<factor-prop>controls/lighting/overhead-intencity</factor-prop>
 		</emission>
 	</animation>
-
-<!-- New LightMap according to new Graphic addition -->
-
  	<animation>
 		<type>material</type>
-		<object-name>OHpanel.Lettering_Day</object-name>
 		<object-name>Lettering_CB</object-name>
-		<object-name>Lettering_Maint</object-name>
 		<condition>
+			<greater-than>   
+				<property>/sim/time/sun-angle-rad</property>
+				<value>1.70</value>
+			</greater-than>
 			 <greater-than>
 				<property>systems/electrical/CPT-FLT-INST</property>
 				<value>24.0</value>
@@ -112,12 +114,9 @@ Syd Adams
 			<red>0.2</red>
 			<green>0.8</green>
 			<blue>0.2</blue>
-			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+			<factor-prop>controls/lighting/CB-intencity</factor-prop>
 		</emission>
 	</animation>
-<!-- END of New LightMap -->
-
-<!--  ELECTRIC CONTROL  -->
 
 	<animation>
 		<type>textranslate</type>
@@ -1723,8 +1722,8 @@ Syd Adams
 
 <animation>
    <type>rotate</type>
-   <object-name>CBN.knob</object-name>
-	<property>/controls/lighting/CBN-input</property>
+   <object-name>CB.knob</object-name>
+	<property>/controls/lighting/CB-intencity</property>
 		<interpolation>
 			<entry>
 				<ind>0</ind>
@@ -2909,14 +2908,14 @@ Syd Adams
 
 	<animation>
         <type>pick</type>
-        <object-name>CBN.knob</object-name>
+        <object-name>CB.knob</object-name>
         <action>
             <button>0</button>
 			<button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-                <property>/controls/lighting/CBN-input</property>
+                <property>/controls/lighting/CB-intencity</property>
                 <step>0.1</step>
                 <min>0</min>
                 <max>1</max>
@@ -2932,14 +2931,14 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>CBN.knob</object-name>
+        <object-name>CB.knob</object-name>
         <action>
             <button>1</button>
 			<button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-                <property>/controls/lighting/CBN-input</property>
+                <property>/controls/lighting/CB-intencity</property>
                 <step>-0.1</step>
                 <min>0</min>
                 <max>1</max>

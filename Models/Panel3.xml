@@ -21,7 +21,11 @@
       	<object-name>ShipIDR</object-name>
 	      <object-name>CompanyIDL</object-name>
       	<object-name>CompanyIDR</object-name>
-	<condition>
+		<condition>
+			<greater-than>   
+				<property>/sim/time/sun-angle-rad</property>
+				<value>1.70</value>
+			</greater-than>
 			 <greater-than>
 				<property>systems/electrical/CPT-FLT-INST</property>
 				<value>24.0</value>

@@ -93,6 +93,10 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
 		<object-name>Lettering_CS.TCAS</object-name>
 		<object-name>Lettering_CS.TPH</object-name>
 		<condition>
+			<greater-than>   
+				<property>/sim/time/sun-angle-rad</property>
+				<value>1.70</value>
+			</greater-than>
 			 <greater-than>
 				<property>systems/electrical/CPT-FLT-INST</property>
 				<value>24.0</value>
