@@ -514,6 +514,24 @@ Syd Adams
         </action>
     </animation>
     
+	<animation>
+		<type>rotate</type>
+		<object-name>Tray_Left</object-name>
+		<object-name>Tray_Left_Txt</object-name>
+		<property>sim/model/tray-left</property>
+        <factor>90</factor>
+		<center>
+			<x-m>-1.0461</x-m>
+			<y-m>-1.2448</y-m>
+			<z-m>-0.0243</z-m>
+		</center>  	
+		<axis>
+			<x>-1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+
     <animation>
         <type>pick</type>
         <object-name>Tray_Right</object-name>
@@ -526,6 +544,24 @@ Syd Adams
         </action>
     </animation>
     
+	<animation>
+		<type>rotate</type>
+		<object-name>Tray_Right</object-name>
+		<object-name>Tray_Right_Txt</object-name>
+		<property>sim/model/tray-right</property>
+        <factor>90</factor>
+		<center>
+			<x-m>-1.0461</x-m>
+			<y-m>1.2473</y-m>
+			<z-m>-0.0243</z-m>
+		</center>  	
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+
     <!--animation>
         <type>pick</type>
         <object-name>Knob.002</object-name>

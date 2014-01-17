@@ -15,12 +15,72 @@ Syd Adams
 
 	</effect>
 
+    <animation>
+        <name>Placard</name>
+		<object-name>ADIRU_Placard</object-name>
+		<object-name>AIR-EQCOOL_Placard</object-name>
+		<object-name>AIR-GASPER_Placard</object-name>
+		<object-name>AIR-RCRC_LW_Placard</object-name>
+		<object-name>AIR-RCRC_UP_Placard</object-name>
+		<object-name>APU_Placard</object-name>
+		<object-name>ASYM_ThComp_Placard</object-name>
+		<object-name>AUTOSTART_Placard</object-name>
+		<object-name>BATT_Placard</object-name>
+		<object-name>BCN_Placard</object-name>
+		<object-name>BLD_APU_Placard</object-name>
+		<object-name>BLD_ENG_L_Placard</object-name>
+		<object-name>BLD_ENG_R_Placard</object-name>
+		<object-name>BLD_ISLN_C_Placard</object-name>
+		<object-name>BLD_ISLN_L_Placard</object-name>
+		<object-name>BLD_ISLN_R_Placard</object-name>
+		<object-name>CTRboost1_Placard</object-name>
+		<object-name>CTRboost2_Placard</object-name>
+		<object-name>ELEC_C1_Placard</object-name>
+		<object-name>ELEC_C2_Placard</object-name>
+		<object-name>FIRE-ARM_AFT_Placard</object-name>
+		<object-name>FIRE-ARM_FWD_Placard</object-name>
+		<object-name>FJ_ARM_Placard</object-name>
+		<object-name>Hydr_LENG_Placard</object-name>
+		<object-name>Hydr_RENG_Placard</object-name>
+		<object-name>LBUS_Placard</object-name>
+		<object-name>LENG_EEC_Placard</object-name>
+		<object-name>LGEN_BCKUP_Placard</object-name>
+		<object-name>LGEN_Placard</object-name>
+		<object-name>LHboost1_Placard</object-name>
+		<object-name>LHboost2_Placard</object-name>
+		<object-name>LOGO_Placard</object-name>
+		<object-name>LPCK_Placard</object-name>
+		<object-name>LTRAIR_Placard</object-name>
+		<object-name>NAV_Placard</object-name>
+		<object-name>NOZZLE_L_Placard</object-name>
+		<object-name>NOZZLE_R_Placard</object-name>
+		<object-name>PASS_OXY_Placard</object-name>
+		<object-name>P_OFV_L_Placard</object-name>
+		<object-name>P_OFV_R_Placard</object-name>
+		<object-name>RAM_Placard</object-name>
+		<object-name>RBUS_Placard</object-name>
+		<object-name>RENG_EEC_Placard</object-name>
+		<object-name>RGEN_BCKUP_Placard</object-name>
+		<object-name>RGEN_Placard</object-name>
+		<object-name>RHboost1_Placard</object-name>
+		<object-name>RHboost2_Placard</object-name>
+		<object-name>RPCK_Placard</object-name>
+		<object-name>RTRAIR_Placard</object-name>
+		<object-name>STRM_Placard</object-name>
+		<object-name>WH_LF_Placard</object-name>
+		<object-name>WH_LS_Placard</object-name>
+		<object-name>WH_RF_Placard</object-name>
+		<object-name>WH_RS_Placard</object-name>
+		<object-name>WING_Placard</object-name>
+		<object-name>XFeedAFT_Placard</object-name>
+		<object-name>XFeedFWD_Placard</object-name>
+    </animation>
  	<animation>
 		<type>material</type>
 		<object-name>OHpanel.Lettering_Day</object-name>
 		<object-name>Lettering_CB</object-name>
 		<object-name>Lettering_Maint</object-name>
-
+		<object-name>Placard</object-name>
 		<condition>
 			 <greater-than>
 				<property>systems/electrical/CPT-FLT-INST</property>
@@ -1393,50 +1453,6 @@ Syd Adams
         </axis>
  </animation>
  
- <animation>
-   <type>textranslate</type>
-   <object-name>LGEN_Switch</object-name>
-	<property>controls/electric/b-lidg</property>
-   <factor>0.0781</factor>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>translate</type>
-   <object-name>LGEN_AcryFace</object-name>
-   <object-name>LGEN_Switch</object-name>
-   <object-name>LGEN_Shutter.Top</object-name>
-   <object-name>LGEN_Shutter.Bottom</object-name>
-   <property>controls/switches/LGENSwitchTimer/position-norm</property>
-   <factor>0.004</factor>
-   <axis>
-     <x>-1</x>
-     <y>0</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>rotate</type>
-   <object-name>LGEN_Shutter.Top</object-name>
-   <property>controls/switches/LGENSwitchTimer/position-norm</property>
-        <factor>-92</factor>
-        <center>
-            <x-m>0.0134</x-m>
-            <y-m>0</y-m>
-            <z-m>-0.239</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
- </animation>
-
  <animation>
    <type>textranslate</type>
    <object-name>AIR-EQCOOL_Switch</object-name>
