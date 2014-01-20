@@ -53,8 +53,8 @@ Autopilot Control Panel
 		<property>instrumentation/afds/inputs/bank-limit-switch</property>
 		<factor>-30.0</factor>
 		<center>
-            <x-m>0.00728</x-m>
-            <y-m>-0.01239</y-m>
+            <x-m>0.00881</x-m>
+            <y-m>-0.01282</y-m>
             <z-m>-0.00651</z-m>
  		</center>
 		<axis>
@@ -114,9 +114,9 @@ Autopilot Control Panel
 		<property>autopilot/settings/heading-bug-deg</property>
 		<factor>100</factor>
 		<center>
-            <x-m>0.00728</x-m>
-            <y-m>-0.0124015</y-m>
-            <z-m>-0.0065205</z-m>
+            <x-m>0.02654</x-m>
+            <y-m>-0.01282</y-m>
+            <z-m>-0.00653</z-m>
  		</center>
 		<axis>
 			<x>-1</x>
@@ -131,9 +131,9 @@ Autopilot Control Panel
 		<property>autopilot/settings/counter-set-altitude-ft</property>
 		<factor>1</factor>
 		<center>
-            <x-m>0.00728</x-m>
-            <y-m>0.131895</y-m>
-            <z-m>-0.0065115</z-m>
+            <x-m>0.00846</x-m>
+            <y-m>0.13190</y-m>
+            <z-m>-0.00651</z-m>
  		</center>
 		<axis>
 			<x>-1</x>
@@ -149,10 +149,10 @@ Autopilot Control Panel
 		<property>instrumentation/afds/inputs/alt-knob</property>
 		<factor>40</factor>
 		<center>
-            <x-m>0.00728</x-m>
-            <y-m>0.13190</y-m>
-            <z-m>-0.00651</z-m>
- 		</center>
+            <x-m>0.00881</x-m>
+            <y-m>0.13191</y-m>
+            <z-m>-0.00652</z-m>
+  		</center>
 		<axis>
 			<x>-1</x>
 			<y>0</y>

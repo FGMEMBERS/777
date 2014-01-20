@@ -104,7 +104,7 @@ var AFDS = {
 		m.alt_setting = m.AP_settings.initNode("counter-set-altitude-ft",10000,"DOUBLE");
 		m.alt_setting_FL = m.AP_settings.initNode("counter-set-altitude-FL",10,"INT");
 		m.alt_setting_100 = m.AP_settings.initNode("counter-set-altitude-100",000,"INT");
-		m.target_alt = m.AP_settings.initNode("target-altitude-ft",10000,"DOUBLE");
+		m.target_alt = m.AP_settings.initNode("actual-target-altitude-ft",10000,"DOUBLE");
 		m.radio_alt_ind = m.AP_settings.initNode("radio-altimeter-indication",000,"INT");
 		m.pfd_mach_ind = m.AP_settings.initNode("pfd-mach-indication",000,"INT");
 		m.pfd_mach_target = m.AP_settings.initNode("pfd-mach-target-indication",000,"INT");
@@ -1068,14 +1068,13 @@ var AFDS = {
 				if(abs(current_bank) <= 3)
 				{
 					var tgtHdg = int(me.reference_deg.getValue());
+					me.hdg_setting.setValue(tgtHdg);
 					if(me.hdg_trk_selected.getValue())
 					{
-						me.trk_setting.setValue(tgtHdg);
 						idx = 7;    # TRK HOLD
 					}
 					else
 					{
-						me.hdg_setting.setValue(tgtHdg);
 						idx = 2;    #  HDG HOLD
 					}
 				}
@@ -1094,6 +1093,8 @@ var AFDS = {
 			me.AP_roll_engaged.setBoolValue(idx > 0);
 
 		}elsif(me.step==3){ ### check vertical modes  ###
+			# This is only for Canvas ND pridiction circle indication, not used inside
+			setprop("autopilot/settings/target-altitude-ft", me.target_alt.getValue());
 			me.alt_setting_FL.setValue(me.alt_setting.getValue() / 1000);
 			me.alt_setting_100.setValue(me.alt_setting.getValue() - (me.alt_setting_FL.getValue() * 1000));
 			if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 100)
@@ -1697,12 +1698,13 @@ var AFDS = {
 		}
 		elsif(me.step==5)			#LNAV route calculation
 		{
+			var total_distance = getprop("autopilot/route-manager/total-distance");
+			var distance = total_distance - getprop("autopilot/route-manager/distance-remaining-nm");
+			var destination_elevation = getprop("autopilot/route-manager/destination/field-elevation-ft");
 			if (me.FMC_active.getValue())
 			{
 				var max_wpt = getprop("autopilot/route-manager/route/num");
 				var atm_wpt = me.FMC_current_wp.getValue();
-				var destination_elevation = getprop("autopilot/route-manager/destination/field-elevation-ft");
-				var total_distance = getprop("autopilot/route-manager/total-distance");
 				if(me.lateral_mode.getValue() == 3)		# Current mode is LNAV
 				{
 					if(atm_wpt < (max_wpt - 1))
@@ -1867,7 +1869,6 @@ var AFDS = {
 						}
 					}
 				}
-				var distance = getprop("autopilot/route-manager/route/wp/distance-nm");
 				if((distance > 400) or (distance > (total_distance / 2)))
 				{
 					me.FMC_landing_rwy_elevation.setValue(destination_elevation);
@@ -1879,9 +1880,25 @@ var AFDS = {
 			}
 			else
 			{
-				# Reset flag when not active
-				if(me.FMC_destination_ils.getValue() == 1) me.FMC_destination_ils.setValue(0);
-				me.FMC_landing_rwy_elevation.setValue(getprop("autopilot/route-manager/departure/field-elevation-ft"));
+				if((distance == nil) or (total_distance == nil))
+				{
+					# Reset flag when not active
+					if(me.FMC_destination_ils.getValue() == 1) me.FMC_destination_ils.setValue(0);
+					me.FMC_landing_rwy_elevation.setValue(getprop("autopilot/route-manager/departure/field-elevation-ft"));
+				}
+				else
+				{
+					if((distance > 400) or (distance > (total_distance / 2)))
+					{
+						me.FMC_landing_rwy_elevation.setValue(destination_elevation);
+					}
+					else
+					{
+						# Reset flag when not active
+						if(me.FMC_destination_ils.getValue() == 1) me.FMC_destination_ils.setValue(0);
+						me.FMC_landing_rwy_elevation.setValue(getprop("autopilot/route-manager/departure/field-elevation-ft"));
+					}
+				}
 			}
 		}elsif(me.step==6)
 		{
