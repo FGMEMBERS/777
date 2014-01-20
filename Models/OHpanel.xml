@@ -4466,11 +4466,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>L-RWY.toggle</object-name>
         <property>controls/lighting/L-RwayLight</property>
-        <factor>30</factor>
+        <factor>15</factor>
         <center>
-            <x-m>0.0114</x-m>
-            <y-m>0.0289</y-m>
-            <z-m>-0.5260</z-m>
+            <x-m>0.01210</x-m>
+            <y-m>0.02920</y-m>
+            <z-m>-0.52551</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -4483,11 +4483,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>R-RWY.toggle</object-name>
         <property>controls/lighting/R-RwayLight</property>
-        <factor>30</factor>
+        <factor>15</factor>
         <center>
-            <x-m>0.0114</x-m>
-            <y-m>0.0692</y-m>
-            <z-m>-0.5260</z-m>
+            <x-m>0.01210</x-m>
+            <y-m>0.06923</y-m>
+            <z-m>-0.52551</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -4517,11 +4517,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>R-Lnd.toggle</object-name>
         <property>controls/lighting/landing-light[2]</property>
-        <factor>30</factor>
+        <factor>15</factor>
         <center>
-            <x-m>0.0105</x-m>
-            <y-m>-0.0266</y-m>
-            <z-m>-0.5228</z-m>
+            <x-m>0.01088</x-m>
+            <y-m>-0.02657</y-m>
+            <z-m>-0.52239</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -4534,11 +4534,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>L-Lnd.toggle</object-name>
         <property>controls/lighting/landing-light[0]</property>
-        <factor>30</factor>
+        <factor>15</factor>
         <center>
-            <x-m>0.0105</x-m>
-            <y-m>-0.1057</y-m>
-            <z-m>-0.5228</z-m>
+            <x-m>0.01088</x-m>
+            <y-m>-0.10559</y-m>
+            <z-m>-0.52239</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -4551,11 +4551,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>C-Lnd.toggle</object-name>
         <property>controls/lighting/landing-light[1]</property>
-        <factor>30</factor>
+        <factor>15</factor>
         <center>
-            <x-m>0.0105</x-m>
-            <y-m>-0.0655</y-m>
-            <z-m>-0.542</z-m>
+            <x-m>0.01088</x-m>
+            <y-m>-0.06555</y-m>
+            <z-m>-0.53421</z-m>
         </center>
         <axis>
             <x>0</x>
