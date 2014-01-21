@@ -1,7 +1,7 @@
 <PropertyList>
 
     <sim n="0">
-        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair</author>
+        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu</author>
         <status>production</status>
         <rating>
             <FDM type="int">4</FDM>
