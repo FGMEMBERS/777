@@ -745,7 +745,7 @@ Service Ceiling: 43,100ft
                 <abs-altitude type="bool" archive="y">false</abs-altitude>
             </display-controls>
             <serviceable type="bool">true</serviceable>
-            <range n="0" alias="/instrumentation/efis/inputs/range"/>
+            <range n="0" alias="/instrumentation/efis/inputs/range-nm"/>
             <reference-range-nm type="double" archive="y">640</reference-range-nm>
             <mode type="string" archive="y">WX</mode>
             <font>
@@ -936,33 +936,6 @@ Service Ceiling: 43,100ft
                 <min-runway-length-ft type="double">5000</min-runway-length-ft>
             </config>
         </gps>
-        <nd>
-            <radar-texture-path type="string">Aircraft/777/Models/Instruments/ND/od_wxradar.png</radar-texture-path>
-            <symbol-texture-path type="string">Aircraft/777/Models/Instruments/ND/nd_symbols.png</symbol-texture-path>
-            <symbol-texture-size type="int">512</symbol-texture-size>
-			
-			<font>
-                <color>
-                    <red type="float">0.7</red>
-                    <green type="float">0.7</green>
-                    <blue type="float">0.7</blue>
-                    <alpha type="float">1</alpha>
-                </color>
-                <name type="string">helvetica_bold.txf</name>
-                <size type="float">20</size>
-                <line-spacing type="float">0.01</line-spacing>
-            </font>
-            <serviceable type="bool">true</serviceable>
-            <range n="0" alias="/instrumentation/efis/inputs/range"/>
-            <aircraft-heading-up type="bool">true</aircraft-heading-up>
-            <heading-up-deg type="float">0.01</heading-up-deg>
-            <x-center type="float">0.5</x-center>
-            <y-center type="float">0.5</y-center>
-			<line-width type="double">3</line-width>
-			
-			<symbols>
-			</symbols>
-        </nd>
     </instrumentation>
 
     <controls n="0">
