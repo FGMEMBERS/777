@@ -65,7 +65,7 @@ setlistener("sim/signals/fdm-initialized", func() {
 
 	nd_display.cpt.addPlacement({"node": "ND.screenL"});
 	var group = nd_display.cpt.createGroup();
-	NDCpt.newMFD(group);
+	NDCpt.newMFD(group, nd_display.cpt);
 	NDCpt.update();
 
 	var NDFo = ND.new("instrumentation/efis[1]", myCockpit_switches);
@@ -79,7 +79,7 @@ setlistener("sim/signals/fdm-initialized", func() {
 
 	nd_display.fo.addPlacement({"node": "ND.screenR"});
 	var group = nd_display.fo.createGroup();
-	NDFo.newMFD(group);
+	NDFo.newMFD(group, nd_display.fo);
 	NDFo.update();
 
 		
