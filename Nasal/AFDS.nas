@@ -138,7 +138,7 @@ var AFDS = {
 		m.RmDisabled = setlistener(m.FMC.getNode("active",1), func m.wpChanged(),0,0);
         
         
-        m.NDSymbols = props.globals.getNode("instrumentation/nd/symbols", 1);
+        m.NDSymbols = props.globals.getNode("autopilot/route-manager/vnav", 1);
 		setprop("autopilot/internal/waypoint-bearing-error-deg", 0);
 		return m;
 	},
