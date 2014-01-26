@@ -2,11 +2,6 @@
 # storage container for all ND instances 
 var nd_display = {};
 
-###
-# entry point, this will set up all ND instances
-
-setlistener("sim/signals/fdm-initialized", func() {
-
 ##
 # configure aircraft specific cockpit/ND switches here
 # these are to be found in the property branch you specify 
@@ -41,6 +36,11 @@ setlistener("sim/signals/fdm-initialized", func() {
 	'toggle_true_north': 	{path: '/mfd/true-north', value:0, type:'BOOL'},
 	# add new switches here
       };
+
+###
+# entry point, this will set up all ND instances
+
+var _list = setlistener("sim/signals/fdm-initialized", func() {
 
 
 	# get a handle to the NavDisplay in canvas namespace (for now), see $FG_ROOT/Nasal/canvas/map/navdisplay.mfd
@@ -82,7 +82,7 @@ setlistener("sim/signals/fdm-initialized", func() {
 	NDFo.newMFD(group, nd_display.fo);
 	NDFo.update();
 
-		
+	removelistener(_list); # run ONCE
 }); # fdm-initialized listener callback
 
 
