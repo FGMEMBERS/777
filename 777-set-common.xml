@@ -9,13 +9,16 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20130805</aircraft-version>
+        <aircraft-version>20140127</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
             <armrest type="double">0</armrest>
         </model>
 		<shutterspeed type="double">0.18</shutterspeed>
+		<instrument-options>
+			<canvas-popup-enable type="bool">true</canvas-popup-enable>
+		</instrument-options>
 
 		<navdb>
 			<!-- exclude any airports with runways shorter than this from

@@ -110,7 +110,11 @@ var mfdRemove = func() {
 mfdListener = setlistener("sim/signals/fdm-initialized", mfdCreate);
 
 var mfdTogglePopup = func() {
-    if(mfdi != nil) mfdi.togglePopup();
+    if((mfdi != nil)
+		and (getprop("sim/instrument-options/canvas-popup-enable")))
+	{
+		mfdi.togglePopup();
+	}
 }
 
 var mfdDel = func() {
