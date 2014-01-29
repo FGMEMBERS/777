@@ -15,9 +15,9 @@ var Engine = {
         m.egt_degf = m.eng.getNode("egt-degf",1);
         m.egt = m.eng.getNode("egt",1);
         m.egt.setDoubleValue(0);
-        m.reverser_cmd = props.globals.getNode("controls/engines/engine["~eng_num~"]/reverser-cmd",1);
+        m.reverser_cmd = props.globals.getNode("controls/engines/engine["~eng_num~"]/reverser",1);
         m.reverser_cmd.setBoolValue(0);
-        m.reverser = props.globals.getNode("controls/engines/engine["~eng_num~"]/reverser",1);
+        m.reverser = props.globals.getNode("controls/engines/engine["~eng_num~"]/reverser-act",1);
         m.throttle = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle-act",1);
         m.throttle.setDoubleValue(0);
         m.cutoff = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff",1);

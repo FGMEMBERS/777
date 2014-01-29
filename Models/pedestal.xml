@@ -282,7 +282,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <type>rotate</type>
         <object-name>LHRevThrust.lever</object-name>
 		<condition>
-			<property>controls/engines/engine/reverser</property>
+			<property>controls/engines/engine/reverser-act</property>
 		</condition>
         <property>controls/engines/engine/throttle-lever</property>
         <factor>25</factor>
@@ -302,7 +302,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <type>rotate</type>
         <object-name>RHRevThrust.lever</object-name>
 		<condition>
-			<property>controls/engines/engine[1]/reverser</property>
+			<property>controls/engines/engine[1]/reverser-act</property>
 		</condition>
         <property>controls/engines/engine[1]/throttle-lever</property>
         <factor>25</factor>
@@ -323,7 +323,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <object-name>LHThrottle</object-name>
         <object-name>LHRevThrust.lever</object-name>
 		<condition>
-			<not><property>controls/engines/engine/reverser</property></not>
+			<not><property>controls/engines/engine/reverser-act</property></not>
 		</condition>
         <property>controls/engines/engine/throttle-lever</property>
         <factor>42.4</factor>
@@ -344,7 +344,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <object-name>RHThrottle</object-name>
         <object-name>RHRevThrust.lever</object-name>
 		<condition>
-			<not><property>controls/engines/engine[1]/reverser</property></not>
+			<not><property>controls/engines/engine[1]/reverser-act</property></not>
 		</condition>
         <property>controls/engines/engine[1]/throttle-lever</property>
         <factor>42.40</factor>

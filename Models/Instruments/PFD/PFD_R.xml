@@ -509,7 +509,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>VSI.needle</object-name>
-        <property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+        <property>velocities/vertical-speed-fps</property>
         <interpolation>
             <entry><ind>-100</ind><dep>-0.0385</dep></entry>
             <entry><ind>-33.3333</ind><dep>-0.0265</dep></entry>
@@ -528,7 +528,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>VSI.needle</object-name>
-        <property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+        <property>velocities/vertical-speed-fps</property>
         <interpolation>
             <entry><ind>-100</ind><dep>-60.0</dep></entry>
             <entry><ind>-33.3333</ind><dep>-50.0</dep></entry>
@@ -1793,7 +1793,7 @@ Syd Adams
         <object-name>VS-POS</object-name>
         <condition>
             <greater-than-equals>
-                 <property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+                 <property>velocities/vertical-speed-fps</property>
                 <value>6.67</value>
             </greater-than-equals>
         </condition>
@@ -1804,7 +1804,7 @@ Syd Adams
         <object-name>VS-NEG</object-name>
         <condition>
             <less-than-equals>
-                <property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fps</property>
+                <property>velocities/vertical-speed-fps</property>
                 <value>-6.67</value>
             </less-than-equals>
         </condition>

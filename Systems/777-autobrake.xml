@@ -58,7 +58,7 @@
                         <property>controls/engines/engine[0]/throttle-act</property>
                         <property>autopilot/autobrake/config/idle-throttle</property>
                     </less-than>
-                    <property>controls/engines/engine[0]/reverser</property>
+                    <property>controls/engines/engine[0]/reverser-act</property>
                 </or>
                 <!-- engine 1 -->
                 <or>
@@ -66,7 +66,7 @@
                         <property>controls/engines/engine[1]/throttle-act</property>
                         <property>autopilot/autobrake/config/idle-throttle</property>
                     </less-than>
-                    <property>controls/engines/engine[1]/reverser</property>
+                    <property>controls/engines/engine[1]/reverser-act</property>
                 </or>
             </and>
         </input>

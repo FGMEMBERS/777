@@ -53,7 +53,7 @@
 					<property>controls/flight/speedbrake-lever</property>
 					<value>2</value>
 				</equals>
-				<not><property>controls/engines/engine[0]/reverser-cmd</property></not>
+				<not><property>controls/engines/engine[0]/reverser</property></not>
 				<property>controls/engines/engine[0]/throttle-lever</property>
 				<property>gear/gear[1]/wow</property>
 				<property>gear/gear[2]/wow</property>

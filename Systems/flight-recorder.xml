@@ -48,7 +48,7 @@
                     <type>bool</type><property type="string">engines/engine[%i]/run</property>
                 </signal>
 	            <signal>
-    	            <type>int8</type><property type="string">controls/engines/engine[%i]/reverser</property>
+    	            <type>int8</type><property type="string">controls/engines/engine[%i]/reverser-act</property>
     	        </signal>
             </signals>
 

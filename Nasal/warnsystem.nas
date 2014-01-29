@@ -97,7 +97,7 @@ var WEU =
         setlistener("controls/flight/speedbrake",       func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/speedbrake-lever", func { Weu.update_listener_inputs() } );
         setlistener("controls/gear/brake-parking",      func { Weu.update_listener_inputs() } );
-        setlistener("controls/engines/engine/reverser", func { Weu.update_listener_inputs() } );
+        setlistener("controls/engines/engine/reverser-act", func { Weu.update_listener_inputs() } );
         setlistener("controls/electric/APU-generator",  func { Weu.update_listener_inputs() } );
         setlistener("systems/electrical/outputs/avionics",func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/rudder-trim",      func { Weu.update_listener_inputs() } );
@@ -355,7 +355,7 @@ var WEU =
                             me.serviceable.getValue());
         me.speedbrake    = getprop("controls/flight/speedbrake");
         me.spdbrk_armed  = (getprop("controls/flight/speedbrake-lever")==1); #2=extended (not armed...)
-        me.reverser      = getprop("controls/engines/engine/reverser");
+        me.reverser      = getprop("controls/engines/engine/reverser-act");
         me.gear_down     = getprop("controls/gear/gear-down");
         me.parkbrake     = getprop("controls/gear/brake-parking");
         me.gear_override = getprop("instrumentation/mk-viii/inputs/discretes/gear-override");

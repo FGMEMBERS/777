@@ -234,7 +234,7 @@ var AFDS = {
 				if(btn==2)
 				{
 					# hold current vertical speed
-					var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
+					var vs = getprop("velocities/vertical-speed-fps") * 60;
 					vs = int(vs/100)*100;
 					if (vs<-8000) vs = -8000;
 					if (vs>6000) vs = 6000;
@@ -242,10 +242,6 @@ var AFDS = {
 					if(vs == 0)
 					{
 						me.target_alt.setValue(current_alt);
-					}
-					else
-					{
-						me.target_alt.setValue(me.alt_setting.getValue());
 					}
 					me.autothrottle_mode.setValue(5);	# A/T SPD
 				}
@@ -337,8 +333,6 @@ var AFDS = {
 						me.autothrottle_mode.setValue(4);	# A/T IDLE
 					}
 					setprop("autopilot/internal/current-pitch-deg", getprop("orientation/pitch-deg"));
-					var alt = me.alt_setting.getValue();
-					me.target_alt.setValue(alt);
 				}
 				me.vertical_mode.setValue(btn);
 			}
@@ -434,7 +428,7 @@ var AFDS = {
 							and (me.vertical_mode.getValue() == 0))
 						{
 							# hold current vertical speed
-							var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
+							var vs = getprop("velocities/vertical-speed-fps") * 60;
 							vs = int(vs/100)*100;
 							if (vs<-8000) vs = -8000;
 							if (vs>6000) vs = 6000;
@@ -606,7 +600,7 @@ var AFDS = {
 				and (me.vertical_mode.getValue() == 0))
 			{
 				# hold current vertical speed
-				var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
+				var vs = getprop("velocities/vertical-speed-fps") * 60;
 				vs = int(vs/100)*100;
 				if (vs<-8000) vs = -8000;
 				if (vs>6000) vs = 6000;
@@ -1136,7 +1130,7 @@ var AFDS = {
 
 			var idx = me.vertical_mode.getValue();
 			var test_fpa = me.vs_fpa_selected.getValue();
-			var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
+			var offset = (abs(getprop("velocities/vertical-speed-fps") * 60) / 8);
 			if(offset < 20)
 			{
 				offset = 20;
@@ -1160,6 +1154,11 @@ var AFDS = {
 			if(idx==9 and !test_fpa)idx=2;
 			if((idx==8)or(idx==1)or(idx==2)or(idx==9))
 			{
+				if(idx!=1)	#Follow the setting altitude escept for ALT mode
+				{
+					var alt = me.alt_setting.getValue();
+					me.target_alt.setValue(alt);
+				}
 				# flight level change mode
 				if (abs(current_alt - me.alt_setting.getValue()) < offset)
 				{
@@ -1391,7 +1390,7 @@ var AFDS = {
 				{
 					me.target_alt.setValue(me.intervention_alt);
 				}
-				var offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
+				var offset = (abs(getprop("velocities/vertical-speed-fps") * 60) / 8);
 				if(offset < 20)
 				{
 					offset = 20;
@@ -1598,7 +1597,7 @@ var AFDS = {
 				setprop("autopilot/settings/speed-transition", 0);
 			}
 			# auto-throttle disengaged when reverser is enabled
-			elsif (getprop("controls/engines/engine/reverser"))
+			elsif (getprop("controls/engines/engine/reverser-act"))
 			{
 				me.autothrottle_mode.setValue(0);
 				setprop("autopilot/settings/speed-transition", 0);
