@@ -1154,7 +1154,7 @@ var AFDS = {
 			if(idx==9 and !test_fpa)idx=2;
 			if((idx==8)or(idx==1)or(idx==2)or(idx==9))
 			{
-				if(idx!=1)	#Follow the setting altitude escept for ALT mode
+				if(idx!=1)	#Follow the setting altitude except for ALT mode
 				{
 					var alt = me.alt_setting.getValue();
 					me.target_alt.setValue(alt);
