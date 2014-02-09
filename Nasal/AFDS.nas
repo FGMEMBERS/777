@@ -646,7 +646,7 @@ var AFDS = {
 			vheading = (getprop("orientation/heading-deg") - getprop("orientation/track-deg"));
 			if(vheading < -180) vheading +=360;
 			if(vheading > 180) vheading +=-360;
-			if(me.hdg_trk_selected.getValue())
+			if(getprop("instrumentation/efis/mfd/display-mode") == "MAP")
 			{
 				setprop("autopilot/internal/crab-angle-hdg", vheading);
 				setprop("autopilot/internal/crab-angle-trk", 0);
@@ -664,7 +664,7 @@ var AFDS = {
 		}
 		if(me.heading_reference.getValue())
 		{
-			if((me.hdg_trk_selected.getValue())
+			if((getprop("instrumentation/efis/mfd/display-mode") == "MAP")
 				and (getprop("velocities/groundspeed-kt") > 5))
 			{
 				vheading = getprop("orientation/track-deg");
@@ -677,7 +677,7 @@ var AFDS = {
 		}
 		else
 		{
-			if((me.hdg_trk_selected.getValue())
+			if((getprop("instrumentation/efis/mfd/display-mode") == "MAP")
 				and (getprop("velocities/groundspeed-kt") > 5))
 			{
 				vheading = getprop("orientation/track-magnetic-deg");

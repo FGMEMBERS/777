@@ -186,7 +186,7 @@
 
     <animation>
         <type>pick</type>
-        <object-name>StbyAlt.knob</object-name>
+        <object-name>StbyAsi.knob</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
@@ -217,7 +217,7 @@
 
     <animation>
         <type>pick</type>
-        <object-name>StbyAlt.knob</object-name>
+        <object-name>StbyAsi.knob</object-name>
         <action>
             <button>1</button>
             <repeatable>true</repeatable>

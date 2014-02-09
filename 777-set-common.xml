@@ -9,23 +9,23 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20140127</aircraft-version>
+        <aircraft-version>20140208</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
             <armrest type="double">0</armrest>
         </model>
-		<shutterspeed type="double">0.18</shutterspeed>
-		<instrument-options>
-			<canvas-popup-enable type="bool">true</canvas-popup-enable>
-		</instrument-options>
+        <shutterspeed type="double">0.18</shutterspeed>
+        <instrument-options>
+            <canvas-popup-enable type="bool">true</canvas-popup-enable>
+        </instrument-options>
 
-		<navdb>
-			<!-- exclude any airports with runways shorter than this from
-			searches, NavDisplay, etc. Note this is a lower-limit - real (safe)
-			value is much higher depending on load, fuel, OAT -->
-			<min-runway-length-ft>4500</min-runway-length-ft>
-		</navdb>
+        <navdb>
+            <!-- exclude any airports with runways shorter than this from
+            searches, NavDisplay, etc. Note this is a lower-limit - real (safe)
+            value is much higher depending on load, fuel, OAT -->
+            <min-runway-length-ft>4500</min-runway-length-ft>
+        </navdb>
 
         <view n="0">
             <name>Pilot View</name>
@@ -132,93 +132,93 @@
             </config>
         </view>
 
-	<view n="102">
-	    <name>OH Panel</name>
-		<type>lookfrom</type>
-		<internal type="bool">true</internal>
-		<config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
-			<from-model type="bool">true</from-model>
-			<from-model-idx type="int">0</from-model-idx>
+    <view n="102">
+        <name>OH Panel</name>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>60</pitch-offset-deg>
             <x-offset-m type="double">0</x-offset-m>
             <y-offset-m type="double">0.36</y-offset-m>
             <z-offset-m type="double">-22.46</z-offset-m>
-		</config>
-	</view>
+        </config>
+    </view>
 
- 	<view n="103">
-	    <name>Right side view</name>
-		<type>lookfrom</type>
-		<internal type="bool">false</internal>		
-		<config>
-			<from-model type="bool">true</from-model>
-			<from-model-idx type="int">0</from-model-idx>
+    <view n="103">
+        <name>Right side view</name>
+        <type>lookfrom</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
             <x-offset-m type="double">4.371291667</x-offset-m>
             <y-offset-m type="double">0.911</y-offset-m>
             <z-offset-m type="double">-7.109888889</z-offset-m>
-		</config>
-	</view>
-	
-	<view n="104">
-	    <name>Front gear view</name>
-		<type>lookfrom</type>
-		<internal type="bool">false</internal>
-		<config>
-			<from-model type="bool">true</from-model>
-			<from-model-idx type="int">0</from-model-idx>
+        </config>
+    </view>
+
+    <view n="104">
+        <name>Front gear view</name>
+        <type>lookfrom</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
             <x-offset-m type="double">0.0025</x-offset-m>
             <y-offset-m type="double">-3.2</y-offset-m>
             <z-offset-m type="double">-21.5</z-offset-m>
-		</config>
-	</view>	
-	
-	<view n="105">
-	    <name>Observer 1 view</name>
-		<type>lookfrom</type>
-		<internal type="bool">true</internal>
-		<config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
-			<from-model type="bool">true</from-model>
-			<from-model-idx type="int">0</from-model-idx>
+        </config>
+    </view>
+
+    <view n="105">
+        <name>Observer 1 view</name>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>-1.125</pitch-offset-deg>
             <x-offset-m type="double">0.10544875</x-offset-m>
             <y-offset-m type="double">0.8</y-offset-m>
             <z-offset-m type="double">-21.66375</z-offset-m>
-		</config>
-	</view>	
-	
-	<view n="106">
-	    <name>Observer 2 view</name>
-		<type>lookfrom</type>
-		<internal type="bool">true</internal>
-		<config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
-			<from-model type="bool">true</from-model>
-			<from-model-idx type="int">0</from-model-idx>
+        </config>
+    </view>
+
+    <view n="106">
+        <name>Observer 2 view</name>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>-8.775</pitch-offset-deg>
             <goal-heading-offset-deg>16.875</goal-heading-offset-deg>
             <x-offset-m type="double">1.1171875</x-offset-m>
             <y-offset-m type="double">0.8675</y-offset-m>
             <z-offset-m type="double">-21.74</z-offset-m>
-		</config>
-	</view>
+        </config>
+    </view>
 
-	<view n="107">
-	    <name>Top Left view</name>
-		<type>lookfrom</type>
-		<internal type="bool">true</internal>
-		<config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
-			<from-model type="bool">true</from-model>
-			<from-model-idx type="int">0</from-model-idx>
+    <view n="107">
+        <name>Top Left view</name>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>-19.125</pitch-offset-deg>
             <goal-heading-offset-deg>333</goal-heading-offset-deg>
             <x-offset-m type="double">-0.65625</x-offset-m>
             <y-offset-m type="double">1.2175</y-offset-m>
             <z-offset-m type="double">-22.31125</z-offset-m>
-		</config>
-	</view>		
+        </config>
+    </view>
 
 <view n="108">
     <name>LWing View</name>
@@ -264,7 +264,7 @@
       <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
       <default-field-of-view-deg type="double">90</default-field-of-view-deg>
       <pitch-offset-deg>-10.0</pitch-offset-deg>
-      <heading-offset-deg type="double">0</heading-offset-deg> 
+      <heading-offset-deg type="double">0</heading-offset-deg>
       <x-offset-m archive="y"> 0 </x-offset-m> <!--Left/Right-->
       <y-offset-m archive="y"> 12.74 </y-offset-m> <!--Up/Down-->
       <z-offset-m archive="y"> 35.436 </z-offset-m> <!--Fdw/Back-->
@@ -275,7 +275,7 @@
             <text>=== Tutorials ===
 Interactive tutorials are available to introduce you to this aircraft and its cockpit instruments.
 See main menu: "Help" - "Tutorials".
- 
+
 === Takeoff Procedure ===
 Pre-departure:
 1. - Allocate your fuel, passengers and weight under Equipment/fuel and payload
@@ -356,13 +356,13 @@ Service Ceiling: 43,100ft
                         </binding>
                     </item>
                     <item >
-						<label>Handy Viewer</label>
-						<name>handyviewer</name>
-						<binding>
-							<command>dialog-show</command>
-							<dialog-name>handyviewer</dialog-name>
-						</binding>
-					</item>
+                        <label>Handy Viewer</label>
+                        <name>handyviewer</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>handyviewer</dialog-name>
+                        </binding>
+                    </item>
                     <item >
                         <label>Ground Services Control</label>
                         <binding>
@@ -434,7 +434,7 @@ Service Ceiling: 43,100ft
         </multiplay>
 
         <flight-recorder include="Systems/flight-recorder.xml"/>
-		<checklists include="777-checklists.xml"/>
+        <checklists include="777-checklists.xml"/>
 
         <dimensions>
             <radius-m type="double">32</radius-m>
@@ -605,8 +605,8 @@ Service Ceiling: 43,100ft
                 <name>Ctrl-G</name>
                 <desc>APP mode arm</desc>
                 <binding>
-					<command>nasal</command>
-					<script>b777.afds.input(3,1);</script>
+                    <command>nasal</command>
+                    <script>b777.afds.input(3,1);</script>
                 </binding>
             </key>
             <key n="8">
@@ -638,7 +638,7 @@ Service Ceiling: 43,100ft
                 <desc>A/P ~ Engage/Disengage</desc>
                 <binding>
                     <command>property-toggle</command>
- 					<property>instrumentation/afds/inputs/AP</property>
+                    <property>instrumentation/afds/inputs/AP</property>
                 </binding>
             </key>
             <key n="16">
@@ -729,9 +729,9 @@ Service Ceiling: 43,100ft
     </input>
 
     <instrumentation n="0">
-		<altimeter>
-			<source-barometric type="string">L</source-barometric>
-		</altimeter>
+        <altimeter>
+            <source-barometric type="string">L</source-barometric>
+        </altimeter>
         <inst-vertical-speed-indicator>
             <serviceable type="bool">true</serviceable>
         </inst-vertical-speed-indicator>
@@ -931,9 +931,9 @@ Service Ceiling: 43,100ft
             <display>IDENT</display>
             <input type="string"/>
         </cdu>
-		<fmc>
-		    <to-flap type="double">15</to-flap>
-		</fmc>
+        <fmc>
+            <to-flap type="double">15</to-flap>
+        </fmc>
         <gps>
             <config>
                 <min-runway-length-ft type="double">5000</min-runway-length-ft>
@@ -952,10 +952,10 @@ Service Ceiling: 43,100ft
         <flight>
             <speedbrake-lever type="int">0</speedbrake-lever>
         </flight>
-		<cabin>
-			<NoSmoking-knob type="int" >1 </NoSmoking-knob>
-			<SeatBelt-knob type="int" >1 </SeatBelt-knob>
-		</cabin>
+        <cabin>
+            <NoSmoking-knob type="int" >1 </NoSmoking-knob>
+            <SeatBelt-knob type="int" >1 </SeatBelt-knob>
+        </cabin>
     </controls>
 
     <autopilot n="0">
@@ -970,11 +970,11 @@ Service Ceiling: 43,100ft
         <locks>
             <pitch-engaged type="bool">1</pitch-engaged>
             <roll-engaged type="bool">1</roll-engaged>
-			<takeoff-mode type="bool">0</takeoff-mode>
+            <takeoff-mode type="bool">0</takeoff-mode>
         </locks>
-		<settings>
+        <settings>
             <transition-altitude type="double">18000</transition-altitude>
-		</settings>
+        </settings>
     </autopilot>
 
     <nasal n="0">
@@ -1035,5 +1035,5 @@ Service Ceiling: 43,100ft
         <max-positive-g>2.5</max-positive-g>
         <max-negative-g>-1.76</max-negative-g>
     </limits>
-	
+
 </PropertyList>

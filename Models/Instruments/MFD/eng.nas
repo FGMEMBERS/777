@@ -28,13 +28,13 @@
             var n2angleRad = -(me.MaxAngle * math.pi)/180;
             var cx = math.cos(n2angleRad)*me.R -me.R;
             var cy = -math.sin(n2angleRad)*me.R;
-            
+
             group.createChild("path")
             .setStrokeLineWidth(4)
             .moveTo(me.x, me.y)
             .arcLargeCW(me.R, me.R, 0,  cx, cy)
             .set("stroke", me.StrokeColor);
-    
+
             group.createChild("path")
             .setStrokeLineWidth(4)
             .moveTo(me.x+cx,me.y+cy)
@@ -65,7 +65,7 @@
             me.label.setText(sprintf("%2.2f",n2rpm));
         }
     };
-    
+
     var indicator = {
         linearFactor : 1.0,
         LimitColor:"rgba(255,0,0,1)",
@@ -102,11 +102,11 @@
             me.minLimit = min;
             me.maxLimit = max;
         },
-        inRange : func(value) 
+        inRange : func(value)
         {
             return (value > me.minOperating and value < me.maxOperating);
         },
-        inCaution : func(value) 
+        inCaution : func(value)
         {
             return (value <= me.minOperating or value >= me.maxOperating);
         },
@@ -119,12 +119,12 @@
         },
         update : func(value)
         {
-            if (me.inRange(value)) me.updateColor(me.NormalColor);			
+            if (me.inRange(value)) me.updateColor(me.NormalColor);
             if (me.inCaution(value)) me.updateColor(me.CautionColor);
             if (me.inLimit(value)) me.updateColor(me.LimitColor);
 
             me.valueLabel.setText(sprintf("%3.0f",value));
-            var tempForCursorPos = value; 
+            var tempForCursorPos = value;
             if (value > me.maxDisplayed) tempForCursorPos = me.maxDisplayed;
             if (value < me.minDisplayed) tempForCursorPos = me.minDisplayed;
             me.pointer.setTranslation(0,-me.linearFactor*(tempForCursorPos-me.minDisplayed));
