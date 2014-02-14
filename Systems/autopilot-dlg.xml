@@ -127,7 +127,7 @@
 
             <checkbox>
                 <label>hdg/trk</label>
-                <property>instrumentation/afds/inputs/hdg-trk-selected</property>
+                <property>instrumentation/efis/hdg-trk-selected</property>
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
@@ -295,8 +295,8 @@
                 <one-shot>true</one-shot>
                 <legend>LOC</legend>
                 <binding>
-				<command>nasal</command>
-				<script>controls.click(4);b777.afds.input(3,0);</script>
+                <command>nasal</command>
+                <script>controls.click(4);b777.afds.input(3,0);</script>
                 </binding>
             </button>
 
@@ -565,10 +565,10 @@
                  <halign>left</halign>
                 <one-shot>true</one-shot>
                 <legend>APP</legend>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(4);b777.afds.input(3,1);</script>
-			</binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);b777.afds.input(3,1);</script>
+            </binding>
             </button>
 
             <text>

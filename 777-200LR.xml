@@ -1,8 +1,16 @@
 <!--777-200 LR yasim
 
-The 777-200LR ("LR" for Longer Range), the C-market model, became the world's longest-range commercial airliner when it entered service in 2006.Boeing named this aircraft the Worldliner, highlighting its ability to connect almost any two airports in the world. It holds the world record for the longest nonstop flight by a commercial airliner, and has a maximum range of 9,380 nautical miles (17,370 km). The ∁E00LR was intended for ultra-long-haul routes such as Los Angeles to Singapore.
+The 777-200LR ("LR" for Longer Range), the C-market model, became the world's longest-range commercial airliner when it entered service in 2006.
+Boeing named this aircraft the Worldliner, highlighting its ability to connect almost any two airports in the world.
+It holds the world record for the longest nonstop flight by a commercial airliner, and has a maximum range of 9,380 nautical miles (17,370 km).
+The 200LR was intended for ultra-long-haul routes such as Los Angeles to Singapore.
 
-Developed alongside the ∁E00ER, the ∁E00LR features an increased MTOW and three optional auxiliary fuel tanks in the rear cargo hold. Other new features include raked wingtips, redesigned main landing gear, and additional structural strengthening. As with the ∁E00ER and 777F, the ∁E00LR is equipped with wingtip extensions of 12.8 ft (3.90 m). The -200LR is powered by GE90-110B1 or GE90-115B turbofans. The first ∁E00LR was delivered to Pakistan International Airlines on February 26, 2006.As of July 2011, nine different ∁E00LR customers have taken delivery of 52 aircraft, with 3 unfilled orders. Airlines operated 48 of the -200LR variant as of July 2011. The closest competing aircraft from Airbus is the A340-500HGW.
+Developed alongside the 200ER, the 200LR features an increased MTOW and three optional auxiliary fuel tanks in the rear cargo hold.
+Other new features include raked wingtips, redesigned main landing gear, and additional structural strengthening.
+As with the 300ER and 777F, the 200LR is equipped with wingtip extensions of 12.8 ft (3.90 m).
+The 200LR is powered by GE90-110B1 or GE90-115B turbofans. The first 200LR was delivered to Pakistan International Airlines on February 26, 2006.
+As of July 2011, nine different 200LR customers have taken delivery of 52 aircraft, with 3 unfilled orders.
+Airlines operated 48 of the 200LR variant as of July 2011. The closest competing aircraft from Airbus is the A340-500HGW.
 
 (Taken from the Wikipedia)
 
@@ -183,18 +191,18 @@ Performance
     <control-output control="STEER" prop="/controls/gear/maingear-r-steering-angle-rad" />
   </gear>
 
-<!--Fuel 
+<!--Fuel
 
-Maximum Fuel Capacity 	Basic - 47,890 U.S. gallons
+Maximum Fuel Capacity   Basic - 47,890 U.S. gallons
 (181,280 L)
 With three optional fuel tanks -
-53,515 U.S. gallons (202,570 L) 
+53,515 U.S. gallons (202,570 L)
 
 Source: http://www.boeing.com/commercial/777family/pf/pf_lrproduct.html
 
 -->
 
-  
+
   <tank x="-4.3" y="5" z="-1.5" jet="true" capacity="70475"/>
   <tank x="-4.3" y="0" z="-2.5" jet="true" capacity="180870"/>
   <tank x="-4.3" y="-5" z="-1.5" jet="true" capacity="70475"/>

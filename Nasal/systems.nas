@@ -38,6 +38,7 @@ var EFIS = {
         m.minimums_baro= m.efis.initNode("minimums-baro",250,"INT");
         m.minimums_radio= m.efis.initNode("minimums-radio",250,"INT");
         m.mk_minimums = props.globals.getNode("instrumentation/mk-viii/inputs/arinc429/decision-height");
+        m.tfc = m.efis.initNode("inputs/tfc",0,"BOOL");
         m.wxr = m.efis.initNode("inputs/wxr",0,"BOOL");
         m.range = m.efis.initNode("inputs/range-nm",0);
         m.sta = m.efis.initNode("inputs/sta",0,"BOOL");
@@ -1473,7 +1474,10 @@ var update_systems = func {
         setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
         setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
     }
-
+    setprop("instrumentation/efis/mfd/rangearc", (Efis.mfd_display_mode.getValue() == "MAP")
+        and (Efis.wxr.getValue() or Efis.terr.getValue() or Efis.tfc.getValue()));
+    setprop("instrumentation/efis[1]/mfd/rangearc", (Efis2.mfd_display_mode.getValue() == "MAP")
+        and (Efis2.wxr.getValue() or Efis2.terr.getValue() or Efis2.tfc.getValue()));
     var et_tmp = getprop("instrumentation/clock/ET-sec");
     var et_min = int(et_tmp * 0.0166666666667);
     var et_hr  = int(et_min * 0.0166666666667) * 100;
