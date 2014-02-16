@@ -982,6 +982,10 @@ Autopilot Control Panel
                 <property>instrumentation/efis/hdg-trk-selected</property>
             </binding>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis[1]/hdg-trk-selected</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
                     controls.click(4);

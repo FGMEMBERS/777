@@ -243,7 +243,10 @@ var AFDS = {
                     {
                         me.target_alt.setValue(current_alt);
                     }
-                    me.autothrottle_mode.setValue(5);   # A/T SPD
+                    if(me.autothrottle_mode.getValue() != 0)
+                    {
+                        me.autothrottle_mode.setValue(5);   # A/T SPD
+                    }
                 }
                 if(btn==4)
                 {
@@ -266,15 +269,35 @@ var AFDS = {
                 }
                 elsif(btn == 255)
                 {
-                    if(me.vs_setting.getValue() == 0)
+                    if(me.vertical_mode.getValue() != 2)
                     {
-                        me.target_alt.setValue(current_alt);
+                        var vs = getprop("velocities/vertical-speed-fps") * 60;
+                        vs = int(vs/100)*100;
+                        if (vs<-8000) vs = -8000;
+                        if (vs>6000) vs = 6000;
+                        me.vs_setting.setValue(vs);
+                        if(vs == 0)
+                        {
+                            me.target_alt.setValue(current_alt);
+                        }
+                        if(me.autothrottle_mode.getValue() != 0)
+                        {
+                            me.autothrottle_mode.setValue(5);   # A/T SPD
+                        }
+                        if(me.vs_setting.getValue() == 0)
+                        {
+                            me.target_alt.setValue(current_alt);
+                        }
+                        else
+                        {
+                            me.target_alt.setValue(me.alt_setting.getValue());
+                        }
+                        btn = 2;
                     }
                     else
                     {
-                        me.target_alt.setValue(me.alt_setting.getValue());
+                        btn = me.vertical_mode.getValue();
                     }
-                    btn = 2;
                 }
                 if(btn==5)      # VNAV
                 {
@@ -664,7 +687,7 @@ var AFDS = {
         }
         if(me.heading_reference.getValue())
         {
-            if((getprop("instrumentation/efis/mfd/display-mode") == "MAP")
+            if((me.hdg_trk_selected.getValue())
                 and (getprop("velocities/groundspeed-kt") > 5))
             {
                 vheading = getprop("orientation/track-deg");
@@ -677,7 +700,7 @@ var AFDS = {
         }
         else
         {
-            if((getprop("instrumentation/efis/mfd/display-mode") == "MAP")
+            if((me.hdg_trk_selected.getValue())
                 and (getprop("velocities/groundspeed-kt") > 5))
             {
                 vheading = getprop("orientation/track-magnetic-deg");
@@ -910,6 +933,7 @@ var AFDS = {
                                 if(vradials < 0.5) vradials += 360;
                                 elsif(vradials >= 360.5) vradials -= 360;
                                 me.hdg_setting.setValue(vradials);
+                                setprop("instrumentation/nav/radials/selected-deg", vradials);
                             }
                             else
                             {
