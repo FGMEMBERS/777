@@ -239,10 +239,6 @@ var AFDS = {
                     if (vs<-8000) vs = -8000;
                     if (vs>6000) vs = 6000;
                     me.vs_setting.setValue(vs);
-                    if(vs == 0)
-                    {
-                        me.target_alt.setValue(current_alt);
-                    }
                     if(me.autothrottle_mode.getValue() != 0)
                     {
                         me.autothrottle_mode.setValue(5);   # A/T SPD
@@ -276,28 +272,12 @@ var AFDS = {
                         if (vs<-8000) vs = -8000;
                         if (vs>6000) vs = 6000;
                         me.vs_setting.setValue(vs);
-                        if(vs == 0)
-                        {
-                            me.target_alt.setValue(current_alt);
-                        }
                         if(me.autothrottle_mode.getValue() != 0)
                         {
                             me.autothrottle_mode.setValue(5);   # A/T SPD
                         }
-                        if(me.vs_setting.getValue() == 0)
-                        {
-                            me.target_alt.setValue(current_alt);
-                        }
-                        else
-                        {
-                            me.target_alt.setValue(me.alt_setting.getValue());
-                        }
-                        btn = 2;
                     }
-                    else
-                    {
-                        btn = me.vertical_mode.getValue();
-                    }
+                    btn = 2;
                 }
                 if(btn==5)      # VNAV
                 {
@@ -456,14 +436,6 @@ var AFDS = {
                             if (vs<-8000) vs = -8000;
                             if (vs>6000) vs = 6000;
                             me.vs_setting.setValue(vs);
-                            if(vs == 0)
-                            {
-                                me.target_alt.setValue(current_alt);
-                            }
-                            else
-                            {
-                                me.target_alt.setValue(me.alt_setting.getValue());
-                            }
                             me.vertical_mode.setValue(2);       # V/S
                         }
                     }
@@ -628,14 +600,6 @@ var AFDS = {
                 if (vs<-8000) vs = -8000;
                 if (vs>6000) vs = 6000;
                 me.vs_setting.setValue(vs);
-                if(vs == 0)
-                {
-                    me.target_alt.setValue(getprop("instrumentation/altimeter/indicated-altitude-ft"));
-                }
-                else
-                {
-                    me.target_alt.setValue(me.alt_setting.getValue());
-                }
                 me.vertical_mode.setValue(2);       # V/S
             }
         }
