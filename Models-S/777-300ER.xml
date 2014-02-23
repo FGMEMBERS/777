@@ -2253,7 +2253,7 @@ Outboard Aileron Lockout Schedule
 
 <model>
  <name>Firetruck1</name>
- <path>Models/Airport/hoskosh-ti-1500.xml</path>
+ <path>Models/Airport/Vehicle/hoskosh-ti-1500.xml</path>
  <offsets>
   <x-m>60.0</x-m>
   <y-m>10.0</y-m>
@@ -2263,7 +2263,7 @@ Outboard Aileron Lockout Schedule
 
 <model>
  <name>Firetruck2</name>
- <path>Models/Airport/hoskosh-ti-1500.xml</path>
+ <path>Models/Airport/Vehicle/hoskosh-ti-1500.xml</path>
  <offsets>
   <x-m>80.0</x-m>
   <y-m>-8.0</y-m>
