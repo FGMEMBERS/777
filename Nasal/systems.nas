@@ -454,7 +454,7 @@ var start_updates = func {
         }
         # set ILS frequency
         var cur_runway = getprop("sim/presets/runway");
-        var runways = airportinfo(airportinfo().id).runways;
+        var runways = airportinfo(airportinfo(getprop("sim/presets/airport-id")).id).runways;
         var runway_keys = sort(keys(runways), string.icmp);
         var i = 0;
         foreach(var rwy; runway_keys)
@@ -466,6 +466,7 @@ var start_updates = func {
                 {
                     setprop("instrumentation/nav/frequencies/selected-mhz", (r.ils.frequency / 100));
                 }
+                break;
             }
             i += 1;
             if (i == 10)
