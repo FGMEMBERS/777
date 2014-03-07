@@ -371,8 +371,6 @@ setlistener("sim/signals/fdm-initialized", func {
     props.globals.initNode("instrumentation/clock/time-knob",0,"INT");
     props.globals.initNode("instrumentation/clock/et-knob",0,"INT");
     props.globals.initNode("instrumentation/clock/set-knob",0,"INT");
-#    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
-    setprop("sim/flaps/current-setting", 0);
     balance_fuel();
 if(hmodel == "-S")
 {
@@ -427,7 +425,6 @@ var start_updates = func {
         # airborne startup
         Startup();
         setprop("controls/gear/brake-parking",0);
-        controls.gearDown(-1);
         setprop("instrumentation/afds/ap-modes/pitch-mode", "TO/GA");
         setprop("instrumentation/afds/ap-modes/roll-mode", "TO/GA");
         setprop("instrumentation/afds/inputs/vertical-index", 10);
@@ -438,7 +435,6 @@ var start_updates = func {
         setprop("autopilot/internal/airport-height", 0);
         setprop("engines/engine[0]/run",1);
         setprop("engines/engine[1]/run",1);
-        setprop("sim/flaps/current-setting", 0);
         setprop("autopilot/settings/target-speed-kt", getprop("sim/presets/airspeed-kt"));
         b777.afds.input(1,1);
         setprop("autopilot/settings/counter-set-altitude-ft", getprop("sim/presets/altitude-ft"));
