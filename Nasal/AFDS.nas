@@ -541,6 +541,8 @@ var AFDS = {
         if((disabled)and(output==0)){output = 1;me.AP.setValue(0);}
         if (output==1)
         {
+            setprop("controls/flight/elevator-filter", 0);
+            setprop("controls/flight/elevator", 0);
             var msg="";
             var msg2="";
             var msg3="";
@@ -584,7 +586,6 @@ var AFDS = {
         }
         else
         {
-            setprop("controls/flight/elevator-filter", 0);
             if(!me.FD.getValue()
                 and !me.lnav_armed.getValue()
                 and (me.lateral_mode.getValue() != 3))
