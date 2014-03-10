@@ -1813,7 +1813,7 @@ refs 4
 7 0.300064 0.214426
 kids 0
 OBJECT poly
-name "AP.btn.012"
+name "DSP.fuel"
 loc 0.0025394 -0.0030713 -0.298807
 texture "APpanel.png"
 crease 45.000000

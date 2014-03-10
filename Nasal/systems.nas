@@ -452,7 +452,6 @@ var start_updates = func {
         var cur_runway = getprop("sim/presets/runway");
         var runways = airportinfo(airportinfo(getprop("sim/presets/airport-id")).id).runways;
         var runway_keys = sort(keys(runways), string.icmp);
-        var i = 0;
         foreach(var rwy; runway_keys)
         {
             var r = runways[rwy];
@@ -464,9 +463,6 @@ var start_updates = func {
                 }
                 break;
             }
-            i += 1;
-            if (i == 10)
-                break;
         }
     }
 

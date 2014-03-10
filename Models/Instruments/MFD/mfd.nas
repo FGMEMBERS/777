@@ -1,6 +1,33 @@
 var mfdi = nil;
 var mfdListener = nil;
 
+    var PanelRegistry = {
+            registry:{},
+            new : func() {
+                var m = {parents:[PanelRegistry]};
+                m.registry = {};
+                return m;
+            },
+            add: func(prop,elt) {
+                if (me.registry[prop] == nil) {
+                    me.registry[prop] = [elt];
+                }
+                else {
+                    append(me.registry[prop],elt);
+                }
+            },
+            updateAll: func() {
+                foreach(var prop;keys(me.registry)) {
+                    var value = getprop(prop);
+                    if(value != nil) {
+                        for(var i=0; i<size(me.registry[prop]); i+=1) {
+                            me.registry[prop][i].update(value);
+                        }
+                    }
+                }
+            }
+    };
+
     var MfDPanel = {
         updateTimer: {},
         context : {},
@@ -16,7 +43,11 @@ var mfdListener = nil;
                     return "LiberationFonts/LiberationSans-Regular.ttf";
             };
             canvas.parsesvg(m.group, svgFile, {'font-mapper': font_mapper});
+            m.registry = PanelRegistry.new();
             return m;
+        },
+        updateAll : func() {
+            me.registry.updateAll();
         },
         start : func()
         {
@@ -54,6 +85,7 @@ var mfdListener = nil;
             m.group = m.screen.createGroup();
             m.engDisplay = canvas_eng.new(m.group);
             m.fctlDisplay = canvas_fctl.new(m.group);
+            m.fuelDisplay = FuelPanel.new(m.group);
             m.displayPanel(m.defaultPanel);
             return m;
         },
@@ -67,6 +99,8 @@ var mfdListener = nil;
                     me.display = me.engDisplay;
                 elsif (panel == "fctl")
                     me.display = me.fctlDisplay;
+                elsif (panel == "fuel")
+                    me.display = me.fuelDisplay;
                 me.display.start();
                 me.panel = panel;
             }
@@ -87,8 +121,10 @@ var mfdListener = nil;
         },
         del : func() {
             if (me.popupId > 0) me.popupWnd.del();
-            me.group.removeAllChildren();
-            me.panel="";
+            if (me.panel != "") {
+                me.display.stop();
+                me.panel="";
+            }
             me.screen.del();
         }
     };
@@ -110,14 +146,26 @@ var mfdRemove = func() {
 mfdListener = setlistener("sim/signals/fdm-initialized", mfdCreate);
 
 var mfdTogglePopup = func() {
-    if((mfdi != nil)
-		and (getprop("sim/instrument-options/canvas-popup-enable")))
-	{
-		mfdi.togglePopup();
-	}
+    if((mfdi != nil) and (getprop("sim/instrument-options/canvas-popup-enable"))) {
+        mfdi.togglePopup();
+    }
 }
 
 var mfdDel = func() {
-    removelistener(mfdListener);
-    if(mfdiCreated) mfdi.del();
+    if (mfdListener !=nil) {
+        removelistener(mfdListener);
+        mfdListener = nil;
+    }
+    if(mfdi != nil) {
+        mfdi.del();
+        mfdi = nil;
+    }
+}
+
+var mfdReload= func() {
+    print("mfd reload request\n");
+    mfdDel();
+    io.load_nasal(getprop("/sim/fg-root") ~ "/Aircraft/777/Models/Instruments/MFD/mfd.nas","b777");
+    io.load_nasal(getprop("/sim/fg-root") ~ "/Aircraft/777/Models/Instruments/MFD/fuel.nas","b777");
+    mfdCreate();
 }

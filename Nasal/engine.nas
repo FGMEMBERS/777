@@ -22,6 +22,8 @@ var Engine = {
         m.throttle.setDoubleValue(0);
         m.cutoff = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff",1);
         m.cutoff.setBoolValue(1);
+        m.cutoffSwitch = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff-switch",1);
+        m.cutoffSwitch.setBoolValue(0);
         m.fuel_out = props.globals.getNode("engines/engine["~eng_num~"]/no-fuel",1);
         m.fuel_out.setBoolValue(0);
         m.autostart = props.globals.getNode("controls/engines/autostart",1);
@@ -40,6 +42,8 @@ var Engine = {
         m.apu = props.globals.getNode("controls/APU", 1);
         m.apu_knob = m.apu.getNode("off-start-run", 1);
         m.apu_status = m.apu.getNode("apu_status", 1);
+        m.apu_fuel_valve = m.apu.getNode("valve/opened",1);
+        m.apu_fuel_valve.setBoolValue(0);
         m.apu_status.setValue(0);
         m.apu_gen_switch = m.apu.getNode("apu-gen-switch", 1);
         m.apu_gen_switch.setBoolValue(0);
@@ -90,6 +94,7 @@ var Engine = {
     },
 #### update ####
     update : func {
+        me.cutoffSwitch.setBoolValue(!me.cutoff.getBoolValue());
         me.updateOilTemp();
         me.updateOilPressure(me.n2rpm.getValue());
         me.updateOilQuantity(me.oilPressurePsi.getValue());
@@ -242,11 +247,13 @@ var Engine = {
 		}
         if(me.apu_knob.getValue() == 0)
         {
+            me.apu_fuel_valve.setValue(0);
             me.apu_status.setValue(0);            # OFF
             me.apu_running.setValue(0);
         }
         elsif(me.apu_knob.getValue() == 1)
         {
+            me.apu_fuel_valve.setValue(1);
             if((me.apu_running.getBoolValue() == 0)
                 and (me.apu_status.getValue() == 0))
             {

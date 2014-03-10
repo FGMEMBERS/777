@@ -2274,6 +2274,18 @@ Autopilot Control Panel
     </animation>
     <animation>
         <type>pick</type>
+        <object-name>DSP.fuel</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.mfdShow("fuel");</script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
         <object-name>DSP.fctl</object-name>
         <action>
             <button>0</button>
