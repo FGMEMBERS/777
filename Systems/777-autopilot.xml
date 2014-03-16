@@ -926,18 +926,10 @@
         <enable>
             <condition>
                 <or>
-                    <and>
-                        <equals>
-                            <property>instrumentation/afds/ap-modes/pitch-mode</property>/
-                            <value>V/S</value>
-                        </equals>
-                        <!--not>
-                            <equals>
-                                <property>autopilot/settings/vertical-speed-fpm</property>
-                                <value>0</value>
-                            </equals>
-                        </not-->
-                    </and>
+                    <equals>
+                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                        <value>V/S</value>
+                    </equals>
                     <and>
                         <equals>
                             <property>instrumentation/afds/ap-modes/pitch-mode</property>
