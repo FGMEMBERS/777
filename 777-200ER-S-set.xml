@@ -30,6 +30,41 @@
                 <z-offset-m type="double">-22.84</z-offset-m>
             </config>
         </view>
+        <view n="102">
+            <config n="0">
+                <z-offset-m type="double">-22.46</z-offset-m>
+            </config>
+        </view>
+        <view n="103">
+            <config n="0">
+            <z-offset-m type="double">-7.109888889</z-offset-m>
+            </config>
+        </view>
+        <view n="104">
+            <config n="0">
+            <z-offset-m type="double">-21.5</z-offset-m>
+            </config>
+        </view>
+        <view n="105">
+            <config n="0">
+            <z-offset-m type="double">-21.66375</z-offset-m>
+            </config>
+        </view>
+        <view n="106">
+            <config n="0">
+            <z-offset-m type="double">-21.74</z-offset-m>
+            </config>
+        </view>
+        <view n="107">
+            <config n="0">
+            <z-offset-m type="double">-22.31125</z-offset-m>
+            </config>
+        </view>
+        <view n="110">
+            <config n="0">
+            <z-offset-m archive="y"> 35.436 </z-offset-m> <!--Fdw/Back-->
+            </config>
+        </view>
 
        <menubar n="0">
             <default n="0">
@@ -56,6 +91,7 @@
             <max-lb type="double">131000</max-lb>
             <min-lb type="double">0</min-lb>
         </weight>
+        <aircraft-operator>BAW</aircraft-operator>
     </sim>
 
     <instrumentation n="0">

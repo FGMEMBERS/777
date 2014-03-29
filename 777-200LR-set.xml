@@ -32,6 +32,41 @@
                 <z-offset-m type="double">-22.84</z-offset-m>
             </config>
         </view>
+        <view n="102">
+            <config n="0">
+                <z-offset-m type="double">-22.46</z-offset-m>
+            </config>
+        </view>
+        <view n="103">
+            <config n="0">
+            <z-offset-m type="double">-7.109888889</z-offset-m>
+            </config>
+        </view>
+        <view n="104">
+            <config n="0">
+            <z-offset-m type="double">-21.5</z-offset-m>
+            </config>
+        </view>
+        <view n="105">
+            <config n="0">
+            <z-offset-m type="double">-21.66375</z-offset-m>
+            </config>
+        </view>
+        <view n="106">
+            <config n="0">
+            <z-offset-m type="double">-21.74</z-offset-m>
+            </config>
+        </view>
+        <view n="107">
+            <config n="0">
+            <z-offset-m type="double">-22.31125</z-offset-m>
+            </config>
+        </view>
+        <view n="110">
+            <config n="0">
+            <z-offset-m archive="y"> 35.436 </z-offset-m> <!--Fdw/Back-->
+            </config>
+        </view>
 
        <menubar n="0">
             <default n="0">
@@ -58,6 +93,7 @@
             <max-lb type="double">131000</max-lb>
             <min-lb type="double">0</min-lb>
         </weight>
+        <aircraft-operator>BAW</aircraft-operator>
     </sim>
 
     <consumables n="0">
@@ -80,11 +116,11 @@
     <autopilot n="0">
         <constant>
             <flare-base type="double">0.2</flare-base>
-			<flch-thrust type="double">0.75</flch-thrust>
-			<descent-profile-high-base type="double">0.23</descent-profile-high-base>
-			<descent-profile-high-rate type="double">-0.00084337</descent-profile-high-rate>
-			<descent-profile-low-base type="double">0.17</descent-profile-low-base>
-			<descent-profile-low-rate type="double">-0.00033133</descent-profile-low-rate>
+            <flch-thrust type="double">0.75</flch-thrust>
+            <descent-profile-high-base type="double">0.23</descent-profile-high-base>
+            <descent-profile-high-rate type="double">-0.00084337</descent-profile-high-rate>
+            <descent-profile-low-base type="double">0.17</descent-profile-low-base>
+            <descent-profile-low-rate type="double">-0.00033133</descent-profile-low-rate>
         </constant>
     </autopilot>
 

@@ -242,7 +242,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rudder</object-name>
-        <property>controls/flight/rudder</property>
+        <property>surface-positions/rudder-pos-norm</property>
         <factor>35</factor>
         <center>
             <x-m>31.265</x-m>

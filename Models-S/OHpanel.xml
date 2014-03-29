@@ -7,185 +7,185 @@ Syd Adams
 
 <path>OHpanel.ac</path>
 
-	<effect>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>OHpanel.Lettering_Day</object-name>
-		<object-name>Lettering_CB</object-name>
-		<object-name>Lettering_Maint</object-name>
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>OHpanel.Lettering_Day</object-name>
+        <object-name>Lettering_CB</object-name>
+        <object-name>Lettering_Maint</object-name>
 
-	</effect>
+    </effect>
 
     <animation>
         <name>Placard</name>
-		<object-name>ADIRU_Placard</object-name>
-		<object-name>AIR-EQCOOL_Placard</object-name>
-		<object-name>AIR-GASPER_Placard</object-name>
-		<object-name>AIR-RCRC_LW_Placard</object-name>
-		<object-name>AIR-RCRC_UP_Placard</object-name>
-		<object-name>APU_Placard</object-name>
-		<object-name>ASYM_ThComp_Placard</object-name>
-		<object-name>AUTOSTART_Placard</object-name>
-		<object-name>BATT_Placard</object-name>
-		<object-name>BCN_Placard</object-name>
-		<object-name>BLD_APU_Placard</object-name>
-		<object-name>BLD_ENG_L_Placard</object-name>
-		<object-name>BLD_ENG_R_Placard</object-name>
-		<object-name>BLD_ISLN_C_Placard</object-name>
-		<object-name>BLD_ISLN_L_Placard</object-name>
-		<object-name>BLD_ISLN_R_Placard</object-name>
-		<object-name>CTRboost1_Placard</object-name>
-		<object-name>CTRboost2_Placard</object-name>
-		<object-name>ELEC_C1_Placard</object-name>
-		<object-name>ELEC_C2_Placard</object-name>
-		<object-name>FIRE-ARM_AFT_Placard</object-name>
-		<object-name>FIRE-ARM_FWD_Placard</object-name>
-		<object-name>FJ_ARM_Placard</object-name>
-		<object-name>Hydr_LENG_Placard</object-name>
-		<object-name>Hydr_RENG_Placard</object-name>
-		<object-name>LBUS_Placard</object-name>
-		<object-name>LENG_EEC_Placard</object-name>
-		<object-name>LGEN_BCKUP_Placard</object-name>
-		<object-name>LGEN_Placard</object-name>
-		<object-name>LHboost1_Placard</object-name>
-		<object-name>LHboost2_Placard</object-name>
-		<object-name>LOGO_Placard</object-name>
-		<object-name>LPCK_Placard</object-name>
-		<object-name>LTRAIR_Placard</object-name>
-		<object-name>NAV_Placard</object-name>
-		<object-name>NOZZLE_L_Placard</object-name>
-		<object-name>NOZZLE_R_Placard</object-name>
-		<object-name>PASS_OXY_Placard</object-name>
-		<object-name>P_OFV_L_Placard</object-name>
-		<object-name>P_OFV_R_Placard</object-name>
-		<object-name>RAM_Placard</object-name>
-		<object-name>RBUS_Placard</object-name>
-		<object-name>RENG_EEC_Placard</object-name>
-		<object-name>RGEN_BCKUP_Placard</object-name>
-		<object-name>RGEN_Placard</object-name>
-		<object-name>RHboost1_Placard</object-name>
-		<object-name>RHboost2_Placard</object-name>
-		<object-name>RPCK_Placard</object-name>
-		<object-name>RTRAIR_Placard</object-name>
-		<object-name>STRM_Placard</object-name>
-		<object-name>WH_LF_Placard</object-name>
-		<object-name>WH_LS_Placard</object-name>
-		<object-name>WH_RF_Placard</object-name>
-		<object-name>WH_RS_Placard</object-name>
-		<object-name>WING_Placard</object-name>
-		<object-name>XFeedAFT_Placard</object-name>
-		<object-name>XFeedFWD_Placard</object-name>
+        <object-name>ADIRU_Placard</object-name>
+        <object-name>AIR-EQCOOL_Placard</object-name>
+        <object-name>AIR-GASPER_Placard</object-name>
+        <object-name>AIR-RCRC_LW_Placard</object-name>
+        <object-name>AIR-RCRC_UP_Placard</object-name>
+        <object-name>APU_Placard</object-name>
+        <object-name>ASYM_ThComp_Placard</object-name>
+        <object-name>AUTOSTART_Placard</object-name>
+        <object-name>BATT_Placard</object-name>
+        <object-name>BCN_Placard</object-name>
+        <object-name>BLD_APU_Placard</object-name>
+        <object-name>BLD_ENG_L_Placard</object-name>
+        <object-name>BLD_ENG_R_Placard</object-name>
+        <object-name>BLD_ISLN_C_Placard</object-name>
+        <object-name>BLD_ISLN_L_Placard</object-name>
+        <object-name>BLD_ISLN_R_Placard</object-name>
+        <object-name>CTRboost1_Placard</object-name>
+        <object-name>CTRboost2_Placard</object-name>
+        <object-name>ELEC_C1_Placard</object-name>
+        <object-name>ELEC_C2_Placard</object-name>
+        <object-name>FIRE-ARM_AFT_Placard</object-name>
+        <object-name>FIRE-ARM_FWD_Placard</object-name>
+        <object-name>FJ_ARM_Placard</object-name>
+        <object-name>Hydr_LENG_Placard</object-name>
+        <object-name>Hydr_RENG_Placard</object-name>
+        <object-name>LBUS_Placard</object-name>
+        <object-name>LENG_EEC_Placard</object-name>
+        <object-name>LGEN_BCKUP_Placard</object-name>
+        <object-name>LGEN_Placard</object-name>
+        <object-name>LHboost1_Placard</object-name>
+        <object-name>LHboost2_Placard</object-name>
+        <object-name>LOGO_Placard</object-name>
+        <object-name>LPCK_Placard</object-name>
+        <object-name>LTRAIR_Placard</object-name>
+        <object-name>NAV_Placard</object-name>
+        <object-name>NOZZLE_L_Placard</object-name>
+        <object-name>NOZZLE_R_Placard</object-name>
+        <object-name>PASS_OXY_Placard</object-name>
+        <object-name>P_OFV_L_Placard</object-name>
+        <object-name>P_OFV_R_Placard</object-name>
+        <object-name>RAM_Placard</object-name>
+        <object-name>RBUS_Placard</object-name>
+        <object-name>RENG_EEC_Placard</object-name>
+        <object-name>RGEN_BCKUP_Placard</object-name>
+        <object-name>RGEN_Placard</object-name>
+        <object-name>RHboost1_Placard</object-name>
+        <object-name>RHboost2_Placard</object-name>
+        <object-name>RPCK_Placard</object-name>
+        <object-name>RTRAIR_Placard</object-name>
+        <object-name>STRM_Placard</object-name>
+        <object-name>WH_LF_Placard</object-name>
+        <object-name>WH_LS_Placard</object-name>
+        <object-name>WH_RF_Placard</object-name>
+        <object-name>WH_RS_Placard</object-name>
+        <object-name>WING_Placard</object-name>
+        <object-name>XFeedAFT_Placard</object-name>
+        <object-name>XFeedFWD_Placard</object-name>
     </animation>
- 	<animation>
-		<type>material</type>
-		<object-name>OHpanel.Lettering_Day</object-name>
-		<object-name>Lettering_Maint</object-name>
-		<object-name>Placard</object-name>
-		<condition>
-			<greater-than>   
-				<property>/sim/time/sun-angle-rad</property>
-				<value>1.70</value>
-			</greater-than>
-			 <greater-than>
-				<property>systems/electrical/CPT-FLT-INST</property>
-				<value>24.0</value>
-			 </greater-than>
-		</condition>
-		<emission>
-			<red>0.2</red>
-			<green>0.8</green>
-			<blue>0.2</blue>
-			<factor-prop>controls/lighting/overhead-intencity</factor-prop>
-		</emission>
-	</animation>
- 	<animation>
-		<type>material</type>
-		<object-name>Lettering_CB</object-name>
-		<condition>
-			<greater-than>   
-				<property>/sim/time/sun-angle-rad</property>
-				<value>1.70</value>
-			</greater-than>
-			 <greater-than>
-				<property>systems/electrical/CPT-FLT-INST</property>
-				<value>24.0</value>
-			 </greater-than>
-		</condition>
-		<emission>
-			<red>0.2</red>
-			<green>0.8</green>
-			<blue>0.2</blue>
-			<factor-prop>controls/lighting/CB-intencity</factor-prop>
-		</emission>
-	</animation>
+    <animation>
+        <type>material</type>
+        <object-name>OHpanel.Lettering_Day</object-name>
+        <object-name>Lettering_Maint</object-name>
+        <object-name>Placard</object-name>
+        <condition>
+            <greater-than>
+                <property>/sim/time/sun-angle-rad</property>
+                <value>1.70</value>
+            </greater-than>
+             <greater-than>
+                <property>systems/electrical/CPT-FLT-INST</property>
+                <value>24.0</value>
+             </greater-than>
+        </condition>
+        <emission>
+            <red>0.2</red>
+            <green>0.8</green>
+            <blue>0.2</blue>
+            <factor-prop>controls/lighting/overhead-intencity</factor-prop>
+        </emission>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>Lettering_CB</object-name>
+        <condition>
+            <greater-than>
+                <property>/sim/time/sun-angle-rad</property>
+                <value>1.70</value>
+            </greater-than>
+             <greater-than>
+                <property>systems/electrical/CPT-FLT-INST</property>
+                <value>24.0</value>
+             </greater-than>
+        </condition>
+        <emission>
+            <red>0.2</red>
+            <green>0.8</green>
+            <blue>0.2</blue>
+            <factor-prop>controls/lighting/CB-intencity</factor-prop>
+        </emission>
+    </animation>
 
-	<animation>
-		<type>textranslate</type>
-		<object-name>EXT_PWR_P_Switch</object-name>
-		<property>controls/electric/b_ext_power_p</property>
-		<factor>0.0781</factor>
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+    <animation>
+        <type>textranslate</type>
+        <object-name>EXT_PWR_P_Switch</object-name>
+        <property>controls/electric/b_ext_power_p</property>
+        <factor>0.0781</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
-	<animation>
-		<type>textranslate</type>
-		<object-name>EXT_PWR_S_Switch</object-name>
-		<property>controls/electric/b_ext_power_s</property>
-		<factor>0.0781</factor>
-		<axis>
-			<x>0</x>
-			<y>-1</y>
-			<z>0</z>
-		</axis>
-	</animation>
+    <animation>
+        <type>textranslate</type>
+        <object-name>EXT_PWR_S_Switch</object-name>
+        <property>controls/electric/b_ext_power_s</property>
+        <factor>0.0781</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>EXT_PWR_P_Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<property>controls/electric/external-power</property>
-				</condition>
-				<command>property-toggle</command>
-				<property>systems/electrical/PRI-EPC</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(3);</script>
-			</binding>
-		</action>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>EXT_PWR_P_Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>controls/electric/external-power</property>
+                </condition>
+                <command>property-toggle</command>
+                <property>systems/electrical/PRI-EPC</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>EXT_PWR_S_Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<condition>
-					<property>controls/electric/external-power[1]</property>
-				</condition>
-				<command>property-toggle</command>
-				<property>systems/electrical/SEC-EPC</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(3);</script>
-			</binding>
-		</action>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>EXT_PWR_S_Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>controls/electric/external-power[1]</property>
+                </condition>
+                <command>property-toggle</command>
+                <property>systems/electrical/SEC-EPC</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
 
  <animation>
    <type>textranslate</type>
    <object-name>P_OFV_L_Switch</object-name>
-	<property>controls/air/ofvfwd</property>
+    <property>controls/air/ofvfwd</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -242,11 +242,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>P_OFV_R_Switch</object-name>
-	<property>controls/air/ofvaft</property>
+    <property>controls/air/ofvaft</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -303,11 +303,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
   <animation>
    <type>textranslate</type>
    <object-name>LPCK_Switch</object-name>
-	<property>controls/air/lpack</property>
+    <property>controls/air/lpack</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -364,11 +364,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>RPCK_Switch</object-name>
-	<property>controls/air/rpack</property>
+    <property>controls/air/rpack</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -425,11 +425,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>LTRAIR_Switch</object-name>
-	<property>controls/air/ltrim</property>
+    <property>controls/air/ltrim</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -486,11 +486,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>RTRAIR_Switch</object-name>
-	<property>controls/air/rtrim</property>
+    <property>controls/air/rtrim</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -547,11 +547,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>BLD_ISLN_L_Switch</object-name>
-	<property>controls/air/islationl</property>
+    <property>controls/air/islationl</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -608,11 +608,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>BLD_ISLN_C_Switch</object-name>
-	<property>controls/air/islationc</property>
+    <property>controls/air/islationc</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -669,11 +669,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>BLD_ISLN_R_Switch</object-name>
-	<property>controls/air/islationr</property>
+    <property>controls/air/islationr</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -730,11 +730,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>BLD_APU_Switch</object-name>
-	<property>controls/air/bleedapu</property>
+    <property>controls/air/bleedapu</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -791,11 +791,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>BLD_ENG_L_Switch</object-name>
-	<property>controls/air/bleedengl</property>
+    <property>controls/air/bleedengl</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -852,11 +852,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>BLD_ENG_R_Switch</object-name>
-	<property>controls/air/bleedengr</property>
+    <property>controls/air/bleedengr</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -913,7 +913,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>Lelec.fault</object-name>
@@ -977,7 +977,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>FIRE-ARM_FWD_Switch</object-name>
-	<property>controls/switches/fire/cargo-fwd</property>
+    <property>controls/switches/fire/cargo-fwd</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1034,11 +1034,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>FIRE-ARM_AFT_Switch</object-name>
-	<property>controls/switches/fire/cargo-aft</property>
+    <property>controls/switches/fire/cargo-aft</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1095,7 +1095,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>CARGO_DISCH_TranspCover</object-name>
@@ -1111,12 +1111,12 @@ Syd Adams
             <y>1</y>
             <z>0</z>
         </axis>
-    </animation>	
+    </animation>
 
  <animation>
    <type>textranslate</type>
    <object-name>AUTOSTART_Switch</object-name>
-	<property>controls/engines/b-autostart</property>
+    <property>controls/engines/b-autostart</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1173,7 +1173,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>LENG_EEC_TranspCover</object-name>
@@ -1189,12 +1189,12 @@ Syd Adams
             <y>1</y>
             <z>0</z>
         </axis>
-    </animation>	
+    </animation>
 
  <animation>
    <type>textranslate</type>
    <object-name>LENG_EEC_Switch</object-name>
-	<property>controls/engines/engine/b-eec-switch</property>
+    <property>controls/engines/engine/b-eec-switch</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1251,7 +1251,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>RENG_EEC_TranspCover</object-name>
@@ -1267,12 +1267,12 @@ Syd Adams
             <y>1</y>
             <z>0</z>
         </axis>
-    </animation>	
+    </animation>
 
  <animation>
    <type>textranslate</type>
    <object-name>RENG_EEC_Switch</object-name>
-	<property>controls/engines/engine[1]/b-eec-switch</property>
+    <property>controls/engines/engine[1]/b-eec-switch</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1329,11 +1329,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>ASYM_ThComp_Switch</object-name>
-	<property>controls/flight/thrust-asym</property>
+    <property>controls/flight/thrust-asym</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1390,11 +1390,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>ADIRU_Switch</object-name>
-	<property>controls/flight/adiru</property>
+    <property>controls/flight/adiru</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1451,11 +1451,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>AIR-EQCOOL_Switch</object-name>
-	<property>controls/air/equip-cool</property>
+    <property>controls/air/equip-cool</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -1512,7 +1512,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>translate</type>
    <object-name>AIR-GASPER_AcryFace</object-name>
@@ -1561,7 +1561,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>translate</type>
    <object-name>AIR-RCRC_UP_AcryFace</object-name>
@@ -1610,7 +1610,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>translate</type>
    <object-name>AIR-RCRC_LW_AcryFace</object-name>
@@ -1659,7 +1659,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>APU.knob</object-name>
@@ -1676,7 +1676,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -1693,21 +1693,21 @@ Syd Adams
 <animation>
    <type>rotate</type>
    <object-name>OVHD.knob</object-name>
-	<property>/controls/lighting/overhead-intencity</property>
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>-165.0</dep>
-			</entry>
-			<entry>
-				<ind>0.5</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>165.0</dep>
-			</entry>		
-		</interpolation>
+    <property>/controls/lighting/overhead-intencity</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
    <axis>
      <x>-1</x>
      <y>0</y>
@@ -1717,27 +1717,27 @@ Syd Adams
    <x-m>0.02044</x-m>
    <y-m>-0.14656</y-m>
    <z-m>-0.45415</z-m>
-  </center>  
+  </center>
  </animation>
 
 <animation>
    <type>rotate</type>
    <object-name>CB.knob</object-name>
-	<property>/controls/lighting/CB-intencity</property>
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>-165.0</dep>
-			</entry>
-			<entry>
-				<ind>0.5</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>165.0</dep>
-			</entry>		
-		</interpolation>
+    <property>/controls/lighting/CB-intencity</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
    <axis>
      <x>-1</x>
      <y>0</y>
@@ -1747,27 +1747,27 @@ Syd Adams
    <x-m>0.02044</x-m>
    <y-m>-0.14656</y-m>
    <z-m>-0.45415</z-m>
-  </center>  
+  </center>
  </animation>
 
-	<animation>
-		<type>rotate</type>
-		<object-name>Dome.knob</object-name>
-		<property>controls/lighting/dome-intencity</property>
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>-165.0</dep>
-			</entry>
-			<entry>
-				<ind>0.5</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>165.0</dep>
-			</entry>		
-		</interpolation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Dome.knob</object-name>
+        <property>controls/lighting/dome-intencity</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
    <axis>
      <x>-1</x>
      <y>0</y>
@@ -1777,27 +1777,27 @@ Syd Adams
    <x-m>0.02050</x-m>
    <y-m>-0.10671</y-m>
    <z-m>-0.45631</z-m>
-  </center>  
+  </center>
  </animation>
 
 <animation>
    <type>rotate</type>
    <object-name>MSTRBright.knob</object-name>
-	<property>/controls/lighting/master-bright</property>
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>-165.0</dep>
-			</entry>
-			<entry>
-				<ind>0.5</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>165.0</dep>
-			</entry>		
-		</interpolation>
+    <property>/controls/lighting/master-bright</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
    <axis>
      <x>-1</x>
      <y>0</y>
@@ -1807,27 +1807,27 @@ Syd Adams
    <x-m>0.02675</x-m>
    <y-m>-0.03114</y-m>
    <z-m>-0.45365</z-m>
-  </center>  
+  </center>
  </animation>
 
 <animation>
    <type>rotate</type>
    <object-name>GLRSPanel.knob</object-name>
-	<property>controls/lighting/panel-flood-intencity</property>
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>-165.0</dep>
-			</entry>
-			<entry>
-				<ind>0.5</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>165.0</dep>
-			</entry>		
-		</interpolation>
+    <property>controls/lighting/panel-flood-intencity</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
    <axis>
      <x>-1</x>
      <y>0</y>
@@ -1837,27 +1837,27 @@ Syd Adams
    <x-m>0.01765</x-m>
    <y-m>-0.14656</y-m>
    <z-m>-0.49904</z-m>
-  </center>  
+  </center>
  </animation>
 
 <animation>
    <type>rotate</type>
    <object-name>GLRSFlood.knob</object-name>
-	<property>/controls/lighting/GLRSFlood</property>
-		<interpolation>
-			<entry>
-				<ind>0</ind>
-				<dep>-165.0</dep>
-			</entry>
-			<entry>
-				<ind>0.5</ind>
-				<dep>0</dep>
-			</entry>
-			<entry>
-				<ind>1</ind>
-				<dep>165.0</dep>
-			</entry>		
-		</interpolation>
+    <property>/controls/lighting/GLRSFlood</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
    <axis>
      <x>-1</x>
      <y>0</y>
@@ -1867,13 +1867,13 @@ Syd Adams
    <x-m>0.01765</x-m>
    <y-m>-0.14656</y-m>
    <z-m>-0.49904</z-m>
-  </center>  
+  </center>
  </animation>
 
 <animation>
    <type>rotate</type>
    <object-name>FTR.knob</object-name>
-	<property>/controls/fuel/FuelToRemain</property>
+    <property>/controls/fuel/FuelToRemain</property>
    <factor>360</factor>
    <axis>
      <x>-1</x>
@@ -1884,7 +1884,7 @@ Syd Adams
    <x-m>0.02480</x-m>
    <y-m>0.12528</y-m>
    <z-m>-0.09050</z-m>
-  </center>  
+  </center>
  </animation>
 
   <animation>
@@ -1901,7 +1901,7 @@ Syd Adams
    <x-m>0.01439</x-m>
    <y-m>0.24962</y-m>
    <z-m>0.07473</z-m>
-  </center>  
+  </center>
  </animation>
 
 <animation>
@@ -1918,13 +1918,13 @@ Syd Adams
    <x-m>0.01439</x-m>
    <y-m>0.33713</y-m>
    <z-m>0.07473</z-m>
-  </center>  
+  </center>
  </animation>
 
 <animation>
    <type>rotate</type>
    <object-name>LDG_ALT.knob</object-name>
-	<property>aaa/oh/PD3/LdgAlt</property>
+    <property>aaa/oh/PD3/LdgAlt</property>
    <factor>180</factor>
    <axis>
      <x>-1</x>
@@ -1935,7 +1935,7 @@ Syd Adams
    <x-m>0.02480</x-m>
    <y-m>0.33951</y-m>
    <z-m>-0.26387</z-m>
-  </center>  
+  </center>
  </animation>
 
     <animation>
@@ -1953,7 +1953,7 @@ Syd Adams
             <y>1</y>
             <z>0</z>
         </axis>
-    </animation>		
+    </animation>
 
     <animation>
         <type>rotate</type>
@@ -1970,12 +1970,12 @@ Syd Adams
             <y>1</y>
             <z>0</z>
         </axis>
-    </animation>		
+    </animation>
 
  <animation>
    <type>textranslate</type>
    <object-name>WH_LS_Switch</object-name>
-	<property>controls/anti-ice/window-heat-ls</property>
+    <property>controls/anti-ice/window-heat-ls</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -2032,11 +2032,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>WH_LF_Switch</object-name>
-	<property>controls/anti-ice/window-heat-lf</property>
+    <property>controls/anti-ice/window-heat-lf</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -2093,11 +2093,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>WH_RF_Switch</object-name>
-	<property>controls/anti-ice/window-heat-rf</property>
+    <property>controls/anti-ice/window-heat-rf</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -2154,11 +2154,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>WH_RS_Switch</object-name>
-	<property>controls/anti-ice/window-heat-rs</property>
+    <property>controls/anti-ice/window-heat-rs</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -2215,7 +2215,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>LENGDRV_TranspCover</object-name>
@@ -2231,7 +2231,7 @@ Syd Adams
             <y>1</y>
             <z>0</z>
         </axis>
-    </animation>	
+    </animation>
 
     <animation>
         <type>rotate</type>
@@ -2304,7 +2304,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>NOZZLE_L_Switch</object-name>
-	<property>controls/fuel/tank[0]/b-nozzle</property>
+    <property>controls/fuel/tank[0]/b-nozzle</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -2361,7 +2361,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>NOZZLE_R_TranspCover</object-name>
@@ -2382,7 +2382,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>NOZZLE_R_Switch</object-name>
-	<property>controls/fuel/tank[2]/b-nozzle</property>
+    <property>controls/fuel/tank[2]/b-nozzle</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -2439,7 +2439,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>LWiper.knob</object-name>
@@ -2460,7 +2460,7 @@ Syd Adams
             <entry>
                 <ind>3</ind>
                 <dep>135.0</dep>
-            </entry>			
+            </entry>
         </interpolation>
         <center>
             <x-m>0.01166</x-m>
@@ -2472,7 +2472,7 @@ Syd Adams
             <y>0</y>
             <z>0</z>
         </axis>
-    </animation>		
+    </animation>
 
     <animation>
         <type>rotate</type>
@@ -2494,7 +2494,7 @@ Syd Adams
             <entry>
                 <ind>3</ind>
                 <dep>135.0</dep>
-            </entry>			
+            </entry>
         </interpolation>
         <center>
             <x-m>0.01166</x-m>
@@ -2506,12 +2506,12 @@ Syd Adams
             <y>0</y>
             <z>0</z>
         </axis>
-    </animation>	
+    </animation>
 
     <animation>
         <type>rotate</type>
         <object-name>LELEC.knob</object-name>
-   	    <property>controls/hydraulics/system/LACMP-switch</property>
+        <property>controls/hydraulics/system/LACMP-switch</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -2524,7 +2524,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -2537,11 +2537,11 @@ Syd Adams
             <z>0</z>
         </axis>
     </animation>
-	
+
     <animation>
         <type>rotate</type>
         <object-name>C1AIR.knob</object-name>
-   	    <property>controls/hydraulics/system[1]/C1ADP-switch</property>
+        <property>controls/hydraulics/system[1]/C1ADP-switch</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -2554,7 +2554,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -2571,7 +2571,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>C2AIR.knob</object-name>
-  	    <property>controls/hydraulics/system[1]/C2ADP-switch</property>
+        <property>controls/hydraulics/system[1]/C2ADP-switch</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -2584,7 +2584,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -2601,7 +2601,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RELEC.knob</object-name>
-  	    <property>controls/hydraulics/system[2]/RACMP-switch</property>
+        <property>controls/hydraulics/system[2]/RACMP-switch</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -2614,7 +2614,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -2665,7 +2665,7 @@ Syd Adams
 <animation>
         <type>rotate</type>
         <object-name>WING_Ice.knob</object-name>
-   	    <property>controls/anti-ice/wing-antiice-knob</property>
+        <property>controls/anti-ice/wing-antiice-knob</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -2678,7 +2678,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -2695,7 +2695,7 @@ Syd Adams
 <animation>
         <type>rotate</type>
         <object-name>RENG_Ice.knob</object-name>
-   	    <property>controls/anti-ice/engin[1]/antiice-knob</property>
+        <property>controls/anti-ice/engin[1]/antiice-knob</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -2708,7 +2708,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -2725,7 +2725,7 @@ Syd Adams
 <animation>
         <type>rotate</type>
         <object-name>LENG_Ice.knob</object-name>
-   	    <property>controls/anti-ice/engin/antiice-knob</property>
+        <property>controls/anti-ice/engin/antiice-knob</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -2738,7 +2738,7 @@ Syd Adams
             <entry>
                 <ind>2</ind>
                 <dep>45.0</dep>
-            </entry>		
+            </entry>
         </interpolation>
         <center>
             <x-m>0.02052</x-m>
@@ -2784,8 +2784,8 @@ Syd Adams
             <y>0</y>
             <z>0</z>
         </axis>
-    </animation>	
-	
+    </animation>
+
  <animation>
    <type>textranslate</type>
    <object-name>FJ_ARM_Switch</object-name>
@@ -2796,12 +2796,12 @@ Syd Adams
      <y>-1</y>
      <z>0</z>
    </axis>
- </animation>	
+ </animation>
 
  <animation>
    <type>textranslate</type>
    <object-name>FJ_ARM_Switch</object-name>
-	<property>controls/fuel/b-jtsnarm</property>
+    <property>controls/fuel/b-jtsnarm</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -2858,73 +2858,50 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
-	<animation>
-		<type>pick</type>
-		<object-name>OVHD.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/overhead-intencity</property>
-				<step>0.1</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
-			</binding>
+    <animation>
+        <type>pick</type>
+        <object-name>OVHD.knob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/overhead-intencity</property>
+                <step>0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
-		</action>
-	</animation>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>OVHD.knob</object-name>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/overhead-intencity</property>
-				<step>-0.1</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
-			</binding>
+    <animation>
+        <type>pick</type>
+        <object-name>OVHD.knob</object-name>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/overhead-intencity</property>
+                <step>-0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
              <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
-            </binding>
-		</action>
-	</animation>
-
-	<animation>
-        <type>pick</type>
-        <object-name>CB.knob</object-name>
-        <action>
-            <button>0</button>
-			<button>3</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>/controls/lighting/CB-intencity</property>
-                <step>0.1</step>
-                <min>0</min>
-                <max>1</max>
-            </binding>	
-			<binding>
-                <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
@@ -2933,8 +2910,31 @@ Syd Adams
         <type>pick</type>
         <object-name>CB.knob</object-name>
         <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/lighting/CB-intencity</property>
+                <step>0.1</step>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                controls.click(2);
+                </script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>CB.knob</object-name>
+        <action>
             <button>1</button>
-			<button>4</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -2942,70 +2942,70 @@ Syd Adams
                 <step>-0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>Dome.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/dome-intencity</property>
-				<step>0.1</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
-			</binding>
+    <animation>
+        <type>pick</type>
+        <object-name>Dome.knob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/dome-intencity</property>
+                <step>0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
-		</action>
-	</animation>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>Dome.knob</object-name>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/dome-intencity</property>
-				<step>-0.1</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
-			</binding>
+    <animation>
+        <type>pick</type>
+        <object-name>Dome.knob</object-name>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/dome-intencity</property>
+                <step>-0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
-		</action>
-	</animation>
+        </action>
+    </animation>
 
 <animation>
         <type>pick</type>
         <object-name>MSTRBright.knob</object-name>
         <action>
             <button>0</button>
-			<button>3</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3013,12 +3013,12 @@ Syd Adams
                 <step>0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3028,7 +3028,7 @@ Syd Adams
         <object-name>MSTRBright.knob</object-name>
         <action>
             <button>1</button>
-			<button>4</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3036,70 +3036,70 @@ Syd Adams
                 <step>-0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>GLRSPanel.knob</object-name>
-		<action>
-			<button>0</button>
-			<button>3</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-flood-intencity</property>
-				<step>0.1</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
-			</binding>
+    <animation>
+        <type>pick</type>
+        <object-name>GLRSPanel.knob</object-name>
+        <action>
+            <button>0</button>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/panel-flood-intencity</property>
+                <step>0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
-		</action>
-	</animation>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>GLRSPanel.knob</object-name>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
-				<command>property-adjust</command>
-				<property>controls/lighting/panel-flood-intencity</property>
-				<step>-0.1</step>
-				<min>0</min>
-				<max>1</max>
-				<wrap>false</wrap>
-			</binding>
+    <animation>
+        <type>pick</type>
+        <object-name>GLRSPanel.knob</object-name>
+        <action>
+            <button>1</button>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/lighting/panel-flood-intencity</property>
+                <step>-0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
-		</action>
-	</animation>
+        </action>
+    </animation>
 
 <animation>
         <type>pick</type>
         <object-name>GLRSFlood.knob</object-name>
         <action>
             <button>0</button>
-			<button>3</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3107,12 +3107,12 @@ Syd Adams
                 <step>0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3122,7 +3122,7 @@ Syd Adams
         <object-name>GLRSFlood.knob</object-name>
         <action>
             <button>1</button>
-			<button>4</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3130,12 +3130,12 @@ Syd Adams
                 <step>-0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3145,7 +3145,7 @@ Syd Adams
         <object-name>FTR.knob</object-name>
         <action>
             <button>0</button>
-			<button>3</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3153,12 +3153,12 @@ Syd Adams
                 <step>0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3168,7 +3168,7 @@ Syd Adams
         <object-name>FTR.knob</object-name>
         <action>
             <button>1</button>
-			<button>4</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3176,12 +3176,12 @@ Syd Adams
                 <step>-0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3191,7 +3191,7 @@ Syd Adams
         <object-name>FLTDECK_Temp.knob</object-name>
         <action>
             <button>0</button>
-			<button>3</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3199,12 +3199,12 @@ Syd Adams
                 <step>0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3214,7 +3214,7 @@ Syd Adams
         <object-name>FLTDECK_Temp.knob</object-name>
         <action>
             <button>1</button>
-			<button>4</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3222,12 +3222,12 @@ Syd Adams
                 <step>-0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3237,20 +3237,20 @@ Syd Adams
         <object-name>CABIN_Temp.knob</object-name>
         <action>
             <button>0</button>
-			<button>3</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-				<property>controls/air/cabin_temp</property>
+                <property>controls/air/cabin_temp</property>
                 <step>0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3260,20 +3260,20 @@ Syd Adams
         <object-name>CABIN_Temp.knob</object-name>
         <action>
             <button>1</button>
-			<button>4</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-				<property>controls/air/cabin_temp</property>
+                <property>controls/air/cabin_temp</property>
                 <step>-0.15</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3283,7 +3283,7 @@ Syd Adams
         <object-name>LDG_ALT.knob</object-name>
         <action>
             <button>0</button>
-			<button>3</button>
+            <button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3291,12 +3291,12 @@ Syd Adams
                 <step>0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
+                controls.click(2);
+                </script>
             </binding>
         </action>
     </animation>
@@ -3306,7 +3306,7 @@ Syd Adams
         <object-name>LDG_ALT.knob</object-name>
         <action>
             <button>1</button>
-			<button>4</button>
+            <button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -3314,12 +3314,12 @@ Syd Adams
                 <step>-0.1</step>
                 <min>0</min>
                 <max>1</max>
-            </binding>	
-			<binding>
+            </binding>
+            <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
@@ -3341,12 +3341,12 @@ Syd Adams
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
-    </animation>	
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -3365,9 +3365,9 @@ Syd Adams
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
@@ -3389,9 +3389,9 @@ Syd Adams
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
@@ -3413,9 +3413,9 @@ Syd Adams
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>			
-				controls.click(2);
-      	    </script>
+                <script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
@@ -3423,7 +3423,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>STRM_Switch</object-name>
-		<property>controls/lighting/cockpit</property>
+        <property>controls/lighting/cockpit</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -3480,11 +3480,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>Hydr_LENG_Switch</object-name>
-	<property>systems/hydraulics/LEDP</property>
+    <property>systems/hydraulics/LEDP-NORMAL</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -3541,11 +3541,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>ELEC_C1_Switch</object-name>
-	<property>systems/hydraulics/C1ACMP</property>
+    <property>systems/hydraulics/C1ACMP-NORMAL</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -3602,11 +3602,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>ELEC_C2_Switch</object-name>
-	<property>systems/hydraulics/C2ACMP</property>
+    <property>systems/hydraulics/C2ACMP-NORMAL</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -3663,11 +3663,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>Hydr_RENG_Switch</object-name>
-	<property>systems/hydraulics/REDP</property>
+    <property>systems/hydraulics/REDP-NORMAL</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -3724,7 +3724,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>translate</type>
    <object-name>BCN_AcryFace</object-name>
@@ -3773,7 +3773,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>translate</type>
    <object-name>NAV_AcryFace</object-name>
@@ -3822,7 +3822,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>translate</type>
    <object-name>LOGO_AcryFace</object-name>
@@ -3871,7 +3871,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>translate</type>
    <object-name>WING_AcryFace</object-name>
@@ -3920,11 +3920,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>BATT_Switch</object-name>
-	<property>controls/electric/b_batt</property>
+    <property>controls/electric/b_batt</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -3981,11 +3981,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>LGEN_Switch</object-name>
-	<property>controls/electric/b-lidg</property>
+    <property>controls/electric/b-lidg</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4042,11 +4042,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>RGEN_Switch</object-name>
-	<property>controls/electric/b-ridg</property>
+    <property>controls/electric/b-ridg</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4103,11 +4103,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>LENGDRV_Switch</object-name>
-	<property>controls/electric/b-lidg</property>
+    <property>controls/electric/b-lidg</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4119,7 +4119,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>LGEN_BCKUP_Switch</object-name>
-	<property>controls/electric/b-lbugen</property>
+    <property>controls/electric/b-lbugen</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4176,11 +4176,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>RGEN_BCKUP_Switch</object-name>
-	<property>controls/electric/b-rbugen</property>
+    <property>controls/electric/b-rbugen</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4237,11 +4237,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>LENGDRV_Switch</object-name>
-	<property>controls/electric/b-lidg</property>
+    <property>controls/electric/b-lidg</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4253,7 +4253,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>RENGDRV_Switch</object-name>
-	<property>controls/electric/b-ridg</property>
+    <property>controls/electric/b-ridg</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4322,7 +4322,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>LBUS_Switch</object-name>
@@ -4383,7 +4383,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>RBUS_Switch</object-name>
@@ -4444,7 +4444,7 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
     <animation>
         <type>rotate</type>
         <object-name>STRB.toggle</object-name>
@@ -4601,7 +4601,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>LHboost1_Switch</object-name>
-	<property>controls/fuel/tank[0]/b-boost-pump[0]</property>
+    <property>controls/fuel/tank[0]/b-boost-pump[0]</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4658,11 +4658,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>LHboost2_Switch</object-name>
-	<property>controls/fuel/tank[0]/b-boost-pump[1]</property>
+    <property>controls/fuel/tank[0]/b-boost-pump[1]</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4719,11 +4719,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>CTRboost1_Switch</object-name>
-	<property>controls/fuel/tank[1]/b-boost-pump[0]</property>
+    <property>controls/fuel/tank[1]/b-boost-pump[0]</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4780,11 +4780,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>CTRboost2_Switch</object-name>
-	<property>controls/fuel/tank[1]/b-boost-pump[1]</property>
+    <property>controls/fuel/tank[1]/b-boost-pump[1]</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4841,11 +4841,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>RHboost1_Switch</object-name>
-	<property>controls/fuel/tank[2]/b-boost-pump[0]</property>
+    <property>controls/fuel/tank[2]/b-boost-pump[0]</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4902,11 +4902,11 @@ Syd Adams
             <z>0</z>
         </axis>
  </animation>
- 
+
  <animation>
    <type>textranslate</type>
    <object-name>RHboost2_Switch</object-name>
-	<property>controls/fuel/tank[2]/b-boost-pump[1]</property>
+    <property>controls/fuel/tank[2]/b-boost-pump[1]</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -4967,7 +4967,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>XFeedFWD_Switch</object-name>
-	<property>controls/fuel/b-xfdfwd-vlv</property>
+    <property>controls/fuel/b-xfdfwd-vlv</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -5028,7 +5028,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>XFeedAFT_Switch</object-name>
-	<property>controls/fuel/b-xfdaft-vlv</property>
+    <property>controls/fuel/b-xfdaft-vlv</property>
    <factor>0.0781</factor>
    <axis>
      <x>0</x>
@@ -5149,14 +5149,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		    <property>controls/engines/engine/eec-cover</property>
+            <property>controls/engines/engine/eec-cover</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -5168,14 +5168,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		    <property>controls/engines/engine[1]/eec-cover</property>
+            <property>controls/engines/engine[1]/eec-cover</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -5451,8 +5451,8 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-		    </script>
+                controls.click(4);
+            </script>
             </binding>
         </action>
     </animation>
@@ -5756,74 +5756,74 @@ Syd Adams
         </action>
     </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>Hydr_LENG_Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulics/system/LENG_switch</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(4);</script>
-			</binding>
-		</action>
-	</animation>	
-	
-	<animation>
-		<type>pick</type>
-		<object-name>ELEC_C1_Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulics/system[1]/C1ELEC-switch</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(4);</script>
-			</binding>
-		</action>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>Hydr_LENG_Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulics/system/LENG_switch</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>ELEC_C2_Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulics/system[1]/C2ELEC-switch</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(4);</script>
-			</binding>
-		</action>
-	</animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ELEC_C1_Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulics/system[1]/C1ELEC-switch</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
 
-	<animation>
-		<type>pick</type>
-		<object-name>Hydr_RENG_Switch</object-name>
-		<action>
-			<button>0</button>
-			<repeatable>false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>controls/hydraulics/system[2]/RENG_switch</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>controls.click(4);</script>
-			</binding>
-		</action>
-	</animation>	
-	
+    <animation>
+        <type>pick</type>
+        <object-name>ELEC_C2_Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulics/system[1]/C2ELEC-switch</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Hydr_RENG_Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/hydraulics/system[2]/RENG_switch</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>STRM_Switch</object-name>
@@ -5839,8 +5839,8 @@ Syd Adams
                 <script>controls.click(2);</script>
             </binding>
         </action>
-    </animation>		
-	
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>FJ_ARM_Switch</object-name>
@@ -5854,11 +5854,11 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
+                controls.click(4);
                 </script>
             </binding>
         </action>
-    </animation>	
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -5873,12 +5873,12 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-		    </script>
-            </binding>			
+                controls.click(4);
+            </script>
+            </binding>
         </action>
-    </animation>	
-	
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>XFeedAFT_Switch</object-name>
@@ -5892,8 +5892,8 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-		    </script>
+                controls.click(4);
+            </script>
             </binding>
         </action>
     </animation>
@@ -5912,9 +5912,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(7);
-		    </script>
-            </binding>			
+                controls.click(7);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -5932,9 +5932,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(7);
-		    </script>
-            </binding>			
+                controls.click(7);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6014,14 +6014,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		    <property>controls/electric/engine/drv-cover</property>
+            <property>controls/electric/engine/drv-cover</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6033,14 +6033,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		    <property>controls/electric/engine[1]/drv-cover</property>
+            <property>controls/electric/engine[1]/drv-cover</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6057,9 +6057,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6076,9 +6076,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6095,9 +6095,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6109,14 +6109,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		        <property>controls/fuel/tank[0]/nozzle-cover</property>
+                <property>controls/fuel/tank[0]/nozzle-cover</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6128,14 +6128,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		        <property>controls/fuel/tank[0]/nozzle-switch</property>
+                <property>controls/fuel/tank[0]/nozzle-switch</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6147,14 +6147,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		        <property>controls/fuel/tank[2]/nozzle-cover</property>
+                <property>controls/fuel/tank[2]/nozzle-cover</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6166,14 +6166,14 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-		        <property>controls/fuel/tank[2]/nozzle-switch</property>
+                <property>controls/fuel/tank[2]/nozzle-switch</property>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6186,7 +6186,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system/LACMP-switch</property>
+                <property>controls/hydraulics/system/LACMP-switch</property>
                 <step>1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6194,9 +6194,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
    </animation>
 
@@ -6209,7 +6209,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system/LACMP-switch</property>
+                <property>controls/hydraulics/system/LACMP-switch</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6217,9 +6217,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6232,7 +6232,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system[1]/C1ADP-switch</property>
+                <property>controls/hydraulics/system[1]/C1ADP-switch</property>
                 <step>1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6240,9 +6240,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
    </animation>
 
@@ -6255,7 +6255,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system[1]/C1ADP-switch</property>
+                <property>controls/hydraulics/system[1]/C1ADP-switch</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6263,9 +6263,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6278,7 +6278,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system[1]/C2ADP-switch</property>
+                <property>controls/hydraulics/system[1]/C2ADP-switch</property>
                 <step>1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6286,9 +6286,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
    </animation>
 
@@ -6301,7 +6301,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system[1]/C2ADP-switch</property>
+                <property>controls/hydraulics/system[1]/C2ADP-switch</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6309,9 +6309,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6324,7 +6324,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system[2]/RACMP-switch</property>
+                <property>controls/hydraulics/system[2]/RACMP-switch</property>
                 <step>1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6332,9 +6332,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6347,7 +6347,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/hydraulics/system[2]/RACMP-switch</property>
+                <property>controls/hydraulics/system[2]/RACMP-switch</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6355,9 +6355,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6379,8 +6379,8 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
@@ -6402,8 +6402,8 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
+                controls.click(2);
+            </script>
             </binding>
         </action>
     </animation>
@@ -6426,9 +6426,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6450,9 +6450,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6465,7 +6465,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/anti-ice/wing-antiice-knob</property>
+                <property>controls/anti-ice/wing-antiice-knob</property>
                 <step>1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6473,9 +6473,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6488,7 +6488,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/anti-ice/wing-antiice-knob</property>
+                <property>controls/anti-ice/wing-antiice-knob</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6496,9 +6496,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6511,7 +6511,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/anti-ice/engin/antiice-knob</property>
+                <property>controls/anti-ice/engin/antiice-knob</property>
                 <step>1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6519,9 +6519,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6534,7 +6534,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/anti-ice/engin/antiice-knob</property>
+                <property>controls/anti-ice/engin/antiice-knob</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6542,9 +6542,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6557,7 +6557,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/anti-ice/engin[1]/antiice-knob</property>
+                <property>controls/anti-ice/engin[1]/antiice-knob</property>
                 <step>1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6565,9 +6565,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6580,7 +6580,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-        	    <property>controls/anti-ice/engin[1]/antiice-knob</property>
+                <property>controls/anti-ice/engin[1]/antiice-knob</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>2</max>
@@ -6588,9 +6588,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6608,16 +6608,16 @@ Syd Adams
                 <min>0</min>
                 <max>3</max>
             </binding>
-			<binding>
-			<command>nasal</command>
-			<script>
-			setprop("/aaa/lwiper/delay-sec", (getprop("/aaa/lwiper/speed")*-1) +3);
-			controls.click(2);
-			</script>
-			</binding>			
+            <binding>
+            <command>nasal</command>
+            <script>
+            setprop("/aaa/lwiper/delay-sec", (getprop("/aaa/lwiper/speed")*-1) +3);
+            controls.click(2);
+            </script>
+            </binding>
         </action>
-    </animation>	
-	
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>RWiper.knob</object-name>
@@ -6632,16 +6632,16 @@ Syd Adams
                 <min>0</min>
                 <max>3</max>
             </binding>
-			<binding>
-			<command>nasal</command>
-			<script>
-			setprop("/aaa/rwiper/delay-sec", (getprop("/aaa/rwiper/speed")*-1) +3);
-			controls.click(2);
-			</script>
-			</binding>			
+            <binding>
+            <command>nasal</command>
+            <script>
+            setprop("/aaa/rwiper/delay-sec", (getprop("/aaa/rwiper/speed")*-1) +3);
+            controls.click(2);
+            </script>
+            </binding>
         </action>
-    </animation>	
-	
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>LWiper.knob</object-name>
@@ -6655,17 +6655,17 @@ Syd Adams
                 <step>-1</step>
                 <min>0</min>
                 <max>3</max>
-            </binding>	
-			<binding>
-			<command>nasal</command>
-			<script>
-			setprop("/aaa/lwiper/delay-sec", (getprop("/aaa/lwiper/speed")*-1) +3);
-			controls.click(2);
-			</script>
-			</binding>	
+            </binding>
+            <binding>
+            <command>nasal</command>
+            <script>
+            setprop("/aaa/lwiper/delay-sec", (getprop("/aaa/lwiper/speed")*-1) +3);
+            controls.click(2);
+            </script>
+            </binding>
         </action>
-    </animation>	
-	
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>RWiper.knob</object-name>
@@ -6679,17 +6679,17 @@ Syd Adams
                 <step>-1</step>
                 <min>0</min>
                 <max>3</max>
-            </binding>	
-			<binding>
-			<command>nasal</command>
-			<script>
-			setprop("/aaa/rwiper/delay-sec", (getprop("/aaa/rwiper/speed")*-1) +3);
-			controls.click(2);
-			</script>
-			</binding>		
+            </binding>
+            <binding>
+            <command>nasal</command>
+            <script>
+            setprop("/aaa/rwiper/delay-sec", (getprop("/aaa/rwiper/speed")*-1) +3);
+            controls.click(2);
+            </script>
+            </binding>
         </action>
-    </animation>	
-	
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>APU.knob</object-name>
@@ -6724,35 +6724,35 @@ Syd Adams
         </action>
     </animation>
 
-	<animation>
-		<type>material</type>
-		<!--object-name>OHPanel_FULL_LightUp</object-name-->
-		<condition>
-				<property>controls/lighting/cockpit</property>
-		</condition>
-		<emission>
-			<red>0.5</red>
-			<green>0.5</green>
-			<blue>0.5</blue>
-		</emission>
-	</animation>
+    <animation>
+        <type>material</type>
+        <!--object-name>OHPanel_FULL_LightUp</object-name-->
+        <condition>
+                <property>controls/lighting/cockpit</property>
+        </condition>
+        <emission>
+            <red>0.5</red>
+            <green>0.5</green>
+            <blue>0.5</blue>
+        </emission>
+    </animation>
 
       <animation>
-		<type>material</type>
-		<!--object-name>OHPanel_DOME_MSTRBright_LightUp</object-name-->
-		<condition>
-			<not>
-				<property>controls/lighting/cockpit</property>
-			</not>
-				<property>/controls/lighting/dome-input</property>
-		</condition>
-		<emission>
-			<red>0.5</red>
-			<green>0.5</green>
-			<blue>0.5</blue>
-			<factor-prop>/controls/lighting/dome-output</factor-prop>
-		</emission>
-	</animation>
+        <type>material</type>
+        <!--object-name>OHPanel_DOME_MSTRBright_LightUp</object-name-->
+        <condition>
+            <not>
+                <property>controls/lighting/cockpit</property>
+            </not>
+                <property>/controls/lighting/dome-input</property>
+        </condition>
+        <emission>
+            <red>0.5</red>
+            <green>0.5</green>
+            <blue>0.5</blue>
+            <factor-prop>/controls/lighting/dome-output</factor-prop>
+        </emission>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -6767,9 +6767,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-				</script>
-            </binding>			
+                controls.click(4);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6786,9 +6786,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-				</script>
-            </binding>			
+                controls.click(4);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6805,12 +6805,12 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-				</script>
-            </binding>			
+                controls.click(4);
+                </script>
+            </binding>
         </action>
-    </animation>	
-	
+    </animation>
+
     <animation>
         <type>pick</type>
         <object-name>BLD_ISLN_L_Switch</object-name>
@@ -6824,9 +6824,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
-            </binding>			
+                controls.click(2);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6843,9 +6843,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
-            </binding>			
+                controls.click(2);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6862,9 +6862,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
-            </binding>			
+                controls.click(2);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6881,9 +6881,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-				</script>
-            </binding>			
+                controls.click(4);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6900,9 +6900,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-				</script>
-            </binding>			
+                controls.click(4);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6919,9 +6919,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
-            </binding>			
+                controls.click(2);
+                </script>
+            </binding>
         </action>
     </animation>
 
@@ -6938,13 +6938,13 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-				</script>
-            </binding>			
+                controls.click(2);
+                </script>
+            </binding>
         </action>
-    </animation>	
+    </animation>
 
-	<animation>
+    <animation>
         <type>pick</type>
         <object-name>P_OFV_L_Switch</object-name>
         <action>
@@ -6957,13 +6957,13 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-		    </script>
-            </binding>			
+                controls.click(4);
+            </script>
+            </binding>
         </action>
     </animation>
-	
-	<animation>
+
+    <animation>
         <type>pick</type>
         <object-name>P_OFV_R_Switch</object-name>
         <action>
@@ -6976,9 +6976,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(4);
-		    </script>
-            </binding>			
+                controls.click(4);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -6995,10 +6995,10 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>controls.click(4);</script>
-            </binding>			
+            </binding>
         </action>
     </animation>
-	
+
     <animation>
         <type>pick</type>
         <object-name>AIR-GASPER_Switch</object-name>
@@ -7012,9 +7012,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -7031,9 +7031,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
@@ -7050,9 +7050,9 @@ Syd Adams
             <binding>
                 <command>nasal</command>
                 <script>
-				controls.click(2);
-		    </script>
-            </binding>			
+                controls.click(2);
+            </script>
+            </binding>
         </action>
     </animation>
 
