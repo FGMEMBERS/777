@@ -900,7 +900,7 @@ if(hmodel == "-S")
     }
 # Fuel control panel indication
 # LH boost #1
-    if((getprop("consumables/fuel/tank[0]/level-gal_us") > 0)
+    if(!getprop("consumables/fuel/tank[0]/empty")
         and ((getprop("controls/fuel/tank/boost-pump-switch")
                 and (l_xfr.getValue() > 80))
             or ((hot_bat.getValue() > 24)
@@ -922,7 +922,7 @@ if(hmodel == "-S")
         setprop("controls/fuel/tank[0]/b-boost-pump[0]", 1);
     }
 # LH boost #2
-    if((getprop("consumables/fuel/tank[0]/level-gal_us") > 0)
+    if(!getprop("consumables/fuel/tank[0]/empty")
             and getprop("controls/fuel/tank/boost-pump-switch[1]")
             and (l_xfr.getValue() > 80))
     {
@@ -942,7 +942,7 @@ if(hmodel == "-S")
         setprop("controls/fuel/tank[0]/b-boost-pump[1]", 1);
     }
 # RH boost #1
-    if((getprop("consumables/fuel/tank[2]/level-gal_us") > 0)
+    if(!getprop("consumables/fuel/tank[2]/empty")
             and getprop("controls/fuel/tank[2]/boost-pump-switch[0]")
             and (l_xfr.getValue() > 80))
     {
@@ -962,7 +962,7 @@ if(hmodel == "-S")
         setprop("controls/fuel/tank[2]/b-boost-pump[0]", 1);
     }
 #RH boost #2
-    if((getprop("consumables/fuel/tank[2]/level-gal_us") > 0)
+    if(!getprop("consumables/fuel/tank[2]/empty")
             and getprop("controls/fuel/tank[2]/boost-pump-switch[1]")
             and (l_xfr.getValue() > 80))
     {
@@ -982,7 +982,11 @@ if(hmodel == "-S")
         setprop("controls/fuel/tank[2]/b-boost-pump[1]", 1);
     }
 #CTR boost #1
-    if((getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+    if((!getprop("consumables/fuel/tank[1]/empty")
+            or ((vmodel == "-200LR")
+            and (!getprop("consumables/fuel/tank[3]/empty")
+                or !getprop("consumables/fuel/tank[4]/empty")
+                or !getprop("consumables/fuel/tank[5]/empty"))))
             and getprop("controls/fuel/tank[1]/boost-pump-switch[0]")
             and (l_xfr.getValue() > 80))
     {
@@ -994,7 +998,11 @@ if(hmodel == "-S")
     }
     if((getprop("controls/fuel/tank[1]/boost-pump[0]") == 0)
         and (cpt_flt_inst.getValue() > 24)
-        and getprop("controls/fuel/tank[1]/boost-pump-switch"))
+        and (!getprop("consumables/fuel/tank[1]/empty")
+            or ((vmodel == "-200LR")
+            and (!getprop("consumables/fuel/tank[3]/empty")
+                or !getprop("consumables/fuel/tank[4]/empty")
+                or !getprop("consumables/fuel/tank[5]/empty")))))
     {
         setprop("controls/fuel/tank[1]/b-boost-pump[0]", 0);
     }
@@ -1003,7 +1011,11 @@ if(hmodel == "-S")
         setprop("controls/fuel/tank[1]/b-boost-pump[0]", 1);
     }
 #CTR boost #2
-    if((getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+    if((!getprop("consumables/fuel/tank[1]/empty")
+            or ((vmodel == "-200LR")
+            and (!getprop("consumables/fuel/tank[3]/empty")
+                or !getprop("consumables/fuel/tank[4]/empty")
+                or !getprop("consumables/fuel/tank[5]/empty"))))
             and getprop("controls/fuel/tank[1]/boost-pump-switch[1]")
             and (l_xfr.getValue() > 80))
     {
@@ -1015,7 +1027,11 @@ if(hmodel == "-S")
     }
     if((getprop("controls/fuel/tank[1]/boost-pump[1]") == 0)
         and (cpt_flt_inst.getValue() > 24)
-        and getprop("controls/fuel/tank[1]/boost-pump-switch[1]"))
+        and (!getprop("consumables/fuel/tank[1]/empty")
+            or ((vmodel == "-200LR")
+            and (!getprop("consumables/fuel/tank[3]/empty")
+                or !getprop("consumables/fuel/tank[4]/empty")
+                or !getprop("consumables/fuel/tank[5]/empty")))))
     {
         setprop("controls/fuel/tank[1]/b-boost-pump[1]", 0);
     }
