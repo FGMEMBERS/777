@@ -865,24 +865,7 @@ var AFDS = {
                 msg = "LOC";
                 if (getprop("instrumentation/nav/in-range"))
                 {
-                    if(!getprop("instrumentation/nav/nav-loc"))
-                    {
-                        var vheading = getprop("instrumentation/nav/radials/selected-deg");
-                        var vvor = getprop("instrumentation/nav/heading-deg");
-                        var vdist = getprop("instrumentation/nav/nav-distance");
-                        var vheading = getprop("orientation/heading-deg");
-                        var vspeed = getprop("instrumentation/airspeed-indicator/indicated-mach");
-                        var deg_to_rad = math.pi / 180;
-                        var vdiff = abs(vheading - vvor + me.vorient);
-                        vdiff = abs(vdist * math.sin(vdiff * deg_to_rad));
-                        var vlim = vspeed / 0.3 * 1300 * abs(vheading - vheading) / 45 ;
-                        if(vdiff < vlim)
-                        {
-                            me.lateral_mode.setValue(4);
-                            me.loc_armed.setValue(0);
-                        }
-                    }
-                    else
+                    if(getprop("instrumentation/nav/nav-loc"))
                     {
                         var vradials = (getprop("instrumentation/nav[0]/radials/target-radial-deg")
                                 - getprop("orientation/heading-deg"));

@@ -1187,7 +1187,7 @@
         <debug>false</debug>
         <type>noise-spike</type>
         <max-rate-of-change>
-            <value>0.2</value>
+            <value>10.0</value>
         </max-rate-of-change>
         <input>controls/gear/nosegear-steering-cmd</input>
         <output>controls/gear/nosegear-steering-cmd-norm</output>
@@ -1198,7 +1198,7 @@
         <debug>false</debug>
         <type>noise-spike</type>
         <max-rate-of-change>
-            <value>0.2</value>
+            <value>10.0</value>
         </max-rate-of-change>
         <input>controls/gear/maingear-steering-cmd</input>
         <output>controls/gear/maingear-steering-cmd-norm</output>
