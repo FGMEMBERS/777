@@ -58,6 +58,7 @@ var AFDS = {
         m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
 
         m.FMC = props.globals.getNode("autopilot/route-manager", 1);
+        m.FMC_max_cruise_alt = m.FMC.initNode("cruise/max-altitude-ft",10000,"DOUBLE");
         m.FMC_cruise_alt = m.FMC.initNode("cruise/altitude-ft",10000,"DOUBLE");
         m.FMC_cruise_ias = m.FMC.initNode("cruise/speed-kts",320,"DOUBLE");
         m.FMC_cruise_mach = m.FMC.initNode("cruise/speed-mach",0.840,"DOUBLE");
@@ -1123,6 +1124,7 @@ var AFDS = {
             elsif(me.optimal_alt > 0.23) me.optimal_alt = 40000;
             elsif(me.optimal_alt > 0.16) me.optimal_alt = 41000;
             else me.optimal_alt = 43000;
+            me.FMC_max_cruise_alt.setValue(me.optimal_alt);
             if(idx==2 and test_fpa)idx=9;
             if(idx==9 and !test_fpa)idx=2;
             if((idx==8)or(idx==1)or(idx==2)or(idx==9))

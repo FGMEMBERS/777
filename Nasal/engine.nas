@@ -114,7 +114,8 @@ var Engine = {
                 }
                 me.rpm.setValue(me.n1.getValue());
                 me.n2rpm.setValue(me.n2.getValue());
-                if(getprop("position/gear-agl-ft") > 0) #Thrust reverser is inhibitted in air
+                #Thrust reverser is inhibitted in air
+                if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
                 {
                     me.reverser_cmd.setValue(0);
                 }
