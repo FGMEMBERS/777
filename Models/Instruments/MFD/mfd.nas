@@ -166,6 +166,8 @@ var mfdReload= func() {
     print("mfd reload request\n");
     mfdDel();
     io.load_nasal(getprop("/sim/fg-root") ~ "/Aircraft/777/Models/Instruments/MFD/mfd.nas","b777");
+    io.load_nasal(getprop("/sim/fg-root") ~ "/Aircraft/777/Models/Instruments/MFD/eng.nas","b777");
+    io.load_nasal(getprop("/sim/fg-root") ~ "/Aircraft/777/Models/Instruments/MFD/fctl.nas","b777");
     io.load_nasal(getprop("/sim/fg-root") ~ "/Aircraft/777/Models/Instruments/MFD/fuel.nas","b777");
     mfdCreate();
 }

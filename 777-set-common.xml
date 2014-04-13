@@ -392,7 +392,14 @@ Service Ceiling: 43,100ft
                             <property>sim/yokes-visible</property>
                         </binding>
                     </item>
-                </menu>
+                    <item>
+                        <label>Reload MFD</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>b777.mfdReload()</script>
+                        </binding>
+                    </item>
+               </menu>
             </default>
         </menubar>
 
