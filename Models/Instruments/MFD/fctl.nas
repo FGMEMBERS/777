@@ -62,20 +62,25 @@ var canvas_fctl = {
     {
         var pos = getprop("controls/flight/aileron");
         if (pos > 0) {
-            flaperonPosLeft.setTranslation(0,62*getprop("controls/flight/aileron"));
+            flaperonPosLeft.setTranslation(0,62*getprop("surface-positions/left-aileron-pos-norm"));
+            flaperonPosRight.setTranslation(0,22*getprop("surface-positions/right-aileron-pos-norm"));
         }
         else {
-            flaperonPosRight.setTranslation(0,-62*getprop("controls/flight/aileron"));
+            flaperonPosRight.setTranslation(0,62*getprop("surface-positions/right-aileron-pos-norm"));
+            flaperonPosLeft.setTranslation(0,22*getprop("surface-positions/left-aileron-pos-norm"));
         }
     },
     update: func()
     {
-        rudderPos.setTranslation(130*getprop("controls/flight/rudder"),0);
-        aileronPosLeft.setTranslation(0,62*getprop("controls/flight/aileron"));
-        aileronPosRight.setTranslation(0,-62*getprop("controls/flight/aileron"));
-        elevPosLeft.setTranslation(0,62*getprop("controls/flight/elevator"));
-        elevPosRight.setTranslation(0,62*getprop("controls/flight/elevator"));
-        elevatorTrim.setText(sprintf("%3.2f",getprop("controls/flight/elevator-trim")));
+        rudderPos.setTranslation(130*getprop("surface-positions/rudder-pos-norm"),0);
+        if(getprop("surface-positions/flap-pos-norm") > 0)
+        {
+            aileronPosLeft.setTranslation(0,62*getprop("surface-positions/left-aileron-pos-norm"));
+            aileronPosRight.setTranslation(0,62*getprop("surface-positions/right-aileron-pos-norm"));
+        }
+        elevPosLeft.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
+        elevPosRight.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
+        elevatorTrim.setText(sprintf("%3.2f",getprop("surface-positions/stabilizer-pos-norm")));
 
         me.updateRudderTrim();
         me.updateSpoilers();

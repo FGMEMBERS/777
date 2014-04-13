@@ -9,10 +9,10 @@ The stretched 777-300 is designed as a substitute for early generation 747s (747
 
 Specs:
 
-777-300 - Either 
-2 400kN (90,000lb) Pratt and Whitney PW-4090 turbofans, or 
-2 436kN (98,000lb) PW-4098s, or 
-2 409kN (92,000lb) Rolls-Royce Trent 892s, or 
+777-300 - Either
+2 400kN (90,000lb) Pratt and Whitney PW-4090 turbofans, or
+2 436kN (98,000lb) PW-4098s, or
+2 409kN (92,000lb) Rolls-Royce Trent 892s, or
 2 409kN (93,700lb) General Electric GE90-94B.
 
 Typical Cruise = 0.84 Mach / 35000 ft
@@ -41,7 +41,7 @@ V2 147
 Datum 92.5 in forward of nose - 2.3495 m
 MAC 278.51 in - 7.074154 m
 
-References : 
+References :
 
 http://www.airliners.net/aircraft-data/stats.main?id=107
 http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/0ba575940677fa2d8525670c00685612/$FILE/E00049en.PDF
@@ -50,12 +50,12 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
 -->
 <airplane mass="353600">
 
-<!-- Approach configuration 
- Reference : 
- 
+<!-- Approach configuration
+ Reference :
+
  Airport Reference Code and Approach Speeds for Boeings Airplanes
  http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
- 
+
  772ER FG default + reference difference.
 -->
 <approach speed="145" aoa="3" fuel="0.2">
@@ -125,7 +125,7 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
     <flap0 start="0" end="1" lift="1.4" drag="1.2"/>
   <control-input axis="/controls/flight/elevator" control="FLAP0"/>
   <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
-  <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+    <control-output control="FLAP0" prop="/surface-positions/elevator-trim-tab-pos-norm"/>
 </hstab>
 
   <vstab x="-30.0" y="0.00" z="2.7" chord="8.0" length="12.2" taper="0.3"
@@ -138,7 +138,7 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
           min="1" max="-1"/>
 </vstab>
 
-<!-- General Electric GE90-94B 
+<!-- General Electric GE90-94B
 
 GEN ELEC-GE 90-94B Thrust=93700 lb Mass=16644 lb Cruise SFC 0.545 (lb/hr/lb) ??
 -->

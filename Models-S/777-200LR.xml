@@ -259,7 +259,7 @@ Syd Adams
         <type>rotate</type>
         <object-name>LHelevator</object-name>
         <object-name>LHstab</object-name>
-        <property>controls/flight/elevator-trim</property>
+        <property>surface-positions/stabilizer-pos-norm</property>
         <factor>-15</factor>
         <center>
             <x-m>31.529</x-m>
@@ -294,7 +294,7 @@ Syd Adams
         <type>rotate</type>
         <object-name>RHelevator</object-name>
         <object-name>RHstab</object-name>
-        <property>controls/flight/elevator-trim</property>
+        <property>surface-positions/stabilizer-pos-norm</property>
         <factor>15</factor>
         <center>
             <x-m>32.151</x-m>

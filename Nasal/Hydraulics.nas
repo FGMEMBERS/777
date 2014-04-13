@@ -174,11 +174,13 @@ var HYDR = {
             }
         }
         var elevatorpos = props.globals.initNode("surface-positions/elevator-pos-norm");
+        var stabilizerpos = props.globals.initNode("surface-positions/stabilizer-pos-norm");
         var leftaileronpos = props.globals.initNode("surface-positions/left-aileron-pos-norm");
         var rightaileronpos = props.globals.initNode("surface-positions/right-aileron-pos-norm");
         var rudderpos = props.globals.initNode("surface-positions/rudder-pos-norm");
         var speedbkpos = props.globals.initNode("surface-positions/speedbrake-norm");
         elevatorpos.setAttribute("writable",0);
+        stabilizerpos.setAttribute("writable",0);
         leftaileronpos.setAttribute("writable",0);
         rightaileronpos.setAttribute("writable",0);
         rudderpos.setAttribute("writable",0);
@@ -192,6 +194,7 @@ var HYDR = {
             me.left.setValue(1);
             reverserL.setAttribute("writable",1);
             elevatorpos.setAttribute("writable",1);
+            stabilizerpos.setAttribute("writable",1);
             leftaileronpos.setAttribute("writable",1);
             rightaileronpos.setAttribute("writable",1);
             rudderpos.setAttribute("writable",1);

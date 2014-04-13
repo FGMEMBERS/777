@@ -490,6 +490,9 @@ Service Ceiling: 43,100ft
             <property-rule n="101">
                 <path>Aircraft/777/Systems/777-PFD.xml</path>
             </property-rule>
+            <property-rule n="102">
+                <path>Aircraft/777/Systems/777-pcu.xml</path>
+            </property-rule>
         </systems>
 
         <instrumentation>

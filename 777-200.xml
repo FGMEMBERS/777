@@ -113,7 +113,7 @@ Vref30 = SQR(Landing Weight in Tonnes / 250) X 151
     <flap0 start="0" end="1" lift="1.4" drag="1.2"/>
     <control-input axis="/controls/flight/elevator" control="FLAP0"/>
     <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
-    <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+    <control-output control="FLAP0" prop="/surface-positions/elevator-trim-tab-pos-norm"/>
   </hstab>
 
   <vstab x="-30.0" y="0.00" z="2.7" chord="8.0" length="12.2" taper="0.3"
