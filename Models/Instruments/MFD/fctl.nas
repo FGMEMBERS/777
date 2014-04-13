@@ -1,5 +1,3 @@
-var fctl_canvas = {};
-
 var aileronPosLeft = {};
 var flaperonPosLeft = {};
 var aileronPosRight = {};
@@ -13,6 +11,21 @@ var rudderTrimDirection = {};
 var spoilers = {};
 var spoilers_scale = {};
 
+var RudderTrim = {
+        new : func(eltvalue,eltdirection) {
+            var m = { parents: [RudderTrim]};
+            m.value = eltvalue;
+            m.direction = eltdirection;
+            return m;
+        },
+        update : func(rdTrim) {
+            var rdTrimDir = "L";
+            if (rdTrim > 0) rdTrimDir = "R";
+            rdTrim = math.abs(rdTrim * 15);
+            me.value.setText(sprintf("%2.1f",rdTrim));
+            me.direction.setText(rdTrimDir);
+        }
+};
 var canvas_fctl = {
     new : func(canvas_group)
     {
@@ -31,8 +44,6 @@ var canvas_fctl = {
         elevPosLeft = group.getElementById("elevPosLeft");
         elevPosRight = group.getElementById("elevPosRight");
         elevatorTrim = group.getElementById("elevatorTrim");
-        rudderTrim = group.getElementById("rudderTrim");
-        rudderTrimDirection = group.getElementById("rudderTrimDirection");
         spoilers = group.getElementById("spoilers").updateCenter();
 
         var c1 = spoilers.getCenter();
@@ -40,15 +51,9 @@ var canvas_fctl = {
         spoilers_scale = spoilers.createTransform();
         spoilers.createTransform().setTranslation(c1[0], c1[1]);
 
-    },
-    updateRudderTrim: func()
-    {
-        var rdTrim = getprop("controls/flight/rudder-trim");
-        var rdTrimDir = "L";
-        if (rdTrim > 0) rdTrimDir = "R";
-        rdTrim = math.abs(rdTrim * 15);
-        rudderTrim.setText(sprintf("%2.1f",rdTrim));
-        rudderTrimDirection.setText(rdTrimDir);
+        var rudderTrim = RudderTrim.new(group.getElementById("rudderTrim"),group.getElementById("rudderTrimDirection"));
+        me.registry.add("controls/flight/rudder-trim",rudderTrim);
+
     },
     updateSpoilers: func()
     {
@@ -82,8 +87,8 @@ var canvas_fctl = {
         elevPosRight.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
         elevatorTrim.setText(sprintf("%3.2f",getprop("surface-positions/stabilizer-pos-norm")));
 
-        me.updateRudderTrim();
         me.updateSpoilers();
         me.updateFlaperons();
+        me.updateAll();
     },
 };
