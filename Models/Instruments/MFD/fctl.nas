@@ -26,10 +26,10 @@ var RudderTrim = {
             me.direction.setText(rdTrimDir);
         }
 };
-var canvas_fctl = {
+var FctlPanel = {
     new : func(canvas_group)
     {
-        var m = { parents: [canvas_fctl, MfDPanel.new("fctl",canvas_group,"Aircraft/777/Models/Instruments/MFD/fctl.svg",canvas_fctl.update)] };
+        var m = { parents: [FctlPanel, MfDPanel.new("fctl",canvas_group,"Aircraft/777/Models/Instruments/MFD/fctl.svg",FctlPanel.update)] };
         m.context = m;
         m.initSvgIds(m.group);
         return m;

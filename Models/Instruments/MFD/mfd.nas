@@ -84,7 +84,7 @@ var mfdListener = nil;
             m.screen.addPlacement({"node": placement});
             m.group = m.screen.createGroup();
             m.engDisplay = canvas_eng.new(m.group);
-            m.fctlDisplay = canvas_fctl.new(m.group);
+            m.fctlDisplay = FctlPanel.new(m.group);
             m.fuelDisplay = FuelPanel.new(m.group);
             m.displayPanel(m.defaultPanel);
             return m;
