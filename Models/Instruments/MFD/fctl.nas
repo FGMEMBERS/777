@@ -1,15 +1,9 @@
-var aileronPosLeft = {};
 var flaperonPosLeft = {};
-var aileronPosRight = {};
 var flaperonPosRight = {};
 var rudderPos = {};
 var elevPosLeft = {};
 var elevPosRight = {};
 var elevatorTrim = {};
-var rudderTrim = {};
-var rudderTrimDirection = {};
-var spoilers = {};
-var spoilers_scale = {};
 
 var RudderTrim = {
         new : func(eltvalue,eltdirection) {
@@ -26,6 +20,39 @@ var RudderTrim = {
             me.direction.setText(rdTrimDir);
         }
 };
+
+var Aileron = {
+        new : func(elt) {
+            var m = { parents: [Aileron]};
+            m.elt = elt;
+            return m;
+        },
+        update : func(position) {
+            if(getprop("surface-positions/flap-pos-norm") > 0)
+            {
+                me.elt.setTranslation(0,62*position);
+            }
+        }
+};
+
+var Spoilers = {
+        spoilerTotalHeight : 77.5,
+        new : func(elt) {
+            var m = { parents: [Spoilers]};
+            m.elt = elt;
+            var c1 = m.elt.getCenter();
+            m.elt.createTransform().setTranslation(-c1[0], -c1[1]);
+            m.elt_scale = m.elt.createTransform();
+            m.elt.createTransform().setTranslation(c1[0], c1[1]);
+            return m;
+        },
+        update : func(spbangle) {
+            var spoilerCurrentHeight = spbangle * me.spoilerTotalHeight;
+            me.elt_scale.setScale(1,spbangle);
+            me.elt_scale.setTranslation(0,(me.spoilerTotalHeight-spoilerCurrentHeight)/2);
+        }
+};
+
 var FctlPanel = {
     new : func(canvas_group)
     {
@@ -36,32 +63,24 @@ var FctlPanel = {
     },
     initSvgIds: func(group)
     {
-        aileronPosLeft = group.getElementById("aileronPosLeft");
+        var aileronLeft = Aileron.new(group.getElementById("aileronPosLeft"));
+        me.registry.add("surface-positions/left-aileron-pos-norm",aileronLeft);
+        var aileronRight = Aileron.new(group.getElementById("aileronPosRight"));
+        me.registry.add("surface-positions/right-aileron-pos-norm",aileronRight);
+
         flaperonPosLeft = group.getElementById("flaperonPosLeft");
-        aileronPosRight = group.getElementById("aileronPosRight");
         flaperonPosRight = group.getElementById("flaperonPosRight");
         rudderPos = group.getElementById("rudderPos");
         elevPosLeft = group.getElementById("elevPosLeft");
         elevPosRight = group.getElementById("elevPosRight");
         elevatorTrim = group.getElementById("elevatorTrim");
-        spoilers = group.getElementById("spoilers").updateCenter();
 
-        var c1 = spoilers.getCenter();
-        spoilers.createTransform().setTranslation(-c1[0], -c1[1]);
-        spoilers_scale = spoilers.createTransform();
-        spoilers.createTransform().setTranslation(c1[0], c1[1]);
+        var spoilers = Spoilers.new(group.getElementById("spoilers").updateCenter());
+        me.registry.add("controls/flight/speedbrake-angle",spoilers);
 
         var rudderTrim = RudderTrim.new(group.getElementById("rudderTrim"),group.getElementById("rudderTrimDirection"));
         me.registry.add("controls/flight/rudder-trim",rudderTrim);
 
-    },
-    updateSpoilers: func()
-    {
-        var spoilerTotalHeight = 77.5;
-        var spbangle = getprop("controls/flight/speedbrake-angle") or 0.00;
-        var spoilerCurrentHeight = spbangle*spoilerTotalHeight;
-        spoilers_scale.setScale(1,spbangle);
-        spoilers_scale.setTranslation(0,(spoilerTotalHeight-spoilerCurrentHeight)/2);
     },
     updateFlaperons: func()
     {
@@ -78,16 +97,10 @@ var FctlPanel = {
     update: func()
     {
         rudderPos.setTranslation(130*getprop("surface-positions/rudder-pos-norm"),0);
-        if(getprop("surface-positions/flap-pos-norm") > 0)
-        {
-            aileronPosLeft.setTranslation(0,62*getprop("surface-positions/left-aileron-pos-norm"));
-            aileronPosRight.setTranslation(0,62*getprop("surface-positions/right-aileron-pos-norm"));
-        }
         elevPosLeft.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
         elevPosRight.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
         elevatorTrim.setText(sprintf("%3.2f",getprop("surface-positions/stabilizer-pos-norm")));
 
-        me.updateSpoilers();
         me.updateFlaperons();
         me.updateAll();
     },

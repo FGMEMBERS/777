@@ -67,7 +67,7 @@ var mfdListener = nil;
     };
 
     var MFD = {
-        defaultPanel : "eng",
+        defaultPanel : "fctl",
         panel : "",
         popupWnd : {},
         popupId : -1,
@@ -163,7 +163,7 @@ var mfdDel = func() {
 }
 
 var mfdReload= func() {
-    print("mfd reload request\n");
+    print("[DEBUG] mfd reload requested\n");
     mfdDel();
     var rootDir = getprop("/sim/aircraft-dir");
     io.load_nasal(rootDir ~ "/Models/Instruments/MFD/mfd.nas","b777");
