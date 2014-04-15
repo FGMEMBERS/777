@@ -5,7 +5,7 @@ Syd Adams
 Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
 -->
 
-<PropertyList include="Aircraft/777/Models-S/Instruments/radioL.xml">
+<PropertyList>
 
     <path>pedestal.ac</path>
     <effect>
@@ -220,22 +220,37 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         </center>
     </animation>
 
+    <model>
+        <name>RadioL</name>
+        <path>Aircraft/777/Models-S/Instruments/radioL.xml</path>
+		<offsets>
+            <x-m>0.02886</x-m>
+            <y-m>-0.13209</y-m>
+            <z-m>0.40970</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <name>RadioR</name>
+        <path>Aircraft/777/Models-S/Instruments/radioR.xml</path>
+		<offsets>            
+			<x-m>0.02886</x-m>
+            <y-m>0.14420</y-m>
+            <z-m>0.40970</z-m>
+		</offsets>    
+	</model>
+
+    <model>
+        <name>RadioC</name>
+        <path>Aircraft/777/Models-S/Instruments/radioC.xml</path>
+		<offsets>            
+			<x-m>0.24144</x-m>
+            <y-m>-0.13209</y-m>
+            <z-m>0.40339</z-m>
+		</offsets>    
+    </model>
+
     <!--model>
-        <name>Radio1</name>
-        <path>Aircraft/777/Models-S/Instruments/radio1.xml</path>
-    </model>
-
-    <model>
-        <name>Radio2</name>
-        <path>Aircraft/777/Models-S/Instruments/radio1.xml</path>
-    </model>
-
-    <model>
-        <name>Radio3</name>
-        <path>Aircraft/777/Models-S/Instruments/radio1.xml</path>
-    </model>
-
-    <model>
         <name>TCAS</name>
         <path>Aircraft/777/Models-S/Instruments/tcas-ctl.xml</path>
     </model-->

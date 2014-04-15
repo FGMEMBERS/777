@@ -4,7 +4,7 @@ Syd Adams
 -->
 
 <PropertyList>
-    <path>Aircraft/777/Models-S/pedestal.ac</path>
+    <path>Aircraft/777/Models-S/Instruments/RadioR.ac</path>
 
     <animation>
         <name>comm1</name>
