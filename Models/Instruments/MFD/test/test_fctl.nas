@@ -35,4 +35,30 @@ nsm.describe("a fctl panel",func() {
     });
 });
 
+nsm.describe("an Aileron",func(){
+   nsm.it("should move to the right position",func(){
+       setprop("surface-positions/flap-pos-norm",1);
+       var mockelt = {
+               pos : 0,
+               setTranslation: func(start,end) {
+                   me.pos = end;
+               }
+       };      
+       var ail = b777.Aileron.new(mockelt);
+       ail.update(1);
+       nsm.expect(mockelt.pos).toBe(62);
+   });
+   nsm.it("should not move if no flaps",func(){
+       setprop("surface-positions/flap-pos-norm",0);
+       var mockelt = {
+               pos : 0,
+               setTranslation: func(start,end) {
+                   me.pos = end;
+               }
+       };      
+       var ail = b777.Aileron.new(mockelt);
+       ail.update(1);
+       nsm.expect(mockelt.pos).toBe(0);
+   });
+});
 print("\n-------done-----------\n");

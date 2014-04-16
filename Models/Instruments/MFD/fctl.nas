@@ -22,6 +22,7 @@ var RudderTrim = {
 };
 
 var Aileron = {
+        linearFactor : 62,
         new : func(elt) {
             var m = { parents: [Aileron]};
             m.elt = elt;
@@ -30,7 +31,7 @@ var Aileron = {
         update : func(position) {
             if(getprop("surface-positions/flap-pos-norm") > 0)
             {
-                me.elt.setTranslation(0,62*position);
+                me.elt.setTranslation(0,me.linearFactor*position);
             }
         }
 };
