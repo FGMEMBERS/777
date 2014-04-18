@@ -26,6 +26,12 @@ var mock_canvas_group = {
         },
         
 };
+var mockelt = {
+        pos : 0,
+        setTranslation: func(start,end) {
+            me.pos = end;
+        }
+};
 
 nsm.describe("a fctl panel",func() {
     nsm.it("should be able to be created",func(){
@@ -37,28 +43,32 @@ nsm.describe("a fctl panel",func() {
 
 nsm.describe("an Aileron",func(){
    nsm.it("should move to the right position",func(){
+       mockelt.pos = 0;
        setprop("surface-positions/flap-pos-norm",1);
-       var mockelt = {
-               pos : 0,
-               setTranslation: func(start,end) {
-                   me.pos = end;
-               }
-       };      
        var ail = b777.Aileron.new(mockelt);
        ail.update(1);
        nsm.expect(mockelt.pos).toBe(62);
    });
    nsm.it("should not move if no flaps",func(){
+       mockelt.pos = 0;
        setprop("surface-positions/flap-pos-norm",0);
-       var mockelt = {
-               pos : 0,
-               setTranslation: func(start,end) {
-                   me.pos = end;
-               }
-       };      
        var ail = b777.Aileron.new(mockelt);
        ail.update(1);
        nsm.expect(mockelt.pos).toBe(0);
    });
 });
+nsm.describe("an Flaperon",func(){
+    nsm.it("should move to the right position when up",func(){
+        mockelt.pos = 0;
+        var flprn = b777.Flaperon.new(mockelt);
+        flprn.update(1);
+        nsm.expect(mockelt.pos).toBe(62);
+    });
+    nsm.it("should move to the right position when up",func(){
+        mockelt.pos = 0;
+        var flprn = b777.Flaperon.new(mockelt);
+        flprn.update(-1);
+        nsm.expect(mockelt.pos).toBe(-22);
+    });
+ });
 print("\n-------done-----------\n");

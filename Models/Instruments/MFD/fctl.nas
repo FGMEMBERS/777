@@ -35,6 +35,22 @@ var Aileron = {
             }
         }
 };
+var Flaperon = {
+        downLinearFactor : 62,
+        upLinearFactor : 22,
+        new : func(elt) {
+            var m = { parents: [Flaperon]};
+            m.elt = elt;
+            return m;
+        },
+        update : func(position) {
+            if (position < 0) {
+                me.elt.setTranslation(0,me.upLinearFactor*position);
+            } else {
+                me.elt.setTranslation(0,me.downLinearFactor*position);
+            }
+        }
+};
 
 var Spoilers = {
         spoilerTotalHeight : 77.5,
@@ -69,8 +85,11 @@ var FctlPanel = {
         var aileronRight = Aileron.new(group.getElementById("aileronPosRight"));
         me.registry.add("surface-positions/right-aileron-pos-norm",aileronRight);
 
-        flaperonPosLeft = group.getElementById("flaperonPosLeft");
-        flaperonPosRight = group.getElementById("flaperonPosRight");
+        var leftFlaperon = Flaperon.new(group.getElementById("flaperonPosLeft"));
+        me.registry.add("surface-positions/left-aileron-pos-norm",leftFlaperon);
+        var leftFlaperon = Flaperon.new(group.getElementById("flaperonPosRight"));
+        me.registry.add("surface-positions/right-aileron-pos-norm",leftFlaperon);
+
         rudderPos = group.getElementById("rudderPos");
         elevPosLeft = group.getElementById("elevPosLeft");
         elevPosRight = group.getElementById("elevPosRight");
@@ -83,18 +102,6 @@ var FctlPanel = {
         me.registry.add("controls/flight/rudder-trim",rudderTrim);
 
     },
-    updateFlaperons: func()
-    {
-        var pos = getprop("controls/flight/aileron");
-        if (pos > 0) {
-            flaperonPosLeft.setTranslation(0,62*getprop("surface-positions/left-aileron-pos-norm"));
-            flaperonPosRight.setTranslation(0,22*getprop("surface-positions/right-aileron-pos-norm"));
-        }
-        else {
-            flaperonPosRight.setTranslation(0,62*getprop("surface-positions/right-aileron-pos-norm"));
-            flaperonPosLeft.setTranslation(0,22*getprop("surface-positions/left-aileron-pos-norm"));
-        }
-    },
     update: func()
     {
         rudderPos.setTranslation(130*getprop("surface-positions/rudder-pos-norm"),0);
@@ -102,7 +109,6 @@ var FctlPanel = {
         elevPosRight.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
         elevatorTrim.setText(sprintf("%3.2f",getprop("surface-positions/stabilizer-pos-norm")));
 
-        me.updateFlaperons();
         me.updateAll();
     },
 };
