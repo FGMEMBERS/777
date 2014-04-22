@@ -873,31 +873,69 @@ Service Ceiling: 43,100ft
             <unit n="0">
                 <source-index type="int">0</source-index>
                 <source type="string">comm1</source>
+                <vhf-l type="int">1</vhf-l>
+                <vhf-r type="int">0</vhf-r>
+                <vhf-c type="int">0</vhf-c>
+                <hf-l type="int">0</hf-l>
+                <hf-r type="int">0</hf-r>
+                <selected-mhz  type="double">119.10</selected-mhz>
+                <standby-mhz  type="double">125.00</standby-mhz>
             </unit>
             <unit n="1">
                 <source-index type="int">2</source-index>
                 <source type="string">nav1</source>
+                <vhf-l type="int">0</vhf-l>
+                <vhf-r type="int">1</vhf-r>
+                <vhf-c type="int">0</vhf-c>
+                <hf-l type="int">0</hf-l>
+                <hf-r type="int">0</hf-r>
+                <selected-mhz  type="double">119.30</selected-mhz>
+                <standby-mhz type="double">115.70</standby-mhz>
             </unit>
             <unit n="2">
                 <source-index type="int">5</source-index>
                 <source type="string">adf</source>
+                <vhf-l type="int">0</vhf-l>
+                <vhf-r type="int">0</vhf-r>
+                <vhf-c type="int">1</vhf-c>
+                <hf-l type="int">0</hf-l>
+                <hf-r type="int">0</hf-r>
+                <selected-mhz  type="double">119.50</selected-mhz>
+                <standby-mhz type="double">135.70</standby-mhz>
             </unit>
         </rmu>
+        <comm>
+            <frequencies>
+                <selected-mhz  type="double">119.10</selected-mhz>
+                <standby-mhz  type="double">125.00</standby-mhz>
+            </frequencies>
+            <volume type="double">0</volume>
+        </comm>
+        <comm n="1">
+            <frequencies>
+                <selected-mhz  type="double">119.30</selected-mhz>
+                <standby-mhz type="double">115.70</standby-mhz>
+            </frequencies>
+            <volume type="double">0</volume>
+        </comm>
+        <comm n="2">
+            <frequencies>
+                <selected-mhz  type="double">119.50</selected-mhz>
+                <standby-mhz type="double">135.70</standby-mhz>
+            </frequencies>
+            <volume type="double">0</volume>
+        </comm>
         <nav>
             <frequencies>
-                <standby-mhz n="1" type="double">109.50</standby-mhz>
-                <standby-mhz n="2" type="double">109.55</standby-mhz>
-                <standby-mhz n="3" type="double">110.10</standby-mhz>
-                <standby-mhz n="4" type="double">111.70</standby-mhz>
+                <selected-mhz  type="double">109.50</selected-mhz>
+                <standby-mhz type="double">109.55</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </nav>
         <nav n="1">
             <frequencies>
-                <standby-mhz n="1" type="double">109.50</standby-mhz>
-                <standby-mhz n="2" type="double">109.55</standby-mhz>
-                <standby-mhz n="3" type="double">110.10</standby-mhz>
-                <standby-mhz n="4" type="double">111.70</standby-mhz>
+                <selected-mhz  type="double">110.10</selected-mhz>
+                <standby-mhz type="double">111.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </nav>

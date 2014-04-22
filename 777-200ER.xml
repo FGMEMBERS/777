@@ -48,7 +48,7 @@ WEIGHT/lbs  Vref
 
 -->
 
-<airplane mass="315000">
+<airplane mass="315000" version="YASIM_VERSION_32">
 
   <!-- Approach configuration -->
   <approach speed="132" alt="0.0" aoa="5.0" fuel="0.2" glide-angle="0.0">

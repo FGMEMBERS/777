@@ -11,7 +11,6 @@ aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
 var EFIS = {
     new : func(prop1){
         var m = { parents : [EFIS]};
-        m.radio_list=["instrumentation/comm/frequencies","instrumentation/comm[1]/frequencies","instrumentation/nav/frequencies","instrumentation/nav[1]/frequencies"];
         m.mfd_mode_list=["APP","VOR","MAP","PLAN"];
 
         m.efis = props.globals.initNode(prop1);
@@ -49,13 +48,6 @@ var EFIS = {
         m.lh_vor_adf = m.efis.initNode("inputs/lh-vor-adf",0,"INT");
         m.nd_plan_wpt = m.efis.initNode("inputs/plan-wpt-index", 0, "INT");
 
-        m.radio = m.efis.getNode("radio-mode",1);
-        m.radio.setIntValue(0);
-        m.radio_selected = m.efis.getNode("radio-selected",1);
-        m.radio_selected.setDoubleValue(getprop("instrumentation/comm/frequencies/selected-mhz"));
-        m.radio_standby = m.efis.getNode("radio-standby",1);
-        m.radio_standby.setDoubleValue(getprop("instrumentation/comm/frequencies/standby-mhz"));
-
         m.wptIndexL = setlistener("instrumentation/efis/inputs/plan-wpt-index", func m.update_nd_plan_center());
 
         m.kpaL = setlistener("instrumentation/altimeter/setting-inhg", func m.calc_kpa());
@@ -87,51 +79,6 @@ var EFIS = {
             tmp = -1 * tmp;
         }
         me.temp.setValue(tmp);
-    },
-#### swap radio freq ####
-    swap_freq : func(){
-        var tmpsel = me.radio_selected.getValue();
-        var tmpstb = me.radio_standby.getValue();
-        me.radio_selected.setValue(tmpstb);
-        me.radio_standby.setValue(tmpsel);
-        me.update_frequencies();
-    },
-#### copy efis freq to radios ####
-    update_frequencies : func(){
-        var fq = me.radio.getValue();
-        setprop(me.radio_list[fq]~"/selected-mhz",me.radio_selected.getValue());
-        setprop(me.radio_list[fq]~"/standby-mhz",me.radio_standby.getValue());
-    },
-#### modify efis radio standby freq ####
-    set_freq : func(fdr){
-        var rd = me.radio.getValue();
-        var frq = me.radio_standby.getValue();
-        var frq_step = 0;
-        if(rd >=2){
-            if(fdr ==1)frq_step = 0.05;
-            if(fdr ==-1)frq_step = -0.05;
-            if(fdr ==10)frq_step = 1.0;
-            if(fdr ==-10)frq_step = -1.0;
-            frq += frq_step;
-            if(frq > 118.000)frq -= 10.000;
-            if(frq<108.000) frq += 10.000;
-        }else{
-            if(fdr ==1)frq_step = 0.025;
-            if(fdr ==-1)frq_step = -0.025;
-            if(fdr ==10)frq_step = 1.0;
-            if(fdr ==-10)frq_step = -1.0;
-            frq += frq_step;
-            if(frq > 136.000)frq -= 18.000;
-            if(frq<118.000) frq += 18.000;
-        }
-        me.radio_standby.setValue(frq);
-        me.update_frequencies();
-    },
-
-    set_radio_mode : func(rm){
-        me.radio.setIntValue(rm);
-        me.radio_selected.setDoubleValue(getprop(me.radio_list[rm]~"/selected-mhz"));
-        me.radio_standby.setDoubleValue(getprop(me.radio_list[rm]~"/standby-mhz"));
     },
 ######### Controller buttons ##########
     ctl_func : func(md,val){
@@ -1145,6 +1092,22 @@ var update_systems = func {
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
     switch_ind();
+    setprop("instrumentation/rmu/unit/offside_tuned",
+        (((getprop("instrumentation/rmu/unit/vhf-l") == 0) and (getprop("instrumentation/rmu/unit/hf-l") == 0))
+            or getprop("instrumentation/rmu/unit[1]/vhf-l")
+            or getprop("instrumentation/rmu/unit[1]/hf-l")
+            or getprop("instrumentation/rmu/unit[2]/vhf-l")
+            or getprop("instrumentation/rmu/unit[2]/hf-l")));
+    setprop("instrumentation/rmu/unit[1]/offside_tuned",
+        (((getprop("instrumentation/rmu/unit[1]/vhf-r") == 0) and (getprop("instrumentation/rmu/unit[1]/hf-r") == 0))
+            or getprop("instrumentation/rmu/unit/vhf-r")
+            or getprop("instrumentation/rmu/unit/hf-r")
+            or getprop("instrumentation/rmu/unit[2]/vhf-r")
+            or getprop("instrumentation/rmu/unit[2]/hf-r")));
+    setprop("instrumentation/rmu/unit[2]/offside_tuned",
+        ((getprop("instrumentation/rmu/unit[2]/vhf-c") == 0)
+            or getprop("instrumentation/rmu/unit/vhf-c")
+            or getprop("instrumentation/rmu/unit[1]/vhf-c")));
 
     settimer(update_systems,0);
 }

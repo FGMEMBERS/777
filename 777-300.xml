@@ -48,7 +48,7 @@ http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/0ba57594067
 http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
 
 -->
-<airplane mass="353600">
+<airplane mass="353600" version="YASIM_VERSION_32">
 
 <!-- Approach configuration
  Reference :
