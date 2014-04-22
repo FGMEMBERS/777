@@ -15,7 +15,6 @@ Syd Adams
         <object-name>freq.004</object-name>
         <object-name>freq.005</object-name>
         <object-name>freq.006</object-name>
-        <object-name>freq.007</object-name>
         <object-name>stby</object-name>
         <object-name>stby.001</object-name>
         <object-name>stby.002</object-name>
@@ -36,7 +35,6 @@ Syd Adams
         <object-name>freq.004</object-name>
         <object-name>freq.005</object-name>
         <object-name>freq.006</object-name>
-        <object-name>freq.007</object-name>
         <object-name>stby</object-name>
         <object-name>stby.001</object-name>
         <object-name>stby.002</object-name>
@@ -66,18 +64,6 @@ Syd Adams
     </animation>
 
 <!-- Active freq nav mode -->
-
-    <animation>
-        <type>textranslate</type>
-        <object-name>freq.007</object-name>
-        <property>instrumentation/efis/radio-mode</property>
-        <factor>0.1520</factor>
-        <axis>
-            <x>1</x>
-            <y>0</y>
-            <z>0</z>
-        </axis>
-    </animation>
 
     <animation>
         <type>textranslate</type>
