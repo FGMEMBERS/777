@@ -69,18 +69,6 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>freq.007</object-name>
-        <property>instrumentation/efis/radio-mode</property>
-        <factor>0.1520</factor>
-        <axis>
-            <x>1</x>
-            <y>0</y>
-            <z>0</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>textranslate</type>
         <object-name>freq.001</object-name>
         <property>instrumentation/rmu/unit/selected-mhz</property>
         <factor>0.001</factor>
