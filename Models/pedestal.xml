@@ -143,6 +143,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             </material>
         </overlay>
     </model>
+	
     <animation>
         <type>scale</type>
         <object-name>CDU1</object-name>
@@ -155,6 +156,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <z-m>0.5334</z-m>
         </center>
     </animation>
+	
     <model>
         <name>CDU2</name>
         <path>Aircraft/777/Models/Instruments/CDU/boeing.xml</path>
@@ -175,6 +177,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             </material>
         </overlay>
     </model>
+	
     <animation>
         <type>scale</type>
         <object-name>CDU2</object-name>
@@ -187,6 +190,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <z-m>0.5334</z-m>
         </center>
     </animation>
+	
     <model>
         <name>CDU3</name>
         <path>Aircraft/777/Models/Instruments/CDU/boeing.xml</path>
@@ -207,6 +211,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             </material>
         </overlay>
     </model>
+	
     <animation>
         <type>scale</type>
         <object-name>CDU3</object-name>
@@ -250,10 +255,16 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         </offsets>
     </model>
 
-    <!--model>
-        <name>TCAS</name>
+    <model>
+        <name>tcas-ctl</name>
         <path>Aircraft/777/Models/Instruments/tcas-ctl.xml</path>
-    </model-->
+        <pitch-deg>1.70</pitch-deg>
+        <offsets>
+            <x-m>0.17221</x-m>
+            <y-m>0.13795</y-m>
+            <z-m>0.40720</z-m>
+        </offsets>
+    </model>
 
 <!--  controls -->
 
