@@ -114,7 +114,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
 
     <model>
         <name>MFD</name>
-        <path>Aircraft/777/Models/Instruments/MFD/MFD.xml</path>
+        <path>Aircraft/777/Models/Instruments/LEICAS/leicas.xml</path>
         <offsets>
             <x-m>-0.429</x-m>
             <y-m>0.0</y-m>

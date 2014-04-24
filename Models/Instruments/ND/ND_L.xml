@@ -1,43 +1,48 @@
 <!--
-777 Navigation display
+Syd Adams
+777-200 Navigation display
 -->
 
 <PropertyList>
 
-<path>ND_L.ac</path>
-    <animation>
-        <type>select</type>
-        <object-name>Power.off</object-name>
-        <condition>
-            <less-than>
-                <property>systems/electrical/outputs/efis</property>
-                <value>15</value>
-            </less-than>
-        </condition>
-    </animation>
+ <path>ND_L.ac</path>
 
-    <animation>
-        <type>select</type>
-        <object-name>ND.screenL</object-name>
-        <condition>
-            <greater-than>
-                <property>systems/electrical/outputs/efis</property>
-                <value>15</value>
-            </greater-than>
-        </condition>
-    </animation>
+    <panel>
+        <path>Aircraft/777/Models/Instruments/ND/mfd-panel.xml</path>
+        <bottom-left>
+            <x-m>0.003</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>0.003</x-m>
+            <y-m>0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>0.003</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>0.094</z-m>
+        </top-left>
+    </panel>
 
-<animation>
-	<type>pick</type>
-	<object-name>ND.screenL</object-name>
-	<action>
-		<button>0</button>
-		<repeatable>false</repeatable>
-		<binding>
-			<command>nasal</command>
-			<script>b777.showNd();</script>
-		</binding>
-	</action>
-</animation>
+    <panel>
+        <path>Aircraft/777/Models/Instruments/ND/mfdtext-panel.xml</path>
+        <bottom-left>
+            <x-m>0.005</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>0.005</x-m>
+            <y-m>0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>0.005</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>0.094</z-m>
+        </top-left>
+    </panel>
 
 </PropertyList>

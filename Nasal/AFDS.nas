@@ -740,7 +740,7 @@ var AFDS = {
         }
         var current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
         var VS = getprop("velocities/vertical-speed-fps");
-        var TAS = getprop("instrumentation/airspeed-indicator/true-speed-kt") * KT2FPS; # keeping TAS as fps
+        var TAS = getprop("velocities/uBody-fps");
         me.indicated_vs_fpm.setValue(int((abs(VS) * 60 + 50) / 100) * 100);
         if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 30)
         {
