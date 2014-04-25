@@ -1,13 +1,32 @@
 <!--
-777-200 TCAS-ATC control 
+777-200 TCAS-ATC control
 -->
 
 <PropertyList>
  <path>tcas-ctl.ac</path>
 
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>TCAS_digit0</object-name>
+        <object-name>TCAS_digit1</object-name>
+        <object-name>TCAS_digit2</object-name>
+        <object-name>TCAS_digit3</object-name>
+    </effect>
+
+    <animation>
+        <type>select</type>
+        <object-name>TCAS_digit0</object-name>
+        <object-name>TCAS_digit1</object-name>
+        <object-name>TCAS_digit2</object-name>
+        <object-name>TCAS_digit3</object-name>
+        <condition>
+            <property>systems/electrical/outputs/avionics</property>
+        </condition>
+    </animation>
+
     <animation>
         <type>textranslate</type>
-        <object-name>digit0</object-name>
+        <object-name>TCAS_digit0</object-name>
         <property>instrumentation/transponder/id-code</property>
         <factor>0.0001</factor>
         <step>1000</step>
@@ -20,7 +39,7 @@
 
     <animation>
         <type>textranslate</type>
-        <object-name>digit1</object-name>
+        <object-name>TCAS_digit1</object-name>
         <property>instrumentation/transponder/id-code</property>
         <factor>0.001</factor>
         <step>100</step>
@@ -30,10 +49,10 @@
             <z>0</z>
         </axis>
     </animation>
-    
+
     <animation>
         <type>textranslate</type>
-        <object-name>digit2</object-name>
+        <object-name>TCAS_digit2</object-name>
         <property>instrumentation/transponder/id-code</property>
         <factor>0.01</factor>
         <step>10</step>
@@ -43,10 +62,10 @@
             <z>0</z>
         </axis>
     </animation>
-    
+
     <animation>
         <type>textranslate</type>
-        <object-name>digit3</object-name>
+        <object-name>TCAS_digit3</object-name>
         <property>instrumentation/transponder/id-code</property>
         <factor>0.1</factor>
         <step>1</step>
@@ -60,144 +79,130 @@
     <animation>
         <type>rotate</type>
         <object-name>TCAS.knob</object-name>
-        <object-name>IDT.btn</object-name>
+        <object-name>TCAS.btn</object-name>
         <property>instrumentation/transponder/mode-switch</property>
-        <factor>30</factor>
+        <factor>-30</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>0.036</y-m>
-            <z-m>-0.013</z-m>
+            <x-m>0.01435</x-m>
+            <y-m>0.04082</y-m>
+            <z-m>0.01483</z-m>
         </center>
         <axis>
-            <x>-1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>digit0</object-name>
-        <object-name>digit1</object-name>
-        <object-name>digit2</object-name>
-        <object-name>digit3</object-name>
-        <condition>
-            <greater-than>
-                <property>systems/electrical/outputs/transponder</property>
-                <value>15</value>
-            </greater-than>
-        </condition>
     </animation>
 
 <!--right display controls/co-pilot-->
 
-    <!--animation>
+    <animation>
         <type>rotate</type>
         <object-name>TCAS-right.abv_blw</object-name>
         <property></property>
-        <factor>-90</factor>
+        <factor>-60</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>0.028</y-m>
-            <z-m>0.013</z-m>
+            <x-m>-0.01119</x-m>
+            <y-m>0.02610</y-m>
+            <z-m>0.00374</z-m>
         </center>
         <axis>
-            <x>-1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
-    </animation-->
+    </animation>
 
     <animation>
         <type>rotate</type>
         <object-name>TCAS-right.abs_rel</object-name>
         <property>instrumentation/radar/display-controls/abs-altitude</property>
         <factor>-60</factor>
-        <offset-deg>60</offset-deg>
+        <offset-deg>0</offset-deg>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>0.045</y-m>
-            <z-m>0.013</z-m>
+            <x-m>-0.01115</x-m>
+            <y-m>0.04544</y-m>
+            <z-m>0.00374</z-m>
         </center>
         <axis>
-            <x>-1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
     </animation>
 
 
 <!--left display controls/captain-->
 
-    <!--animation>
+    <animation>
         <type>rotate</type>
         <object-name>TCAS-left.abv_blw</object-name>
         <property></property>
         <factor>-90</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>-0.047</y-m>
-            <z-m>0.013</z-m>
+            <x-m>-0-01119</x-m>
+            <y-m>-0.04495</y-m>
+            <z-m>0.00374</z-m>
         </center>
         <axis>
-            <x>-1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
-    </animation-->
+    </animation>
 
     <animation>
         <type>rotate</type>
         <object-name>TCAS-left.abs_rel</object-name>
         <property>instrumentation/radar/display-controls/abs-altitude</property>
         <factor>-60</factor>
-        <offset-deg>60</offset-deg>
+        <offset-deg>0</offset-deg>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>-0.029</y-m>
-            <z-m>0.013</z-m>
+            <x-m>-0.01115</x-m>
+            <y-m>-0.02561</y-m>
+            <z-m>0.00374</z-m>
         </center>
         <axis>
-            <x>-1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
     </animation>
 
 <!--ATC/transponder configuration-->
-<!--animation>
+<animation>
         <type>rotate</type>
         <object-name>ATC.norm_altn</object-name>
         <property></property>
         <factor>60</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>-0.029</y-m>
-            <z-m>-0.006</z-m>
+            <x-m>0.00416</x-m>
+            <y-m>-0.03528</y-m>
+            <z-m>0.00374</z-m>
         </center>
         <axis>
-            <x>-1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
-    </animation-->
+    </animation>
 
-<!--animation>
+<animation>
         <type>rotate</type>
         <object-name>ATC.alt_src</object-name>
         <property></property>
         <factor>100</factor>
         <center>
-            <x-m>0.0</x-m>
-            <y-m>-0.047</y-m>
-            <z-m>-0.017</z-m>
+            <x-m>0.01787</x-m>
+            <y-m>-0.04512</y-m>
+            <z-m>0.00374</z-m>
         </center>
         <axis>
-            <x>-1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
-    </animation-->
+    </animation>
 
 
 

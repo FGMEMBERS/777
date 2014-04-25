@@ -71,7 +71,7 @@
     <hrule/>
 
 
-<!--         COM 1          -->
+<!--         VHF L          -->
 
 
     <group>
@@ -80,7 +80,7 @@
         <text>
             <row>0</row>
             <col>0</col>
-            <label>Com1</label>
+            <label>VHF L</label>
         </text>
 
         <text>
@@ -102,7 +102,7 @@
             <legend>&lt;-&gt;</legend>
             <binding>
                 <command>dialog-apply</command>
-                <object-name>comm1</object-name>
+                <object-name>comml</object-name>
             </binding>
             <binding>
                 <command>property-swap</command>
@@ -112,16 +112,60 @@
             <binding>
                 <command>dialog-update</command>
             </binding>
-             <binding>
-                <command>nasal</command>
-                <script>b777.Efis.set_radio_mode(0)</script>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/selected-mhz</property>
+                <property>instrumentation/comm/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/selected-mhz</property>
+                <property>instrumentation/comm/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/selected-mhz</property>
+                <property>instrumentation/comm/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
             </binding>
         </button>
 
         <input>
             <row>0</row>
             <col>3</col>
-            <name>comm1</name>
+            <name>comml</name>
             <live>true</live>
             <property>instrumentation/comm/frequencies/standby-mhz</property>
             <binding>
@@ -143,12 +187,12 @@
             </binding>
         </dial>
 
-<!--         COM 2          -->
+<!--         VHF R          -->
 
         <text>
             <row>1</row>
             <col>0</col>
-            <label>Com2</label>
+            <label>VHF R</label>
         </text>
 
         <text>
@@ -169,7 +213,7 @@
             <legend>&lt;-&gt;</legend>
             <binding>
                 <command>dialog-apply</command>
-                <object-name>comm2</object-name>
+                <object-name>commr</object-name>
             </binding>
             <binding>
                 <command>property-swap</command>
@@ -179,16 +223,60 @@
             <binding>
                 <command>dialog-update</command>
             </binding>
-             <binding>
-                <command>nasal</command>
-                <script>b777.Efis.set_radio_mode(1)</script>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/selected-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/selected-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/selected-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
             </binding>
         </button>
 
         <input>
             <row>1</row>
             <col>3</col>
-            <name>comm2</name>
+            <name>commr</name>
             <live>true</live>
             <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
             <binding>
@@ -210,16 +298,127 @@
             </binding>
         </dial>
 
-<!--         NAV 1          -->
+<!--         VHF C          -->
 
         <text>
             <row>2</row>
+            <col>0</col>
+            <label>VHF C</label>
+        </text>
+
+        <text>
+            <row>2</row>
+            <col>1</col>
+            <label>999.999</label>
+            <halign>center</halign>
+            <format>%3.3f</format>
+            <property>instrumentation/comm[2]/frequencies/selected-mhz</property>
+            <live>1</live>
+        </text>
+
+        <button>
+            <row>2</row>
+            <col>2</col>
+            <pref-width>40</pref-width>
+            <pref-height>22</pref-height>
+            <legend>&lt;-&gt;</legend>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>commc</object-name>
+            </binding>
+            <binding>
+                <command>property-swap</command>
+                <property>instrumentation/comm[2]/frequencies/selected-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/selected-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/standby-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/selected-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/selected-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/selected-mhz</property>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/standby-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
+            </binding>
+        </button>
+
+        <input>
+            <row>2</row>
+            <col>3</col>
+            <name>commc</name>
+            <live>true</live>
+            <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+        </input>
+
+        <dial>
+            <row>2</row>
+            <col>4</col>
+            <pref-width>30</pref-width>
+            <pref-height>30</pref-height>
+            <property>instrumentation/comm[2]/volume</property>
+            <min>0.0</min>
+            <max>1.0</max>
+            <wrap>false</wrap>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+        </dial>
+
+<!--         NAV 1          -->
+
+        <text>
+            <row>3</row>
             <col>0</col>
             <label>Nav1</label>
         </text>
 
         <text>
-            <row>2</row>
+            <row>3</row>
             <col>1</col>
             <label>999.999</label>
             <halign>center</halign>
@@ -229,7 +428,7 @@
         </text>
 
         <button>
-            <row>2</row>
+            <row>3</row>
             <col>2</col>
             <pref-width>40</pref-width>
             <pref-height>22</pref-height>
@@ -253,7 +452,7 @@
         </button>
 
         <input>
-            <row>2</row>
+            <row>3</row>
             <col>3</col>
             <name>nav1</name>
             <live>true</live>
@@ -264,7 +463,7 @@
         </input>
 
         <dial>
-            <row>2</row>
+            <row>3</row>
             <col>4</col>
             <pref-width>30</pref-width>
             <pref-height>30</pref-height>
@@ -278,13 +477,13 @@
         </dial>
 
         <checkbox>
-            <row>2</row>
+            <row>3</row>
             <col>5</col>
             <property>instrumentation/nav/ident</property>
         </checkbox>
 
         <input>
-            <row>2</row>
+            <row>3</row>
             <col>6</col>
             <property>instrumentation/nav[0]/radials/selected-deg</property>
             <live>true</live>
@@ -296,13 +495,13 @@
 <!--         NAV 2          -->
 
         <text>
-            <row>3</row>
+            <row>4</row>
             <col>0</col>
             <label>Nav2</label>
         </text>
 
         <text>
-            <row>3</row>
+            <row>4</row>
             <col>1</col>
             <label>999.999</label>
             <halign>center</halign>
@@ -312,7 +511,7 @@
         </text>
 
         <button>
-            <row>3</row>
+            <row>4</row>
             <col>2</col>
             <pref-width>40</pref-width>
             <pref-height>22</pref-height>
@@ -336,7 +535,7 @@
         </button>
 
         <input>
-            <row>3</row>
+            <row>4</row>
             <col>3</col>
             <name>nav2</name>
             <live>true</live>
@@ -347,7 +546,7 @@
         </input>
 
         <dial>
-            <row>3</row>
+            <row>4</row>
             <col>4</col>
             <pref-width>30</pref-width>
             <pref-height>30</pref-height>
@@ -361,13 +560,13 @@
         </dial>
 
         <checkbox>
-            <row>3</row>
+            <row>4</row>
             <col>5</col>
             <property>instrumentation/nav[1]/ident</property>
         </checkbox>
 
         <input>
-            <row>3</row>
+            <row>4</row>
             <col>6</col>
             <property>instrumentation/nav[1]/radials/selected-deg</property>
             <live>true</live>
@@ -379,13 +578,13 @@
 <!--         ADF 1          -->
 
         <text>
-            <row>4</row>
+            <row>5</row>
             <col>0</col>
             <label>Adf1</label>
         </text>
 
         <text>
-            <row>4</row>
+            <row>5</row>
             <col>1</col>
             <label>999</label>
             <halign>center</halign>
@@ -394,7 +593,7 @@
         </text>
 
         <button>
-            <row>4</row>
+            <row>5</row>
             <col>2</col>
             <pref-width>40</pref-width>
             <pref-height>22</pref-height>
@@ -414,7 +613,7 @@
         </button>
 
         <input>
-            <row>4</row>
+            <row>5</row>
             <col>3</col>
             <name>adf1</name>
             <live>true</live>
@@ -425,7 +624,7 @@
         </input>
 
         <dial>
-            <row>4</row>
+            <row>5</row>
             <col>4</col>
             <pref-width>30</pref-width>
             <pref-height>30</pref-height>
@@ -439,7 +638,7 @@
         </dial>
 
         <checkbox>
-            <row>4</row>
+            <row>5</row>
             <col>5</col>
             <property>instrumentation/adf/ident-audible</property>
             <binding>
@@ -450,13 +649,13 @@
 <!--         ADF 2          -->
 
         <text>
-            <row>5</row>
+            <row>6</row>
             <col>0</col>
             <label>Adf2</label>
         </text>
 
         <text>
-            <row>5</row>
+            <row>6</row>
             <col>1</col>
             <label>999</label>
             <halign>center</halign>
@@ -465,7 +664,7 @@
         </text>
 
         <button>
-            <row>5</row>
+            <row>6</row>
             <col>2</col>
             <pref-width>40</pref-width>
             <pref-height>22</pref-height>
@@ -485,7 +684,7 @@
         </button>
 
         <input>
-            <row>5</row>
+            <row>6</row>
             <col>3</col>
             <name>adf2</name>
             <live>true</live>
@@ -496,7 +695,7 @@
         </input>
 
         <dial>
-            <row>5</row>
+            <row>6</row>
             <col>4</col>
             <pref-width>30</pref-width>
             <pref-height>30</pref-height>
@@ -510,7 +709,7 @@
         </dial>
 
         <checkbox>
-            <row>5</row>
+            <row>6</row>
             <col>5</col>
             <property>instrumentation/adf[1]/ident-audible</property>
             <binding>
@@ -520,13 +719,13 @@
 
 <!--         Transponder (with SquawkGear/VATSIM)     -->
         <text>
-            <row>6</row>
+            <row>7</row>
             <col>0</col>
             <label>Transponder</label>
         </text>
 
         <text>
-            <row>6</row>
+            <row>7</row>
             <col>1</col>
             <label>9999</label>
             <halign>center</halign>
@@ -536,7 +735,7 @@
         </text>
 
         <button>
-            <row>6</row>
+            <row>7</row>
             <col>2</col>
             <pref-width>40</pref-width>
             <pref-height>22</pref-height>
@@ -556,7 +755,7 @@
         </button>
 
         <input>
-            <row>6</row>
+            <row>7</row>
             <col>3</col>
             <name>transponder</name>
             <live>true</live>
@@ -569,14 +768,14 @@
     </group>
 
     <hrule/>
-  
+
   <button>
     <legend>ATC Services in range</legend>
     <binding>
       <command>ATC-freq-search</command>
     </binding>
   </button>
-  
+
     <group>
     </group>
 

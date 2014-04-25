@@ -76,9 +76,9 @@
     </entry>
    </interpolation>
   <center>
-   <x-m>0.0</x-m>
+   <x-m>0.01282</x-m>
    <y-m>0</y-m>
-   <z-m>0.001</z-m>
+   <z-m>0.000662</z-m>
   </center>
    <axis>
      <x>-1</x>

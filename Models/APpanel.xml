@@ -10,7 +10,9 @@ Autopilot Control Panel
 
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
-        <object-name>APletters</object-name>
+        <object-name>AP_Lettering</object-name>
+        <object-name>AP_Lettering.001</object-name>
+        <object-name>AP_Lettering.002</object-name>
         <object-name>ias.ind</object-name>
         <object-name>mach.ind</object-name>
         <object-name>MACH.led1</object-name>
@@ -51,9 +53,9 @@ Autopilot Control Panel
         <property>instrumentation/afds/inputs/bank-limit-switch</property>
         <factor>-30.0</factor>
         <center>
-            <x-m>0.01733</x-m>
-            <y-m>-0.01295</y-m>
-            <z-m>-0.007311</z-m>
+            <x-m>0.00881</x-m>
+            <y-m>-0.01282</y-m>
+            <z-m>-0.00651</z-m>
         </center>
         <axis>
             <x>1</x>
@@ -63,37 +65,41 @@ Autopilot Control Panel
     </animation>
 
     <animation>
+        <name>IAS-knob</name>
         <type>rotate</type>
+        <condition>
+            <not>
+                <property>instrumentation/afds/inputs/ias-mach-selected</property>
+            </not>
+        </condition>
         <object-name>SPEED.knob</object-name>
-        <property>instrumentation/afds/inputs/speed-src</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>1</ind><dep>122</dep></entry>
-            <entry><ind>2</ind><dep>188</dep></entry>
-            <entry><ind>3</ind><dep>239</dep></entry>
-        </interpolation>
+        <property>autopilot/settings/target-speed-kt</property>
+        <factor>100</factor>
         <center>
-            <x-m>0.01043</x-m>
-            <y-m>-0.1370</y-m>
+            <x-m>0.02545</x-m>
+            <y-m>-0.13906</y-m>
             <z-m>-0.01980</z-m>
         </center>
         <axis>
-            <x>1</x>
+            <x>-1</x>
             <y>0</y>
             <z>0</z>
         </axis>
     </animation>
 
     <animation>
+        <name>MACH-knob</name>
         <type>rotate</type>
-        <object-name>ALTmode.knob</object-name>
-        <object-name>ALTmode.knob.001</object-name>
-        <property>instrumentation/afds/inputs/alt-knob</property>
-        <factor>100</factor>
+        <condition>
+            <property>instrumentation/afds/inputs/ias-mach-selected</property>
+        </condition>
+        <object-name>SPEED.knob</object-name>
+            <property>autopilot/settings/target-speed-mach</property>
+        <factor>10000</factor>
         <center>
-            <x-m>0.01406</x-m>
-            <y-m>0.1315</y-m>
-            <z-m>-0.007567</z-m>
+            <x-m>0.02545</x-m>
+            <y-m>-0.13906</y-m>
+            <z-m>-0.01980</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -104,7 +110,59 @@ Autopilot Control Panel
 
     <animation>
         <type>rotate</type>
-        <object-name>FDtoggle</object-name>
+        <object-name>HDG.knob</object-name>
+        <property>autopilot/settings/heading-bug-deg</property>
+        <factor>100</factor>
+        <center>
+            <x-m>0.02654</x-m>
+            <y-m>-0.01282</y-m>
+            <z-m>-0.00653</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>ALT.knob</object-name>
+        <property>autopilot/settings/counter-set-altitude-ft</property>
+        <factor>1</factor>
+        <center>
+            <x-m>0.00846</x-m>
+            <y-m>0.13190</y-m>
+            <z-m>-0.00651</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>ALTmode.knob</object-name>
+        <object-name>ALTmode.knob.001</object-name>
+        <property>instrumentation/afds/inputs/alt-knob</property>
+        <factor>40</factor>
+        <center>
+            <x-m>0.00881</x-m>
+            <y-m>0.13191</y-m>
+            <z-m>-0.00652</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>FD_toggle</object-name>
         <property>instrumentation/afds/inputs/FD</property>
         <factor>-30.0</factor>
         <center>
@@ -155,8 +213,14 @@ Autopilot Control Panel
 
     <animation>
         <type>material</type>
-        <object-name>APletters</object-name>
+        <object-name>AP_Lettering</object-name>
+        <object-name>AP_Lettering.001</object-name>
+        <object-name>AP_Lettering.002</object-name>
         <condition>
+            <greater-than>
+                <property>/sim/time/sun-angle-rad</property>
+                <value>1.70</value>
+            </greater-than>
              <greater-than>
                 <property>systems/electrical/CPT-FLT-INST</property>
                 <value>24.0</value>
@@ -164,7 +228,7 @@ Autopilot Control Panel
         </condition>
         <emission>
             <red>0.2</red>
-            <green>0.6</green>
+            <green>0.8</green>
             <blue>0.2</blue>
             <factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
         </emission>
@@ -184,7 +248,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>APtoggle</object-name>
+        <object-name>AP_toggle</object-name>
         <condition>
             <property>instrumentation/afds/inputs/AP</property>
         </condition>
@@ -192,13 +256,13 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>HDGtoggle</object-name>
+        <object-name>HDG_toggle</object-name>
         <condition>
             <or>
-            <equals>
-                <property>instrumentation/afds/ap-modes/roll-mode</property>
-                <value>HDG HOLD</value>
-            </equals>
+                <equals>
+                    <property>instrumentation/afds/ap-modes/roll-mode</property>
+                    <value>HDG HOLD</value>
+                </equals>
                 <equals>
                     <property>instrumentation/afds/ap-modes/roll-mode</property>
                     <value>TRK HOLD</value>
@@ -209,7 +273,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>LNAV.toggle</object-name>
+        <object-name>LNAV_toggle</object-name>
         <condition>
             <or>
                 <equals>
@@ -226,7 +290,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>ALTtoggle</object-name>
+        <object-name>ALT_toggle</object-name>
         <condition>
             <equals>
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -237,7 +301,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>ATtoggle</object-name>
+        <object-name>AT_toggle</object-name>
         <condition>
                 <not-equals>
                     <property>instrumentation/afds/ap-modes/speed-mode</property>
@@ -248,7 +312,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>VNAV.toggle</object-name>
+        <object-name>VNAV_toggle</object-name>
         <condition>
             <or>
                 <equals>
@@ -273,7 +337,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>FLCH.toggle</object-name>
+        <object-name>FLCH_toggle</object-name>
         <condition>
             <equals>
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -284,7 +348,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>LOC.toggle</object-name>
+        <object-name>LOC_toggle</object-name>
         <condition>
             <and>
             <or>
@@ -309,7 +373,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>APP.toggle</object-name>
+        <object-name>APP_toggle</object-name>
         <condition>
             <or>
                 <equals>
@@ -323,7 +387,7 @@ Autopilot Control Panel
 
     <animation>
         <type>select</type>
-        <object-name>VS.toggle</object-name>
+        <object-name>VS_toggle</object-name>
         <condition>
             <or>
                 <equals>
@@ -376,6 +440,18 @@ Autopilot Control Panel
                 </or>
             </and>
         </condition>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>Lgt_LWRCTR.light</object-name>
+        <property>systems/electrical/outputs/avionics</property>
+        <factor>0.07</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
     </animation>
 
     <animation>
@@ -972,7 +1048,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>AP.btn</object-name>
+        <object-name>AP_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1005,7 +1081,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>HDG.btn</object-name>
+        <object-name>HDG_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1031,7 +1107,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>LNAV.btn</object-name>
+        <object-name>LNAV_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1044,7 +1120,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>VNAV.btn</object-name>
+        <object-name>VNAV_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1057,7 +1133,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>AT.btn</object-name>
+        <object-name>AT_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1070,7 +1146,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>FLCH.btn</object-name>
+        <object-name>FLCH_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1083,7 +1159,7 @@ Autopilot Control Panel
 
     <!--animation>
         <type>pick</type>
-        <object-name>CLB.btn</object-name>
+        <object-name>CLB_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1096,7 +1172,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>VS.btn</object-name>
+        <object-name>VS_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1109,7 +1185,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>ALT.btn</object-name>
+        <object-name>ALT_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1122,7 +1198,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>LOC.btn</object-name>
+        <object-name>LOC_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1135,7 +1211,7 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>APP.btn</object-name>
+        <object-name>APP_Switch</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>

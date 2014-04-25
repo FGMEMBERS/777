@@ -49,7 +49,7 @@ WEIGHT/lbs  Vref
 Vref30 = SQR(Landing Weight in Tonnes / 250) X 151
 -->
 
-<airplane mass="307000">
+<airplane mass="307000" version="YASIM_VERSION_32">
 
   <!-- Approach configuration -->
   <approach speed="132" alt="0.0" aoa="5.0" fuel="0.2" glide-angle="0.0">
