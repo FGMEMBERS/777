@@ -953,8 +953,15 @@ Service Ceiling: 43,100ft
         </dme>
         <transponder>
             <serviceable>true</serviceable>
-            <id-code>1200</id-code>
-            <mode-switch>4</mode-switch>
+            <id-code type="int">1200</id-code>
+            <id-code type="int">1200</id-code>
+            <id-code type="int">2400</id-code>
+            <id-code-digit0 type="int">1</id-code-digit0>
+            <id-code-digit1 type="int">2</id-code-digit1>
+            <id-code-digit2 type="int">0</id-code-digit2>
+            <id-code-digit3 type="int">0</id-code-digit3>
+            <mode-switch type="int">4</mode-switch>
+            <tx-switch type="int">0</tx-switch>
         </transponder>
         <encoder>
             <serviceable>true</serviceable>
