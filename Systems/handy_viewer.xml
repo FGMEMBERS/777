@@ -162,14 +162,15 @@
      
     <button>
             <pref-width>70</pref-width>
-		<desc>To be SET</desc>
-      	<legend>TobeSET</legend>
+		<desc>EFB CPT View</desc>
+      	<legend>EFB CPT</legend>
       	<equal>true</equal>
 	  	<repeatable type="bool">false</repeatable>
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "15");
+	      		setprop("/sim/current-view/view-number", "19");
+	      		view.resetView();
 	    		</script>
 	  	</binding>
     </button>

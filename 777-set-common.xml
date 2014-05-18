@@ -263,6 +263,26 @@
       <y-offset-m archive="y"> 12.74 </y-offset-m> <!--Up/Down-->
     </config>
   </view>
+
+<view n="111">
+    <name>EFB CPT View</name>
+    <type>lookfrom</type>
+    <internal archive="y">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">27.68363868</default-field-of-view-deg>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-31.16666667</pitch-offset-deg>
+            <x-offset-m type="double">-0.5026041667</x-offset-m>
+            <heading-offset-deg type="double">40.875</heading-offset-deg>
+            <goal-heading-offset-deg>40.875</goal-heading-offset-deg>
+            <x-offset-m type="double">-0.5026041667</x-offset-m>
+            <y-offset-m type="double">0.8407407407</y-offset-m>
+            <z-offset-m type="double">-22.62777778</z-offset-m>
+        </config>
+</view>
+
         <help n="0">
             <title>777</title>
             <text>=== Tutorials ===
@@ -510,6 +530,7 @@ Service Ceiling: 43,100ft
             <click6 type="bool">0</click6>
             <click7 type="bool">0</click7>
             <click8 type="bool">0</click8>
+            <click9 type="bool">0</click9>
             <FastenSeatbelt type="bool">0</FastenSeatbelt>
             <cabinalert type="bool">0</cabinalert>
         </sound>
@@ -979,6 +1000,7 @@ Service Ceiling: 43,100ft
                 <min-runway-length-ft type="double">5000</min-runway-length-ft>
             </config>
         </gps>
+        <efb include="Models/Instruments/EFB/TimeZones.xml"/>
     </instrumentation>
 
     <controls n="0">
@@ -1022,6 +1044,7 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Nasal/Air.nas</file>
             <file>Aircraft/777/Nasal/Electrical.nas</file>
             <file>Aircraft/777/Nasal/engine.nas</file>
+            <file>Aircraft/777/Nasal/efb.nas</file>
             <file>Aircraft/777/Nasal/Hydraulics.nas</file>
             <file>Aircraft/777/Nasal/systems.nas</file>
             <file>Aircraft/777/Nasal/AFDS.nas</file>
