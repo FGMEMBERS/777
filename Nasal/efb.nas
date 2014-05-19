@@ -27,7 +27,111 @@ var ChartsList =
         APTs: 1,
         LOCATION: "LOS ANGELES USA",
         NAME: "Intntl"
-    }
+    },
+	'KIAH':
+    {
+        STAR: ["RIICE3_1", "RIICE_2"],
+        STARs: 2,
+        IAP: ["09-ILS", "15R-ILS"],
+        IAPs: 2,
+        SID: "",
+        SIDs: 0,
+        APT: "APT_0",
+        APTs: 1,
+        LOCATION: "HOUSTON USA",
+        NAME: "G. Bush Intctl"
+    },		
+	'VABB':
+    {
+        STAR: "",
+        STARs: 0,
+        IAP: ["09-ILS-DME", "14-ILS-DME"],
+        IAPs: 2,
+        SID: "EKPOSxA",
+        SIDs: 1,
+        APT: "APT_0",
+        APTs: 1,
+        LOCATION: "MUMBAI IN",
+        NAME: "Chhatrapati Shivaji"
+    },		
+	'KMEM':
+    {
+        STAR: "BEERT4",
+        STARs: 1,
+        IAP: "09-ILS_LOC",
+        IAPs: 1,
+        SID: "",
+        SIDs: 0,
+        APT: "APT_0",
+        APTs: 1,
+        LOCATION: "MEMPHIS USA",
+        NAME: "International"
+    },		
+	'LFRB':
+    {
+        STAR: "STAR",
+        STARs: 1,
+        IAP: ["IAP_25L", "IAP_25L_RNAV", "ILS_Y_25L", "ILS_YZ_07R", "ILS_Z_25L", "NDB_25L", "RADAR", "RNAV_07R", "VFR_APP01", "VFR_LNDG_01"],
+        IAPs: 11,
+        SID: ["SID_07R", "SID_25L"],
+        SIDs: 2,
+        APT: ["APT_0", "APT_1"],
+        APTs: 2,
+        LOCATION: "BREST FR",
+        NAME: "Guipavas"
+    },
+	'LFRM':
+    {
+        STAR: ["VFR_APP01", "VFR_LND01"],
+        STARs: 2,
+        IAP: "",
+        IAPs: 0,
+        SID: "",
+        SIDs: 0,
+        APT: "APT_0",
+        APTs: 1,
+        LOCATION: "LE MANS FR",
+        NAME: "Arnage"
+    },		
+	'LIME':
+    {
+        STAR: ["STAR_ASTIG_ODINA_1S", "STAR_ASTIG_ODINA_1T", "STAR_DIXER_GEN_IDONA_1S", "STAR_DIXER_GEN_IDONA_1T", "STAR_DORIN_LUSIL_OSKOR_1S", "STAR_DORIN_LUSIL_OSKOR_1T", "STAR_East", "STAR_West", "STAR_VOR_DME", "VOR_Y28", "VOR_Y28_2", "VOR_Z28"],
+        STARs: 12,
+        IAP: ["ILS-PAPA-28", "ILS-PAPA-28-CAT II", "ILS-SIERRA-28", "ILS-SIERRA-28-CAT II", "ILS-TANGO-28", "ILS-TANGO-28-CAT II", "ILS-X28", "ILS-Y28", "ILS-Z28"],
+        IAPs: 9,
+        SID: ["SID_10_BEKAN_DORIN_5S", "SID_10-28_BEKAN5T_DORIN5T_ORI5QT", "SID_10-28_Alternate", "SID_28_SRN5R_TZO5R_TZO5S", "SID_InitialClimb", "SID10_InitialClimb", "SID28_InitialClimb", "SID28_InitialClimb2", "DEP_North_East", "DEP_South", "DEP_West"],
+        SIDs: 12,
+        APT: ["APT_0", "APT_0_Small", "GROUND_East_Apron", "GROUND_North_Apron", "GROUND_West_Apron"],
+        APTs: 6,
+        LOCATION: "BERGAMO IT",
+        NAME: "Orio al Serio"
+    },		
+	'LOWI':
+    {
+        STAR: ["26-RTT", "STAR", "VFR_East", "VFR_West_KTI", "West-NDB_KYI"],
+        STARs: 5,
+        IAP: ["LOC_26_RNAV", "LOC_DME_East", "LOC_DME_West", "NDB_East", "RNAV_08", "RNAV_26", "SPEC_LOC_DME_East"],
+        IAPs: 8,
+        SID: ["08-RTT", "General Departure", "SID_08", "SID0_RTT1W", "SID_08_SPECPERF_KPT1Z", "SID_08_SPECPERF_RTT2Z", "SID-26", "SID_26_MOGTI1H_RTT1Y", "SID_26_RNAV"],
+        SIDs: 9,
+        APT: ["APT_0", "APT_1"],
+        APTs: 2,
+        LOCATION: "INNSBRUCK AT",
+        NAME: "Kranebitten"
+    },		
+	'WSSS':
+    {
+        STAR: ["BOBAG1A", "BOBAG1B", "LAVAX1A", "LAVAX1B"],
+        STARs: 4,
+        IAP: ["02C-VOR-DME", "02L-ILS", "02L-ILS-CATII", "20C-VOR-DME", "20R-ILS"],
+        IAPs: 5,
+        SID: "BOG1",
+        SIDs: 1,
+        APT: ["APT_0", "APT_1"],
+        APTs: 2,
+        LOCATION: "SINGAPORE SG",
+        NAME: "Changi"
+    },		
 };
 
 var l0 = "";
@@ -167,12 +271,14 @@ var fuelrecommended = 0;
 #  Chart Properties |
 #___________________|
 
-setprop("/instrumentation/gps/scratch/ident", getprop("/sim/airport/closest-airport-id"));
+ident = getprop("/sim/airport/closest-airport-id");
 
-# AptName = sprintf("%s", getprop("/instrumentation/efb/chart/icao"));
+#AptName = getprop("/instrumentation/efb/chart/icao");
 
-if (getprop("/instrumentation/gps/scratch/ident") != nil) { setprop("/instrumentation/efb/chart/icao", sprintf("%s", getprop("/instrumentation/gps/scratch/ident")));
-setprop("instrumentation/efb/chart/DEP_icao", sprintf("%s", getprop("/instrumentation/efb/chart/icao")));
+if (ident != nil)
+{
+    setprop("instrumentation/efb/chart/icao", ident);
+    setprop("instrumentation/efb/chart/DEP_icao", getprop("/instrumentation/efb/chart/icao"));
 } else setprop("/instrumentation/efb/chart/icao", "");
 
 setprop("/instrumentation/efb/chart/type", "APT");
@@ -2072,11 +2178,17 @@ PageList = getprop("/instrumentation/efb/chart/PageList");
 
 # Checks existence of Charts in the DB by chart's type ~ "-0"; example: "KSFO/type-0"
 
-if (getprop("/instrumentation/efb/chartsDB/" ~ sprintf("%s", getprop("/instrumentation/efb/chart/icao")) ~ "/" ~ getprop("/instrumentation/efb/chart/type") ~ "-0") == nil ) { setprop("/instrumentation/efb/chart_Found", "NOT_FOUND");
-nochart = 1;
-} else { setprop("/instrumentation/efb/chart_Found", "FOUND");
-nochart = 0;
-}
+var Chart_Search = "";
+Chart_Search = sprintf("%s", getprop("/instrumentation/efb/chart/icao"));
+
+# HERE we need to launch the SEARCH into the ChartsList hash
+
+
+#if (getprop("/instrumentation/efb/chartsDB/" ~ sprintf("%s", getprop("/instrumentation/efb/chart/icao")) ~ "/" ~ getprop("/instrumentation/efb/chart/type") ~ "-0") == nil ) { setprop("/instrumentation/efb/chart_Found", "NOT_FOUND");
+#nochart = 1;
+#} else { setprop("/instrumentation/efb/chart_Found", "FOUND");
+#nochart = 0;
+#}
 setprop("/instrumentation/efb/Keyboard/CHART_Input_Line", "Charts for " ~ sprintf("%s", getprop("/instrumentation/efb/chart/icao")) ~ ": " ~ getprop("/instrumentation/efb/chart_Found"));
 
 if (nochart == 0) {
