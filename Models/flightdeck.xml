@@ -511,6 +511,42 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>rotate</type>
+        <object-name>TillerL_Pivot1</object-name>
+        <object-name>TillerL_Pivot2</object-name>
+        <object-name>TillerL_Lever</object-name>
+        <object-name>TillerL_Handle</object-name>
+        <property>controls/gear/nosegear-steering-cmd</property>
+        <factor>350</factor>
+        <axis>
+            <x1-m>-1.32857</x1-m>
+            <y1-m>-1.14383</y1-m>
+            <z1-m>0.26196</z1-m>
+            <x2-m>-1.42969</x2-m>
+            <y2-m>-1.22842</y2-m>
+            <z2-m>0.18729</z2-m>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>TillerR_Pivot1</object-name>
+        <object-name>TillerR_Pivot2</object-name>
+        <object-name>TillerR_Lever</object-name>
+        <object-name>TillerR_Handle</object-name>
+        <property>controls/gear/nosegear-steering-cmd</property>
+        <factor>-350</factor>
+        <axis>
+            <x1-m>-1.32857</x1-m>
+            <y1-m>1.14769</y1-m>
+            <z1-m>0.26196</z1-m>
+            <x2-m>-1.26826</x2-m>
+            <y2-m>1.09724</y2-m>
+            <z2-m>0.30649</z2-m>
+        </axis>
+    </animation>
+
+    <animation>
         <type>pick</type>
         <object-name>Tray_Left</object-name>
         <action>
