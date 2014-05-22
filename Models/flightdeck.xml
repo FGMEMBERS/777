@@ -511,6 +511,55 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>pick</type>
+        <object-name>TillerL_Pivot1</object-name>
+        <object-name>TillerR_Pivot1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/gear/nosegear-steering-cmd</property>
+                <value>0</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>TillerL_Pivot1</object-name>
+        <object-name>TillerR_Pivot1</object-name>
+        <action>
+            <button>3</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/gear/nosegear-steering-cmd</property>
+                <step>0.02</step>
+                <min>-1</min>
+                <max>1</max>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>TillerL_Pivot1</object-name>
+        <object-name>TillerR_Pivot1</object-name>
+        <action>
+            <button>4</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/gear/nosegear-steering-cmd</property>
+                <step>-0.02</step>
+                <min>-1</min>
+                <max>1</max>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
         <type>rotate</type>
         <object-name>TillerL_Pivot1</object-name>
         <object-name>TillerL_Pivot2</object-name>
