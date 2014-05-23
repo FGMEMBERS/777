@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- 777-200ER custom flight recorder configuration
-     Thorsten Brehm, September 2011 
+     Thorsten Brehm, September 2011
 -->
 
 <PropertyList>
@@ -9,7 +9,7 @@
     <!-- selected active flight recorder configuration for replay system -->
     <replay-config type="int">0</replay-config>
 
-<!-- 
+<!--
     <config n="0" include="Aircraft/Generic/flightrecorder/generic-jet.xml"/>
  -->
 
@@ -47,9 +47,9 @@
                 <signal>
                     <type>bool</type><property type="string">engines/engine[%i]/run</property>
                 </signal>
-	            <signal>
-    	            <type>int8</type><property type="string">controls/engines/engine[%i]/reverser-act</property>
-    	        </signal>
+                <signal>
+                    <type>int8</type><property type="string">controls/engines/engine[%i]/reverser-act</property>
+                </signal>
             </signals>
 
             <signal>
@@ -165,10 +165,10 @@
             </signal>
 
             <signal>
-                <type>float</type><property type="string">controls/gear/nosegear-steering-cmd-norm</property>
+                <type>float</type><property type="string">controls/gear/nosegear-steering-cmd</property>
             </signal>
             <signal>
-                <type>float</type><property type="string">controls/gear/maingear-steering-cmd-norm</property>
+                <type>float</type><property type="string">controls/gear/maingear-steering-cmd</property>
             </signal>
 
             <signal>

@@ -214,41 +214,56 @@
         </config>
     </view>
 
-<view n="108">
+    <view n="108">
+        <name>Top Right view</name>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-19.125</pitch-offset-deg>
+            <goal-heading-offset-deg>63</goal-heading-offset-deg>
+            <x-offset-m type="double">0.65625</x-offset-m>
+            <y-offset-m type="double">1.2175</y-offset-m>
+        </config>
+    </view>
+
+<view n="109">
     <name>LWing View</name>
     <type>lookfrom</type>
     <internal archive="y">true</internal>
     <config>
       <from-model type="bool">true</from-model>
       <from-model-idx type="int">0</from-model-idx>
-      <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
+      <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
       <default-field-of-view-deg type="double">55</default-field-of-view-deg>
       <pitch-offset-deg>-8.0</pitch-offset-deg>
       <heading-offset-deg type="double">90</heading-offset-deg> <!-- parallel to the panel -->
-      <x-offset-m archive="y"> -2.74375 </x-offset-m> <!--Left/Right-->
-      <y-offset-m archive="y"> 1.298888889 </y-offset-m> <!--Up/Down-->
-      <z-offset-m archive="y"> 9.153333333 </z-offset-m> <!--Fdw/Back-->
+      <x-offset-m type="double">-2.74375</x-offset-m> <!--Left/Right-->
+      <y-offset-m type="double">1.298888889</y-offset-m> <!--Up/Down-->
+      <z-offset-m type="double">9.153333333</z-offset-m> <!--Fdw/Back-->
     </config>
   </view>
 
-<view n="109">
+<view n="110">
     <name>RWing View</name>
     <type>lookfrom</type>
     <internal archive="y">true</internal>
     <config>
       <from-model type="bool">true</from-model>
       <from-model-idx type="int">0</from-model-idx>
-      <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
+      <ground-level-nearplane-m type="double">0.01</ground-level-nearplane-m>
       <default-field-of-view-deg type="double">55</default-field-of-view-deg>
       <pitch-offset-deg>-8.0</pitch-offset-deg>
       <heading-offset-deg type="double">270</heading-offset-deg> <!-- parallel to the panel -->
-      <x-offset-m archive="y"> 2.74375 </x-offset-m> <!--Left/Right-->
-      <y-offset-m archive="y"> 1.298888889 </y-offset-m> <!--Up/Down-->
-      <z-offset-m archive="y"> 9.153333333 </z-offset-m> <!--Fdw/Back-->
+      <x-offset-m type="double">2.74375</x-offset-m> <!--Left/Right-->
+      <y-offset-m type="double">1.298888889</y-offset-m> <!--Up/Down-->
+      <z-offset-m type="double">9.153333333</z-offset-m> <!--Fdw/Back-->
     </config>
   </view>
 
-<view n="110">
+<view n="111">
     <name>Tail View</name>
     <type>lookfrom</type>
     <internal archive="y">true</internal>
@@ -259,12 +274,12 @@
       <default-field-of-view-deg type="double">90</default-field-of-view-deg>
       <pitch-offset-deg>-10.0</pitch-offset-deg>
       <heading-offset-deg type="double">0</heading-offset-deg>
-      <x-offset-m archive="y"> 0 </x-offset-m> <!--Left/Right-->
-      <y-offset-m archive="y"> 12.74 </y-offset-m> <!--Up/Down-->
+      <x-offset-m type="double">0</x-offset-m> <!--Left/Right-->
+      <y-offset-m type="double">12.74</y-offset-m> <!--Up/Down-->
     </config>
   </view>
 
-<view n="111">
+<view n="112">
     <name>EFB CPT View</name>
     <type>lookfrom</type>
     <internal archive="y">true</internal>
@@ -274,12 +289,61 @@
             <from-model type="bool">true</from-model>
             <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>-31.16666667</pitch-offset-deg>
-            <x-offset-m type="double">-0.5026041667</x-offset-m>
             <heading-offset-deg type="double">40.875</heading-offset-deg>
             <goal-heading-offset-deg>40.875</goal-heading-offset-deg>
             <x-offset-m type="double">-0.5026041667</x-offset-m>
             <y-offset-m type="double">0.8407407407</y-offset-m>
-            <z-offset-m type="double">-22.62777778</z-offset-m>
+        </config>
+</view>
+
+<view n="113">
+    <name>EFB FO View</name>
+    <type>lookfrom</type>
+    <internal archive="y">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">27.68363868</default-field-of-view-deg>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-31.16666667</pitch-offset-deg>
+            <heading-offset-deg type="double">-40.875</heading-offset-deg>
+            <goal-heading-offset-deg>-40.875</goal-heading-offset-deg>
+            <x-offset-m type="double">0.5026041667</x-offset-m>
+            <y-offset-m type="double">0.8407407407</y-offset-m>
+        </config>
+</view>
+
+<view n="114">
+    <name>Tiller CPT View</name>
+    <type>lookfrom</type>
+    <internal archive="y">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">74.73152837</default-field-of-view-deg>
+            <ground-level-nearplane-m type="double">0.0f</ground-level-nearplane-m>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-19.125</pitch-offset-deg>
+            <heading-offset-deg type="double">0</heading-offset-deg>
+            <goal-heading-offset-deg>0</goal-heading-offset-deg>
+            <x-offset-m type="double">-0.9708333333</x-offset-m>
+            <y-offset-m type="double">0.7869444444</y-offset-m>
+        </config>
+</view>
+
+<view n="115">
+    <name>Tiller FO View</name>
+    <type>lookfrom</type>
+    <internal archive="y">true</internal>
+        <config>
+            <default-field-of-view-deg type="double">74.73152837</default-field-of-view-deg>
+            <ground-level-nearplane-m type="double">0.0f</ground-level-nearplane-m>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <pitch-offset-deg>-19.125</pitch-offset-deg>
+            <heading-offset-deg type="double">0</heading-offset-deg>
+            <goal-heading-offset-deg>0</goal-heading-offset-deg>
+            <x-offset-m type="double">0.9708333333</x-offset-m>
+            <y-offset-m type="double">0.7869444444</y-offset-m>
         </config>
 </view>
 
@@ -369,14 +433,6 @@ Service Ceiling: 43,100ft
                         </binding>
                     </item>
                     <item >
-                        <label>Handy Viewer</label>
-                        <name>handyviewer</name>
-                        <binding>
-                            <command>dialog-show</command>
-                            <dialog-name>handyviewer</dialog-name>
-                        </binding>
-                    </item>
-                    <item >
                         <label>Ground Services Control</label>
                         <binding>
                             <command>nasal</command>
@@ -410,6 +466,14 @@ Service Ceiling: 43,100ft
                         <binding>
                             <command>property-toggle</command>
                             <property>sim/yokes-visible</property>
+                        </binding>
+                    </item>
+                    <item >
+                        <label>Handy Viewer</label>
+                        <name>handyviewer</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>handyviewer</dialog-name>
                         </binding>
                     </item>
                 </menu>
