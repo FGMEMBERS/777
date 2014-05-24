@@ -1304,6 +1304,36 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>rotate</type>
+        <object-name>Frontgear</object-name>
+        <property>gear/gear[0]/position-norm</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>105</dep>
+            </entry>
+            <entry>
+                <ind>0.2</ind>
+                <dep>105</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-19.284</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-2.347</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
         <type>spin</type>
         <object-name>FrtWheel</object-name>
         <property>gear/gear/rollspeed-ms</property>
