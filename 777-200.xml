@@ -131,7 +131,7 @@ Vref30 = SQR(Landing Weight in Tonnes / 250) X 151
     <control-input axis="/controls/engines/engine[0]/throttle-act" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[0]/reverser-act" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
-    <control-speed control="REVERSE_THRUST" transition-time="4"/>
+    <control-speed control="REVERSE_THRUST" transition-time="3"/>
     <actionpt x="-2.7" y="9.89" z="-2.995"/>
   </jet>
 
@@ -140,7 +140,7 @@ Vref30 = SQR(Landing Weight in Tonnes / 250) X 151
     <control-input axis="/controls/engines/engine[1]/throttle-act" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[1]/reverser-act" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
-    <control-speed control="REVERSE_THRUST" transition-time="4"/>
+    <control-speed control="REVERSE_THRUST" transition-time="3"/>
     <actionpt x="-2.7" y="-9.89" z="-2.995"/>
   </jet>
 

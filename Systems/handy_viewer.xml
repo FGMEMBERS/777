@@ -39,7 +39,7 @@
   </group>
 
   <hrule/>
-
+ <!-- First Row --> 
   <group>  
     <stretch>true</stretch>
     <layout>hbox</layout>
@@ -107,7 +107,7 @@
 	  	</binding>
     </button>
 </group>
-
+ <!-- Second Row --> 
 <group>
     <stretch>true</stretch>
     <layout>hbox</layout>
@@ -147,7 +147,7 @@
 
     <button>
             <pref-width>70</pref-width>
-		<desc>TopLeft View</desc>
+		<desc>Top Left View</desc>
       	<legend>TopLeft</legend>
       	<equal>true</equal>
 	  	<repeatable type="bool">false</repeatable>
@@ -162,14 +162,83 @@
      
     <button>
             <pref-width>70</pref-width>
-		<desc>To be SET</desc>
-      	<legend>TobeSET</legend>
+		<desc>Top Right View</desc>
+      	<legend>TopRight</legend>
       	<equal>true</equal>
 	  	<repeatable type="bool">false</repeatable>
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "15");
+	      		setprop("/sim/current-view/view-number", "16");
+	      		view.resetView();
+	    		</script>
+	  	</binding>
+    </button>
+  </group>
+ <!-- Third Row --> 
+  <group>
+    <stretch>true</stretch>
+    <layout>hbox</layout>
+    <halign>fill</halign>
+    <valign>top</valign>
+    <default-padding>6</default-padding>
+	
+	<button>
+            <pref-width>70</pref-width>
+		<desc>EFB CPT View</desc>
+      	<legend>EFB CPT</legend>
+      	<equal>true</equal>
+	  	<repeatable type="bool">false</repeatable>
+	  	<binding>
+	    		<command>nasal</command>
+	    		<script>
+	      		setprop("/sim/current-view/view-number", "20");
+	      		view.resetView();
+	    		</script>
+	  	</binding>
+    </button>
+	
+	<button>
+            <pref-width>70</pref-width>
+		<desc>EFB FO View</desc>
+      	<legend>EFB FO</legend>
+      	<equal>true</equal>
+	  	<repeatable type="bool">false</repeatable>
+	  	<binding>
+	    		<command>nasal</command>
+	    		<script>
+	      		setprop("/sim/current-view/view-number", "21");
+	      		view.resetView();
+	    		</script>
+	  	</binding>
+    </button>
+
+	<button>
+            <pref-width>70</pref-width>
+		<desc>Tiller CPT View</desc>
+      	<legend>TillerCPT</legend>
+      	<equal>true</equal>
+	  	<repeatable type="bool">false</repeatable>
+	  	<binding>
+	    		<command>nasal</command>
+	    		<script>
+	      		setprop("/sim/current-view/view-number", "22");
+	      		view.resetView();
+	    		</script>
+	  	</binding>
+    </button>
+
+	<button>
+            <pref-width>70</pref-width>
+		<desc>Til FO View</desc>
+      	<legend>TillerFO</legend>
+      	<equal>true</equal>
+	  	<repeatable type="bool">false</repeatable>
+	  	<binding>
+	    		<command>nasal</command>
+	    		<script>
+	      		setprop("/sim/current-view/view-number", "23");
+	      		view.resetView();
 	    		</script>
 	  	</binding>
     </button>
@@ -214,7 +283,7 @@
 
     <button>
             <pref-width>70</pref-width>
-		<desc>Right Side view</desc>
+		<desc>Right Side View</desc>
       	<legend>Right</legend>
       	<equal>true</equal>
 	  	<repeatable type="bool">false</repeatable>
@@ -229,14 +298,14 @@
 
     <button>
             <pref-width>70</pref-width>
-		<desc>LWing view</desc>
+		<desc>LWing View</desc>
       	<legend>LWing</legend>
       	<equal>true</equal>
 	  	<repeatable type="bool">false</repeatable>
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "16");
+	      		setprop("/sim/current-view/view-number", "17");
 	      		view.resetView();
 	    		</script>
 	  	</binding>
@@ -244,14 +313,14 @@
 
     <button>
             <pref-width>70</pref-width>
-		<desc>RWing view</desc>
+		<desc>RWing View</desc>
       	<legend>RWing</legend>
       	<equal>true</equal>
 	  	<repeatable type="bool">false</repeatable>
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "17");
+	      		setprop("/sim/current-view/view-number", "18");
 	      		view.resetView();
 	    		</script>
 	  	</binding>
@@ -274,7 +343,7 @@
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "18");
+	      		setprop("/sim/current-view/view-number", "19");
 	      		view.resetView();
 	    		</script>
 	  	</binding>
@@ -289,7 +358,7 @@
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "18");
+	      		setprop("/sim/current-view/view-number", "19");
 	    		</script>
 	  	</binding>
     </button>
@@ -303,7 +372,7 @@
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "18");
+	      		setprop("/sim/current-view/view-number", "19");
 	    		</script>
 	  	</binding>
     </button>
@@ -317,7 +386,7 @@
 	  	<binding>
 	    		<command>nasal</command>
 	    		<script>
-	      		setprop("/sim/current-view/view-number", "18");
+	      		setprop("/sim/current-view/view-number", "19");
 	    		</script>
 	  	</binding>
     </button>

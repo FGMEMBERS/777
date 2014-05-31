@@ -564,41 +564,6 @@ Syd Adams
         <object-name>stby.dn</object-name>
         <action>
             <button>0</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <condition>
-                    <property>systems/electrical/outputs/avionics</property>
-                </condition>
-                <command>property-adjust</command>
-                <property>instrumentation/rmu/unit/standby-mhz</property>
-                <step>0.05</step>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>stby.up</object-name>
-        <object-name>stby.dn</object-name>
-        <action>
-            <button>1</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <condition>
-                    <property>systems/electrical/outputs/avionics</property>
-                </condition>
-                <command>property-adjust</command>
-                <property>instrumentation/rmu/unit/standby-mhz</property>
-                <step>-0.05</step>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>stby.up</object-name>
-        <object-name>stby.dn</object-name>
-        <action>
             <button>3</button>
             <repeatable>true</repeatable>
             <binding>
@@ -617,6 +582,7 @@ Syd Adams
         <object-name>stby.up</object-name>
         <object-name>stby.dn</object-name>
         <action>
+            <button>1</button>
             <button>4</button>
             <repeatable>true</repeatable>
             <binding>
@@ -636,6 +602,7 @@ Syd Adams
         <object-name>stby.dn.001</object-name>
         <action>
             <button>0</button>
+            <button>3</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -653,41 +620,6 @@ Syd Adams
         <object-name>stby.dn.001</object-name>
         <action>
             <button>1</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <condition>
-                    <property>systems/electrical/outputs/avionics</property>
-                </condition>
-                <command>property-adjust</command>
-                <property>instrumentation/rmu/unit/standby-mhz</property>
-                <step>-1</step>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>stby.up.001</object-name>
-        <object-name>stby.dn.001</object-name>
-        <action>
-            <button>3</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <condition>
-                    <property>systems/electrical/outputs/avionics</property>
-                </condition>
-                <command>property-adjust</command>
-                <property>instrumentation/rmu/unit/standby-mhz</property>
-                <step>1</step>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>stby.up.001</object-name>
-        <object-name>stby.dn.001</object-name>
-        <action>
             <button>4</button>
             <repeatable>true</repeatable>
             <binding>

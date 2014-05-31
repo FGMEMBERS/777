@@ -62,11 +62,37 @@
             <z-offset-m type="double">-22.31125</z-offset-m>
             </config>
         </view>
-        <view n="110">
+        <view n="108">
             <config n="0">
-            <z-offset-m archive="y"> 35.436 </z-offset-m> <!--Fdw/Back-->
+            <z-offset-m type="double">-22.31125</z-offset-m>
             </config>
         </view>
+        <view n="111">
+            <config n="0">
+            <z-offset-m type="double">35.38240741</z-offset-m>
+            </config>
+        </view>
+        <view n="112">
+            <config n="0">
+            <z-offset-m type="double">-22.62777778</z-offset-m>
+            </config>
+        </view>
+        <view n="113">
+            <config n="0">
+            <z-offset-m type="double">-22.62777778</z-offset-m>
+            </config>
+        </view>
+        <view n="114">
+            <config n="0">
+            <z-offset-m type="double">-22.31125</z-offset-m>
+            </config>
+        </view>
+        <view n="115">
+            <config n="0">
+            <z-offset-m type="double">-22.31125</z-offset-m>
+            </config>
+        </view>
+
 
        <menubar n="0">
             <default n="0">
