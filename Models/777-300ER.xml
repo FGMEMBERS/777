@@ -128,14 +128,6 @@ Syd Adams
     </model>
 
     <animation>
-        <type>select</type>
-        <object-name>flightdeck</object-name>
-        <condition>
-            <property>sim/current-view/internal</property>
-        </condition>
-    </animation>
-
-    <animation>
     <type>shader</type>
     <shader>chrome</shader>
     <texture>chrome2.png</texture>

@@ -165,10 +165,10 @@
             </signal>
 
             <signal>
-                <type>float</type><property type="string">controls/gear/nosegear-steering-cmd-norm</property>
+                <type>float</type><property type="string">controls/gear/nosegear-steering-cmd</property>
             </signal>
             <signal>
-                <type>float</type><property type="string">controls/gear/maingear-steering-cmd-norm</property>
+                <type>float</type><property type="string">controls/gear/maingear-steering-cmd</property>
             </signal>
 
             <signal>
