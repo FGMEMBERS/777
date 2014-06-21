@@ -1744,36 +1744,48 @@ var AFDS = {
                     }
                 }
 
-                var wpt_distance = getprop("autopilot/route-manager/wp/dist");
-                var groundspeed = getprop("velocities/groundspeed-kt");
-                var f= flightplan();
                 if(cmp(getprop("sim/version/flightgear"), "2.8.0") != 0)
                 {
+                    var groundspeed = getprop("velocities/groundspeed-kt");
+                    var f= flightplan();
 #                   var topClimb = f.pathGeod(0, 100);
                     var topDescent = f.pathGeod(-1, -me.top_of_descent);
-                }
-                var leg = f.currentWP();
-                if(leg == nil)
-                {
-                    me.step+=1;
-                    if(me.step>6) me.step =0;
-                    return;
-                }
-                if(me.FMC_current_wp.getValue() == 0)
-                {
-                    setprop("autopilot/internal/course-deg", getprop("orientation/heading-deg"));
-                }
-                else
-                {
-                    setprop("autopilot/internal/course-deg", getprop("/autopilot/route-manager/wp[0]/true-bearing-deg"));
-                }
-                var cCourseError = getprop("/instrumentation/gps/wp/wp[1]/course-error-nm") * -0.01;
-                if(cCourseError > 4.0) cCourseError = 4.0;
-                elsif(cCourseError < -4.0) cCourseError = -4.0;
-                setprop("autopilot/internal/course-error", cCourseError);
+                    var targetCourse = f.pathGeod(-1, -me.remaining_distance.getValue());
+                    var leg = f.currentWP();
+                    if(leg == nil)
+                    {
+                        me.step+=1;
+                        if(me.step>6) me.step =0;
+                        return;
+                    }
+                    var enroute = leg.courseAndDistanceFrom(targetCourse);
+                    if(me.FMC_current_wp.getValue() == 0)
+                    {
+                        setprop("autopilot/internal/course-deg", getprop("orientation/heading-deg"));
+                    }
+                    else
+                    {
+                        setprop("autopilot/internal/course-deg", enroute[0]);
+                    }
 
-                if(cmp(getprop("sim/version/flightgear"), "2.8.0") != 0)
-                {
+                    var courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon);
+                    var geocoord = geo.aircraft_position();
+                    var CourseError = (geocoord.course_to(courseCoord) - getprop("orientation/heading-deg"));
+                    if(CourseError < -180) CourseError += 360;
+                    elsif(CourseError > 180) CourseError -= 360;
+                    if(CourseError > 0)
+                    {
+                        CourseError = geocoord.distance_to(courseCoord);
+                    }
+                    else
+                    {
+                        CourseError = (geocoord.distance_to(courseCoord) * -1);
+                    }
+                    var cCourseError = CourseError * 0.01;
+                    if(cCourseError > 4.0) cCourseError = 4.0;
+                    elsif(cCourseError < -4.0) cCourseError = -4.0;
+                    setprop("autopilot/internal/course-error", cCourseError);
+
 #                   var tcNode = me.NDSymbols.getNode("tc", 1);
 #                   tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
 #                   tcNode.getNode("latitude-deg", 1).setValue(topClimb.lat);
@@ -1781,34 +1793,92 @@ var AFDS = {
                     var tdNode = me.NDSymbols.getNode("td", 1);
                     tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
                     tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
-                }
-                if(getprop("/autopilot/route-manager/active"))
-                {
-                    var wpt_eta = (wpt_distance / groundspeed * 3600);
-                    var gmt = getprop("instrumentation/clock/indicated-sec");
-                    if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
+                    if(enroute[1] != nil)   # Course deg
                     {
-                        gmt += (wpt_eta + 30);
-                        var gmt_hour = int(gmt / 3600);
-                        if(gmt_hour > 24)
+                        var wpt_eta = (enroute[1] / groundspeed * 3600);
+                        var gmt = getprop("instrumentation/clock/indicated-sec");
+                        if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
                         {
-                            gmt_hour -= 24;
-                            gmt -= 24 * 3600;
-                        }
-                        me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-                        var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading.getValue());
-                        if(change_wp > 180) change_wp = (360 - change_wp);
-                        if(((me.heading_change_rate * change_wp) > wpt_eta)
-                            or (wpt_distance < 0.6))
-                        {
-                            if(atm_wpt < (max_wpt - 1))
+                            gmt += (wpt_eta + 30);
+                            var gmt_hour = int(gmt / 3600);
+                            if(gmt_hour > 24)
                             {
-                                atm_wpt += 1;
-                                me.FMC_current_wp.setValue(atm_wpt);
-                                me.altitude_restriction = getprop("autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
-                                if(me.altitude_restriction > 0)
+                                gmt_hour -= 24;
+                                gmt -= 24 * 3600;
+                            }
+                            me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
+                            var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading.getValue());
+                            if(change_wp > 180) change_wp = (360 - change_wp);
+                            if(((me.heading_change_rate * change_wp) > wpt_eta)
+                                or (enroute[1] < 0.6))
+                            {
+                                if(atm_wpt < (max_wpt - 1))
                                 {
-                                    me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
+                                    atm_wpt += 1;
+                                    me.FMC_current_wp.setValue(atm_wpt);
+                                    me.altitude_restriction = getprop("autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
+                                    if(me.altitude_restriction > 0)
+                                    {
+                                        me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var wpt_distance = getprop("autopilot/route-manager/wp/dist");
+                    var groundspeed = getprop("velocities/groundspeed-kt");
+                    var f= flightplan();
+                    var leg = f.currentWP();
+                    if(leg == nil)
+                    {
+                        me.step+=1;
+                        if(me.step>6) me.step =0;
+                        return;
+                    }
+                    if(me.FMC_current_wp.getValue() == 0)
+                    {
+                        setprop("autopilot/internal/course-deg", getprop("orientation/heading-deg"));
+                    }
+                    else
+                    {
+                        setprop("autopilot/internal/course-deg", getprop("/autopilot/route-manager/wp[0]/true-bearing-deg"));
+                    }
+                    var cCourseError = getprop("/instrumentation/gps/wp/wp[1]/course-error-nm") * -0.01;
+                    if(cCourseError > 4.0) cCourseError = 4.0;
+                    elsif(cCourseError < -4.0) cCourseError = -4.0;
+                    setprop("autopilot/internal/course-error", cCourseError);
+
+                    if(getprop("/autopilot/route-manager/active"))
+                    {
+                        var wpt_eta = (wpt_distance / groundspeed * 3600);
+                        var gmt = getprop("instrumentation/clock/indicated-sec");
+                        if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
+                        {
+                            gmt += (wpt_eta + 30);
+                            var gmt_hour = int(gmt / 3600);
+                            if(gmt_hour > 24)
+                            {
+                                gmt_hour -= 24;
+                                gmt -= 24 * 3600;
+                            }
+                            me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
+                            var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading.getValue());
+                            if(change_wp > 180) change_wp = (360 - change_wp);
+                            if(((me.heading_change_rate * change_wp) > wpt_eta)
+                                or (wpt_distance < 0.6))
+                            {
+                                if(atm_wpt < (max_wpt - 1))
+                                {
+                                    atm_wpt += 1;
+                                    me.FMC_current_wp.setValue(atm_wpt);
+                                    me.altitude_restriction = getprop("autopilot/route-manager/route/wp["~atm_wpt~"]/altitude-ft");
+                                    if(me.altitude_restriction > 0)
+                                    {
+                                        me.altitude_restriction = int((me.altitude_restriction + 50) / 100 )* 100;
+                                    }
                                 }
                             }
                         }
