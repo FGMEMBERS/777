@@ -1,0 +1,218 @@
+# This is the Boeing 777 Seattle's EFB Page Functions DataBase
+# Version Alpha 01, 2014
+#
+# WARNING Notice: these EFB Applications are typical of Boeing 777 aircraft!
+# Any developer may change them, or add new ones; 
+# these functions are called by the 'launch' element of the 'pages' hash in the EFB_Pages.db file.
+#
+# I-NEMO 
+var Page_Functions = {};		# this Hash will contain all the Pages' functions, called by the 'launch' element in the Hash 'pages'.
+#__________________________________________________________________________________________
+# Boeing 777 EFB Applications -> IDENT ---------------------------------------------------|
+#_________________________________________________________________________________________|
+
+Page_Functions.Display_IDENT = func {
+
+#	Line 1	: Aircraft
+#	Line 2,3: Operator, Callsign, EFB Seattle version's ID
+#	Line 4	: Date from current METAR Station
+#	Line 5	: Time from current METAR Station
+#	Line 6	: EFB Chart DB Version
+
+	ypos = 109.5;
+	Text_Line_L[1].setTranslation(255.5,ypos+2.0).setAlignment("left-center").setFontSize(30,1).setColor(1,1,1).setText(getprop("/sim/description")).show();
+	Text_Line_L[2].setTranslation(204.0,ypos+39.0).setAlignment("left-center").setFontSize(30,1).setColor(0,1,0).setText(substr(getprop("/sim/aircraft-operator"),0,3) ~ " / " ~ substr(getprop("/sim/multiplay/callsign"), 0,6)).show();
+	Text_Line_L[3].setTranslation(385.0,ypos+42.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("VMEFB002").show();	
+	Text_Line_L[4].setTranslation(204.0,ypos+79.0).setAlignment("left-center").setFontSize(28,1).setColor(1,1,1).setText(substr(getprop("environment/metar/data"),0,10)).show();	
+	Text_Line_L[5].setTranslation(402.0,ypos+80.0).setAlignment("left-center").setFontSize(28,1).setColor(1,1,1).setText(getprop("/instrumentation/clock/indicated-short-string") ~ "z").show();	
+	Text_Line_L[6].setTranslation(16.0,288.0).setAlignment("left-center").setFontSize(17,1).setColor(1,1,1).setText("AIRPORT MAP DATABASE    Seattle Data    APR1214-JUN3014").show();
+}
+#__________________________________________________________________________________________
+# Boeing 777 EFB Applications -> UTILITIES/GPS POSITION -----------------------------------|
+#__________________________________________________________________________________________|
+
+Page_Functions.Display_GPS = func {
+
+	ypos = 450.0;
+	Title.setText("GPS POSITION / SETTINGS").show();
+	Text_Line_L[1].setTranslation(40.0,90.0).setAlignment("left-center").setFontSize(25,1).setColor(0,1,0).setText("Latitude: " ~ sprintf("%3.2f", getprop("/instrumentation/gps/indicated-latitude-deg")) ~ " degs").show();
+	Text_Line_L[2].setTranslation(472.0,90.0).setAlignment("right-center").setFontSize(25,1).setColor(0,1,0).setText("Longitude: " ~ sprintf("%3.2f", getprop("/instrumentation/gps/indicated-longitude-deg")) ~ " degs").show();
+	Text_Line_L[3].setTranslation(40.0,ypos).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("GPS Mode: " ~ getprop("/instrumentation/gps/mode")).show();	
+	Text_Line_L[4].setTranslation(300.0,ypos).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("WayPoint ID: " ~ getprop("/instrumentation/gps/wp/wp[1]/ID")).show();	
+	Text_Line_L[5].setTranslation(40.0,ypos+80.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Leg Distance: " ~ sprintf("%3.2f", getprop("/instrumentation/gps/wp/leg-distance-nm")) ~ " Nm").show();	
+	Text_Line_L[6].setTranslation(40.0,ypos+120).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Leg Magnetic Course: " ~ sprintf("%3.2f", getprop("/instrumentation/gps/wp/leg-mag-course-deg")) ~ " degs").show();
+	Text_Line_L[7].setTranslation(40.0,ypos+160).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Leg True Heading: " ~ sprintf("%3.2f", getprop("/instrumentation/gps/wp/leg-true-course-deg")) ~ " degs").show();
+}
+#__________________________________________________________________________________________
+# Boeing 777 EFB Applications -> UTILITIES/APT INFO ---------------------------------------|
+#__________________________________________________________________________________________|
+
+Page_Functions.Display_APTINFO = func {
+
+	efb.searchairport(getprop("/sim/airport/closest-airport-id"));
+	efb.searchcomms(getprop("/sim/airport/closest-airport-id"));
+
+	if (getprop("/instrumentation/gps/scratch/name") == nil) { ClosestName = "";
+	} else ClosestName = getprop("/instrumentation/gps/scratch/name");
+
+	setprop("/environment/metar[6]/station-id", getprop("/instrumentation/gps/scratch/ident"));
+
+	var Rway_l1 = "Runways : ";
+	var Rway_l2 = "         ";
+
+	for (var n = 0; n < 12; n += 1) {
+		if (getprop("/instrumentation/gps/scratch/runways[" ~ n ~ "]/id") != nil) {
+			if (n <= 7) {Rway_l1 = Rway_l1 ~ getprop("/instrumentation/gps/scratch/runways[" ~ n ~ "]/id") ~ " ";
+			} else Rway_l2 = Rway_l2 ~ getprop("/instrumentation/gps/scratch/runways[" ~ n ~ "]/id") ~ " ";
+		}
+	}
+	
+	ypos = 88.0;
+	Text_Line_L[1].setTranslation(28.0,ypos).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Airport   : " ~ getprop("/instrumentation/gps/scratch/ident") ~ " (" ~ ClosestName ~ ")").show();
+	Text_Line_L[2].setTranslation(28.0,ypos+25.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Latitude  : " ~ sprintf("%3.2f", getprop("/instrumentation/gps/indicated-latitude-deg")) ~ " degs").show();
+	Text_Line_L[3].setTranslation(28.0,ypos+50.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Longitude : " ~ sprintf("%3.2f", getprop("/instrumentation/gps/indicated-longitude-deg")) ~ " degs").show();	
+	Text_Line_L[4].setTranslation(28.0,ypos+75.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Elevation : " ~ sprintf("%3.2f", getprop("/instrumentation/gps/scratch/altitude-ft")) ~ " ft").show();	
+	Text_Line_L[5].setTranslation(28.0,ypos+165.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText(Rway_l1).show();	
+	Text_Line_L[6].setTranslation(28.0,ypos+196.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText(Rway_l2).show();
+	Text_Line_L[7].setTranslation(28.0,ypos+266.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Weather Source: NOAA/METAR").show();
+	Text_Line_R[7].setTranslation(484.0,ypos+266.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText(substr(getprop("/environment/metar[6]/data"),0,16) ~ "z").show();	
+	Text_Line_L[8].setTranslation(28.0,ypos+300.0).setAlignment("left-center").setFontSize(24,1).setColor(1,1,1).setText(substr(getprop("/environment/metar[6]/data"),17,38)).show();
+	if (size(getprop("/environment/metar[6]/data")) > 38) {Text_Line_L[9].setTranslation(28.0,ypos+330.0).setAlignment("left-center").setFontSize(24,1).setColor(1,1,1).setText(substr(getprop("/environment/metar[6]/data"),55,38)).show();}
+	Text_Line_L[10].setTranslation(255.5,ypos+360.0).setAlignment("center-center").setFontSize(24,1).setColor(0,1,0).setText("Current Weather Situation").show();	
+	Text_Line_L[11].setTranslation(28.0,ypos+390.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Temperature : " ~ sprintf("%2.2f", getprop("/environment/metar[6]/temperature-degc")) ~ " C").show();
+	Text_Line_R[11].setTranslation(484.0,ypos+390.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Dewpoint : " ~ sprintf("%2.2f", getprop("/environment/metar[6]/dewpoint-degc")) ~ " C").show();
+	Text_Line_L[12].setTranslation(28.0,ypos+430.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Wind Direction : " ~ sprintf("%3.0f", getprop("/environment/metar[6]/base-wind-dir-deg")) ~ " degs").show();
+	Text_Line_R[12].setTranslation(484.0,ypos+430.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Wind Speed : " ~ sprintf("%3.0f", getprop("/environment/metar[6]/base-wind-speed-kt")) ~ " Kt").show();
+	Text_Line_L[13].setTranslation(28.0,ypos+470.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Max Visibility : " ~ sprintf("%3.0f", getprop("/environment/metar[6]/max-visibility-m")) ~ " ft").show();
+	Text_Line_R[13].setTranslation(484.0,ypos+470.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Min Visibility : " ~ sprintf("%3.0f", getprop("/environment/metar[6]/min-visibility-m")) ~ " ft").show();
+	Text_Line_L[14].setTranslation(28.0,ypos+510.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Relative Humidity : " ~ sprintf("%3.2f", getprop("/environment/metar[6]/rel-humidity-norm")) ~ " %").show();
+	Text_Line_R[14].setTranslation(484.0,ypos+510.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Pressure : " ~ sprintf("%3.2f", getprop("/environment/metar[6]/pressure-inhg")) ~ " inHg").show();
+	Helper.setTranslation(255.5,ypos+530.0).setAlignment("center-center").setFontSize(14,1).setColor(0,1,0).setText("Weather Report subject to Station availability").show();
+}
+#__________________________________________________________________________________________
+# Boeing 777 EFB Applications -> UTILITIES/FLIGHT MONITOR ---------------------------------|
+#__________________________________________________________________________________________|
+
+Page_Functions.Display_FLIGHTMONITOR = func {
+
+	if (getprop("/instrumentation/efb/FlightStatus") == 1) {
+	var FStatus = "ACTIVE";
+	} else FStatus = "INACTIVE";
+	if (getprop("/autopilot/route-manager/active") == 1) {
+		if (getprop("/autopilot/route-manager/departure/takeoff-time") != nil) { var TOT = getprop("/autopilot/route-manager/departure/takeoff-time") ~ "z";
+		} else TOT = "Unknown";
+		if (getprop("/autopilot/route-manager/destination/touchdown-time") != nil) { var TDT = getprop("/autopilot/route-manager/destination/touchdown-time") ~ "z";
+		} else TDT = "Unknown";
+		var OAPT = getprop("/autopilot/route-manager/departure/airport") ~ " " ~ getprop("/autopilot/route-manager/departure/runway");
+		var DAPT = getprop("/autopilot/route-manager/destination/airport") ~ " " ~ getprop("/autopilot/route-manager/destination/runway");
+		} else { OAPT = "NOT Set";
+			DAPT = "NOT Set";
+			TOT = "Unknown";
+			TDT = "Unknown";
+	}
+
+	ypos = 88.0;
+	Text_Line_L[1].setTranslation(28.0,ypos).setAlignment("left-center").setFontSize(22,1).setColor(0,1,0).setText("Aircraft: " ~ getprop("/sim/description") ~ " Seattle").show();
+	Text_Line_L[2].setTranslation(28.0,ypos+25.0).setAlignment("left-center").setFontSize(22,1).setColor(0,1,0).setText("Operator: " ~ substr(getprop("/sim/aircraft-operator"),0,3)).show();
+	Text_Line_R[2].setTranslation(484.0,ypos+25.0).setAlignment("right-center").setFontSize(22,1).setColor(0,1,0).setText("CallSign: " ~ substr(getprop("/sim/multiplay/callsign"), 0,6)).show();
+	Text_Line_L[3].setTranslation(28.0,ypos+50.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,0).setText("Flight No: " ~ "NOT Set").show(); 											# This will be set through CDU (To be done)
+	Text_Line_R[3].setTranslation(484.0,ypos+50.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,0).setText("Flight Status: " ~ FStatus).show();
+	Text_Line_L[4].setTranslation(28.0,ypos+100.0).setAlignment("left-center").setFontSize(22,1).setColor(1,0,1).setText("Origin APT: " ~ OAPT).show();
+	Text_Line_R[4].setTranslation(484.0,ypos+100.0).setAlignment("right-center").setFontSize(22,1).setColor(1,0,1).setText("TO Time: " ~ TOT).show();
+	Text_Line_L[5].setTranslation(28.0,ypos+125.0).setAlignment("left-center").setFontSize(22,1).setColor(1,0,1).setText("Destination APT: " ~ DAPT).show();
+	Text_Line_R[5].setTranslation(484.0,ypos+125.0).setAlignment("right-center").setFontSize(22,1).setColor(1,0,1).setText("TD Time: " ~ TDT).show();
+	Text_Line_L[6].setTranslation(28.0,ypos+150.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Date: " ~ substr(getprop("environment/metar/data"),0,10)).show();
+	Text_Line_R[6].setTranslation(484.0,ypos+150.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Time: " ~ getprop("/instrumentation/clock/indicated-short-string") ~ "z").show();
+	Text_Line_L[7].setTranslation(28.0,ypos+200.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Ind. ALT: " ~ sprintf("%3.2f", getprop("/Instrumentation/altimeter/indicated-altitude-ft")) ~ " ft").show();
+	Text_Line_R[7].setTranslation(484.0,ypos+200.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Press. ALT: " ~ sprintf("%3.2f", getprop("/Instrumentation/altimeter/pressure-alt-ft")) ~ " ft").show();
+	Text_Line_L[8].setTranslation(28.0,ypos+225.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Press. hPa: " ~ sprintf("%3.2f", getprop("/Instrumentation/altimeter/setting-hpa"))).show();
+	Text_Line_R[8].setTranslation(484.0,ypos+225.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Press. inHg: " ~ sprintf("%3.2f", getprop("/Instrumentation/altimeter/setting-inhg"))).show();
+	Text_Line_L[9].setTranslation(28.0,ypos+250.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Speed Knots: " ~ sprintf("%3.0f", getprop("/Instrumentation/airspeed/indicated-speed-kt"))).show();
+	Text_Line_R[9].setTranslation(484.0,ypos+250.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Speed Mach: " ~ sprintf("%3.0f", getprop("/Instrumentation/airspeed/indicated-mach"))).show();
+	Text_Line_L[10].setTranslation(28.0,ypos+275.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Temperature C: " ~ sprintf("%3.2f", getprop("/environment/temperature-degc"))).show();
+	Text_Line_R[10].setTranslation(484.0,ypos+275.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Temperature F: " ~ sprintf("%3.2f", getprop("/environment/temperature-degf"))).show();
+	Text_Line_L[11].setTranslation(28.0,ypos+300.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Wind Dir.: " ~ sprintf("%3.0f", getprop("/environment/metar/base-wind-dir-deg")) ~ " degs").show();
+	Text_Line_R[11].setTranslation(484.0,ypos+300.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Wind Speed: " ~ sprintf("%3.0f", getprop("/environment/base-wind-speed-kt")) ~ " kts").show();
+	Text_Line_L[12].setTranslation(28.0,ypos+325.0).setAlignment("left-center").setFontSize(22,1).setColor(1,1,1).setText("Total Fuel: " ~ sprintf("%3.2f", getprop("/consumables/fuel/total-fuel-gals")) ~ " gals").show();
+	Text_Line_R[12].setTranslation(484.0,ypos+325.0).setAlignment("right-center").setFontSize(22,1).setColor(1,1,1).setText("Gross Weight: " ~ sprintf("%3.2f", getprop("/yasim/gross-weight-lbs")) ~ " lbs").show();
+
+}
+#__________________________________________________________________________________________
+# Boeing 777 EFB Applications -> INITIALIZE FLIGHT ----------------------------------------|
+#__________________________________________________________________________________________|
+
+# FlightStatus 			= 0 ---> Flight INACTIVE and/or CLOSED
+# FlightStatus 			= 1 ---> Flight INITIABLE and ACTIVE 
+# FlightStatus 			= 2 ---> Flight INITIABLE
+# FlightStatus 			= 3 ---> Flight PARTIAL and NOT INITIABLE
+# FlightStatus 			= 4 ---> Flight INITIATED and ACTIVE and CLOSABLE
+# OriginStatusFlag 		= 0 ---> Origin Apt missing
+# OriginStatusFlag 		= 1 ---> Origin Apt OK
+# DestinationStatusFlag = 0 ---> Destination Apt missing
+# DestinationStatusFlag = 1 ---> Destination Apt OK
+# ClosingFlightFlag		= 0 ---> Flight CLOSED
+# ClosingFlightFlag 	= 1 ---> Flight CLOSABLE
+
+Page_Functions.Display_INITIALIZE_FLIGHT = func {
+
+FlightStatus = getprop("instrumentation/efb/FlightStatus");
+
+		printf("Test> FLIGHT STATUS BEFORE = %s", FlightStatus);
+	if (FlightStatus == 0) { 														# Flight CLOSED and INACTIVE - Check for Origin/Destination Apts settings
+		if (getprop("/autopilot/route-manager/departure/airport") != "") {
+			OriginApt = getprop("/autopilot/route-manager/departure/airport");
+			OriginStatusFlag = 1;
+			FlightStatus = 2
+		} else {
+			OriginApt = "NOT Set";
+			FlightStatus = 3;
+		}
+		if (getprop("/autopilot/route-manager/destination/airport") != "") {
+			DestinationApt= getprop("/autopilot/route-manager/destination/airport");
+			DestinationStatusFlag = 1;
+			FlightStatus = 2;
+		} else {
+			DestinationApt = "NOT Set";
+			FlightStatus = 3;
+		}
+		if ((OriginStatusFlag == 1) and (DestinationStatusFlag == 1)) {
+		FlightStatus = 2; 															# Flight INITIABLE
+		}
+    } elsif ((FlightStatus == 1) and (ClosingFlightFlag == 0)) { 					# Flight INITIABLE and ACTIVE
+			screen.setFile(pages_path ~ "Initialize_1.jpg").show();
+			setprop("/instrumentation/efb/FlightStatus", 1); 
+			ClosingFlightFlag = 1;													# Flight CLOSABLE
+	} elsif ((FlightStatus == 1) and (ClosingFlightFlag == 1)) {  					# Flight ACTIVE
+			screen.setFile(pages_path ~ "Initialize_5.jpg").show();				
+			setprop("/instrumentation/efb/FlightStatus", 0);
+			FlightStatus = 0;														# Flight INACTIVE
+			ClosingFlightFlag = 0;  												# Flight CLOSED
+	} elsif (FlightStatus == 2) { 													# Flight INITIABLE
+			screen.setFile(pages_path ~ "Initialize_2.jpg").show();
+			setprop("/instrumentation/efb/FlightStatus", 2);
+			FlightStatus = 4;
+	} elsif ((FlightStatus == 3) or (FlightStatus == 0)) { 							# Flight PARTIAL and NOT INITIABLE 
+			screen.setFile(pages_path ~ "Initialize_3.jpg").show();				
+			setprop("/instrumentation/efb/FlightStatus", 3);
+			ClosingFlightFlag = 0;
+	} elsif (FlightStatus == 4) {						 							# Flight INITIATED and ACTIVE
+			screen.setFile(pages_path ~ "Initialize_4.jpg").show();				
+			setprop("/instrumentation/efb/FlightStatus", 4);
+			FlightStatus = 1;
+			ClosingFlightFlag = 0;
+	}
+	Text_Line_L[1].setTranslation(308.0,252.0).setAlignment("left-center").setFontSize(22,1).setColor(0,1,0).setText(OriginApt).show();
+	Text_Line_L[2].setTranslation(308.0,282.0).setAlignment("left-center").setFontSize(22,1).setColor(0,1,0).setText(DestinationApt).show();			
+	printf("Test> FLIGHT STATUS AFTER = %s", FlightStatus);
+# if ((keypress == "r8") and (ClosingFlightFlag == 1)) { setprop("/instrumentation/efb/FlightStatus", 1); # Flight INITIATED
+# ClosingFlightFlag = 2; # Flight CLOSABLE
+# keypress = "";
+# }
+# if ((keypress == "r8") and (FlightStatus == 1)) { setprop("/instrumentation/efb/FlightStatus", 0); # Flight NOT ACTIVE
+# setprop("/sim/model/efb/page", "Displays/Initialize_5.jpg");
+# FlightStatus = 0;
+# ClosingFlightFlag = 0; # Flight CLOSED
+# keypress = "";
+# }
+
+}

@@ -606,6 +606,7 @@ Service Ceiling: 43,100ft
             <click7 type="bool">0</click7>
             <click8 type="bool">0</click8>
             <click9 type="bool">0</click9>
+            <click10 type="bool">0</click10>			
             <FastenSeatbelt type="bool">0</FastenSeatbelt>
             <cabinalert type="bool">0</cabinalert>
         </sound>

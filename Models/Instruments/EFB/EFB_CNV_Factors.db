@@ -1,0 +1,45 @@
+# This is the Boeing 777 Seattle's EFB Conversion Factors DataBase
+# Version Alpha 00, 2014
+#
+
+var Speed_CNV_Factors = {
+#    FT/M---> Output Unit: FT/M, KM/H, KT, MTS, MPH
+'Input_Unit_1': [1, 0.018288, 0.0098747, 0.0050800, 0.011364],
+#    KM/H---> Output Unit: FT/M, KM/H, KT, MTS, MPH
+'Input_Unit_2': [54.68066, 1, 0.5399568, 0.2777778, 0.2777778],
+#    KT  ---> Output Unit: FT/M, KM/H, KT, MTS, MPH
+'Input_Unit_3': [101.2686, 1.852000, 1, 0.5144444, 1.150779],
+#    MTS ---> Output Unit: FT/M, KM/H, KT, MTS, MPH
+'Input_Unit_4': [196.85, 3.6000, 1.9438, 1, 2.2369],
+#    MPH ---> Output Unit: FT/M, KM/H, KT, MTS, MPH
+'Input_Unit_5': [88.0002, 1.609344, 0.8689762, 0.4470400, 1],
+};
+
+var Lenght_CNV_Factors = {
+#    FEET---> Output Unit: FEET, KILOMETERS, METERS, NAUTICAL MILES, STATUTE MILES
+'Input_Unit_1': [1, 0.0003048, 0.30480, 0.000164579, 0.000189394],
+#    KM  ---> Output Unit: FEET, KILOMETERS, METERS, NAUTICAL MILES, STATUTE MILES
+'Input_Unit_2': [3280.83989501, 1, 1000, 0.539956803456, 0.621371192237],
+#    MTS ---> Output Unit: FEET, KILOMETERS, METERS, NAUTICAL MILES, STATUTE MILES
+'Input_Unit_3': [3.28083989501, 0.001, 1, 0.000539956803456, 0.000621371192237],
+#    NAUTICAL MILES (INTERNATIONAL!) ---> Output Unit: FEET, KILOMETERS, METERS, NAUTICAL MILES, STATUTE MILES
+'Input_Unit_4': [6076.11548556, 1.852, 1852, 1, 1.15077944802],
+#    STATUTE MILES ---> Output Unit: FEET, KILOMETERS, METERS, NAUTICAL MILES, STATUTE MILES
+'Input_Unit_5': [5280, 1.609344, 1609.344, 0.868976241901, 1],
+};
+
+var Weight_CNV_Factors = {
+#    KG  ---> Output Unit: KILOGRAMS, POUNDS
+'Input_Unit_1': [1, 2.20462262185],
+#    LB  ---> Output Unit: KILOGRAMS, POUNDS
+'Input_Unit_2': [0.45359237, 1],
+};
+
+var Volume_CNV_Factors = {
+#    IMPERIAL GAL ---> Output Unit: IMPERIAL GALLONS, US GALLONS, LITERS
+'Input_Unit_1': [1, 1.20095, 4.54609],
+#    US GAL       ---> Output Unit: IMPERIAL GALLONS, US GALLONS, LITERS
+'Input_Unit_2': [0.832674, 1, 3.78541],
+#    LITERS 	  ---> Output Unit: IMPERIAL GALLONS, US GALLONS, LITERS
+'Input_Unit_3': [0.219969, 0.264172, 1],
+};

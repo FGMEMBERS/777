@@ -381,89 +381,6 @@ APR 2014
           </axis>
        </animation>
 	   
-<!-- Page Selection -->
-
-	<animation>
-		<type>select</type>
-		<object-name>Display</object-name>
-		<condition>
-			<or>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>MENU</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>VIDEO</value>
-				</equals>	
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>DOCUMENTS</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>PERFORMANCE</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>IDENT</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>SYSTEMS</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>CHECKLISTS</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>INITIALIZE</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES_CNV_SPD</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES_CNV_LNG</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES_CNV_WGT</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES_CNV_TMP</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES_CNV_VLM</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES_CNV_TMZ</value>
-				</equals>
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>UTILITIES_DESC_RATE</value>
-				</equals>				
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>APT INFO</value>
-				</equals>				
-				<equals>
-					<property>/instrumentation/efb/page</property>
-					<value>MONITOR</value>
-				</equals>				
-			</or>
-		</condition>
-	</animation>
-	
 	<animation>
 		<type>select</type>
 		<object-name>Full_Keyboard</object-name>
@@ -810,6 +727,8 @@ APR 2014
 				<value>FLIGHT POSITION</value>
 			</equals>
 		</condition>
-	</animation>	
+	</animation>
+
+	
 
 </PropertyList>

@@ -1,0 +1,204 @@
+# This is the Boeing 777 Seattle's EFB Charts DataBase
+# Version Alpha 00, 2014
+#
+# Please be very careful when adding NEW Charts to the Hash 'Chartlist'.
+# Use the TEMPLATE shown below, copy it & paste it (for better readability
+# it would be appropriate to insert the new Chart Hash alphabetically (by ICAO's ID)); 
+# then fill ALL the required Fields, using the same structure and Field names.
+# You may look at one of the existent Chart Hash for reference (i.e. 'KATL').
+# Of course, each Chart Name (i.e., "STAR_CANUKI_RNAV") MUST be present inside the relevant Directory
+# Example: for "STAR_CANUKI_RNAV" to be properly loaded and displayed in the EFB,
+# you must have a file named as 'STAR_CANUKI_RNAV.jpg' inside the Directory 'Charts/KATL/STAR'.
+# At the moment, .jpg files only are accepted.
+#_________________________________________________________________________________________________________________________________
+# INSERTING NEW CHARTS into the DB - Instructions:
+#_________________________________________________________________________________________________________________________________
+# WARNING: BE SURE TO HAVE A BACKUP for this File BEFORE actually manipulating it;
+#          any wrong new Data insertion would result in an EFB Failure.
+#
+# Step 1: Produce your Charts (.jpg) with a ratio Height/Width of 1.412371 (THAT'S A MUST for proper Chart's Visualization)
+# Step 2: Create a NEW Folder - naming it with the ICAO ID - into 'EFB/Charts' Folder (Example: LOWI)
+# Step 3: Create 4 New Folders - naming them 'APT', 'IAP', 'SID', 'STAR'- into the ICAO folder (Example: LOWI/APT)
+#		  NOTE: the 4 folders MUST be named with Capital Letters (i.e. 'APT', and NOT 'Apt')!
+# Step 4: Fill the 4 Folders with Charts'.jpg files; typically, insert:
+#								Airport, Ground and Aprons Charts into APT
+#								ILS Charts				   		  into IAP
+#								SID Charts						  into SID
+#								STAR Charts						  into STAR
+#		  NOTE: at the moment, Chart's number per ICAO is limited to 30 Charts.
+# Step 5: Then, Edit this file (EFB_Charts.db) and insert a new 'Hash Section', copying it from this TEMPLATE:
+#_________________________________________________________________________________________________________________________________
+#	'ICAO's ID':
+# 	{	
+#		STAR: ["name-of-the-STAR-Chart], [...],
+#		STARs: number-of-STAR-Charts,
+#		IAP: ["name-of-the-IAP-Chart], [...],
+#		IAPs: number-of-IAP-Charts,
+#		SID: ["name-of-the-SID-chart], [...],
+#		STARs: number-of-SID-Charts,
+#		APT: ["name-of-the-APT-Chart], [...],
+#		APTs: number-of-APT-Charts,
+#		ICAO: "ICAO's ID",
+#		LOCATION: "Location's Name",
+#		NAME: "Airport's Name"
+#	},
+#_________________________________________________________________________________________________________________________________
+#		NOTE: LOCATION and NAME Strings should be no longer than 18 chars to be properly displayed.
+#		NOTE2: all Charts Names will be cut to 27 chars
+#		(Example: 'SID_10-28_BEKAN5T_DORIN5T_ORI5QT' will be displayed as 'SID_10-28_BEKAN5T_DORIN5T_'.
+#		
+#		VERY IMPORTANT: 1) IN ORDER FOR AN AIRPORT/Chart TO BE DISPLAYED, THERE MUST BE AT LEAST AN "APT-0" File !!!...
+#					   	Missing that, no Chart whatsoever - belonging to that ICAO - will be read by the program.
+#						2) IF there should be NO charts for STAR, or SID, or IAP Directories, MAKE SURE TO ANYWAY INSERT an
+#					  	appropriate number in the relevant Hash Field, specifying '0' as the number of Charts; Example: 'IAPs: 0'.
+#	
+# Also, double (or triple!) check for no wrong Braces (opening and closing), and commas. 
+# So, please, be patient and careful...
+# Once finished, remember to SAVE this file WITHOUT changing its name ('EFB_Charts.db').
+#
+# I-NEMO
+#
+
+var ChartsList =
+{
+    'KATL':
+    {
+        STAR: ["STAR_CANUK1_RNAV", "STAR_ERLIN9_RNAV", "STAR_FLCON7_RNAV", "STAR_HERKO6_RNAV", "STAR_HONIE8_RNAV", "STAR_LA_GRANGE2", "STAR_PECHY7_RNAV", "STAR_ROME4", "STAR_RPTOR1_RNAV", "STAR_SINCA5", "STAR_VIKNN_3RNAV", "STAR_WHINZ1"],
+        STARs: 12,
+        IAP: ["ILS_8L_Cat II - III", "ILS_PRM_8L", "ILS_PRM_8L_CAT II - III", "ILS_PRM_8R", "ILS_PRM_9L", "ILS-LOC_8L", "ILS-LOC_8R", "ILS-LOC_9L"],
+        IAPs: 8,
+        SID: ["SID_ATL5", "SID_BRAV6_RNAV", "SID_CADIT6_RNAV", "SID_COKEM5_RNAV", "SID_DAWGS5_RNAV", "SID_DOOLY5_RNAV", "SID_GEETK6_RNAV", "SID_JCKTS6_RNAV", "SID_JOGOR4_RNAV", "SID_MUNSN5_RNAV", "SID_NOVSS4_RNAV", "SID_NUGGT5_RNAV"],
+        SIDs: 12,
+        APT: ["APT_0"],
+        APTs: 1,
+        ICAO: "KATL",
+        LOCATION: "ATLANTA USA",
+        NAME: "Hartsfield-Jackson"
+    },
+    'KLAX':
+    {
+        STAR: ["REDEYE2"],
+        STARs: 1,
+        IAP: ["06L-ILS", "06R-ILS", "07L-ILS", "07R-ILS"],
+        IAPs: 4,
+        SID: ["SNGO6"],
+        SIDs: 1,
+        APT: ["APT_0"],
+        APTs: 1,
+        ICAO: "KLAX",
+        LOCATION: "LOS ANGELES USA",
+        NAME: "Intntl"
+    },
+    'KIAH':
+    {
+        STAR: ["RIICE3_1", "RIICE_2"],
+        STARs: 2,
+        IAP: ["09-ILS", "15R-ILS"],
+        IAPs: 2,
+        SID: [""],
+        SIDs: 0,
+        APT: ["APT_0"],
+        APTs: 1,
+        ICAO: "KIAH",
+        LOCATION: "HOUSTON USA",
+        NAME: "G. Bush Intctl"
+    },
+    'VABB':
+    {
+        STAR: [""],
+        STARs: 0,
+        IAP: ["09-ILS-DME", "14-ILS-DME"],
+        IAPs: 2,
+        SID: ["EKPOSxA"],
+        SIDs: 1,
+        APT: ["APT_0"],
+        APTs: 1,
+        ICAO: "VABB",
+        LOCATION: "MUMBAI IN",
+        NAME: "Chhatrapati Shivaji"
+    },
+    'KMEM':
+    {
+        STAR: ["BEERT4"],
+        STARs: 1,
+        IAP: ["09-ILS_LOC"],
+        IAPs: 1,
+        SID: [""],
+        SIDs: 0,
+        APT: ["APT_0"],
+        APTs: 1,
+        ICAO: "KMEM",
+        LOCATION: "MEMPHIS USA",
+        NAME: "International"
+    },
+    'LFRB':
+    {
+        STAR: ["STAR"],
+        STARs: 1,
+        IAP: ["IAP_25L", "IAP_25L_RNAV", "ILS_Y_25L", "ILS_YZ_07R", "ILS_Z_25L", "NDB_25L", "RADAR", "RNAV_07R", "RNAV_25L", "VFR_APP01", "VFR_LNDG_01"],
+        IAPs: 11,
+        SID: ["SID_07R", "SID_25L"],
+        SIDs: 2,
+        APT: ["APT_0", "APT_1"],
+        APTs: 2,
+        ICAO: "LFRB",
+        LOCATION: "BREST FR",
+        NAME: "Guipavas"
+    },
+    'LFRM':
+    {
+        STAR: ["VFR_APP01", "VFR_LND01"],
+        STARs: 2,
+        IAP: [""],
+        IAPs: 0,
+        SID: [""],
+        SIDs: 0,
+        APT: ["APT_0"],
+        APTs: 1,
+        ICAO: "LFRM",
+        LOCATION: "LE MANS FR",
+        NAME: "Arnage"
+    },
+    'LIME':
+    {
+        STAR: ["STAR_ASTIG_ODINA_1S", "STAR_ASTIG_ODINA_1T", "STAR_DIXER_GEN_IDONA_1S", "STAR_DIXER_GEN_IDONA_1T", "STAR_DORIN_LUSIL_OSKOR_1S", "STAR_DORIN_LUSIL_OSKOR_1T", "STAR_East", "STAR_West", "STAR_VOR_DME", "VOR_Y28", "VOR_Y28_2", "VOR_Z28"],
+        STARs: 12,
+        IAP: ["ILS-PAPA_28", "ILS-PAPA_28_CAT II", "ILS-SIERRA_28", "ILS-SIERRA_28_CAT II", "ILS-TANGO_28", "ILS-TANGO_28_CAT II", "ILS-X28", "ILS-Y28", "ILS-Z28"],
+        IAPs: 9,
+        SID: ["SID_10_BEKAN_DORIN_5S", "SID_10-28_BEKAN5T_DORIN5T_ORI5QT", "SID_10-28_Alternate", "SID_28_SRN5R_TZO5R_TZO5S", "SID_InitialClimb", "SID10_InitialClimb", "SID28_InitialClimb", "SID28_InitialClimb2", "DEP_North_East", "DEP_South", "DEP_South_West", "DEP_West"],
+        SIDs: 12,
+        APT: ["APT_0", "APT_0_Small", "GROUND_East_Apron", "GROUND_North_Apron", "GROUND_West_Apron"],
+        APTs: 5,
+        ICAO: "LIME",
+        LOCATION: "BERGAMO IT",
+        NAME: "Orio al Serio"
+    },
+    'LOWI':
+    {
+        STAR: ["26-RTT", "STAR", "VFR_East", "VFR_West", "West-NDB_KTI"],
+        STARs: 5,
+        IAP: ["LOC_26_RNAV", "LOC_DME_East", "LOC_DME_West", "NDB_East", "RNAV_08", "RNAV_26", "SPEC_LOC_DME_East"],
+        IAPs: 7,
+        SID: ["08-RTT", "General Departure", "SID_08", "SID0_RTT1W", "SID_08_SPECPERF_KPT1Z", "SID_08_SPECPERF_RTT2Z", "SID-26", "SID_26_MOGTI1H_RTT1Y", "SID_26_RNAV"],
+        SIDs: 9,
+        APT: ["APT_0", "APT_1"],
+        APTs: 2,
+        ICAO: "LOWI",
+        LOCATION: "INNSBRUCK AT",
+        NAME: "Kranebitten"
+    },
+    'WSSS':
+    {
+        STAR: ["BOBAG1A", "BOBAG1B", "LAVAX1A", "LAVAX1B"],
+        STARs: 4,
+        IAP: ["02C-VOR-DME", "02L-ILS", "02L-ILS-CATII", "20C-VOR-DME", "20R-ILS"],
+        IAPs: 5,
+        SID: ["BOG1"],
+        SIDs: 1,
+        APT: ["APT_0", "APT_1"],
+        APTs: 2,
+        ICAO: "WSSS",
+        LOCATION: "SINGAPORE SG",
+        NAME: "Changi"
+    },
+};
