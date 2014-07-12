@@ -679,28 +679,12 @@ var AFDS = {
             me.vorient = getprop("environment/magnetic-variation-deg");
         }
         me.reference_deg.setValue(vheading);
-        # VOR, ADF direction calculation
-        setprop("instrumentation/efis/mfd/lvordirection", (getprop("instrumentation/nav/heading-deg") - vheading - me.vorient));
-        setprop("instrumentation/efis/mfd/rvordirection", (getprop("instrumentation/nav[1]/heading-deg") - vheading - me.vorient));
-        setprop("instrumentation/efis/mfd/ladfdirection", (getprop("instrumentation/adf/indicated-bearing-deg")
-                    + getprop("autopilot/internal/crab-angle-hdg")));
-        setprop("instrumentation/efis/mfd/radfdirection", (getprop("instrumentation/adf[1]/indicated-bearing-deg")
-                    + getprop("autopilot/internal/crab-angle-hdg")));
-        # Wind direction and bearing calculation
-        setprop("instrumentation/efis/mfd/winddirection", (getprop("environment/wind-from-heading-deg") - vheading - me.vorient));
         vheading = int(vheading + 0.5);
         if(vheading < 0.5)
         {
             vheading += 360;
         }
         me.heading.setValue(vheading);
-        vheading = (getprop("environment/wind-from-heading-deg") - me.vorient);
-        vheading = int(vheading + 0.5);
-        if(vheading < 0.5)
-        {
-            vheading += 360;
-        }
-        setprop("instrumentation/efis/mfd/windbearing", vheading);
     },
 
 ###################
@@ -829,17 +813,18 @@ var AFDS = {
             msg="";
             if(me.gs_armed.getValue())
             {
+                setprop("instrumentation/nav/gs-rate-of-climb", getprop("instrumentation/nav/gs/height-above-station-ft")*getprop("velocities/groundspeed-kt")/(getprop("instrumentation/nav/gs/track-distance-m")*(-1.944)));
                 msg="G/S";
                 if(me.lateral_mode.getValue() == 4) #LOC already captured
                 {
-                    var vradials = (getprop("instrumentation/nav[0]/radials/target-radial-deg")
+                    var vradials = (getprop("instrumentation/nav/loc/true-bearing-to-deg")
                             - getprop("orientation/heading-deg"));
                     if(vradials < -180) vradials += 360;
                     elsif(vradials >= 180) vradials -= 360;
                     if(abs(vradials) < 80)
                     {
                         var gsdefl = getprop("instrumentation/nav/gs-needle-deflection-deg");
-                        var gsrange = getprop("instrumentation/nav/gs-in-range");
+                        var gsrange = getprop("instrumentation/nav/gs/in-range");
                         if ((gsdefl< 0.1 and gsdefl>-0.1)and
                             gsrange)
                         {
@@ -861,34 +846,32 @@ var AFDS = {
 
         }elsif(me.step==1){ ### localizer armed ? ###
             msg = "";
+            setprop("instrumentation/nav/radials/target-auto-hdg-deg", getprop("instrumentation/nav/loc/true-bearing-to-deg") + getprop("instrumentation/nav/loc/offset-norm")*10);
             if(me.loc_armed.getValue())
             {
                 msg = "LOC";
-                if (getprop("instrumentation/nav/in-range"))
+                if (getprop("instrumentation/nav/loc/in-range"))
                 {
-                    if(getprop("instrumentation/nav/nav-loc"))
+                    var vradials = (getprop("instrumentation/nav/loc/true-bearing-to-deg")
+                            - getprop("orientation/heading-deg"));
+                    if(vradials < -180) vradials += 360;
+                    elsif(vradials >= 180) vradials -= 360;
+                    if(abs(vradials) < 120)
                     {
-                        var vradials = (getprop("instrumentation/nav[0]/radials/target-radial-deg")
-                                - getprop("orientation/heading-deg"));
-                        if(vradials < -180) vradials += 360;
-                        elsif(vradials >= 180) vradials -= 360;
-                        if(abs(vradials) < 120)
+                        var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
+                        if(abs(hddefl) < 9.9)
                         {
-                            var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
-                            if(abs(hddefl) < 9.9)
-                            {
-                                me.lateral_mode.setValue(4);
-                                me.loc_armed.setValue(0);
-                                vradials = getprop("instrumentation/nav[0]/radials/target-radial-deg") - me.vorient + 0.5;
-                                if(vradials < 0.5) vradials += 360;
-                                elsif(vradials >= 360.5) vradials -= 360;
-                                me.hdg_setting.setValue(vradials);
-                                setprop("instrumentation/nav/radials/selected-deg", vradials);
-                            }
-                            else
-                            {
-                                setprop("autopilot/internal/presision-loc", 0);
-                            }
+                            me.lateral_mode.setValue(4);
+                            me.loc_armed.setValue(0);
+                            vradials = getprop("instrumentation/nav/loc/true-bearing-to-deg") - me.vorient + 0.5;
+                            if(vradials < 0.5) vradials += 360;
+                            elsif(vradials >= 360.5) vradials -= 360;
+                            me.hdg_setting.setValue(vradials);
+                            setprop("instrumentation/nav/radials/selected-deg", vradials);
+                        }
+                        else
+                        {
+                            setprop("autopilot/internal/presision-loc", 0);
                         }
                     }
                 }
@@ -986,7 +969,7 @@ var AFDS = {
                     me.rollout_armed.setValue(0);
                     idx = 5;    # ROLLOUT
                 }
-                me.crab_angle.setValue(me.heading.getValue() - getprop("instrumentation/nav[0]/radials/target-radial-deg") + me.vorient);
+                me.crab_angle.setValue(me.heading.getValue() - getprop("instrumentation/nav/loc/true-bearing-to-deg") + me.vorient);
                 me.crab_angle_total.setValue(abs(me.crab_angle.getValue() + getprop("orientation/side-slip-deg")));
                 if(me.crab_angle.getValue() > 0)
                 {
@@ -1423,6 +1406,7 @@ var AFDS = {
             }
             elsif(idx == 6)             # G/S
             {
+                setprop("instrumentation/nav/gs-rate-of-climb", getprop("instrumentation/nav/gs/height-above-station-ft")*getprop("velocities/groundspeed-kt")/(getprop("instrumentation/nav/gs/track-distance-m")*(-1.944)));
                 var f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
                 me.flare_constant_setting.setValue(f_angle);
                 if(getprop("position/gear-agl-ft") < 50)

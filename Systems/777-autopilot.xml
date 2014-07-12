@@ -174,31 +174,13 @@
             </u_max>
         </config>
     </pi-simple-controller>
-  <filter>
-    <name>nav1 heading error computer/normalizer</name>
-    <debug>false</debug>
-    <type>gain</type>
-    <input>
-      <property>instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
-      <offset>
-        <property>orientation/heading-deg</property>
-        <scale>-1.0</scale>
-      </offset>
-    </input>
-    <output>autopilot/internal/nav1-heading-error-deg</output>
-    <period>
-      <min>-180</min>
-      <max>180</max>
-    </period>
-    <gain>1.0</gain>
-  </filter>
 
   <filter>
     <name>nav1 heading error computer/normalizer</name>
     <debug>false</debug>
     <type>gain</type>
     <input>
-      <property>instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
+      <property>instrumentation/nav/radials/target-auto-hdg-deg</property>
       <offset>
         <property>orientation/heading-deg</property>
         <scale>-1.0</scale>
@@ -884,7 +866,7 @@
             </condition>
         </enable>
         <input>
-            <property>instrumentation/nav[0]/gs-rate-of-climb</property>
+            <property>instrumentation/nav/gs-rate-of-climb</property>
         </input>
         <output>
             <property>autopilot/internal/current-gs-rate-of-climb</property>
