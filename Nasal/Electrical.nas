@@ -30,6 +30,8 @@ var Lbus = props.globals.initNode("systems/electrical/left-bus",0,"DOUBLE");
 var Rbus = props.globals.initNode("systems/electrical/right-bus",0,"DOUBLE");
 var AVswitch=props.globals.initNode("systems/electrical/outputs/avionics",0,"BOOL");
 var APUgen=props.globals.initNode("controls/electric/APU-generator",0,"BOOL");
+var l_gen=props.globals.initNode("controls/electric/engine/generator",0,"BOOL");
+var r_gen=props.globals.initNode("controls/electric/engine[1]/generator",0,"BOOL");
 var CDUswitch=props.globals.initNode("instrumentation/cdu/serviceable",0,"BOOL");
 var DomeLtControl=props.globals.initNode("controls/lighting/dome-intencity",0,"DOUBLE");
 var DomeLtIntencity=props.globals.initNode("systems/electrical/domelight-int",0,"DOUBLE");
@@ -395,6 +397,7 @@ update_virtual_bus = func( dt ) {
     if(lidg.get_transition())
     {
         l_gcb.setValue(lidg.valid);
+        l_gen.setValue(lidg.valid);
         if(lidg.valid)
         {
             apb.setValue(0);
@@ -407,6 +410,7 @@ update_virtual_bus = func( dt ) {
     elsif(ridg.get_transition())
     {
         r_gcb.setValue(ridg.valid);
+        r_gen.setValue(ridg.valid);
         if(ridg.valid)
         {
             apb.setValue(0);
