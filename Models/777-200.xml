@@ -117,19 +117,14 @@ Syd Adams
     </model>
 
     <model>
-        <name>flightdeck</name>
-        <path>Aircraft/777/Models/flightdeck.xml</path>
-        <offsets>
-            <x-m>-21.750</x-m>
-            <y-m>0</y-m>
-            <z-m>0</z-m>
-            <pitch-deg>0</pitch-deg>
-        </offsets>
+        <name>flightdeck-200</name>
+        <usage>interior</usage>
+        <path>Aircraft/777/Models/flightdeck-200.xml</path>
     </model>
 
     <animation>
         <type>select</type>
-        <object-name>flightdeck</object-name>
+        <object-name>flightdeck-200</object-name>
         <condition>
             <property>sim/current-view/internal</property>
         </condition>
