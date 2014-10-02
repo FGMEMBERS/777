@@ -1,12 +1,13 @@
 <!-- 777-200
-Justin Smithies
-Syd Adams
 -->
 
 <PropertyList>
 
     <path>flightdeck.ac</path>
 
+    <offsets>
+        <x-m>-21.750</x-m>
+    </offsets>
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
         <object-name>Lettering_GB</object-name>
