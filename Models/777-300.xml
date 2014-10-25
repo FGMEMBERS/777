@@ -81,6 +81,7 @@ Syd Adams
 
     <effect>
     <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>redlight</object-name>
     <object-name>redflash</object-name>
     <object-name>whiteflash</object-name>
     <object-name>greenflash</object-name>
@@ -813,7 +814,7 @@ Outboard Aileron Lockout Schedule
 
     <animation>
     <type>select</type>
-    <object-name>taxiL-on</object-name>
+        <object-name>Llight0</object-name>
     <condition>
         <and>
                 <property>sim/multiplay/generic/int[4]</property>
@@ -1333,7 +1334,7 @@ Outboard Aileron Lockout Schedule
 
     <animation>
     <type>rotate</type>
-    <object-name>Frontgear</object-name>
+        <object-name>Frtstrut</object-name>
         <property>controls/gear/nosegear-steering-cmd-norm</property>
         <factor>70</factor>
     <center>
