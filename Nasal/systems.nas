@@ -1093,6 +1093,31 @@ var update_systems = func {
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
     switch_ind();
+    if(getprop("sim/rendering/shaders/skydome")
+        and (getprop("position/gear-agl-ft") < 200))
+    {
+        if(getprop("systems/electrical/outputs/landing-light[1]"))
+        {
+            setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
+            setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 1);
+            setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", -5);
+            setprop("sim/rendering/als-secondary-lights/landing-light2-offset-deg", 5);
+        }
+        else
+        {
+            if(getprop("systems/electrical/outputs/taxi-lights"))
+            {
+                setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
+                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+                setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", 0);
+            }
+            else
+            {
+                setprop("sim/rendering/als-secondary-lights/use-landing-light", 0);
+                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+            }
+        }
+    }
     setprop("instrumentation/rmu/unit/offside_tuned",
         (((getprop("instrumentation/rmu/unit/vhf-l") == 0) and (getprop("instrumentation/rmu/unit/hf-l") == 0))
             or getprop("instrumentation/rmu/unit[1]/vhf-l")

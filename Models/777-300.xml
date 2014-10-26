@@ -843,6 +843,7 @@ Outboard Aileron Lockout Schedule
         <condition>
             <and>
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
+                <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
                     <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
@@ -872,6 +873,7 @@ Outboard Aileron Lockout Schedule
         <condition>
             <and>
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
+                <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
                     <property>sim/multiplay/generic/int[6]</property>
                     <value>5</value>
@@ -907,6 +909,7 @@ Outboard Aileron Lockout Schedule
         <condition>
             <and>
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
+                <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
                     <property>sim/multiplay/generic/int[5]</property>
                     <value>5</value>
