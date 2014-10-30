@@ -354,6 +354,7 @@ var start_updates = func {
         # airborne startup
         Startup();
         setprop("controls/gear/brake-parking",0);
+        setprop("controls/lighting/taxi-lights",0);
         setprop("instrumentation/afds/ap-modes/pitch-mode", "TO/GA");
         setprop("instrumentation/afds/ap-modes/roll-mode", "TO/GA");
         setprop("instrumentation/afds/inputs/vertical-index", 10);
@@ -569,9 +570,9 @@ var Startup = func{
     setprop("controls/lighting/logo-lights",1);
     setprop("controls/lighting/cabin-lights",1);
     setprop("controls/lighting/strobe",1);
-    setprop("controls/lighting/landing-light[0]",1);
-    setprop("controls/lighting/landing-light[1]",1);
-    setprop("controls/lighting/landing-light[2]",1);
+    setprop("controls/lighting/landing-light[0]",0);
+    setprop("controls/lighting/landing-light[1]",0);
+    setprop("controls/lighting/landing-light[2]",0);
     setprop("controls/engines/engine[0]/cutoff",0);
     setprop("controls/engines/engine[1]/cutoff",0);
     setprop("engines/engine[0]/out-of-fuel",0);
@@ -1089,6 +1090,31 @@ var update_systems = func {
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
 	switch_ind();
+    if(getprop("sim/rendering/shaders/skydome")
+        and (getprop("position/gear-agl-ft") < 200))
+    {
+        if(getprop("systems/electrical/outputs/landing-light[1]"))
+        {
+            setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
+            setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 1);
+            setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", -5);
+            setprop("sim/rendering/als-secondary-lights/landing-light2-offset-deg", 5);
+        }
+        else
+        {
+            if(getprop("systems/electrical/outputs/taxi-lights"))
+            {
+                setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
+                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+                setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", 0);
+            }
+            else
+            {
+                setprop("sim/rendering/als-secondary-lights/use-landing-light", 0);
+                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+            }
+        }
+    }
     setprop("instrumentation/rmu/unit/offside_tuned",
         (((getprop("instrumentation/rmu/unit/vhf-l") == 0) and (getprop("instrumentation/rmu/unit/hf-l") == 0))
             or getprop("instrumentation/rmu/unit[1]/vhf-l")
