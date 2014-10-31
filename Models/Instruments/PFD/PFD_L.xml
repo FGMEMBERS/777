@@ -240,7 +240,7 @@ Syd Adams
         <object-name>FDpitch</object-name>
         <object-name>FDpitch_rembrandt</object-name>
         <property>autopilot/internal/target-pitch-deg</property>
-        <factor>0.00187</factor>
+        <factor>0.00093</factor>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -253,7 +253,7 @@ Syd Adams
         <object-name>FDpitch</object-name>
         <object-name>FDpitch_rembrandt</object-name>
         <property>orientation/pitch-deg</property>
-        <factor>0.00187</factor>
+        <factor>0.00093</factor>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -266,7 +266,7 @@ Syd Adams
         <object-name>FDroll</object-name>
         <object-name>FDroll_rembrandt</object-name>
         <property>autopilot/internal/target-roll-deg</property>
-        <factor>0.001</factor>
+        <factor>0.0005</factor>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -279,7 +279,7 @@ Syd Adams
         <object-name>FDroll</object-name>
         <object-name>FDroll_rembrandt</object-name>
         <property>orientation/roll-deg</property>
-        <factor>0.001</factor>
+        <factor>0.0005</factor>
         <axis>
             <x>0</x>
             <y>-1</y>
