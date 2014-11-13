@@ -8,6 +8,21 @@ This file selects the instrumentation modules that should be available.
 
 <PropertyList>
 
+    <comm-radio>
+        <name>comm</name>
+        <number>0</number>
+    </comm-radio>
+
+    <comm-radio>
+        <name>comm</name>
+        <number>1</number>
+    </comm-radio>
+
+    <comm-radio>
+        <name>comm</name>
+        <number>2</number>
+    </comm-radio>
+
     <adf>
         <name>adf</name>
         <number>0</number>
