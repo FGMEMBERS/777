@@ -572,7 +572,7 @@ Syd Adams
                 </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
-                <step>0.05</step>
+                <step>0.025</step>
             </binding>
         </action>
     </animation>
@@ -591,7 +591,7 @@ Syd Adams
                 </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
-                <step>-0.05</step>
+                <step>-0.025</step>
             </binding>
         </action>
     </animation>

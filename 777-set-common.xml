@@ -964,8 +964,6 @@ Service Ceiling: 43,100ft
         </efis>
         <rmu>
             <unit n="0">
-                <source-index type="int">0</source-index>
-                <source type="string">comm1</source>
                 <vhf-l type="int">1</vhf-l>
                 <vhf-r type="int">0</vhf-r>
                 <vhf-c type="int">0</vhf-c>
@@ -975,8 +973,6 @@ Service Ceiling: 43,100ft
                 <standby-mhz  type="double">125.00</standby-mhz>
             </unit>
             <unit n="1">
-                <source-index type="int">2</source-index>
-                <source type="string">nav1</source>
                 <vhf-l type="int">0</vhf-l>
                 <vhf-r type="int">1</vhf-r>
                 <vhf-c type="int">0</vhf-c>
@@ -986,8 +982,6 @@ Service Ceiling: 43,100ft
                 <standby-mhz type="double">115.70</standby-mhz>
             </unit>
             <unit n="2">
-                <source-index type="int">5</source-index>
-                <source type="string">adf</source>
                 <vhf-l type="int">0</vhf-l>
                 <vhf-r type="int">0</vhf-r>
                 <vhf-c type="int">1</vhf-c>
