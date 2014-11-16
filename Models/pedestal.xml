@@ -798,9 +798,10 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         </action>
     </animation>
 
-    <!--animation>
+    <animation>
         <type>rotate</type>
         <object-name>AudioPnl_L_VhfL.knob</object-name>
+        <object-name>Lettering_CS.Audio_1_VhfL</object-name>
         <property>instrumentation/comm/volume</property>
         <interpolation>
             <entry>
@@ -819,14 +820,26 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <axis>
             <x>0</x>
             <y>0</y>
-            <z>-1</z>
+            <z>-0.013</z>
         </axis>
         <center>
-            <x-m>0.11</x-m>
-            <y-m>-0.19</y-m>
-            <z-m>0</z-m>
+            <x-m>0.0904</x-m>
+            <y-m>-0.1822</y-m>
+            <z-m>0.41480</z-m>
         </center>
-    </animation-->
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ACP_Vhf_L.Led</object-name>
+        <property>instrumentation/comm/power-btn</property>
+        <factor>0.0890</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -881,10 +894,11 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         </action>
     </animation>
 
-    <!--animation>
+    <animation>
         <type>rotate</type>
         <object-name>AudioPnl_L_VhfC.knob</object-name>
-        <property>instrumentation/comm[1]/volume</property>
+        <object-name>Lettering_CS.Audio_1_VhfC</object-name>
+        <property>instrumentation/comm[2]/volume</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -902,14 +916,26 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <axis>
             <x>0</x>
             <y>0</y>
-            <z>-1</z>
+            <z>-0.013</z>
         </axis>
         <center>
-            <x-m>0.11</x-m>
-            <y-m>-0.19</y-m>
-            <z-m>0</z-m>
+            <x-m>0.0904</x-m>
+            <y-m>-0.1647</y-m>
+            <z-m>0.41480</z-m>
         </center>
-    </animation-->
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ACP_Vhf_C.Led.001</object-name>
+        <property>instrumentation/comm[2]/power-btn</property>
+        <factor>0.0890</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -964,10 +990,11 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         </action>
     </animation>
 
-    <!--animation>
+    <animation>
         <type>rotate</type>
         <object-name>AudioPnl_L_VhfR.knob</object-name>
-        <property>instrumentation/comm[2]/volume</property>
+        <object-name>Lettering_CS.Audio_1_VhfR</object-name>
+        <property>instrumentation/comm[1]/volume</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -985,14 +1012,26 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <axis>
             <x>0</x>
             <y>0</y>
-            <z>-1</z>
+            <z>-0.013</z>
         </axis>
         <center>
-            <x-m>0.11</x-m>
-            <y-m>-0.19</y-m>
-            <z-m>0</z-m>
+            <x-m>0.0904</x-m>
+            <y-m>-0.1473</y-m>
+            <z-m>0.41480</z-m>
         </center>
-    </animation-->
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ACP_Vhf_R.Led</object-name>
+        <property>instrumentation/comm[1]/power-btn</property>
+        <factor>0.0890</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
     <animation>
         <type>rotate</type>

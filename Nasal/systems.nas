@@ -317,6 +317,12 @@ setlistener("sim/signals/fdm-initialized", func {
     props.globals.initNode("instrumentation/clock/et-knob",0,"INT");
     props.globals.initNode("instrumentation/clock/set-knob",0,"INT");
     balance_fuel();
+    setprop("instrumentation/comm/power-btn",0);
+    setprop("instrumentation/comm[1]/power-btn",0);
+    setprop("instrumentation/comm[2]/power-btn",0);
+    setprop("instrumentation/comm/power-good",0);
+    setprop("instrumentation/comm[1]/power-good",0);
+    setprop("instrumentation/comm[2]/power-gppd",0);
     setprop("controls/fuel/tank[0]/boost-pump-switch[0]",1);
     setprop("controls/fuel/tank[0]/boost-pump-switch[1]",1);
     setprop("controls/fuel/tank[2]/boost-pump-switch[0]",1);

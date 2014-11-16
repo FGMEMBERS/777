@@ -15,7 +15,7 @@ name "Lettering_CS.R"
 loc 0 0 -0
 data 14
 Lettering_CS.R
-texture "..\Textures\Lettering\Lettering_CS.png"
+texture "../Textures/Lettering/Lettering_CS.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 91
@@ -595,7 +595,7 @@ name "Lettering_CS.RT"
 loc 0 0 -0
 data 15
 Lettering_CS.RT
-texture "..\Textures\Lettering\Lettering_CS.png"
+texture "../Textures/Lettering/Lettering_CS.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 12
@@ -661,7 +661,7 @@ name "Offside"
 loc -0.000172 0 -0
 data 7
 Offside
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 12
@@ -744,7 +744,7 @@ name "Radio_L"
 loc 0 0 -0
 data 7
 Radio_L
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 177
@@ -2734,7 +2734,7 @@ name "Radio_L_Top"
 loc 0 0 -0
 data 11
 Radio_L_Top
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 23
@@ -2901,7 +2901,7 @@ name "Screw_Fixing.016"
 loc 0 0 -0
 data 16
 Screw_Fixing.016
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 489
@@ -7809,7 +7809,7 @@ name "Screw_Fixing.017"
 loc 0 0 -0
 data 16
 Screw_Fixing.017
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 489
@@ -12717,7 +12717,7 @@ name "Screw_Fixing.018"
 loc 0 0 -0
 data 16
 Screw_Fixing.018
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 489
@@ -17625,7 +17625,7 @@ name "Screw_Fixing.019"
 loc 0 0 -0
 data 16
 Screw_Fixing.019
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 489
@@ -22533,7 +22533,7 @@ name "Sens.knob"
 loc 0 0 -0
 data 9
 Sens.knob
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 104
@@ -23622,7 +23622,7 @@ name "Tun1.knob"
 loc 0 0 -0
 data 9
 Tun1.knob
-texture "..\Textures\Cockpit\Buttons_03.png"
+texture "../Textures/Cockpit/Buttons_03.png"
 texrep 1.000000 1.000000
 crease 179.000000
 numvert 2319
@@ -52274,7 +52274,7 @@ name "Tun2.knob"
 loc 0 0 -0
 data 9
 Tun2.knob
-texture "..\Textures\Cockpit\Buttons_03.png"
+texture "../Textures/Cockpit/Buttons_03.png"
 texrep 1.000000 1.000000
 crease 179.000000
 numvert 2902
@@ -89562,7 +89562,7 @@ name "am.btn"
 loc 0 0 -0
 data 6
 am.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -89616,7 +89616,7 @@ name "am.toggle"
 loc 0 0 -0
 data 9
 am.toggle
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89638,7 +89638,7 @@ name "freq"
 loc 0 0 -0
 data 4
 freq
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89660,7 +89660,7 @@ name "freq.001"
 loc 0 0 -0
 data 8
 freq.001
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89682,7 +89682,7 @@ name "freq.002"
 loc 0 0 -0
 data 8
 freq.002
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89704,7 +89704,7 @@ name "freq.003"
 loc 0 0 -0
 data 8
 freq.003
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89726,7 +89726,7 @@ name "freq.004"
 loc 0 0 -0
 data 8
 freq.004
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89748,7 +89748,7 @@ name "freq.005"
 loc 0 0 -0
 data 8
 freq.005
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89770,7 +89770,7 @@ name "freq.006"
 loc 0 0 -0
 data 8
 freq.006
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89792,7 +89792,7 @@ name "hf-l.btn"
 loc 0 0 -0
 data 8
 hf-l.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -89846,7 +89846,7 @@ name "hf-l.toggle"
 loc 0 0 -0
 data 11
 hf-l.toggle
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89868,7 +89868,7 @@ name "hf-r.btn"
 loc 0 0 -0
 data 8
 hf-r.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -89922,7 +89922,7 @@ name "hf-r.toggle"
 loc 0 0 -0
 data 11
 hf-r.toggle
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -89944,7 +89944,7 @@ name "pnl-off.btn"
 loc 0 0 -0
 data 11
 pnl-off.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -89998,7 +89998,7 @@ name "stby"
 loc 0 0 -0
 data 4
 stby
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90020,7 +90020,7 @@ name "stby.001"
 loc 0 0 -0
 data 8
 stby.001
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90042,7 +90042,7 @@ name "stby.002"
 loc 0 0 -0
 data 8
 stby.002
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90064,7 +90064,7 @@ name "stby.003"
 loc 0 0 -0
 data 8
 stby.003
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90086,7 +90086,7 @@ name "stby.004"
 loc 0 0 -0
 data 8
 stby.004
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90108,7 +90108,7 @@ name "stby.005"
 loc 0 0 -0
 data 8
 stby.005
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90130,7 +90130,7 @@ name "stby.006"
 loc 0 0 -0
 data 8
 stby.006
-texture "..\Textures\Cockpit\radio.png"
+texture "../Textures/Cockpit/radio.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90152,7 +90152,7 @@ name "stby.dn"
 loc 0 0 -0
 data 7
 stby.dn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90174,7 +90174,7 @@ name "stby.dn.001"
 loc 0 0 -0
 data 11
 stby.dn.001
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90196,7 +90196,7 @@ name "stby.up"
 loc 0 0 -0
 data 7
 stby.up
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90218,7 +90218,7 @@ name "stby.up.001"
 loc 0 0 -0
 data 11
 stby.up.001
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90240,7 +90240,7 @@ name "swp.btn"
 loc 0 0 -0
 data 7
 swp.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -90294,7 +90294,7 @@ name "vhf-c.btn"
 loc 0 0 -0
 data 9
 vhf-c.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -90348,7 +90348,7 @@ name "vhf-c.toggle"
 loc 0 0 -0
 data 12
 vhf-c.toggle
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90370,7 +90370,7 @@ name "vhf-l.btn"
 loc 0 0 -0
 data 9
 vhf-l.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -90424,7 +90424,7 @@ name "vhf-l.toggle"
 loc 0 0 -0
 data 12
 vhf-l.toggle
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
@@ -90446,7 +90446,7 @@ name "vhf-r.btn"
 loc 0 0 -0
 data 9
 vhf-r.btn
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 8
@@ -90500,7 +90500,7 @@ name "vhf-r.toggle"
 loc 0 0 -0
 data 12
 vhf-r.toggle
-texture "..\Textures\Cockpit\Control_Stand.png"
+texture "../Textures/Cockpit/Control_Stand.png"
 texrep 1.000000 1.000000
 crease 30.000001
 numvert 4
