@@ -323,6 +323,9 @@ setlistener("sim/signals/fdm-initialized", func {
     setprop("instrumentation/comm/power-good",0);
     setprop("instrumentation/comm[1]/power-good",0);
     setprop("instrumentation/comm[2]/power-gppd",0);
+    setprop("instrumentation/comm/volume",0.5);
+    setprop("instrumentation/comm[1]/volume",0.5);
+    setprop("instrumentation/comm[2]/volume",0.5);
     setprop("controls/fuel/tank[0]/boost-pump-switch[0]",1);
     setprop("controls/fuel/tank[0]/boost-pump-switch[1]",1);
     setprop("controls/fuel/tank[2]/boost-pump-switch[0]",1);
