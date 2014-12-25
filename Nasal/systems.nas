@@ -317,6 +317,15 @@ setlistener("sim/signals/fdm-initialized", func {
     props.globals.initNode("instrumentation/clock/et-knob",0,"INT");
     props.globals.initNode("instrumentation/clock/set-knob",0,"INT");
     balance_fuel();
+    setprop("instrumentation/comm/power-btn",0);
+    setprop("instrumentation/comm[1]/power-btn",0);
+    setprop("instrumentation/comm[2]/power-btn",0);
+    setprop("instrumentation/comm/power-good",0);
+    setprop("instrumentation/comm[1]/power-good",0);
+    setprop("instrumentation/comm[2]/power-gppd",0);
+    setprop("instrumentation/comm/volume",0.5);
+    setprop("instrumentation/comm[1]/volume",0.5);
+    setprop("instrumentation/comm[2]/volume",0.5);
     setprop("controls/fuel/tank[0]/boost-pump-switch[0]",1);
     setprop("controls/fuel/tank[0]/boost-pump-switch[1]",1);
     setprop("controls/fuel/tank[2]/boost-pump-switch[0]",1);
@@ -354,6 +363,7 @@ var start_updates = func {
         # airborne startup
         Startup();
         setprop("controls/gear/brake-parking",0);
+        setprop("controls/lighting/taxi-lights",0);
         setprop("instrumentation/afds/ap-modes/pitch-mode", "TO/GA");
         setprop("instrumentation/afds/ap-modes/roll-mode", "TO/GA");
         setprop("instrumentation/afds/inputs/vertical-index", 10);
@@ -565,7 +575,7 @@ var Startup = func{
     setprop("controls/lighting/nav-lights",1);
     setprop("controls/lighting/beacon",1);
     setprop("controls/lighting/wing-lights",1);
-    setprop("controls/lighting/taxi-lights",1);
+    setprop("controls/lighting/taxi-lights",0);
     setprop("controls/lighting/logo-lights",1);
     setprop("controls/lighting/cabin-lights",1);
     setprop("controls/lighting/strobe",1);
@@ -1092,6 +1102,31 @@ var update_systems = func {
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
     switch_ind();
+    if(getprop("sim/rendering/shaders/skydome")
+        and (getprop("position/gear-agl-ft") < 200))
+    {
+        if(getprop("systems/electrical/outputs/landing-light[1]"))
+        {
+            setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
+            setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 1);
+            setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", -5);
+            setprop("sim/rendering/als-secondary-lights/landing-light2-offset-deg", 5);
+        }
+        else
+        {
+            if(getprop("systems/electrical/outputs/taxi-lights"))
+            {
+                setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
+                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+                setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", 0);
+            }
+            else
+            {
+                setprop("sim/rendering/als-secondary-lights/use-landing-light", 0);
+                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
+            }
+        }
+    }
     setprop("instrumentation/rmu/unit/offside_tuned",
         (((getprop("instrumentation/rmu/unit/vhf-l") == 0) and (getprop("instrumentation/rmu/unit/hf-l") == 0))
             or getprop("instrumentation/rmu/unit[1]/vhf-l")

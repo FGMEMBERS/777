@@ -143,7 +143,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             </material>
         </overlay>
     </model>
-	
+
     <animation>
         <type>scale</type>
         <object-name>CDU1</object-name>
@@ -156,7 +156,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <z-m>0.5334</z-m>
         </center>
     </animation>
-	
+
     <model>
         <name>CDU2</name>
         <path>Aircraft/777/Models/Instruments/CDU/boeing.xml</path>
@@ -177,7 +177,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             </material>
         </overlay>
     </model>
-	
+
     <animation>
         <type>scale</type>
         <object-name>CDU2</object-name>
@@ -190,7 +190,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <z-m>0.5334</z-m>
         </center>
     </animation>
-	
+
     <model>
         <name>CDU3</name>
         <path>Aircraft/777/Models/Instruments/CDU/boeing.xml</path>
@@ -211,7 +211,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             </material>
         </overlay>
     </model>
-	
+
     <animation>
         <type>scale</type>
         <object-name>CDU3</object-name>
@@ -738,6 +738,294 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <y-m>0</y-m>
             <z-m>0.440</z-m>
         </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfL.knob</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/comm/power-btn</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                controls.click(2);
+                </script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfL.knob</object-name>
+        <action>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/comm/volume</property>
+                <step>0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfL.knob</object-name>
+        <action>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/comm/volume</property>
+                <step>-0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>AudioPnl_L_VhfL.knob</object-name>
+        <object-name>Lettering_CS.Audio_1_VhfL</object-name>
+        <property>instrumentation/comm/volume</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-0.013</z>
+        </axis>
+        <center>
+            <x-m>0.0904</x-m>
+            <y-m>-0.1822</y-m>
+            <z-m>0.41480</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ACP_Vhf_L.Led</object-name>
+        <property>instrumentation/comm/power-btn</property>
+        <factor>0.0890</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfC.knob</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/comm[2]/power-btn</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                controls.click(2);
+                </script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfC.knob</object-name>
+        <action>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/comm[2]/volume</property>
+                <step>0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfC.knob</object-name>
+        <action>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/comm[2]/volume</property>
+                <step>-0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>AudioPnl_L_VhfC.knob</object-name>
+        <object-name>Lettering_CS.Audio_1_VhfC</object-name>
+        <property>instrumentation/comm[2]/volume</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-0.013</z>
+        </axis>
+        <center>
+            <x-m>0.0904</x-m>
+            <y-m>-0.1647</y-m>
+            <z-m>0.41480</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ACP_Vhf_C.Led.001</object-name>
+        <property>instrumentation/comm[2]/power-btn</property>
+        <factor>0.0890</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfR.knob</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/comm[1]/power-btn</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                controls.click(2);
+                </script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfR.knob</object-name>
+        <action>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/comm[1]/volume</property>
+                <step>0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AudioPnl_L_VhfR.knob</object-name>
+        <action>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/comm[1]/volume</property>
+                <step>-0.1</step>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>AudioPnl_L_VhfR.knob</object-name>
+        <object-name>Lettering_CS.Audio_1_VhfR</object-name>
+        <property>instrumentation/comm[1]/volume</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>-165.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>165.0</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-0.013</z>
+        </axis>
+        <center>
+            <x-m>0.0904</x-m>
+            <y-m>-0.1473</y-m>
+            <z-m>0.41480</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ACP_Vhf_R.Led</object-name>
+        <property>instrumentation/comm[1]/power-btn</property>
+        <factor>0.0890</factor>
         <axis>
             <x>0</x>
             <y>1</y>
