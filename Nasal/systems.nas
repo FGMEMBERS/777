@@ -48,7 +48,6 @@ var EFIS = {
         m.lh_vor_adf = m.efis.initNode("inputs/lh-vor-adf",0,"INT");
         m.nd_plan_wpt = m.efis.initNode("inputs/plan-wpt-index", 0, "INT");
 
-
         m.wptIndexL = setlistener("instrumentation/efis/inputs/plan-wpt-index", func m.update_nd_plan_center());
 
         m.kpaL = setlistener("instrumentation/altimeter/setting-inhg", func m.calc_kpa());
@@ -323,9 +322,6 @@ setlistener("sim/signals/fdm-initialized", func {
     setprop("instrumentation/comm/power-good",0);
     setprop("instrumentation/comm[1]/power-good",0);
     setprop("instrumentation/comm[2]/power-gppd",0);
-    setprop("instrumentation/comm/serviceable",0);
-    setprop("instrumentation/comm[1]/serviceable",0);
-    setprop("instrumentation/comm[2]/serviceable",0);
     setprop("instrumentation/comm/volume",0.5);
     setprop("instrumentation/comm[1]/volume",0.5);
     setprop("instrumentation/comm[2]/volume",0.5);
@@ -578,13 +574,13 @@ var Startup = func{
     setprop("controls/lighting/nav-lights",1);
     setprop("controls/lighting/beacon",1);
     setprop("controls/lighting/wing-lights",1);
-    setprop("controls/lighting/taxi-lights",1);
+    setprop("controls/lighting/taxi-lights",0);
     setprop("controls/lighting/logo-lights",1);
     setprop("controls/lighting/cabin-lights",1);
     setprop("controls/lighting/strobe",1);
-    setprop("controls/lighting/landing-light[0]",0);
-    setprop("controls/lighting/landing-light[1]",0);
-    setprop("controls/lighting/landing-light[2]",0);
+    setprop("controls/lighting/landing-light[0]",1);
+    setprop("controls/lighting/landing-light[1]",1);
+    setprop("controls/lighting/landing-light[2]",1);
     setprop("controls/engines/engine[0]/cutoff",0);
     setprop("controls/engines/engine[1]/cutoff",0);
     setprop("engines/engine[0]/out-of-fuel",0);
@@ -628,7 +624,7 @@ var Shutdown = func{
     setprop("controls/flight/speedbrake-lever",0);
     setprop("sim/model/armrest",0);
     setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
-   setprop("controls/engines/StartIgnition-knob[0]",0);
+    setprop("controls/engines/StartIgnition-knob[0]",0);
     setprop("controls/engines/StartIgnition-knob[1]",0);
     setprop("engines/engine[0]/run",0);
     setprop("engines/engine[1]/run",0);
@@ -1146,4 +1142,3 @@ var update_systems = func {
 
     settimer(update_systems,0);
 }
-
