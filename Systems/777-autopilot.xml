@@ -87,7 +87,7 @@
     </pi-simple-controller>
 
     <filter>
-        <name>LNAV course error filter1</name>
+        <name>LNAV course error filter</name>
         <debug>false</debug>
         <type>noise-spike</type>
         <enable>
@@ -96,38 +96,6 @@
                     <equals>
                         <property>instrumentation/afds/ap-modes/roll-mode</property>
                         <value>LNAV</value>
-                    </equals>
-                    <not>
-                        <equals>
-                            <property>sim/version/flightgear</property>
-                            <value>3.3.0</value>
-                        </equals>
-                    </not>
-                </and>
-            </condition>
-        </enable>
-        <max-rate-of-change>0.2</max-rate-of-change>
-        <initialize-to>output</initialize-to>
-        <input>
-            <property>autopilot/internal/course-error</property>
-        </input>
-        <output>autopilot/internal/course-error-filtered</output>
-    </filter>
-
-    <filter>
-        <name>LNAV course error filter2</name>
-        <debug>false</debug>
-        <type>noise-spike</type>
-        <enable>
-            <condition>
-                <and>
-                    <equals>
-                        <property>instrumentation/afds/ap-modes/roll-mode</property>
-                        <value>LNAV</value>
-                    </equals>
-                    <equals>
-                        <property>sim/version/flightgear</property>
-                        <value>3.3.0</value>
                     </equals>
                 </and>
             </condition>
@@ -163,7 +131,7 @@
     </filter>
 
     <filter>
-        <name>LNAV course error to waypoint error computer/normalizer1</name>
+        <name>LNAV course error to waypoint error computer/normalizer</name>
         <debug>false</debug>
         <enable>
             <condition>
@@ -171,45 +139,6 @@
                     <equals>
                         <property>instrumentation/afds/ap-modes/roll-mode</property>
                         <value>LNAV</value>
-                    </equals>
-                    <not>
-                        <equals>
-                            <property>sim/version/flightgear</property>
-                            <value>3.3.0</value>
-                        </equals>
-                    </not>
-                </and>
-            </condition>
-        </enable>
-        <type>gain</type>
-        <input>
-            <property>autopilot/internal/waypoint-bearing-error-deg</property>
-            <offset>
-                <property>autopilot/internal/course-error-filtered</property>
-                <scale>1.0</scale>
-            </offset>
-        </input>
-        <output>autopilot/internal/course-error-deg</output>
-        <period>
-            <min>-180</min>
-            <max>180</max>
-        </period>
-        <gain>1.0</gain>
-    </filter>
-
-    <filter>
-        <name>LNAV course error to waypoint error computer/normalizer2</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <and>
-                    <equals>
-                        <property>instrumentation/afds/ap-modes/roll-mode</property>
-                        <value>LNAV</value>
-                    </equals>
-                    <equals>
-                        <property>sim/version/flightgear</property>
-                        <value>3.3.0</value>
                     </equals>
                 </and>
             </condition>
