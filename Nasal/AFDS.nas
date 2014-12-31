@@ -38,12 +38,13 @@ var AFDS = {
         m.altitude_restriction = -9999.99;
         m.altitude_restriction_type = 0;
         m.altitude_restriction_descent = 0;
-        m.waypoint_type = "basic";
+        m.waypoint_type = 'basic';
         m.altitude_alert_from_out = 0;
         m.altitude_alert_from_in = 0;
         m.top_of_descent = 0;
         m.vorient = 0;
         m.route_change_counter = 0;
+        m.current_wp_local = 0;
 
         m.hdg_trk_selected = props.globals.initNode("instrumentation/efis/hdg-trk-selected",0,"BOOL");
         m.heading_reference=props.globals.initNode("systems/navigation/hdgref/reference",0,"BOOL");
@@ -1277,9 +1278,9 @@ var AFDS = {
                     elsif(me.descent_step == 4)
                     {
                         if((current_alt < 12000)
-                            and (me.ias_setting.getValue() > 250))
+                            and (me.ias_setting.getValue() > 240))
                         {
-                            me.ias_setting.setValue(250);
+                            me.ias_setting.setValue(240);
                             me.descent_step += 1;
                         }
                     }
@@ -1329,7 +1330,7 @@ var AFDS = {
                     {
                         if(current_alt < 10000)
                         {
-                            me.ias_setting.setValue(250);
+                            me.ias_setting.setValue(240);
                         }
                         else
                         {
@@ -1346,7 +1347,7 @@ var AFDS = {
                 }
                 elsif(current_alt < 10000)
                 {
-                    me.ias_setting.setValue(250);
+                    me.ias_setting.setValue(240);
                 }
                 else
                 {
@@ -1368,7 +1369,7 @@ var AFDS = {
                     {
                         if(current_alt < 10000)
                         {
-                            me.ias_setting.setValue(250);
+                            me.ias_setting.setValue(240);
                         }
                         else
                         {
@@ -1560,7 +1561,7 @@ var AFDS = {
             # Thrust reference rate calculation. This should be provided by FMC
             var payload = getprop("consumables/fuel/total-fuel-lbs") + getprop("sim/weight[0]/weight-lb") + getprop("sim/weight[1]/weight-lb");
             var derate = 0.3 - payload * 0.00000083;
-            if(me.ias_setting.getValue() < 251)
+            if(me.ias_setting.getValue() < 241)
             {
                 var vflight_idle = (getprop("autopilot/constant/descent-profile-low-base")
                     + (getprop("autopilot/constant/descent-profile-low-rate") * payload / 1000));
@@ -1735,13 +1736,12 @@ var AFDS = {
                     me.FMC_last_distance.setValue(total_distance);
                 }
                 var max_wpt = getprop("autopilot/route-manager/route/num");
-                var atm_wpt = me.FMC_current_wp.getValue();
                 if(me.lateral_mode.getValue() == 3)     # Current mode is LNAV
                 {
                     if(me.vnav_descent.getValue() == 0) # Calculation of Top Of Descent distance
                     {
                         var cruise_alt = me.FMC_cruise_alt.getValue();
-                        me.top_of_descent = 16;
+                        me.top_of_descent = 17;
                         if(cruise_alt > 10000)
                         {
                             me.top_of_descent += 21;
@@ -1785,7 +1785,7 @@ var AFDS = {
                             if(getprop("autopilot/route-manager/distance-remaining-nm") < me.top_of_descent)
                             {
                                 me.vnav_descent.setValue(1);
-                                afds.getNextRestriction(atm_wpt);
+                                afds.getNextRestriction(me.FMC_current_wp.getValue());
                                 if((me.altitude_restriction_type == 'above')
                                     and (me.alt_setting.getValue() < me.altitude_restriction))
                                 {
@@ -1827,7 +1827,6 @@ var AFDS = {
                 var tdNode = me.NDSymbols.getNode("td", 1);
                 tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
                 tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
-#               printf("%.1f mile lat %.5f lon %.5f", me.top_of_descent, topDescent.lat, topDescent.lon);
                 if(distance != nil) # Course deg
                 {
                     var wpt_eta = (distance / groundspeed * 3600);
@@ -1845,19 +1844,23 @@ var AFDS = {
                         me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
                         var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading.getValue());
                         if(change_wp > 180) change_wp = (360 - change_wp);
-                        if((me.FMC_last_distance.getValue() < distance)
+                        if((me.waypoint_type != 'hdgToAlt') and (me.FMC_last_distance.getValue() < distance)
                                 and (abs(change_wp) < 85))
                         {
                             me.route_change_counter = (me.route_change_counter + 1);
                         }
-                        if((((leg.fly_type == 'flyBy') and ((me.heading_change_rate * change_wp) > wpt_eta))
-                            or (me.route_change_counter > 1) or (distance < 0.6))
-                            and (atm_wpt < (max_wpt - 1)))
+                        if((((me.waypoint_type != 'hdgToAlt') and
+                                (((leg.fly_type == 'flyBy') and ((me.heading_change_rate * change_wp) > wpt_eta))
+                                or (me.route_change_counter > 1)
+                                or (distance < 0.6)))
+                            or ((me.waypoint_type == 'hdgToAlt') and (current_alt > me.altitude_restriction))
+                            ) and (me.current_wp_local < (max_wpt - 1)))
                         {
-                            atm_wpt += 1;
-                            me.FMC_current_wp.setValue(atm_wpt);
-                            me.waypoint_type = f.getWP(atm_wpt).wp_type;
-                            afds.getNextRestriction(atm_wpt);
+                            me.current_wp_local += 1;
+                            printf("distance %.2f %d %s %d", distance, me.current_wp_local, me.waypoint_type, me.altitude_restriction);
+                            me.FMC_current_wp.setValue(me.current_wp_local);
+                            me.waypoint_type = f.getWP(me.current_wp_local).wp_type;
+                            afds.getNextRestriction(me.current_wp_local);
                             me.route_change_counter = 0;
                             me.FMC_last_distance.setValue(total_distance);
                         }
