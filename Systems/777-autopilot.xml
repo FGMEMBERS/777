@@ -91,19 +91,13 @@
         <debug>false</debug>
         <type>noise-spike</type>
         <enable>
-            <condition>
-                <and>
-                    <equals>
-                        <property>instrumentation/afds/ap-modes/roll-mode</property>
-                        <value>LNAV</value>
-                    </equals>
-                </and>
-            </condition>
+            <property>instrumentation/afds/ap-modes/roll-mode</property>
+            <value>LNAV</value>
         </enable>
         <max-rate-of-change>0.2</max-rate-of-change>
         <initialize-to>output</initialize-to>
         <input>
-            <property>instrumentation/gps/wp/wp[1]/course-error-nm</property>
+            <property>autopilot/internal/course-error</property>
         </input>
         <output>autopilot/internal/course-error-filtered</output>
     </filter>
@@ -131,24 +125,18 @@
     </filter>
 
     <filter>
-        <name>LNAV course error to waypoint error computer/normalizer</name>
+        <name>LNAV course error to waypoint error computer/normalizer </name>
         <debug>false</debug>
         <enable>
-            <condition>
-                <and>
-                    <equals>
-                        <property>instrumentation/afds/ap-modes/roll-mode</property>
-                        <value>LNAV</value>
-                    </equals>
-                </and>
-            </condition>
+            <property>instrumentation/afds/ap-modes/roll-mode</property>
+            <value>LNAV</value>
         </enable>
         <type>gain</type>
         <input>
             <property>autopilot/internal/waypoint-bearing-error-deg</property>
             <offset>
                 <property>autopilot/internal/course-error-filtered</property>
-                <scale>20.0</scale>
+                <scale>1.0</scale>
             </offset>
         </input>
         <output>autopilot/internal/course-error-deg</output>
@@ -187,24 +175,24 @@
         </config>
     </pi-simple-controller>
 
-  <filter>
-    <name>nav1 heading error computer/normalizer</name>
-    <debug>false</debug>
-    <type>gain</type>
-    <input>
-      <property>instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
-      <offset>
-        <property>orientation/heading-deg</property>
-        <scale>-1.0</scale>
-      </offset>
-    </input>
-    <output>autopilot/internal/nav1-heading-error-deg</output>
-    <period>
-      <min>-180</min>
-      <max>180</max>
-    </period>
-    <gain>1.0</gain>
-  </filter>
+    <filter>
+        <name>nav1 heading error computer/normalizer</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <input>
+        <property>instrumentation/nav[0]/radials/target-auto-hdg-deg</property>
+        <offset>
+            <property>orientation/heading-deg</property>
+            <scale>-1.0</scale>
+        </offset>
+        </input>
+        <output>autopilot/internal/nav1-heading-error-deg</output>
+        <period>
+            <min>-180</min>
+            <max>180</max>
+        </period>
+        <gain>1.0</gain>
+    </filter>
 
     <pi-simple-controller>
         <name>LOC1</name>
