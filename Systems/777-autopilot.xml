@@ -97,7 +97,7 @@
         <max-rate-of-change>0.2</max-rate-of-change>
         <initialize-to>output</initialize-to>
         <input>
-            <property>instrumentation/gps/wp/wp[1]/course-error-nm</property>
+            <property>autopilot/internal/course-error</property>
         </input>
         <output>autopilot/internal/course-error-filtered</output>
     </filter>
@@ -136,7 +136,7 @@
             <property>autopilot/internal/waypoint-bearing-error-deg</property>
             <offset>
                 <property>autopilot/internal/course-error-filtered</property>
-                <scale>20.0</scale>
+                <scale>1.0</scale>
             </offset>
         </input>
         <output>autopilot/internal/course-error-deg</output>

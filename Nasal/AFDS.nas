@@ -1803,6 +1803,7 @@ var AFDS = {
                 var groundspeed = getprop("velocities/groundspeed-kt");
 #               var topClimb = f.pathGeod(0, 100);
                 var topDescent = f.pathGeod(f.indexOfWP(f.destination_runway), -me.top_of_descent);
+                var targetCourse = f.pathGeod(f.indexOfWP(f.destination_runway), -getprop("autopilot/route-manager/distance-remaining-nm"));
                 var leg = f.currentWP();
                 if(leg == nil)
                 {
@@ -1811,14 +1812,33 @@ var AFDS = {
                     return;
                 }
                 var distance = getprop("instrumentation/gps/wp/wp[1]/distance-nm");
+                var enroute = leg.courseAndDistanceFrom(targetCourse);
                 if(me.FMC_current_wp.getValue() == 0)
                 {
                     setprop("autopilot/internal/course-deg", getprop("orientation/heading-deg"));
                 }
                 else
                 {
-                    setprop("autopilot/internal/course-deg", getprop("instrumentation/gps/wp/leg-true-course-deg"));
+                    setprop("autopilot/internal/course-deg", enroute[0]);
                 }
+
+                var courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon);
+                var geocoord = geo.aircraft_position();
+                var CourseError = (geocoord.course_to(courseCoord) - getprop("orientation/heading-deg"));
+                if(CourseError < -180) CourseError += 360;
+                elsif(CourseError > 180) CourseError -= 360;
+                if(CourseError > 0)
+                {
+                    CourseError = geocoord.distance_to(courseCoord);
+                }
+                else
+                {
+                    CourseError = (geocoord.distance_to(courseCoord) * -1);
+                }
+                var cCourseError = CourseError * 0.01;
+                if(cCourseError > 4.0) cCourseError = 4.0;
+                elsif(cCourseError < -4.0) cCourseError = -4.0;
+                setprop("autopilot/internal/course-error", cCourseError);
 
 #               var tcNode = me.NDSymbols.getNode("tc", 1);
 #               tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
@@ -1857,7 +1877,6 @@ var AFDS = {
                             ) and (me.current_wp_local < (max_wpt - 1)))
                         {
                             me.current_wp_local += 1;
-                            printf("distance %.2f %d %s %d", distance, me.current_wp_local, me.waypoint_type, me.altitude_restriction);
                             me.FMC_current_wp.setValue(me.current_wp_local);
                             me.waypoint_type = f.getWP(me.current_wp_local).wp_type;
                             afds.getNextRestriction(me.current_wp_local);
