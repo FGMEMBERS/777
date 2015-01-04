@@ -1800,10 +1800,6 @@ var AFDS = {
                     }
                 }
 
-                var groundspeed = getprop("velocities/groundspeed-kt");
-#               var topClimb = f.pathGeod(0, 100);
-                var topDescent = f.pathGeod(f.indexOfWP(f.destination_runway), -me.top_of_descent);
-                var targetCourse = f.pathGeod(f.indexOfWP(f.destination_runway), -getprop("autopilot/route-manager/distance-remaining-nm"));
                 var leg = f.currentWP();
                 if(leg == nil)
                 {
@@ -1811,34 +1807,23 @@ var AFDS = {
                     if(me.step>6) me.step =0;
                     return;
                 }
+                var groundspeed = getprop("velocities/groundspeed-kt");
                 var distance = getprop("instrumentation/gps/wp/wp[1]/distance-nm");
-                var enroute = leg.courseAndDistanceFrom(targetCourse);
-                if(me.FMC_current_wp.getValue() == 0)
-                {
-                    setprop("autopilot/internal/course-deg", getprop("orientation/heading-deg"));
-                }
-                else
-                {
-                    setprop("autopilot/internal/course-deg", enroute[0]);
-                }
-
-                var courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon);
+#               var topClimb = f.pathGeod(0, 100);
+                var topDescent = f.pathGeod(f.indexOfWP(f.destination_runway), -me.top_of_descent);
                 var geocoord = geo.aircraft_position();
-                var CourseError = (geocoord.course_to(courseCoord) - getprop("orientation/heading-deg"));
+                var referenceCourse = f.pathGeod(f.indexOfWP(f.destination_runway), -getprop("autopilot/route-manager/distance-remaining-nm"));
+                var courseCoord = geo.Coord.new().set_latlon(referenceCourse.lat, referenceCourse.lon);
+                var CourseError = (geocoord.distance_to(courseCoord) / 1852) + 1;
+                var change_wp = abs(getprop("autopilot/route-manager/wp/bearing-deg") - me.heading.getValue());
+                if(change_wp > 180) change_wp = (360 - change_wp);
+                CourseError += (change_wp / 20);
+                var targetCourse = f.pathGeod(f.indexOfWP(f.destination_runway), (-getprop("autopilot/route-manager/distance-remaining-nm") + CourseError));
+                courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon);
+                CourseError = (geocoord.course_to(courseCoord) - getprop("orientation/heading-deg"));
                 if(CourseError < -180) CourseError += 360;
                 elsif(CourseError > 180) CourseError -= 360;
-                if(CourseError > 0)
-                {
-                    CourseError = geocoord.distance_to(courseCoord);
-                }
-                else
-                {
-                    CourseError = (geocoord.distance_to(courseCoord) * -1);
-                }
-                var cCourseError = CourseError * 0.01;
-                if(cCourseError > 4.0) cCourseError = 4.0;
-                elsif(cCourseError < -4.0) cCourseError = -4.0;
-                setprop("autopilot/internal/course-error", cCourseError);
+                setprop("autopilot/internal/course-error-deg", CourseError);
 
 #               var tcNode = me.NDSymbols.getNode("tc", 1);
 #               tcNode.getNode("longitude-deg", 1).setValue(topClimb.lon);
@@ -1852,7 +1837,6 @@ var AFDS = {
                     var wpt_eta = (distance / groundspeed * 3600);
                     var gmt = getprop("instrumentation/clock/indicated-sec");
                     if(groundspeed > 50)
-#                   if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
                     {
                         gmt += (wpt_eta + 30);
                         var gmt_hour = int(gmt / 3600);
@@ -1865,7 +1849,7 @@ var AFDS = {
                         var change_wp = abs(getprop("autopilot/route-manager/wp[1]/bearing-deg") - me.heading.getValue());
                         if(change_wp > 180) change_wp = (360 - change_wp);
                         if((me.waypoint_type != 'hdgToAlt') and (me.FMC_last_distance.getValue() < distance)
-                                and (abs(change_wp) < 85))
+                                and (change_wp < 85))
                         {
                             me.route_change_counter = (me.route_change_counter + 1);
                         }
