@@ -86,67 +86,6 @@
         </config>
     </pi-simple-controller>
 
-    <filter>
-        <name>LNAV course error filter</name>
-        <debug>false</debug>
-        <type>noise-spike</type>
-        <enable>
-            <property>instrumentation/afds/ap-modes/roll-mode</property>
-            <value>LNAV</value>
-        </enable>
-        <max-rate-of-change>0.2</max-rate-of-change>
-        <initialize-to>output</initialize-to>
-        <input>
-            <property>autopilot/internal/course-error</property>
-        </input>
-        <output>autopilot/internal/course-error-filtered</output>
-    </filter>
-
-    <filter>
-        <name>LNAV waypoint error computer/normalizer</name>
-        <debug>false</debug>
-        <enable>
-            <property>autopilot/route-manager/active</property>
-        </enable>
-        <type>gain</type>
-        <input>
-            <property>autopilot/internal/course-deg</property>
-            <offset>
-                <property>orientation/heading-deg</property>
-                <scale>-1.0</scale>
-            </offset>
-        </input>
-        <output>autopilot/internal/waypoint-bearing-error-deg</output>
-        <period>
-            <min>-180</min>
-            <max>180</max>
-        </period>
-        <gain>1.0</gain>
-    </filter>
-
-    <filter>
-        <name>LNAV course error to waypoint error computer/normalizer </name>
-        <debug>false</debug>
-        <enable>
-            <property>instrumentation/afds/ap-modes/roll-mode</property>
-            <value>LNAV</value>
-        </enable>
-        <type>gain</type>
-        <input>
-            <property>autopilot/internal/waypoint-bearing-error-deg</property>
-            <offset>
-                <property>autopilot/internal/course-error-filtered</property>
-                <scale>1.0</scale>
-            </offset>
-        </input>
-        <output>autopilot/internal/course-error-deg</output>
-        <period>
-            <min>-180</min>
-            <max>180</max>
-        </period>
-        <gain>1.0</gain>
-    </filter>
-
     <pi-simple-controller>
         <name>LNAV1</name>
         <debug>false</debug>
