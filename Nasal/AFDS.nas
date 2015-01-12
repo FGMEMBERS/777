@@ -42,7 +42,6 @@ var AFDS = {
         m.altitude_alert_from_in = 0;
         m.top_of_descent = 0;
         m.vorient = 0;
-        m.route_change_counter = 0;
         m.current_wp_local = 0;
 
         m.hdg_trk_selected = props.globals.initNode("instrumentation/efis/hdg-trk-selected",0,"BOOL");
@@ -1816,13 +1815,9 @@ var AFDS = {
                     var referenceCourse = f.pathGeod(-1, -getprop("autopilot/route-manager/distance-remaining-nm"));
                     var courseCoord = geo.Coord.new().set_latlon(referenceCourse.lat, referenceCourse.lon);
                     var CourseError = (geocoord.distance_to(courseCoord) / 1852) + 1;
-                    if(me.current_wp_local > 0)
-                    {
-                        var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local - 1)~"]/leg-bearing-true-deg")
-                            - getprop("orientation/heading-deg"));
-                        if(change_wp > 180) change_wp = (360 - change_wp);
-                        CourseError += (change_wp / 20);
-                    }
+                    var change_wp = abs(getprop("autopilot/route-manager/wp/bearing-deg") - me.heading.getValue());
+                    if(change_wp > 180) change_wp = (360 - change_wp);
+                    CourseError += (change_wp / 20);
                     var targetCourse = f.pathGeod(-1, (-getprop("autopilot/route-manager/distance-remaining-nm") + CourseError));
                     courseCoord = geo.Coord.new().set_latlon(targetCourse.lat, targetCourse.lon);
                     CourseError = (geocoord.course_to(courseCoord) - getprop("orientation/heading-deg"));
@@ -1850,25 +1845,22 @@ var AFDS = {
                                 gmt_hour -= 24;
                                 gmt -= 24 * 3600;
                             }
-                            current_wp_local = me.FMC_current_wp.getValue();
                             me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-                            change_wp = abs(getprop("autopilot/route-manager/route/wp["~me.current_wp_local~"]/leg-bearing-true-deg")
-                                - getprop("orientation/heading-deg"));
-                            if(change_wp > 180) change_wp = (360 - change_wp);
-                            if((me.FMC_last_distance.getValue() < distance)
-                                    and (change_wp < 85))
-                            {
-                                me.route_change_counter = (me.route_change_counter + 1);
-                            }
-                            if((((me.heading_change_rate * change_wp) > wpt_eta)
-                                or (me.route_change_counter > 1)
+                        if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
+                        {
+                            setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
+                        }
+                        var alignment = abs(getprop("autopilot/route-manager/wp/true-bearing-deg")
+                            - getprop("orientation/heading-deg"));
+                        var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
+                         - getprop("orientation/heading-deg"));
+                            if(((((me.heading_change_rate * change_wp) > wpt_eta) and (alignment < 85))
                                 or (distance < 0.6))
                                     and (me.current_wp_local < (max_wpt - 1)))
                             {
                                 me.current_wp_local += 1;
                                 me.FMC_current_wp.setValue(me.current_wp_local);
                                 afds.getNextRestriction(me.current_wp_local);
-                                me.route_change_counter = 0;
                                 me.FMC_last_distance.setValue(total_distance);
                             }
                             else
