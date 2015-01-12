@@ -1852,7 +1852,7 @@ var AFDS = {
                         {
                             setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
                         }
-                        var alignment = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local)~"]/leg-bearing-true-deg")
+                        var alignment = abs(getprop("autopilot/route-manager/wp/true-bearing-deg")
                             - getprop("orientation/heading-deg"));
                         var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
                          - getprop("orientation/heading-deg"));
