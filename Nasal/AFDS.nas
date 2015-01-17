@@ -1668,7 +1668,7 @@ var AFDS = {
             {
                 me.autothrottle_mode.setValue(3);               # HOLD
             }
-            # Take off mode and above baro 400 ft
+            # Take off mode or above baro 400 ft
             elsif((current_alt - getprop("autopilot/internal/airport-height")) > 400)
             {
                 setprop("autopilot/locks/takeoff-mode", 0);
@@ -1683,7 +1683,8 @@ var AFDS = {
                         and (me.vertical_mode.getValue() != 3)   # not VNAV PTH
                         and (me.vertical_mode.getValue() != 5))) # not VNAV ALT
                 {
-                    if(getprop("controls/flight/flaps") == 0)
+                    if((getprop("controls/flight/flaps") == 0)
+                        or (me.vertical_mode.getValue() == 6))  # G/S
                     {
                         me.autothrottle_mode.setValue(5);       # SPD
                     }
