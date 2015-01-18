@@ -1109,9 +1109,6 @@ Service Ceiling: 43,100ft
     </autopilot>
 
     <nasal n="0">
-        <runway>
-            <file>Aircraft/777/Nasal/runway_announcer.nas</file>
-        </runway>
         <b777>
             <file>Aircraft/777/Nasal/Air.nas</file>
             <file>Aircraft/777/Nasal/Electrical.nas</file>
@@ -1132,7 +1129,6 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Models/Instruments/MFD/fuel.nas</file>
             <file>Aircraft/777/Nasal/SWanimation.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
-            <file>Aircraft/777/Nasal/runway.nas</file>
         </b777>
         <dialogs>
             <file>Aircraft/777/Nasal/dialogs.nas</file>
