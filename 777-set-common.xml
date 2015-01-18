@@ -147,7 +147,7 @@
         <type>lookfrom</type>
         <internal type="bool">true</internal>
         <config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>       
             <from-model type="bool">true</from-model>
             <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>60</pitch-offset-deg>
@@ -159,7 +159,7 @@
     <view n="103">
         <name>Right side view</name>
         <type>lookfrom</type>
-        <internal type="bool">false</internal>
+        <internal type="bool">false</internal>      
         <config>
             <from-model type="bool">true</from-model>
             <from-model-idx type="int">0</from-model-idx>
@@ -167,7 +167,7 @@
             <y-offset-m type="double">0.911</y-offset-m>
         </config>
     </view>
-
+    
     <view n="104">
         <name>Front gear view</name>
         <type>lookfrom</type>
@@ -178,28 +178,28 @@
             <x-offset-m type="double">0.0025</x-offset-m>
             <y-offset-m type="double">-3.2</y-offset-m>
         </config>
-    </view>
-
+    </view> 
+    
     <view n="105">
         <name>Observer 1 view</name>
         <type>lookfrom</type>
         <internal type="bool">true</internal>
         <config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>       
             <from-model type="bool">true</from-model>
             <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>-1.125</pitch-offset-deg>
             <x-offset-m type="double">0.10544875</x-offset-m>
             <y-offset-m type="double">0.8</y-offset-m>
         </config>
-    </view>
-
+    </view> 
+    
     <view n="106">
         <name>Observer 2 view</name>
         <type>lookfrom</type>
         <internal type="bool">true</internal>
         <config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>       
             <from-model type="bool">true</from-model>
             <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>-8.775</pitch-offset-deg>
@@ -214,7 +214,7 @@
         <type>lookfrom</type>
         <internal type="bool">true</internal>
         <config>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>       
             <from-model type="bool">true</from-model>
             <from-model-idx type="int">0</from-model-idx>
             <pitch-offset-deg>-19.125</pitch-offset-deg>
@@ -222,7 +222,7 @@
             <x-offset-m type="double">-0.65625</x-offset-m>
             <y-offset-m type="double">1.2175</y-offset-m>
         </config>
-    </view>
+    </view>     
 
 <view n="108">
         <name>Top Right view</name>
@@ -283,7 +283,7 @@
       <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
       <default-field-of-view-deg type="double">90</default-field-of-view-deg>
       <pitch-offset-deg>-10.0</pitch-offset-deg>
-      <heading-offset-deg type="double">0</heading-offset-deg>
+      <heading-offset-deg type="double">0</heading-offset-deg> 
       <x-offset-m type="double">0</x-offset-m> <!--Left/Right-->
       <y-offset-m type="double">12.74</y-offset-m> <!--Up/Down-->
     </config>
@@ -356,7 +356,7 @@
             <y-offset-m type="double">0.7869444444</y-offset-m>
     </config>
   </view>
-
+    
         <help n="0">
             <title>777</title>
             <text>=== Tutorials ===
@@ -443,7 +443,7 @@ Service Ceiling: 43,100ft
                         </binding>
                     </item>
 
-
+        
 
                     <item >
                         <label>Ground Services Control</label>
@@ -1070,7 +1070,7 @@ Service Ceiling: 43,100ft
             <radar-texture-path type="string">Aircraft/777/Models/Instruments/ND/od_wxradar.png</radar-texture-path>
             <symbol-texture-path type="string">Aircraft/777/Models/Instruments/ND/nd_symbols.png</symbol-texture-path>
             <symbol-texture-size type="int">512</symbol-texture-size>
-
+            
             <font>
                 <color>
                     <red type="float">0.7</red>
@@ -1089,7 +1089,7 @@ Service Ceiling: 43,100ft
             <x-center type="float">0.5</x-center>
             <y-center type="float">0.5</y-center>
             <line-width type="double">3</line-width>
-
+            
             <symbols>
             </symbols>
         </nd>
@@ -1133,9 +1133,6 @@ Service Ceiling: 43,100ft
     </autopilot>
 
     <nasal n="0">
-        <runway>
-            <file>Aircraft/777/Nasal/runway_announcer.nas</file>
-        </runway>
         <b777>
             <file>Aircraft/777/Nasal/Air.nas</file>
             <file>Aircraft/777/Nasal/Electrical.nas</file>
@@ -1151,7 +1148,6 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Nasal/ground_steering.nas</file>
            <file>Aircraft/777/Nasal/SWanimation.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
-            <file>Aircraft/777/Nasal/runway.nas</file>
         </b777>
         <dialogs>
             <file>Aircraft/777/Nasal/dialogs.nas</file>
@@ -1191,7 +1187,6 @@ Service Ceiling: 43,100ft
         <max-positive-g>2.5</max-positive-g>
         <max-negative-g>-1.76</max-negative-g>
     </limits>
-
+    
 </PropertyList>
-
 
