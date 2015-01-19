@@ -594,13 +594,7 @@ var runway_number_filter = func (value) {
         value_array[-1] = lcr[last_value];
     }
 
-    # Why has Nasal no join()? Why!?
-    if (size(value_array) == 2) {
-        return sprintf("%s .. %s", value_array[0], value_array[1]);
-    }
-    else {
-        return sprintf("%s .. %s .. %s", value_array[0], value_array[1], value_array[2]);
-    }
+    return string.join(" .. ", value_array);
 };
 
 var make_betty_cb = func (betty_say, format, action=nil, filter=nil) {
