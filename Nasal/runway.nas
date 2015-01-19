@@ -60,8 +60,7 @@ takeoff_announcer.connect("approaching-runway", raas.make_betty_cb(copilot_say, 
 takeoff_announcer.connect("approaching-short-runway", raas.make_betty_cb(copilot_say, approaching_short_runway_format, nil, raas.runway_number_filter));
 
 landing_announcer.connect("remaining-distance", raas.make_betty_cb(copilot_say, remaining_distance_format));
-landing_announcer.connect("vacated-runway", raas.make_betty_cb(copilot_say, "Vacated runway .. %s", stop_announcer, raas.runway_number_filter));
-landing_announcer.connect("landed-runway", raas.make_betty_cb(copilot_say, "Touchdown on runway .. %s", nil, raas.runway_number_filter));
+landing_announcer.connect("vacated-runway", raas.make_betty_cb(nil, nil, stop_announcer));
 landing_announcer.connect("landed-outside-runway", raas.make_betty_cb(nil, nil, stop_announcer));
 
 var set_on_ground = raas.make_set_ground_func(takeoff_announcer, landing_announcer);
