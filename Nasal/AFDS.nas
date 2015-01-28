@@ -1216,7 +1216,7 @@ var AFDS = {
                         }
                         else
                         {
-                            if(current_alt > 12000)
+                            if((current_alt > 12000) and !me.manual_intervention.getValue())
                             {
                                 me.ias_setting.setValue(me.FMC_descent_ias.getValue());
                             }
@@ -1287,10 +1287,12 @@ var AFDS = {
                     }
                     elsif(me.descent_step == 4)
                     {
-                        if((current_alt < 12000)
-                            and (me.ias_setting.getValue() > 240))
+                        if((current_alt < 12000) or (current_alt < (getprop("autopilot/route-manager/destination/field-elevation-ft") + 8000)))
+                        {
+                            if((me.ias_setting.getValue() > 240) and !me.manual_intervention.getValue())
                         {
                             me.ias_setting.setValue(240);
+                            }
                             me.descent_step += 1;
                         }
                     }
@@ -1337,7 +1339,7 @@ var AFDS = {
                     }
                     elsif(me.ias_mach_selected.getValue() == 0)
                     {
-                        if(current_alt < 10000)
+                        if((current_alt < 10000) and !me.manual_intervention.getValue())
                         {
                             me.ias_setting.setValue(240);
                         }
@@ -1354,7 +1356,7 @@ var AFDS = {
                 {
                     me.ias_setting.setValue(getprop("instrumentation/weu/state/target-speed"));
                 }
-                elsif(current_alt < 10000)
+                elsif((current_alt < 10000) and !me.manual_intervention.getValue())
                 {
                     me.ias_setting.setValue(240);
                 }
@@ -1376,7 +1378,7 @@ var AFDS = {
                     }
                     elsif(me.ias_mach_selected.getValue() == 0)
                     {
-                        if(current_alt < 10000)
+                        if((current_alt < 10000) and !me.manual_intervention.getValue())
                         {
                             me.ias_setting.setValue(240);
                         }
@@ -1849,14 +1851,21 @@ var AFDS = {
                             gmt -= 24 * 3600;
                         }
                         me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-                        if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
+                        if(me.current_wp_local < (max_wpt - 1))
                         {
-                            setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
+                            if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
+                            {
+                                setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
+                            }
+                            var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
+                             - getprop("orientation/heading-deg"));
+                        }
+                        else
+                        {
+                            change_wp = 0;
                         }
                         var alignment = abs(getprop("autopilot/route-manager/wp/true-bearing-deg")
                             - getprop("orientation/heading-deg"));
-                        var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
-                         - getprop("orientation/heading-deg"));
                         if(change_wp > 180) change_wp = (360 - change_wp);
                         if((((me.waypoint_type != 'hdgToAlt') and
                                 (((leg.fly_type == 'flyBy') and ((me.heading_change_rate * change_wp) > wpt_eta) and (alignment < 85))
