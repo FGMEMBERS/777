@@ -1125,4 +1125,18 @@
         <output>controls/gear/maingear-steering-cmd-norm</output>
     </filter>
 
+    <logic>
+        <name>Aircraft On Ground Logic</name>
+        <update-interval-secs type="double">0.1</update-interval-secs>
+        <input>
+            <less-than>
+                <property>/position/gear-agl-ft</property>
+                <value>2.0</value>
+            </less-than>
+        </input>
+        <output>
+            <property>/gear/on-ground</property>
+        </output>
+    </logic>
+
 </PropertyList>
