@@ -86,6 +86,22 @@ var WEU =
         m.ap_disengaged = 0;
         me.rudder_trim  = 0;
         me.elev_trim    = 0;
+	me.autobrake	= 0;
+	me.autobrakerto = 0;
+	me.apu_bleed	= 0;
+	me.engl_bleed	= 0;
+	me.engr_bleed	= 0;
+	me.pack_l	= 0;
+	me.pack_r	= 0;
+	me.trim_air_l	= 0;
+	me.trim_air_r	= 0;
+	me.battery	= 0;
+	me.recirc_fans	= 0;
+	me.smoking_sign	= 0;
+	me.seatbelts	= 0;
+	me.fuel_c_pump1	= 0;
+	me.fuel_c_pump2	= 0;
+	me.fuel_c_qty	= 0;	
 
         # internal states
         m.active_warnings = 0;
@@ -93,21 +109,54 @@ var WEU =
         m.warn_mute       = 0;
 
         # add some listeners
+	# Flight Controls, Engines, and Brakes
         setlistener("controls/gear/gear-down",          func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/speedbrake",       func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/speedbrake-lever", func { Weu.update_listener_inputs() } );
         setlistener("controls/gear/brake-parking",      func { Weu.update_listener_inputs() } );
         setlistener("controls/engines/engine/reverser-act", func { Weu.update_listener_inputs() } );
-        setlistener("controls/electric/APU-generator",  func { Weu.update_listener_inputs() } );
-        setlistener("systems/electrical/outputs/avionics",func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/rudder-trim",      func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/elevator-trim",    func { Weu.update_listener_inputs() } );
         setlistener("sim/freeze/replay-state",          func { Weu.update_listener_inputs() } );
         setlistener(prop1 ~ "/serviceable",             func { Weu.update_listener_inputs() } );
+	setlistener("autopilot/autobrake/step",		func { Weu.update_listener_inputs() } );
+	setlistener("autopilot/autobrake/rto-selected",	func { Weu.update_listener_inputs() } );
 
+	# Air Systems
+	setlistener("controls/air/bleedapu-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/air/bleedengl-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/air/bleedengr-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/air/lpack-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/air/rpack-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/air/ltrim-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/air/rtrim-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/air/recircup-switch",	func { Weu.update_listener_inputs() } );
+
+	# Anti-Ice
+	setlistener("controls/anti-ice/wing-antiice-knob", func { Weu.update_listener_inputs() } );
+	setlistener("controls/anti-ice/engin/antiice-knob", func { Weu.update_listener_inputs() } );
+	setlistener("controls/anti-ice/engin[1]/antiice-knob", func { Weu.update_listener_inputs() } );
+
+	# Electrical
+        setlistener("controls/electric/APU-generator",  func { Weu.update_listener_inputs() } );
+        setlistener("systems/electrical/outputs/avionics",func { Weu.update_listener_inputs() } );
+	setlistener("controls/electric/battery-switch",	func { Weu.update_listener_inputs() } );
+
+	# Fuel
+	setlistener("controls/fuel/tank[1]/boost-pump-switch",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/fuel/tank[1]/boost-pump-switch[1]", func { Weu.update_listener_inputs() } );
+	setlistener("consumables/fuel/tank[1]/level-lbs", func { Weu.update_listener_inputs() } );
+	setlistener("consumables/fuel/tank/level-lbs",	func { Weu.update_listener_inputs() } );
+	setlistener("consumables/fuel/tank[2]/level-lbs", func { Weu.update_listener_inputs() } );
+
+	# Others
+	setlistener("controls/cabin/SeatBelt-knob",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/cabin/NoSmoking-knob",	func { Weu.update_listener_inputs() } );
+	setlistener("environment/temperature-degc",	func { Weu.update_listener_inputs() } );
         setlistener("instrumentation/mk-viii/inputs/discretes/gear-override", func { Weu.update_listener_inputs() } );
         setlistener("controls/engines/engine/throttle-act", func { Weu.update_throttle_input() } );
-        setlistener("instrumentation/afds/inputs/AP",     func { Weu.update_ap_mode();});
+        setlistener("instrumentation/afds/inputs/AP",     func { Weu.update_ap_mode() } );
+
         m.update_listener_inputs();
         
         # update inputs now and then...
@@ -175,9 +224,15 @@ var WEU =
          }
     },
 
-#### caution messages ####
+#### EICAS messages ####
+## Boeing has 4 types of EICAS messages:
+## Warning, Caution, Advisory, and Memo
+## This script does not implement Advisory, yet
+## so the advisory section below is not quite accurate
+
     caution_messages : func
     {
+	## Caution Messages
         if (me.ap_disengaged)
             append(me.msgs_caution,"AP DISCONNECT");
 		if(getprop("instrumentation/afds/inputs/vnav-mcp-reset") == 1)
@@ -198,6 +253,53 @@ var WEU =
                 (me.flaps>0.6))
                 append(me.msgs_caution,"SPEEDBRAKE EXTENDED");
         }
+
+	# Pilot sources state that any main tank
+	# with less than 1000kg of fuel is low
+	# 1000kg = 4409.25lbs
+	if ((me.fuel_l_qty<4409) or (me.fuel_r_qty<4409))
+	    append(me.msgs_caution,"FUEL QTY LOW");
+
+	## Advisory Messages
+	# Advisory Messages for air systems:
+	if (!me.apu_bleed)
+	    append(me.msgs_caution," BLEED OFF APU");
+	if ((!me.engl_bleed) and (!me.engr_bleed))
+	    append(me.msgs_caution," BLEED OFF ENG L, R");
+	if ((me.engl_bleed) and (!me.engr_bleed))
+	    append(me.msgs_caution," BLEED OFF ENG R");
+	if ((!me.engl_bleed) and (me.engr_bleed))
+	    append(me.msgs_caution," BLEED OFF ENG L");
+	if ((!me.pack_l) and (!me.pack_r))
+	    append(me.msgs_caution," PACK L, R");
+	if ((me.pack_l) and (!me.pack_r))
+	    append(me.msgs_caution," PACK R");
+	if ((!me.pack_l) and (me.pack_r))
+	    append(me.msgs_caution," PACK L");
+	if ((!me.trim_air_l) and (!me.trim_air_r))
+	    append(me.msgs_caution," TRIM AIR L, R");
+	if ((me.trim_air_l) and (!me.trim_air_r))
+	    append(me.msgs_caution," TRIM AIR R");
+	if ((!me.trim_air_l) and (me.trim_air_r))
+	    append(me.msgs_caution," TRIM AIR L");
+
+	# Advisory messages for electrical & fuel systems
+	if (!me.battery)
+	    append(me.msgs_caution," ELEC BATTERY OFF");
+	if ((me.fuel_c_qty >= 10582) and ((!me.fuel_c_pump1) or (!me.fuel_c_pump2)))
+	    append(me.msgs_caution," FUEL CENTER");
+	if ((me.fuel_c_qty < 10582) and ((me.fuel_c_pump1) or (me.fuel_c_pump2)))
+	    append(me.msgs_caution," FUEL LOW CENTER");
+	if (((me.fuel_l_qty - me.fuel_r_qty) > 1000) or ((me.fuel_r_qty - me.fuel_l_qty) > 1000))
+	    append(me.msgs_caution," FUEL IMBALANCE");
+
+	# Advisory messages for heating and anti-ice systems
+	if (me.temp_c > 10 and ((me.wing_aiknob == 2) or (me.eng1_aiknob == 2) or (me.eng2_aiknob == 2)))
+	    append(me.msgs_caution," ANTI-ICE ON"); 
+	if ((me.wheat_ls + me.wheat_lf + me.wheat_rf + me.wheat_rs)<3)
+	    append(me.msgs_caution," WINDOW HEAT");
+
+	## Memo Messages
         if (me.parkbrake)
             append(me.msgs_info,"PARK BRK SET");
         if (me.reverser)
@@ -206,6 +308,40 @@ var WEU =
             append(me.msgs_info,"SPEEDBRAKE ARMED");
         if (me.apu_running)
             append(me.msgs_info,"APU RUNNING");
+	if (me.autobrake>=0)
+	{
+	    # 777 manual: EICAS memo messages display the selected autobrake settings:
+	    # AUTOBRAKE 1 thru 4, AUTOBRAKE MAX, AUTOBRAKE RTO
+	    # AUTOBRAKE DISARM is an advisory message
+	    if (me.autobrake == 0)
+		append(me.msgs_caution," AUTOBRAKE DISARM");
+	    if (me.autobrake == 1)
+		append(me.msgs_info,"AUTOBRAKE 1");
+	    if (me.autobrake == 2)
+		append(me.msgs_info,"AUTOBRAKE 2");
+	    if (me.autobrake == 3)
+		append(me.msgs_info,"AUTOBRAKE 3");
+	    if (me.autobrake == 4)
+		append(me.msgs_info,"AUTOBRAKE 4");
+	    if (me.autobrake == 5)
+		append(me.msgs_info,"AUTOBRAKE MAX");
+	}
+	if (me.autobrakerto)
+	    append(me.msgs_info,"AUTOBRAKE RTO");
+
+	if (!me.recirc_fans)
+	    append(me.msgs_info,"RECIRC FANS OFF");
+
+	# If both No Smoking and Seatbelts signs are on,
+	# we show "PASS SIGNS ON" message. Otherwise,
+	# display individual memo messages
+	if ((me.smoking_sign>-1) and (me.seatbelts>-1))
+	    append(me.msgs_info,"PASS SIGNS ON");
+	if ((me.smoking_sign == -1) and (me.seatbelts>-1))
+	    append(me.msgs_info,"SEATBELTS ON");
+	if ((me.smoking_sign>-1) and (me.seatbelts == -1))
+	    append(me.msgs_info,"NO SMOKING ON");
+
     },
 
 #### stall warnings and other sounds ####
@@ -362,6 +498,32 @@ var WEU =
         me.apu_running   = getprop("controls/electric/APU-generator");
         me.rudder_trim   = getprop("controls/flight/rudder-trim");
         me.elev_trim     = getprop("controls/flight/elevator-trim");
+	me.autobrake	 = getprop("autopilot/autobrake/step");
+	me.autobrakerto	 = getprop("autopilot/autobrake/rto-selected");
+	me.apu_bleed	 = getprop("controls/air/bleedapu-switch");
+	me.engl_bleed	 = getprop("controls/air/bleedengl-switch");
+	me.engr_bleed	 = getprop("controls/air/bleedengr-switch");
+	me.pack_l	 = getprop("controls/air/lpack-switch");
+	me.pack_r	 = getprop("controls/air/rpack-switch");
+	me.trim_air_l	 = getprop("controls/air/ltrim-switch");
+	me.trim_air_r	 = getprop("controls/air/rtrim-switch");
+	me.battery	 = getprop("controls/electric/battery-switch");
+	me.recirc_fans	 = getprop("controls/air/recircup-switch");
+	me.seatbelts	 = getprop("controls/cabin/SeatBelt-knob");
+	me.smoking_sign	 = getprop("controls/cabin/NoSmoking-knob");
+	me.fuel_c_pump1	 = getprop("controls/fuel/tank[1]/boost-pump-switch");
+	me.fuel_c_pump2	 = getprop("controls/fuel/tank[1]/boost-pump-switch[1]");
+	me.fuel_c_qty	 = getprop("consumables/fuel/tank[1]/level-lbs");
+	me.fuel_l_qty	 = getprop("consumables/fuel/tank/level-lbs");
+	me.fuel_r_qty	 = getprop("consumables/fuel/tank[2]/level-lbs");
+	me.temp_c	 = getprop("environment/temperature-degc");
+	me.wing_aiknob	 = getprop("controls/anti-ice/wing-antiice-knob");
+	me.eng1_aiknob	 = getprop("controls/anti-ice/engin/antiice-knob");
+	me.eng2_aiknob	 = getprop("controls/anti-ice/engin[1]/antiice-knob");
+	me.wheat_ls	 = getprop("controls/anti-ice/window-heat-ls-switch");
+	me.wheat_lf	 = getprop("controls/anti-ice/window-heat-lf-switch");
+	me.wheat_rf	 = getprop("controls/anti-ice/window-heat-rf-switch");
+	me.wheat_rs	 = getprop("controls/anti-ice/window-heat-rs-switch");
     },
 
 #### update throttle input ####
