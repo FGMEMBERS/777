@@ -1734,7 +1734,7 @@ var AFDS = {
                 {
                     me.FMC_last_distance.setValue(total_distance);
                 }
-                var max_wpt = getprop("autopilot/route-manager/route/num");
+                var max_wpt = (getprop("autopilot/route-manager/route/num") - 1);
                 if(me.lateral_mode.getValue() == 3)     # Current mode is LNAV
                 {
                     if(me.vnav_descent.getValue() == 0) # Calculation of Top Of Descent distance
@@ -1847,17 +1847,20 @@ var AFDS = {
                                 gmt -= 24 * 3600;
                             }
                             me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-                        if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
-                        {
-                            setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
-                        }
-                        var alignment = abs(getprop("autopilot/route-manager/wp/true-bearing-deg")
-                            - getprop("orientation/heading-deg"));
-                        var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
-                         - getprop("orientation/heading-deg"));
+                            if(me.current_wp_local < max_wpt)
+                            {
+                                if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
+                                {
+                                    setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
+                                }
+                            }
+                            var alignment = abs(getprop("autopilot/route-manager/wp/true-bearing-deg")
+                                - getprop("orientation/heading-deg"));
+                            var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
+                             - getprop("orientation/heading-deg"));
                             if(((((me.heading_change_rate * change_wp) > wpt_eta) and (alignment < 85))
                                 or (distance < 0.6))
-                                    and (me.current_wp_local < (max_wpt - 1)))
+                                    and (me.current_wp_local < max_wpt))
                             {
                                 me.current_wp_local += 1;
                                 me.FMC_current_wp.setValue(me.current_wp_local);
@@ -1915,7 +1918,7 @@ var AFDS = {
                                 or (wpt_distance < 0.6))
                             {
                                 current_wp_local = me.FMC_current_wp.getValue();
-                                if(current_wp_local < (max_wpt - 1))
+                                if(current_wp_local < max_wpt)
                                 {
                                     current_wp_local += 1;
                                     me.FMC_current_wp.setValue(current_wp_local);
