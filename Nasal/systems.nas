@@ -565,6 +565,7 @@ var balance_fuel = func{
 
 var Startup = func{
     setprop("sim/model/armrest",1);
+    setprop("controls/electric/battery-switch",1);
     setprop("controls/electric/engine[0]/generator",1);
     setprop("controls/electric/engine[1]/generator",1);
     setprop("controls/electric/engine[0]/bus-tie",1);
