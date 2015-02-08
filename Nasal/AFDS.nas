@@ -1747,7 +1747,7 @@ var AFDS = {
                 {
                     me.FMC_last_distance.setValue(total_distance);
                 }
-                var max_wpt = getprop("autopilot/route-manager/route/num");
+                var max_wpt = (getprop("autopilot/route-manager/route/num") - 1);
                 if((me.vertical_mode.getValue() == 3)       # Current mode is VNAV PTH
                     or (me.vertical_mode.getValue() == 4)       # Current mode is VNAV SPD
                     or (me.vertical_mode.getValue() == 5))      # Current mode is VNAV ALT
@@ -1851,7 +1851,7 @@ var AFDS = {
                             gmt -= 24 * 3600;
                         }
                         me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-                        if(me.current_wp_local < (max_wpt - 1))
+                        if(me.current_wp_local < max_wpt)
                         {
                             if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
                             {
@@ -1871,7 +1871,7 @@ var AFDS = {
                                 (((leg.fly_type == 'flyBy') and ((me.heading_change_rate * change_wp) > wpt_eta) and (alignment < 85))
                                 or (distance < 0.6))                                )
                             or ((me.waypoint_type == 'hdgToAlt') and (current_alt > me.altitude_restriction))
-                            ) and (me.current_wp_local < (max_wpt - 1)))
+                            ) and (me.current_wp_local < max_wpt))
                         {
                             me.current_wp_local += 1;
                             me.FMC_current_wp.setValue(me.current_wp_local);
