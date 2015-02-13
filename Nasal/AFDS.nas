@@ -1813,7 +1813,8 @@ var AFDS = {
                     return;
                 }
                 var groundspeed = getprop("velocities/groundspeed-kt");
-                var distance = getprop("instrumentation/gps/wp/wp[1]/distance-nm");
+                var log_distance = getprop("instrumentation/gps/wp/wp[1]/distance-nm");
+                var along_route = total_distance - getprop("autopilot/route-manager/distance-remaining-nm");
 #               var topClimb = f.pathGeod(0, 100);
                 var topDescent = f.pathGeod(f.indexOfWP(f.destination_runway), -me.top_of_descent);
                 var geocoord = geo.aircraft_position();
@@ -1837,9 +1838,9 @@ var AFDS = {
                 var tdNode = me.NDSymbols.getNode("td", 1);
                 tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
                 tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
-                if(distance != nil) # Course deg
+                if(log_distance != nil) # Course deg
                 {
-                    var wpt_eta = (distance / groundspeed * 3600);
+                    var wpt_eta = (log_distance / groundspeed * 3600);
                     var gmt = getprop("instrumentation/clock/indicated-sec");
                     if(groundspeed > 50)
                     {
@@ -1869,7 +1870,7 @@ var AFDS = {
                         if(change_wp > 180) change_wp = (360 - change_wp);
                         if((((me.waypoint_type != 'hdgToAlt') and
                                 (((leg.fly_type == 'flyBy') and ((me.heading_change_rate * change_wp) > wpt_eta) and (alignment < 85))
-                                or (distance < 0.6))                                )
+                                or (log_distance < 0.6))                                )
                             or ((me.waypoint_type == 'hdgToAlt') and (current_alt > me.altitude_restriction))
                             ) and (me.current_wp_local < max_wpt))
                         {
@@ -1881,7 +1882,7 @@ var AFDS = {
                         }
                         else
                         {
-                            me.FMC_last_distance.setValue(distance);
+                            me.FMC_last_distance.setValue(log_distance);
                         }
                     }
                 }
@@ -1919,7 +1920,7 @@ var AFDS = {
                 {
                     # Reset flag when not active
                     if(me.FMC_destination_ils.getValue() == 1) me.FMC_destination_ils.setValue(0);
-                    me.FMC_landing_rwy_elevation.setValue(getprop("autopilot/route-manager/departure/field-elevation-ft"));
+                    me.FMC_landing_rwy_elevation.setValue(getprop("position/ground-elev-ft"));
                 }
                 else
                 {
@@ -1927,9 +1928,14 @@ var AFDS = {
                     {
                         me.FMC_landing_rwy_elevation.setValue(destination_elevation);
                     }
-                    else
+                    elsif(total_distance == 0)
                     {
                         # Reset flag when not active
+                        if(me.FMC_destination_ils.getValue() == 1) me.FMC_destination_ils.setValue(0);
+                        me.FMC_landing_rwy_elevation.setValue(getprop("position/ground-elev-ft"));
+                    }
+                    else
+                    {
                         if(me.FMC_destination_ils.getValue() == 1) me.FMC_destination_ils.setValue(0);
                         me.FMC_landing_rwy_elevation.setValue(getprop("autopilot/route-manager/departure/field-elevation-ft"));
                     }
