@@ -1809,7 +1809,8 @@ var AFDS = {
                 if(cmp(getprop("sim/version/flightgear"), "2.8.0") != 0)
                 {
                     var groundspeed = getprop("velocities/groundspeed-kt");
-                    var distance = getprop("instrumentation/gps/wp/wp[1]/distance-nm");
+                    var log_distance = getprop("instrumentation/gps/wp/wp[1]/distance-nm");
+                    var along_route = total_distance - getprop("autopilot/route-manager/distance-remaining-nm");
 #                   var topClimb = f.pathGeod(0, 100);
                     var topDescent = f.pathGeod(-1, -me.top_of_descent);
                     var geocoord = geo.aircraft_position();
@@ -1833,9 +1834,9 @@ var AFDS = {
                     var tdNode = me.NDSymbols.getNode("td", 1);
                     tdNode.getNode("longitude-deg", 1).setValue(topDescent.lon);
                     tdNode.getNode("latitude-deg", 1).setValue(topDescent.lat);
-                    if(distance != nil) # Course deg
+                    if(log_distance != nil) # Course deg
                     {
-                        var wpt_eta = (distance / groundspeed * 3600);
+                        var wpt_eta = (log_distance / groundspeed * 3600);
                         var gmt = getprop("instrumentation/clock/indicated-sec");
                         if(groundspeed > 50)
                         {
@@ -1859,7 +1860,7 @@ var AFDS = {
                             var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
                              - getprop("orientation/heading-deg"));
                             if(((((me.heading_change_rate * change_wp) > wpt_eta) and (alignment < 85))
-                                or (distance < 0.6))
+                                or (log_distance < 0.6))
                                     and (me.current_wp_local < max_wpt))
                             {
                                 me.current_wp_local += 1;
@@ -1869,7 +1870,7 @@ var AFDS = {
                             }
                             else
                             {
-                                me.FMC_last_distance.setValue(distance);
+                                me.FMC_last_distance.setValue(log_distance);
                             }
                         }
                     }
