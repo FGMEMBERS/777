@@ -1010,7 +1010,7 @@ var AFDS = {
             if(idx == 4)        # LOC
             {
                 if((me.rollout_armed.getValue())
-                    and (getprop("position/gear-agl-ft") < 50))
+                    and (getprop("position/gear-agl-ft") < 30))
                 {
                     me.rollout_armed.setValue(0);
                     idx = 5;    # ROLLOUT
