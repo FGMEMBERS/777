@@ -162,7 +162,7 @@ egt="825" tsfc="0.38" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="117" re
 
   <!-- nose -->
 <gear x="24.5181"  y="0.00" z="-5.55"
-        compression="0.7" spring="1.2" damp="1" sfric="2.0" dfric="2.0">
+        compression="0.7" spring="1.2" damp="1" sfric="1.5" dfric="1.0">
     <!-- up to 70 degrees max steering angle with tiller, input is limited to 7 degrees with rudder (see Nasal/ground_steering.nas) -->
     <control-input control="STEER" axis="/controls/gear/nosegear-steering-cmd-norm" src0="-1.0" dst0="-1.2217304764" src1="1.0" dst1="1.2217304764" />
     <control-output control="STEER" prop="/controls/gear/nosegear-steering-angle-rad" />
