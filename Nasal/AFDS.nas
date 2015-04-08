@@ -619,8 +619,7 @@ var AFDS = {
         var lmt = 25;
         if(banklimit>0) {lmt = banklimit * 5};
         me.bank_max.setValue(lmt);
-        lmt = -1 * lmt;
-        me.bank_min.setValue(lmt);
+        me.bank_min.setValue(-1 * lmt);
     },
 ###################
     referenceChange : func()
@@ -1011,7 +1010,7 @@ var AFDS = {
             if(idx == 4)        # LOC
             {
                 if((me.rollout_armed.getValue())
-                    and (getprop("position/gear-agl-ft") < 50))
+                    and (getprop("position/gear-agl-ft") < 30))
                 {
                     me.rollout_armed.setValue(0);
                     idx = 5;    # ROLLOUT
@@ -1950,42 +1949,50 @@ var AFDS = {
                 me.auto_popup.setValue(0);
             }
             var ma_spd = getprop("instrumentation/airspeed-indicator/indicated-mach");
+            var lim = 0;
             me.pfd_mach_ind.setValue(ma_spd * 1000);
             me.pfd_mach_target.setValue(getprop("autopilot/settings/target-speed-mach") * 1000);
+            var true_air_speed = getprop("instrumentation/airspeed-indicator/true-speed-kt");
             var banklimit = getprop("instrumentation/afds/inputs/bank-limit-switch");
-            if(banklimit==0)
+            if(me.bank_switch.getValue()==0)
             {
-                var lim = 0;
-                me.heading_change_rate = 0;
-                if(ma_spd > 0.85)
+                if(true_air_speed > 420)
                 {
-                    lim=5;
-                    me.heading_change_rate = 4.9 * 0.7;
+                    lim=15;
                 }
-                elsif(ma_spd > 0.6666)
-                {
-                    lim=10;
-                    me.heading_change_rate = 2.45 * 0.7;
-                }
-                elsif(ma_spd > 0.5)
+                elsif(true_air_speed > 360)
                 {
                     lim=20;
-                    me.heading_change_rate = 1.125 * 0.7;
-                }
-                elsif(ma_spd > 0.3333)
-                {
-                    lim=30;
-                    me.heading_change_rate = 0.625 * 0.7;
                 }
                 else
                 {
-                    lim=35;
-                    me.heading_change_rate = 0.55 * 0.7;
+                    lim=25;
                 }
-                props.globals.getNode("instrumentation/afds/settings/bank-max").setValue(lim);
-                lim = -1 * lim;
-                props.globals.getNode("instrumentation/afds/settings/bank-min").setValue(lim);
+                me.bank_max.setValue(lim);
+                me.bank_min.setValue(-1 * lim);
             }
+            lim = me.bank_max.getValue();
+            if(lim == 25)
+            {
+                me.heading_change_rate = 0.67;
+            }
+            elsif(lim == 20)
+            {
+                me.heading_change_rate = 1.0;
+            }
+            elsif(lim == 15)
+            {
+                me.heading_change_rate = 1.67;
+            }
+            elsif(lim == 10)
+            {
+                me.heading_change_rate = 2.53;
+            }
+            else
+            {
+                me.heading_change_rate = 5.2;
+            }
+            me.heading_change_rate *= 0.8;
         }
 
         me.step+=1;
