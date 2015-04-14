@@ -1569,17 +1569,21 @@ var AFDS = {
         elsif(me.step == 4)             ### Auto Throttle mode control  ###
         {
             # Thrust reference rate calculation. This should be provided by FMC
+            var vflight_idle = 0;
             var payload = getprop("consumables/fuel/total-fuel-lbs") + getprop("sim/weight[0]/weight-lb") + getprop("sim/weight[1]/weight-lb");
             var derate = 0.3 - payload * 0.00000083;
-            if(me.ias_setting.getValue() < 241)
+            if(current_alt > 12000)
             {
-                var vflight_idle = (getprop("autopilot/constant/descent-profile-low-base")
-                    + (getprop("autopilot/constant/descent-profile-low-rate") * payload / 1000));
-            }
-            else
-            {
-                var vflight_idle = (getprop("autopilot/constant/descent-profile-high-base")
-                    + (getprop("autopilot/constant/descent-profile-high-rate") * payload / 1000));
+                if(me.ias_setting.getValue() < 241)
+                {
+                    vflight_idle = (getprop("autopilot/constant/descent-profile-low-base")
+                        + (getprop("autopilot/constant/descent-profile-low-rate") * payload / 1000));
+                }
+                else
+                {
+                    vflight_idle = (getprop("autopilot/constant/descent-profile-high-base")
+                        + (getprop("autopilot/constant/descent-profile-high-rate") * payload / 1000));
+                }
             }
             if(vflight_idle < 0.00) vflight_idle = 0.00;
             me.flight_idle.setValue(vflight_idle);
@@ -1992,7 +1996,7 @@ var AFDS = {
             {
                 me.heading_change_rate = 5.2;
             }
-            me.heading_change_rate *= 0.8;
+            me.heading_change_rate *= 0.6;
         }
 
         me.step+=1;
