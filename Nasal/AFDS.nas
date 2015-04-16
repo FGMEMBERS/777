@@ -618,8 +618,7 @@ var AFDS = {
         var lmt = 25;
         if(banklimit>0) {lmt = banklimit * 5};
         me.bank_max.setValue(lmt);
-        lmt = -1 * lmt;
-        me.bank_min.setValue(lmt);
+        me.bank_min.setValue(-1 * lmt);
     },
 ###################
     referenceChange : func()
@@ -1557,17 +1556,21 @@ var AFDS = {
         elsif(me.step == 4)             ### Auto Throttle mode control  ###
         {
             # Thrust reference rate calculation. This should be provided by FMC
+            var vflight_idle = 0;
             var payload = getprop("consumables/fuel/total-fuel-lbs") + getprop("sim/weight[0]/weight-lb") + getprop("sim/weight[1]/weight-lb");
             var derate = 0.3 - payload * 0.00000083;
-            if(me.ias_setting.getValue() < 241)
+            if(current_alt > 12000)
             {
-                var vflight_idle = (getprop("autopilot/constant/descent-profile-low-base")
-                    + (getprop("autopilot/constant/descent-profile-low-rate") * payload / 1000));
-            }
-            else
-            {
-                var vflight_idle = (getprop("autopilot/constant/descent-profile-high-base")
-                    + (getprop("autopilot/constant/descent-profile-high-rate") * payload / 1000));
+                if(me.ias_setting.getValue() < 241)
+                {
+                    vflight_idle = (getprop("autopilot/constant/descent-profile-low-base")
+                        + (getprop("autopilot/constant/descent-profile-low-rate") * payload / 1000));
+                }
+                else
+                {
+                    vflight_idle = (getprop("autopilot/constant/descent-profile-high-base")
+                        + (getprop("autopilot/constant/descent-profile-high-rate") * payload / 1000));
+                }
             }
             if(vflight_idle < 0.00) vflight_idle = 0.00;
             me.flight_idle.setValue(vflight_idle);
@@ -1987,43 +1990,50 @@ var AFDS = {
                 me.auto_popup.setValue(0);
             }
             var ma_spd = getprop("instrumentation/airspeed-indicator/indicated-mach");
+            var lim = 0;
             me.pfd_mach_ind.setValue(ma_spd * 1000);
             me.pfd_mach_target.setValue(getprop("autopilot/settings/target-speed-mach") * 1000);
+            var true_air_speed = getprop("instrumentation/airspeed-indicator/true-speed-kt");
             var banklimit = getprop("instrumentation/afds/inputs/bank-limit-switch");
-            if(banklimit==0)
+            if(me.bank_switch.getValue()==0)
             {
-                var lim = 0;
-                me.heading_change_rate = 0;
-                if(ma_spd > 0.85)
+                if(true_air_speed > 420)
                 {
-                    lim=5;
-                    me.heading_change_rate = 4.9;
+                    lim=15;
                 }
-                elsif(ma_spd > 0.6666)
-                {
-                    lim=10;
-                    me.heading_change_rate = 2.45;
-                }
-                elsif(ma_spd > 0.5)
+                elsif(true_air_speed > 360)
                 {
                     lim=20;
-                    me.heading_change_rate = 1.125;
-                }
-                elsif(ma_spd > 0.3333)
-                {
-                    lim=30;
-                    me.heading_change_rate = 0.625;
                 }
                 else
                 {
-                    lim=35;
-                    me.heading_change_rate = 0.55;
+                    lim=25;
                 }
-                me.heading_change_rate *= 0.5;
-                props.globals.getNode("instrumentation/afds/settings/bank-max").setValue(lim);
-                lim = -1 * lim;
-                props.globals.getNode("instrumentation/afds/settings/bank-min").setValue(lim);
+                me.bank_max.setValue(lim);
+                me.bank_min.setValue(-1 * lim);
             }
+            lim = me.bank_max.getValue();
+            if(lim == 25)
+            {
+                me.heading_change_rate = 0.67;
+            }
+            elsif(lim == 20)
+            {
+                me.heading_change_rate = 1.0;
+            }
+            elsif(lim == 15)
+            {
+                me.heading_change_rate = 1.67;
+            }
+            elsif(lim == 10)
+            {
+                me.heading_change_rate = 2.53;
+            }
+            else
+            {
+                me.heading_change_rate = 5.2;
+            }
+            me.heading_change_rate *= 0.6;
         }
 
         me.step+=1;
