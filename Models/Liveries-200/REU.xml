@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Air Austral (till 2009)</name>
+            <texture>Liveries-200/REU.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries-200/REU-lights.png</texture>
+        </lights>
+    </model>
+</sim>
+</PropertyList>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">All Nippon Airways (Star Alliance)</name>
+            <texture>Liveries-300/JA731A.png</texture>
+        </livery>
+    </model>
+</sim>
+</PropertyList>

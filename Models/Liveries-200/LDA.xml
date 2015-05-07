@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Lauda Air</name>
+            <texture>Liveries-200/LDA-Livery.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries-200/LDA-Lights.png</texture>
+        </lights>
+    </model>
+</sim>
+</PropertyList>

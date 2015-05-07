@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Austrian Airlines (with "LifeBall"-Sticker)</name>
+            <texture>Liveries-200/AUA_lifeball.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+   	<aircraft-operator>AUA</aircraft-operator>
+</sim>
+</PropertyList>

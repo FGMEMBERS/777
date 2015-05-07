@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Air Jamaica</name>
+            <texture>Liveries-200/AJM-Livery.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries-200/AJM-Lights.png</texture>
+        </lights>
+    </model>
+</sim>
+</PropertyList>
