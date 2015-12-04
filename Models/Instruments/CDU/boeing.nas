@@ -82,6 +82,10 @@ var key = func(v) {
 					setprop("/instrumentation/fmc/ref-airport",cduInput);
 					cduInput = "";;
 				}
+				if (cduDisplay == "NAV_RAD"){
+					setprop("/instrumentation/nav[0]/radials/selected-deg",cduInput);
+					cduInput = "";
+				}
 				if (cduDisplay == "INIT_REF"){
 					cduDisplay = "POS_INIT";
 				}
@@ -109,6 +113,10 @@ var key = func(v) {
 				else if (cduDisplay == "EICAS_SYN"){
 					eicasDisplay = "DRS";
 				}
+				if (cduDisplay == "NAV_RAD"){
+					setprop("/instrumentation/nav[1]/radials/selected-deg",cduInput);
+					cduInput = "";
+				}
 				else if (cduDisplay == "MENU"){
 					eicasDisplay = "EICAS_MODES";
 				}
@@ -123,6 +131,10 @@ var key = func(v) {
 			if (v == "LSK3L"){
 				if (cduDisplay == "INIT_REF"){
 					cduDisplay = "PERF_INIT";
+				}
+				if (cduDisplay == "NAV_RAD"){
+					setprop("/instrumentation/adf[0]/frequencies/selected-khz",cduInput);
+					cduInput = "";
 				}
 				if (cduDisplay == "RTE1_LEGS"){
 					if (cduInput == "DELETE"){
@@ -393,6 +405,7 @@ var cdu = func{
 			line3lt = "ADF L";
 			line3l = sprintf("%3.2f", getprop("/instrumentation/adf[0]/frequencies/selected-khz"));
 			line3rt = "ADF R";
+			line3r = sprintf("%3.2f", getprop("/instrumentation/adf[1]/frequencies/selected-khz"));
 		}
 		if (display == "PERF_INIT") {
 			title = "PERF INIT";
