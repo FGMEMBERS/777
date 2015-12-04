@@ -27,7 +27,9 @@ var key = func(v) {
 					cduDisplay = "IDENT";
 				}
 				if (cduDisplay == "NAV_RAD"){
-					setprop("/instrumentation/nav[0]/frequencies/selected-mhz",cduInput);
+					if (int(cduInput) > 107 and int(cduInput) < 119) {
+						setprop("/instrumentation/nav[0]/frequencies/selected-mhz",cduInput);
+					}
 					cduInput = "";
 				}
 				if (cduDisplay == "RTE1_1"){
@@ -56,7 +58,9 @@ var key = func(v) {
 					eicasDisplay = "HYD";
 				}
 				if (cduDisplay == "NAV_RAD"){
-					setprop("/instrumentation/nav[1]/frequencies/selected-mhz",cduInput);
+					if (int(cduInput) > 107 and int(cduInput) < 119) {
+						setprop("/instrumentation/nav[1]/frequencies/selected-mhz",cduInput);
+					}
 					cduInput = "";
 				}
 				if (cduDisplay == "RTE1_1"){
@@ -83,7 +87,9 @@ var key = func(v) {
 					cduInput = "";;
 				}
 				if (cduDisplay == "NAV_RAD"){
-					setprop("/instrumentation/nav[0]/radials/selected-deg",cduInput);
+					if (int(cduInput) < 360) {
+						setprop("/instrumentation/nav[0]/radials/selected-deg",cduInput);
+					}
 					cduInput = "";
 				}
 				if (cduDisplay == "INIT_REF"){
@@ -114,7 +120,9 @@ var key = func(v) {
 					eicasDisplay = "DRS";
 				}
 				else if (cduDisplay == "NAV_RAD"){
-					setprop("/instrumentation/nav[1]/radials/selected-deg",cduInput);
+					if (int(cduInput) < 360) {
+						setprop("/instrumentation/nav[1]/radials/selected-deg",cduInput);
+					}
 					cduInput = "";
 				}
 				else if (cduDisplay == "MENU"){
@@ -133,7 +141,9 @@ var key = func(v) {
 					cduDisplay = "PERF_INIT";
 				}
 				if (cduDisplay == "NAV_RAD"){
-					setprop("/instrumentation/adf[0]/frequencies/selected-khz",cduInput);
+					if (int(cduInput) > 189 and int(cduInput) < 1751) {
+						setprop("/instrumentation/adf[0]/frequencies/selected-khz",cduInput);
+					}
 					cduInput = "";
 				}
 				if (cduDisplay == "RTE1_LEGS"){
@@ -148,7 +158,9 @@ var key = func(v) {
 			}
 			if (v == "LSK3R"){
 				if (cduDisplay == "NAV_RAD"){
-					setprop("/instrumentation/adf[1]/frequencies/selected-khz",cduInput);
+					if (int(cduInput) > 189 and int(cduInput) < 1751) {
+						setprop("/instrumentation/adf[1]/frequencies/selected-khz",cduInput);
+					}
 					cduInput = "";
 				}
 				if (cduDisplay == "RTE1_LEGS"){
