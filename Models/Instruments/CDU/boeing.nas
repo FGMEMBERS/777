@@ -55,7 +55,7 @@ var key = func(v) {
 				if (cduDisplay == "EICAS_SYN"){
 					eicasDisplay = "HYD";
 				}
-				if (cduDisplay == "NAV RAD"){
+				if (cduDisplay == "NAV_RAD"){
 					setprop("/instrumentation/nav[1]/frequencies/selected-mhz",cduInput);
 					cduInput = "";
 				}
@@ -113,7 +113,7 @@ var key = func(v) {
 				else if (cduDisplay == "EICAS_SYN"){
 					eicasDisplay = "DRS";
 				}
-				if (cduDisplay == "NAV_RAD"){
+				else if (cduDisplay == "NAV_RAD"){
 					setprop("/instrumentation/nav[1]/radials/selected-deg",cduInput);
 					cduInput = "";
 				}
@@ -147,6 +147,10 @@ var key = func(v) {
 				}
 			}
 			if (v == "LSK3R"){
+				if (cduDisplay == "NAV_RAD"){
+					setprop("/instrumentation/adf[1]/frequencies/selected-khz",cduInput);
+					cduInput = "";
+				}
 				if (cduDisplay == "RTE1_LEGS"){
 					setprop("/autopilot/route-manager/route/wp[3]/altitude-ft",cduInput);
 					if (substr(cduInput,0,2) == "FL"){
