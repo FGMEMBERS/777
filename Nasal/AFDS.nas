@@ -1228,7 +1228,7 @@ var AFDS = {
                         {
                             if(me.mach_setting.getValue() == me.FMC_descent_mach.getValue())
                             {
-                                if(getprop("instrumentation/airspeed-indicator/indicated-mach") < (me.FMC_descent_mach.getValue() + 0.015))
+                                if(getprop("instrumentation/airspeed-indicator/indicated-mach") < (me.FMC_descent_mach.getValue() + 0.025))
                                 {
                                     me.vnav_path_mode.setValue(1);      # VNAV PTH DESCEND VS
                                     me.target_alt.setValue(TargetAlt);
@@ -1246,7 +1246,7 @@ var AFDS = {
                         }
                         else
                         {
-                            if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < (me.FMC_descent_ias.getValue() + 15))
+                            if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < (me.FMC_descent_ias.getValue() + 25))
                             {
                                 me.vnav_path_mode.setValue(1);      # VNAV PTH DESCEND VS
                                 me.target_alt.setValue(TargetAlt);
@@ -1758,7 +1758,7 @@ var AFDS = {
                     if(me.vnav_descent.getValue() == 0) # Calculation of Top Of Descent distance
                     {
                         var cruise_alt = me.FMC_cruise_alt.getValue();
-                        me.top_of_descent = 18;
+                        me.top_of_descent = 8;
                         if(cruise_alt > 10000)
                         {
                             me.top_of_descent += 21;
