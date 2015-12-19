@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">AZA Alitalia (Skyteam)</name>
+            <texture>Liveries-200/AZA-skyteam.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>AZA</aircraft-operator>
+</sim>
+</PropertyList>

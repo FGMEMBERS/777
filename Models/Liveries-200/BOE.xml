@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">BOE Boeing Company</name>
+            <texture>Liveries-200/BOE.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>BOE</aircraft-operator>
+</sim>
+</PropertyList>
