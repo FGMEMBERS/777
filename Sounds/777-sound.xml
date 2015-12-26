@@ -1,6 +1,69 @@
 <PropertyList>
     <!-- cockpit x=22.5 y=0 z=0.78 -->
     <fx>
+<!-- APU -->
+
+	<apu>
+	    <name>APU starting</name>
+	    <mode>once</mode>
+	    <path>Aircraft/777/Sounds/apu_strt.wav</path>
+	    <condition>
+				<and>
+					<equals>
+						<property>controls/APU/apu_status</property>
+						<value>2</value>
+				</equals>
+			    <less-than>
+						<property>controls/APU/rpm</property>
+							<value>0.99</value>
+		    	</less-than>
+				</and>
+	    </condition>
+	    <reference-dist>10</reference-dist>
+	    <max-dist>300</max-dist>
+	</apu>
+
+	<apu>
+	    <name>APU running</name>
+	    <mode>looped</mode>
+	    <path>Aircraft/777/Sounds/apu_run.wav</path>
+	    <condition>
+				<!--and-->
+					<greater-than-equals>
+			    	<property>controls/APU/rpm</property>
+			    		<value>0.99</value>
+					</greater-than-equals>
+					<!--less-than>
+	           <property>engines/engine[0]/rpm</property>
+							<value>18</value>
+					</less-than>
+				</and-->
+	    </condition>
+	    <reference-dist>10</reference-dist>
+	    <max-dist>300</max-dist>
+	</apu>
+
+	<apu>
+	    <name>APU shutdown</name>
+	    <mode>once</mode>
+	    <path>Aircraft/777/Sounds/apu_stop.wav</path>
+	    <condition>
+				<and>
+					<not>
+						<property>controls/APU/running</property>
+					</not>
+				  <greater-than>
+						<property>controls/APU/rpm</property>
+							<value>0</value>
+				  </greater-than>
+				</and>
+	    </condition>
+	    <reference-dist>10</reference-dist>
+	    <max-dist>300</max-dist>
+	</apu>
+
+<!--   -->
+
         <engine>
             <name>left engine</name>
             <path>/Aircraft/777/Sounds/jet-trent2.wav</path>
@@ -358,7 +421,7 @@
             <property>surface-positions/flap-pos-norm</property>
             <volume>
                 <property>sim/sound/Ovolume</property>
-                <max>0.5</max>
+                <max>0.7</max>
                 <factor>0.6</factor>
             </volume>
             <position>
@@ -382,13 +445,13 @@
                 <factor>-0.000015</factor>
                 <offset>1.0</offset>
                 <min>0.1</min>
-                <max>1.0</max>
+                <max>0.7</max>
             </volume>
             <volume>
                 <property>velocities/airspeed-kt</property>
                 <factor>0.0015</factor>
                 <min>0.0</min>
-                <max>0.375</max>
+                <max>0.275</max>
             </volume>
             <pitch>
                 <property>velocities/airspeed-kt</property>
@@ -762,5 +825,47 @@
                 <factor>0.2</factor>
             </volume>
         </avhum>
+
+<!-- Seat Belt -->
+
+<announcement>
+<name>seatbelt</name>
+ <path>Aircraft/777/Sounds/cabinalert.wav</path>
+ <mode>once</mode>
+ <condition>
+  <property>sim/sound/seatbelt-sign</property>
+ </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+  <position>
+      <x>0.00</x>
+      <y>0.00</y>
+      <z>0.00</z>
+ </position>
+ <reference-dist>10.0</reference-dist>
+ <max-dist>100.0</max-dist>
+</announcement>
+
+<!-- No Smoking, Idiots! -->
+
+<announcement>
+<name>no smoking</name>
+ <path>Aircraft/777/Sounds/cabinalert.wav</path>
+ <mode>once</mode>
+ <condition>
+  <property>sim/sound/no-smoking-sign</property>
+ </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+  <position>
+      <x>0.00</x>
+      <y>0.00</y>
+      <z>0.00</z>
+ </position>
+ <reference-dist>10.0</reference-dist>
+ <max-dist>100.0</max-dist>
+</announcement>
     </fx>
 </PropertyList>

@@ -27,7 +27,9 @@ var key = func(v) {
 					cduDisplay = "IDENT";
 				}
 				if (cduDisplay == "NAV_RAD"){
-					setprop("/instrumentation/nav[0]/frequencies/selected-mhz",cduInput);
+					if (int(cduInput) > 107 and int(cduInput) < 119) {
+						setprop("/instrumentation/nav[0]/frequencies/selected-mhz",cduInput);
+					}
 					cduInput = "";
 				}
 				if (cduDisplay == "RTE1_1"){
@@ -55,8 +57,10 @@ var key = func(v) {
 				if (cduDisplay == "EICAS_SYN"){
 					eicasDisplay = "HYD";
 				}
-				if (cduDisplay == "NAV RAD"){
-					setprop("/instrumentation/nav[1]/frequencies/selected-mhz",cduInput);
+				if (cduDisplay == "NAV_RAD"){
+					if (int(cduInput) > 107 and int(cduInput) < 119) {
+						setprop("/instrumentation/nav[1]/frequencies/selected-mhz",cduInput);
+					}
 					cduInput = "";
 				}
 				if (cduDisplay == "RTE1_1"){
@@ -81,6 +85,12 @@ var key = func(v) {
 				if (cduDisplay == "POS_INIT"){
 					setprop("/instrumentation/fmc/ref-airport",cduInput);
 					cduInput = "";;
+				}
+				if (cduDisplay == "NAV_RAD"){
+					if (int(cduInput) < 360) {
+						setprop("/instrumentation/nav[0]/radials/selected-deg",cduInput);
+					}
+					cduInput = "";
 				}
 				if (cduDisplay == "INIT_REF"){
 					cduDisplay = "POS_INIT";
@@ -109,6 +119,12 @@ var key = func(v) {
 				else if (cduDisplay == "EICAS_SYN"){
 					eicasDisplay = "DRS";
 				}
+				else if (cduDisplay == "NAV_RAD"){
+					if (int(cduInput) < 360) {
+						setprop("/instrumentation/nav[1]/radials/selected-deg",cduInput);
+					}
+					cduInput = "";
+				}
 				else if (cduDisplay == "MENU"){
 					eicasDisplay = "EICAS_MODES";
 				}
@@ -124,6 +140,12 @@ var key = func(v) {
 				if (cduDisplay == "INIT_REF"){
 					cduDisplay = "PERF_INIT";
 				}
+				if (cduDisplay == "NAV_RAD"){
+					if (int(cduInput) > 189 and int(cduInput) < 1751) {
+						setprop("/instrumentation/adf[0]/frequencies/selected-khz",cduInput);
+					}
+					cduInput = "";
+				}
 				if (cduDisplay == "RTE1_LEGS"){
 					if (cduInput == "DELETE"){
 						setprop("/autopilot/route-manager/input","@DELETE3");
@@ -135,6 +157,12 @@ var key = func(v) {
 				}
 			}
 			if (v == "LSK3R"){
+				if (cduDisplay == "NAV_RAD"){
+					if (int(cduInput) > 189 and int(cduInput) < 1751) {
+						setprop("/instrumentation/adf[1]/frequencies/selected-khz",cduInput);
+					}
+					cduInput = "";
+				}
 				if (cduDisplay == "RTE1_LEGS"){
 					setprop("/autopilot/route-manager/route/wp[3]/altitude-ft",cduInput);
 					if (substr(cduInput,0,2) == "FL"){
@@ -393,6 +421,7 @@ var cdu = func{
 			line3lt = "ADF L";
 			line3l = sprintf("%3.2f", getprop("/instrumentation/adf[0]/frequencies/selected-khz"));
 			line3rt = "ADF R";
+			line3r = sprintf("%3.2f", getprop("/instrumentation/adf[1]/frequencies/selected-khz"));
 		}
 		if (display == "PERF_INIT") {
 			title = "PERF INIT";

@@ -180,7 +180,7 @@
             <property>orientation/heading-deg</property>
         </input>
         <reference>
-            <property>instrumentation/nav/heading-deg</property>
+            <property>instrumentation/nav/radials/target-radial-deg</property>
         </reference>
         <output>
             <property>controls/flight/rudder</property>
@@ -220,6 +220,7 @@
         <config>
             <Kp>-0.10</Kp>
             <Ki>0.0</Ki>
+            <Ti>2.0</Ti>
             <u_min>-5.0</u_min>
             <u_max>5.0</u_max>
         </config>
@@ -241,17 +242,21 @@
         </enable>
         <input>
             <property>orientation/roll-deg</property>
+            <offset>
+                <property>controls/flight/rudder</property>
+                <scale>5.0</scale>
+            </offset>
         </input>
         <reference>
-            <value>/orientation/side-slip-deg</value>
-            <scale>-1.0</scale> <!-- change in side-slip sign as reported by yasim, see bug #901 -->
+            <value>0.0</value>
         </reference>
         <output>
             <property>autopilot/internal/target-roll-deg</property>
         </output>
         <config>
-            <Kp>5.0</Kp>
+            <Kp>20.0</Kp>
             <Ki>0.0</Ki>
+            <Ti>5.0</Ti>
             <u_min>
                 <property>instrumentation/afds/settings/bank-min</property>
             </u_min>
