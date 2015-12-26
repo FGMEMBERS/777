@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Aeromexico</name>
+            <name type="string">AMX Aeromexico</name>
             <texture>Liveries-200/AMX.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>AMX</aircraft-operator>
+    <aircraft-operator>AMX</aircraft-operator>
 </sim>
 </PropertyList>

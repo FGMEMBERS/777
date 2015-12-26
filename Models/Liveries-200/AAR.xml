@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Asiana Airlines</name>
+            <name type="string">AAR Asiana Airlines</name>
             <texture>Liveries-200/AAR.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>AAR</aircraft-operator>
+    <aircraft-operator>AAR</aircraft-operator>
 </sim>
 </PropertyList>

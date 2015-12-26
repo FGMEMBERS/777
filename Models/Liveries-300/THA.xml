@@ -4,12 +4,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Thai Airways International</name>
+            <name type="string">THA Thai Airways International</name>
             <texture>Liveries-300/THA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/THA-lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

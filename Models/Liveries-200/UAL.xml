@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">United Airlines</name>
+            <name type="string">UAL United Airlines</name>
             <texture>Liveries-200/UAL.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>UAL</aircraft-operator>
+    <aircraft-operator>UAL</aircraft-operator>
 </sim>
 </PropertyList>

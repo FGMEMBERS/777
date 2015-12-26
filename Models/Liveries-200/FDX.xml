@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">FedEx Express</name>
+            <name type="string">FDX FedEx Express</name>
             <texture>Liveries-200/FDX.png</texture>
         </livery>
     </model>
     <aircraft-class>cargo</aircraft-class>
-   	<aircraft-operator>FDX</aircraft-operator>
+    <aircraft-operator>FDX</aircraft-operator>
 </sim>
 </PropertyList>

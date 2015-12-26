@@ -4,12 +4,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Continental Airlines</name>
-            <texture>Liveries-200/COA-Livery.png</texture>
+            <name type="string">COA Continental Airlines</name>
+            <texture>Liveries-200/COA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/COA-Lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

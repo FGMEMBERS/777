@@ -7,9 +7,6 @@
             <name type="string">KLM Royal Dutch Airlines (Skyteam)</name>
             <texture>Liveries-300/KLM_skyteam.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/KLM_skyteam-Lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

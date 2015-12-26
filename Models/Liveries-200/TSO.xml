@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Transaero Airlines</name>
+            <name type="string">TSO Transaero Airlines</name>
             <texture>Liveries-200/TSO.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>TSO</aircraft-operator>
+    <aircraft-operator>TSO</aircraft-operator>
 </sim>
 </PropertyList>

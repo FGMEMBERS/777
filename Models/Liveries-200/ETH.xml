@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Ethiopian Airlines</name>
+            <name type="string">ETH Ethiopian Airlines</name>
             <texture>Liveries-200/ETH.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>ETH</aircraft-operator>
+    <aircraft-operator>ETH</aircraft-operator>
 </sim>
 </PropertyList>

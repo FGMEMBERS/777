@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Scoot</name>
+            <name type="string">SCO Scoot</name>
             <texture>Liveries-200/SCO.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>SCO</aircraft-operator>
+    <aircraft-operator>SCO</aircraft-operator>
 </sim>
 </PropertyList>

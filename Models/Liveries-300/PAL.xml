@@ -4,12 +4,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Philippine Airlines</name>
-            <texture>PAL.png</texture>
+            <name type="string">PAL Philippine Airlines</name>
+            <texture>Liveries-300/PAL.png</texture>
         </livery>
-        <lights>
-            <texture>PAL-lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

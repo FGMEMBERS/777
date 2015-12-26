@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Kuwait Airways</name>
+            <name type="string">KAC Kuwait Airways</name>
             <texture>Liveries-200/KAC.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>KAC</aircraft-operator>
+    <aircraft-operator>KAC</aircraft-operator>
 </sim>
 </PropertyList>

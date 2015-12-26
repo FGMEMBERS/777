@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">EgyptAir (Star Alliance)</name>
-            <texture>Liveries-200//Liveries-200/EGY-SA.png</texture>
+            <name type="string">EGY EgyptAir (Star Alliance)</name>
+            <texture>Liveries-200/EGY-SA.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>EGY</aircraft-operator>
+    <aircraft-operator>EGY</aircraft-operator>
 </sim>
 </PropertyList>

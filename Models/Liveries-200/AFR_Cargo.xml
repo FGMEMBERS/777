@@ -4,12 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air France Cargo</name>
-            <texture>Liveries-200/AFR_Cargo-Livery.png</texture>
+            <name type="string">AFR Air France Cargo</name>
+            <texture>Liveries-200/AFR_Cargo.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/AFR_Cargo-Livery.png</texture>
-        </lights>
     </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>AFR</aircraft-operator>
 </sim>
 </PropertyList>

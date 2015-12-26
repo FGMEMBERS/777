@@ -3,12 +3,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air Jamaica</name>
-            <texture>Liveries-200/AJM-Livery.png</texture>
+            <name type="string">AJM Air Jamaica</name>
+            <texture>Liveries-200/AJM.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/AJM-Lights.png</texture>
-        </lights>
     </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>AJM</aircraft-operator>
 </sim>
 </PropertyList>

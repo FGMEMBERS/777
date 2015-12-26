@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Thai Airways</name>
+            <name type="string">THA Thai Airways</name>
             <texture>Liveries-200/THA.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>THA</aircraft-operator>
+    <aircraft-operator>THA</aircraft-operator>
 </sim>
 </PropertyList>

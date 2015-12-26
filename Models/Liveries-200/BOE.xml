@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Boeing Company</name>
+            <name type="string">BOE Boeing Company</name>
             <texture>Liveries-200/BOE.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>BOE</aircraft-operator>
+    <aircraft-operator>BOE</aircraft-operator>
 </sim>
 </PropertyList>

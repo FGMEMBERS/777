@@ -3,12 +3,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Lauda Air</name>
-            <texture>Liveries-200/LDA-Livery.png</texture>
+            <name type="string">LDA Lauda Air</name>
+            <texture>Liveries-200/LDA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/LDA-Lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

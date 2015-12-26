@@ -4,12 +4,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Saudi Arabian Airlines</name>
+            <name type="string">SVA Saudi Arabian Airlines</name>
             <texture>Liveries-200/SVA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/SVA-LIGHTS.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

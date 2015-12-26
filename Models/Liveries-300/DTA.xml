@@ -4,7 +4,7 @@
 <sim>
     <model>
         <livery>
-            <name type="string">TAAG Angola Airlines</name>
+            <name type="string">DTA TAAG Angola Airlines</name>
             <texture>Liveries-300/DTA.png</texture>
         </livery>
     </model>

@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air Canada</name>
+            <name type="string">ACA Air Canada</name>
             <texture>Liveries-200/ACA.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>ACA</aircraft-operator>
+    <aircraft-operator>ACA</aircraft-operator>
 </sim>
 </PropertyList>

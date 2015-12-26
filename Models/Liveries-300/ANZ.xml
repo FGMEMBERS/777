@@ -4,12 +4,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air New Zealand</name>
+            <name type="string">ANZ Air New Zealand</name>
             <texture>Liveries-300/ANZ.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/ANZ-lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

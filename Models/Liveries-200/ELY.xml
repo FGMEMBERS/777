@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">El Al Israel</name>
+            <name type="string">ELY El Al Israel</name>
             <texture>Liveries-200/ELY.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>ELY</aircraft-operator>
+    <aircraft-operator>ELY</aircraft-operator>
 </sim>
 </PropertyList>

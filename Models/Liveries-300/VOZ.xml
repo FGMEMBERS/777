@@ -4,7 +4,7 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Virgin Australia</name>
+            <name type="string">VOZ Virgin Australia</name>
             <texture>Liveries-300/VOZ.png</texture>
         </livery>
     </model>

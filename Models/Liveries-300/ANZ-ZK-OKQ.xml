@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">ANZ Air New Zealand (ZK-OKQ)</name>
+            <texture>Liveries-300/ANZ-ZK-OKQ.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>ANZ</aircraft-operator>
+</sim>
+</PropertyList>

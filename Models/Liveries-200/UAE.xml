@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Emirates</name>
+            <name type="string">UAE Emirates</name>
             <texture>Liveries-200/UAE.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>UAE</aircraft-operator>
+    <aircraft-operator>UAE</aircraft-operator>
 </sim>
 </PropertyList>

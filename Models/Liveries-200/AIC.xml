@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air India</name>
+            <name type="string">AIC Air India</name>
             <texture>Liveries-200/AIC.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>AIC</aircraft-operator>
+    <aircraft-operator>AIC</aircraft-operator>
 </sim>
 </PropertyList>

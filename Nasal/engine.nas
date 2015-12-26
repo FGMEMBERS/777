@@ -47,8 +47,10 @@ var Engine = {
         m.apu_status.setValue(0);
         m.apu_gen_switch = m.apu.getNode("apu-gen-switch", 1);
         m.apu_gen_switch.setBoolValue(0);
-        m.apu_running = m.apu.getNode("run", 1);
-        m.apu_running.setBoolValue(0);
+        m.apu_run = m.apu.getNode("run", 1);
+        m.apu_run.setBoolValue(0);
+                m.apu_running = m.apu.getNode("running",1);
+                m.apu_running.setBoolValue(0);
         m.oilTemperatureDegc=m.eng.getNode("oil-temperature-degc",1);
         var envirT = getprop("environment/temperature-degc") or 0.00;
         m.oilTemperatureDegc.setDoubleValue(envirT);
@@ -258,12 +260,13 @@ var Engine = {
         {
             me.apu_fuel_valve.setValue(0);
             me.apu_status.setValue(0);            # OFF
+            me.apu_run.setValue(0);
             me.apu_running.setValue(0);
         }
         elsif(me.apu_knob.getValue() == 1)
         {
             me.apu_fuel_valve.setValue(1);
-            if((me.apu_running.getBoolValue() == 0)
+            if((me.apu_run.getBoolValue() == 0)
                 and (me.apu_status.getValue() == 0))
             {
                 me.apu_status.setValue(1);        # ARM
@@ -273,26 +276,27 @@ var Engine = {
         {
             if(me.apu_status.getValue() == 1)    # ARM
             {
+                                me.apu_running.setValue(1);
                 me.apu_status.setValue(2);        # START
-                settimer(func { me.apu_status.setValue(3);}, 20);
+                settimer(func { me.apu_status.setValue(3);}, 15);
             }
             settimer(func { me.apu_knob.setValue(1);}, 0.3);
         }
         if(me.apu_status.getValue() == 3)
         {
-            me.apu_running.setBoolValue(1);
+            me.apu_run.setBoolValue(1);
             if (getprop("controls/electric/APU-generator") != 1)
                 setprop("controls/electric/APU-generator", 1);
                 setprop("systems/electrical/APB", 1);
         }
         else
         {
-            me.apu_running.setBoolValue(0);
+            me.apu_run.setBoolValue(0);
             if (getprop("controls/electric/APU-generator") != 0)
                 setprop("controls/electric/APU-generator", 0);
                 setprop("systems/electrical/APB", 0);
         }
-        if(me.apu_running.getBoolValue() and (getprop("consumables/fuel/tank[0]/level-lbs") > 0))
+        if(me.apu_run.getBoolValue() and (getprop("consumables/fuel/tank[0]/level-lbs") > 0))
         {
             setprop("consumables/fuel/tank[0]/level-gal_us", getprop("consumables/fuel/tank[0]/level-gal_us")-0.0006);
         }

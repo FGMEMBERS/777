@@ -4,12 +4,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Korean Air</name>
+            <name type="string">KAL Korean Air</name>
             <texture>Liveries-300/KAL.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/KAL-lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

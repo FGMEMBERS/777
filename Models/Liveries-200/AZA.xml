@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Alitalia</name>
+            <name type="string">AZA Alitalia</name>
             <texture>Liveries-200/AZA.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>AZA</aircraft-operator>
+    <aircraft-operator>AZA</aircraft-operator>
 </sim>
 </PropertyList>

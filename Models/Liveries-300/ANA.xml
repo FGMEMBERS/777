@@ -3,12 +3,9 @@
 <sim>
     <model>
         <livery>
-            <name type="string">All Nippon Airways</name>
+            <name type="string">ANA All Nippon Airways</name>
             <texture>Liveries-300/ANA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-300/ANA-lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

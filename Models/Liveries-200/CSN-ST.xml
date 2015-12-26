@@ -4,9 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">China Southern (Skyteam)</name>
-            <texture>Liveries-200//Liveries-200/CSN-ST.png</texture>
+            <name type="string">CSN China Southern Airlines (Skyteam)</name>
+            <texture>Liveries-200/CSN-ST.png</texture>
         </livery>
     </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>CSN</aircraft-operator>
 </sim>
 </PropertyList>

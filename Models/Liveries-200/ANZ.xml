@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air New Zealand</name>
+            <name type="string">ANZ Air New Zealand</name>
             <texture>Liveries-200/ANZ.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>ANZ</aircraft-operator>
+    <aircraft-operator>ANZ</aircraft-operator>
 </sim>
 </PropertyList>
