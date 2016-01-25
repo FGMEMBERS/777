@@ -675,6 +675,10 @@ var Shutdown = func{
     setprop("controls/hydraulics/system[1]/C1ADP-switch", 0);
     setprop("controls/hydraulics/system[1]/C2ADP-switch", 0);
     setprop("controls/hydraulics/system[2]/RACMP-switch", 0);
+    setprop("controls/anti-ice/window-heat-ls-switch", 0);
+    setprop("controls/anti-ice/window-heat-lf-switch", 0);
+    setprop("controls/anti-ice/window-heat-rf-switch", 0);
+    setprop("controls/anti-ice/window-heat-rs-switch",0);
     setprop("controls/flight/adiru-switch", 0);
     setprop("controls/cabin/SeatBelt-knob", -1);
 }
