@@ -101,6 +101,11 @@
             <z-offset-m type="double">-22.31125</z-offset-m>
             </config>
         </view>
+		<view n="116">
+			<config n="0">
+			<z-offset-m type="double">6.35</z-offset-m>
+			</config>
+		</view>
 
 
        <menubar n="0">
