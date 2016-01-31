@@ -1163,10 +1163,10 @@ Syd Adams
         <type>select</type>
         <object-name>MACH</object-name>
         <condition>
-            <greater-than>
+            <greater-than-equals>
                 <property>autopilot/settings/pfd-mach-indication</property>
-                <value>379</value>
-            </greater-than>
+                <value>400</value>
+            </greater-than-equals>
         </condition>
     </animation>
 
@@ -1191,6 +1191,99 @@ Syd Adams
         </font-resolution>
     </text>
 
+    <animation>
+        <type>select</type>
+        <object-name>GS</object-name>
+        <object-name>GS-TEXT</object-name>
+        <condition>
+            <less-than>
+                <property>autopilot/settings/pfd-mach-indication</property>
+                <value>400</value>
+            </less-than>
+        </condition>
+    </animation>
+
+    <text>
+        <name>GS</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.072</y-m>
+            <z-m>-0.061</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%03.0f</format>
+        <property>velocities/groundspeed-kt</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.010</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
+        <name>GS-TEXT</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.084</y-m>
+            <z-m>-0.062</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>GS</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.0058</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
+        <name>ET</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.075</y-m>
+            <z-m>-0.083</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/clock/elapsed-string</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.3</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
+        <name>ET-TEXT</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.086</y-m>
+            <z-m>-0.083</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>ET</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.0058</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
     <text>
         <name>BARO-source</name>
         <offsets>
@@ -1203,8 +1296,8 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/altimeter/source-barometric</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <character-size>0.0058</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1255,15 +1348,15 @@ Syd Adams
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.058</y-m>
-            <z-m>-0.061</z-m>
+            <z-m>-0.060</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">literal</type>
         <text>STD</text>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <character-size>0.009</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1274,15 +1367,15 @@ Syd Adams
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.058</y-m>
-            <z-m>-0.061</z-m>
+            <z-m>-0.060</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">literal</type>
         <text>STD</text>
         <font>helvetica_bold.txf</font>
-        <character-size>0.008</character-size>
-        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <character-size>0.009</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1293,7 +1386,7 @@ Syd Adams
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.058</y-m>
-            <z-m>-0.068</z-m>
+            <z-m>-0.070</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
@@ -1364,6 +1457,44 @@ Syd Adams
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>UTC</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.070</y-m>
+            <z-m>-0.083</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/clock/indicated-string</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.3</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>UTC-TEXT</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.085</y-m>
+            <z-m>-0.083</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>UTC</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.0058</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">32</width>
             <height type="int">32</height>
@@ -1709,6 +1840,10 @@ Syd Adams
         <object-name>INHG-WHT</object-name>
         <object-name>HPA-WHT</object-name>
         <object-name>DME</object-name>
+        <object-name>UTC</object-name>
+        <object-name>GS</object-name>
+        <object-name>GS-TEXT</object-name>
+        <object-name>ET</object-name>
         <emission>
             <red>0.7</red>
             <green>0.7</green>
@@ -1788,6 +1923,31 @@ Syd Adams
         </specular>
     </animation>
 
+    <animation>
+        <type>material</type><!--blue-->
+        <object-name>UTC-TEXT</object-name>
+        <object-name>ET-TEXT</object-name>
+        <emission>
+            <red>0.4</red>
+            <green>1.0</green>
+            <blue>1.0</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
+    </animation>
 
     <animation>
         <type>select</type>

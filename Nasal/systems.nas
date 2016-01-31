@@ -3,6 +3,7 @@
 #
 var SndOut = props.globals.getNode("sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("instrumentation/clock/ET-sec",1);
+var elapsetime = aircraft.timer.new("instrumentation/clock/elapsetime-sec",1);
 var vmodel = substr(getprop("sim/aero"), 3);
 aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
 
@@ -512,6 +513,35 @@ controls.toggleAutoSpoilers = func() {
 
 setlistener("controls/flight/flaps", func { controls.click(6) } );
 setlistener("controls/gear/gear-down", func { controls.click(8) } );
+setlistener("controls/flight/air-sensing-sw", func(air_switch) {
+    if(air_switch.getValue())
+    {
+        elapsetime.start();
+    }
+    else
+    {
+        elapsetime.stop();
+    }
+},0,0);
+
+setlistener("controls/engines/engine/cutoff-switch", func
+{
+    if((getprop("controls/engines/engine/cutoff-switch") == 1)
+        and (getprop("controls/engines/engine[1]/cutoff-switch") == 1))
+    {
+        elapsetime.reset();
+    }
+},0,0);
+
+setlistener("controls/engines/engine[1]/cutoff-switch", func
+{
+    if((getprop("controls/engines/engine/cutoff-switch") == 1)
+        and (getprop("controls/engines/engine[1]/cutoff-switch") == 1))
+    {
+        elapsetime.reset();
+    }
+},0,0);
+
 controls.gearDown = func(v) {
     if (v < 0) {
         if(!getprop("gear/gear[1]/wow"))setprop("controls/gear/gear-down", 0);
@@ -1136,10 +1166,20 @@ var update_systems = func {
     setprop("instrumentation/efis[1]/mfd/rangearc", (Efis2.mfd_display_mode.getValue() == "MAP")
         and (Efis2.wxr.getValue() or Efis2.terr.getValue() or Efis2.tfc.getValue()));
     var et_tmp = getprop("instrumentation/clock/ET-sec");
+    if(et_tmp == 0)
+    {
+        et_tmp = getprop("instrumentation/clock/elapsetime-sec");
+    }
     var et_min = int(et_tmp * 0.0166666666667);
     var et_hr  = int(et_min * 0.0166666666667) * 100;
+    et_min = et_min - (et_hr * 60);
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
+    et_tmp = int(getprop("instrumentation/clock/elapsetime-sec") * 0.0166666666667);
+    et_hr = int(et_tmp * 0.0166666666667);
+    et_min = et_tmp - (et_hr * 60);
+    et_tmp = sprintf("%02d:%02d", et_hr, et_min);
+    setprop("instrumentation/clock/elapsed-string", et_tmp);
     switch_ind();
     if(getprop("sim/rendering/shaders/skydome")
         and (getprop("position/gear-agl-ft") < 200))
