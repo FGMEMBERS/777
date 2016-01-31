@@ -1171,9 +1171,9 @@ var update_systems = func {
         et_tmp = getprop("instrumentation/clock/elapsetime-sec");
     }
     var et_min = int(et_tmp * 0.0166666666667);
-    var et_hr  = int(et_min * 0.0166666666667) * 100;
+    var et_hr  = int(et_min * 0.0166666666667);
     et_min = et_min - (et_hr * 60);
-    et_tmp = et_hr+et_min;
+    et_tmp = et_hr * 100 + et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
     et_tmp = int(getprop("instrumentation/clock/elapsetime-sec") * 0.0166666666667);
     et_hr = int(et_tmp * 0.0166666666667);
