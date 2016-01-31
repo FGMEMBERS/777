@@ -1245,46 +1245,6 @@ Syd Adams
     </text>
 
     <text>
-        <name>ET</name>
-        <offsets>
-            <x-m>0.004</x-m>
-            <y-m>-0.075</y-m>
-            <z-m>-0.083</z-m>
-        </offsets>
-        <alignment>center-center</alignment>
-        <axis-alignment>yz-plane</axis-alignment>
-        <type type="string">text-value</type>
-        <property>instrumentation/clock/elapsed-string</property>
-        <font>helvetica_bold.txf</font>
-        <character-size>0.006</character-size>
-        <character-aspect-ratio type="double">1.3</character-aspect-ratio>
-        <font-resolution>
-            <width type="int">32</width>
-            <height type="int">32</height>
-        </font-resolution>
-    </text>
-
-    <text>
-        <name>ET-TEXT</name>
-        <offsets>
-            <x-m>0.004</x-m>
-            <y-m>-0.086</y-m>
-            <z-m>-0.083</z-m>
-        </offsets>
-        <alignment>center-center</alignment>
-        <axis-alignment>yz-plane</axis-alignment>
-        <type type="string">literal</type>
-        <text>ET</text>
-        <font>helvetica_bold.txf</font>
-        <character-size>0.0058</character-size>
-        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
-        <font-resolution>
-            <width type="int">32</width>
-            <height type="int">32</height>
-        </font-resolution>
-    </text>
-
-    <text>
         <name>BARO-source</name>
         <offsets>
             <x-m>0.004</x-m>
@@ -1462,6 +1422,58 @@ Syd Adams
             <height type="int">32</height>
         </font-resolution>
     </text>
+
+    <animation>
+        <type>select</type>
+        <object-name>ET</object-name>
+        <object-name>ET-TEXT</object-name>
+        <object-name>UTC</object-name>
+        <object-name>UTC-TEXT</object-name>
+        <condition>
+            <property>instrumentation/pfd/utc-et-enabled</property>
+        </condition>
+    </animation>
+
+    <text>
+        <name>ET</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.075</y-m>
+            <z-m>-0.083</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/clock/elapsed-string</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.3</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
+        <name>ET-TEXT</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.086</y-m>
+            <z-m>-0.083</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>ET</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.0058</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
     <text>
         <name>UTC</name>
         <offsets>
@@ -1481,6 +1493,7 @@ Syd Adams
             <height type="int">32</height>
         </font-resolution>
     </text>
+
     <text>
         <name>UTC-TEXT</name>
         <offsets>
