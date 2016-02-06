@@ -202,10 +202,7 @@ var AFDS = {
                     {
                         if(me.lateral_mode.getValue() == 3)     # Current mode is LNAV
                         {
-                            # set target to current heading
-                            var tgtHdg = me.heading.getValue();
-                            me.hdg_setting.setValue(tgtHdg);
-                            btn = 1;    # Heading sel
+                            # Do nothing
                         }
                         elsif(me.lnav_armed.getValue())
                         {   # LNAV armed then disarm
