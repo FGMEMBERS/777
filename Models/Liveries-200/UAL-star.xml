@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">UAL United Airlines (Star Alliance)</name>
+            <texture>Liveries-200/UAL-star.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>UAL</aircraft-operator>
+</sim>
+
+</PropertyList>

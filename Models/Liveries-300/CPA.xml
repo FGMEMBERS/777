@@ -5,7 +5,7 @@
     <model>
         <livery>
             <name type="string">CPA Cathay Pacific</name>
-            <texture>Liveries-300/CPA-paint.png</texture>
+            <texture>Liveries-300/CPA.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">GIA Garuda Indonesia</name>
+            <texture>Liveries-300/GIA.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>GIA</aircraft-operator>
+</sim>
+</PropertyList>

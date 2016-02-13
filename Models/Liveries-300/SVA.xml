@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">SVA Saudi Arabian Airlines</name>
+            <texture>Liveries-300/SVA.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>SVA</aircraft-operator>
+</sim>
+</PropertyList>

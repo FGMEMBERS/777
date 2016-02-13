@@ -8,7 +8,5 @@
             <texture>Liveries-300/KAL.png</texture>
         </livery>
     </model>
-    <aircraft-class>gate</aircraft-class>
-    <aircraft-operator>KAL</aircraft-operator>
 </sim>
 </PropertyList>

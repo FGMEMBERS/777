@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">AMX Aeromexico</name>
+            <texture>Liveries-200/AMX.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>AMX</aircraft-operator>
+</sim>
+</PropertyList>

@@ -3,6 +3,7 @@
 #
 var SndOut = props.globals.getNode("sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("instrumentation/clock/ET-sec",1);
+var elapsetime = aircraft.timer.new("instrumentation/clock/elapsetime-sec",1);
 var vmodel = substr(getprop("sim/aero"), 3);
 aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
 
@@ -57,7 +58,7 @@ var EFIS = {
         m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
         m.update_radar_font();
         m.update_nd_center();
-        setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
+        setprop("instrumentation/transponder/mode-switch",0);
         setprop("controls/lighting/overhead-intencity",0.5);
         setprop("controls/lighting/CB-intencity",0.5);
         setprop("controls/lighting/panel-flood-intencity",0.5);
@@ -326,10 +327,20 @@ setlistener("sim/signals/fdm-initialized", func {
     setprop("instrumentation/comm/volume",0.5);
     setprop("instrumentation/comm[1]/volume",0.5);
     setprop("instrumentation/comm[2]/volume",0.5);
-    setprop("controls/fuel/tank[0]/boost-pump-switch[0]",1);
-    setprop("controls/fuel/tank[0]/boost-pump-switch[1]",1);
-    setprop("controls/fuel/tank[2]/boost-pump-switch[0]",1);
-    setprop("controls/fuel/tank[2]/boost-pump-switch[1]",1);
+    setprop("controls/hydraulics/system/LENG_switch", 0);
+    setprop("controls/hydraulics/system[2]/RENG_switch", 0);
+    setprop("controls/hydraulics/system[1]/C1ELEC-switch", 0);
+    setprop("controls/hydraulics/system[1]/C2ELEC-switch", 0);
+    setprop("controls/hydraulics/system/LACMP-switch", 0);
+    setprop("controls/hydraulics/system[1]/C1ADP-switch", 0);
+    setprop("controls/hydraulics/system[1]/C2ADP-switch", 0);
+    setprop("controls/hydraulics/system[2]/RACMP-switch", 0);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[0]",0);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[1]",0);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[0]",0);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[1]",0);
+    setprop("controls/fuel/tank[1]/boost-pump-switch[0]",0);
+    setprop("controls/fuel/tank[1]/boost-pump-switch[1]",0);
     setprop("autopilot/route-manager/cruise/speed-kts",320);
     setprop("autopilot/route-manager/cruise/speed-mach",0.840);
     setprop("controls/engines/autostart",1);
@@ -339,17 +350,17 @@ setlistener("sim/signals/fdm-initialized", func {
     setprop("controls/fuel/b-jtsnarm", 1);
     setprop("controls/fuel/tank[0]/b-nozzle", 1);
     setprop("controls/fuel/tank[2]/b-nozzle", 1);
+    setprop("controls/cabin/SeatBelt-knob", -1);
 #XFD valve
     setprop("controls/fuel/b-xfdfwd-vlv", 1);
     setprop("controls/fuel/b-xfdaft-vlv", 1);
-    setprop("controls/fuel/b-xfdaft-vlv", 1);
-    setprop("controls/anti-ice/window-heat-ls-switch", 1);
-    setprop("controls/anti-ice/window-heat-lf-switch", 1);
-    setprop("controls/anti-ice/window-heat-rf-switch", 1);
-    setprop("controls/anti-ice/window-heat-rs-switch", 1);
+    setprop("controls/anti-ice/window-heat-ls-switch", 0);
+    setprop("controls/anti-ice/window-heat-lf-switch", 0);
+    setprop("controls/anti-ice/window-heat-rf-switch", 0);
+    setprop("controls/anti-ice/window-heat-rs-switch",0);
 
-    setprop("controls/flight/adiru-switch", 1);
     setprop("controls/flight/thrust-asym-switch", 1);
+    setprop("controls/flight/adiru-switch", 0);
     setprop("controls/switches/fire/cargo-fwd-switch", 0);
     setprop("controls/switches/fire/cargo-aft-switch", 0);
     setprop("controls/switches/fire/apu-discharged", 1);
@@ -501,6 +512,35 @@ controls.toggleAutoSpoilers = func() {
 
 setlistener("controls/flight/flaps", func { controls.click(6) } );
 setlistener("controls/gear/gear-down", func { controls.click(8) } );
+setlistener("controls/flight/air-sensing-sw", func(air_switch) {
+    if(air_switch.getValue())
+    {
+        elapsetime.start();
+    }
+    else
+    {
+        elapsetime.stop();
+    }
+},0,0);
+
+setlistener("controls/engines/engine/cutoff-switch", func
+{
+    if((getprop("controls/engines/engine/cutoff-switch") == 1)
+        and (getprop("controls/engines/engine[1]/cutoff-switch") == 1))
+    {
+        elapsetime.reset();
+    }
+},0,0);
+
+setlistener("controls/engines/engine[1]/cutoff-switch", func
+{
+    if((getprop("controls/engines/engine/cutoff-switch") == 1)
+        and (getprop("controls/engines/engine[1]/cutoff-switch") == 1))
+    {
+        elapsetime.reset();
+    }
+},0,0);
+
 controls.gearDown = func(v) {
     if (v < 0) {
         if(!getprop("gear/gear[1]/wow"))setprop("controls/gear/gear-down", 0);
@@ -566,6 +606,10 @@ var balance_fuel = func{
 var Startup = func{
     setprop("sim/model/armrest",1);
     setprop("controls/electric/battery-switch",1);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[0]",1);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[1]",1);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[0]",1);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[1]",1);
     setprop("controls/electric/engine[0]/generator",1);
     setprop("controls/electric/engine[1]/generator",1);
     setprop("controls/electric/engine[0]/bus-tie",1);
@@ -593,12 +637,21 @@ var Startup = func{
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
     setprop("engines/engine[0]/run",1);
     setprop("engines/engine[1]/run",1);
+    setprop("controls/hydraulics/system/LENG_switch", 1);
+    setprop("controls/hydraulics/system[2]/RENG_switch", 1);
     setprop("controls/hydraulics/system[1]/C1ELEC-switch", 1);
     setprop("controls/hydraulics/system[1]/C2ELEC-switch", 1);
     setprop("controls/hydraulics/system/LACMP-switch", 1);
     setprop("controls/hydraulics/system[1]/C1ADP-switch", 1);
     setprop("controls/hydraulics/system[1]/C2ADP-switch", 1);
     setprop("controls/hydraulics/system[2]/RACMP-switch", 1);
+    setprop("controls/anti-ice/window-heat-ls-switch", 1);
+    setprop("controls/anti-ice/window-heat-lf-switch", 1);
+    setprop("controls/anti-ice/window-heat-rf-switch", 1);
+    setprop("controls/anti-ice/window-heat-rs-switch",1);
+    setprop("controls/flight/adiru-switch", 1);
+    setprop("controls/flight/thrust-asym-switch", 1);
+    setprop("controls/cabin/SeatBelt-knob", 1);
 }
 
 var Shutdown = func{
@@ -620,6 +673,12 @@ var Shutdown = func{
     setprop("controls/lighting/landing-light[2]",0);
     setprop("controls/engines/engine[0]/cutoff",1);
     setprop("controls/engines/engine[1]/cutoff",1);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[0]",0);
+    setprop("controls/fuel/tank[0]/boost-pump-switch[1]",0);
+    setprop("controls/fuel/tank[1]/boost-pump-switch[0]",0);
+    setprop("controls/fuel/tank[1]/boost-pump-switch[1]",0);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[0]",0);
+    setprop("controls/fuel/tank[2]/boost-pump-switch[1]",0);
     setprop("controls/flight/elevator-trim",0);
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
@@ -637,12 +696,20 @@ var Shutdown = func{
     setprop("engines/engine[0]/fuel-flow_pph",0);
     setprop("engines/engine[1]/fuel-flow_pph",0);
     setprop("instrumentation/weu/state/takeoff-mode",1);
+    setprop("controls/hydraulics/system/LENG_switch", 0);
+    setprop("controls/hydraulics/system[2]/RENG_switch", 0);
     setprop("controls/hydraulics/system[1]/C1ELEC-switch", 0);
     setprop("controls/hydraulics/system[1]/C2ELEC-switch", 0);
     setprop("controls/hydraulics/system/LACMP-switch", 0);
     setprop("controls/hydraulics/system[1]/C1ADP-switch", 0);
     setprop("controls/hydraulics/system[1]/C2ADP-switch", 0);
     setprop("controls/hydraulics/system[2]/RACMP-switch", 0);
+    setprop("controls/anti-ice/window-heat-ls-switch", 0);
+    setprop("controls/anti-ice/window-heat-lf-switch", 0);
+    setprop("controls/anti-ice/window-heat-rf-switch", 0);
+    setprop("controls/anti-ice/window-heat-rs-switch",0);
+    setprop("controls/flight/adiru-switch", 0);
+    setprop("controls/cabin/SeatBelt-knob", -1);
 }
 
 var click_reset = func(propName) {
@@ -1095,10 +1162,20 @@ var update_systems = func {
     }
 
     var et_tmp = getprop("instrumentation/clock/ET-sec");
+    if(et_tmp == 0)
+    {
+        et_tmp = getprop("instrumentation/clock/elapsetime-sec");
+    }
     var et_min = int(et_tmp * 0.0166666666667);
-    var et_hr  = int(et_min * 0.0166666666667) * 100;
-    et_tmp = et_hr+et_min;
+    var et_hr  = int(et_min * 0.0166666666667);
+    et_min = et_min - (et_hr * 60);
+    et_tmp = et_hr * 100 + et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
+    et_tmp = int(getprop("instrumentation/clock/elapsetime-sec") * 0.0166666666667);
+    et_hr = int(et_tmp * 0.0166666666667);
+    et_min = et_tmp - (et_hr * 60);
+    et_tmp = sprintf("%02d:%02d", et_hr, et_min);
+    setprop("instrumentation/clock/elapsed-string", et_tmp);
     switch_ind();
     if(getprop("sim/rendering/shaders/skydome")
         and (getprop("position/gear-agl-ft") < 200))

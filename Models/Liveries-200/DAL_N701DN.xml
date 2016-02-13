@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">DAL Delta Airlines (Spirit of Delta)</name>
+            <texture>/Liveries-200/DAL_N701DN.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>DAL</aircraft-operator>
+</sim>
+</PropertyList>
