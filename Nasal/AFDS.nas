@@ -1855,6 +1855,10 @@ var AFDS = {
                             gmt -= 24 * 3600;
                         }
                         me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
+                        if(me.current_wp_local != me.FMC_current_wp.getValue())
+                        {
+                            me.current_wp_local = me.FMC_current_wp.getValue();
+                        }
                         if(me.current_wp_local < max_wpt)
                         {
                             if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)

@@ -400,11 +400,14 @@ var start_updates = func {
         }
         # set ILS frequency
         var cur_runway = getprop("sim/presets/runway");
-        var runways = airportinfo(getprop("sim/presets/airport-id")).runways;
-        var r =runways[cur_runway];
-        if (r != nil and r.ils != nil)
+        if(cur_runway != "")
         {
-            setprop("instrumentation/nav/frequencies/selected-mhz", (r.ils.frequency / 100));
+            var runways = airportinfo(getprop("sim/presets/airport-id")).runways;
+            var r =runways[cur_runway];
+            if (r != nil and r.ils != nil)
+            {
+                setprop("instrumentation/nav/frequencies/selected-mhz", (r.ils.frequency / 100));
+            }
         }
     }
 
