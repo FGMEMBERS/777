@@ -202,10 +202,7 @@ var AFDS = {
                     {
                         if(me.lateral_mode.getValue() == 3)     # Current mode is LNAV
                         {
-                            # set target to current heading
-                            var tgtHdg = me.heading.getValue();
-                            me.hdg_setting.setValue(tgtHdg);
-                            btn = 1;    # Heading sel
+                            # Do nothing
                         }
                         elsif(me.lnav_armed.getValue())
                         {   # LNAV armed then disarm
@@ -1855,6 +1852,10 @@ var AFDS = {
                             gmt -= 24 * 3600;
                         }
                         me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
+                        if(me.current_wp_local != me.FMC_current_wp.getValue())
+                        {
+                            me.current_wp_local = me.FMC_current_wp.getValue();
+                        }
                         if(me.current_wp_local < max_wpt)
                         {
                             if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
