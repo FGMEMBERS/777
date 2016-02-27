@@ -1852,18 +1852,22 @@ var AFDS = {
                             gmt -= 24 * 3600;
                         }
                         me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-                        if(me.current_wp_local != me.FMC_current_wp.getValue())
-                        {
-                            me.current_wp_local = me.FMC_current_wp.getValue();
-                        }
-                        if(me.current_wp_local < max_wpt)
+                        if(me.current_wp_local < (max_wpt - 2))
                         {
                             if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
                             {
                                 setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
                             }
-                            var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
-                             - getprop("orientation/heading-deg"));
+                            if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-distance-nm") > 1.0)
+                            {
+                                var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
+                                 - getprop("orientation/heading-deg"));
+                            }
+                            else
+                            {
+                                var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 2)~"]/leg-bearing-true-deg")
+                                 - getprop("orientation/heading-deg"));
+                            }
                         }
                         else
                         {
@@ -1983,7 +1987,7 @@ var AFDS = {
             }
             elsif(lim == 20)
             {
-                me.heading_change_rate = 1.0;
+                me.heading_change_rate = 1.1;
             }
             elsif(lim == 15)
             {
