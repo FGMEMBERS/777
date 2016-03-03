@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+
+<!--
+    Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircraft=777-fo
+-->
+
+<PropertyList>
+
+    <nasal>
+        <!--raas>
+            <file>Aircraft/777/Nasal/raas.nas</file>
+        </raas>
+        <b777>
+            <file>Aircraft/777/Nasal/Air.nas</file>
+            <file>Aircraft/777/Nasal/Electrical.nas</file>
+            <file>Aircraft/777/Nasal/engine.nas</file>
+            <file>Aircraft/777/Nasal/efb.nas</file>
+            <file>Aircraft/777/Nasal/Hydraulics.nas</file>
+            <file>Aircraft/777/Nasal/systems.nas</file>
+            <file>Aircraft/777/Nasal/AFDS.nas</file>
+            <file>Aircraft/777/Nasal/tyresmoke.nas</file>
+            <file>Aircraft/777/Nasal/gpws.nas</file>
+            <file>Aircraft/777/Nasal/warnsystem.nas</file>
+            <file>Aircraft/777/Nasal/brakesystem.nas</file>
+            <file>Aircraft/777/Nasal/ground_steering.nas</file>
+            <file>Aircraft/777/Models/Instruments/ND/ND.nas</file>
+            <file>Aircraft/777/Models/Instruments/MFD/mfd.nas</file>
+            <file>Aircraft/777/Models/Instruments/MFD/fctl.nas</file>
+            <file>Aircraft/777/Models/Instruments/MFD/eng.nas</file>
+            <file>Aircraft/777/Models/Instruments/MFD/fuel.nas</file>
+            <file>Aircraft/777/Nasal/SWanimation.nas</file>
+            <file>Aircraft/777/Nasal/runway.nas</file>
+            <file>Aircraft/Generic/limits.nas</file>
+        </b777>
+        <dialogs>
+            <file>Aircraft/777/Nasal/dialogs.nas</file>
+        </dialogs>
+        <cdu>
+            <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
+        </cdu-->
+        <dual_control_tools>
+            <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+        </dual_control_tools>
+        <aircraft_dual_control>
+            <file>Aircraft/777/DualControl/777-dual-control.nas</file>
+        </aircraft_dual_control>
+        <dual_control>
+            <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
+        </dual_control>
+    </nasal>
+    <sim>
+        <description>Boeing 777 (First Officer)</description>
+        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu</author>
+        <status>production</status>
+        <rating>
+            <FDM type="int">4</FDM>
+            <systems type="int">4</systems>
+            <cockpit type="int">4</cockpit>
+            <model type="int">4</model>
+        </rating>
+        <aircraft-version>20140208</aircraft-version>
+        <flight-model>null</flight-model>
+        <sound>
+            <path>Aircraft/777/Sounds/777-sound.xml</path>
+        </sound>
+        <airport>
+            <runways>
+                <start-offset-m>50</start-offset-m>
+            </runways>
+        </airport>
+        <view n="0">
+            <name>CoPilot View</name>
+            <enabled type="bool">true</enabled>
+            <type>lookfrom</type>
+            <internal type="bool">true</internal>
+            <config n="0">
+                <from-model type="bool">true</from-model>
+                <from-model-idx type="int">0</from-model-idx>
+                <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+                <default-pitch-deg type="double">0</default-pitch-deg>
+                <default-heading-deg type="double">0</default-heading-deg>
+                <front-direction-deg type="double">0</front-direction-deg>
+                <front-left-direction-deg type="double">45</front-left-direction-deg>
+                <left-direction-deg type="double">90</left-direction-deg>
+                <back-left-direction-deg type="double">135</back-left-direction-deg>
+                <back-direction-deg type="double">180</back-direction-deg>
+                <back-right-direction-deg type="double">225</back-right-direction-deg>
+                <right-direction-deg type="double">270</right-direction-deg>
+                <front-right-direction-deg type="double">315</front-right-direction-deg>
+                <dynamic-view type="bool">true</dynamic-view>
+                <x-offset-m type="double">0.60</x-offset-m>
+                <y-offset-m type="double">0.8</y-offset-m>
+                <pitch-offset-deg>-13.5</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                      <heading-max-deg type="double">140</heading-max-deg>
+                      <x-offset-max-m type="double">0.45</x-offset-max-m>
+                      <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.35</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
+        <view n="100">
+            <name>Pilot View</name>
+            <type>lookfrom</type>
+            <internal type="bool">true</internal>
+            <config n="0">
+                <x-offset-m type="double">-0.57</x-offset-m>
+                <y-offset-m type="double">0.8</y-offset-m>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+                <pitch-offset-deg>-13.5</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                        <heading-max-deg type="double">140</heading-max-deg>
+                        <x-offset-max-m type="double">0.35</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.45</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
+        <chase-distance-m>-100</chase-distance-m>
+        <menubar>
+            <default>
+                <menu n="10">
+                    <label>Boeing 777</label>
+                    <enabled type="bool">true</enabled>
+                    <item>
+                        <label>Select MP-pilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                dual_control_tools.copilot_dialog.show(aircraft_dual_control.pilot_type);
+                            </script>
+                        </binding>
+                    </item>
+
+                </menu>
+            </default>
+        </menubar>
+    </sim>
+    <controls>
+        <flight>
+            <flaps type="double"/>
+        </flight>
+    </controls>
+</PropertyList>

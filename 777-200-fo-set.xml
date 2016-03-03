@@ -1,0 +1,11 @@
+<PropertyList include="777-fo-set-common.xml">
+    <sim>
+        <aero>777-200</aero>
+        <startup>
+            <splash-texture>Aircraft/777/splash-200.png</splash-texture>
+        </startup>
+        <model>
+            <path>Aircraft/777/Models/777-200.xml</path>
+        </model>
+    </sim>
+</PropertyList>

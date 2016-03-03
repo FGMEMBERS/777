@@ -4,7 +4,7 @@
 var SndOut = props.globals.getNode("sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("instrumentation/clock/ET-sec",1);
 var elapsetime = aircraft.timer.new("instrumentation/clock/elapsetime-sec",1);
-var vmodel = substr(getprop("sim/aero"), 3);
+var vmodel = substr(getprop("sim/aircraft"), 3);
 aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
 
 #EFIS specific class
