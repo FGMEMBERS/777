@@ -13,6 +13,9 @@
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
+            <livery>
+                <file type="string">BAW</file>
+            </livery>
             <armrest type="double">0</armrest>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>

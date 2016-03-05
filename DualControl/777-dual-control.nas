@@ -17,7 +17,7 @@ var vmodel = substr(getprop("sim/aero"), 3);
 var pilot_type   = "Aircraft/777/Models/"~vmodel~".xml";
 var copilot_type = "Aircraft/777/Models/777-fo.xml";
 
-var copilot_view = "First Officer";
+var copilot_view = "CoPilot View";
 
 props.globals.initNode("/sim/remote/pilot-callsign", "", "STRING");
 

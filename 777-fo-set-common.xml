@@ -60,6 +60,9 @@
         </rating>
         <aircraft-version>20140208</aircraft-version>
         <flight-model>null</flight-model>
+        <model>
+            <path>Aircraft/777/Models/777-fo.xml</path>
+        </model>
         <sound>
             <path>Aircraft/777/Sounds/777-sound.xml</path>
         </sound>

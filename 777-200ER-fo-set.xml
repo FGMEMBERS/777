@@ -4,8 +4,5 @@
         <startup>
             <splash-texture>Aircraft/777/splash-200ER.png</splash-texture>
         </startup>
-        <model>
-            <path>Aircraft/777/Models/777-200ER.xml</path>
-        </model>
     </sim>
 </PropertyList>
