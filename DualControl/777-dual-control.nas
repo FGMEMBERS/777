@@ -13,13 +13,11 @@ var DCT = dual_control_tools;
 
 ######################################################################
 # Pilot/copilot aircraft identifiers. Used by dual_control.
-var vmodel = substr(getprop("sim/aero"), 3);
-var pilot_type   = "Aircraft/777/Models/"~vmodel~".xml";
+var pilot_type   = "Aircraft/777/Models/"~getprop("sim/aero")~".xml";
 var copilot_type = "Aircraft/777/Models/777-fo.xml";
 
-var copilot_view = "CoPilot View";
-
 props.globals.initNode("/sim/remote/pilot-callsign", "", "STRING");
+props.globals.initNode("/sim/remote/copilot-callsign", "", "STRING");
 
 ######################################################################
 # MP enabled properties.

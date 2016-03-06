@@ -1,8 +1,37 @@
 <PropertyList include="777-fo-set-common.xml">
     <sim>
+        <description>Boeing 777-300 (First Officer)</description>
         <aero>777-300</aero>
         <startup>
             <splash-texture>Aircraft/777/splash-300.png</splash-texture>
         </startup>
+        <view n="0">
+            <config n="0">
+                <z-offset-m type="double">-28.0381</z-offset-m>
+            </config>
+        </view>
+        <view n="100">
+            <config n="0">
+                <z-offset-m type="double">-28.0381</z-offset-m>
+            </config>
+        </view>
+        <menubar>
+            <default>
+                <menu n="10">
+                    <label>Boeing 777-300</label>
+                    <enabled type="bool">true</enabled>
+                    <item>
+                        <label>Select MP-pilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                dual_control_tools.copilot_dialog.show(aircraft_dual_control.pilot_type);
+                            </script>
+                        </binding>
+                    </item>
+
+                </menu>
+            </default>
+        </menubar>
     </sim>
 </PropertyList>
