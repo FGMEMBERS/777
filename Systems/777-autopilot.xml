@@ -150,8 +150,9 @@
             <property>autopilot/internal/target-roll-deg</property>
         </output>
         <config>
-            <Kp>-3.0</Kp>
-            <Ki>0.0</Ki>
+            <Kp>-2.0</Kp>
+            <Td>0.1</Td>
+            <Ti>0.0</Ti>
             <u_min>
                 <property>instrumentation/afds/settings/bank-min</property>
             </u_min>

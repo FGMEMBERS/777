@@ -3,64 +3,64 @@
     <fx>
 <!-- APU -->
 
-	<apu>
-	    <name>APU starting</name>
-	    <mode>once</mode>
-	    <path>Aircraft/777/Sounds/apu_strt.wav</path>
-	    <condition>
-				<and>
-					<equals>
-						<property>controls/APU/apu_status</property>
-						<value>2</value>
-				</equals>
-			    <less-than>
-						<property>controls/APU/rpm</property>
-							<value>0.99</value>
-		    	</less-than>
-				</and>
-	    </condition>
-	    <reference-dist>10</reference-dist>
-	    <max-dist>300</max-dist>
-	</apu>
+    <apu>
+        <name>APU starting</name>
+        <mode>once</mode>
+        <path>Aircraft/777/Sounds/apu_strt.wav</path>
+        <condition>
+                <and>
+                    <equals>
+                        <property>controls/APU/apu_status</property>
+                        <value>2</value>
+                </equals>
+                <less-than>
+                        <property>controls/APU/rpm</property>
+                            <value>0.99</value>
+                </less-than>
+                </and>
+        </condition>
+        <reference-dist>10</reference-dist>
+        <max-dist>300</max-dist>
+    </apu>
 
-	<apu>
-	    <name>APU running</name>
-	    <mode>looped</mode>
-	    <path>Aircraft/777/Sounds/apu_run.wav</path>
-	    <condition>
-				<!--and-->
-					<greater-than-equals>
-			    	<property>controls/APU/rpm</property>
-			    		<value>0.99</value>
-					</greater-than-equals>
-					<!--less-than>
-	           <property>engines/engine[0]/rpm</property>
-							<value>18</value>
-					</less-than>
-				</and-->
-	    </condition>
-	    <reference-dist>10</reference-dist>
-	    <max-dist>300</max-dist>
-	</apu>
+    <apu>
+        <name>APU running</name>
+        <mode>looped</mode>
+        <path>Aircraft/777/Sounds/apu_run.wav</path>
+        <condition>
+                <!--and-->
+                    <greater-than-equals>
+                    <property>controls/APU/rpm</property>
+                        <value>0.99</value>
+                    </greater-than-equals>
+                    <!--less-than>
+               <property>engines/engine[0]/rpm</property>
+                            <value>18</value>
+                    </less-than>
+                </and-->
+        </condition>
+        <reference-dist>10</reference-dist>
+        <max-dist>300</max-dist>
+    </apu>
 
-	<apu>
-	    <name>APU shutdown</name>
-	    <mode>once</mode>
-	    <path>Aircraft/777/Sounds/apu_stop.wav</path>
-	    <condition>
-				<and>
-					<not>
-						<property>controls/APU/running</property>
-					</not>
-				  <greater-than>
-						<property>controls/APU/rpm</property>
-							<value>0</value>
-				  </greater-than>
-				</and>
-	    </condition>
-	    <reference-dist>10</reference-dist>
-	    <max-dist>300</max-dist>
-	</apu>
+    <apu>
+        <name>APU shutdown</name>
+        <mode>once</mode>
+        <path>Aircraft/777/Sounds/apu_stop.wav</path>
+        <condition>
+                <and>
+                    <not>
+                        <property>controls/APU/running</property>
+                    </not>
+                  <greater-than>
+                        <property>controls/APU/rpm</property>
+                            <value>0</value>
+                  </greater-than>
+                </and>
+        </condition>
+        <reference-dist>10</reference-dist>
+        <max-dist>300</max-dist>
+    </apu>
 
 <!--   -->
 
@@ -78,7 +78,7 @@
                 <min>0.0</min>
                 <max>5.0</max>
             </volume>
-            <!-- volume> <property>sim/sound/Ovolume</property> <min>0.8</min> 
+            <!-- volume> <property>sim/sound/Ovolume</property> <min>0.8</min>
                 </volume -->
             <position>
                 <x>0</x>
@@ -102,7 +102,7 @@
                 <min>0.0</min>
                 <max>5.0</max>
             </volume>
-            <!-- <volume> <property>sim/sound/Ovolume</property> <min>0.8</min> 
+            <!-- <volume> <property>sim/sound/Ovolume</property> <min>0.8</min>
                 </volume> -->
             <position>
                 <x>0</x>
@@ -176,15 +176,15 @@
             <mode>once</mode>
             <condition>
                 <and>
-					<equals>
-						<property>controls/engines/StartIgnition-knob[0]</property>
-						<value>-1</value>
-					</equals>
-					<not><property>engines/engine[0]/run</property></not>
-					<or>
-      		      		<property>engines/engine[1]/run</property>
-        	    		<property>controls/electric/APU-generator</property>
-					</or>
+                    <equals>
+                        <property>controls/engines/StartIgnition-knob[0]</property>
+                        <value>-1</value>
+                    </equals>
+                    <not><property>engines/engine[0]/run</property></not>
+                    <or>
+                        <property>engines/engine[1]/run</property>
+                        <property>controls/electric/APU-generator</property>
+                    </or>
                 </and>
             </condition>
             <volume>0.5</volume>
@@ -205,15 +205,15 @@
             <mode>once</mode>
             <condition>
                 <and>
-					<equals>
-						<property>controls/engines/StartIgnition-knob[1]</property>
-						<value>-1</value>
-					</equals>
-					<not><property>engines/engine[1]/run</property></not>
-					<or>
-            			<property>engines/engine[0]/run</property>
-						<property>controls/electric/APU-generator</property>
-					</or>
+                    <equals>
+                        <property>controls/engines/StartIgnition-knob[1]</property>
+                        <value>-1</value>
+                    </equals>
+                    <not><property>engines/engine[1]/run</property></not>
+                    <or>
+                        <property>engines/engine[0]/run</property>
+                        <property>controls/electric/APU-generator</property>
+                    </or>
                 </and>
             </condition>
             <volume>0.5</volume>
@@ -302,12 +302,12 @@
         <gearlock>
             <name>gear-lock</name>
             <path>Sounds/gear-lck.wav</path>
-			<enable><property>sim/current-view/internal</property></enable>
+            <enable><property>sim/current-view/internal</property></enable>
             <condition>
-				<equals>
-					<property>gear/gear[0]/position-norm</property>
-					<value>0</value>
-				</equals>
+                <equals>
+                    <property>gear/gear[0]/position-norm</property>
+                    <value>0</value>
+                </equals>
             </condition>
             <pitch>
                 <factor>0.0001</factor>
@@ -659,7 +659,7 @@
             </position>
             <reference-dist>2</reference-dist>
             <max-dist>200.0</max-dist>
-        </switch>		
+        </switch>
         <speedbrake>
             <name>speedbrake</name>
             <mode>in-transit</mode>
@@ -720,56 +720,122 @@
             <reference-dist>60.0</reference-dist>
             <max-dist>6000.0</max-dist>
         </engines>
-	<chime>
-		<name>nosomoking</name>
-		<mode>once</mode>
-		<type>avionics</type>
-		<path>Aircraft/777/Sounds/cabinalert.wav</path>
-		<condition>
-			<and>
-	            <greater-than>
-		            <property>systems/electrical/outputs/efis</property>
-    		        <value>15</value>
-   	         </greater-than>
-				<or>
-					<equals>
-    	    	        <property>controls/cabin/NoSmoking-knob</property>
-						<value>1</value>
-					</equals>
-					<equals>
-    	    	        <property>controls/cabin/NoSmoking-knob</property>
-						<value>-1</value>
-					</equals>
-				</or>
-			</and>
-		</condition>
-	</chime>	   
-   
-	<chime>
-		<name>seatbelt</name>
-		<mode>once</mode>
-		<type>avionics</type>
-		<path>Aircraft/777/Sounds/cabinalert.wav</path>
-		<condition>
-			<and>
-	            <greater-than>
-		            <property>systems/electrical/outputs/efis</property>
-    		        <value>15</value>
-   	         </greater-than>
-				<or>
-					<equals>
-    		            <property>controls/cabin/SeatBelt-knob</property>
-						<value>1</value>
-					</equals>
-					<equals>
-    		            <property>controls/cabin/SeatBelt-knob</property>
-						<value>-1</value>
-					</equals>
-				</or>
-			</and>
-		</condition>
-	</chime>	   
-	
+    <chime>
+        <name>nosomoking</name>
+        <mode>once</mode>
+        <type>avionics</type>
+        <path>Aircraft/777/Sounds/cabinalert.wav</path>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+             </greater-than>
+                <or>
+                    <equals>
+                        <property>controls/cabin/NoSmoking-knob</property>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property>controls/cabin/NoSmoking-knob</property>
+                        <value>-1</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </chime>
+
+    <chime>
+        <name>seatbelt</name>
+        <mode>once</mode>
+        <type>avionics</type>
+        <path>Aircraft/777/Sounds/cabinalert.wav</path>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+             </greater-than>
+                <or>
+                    <equals>
+                        <property>controls/cabin/SeatBelt-knob</property>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property>controls/cabin/SeatBelt-knob</property>
+                        <value>-1</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </chime>
+    <callout>
+    <name>V1</name>
+    <mode>once</mode>
+    <type>avionics</type>
+    <path>Aircraft/777/Sounds/v1.wav</path>
+    <condition>
+        <and>
+            <or>
+                <property>gear/gear[0]/wow</property>
+                <property>gear/gear[1]/wow</property>
+                <property>gear/gear[2]/wow</property>
+            </or>
+            <less-than>
+                <property>velocities/airspeed-kt</property>
+                <property>instrumentation/pfd/speed-lookahead</property>
+            </less-than>
+            <greater-than>
+                <property>velocities/airspeed-kt</property>
+                <property>instrumentation/weu/state/v1</property>
+            </greater-than>
+        </and>
+    </condition>
+    <volume>
+        <factor>100</factor>
+    </volume>
+    <position>
+        <x>0.00</x>
+        <y>0.00</y>
+        <z>0.00</z>
+    </position>
+    <reference-dist>10.0</reference-dist>
+    <max-dist>100.0</max-dist>
+    </callout>
+    <callout>
+        <name>Vr</name>
+        <mode>once</mode>
+        <type>avionics</type>
+        <path>Aircraft/777/Sounds/vr.wav</path>
+        <condition>
+            <and>
+                <or>
+                    <property>gear/gear[0]/wow</property>
+                    <property>gear/gear[1]/wow</property>
+                    <property>gear/gear[2]/wow</property>
+                </or>
+                <less-than>
+                    <property>velocities/airspeed-kt</property>
+                    <property>instrumentation/pfd/speed-lookahead</property>
+                </less-than>
+                <greater-than>
+                    <property>velocities/airspeed-kt</property>
+                    <property>instrumentation/weu/state/vr</property>
+                </greater-than>
+            </and>
+        </condition>
+        <volume>
+            <factor>100</factor>
+        </volume>
+        <position>
+            <x>0.00</x>
+            <y>0.00</y>
+            <z>0.00</z>
+        </position>
+        <reference-dist>10.0</reference-dist>
+        <max-dist>100.0</max-dist>
+    </callout>
+
         <warningsiren>
             <name>warning-siren</name>
             <mode>looped</mode>
@@ -800,9 +866,9 @@
                 <factor>1</factor>
             </volume>
         </apdisengage>
-        <!-- <overspeed> <name>overspeed warning</name> <mode>looped</mode> 
-            <type>avionics</type> <path>Sounds/overspeed.wav</path> <condition> <greater-than> 
-            <property>velocities/airspeed-kt</property> <property>instrumentation/afds/max-airspeed-kts</property> 
+        <!-- <overspeed> <name>overspeed warning</name> <mode>looped</mode>
+            <type>avionics</type> <path>Sounds/overspeed.wav</path> <condition> <greater-than>
+            <property>velocities/airspeed-kt</property> <property>instrumentation/afds/max-airspeed-kts</property>
             </greater-than> </condition> <volume> <factor>1</factor> </volume> </overspeed> -->
         <crash>
             <name>Crash</name>
@@ -825,47 +891,5 @@
                 <factor>0.2</factor>
             </volume>
         </avhum>
-
-<!-- Seat Belt -->
-
-<announcement>
-<name>seatbelt</name>
- <path>Aircraft/777/Sounds/cabinalert.wav</path>
- <mode>once</mode>
- <condition>
-  <property>sim/sound/seatbelt-sign</property>
- </condition>
-        <volume>
-            <factor>1</factor>
-        </volume>
-  <position>
-      <x>0.00</x>
-      <y>0.00</y>
-      <z>0.00</z>
- </position>
- <reference-dist>10.0</reference-dist>
- <max-dist>100.0</max-dist>
-</announcement>
-
-<!-- No Smoking, Idiots! -->
-
-<announcement>
-<name>no smoking</name>
- <path>Aircraft/777/Sounds/cabinalert.wav</path>
- <mode>once</mode>
- <condition>
-  <property>sim/sound/no-smoking-sign</property>
- </condition>
-        <volume>
-            <factor>1</factor>
-        </volume>
-  <position>
-      <x>0.00</x>
-      <y>0.00</y>
-      <z>0.00</z>
- </position>
- <reference-dist>10.0</reference-dist>
- <max-dist>100.0</max-dist>
-</announcement>
-    </fx>
+</fx>
 </PropertyList>
