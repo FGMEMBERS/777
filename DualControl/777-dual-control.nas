@@ -38,46 +38,54 @@ var l_throttle = ["controls/engines/engine[0]/throttle-lever",
 var l_efis = "systems/electrical/outputs/efis";
 var l_avionics = "systems/electrical/outputs/avionics";
 
-#var l_altitude_int = "instrumentation/altimeter/indicator-altitude-ft";
-#var l_altitude = "instrumentation/altimeter/indicated-altitude-ft";
+var l_altitude_int = "instrumentation/altimeter/indicator-altitude-ft";
+var l_altitude = "instrumentation/altimeter/indicated-altitude-ft";
 var l_target_speed = "autopilot/settings/target-speed-kt";
-var l_ias_mach = "instrumentation/afds/inputs/ias-mach-selected";
-var l_intervention = "instrumentation/afds/settings/manual-intervention";
-var l_ap_pich_mode = "instrumentation/afds/ap-modes/pitch-mode";
+var l_ind_speed = "instrumentation/airspeed-indicator/indicated-speed-kt";
+#var l_ias_mach = "instrumentation/afds/inputs/ias-mach-selected";
+#var l_intervention = "instrumentation/afds/settings/manual-intervention";
+#var l_ap_pich_mode = "instrumentation/afds/ap-modes/pitch-mode";
+var l_referance_deg = "instrumentation/afds/inputs/reference-deg";
 
 var l_target_altitude = "autopilot/settings/counter-set-altitude-ft";
 var l_target_heading = "autopilot/settings/heading-bug-deg";
+var l_heading = "autopilot/internal/crab-angle-hdg";
+var l_track = "autopilot/internal/crab-angle-trk";
 
 
 var pilot_connect_copilot = func (copilot) {
 
-    return
-        [
-            ##################################################
-            # Set up TDM transmission of slow state properties.
-            DCT.TDMEncoder.new
-            ([
-                props.globals.getNode(l_yoke),
-                props.globals.getNode(l_aileron),
-                props.globals.getNode(l_elevator),
-                props.globals.getNode(l_rudder),
-                props.globals.getNode(l_flaps),
-                props.globals.getNode(l_spoiler),
-                props.globals.getNode(l_throttle[0]),
-                props.globals.getNode(l_throttle[1]),
+return
+    [
+        ##################################################
+        # Set up TDM transmission of slow state properties.
+        DCT.TDMEncoder.new
+        ([
+            props.globals.getNode(l_yoke),
+            props.globals.getNode(l_aileron),
+            props.globals.getNode(l_elevator),
+            props.globals.getNode(l_rudder),
+            props.globals.getNode(l_flaps),
+            props.globals.getNode(l_spoiler),
+            props.globals.getNode(l_throttle[0]),
+            props.globals.getNode(l_throttle[1]),
 
-                props.globals.getNode(l_efis),
-                props.globals.getNode(l_avionics),
+            props.globals.getNode(l_efis),
+            props.globals.getNode(l_avionics),
 
-#               props.globals.getNode(l_altitude_int),
-#               props.globals.getNode(l_altitude),
-                props.globals.getNode(l_target_speed),
+            props.globals.getNode(l_altitude_int),
+            props.globals.getNode(l_altitude),
+            props.globals.getNode(l_target_speed),
+            props.globals.getNode(l_ind_speed),
 #               props.globals.getNode(l_ias_mach),
 #               props.globals.getNode(l_intervention),
 #               props.globals.getNode(l_ap_pich_mode),
+                props.globals.getNode(l_referance_deg),
 
                 props.globals.getNode(l_target_altitude),
                 props.globals.getNode(l_target_heading),
+                props.globals.getNode(l_heading),
+                props.globals.getNode(l_track),
             ],
             props.globals.getNode(pilot_TDM1_mpp),
             ),
@@ -121,7 +129,7 @@ var copilot_connect_pilot = func (pilot) {
                 props.globals.getNode(l_spoiler).setValue(v);
             },
             func (v) {
-                pilot.getNode(l_throttle[0], 1).setValue(v);
+            pilot.getNode(l_throttle[0], 1).setValue(v);
                 props.globals.getNode(l_throttle[0]).setValue(v);
             },
             func (v) {
@@ -136,17 +144,21 @@ var copilot_connect_pilot = func (pilot) {
                 pilot.getNode(l_avionics, 1).setValue(v);
                 props.globals.getNode(l_avionics).setValue(v);
             },
-#           func (v) {
-#               pilot.getNode(l_altitude_int, 1).setValue(v);
-#               props.globals.getNode(l_altitude_int).setValue(v);
-#           },
-#           func (v) {
-#               pilot.getNode(l_altitude, 1).setValue(v);
-#               props.globals.getNode(l_altitude).setValue(v);
-#           },
+            func (v) {
+                pilot.getNode(l_altitude_int, 1).setValue(v);
+                props.globals.getNode(l_altitude_int).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_altitude, 1).setValue(v);
+                props.globals.getNode(l_altitude).setValue(v);
+            },
             func (v) {
                 pilot.getNode(l_target_speed, 1).setValue(v);
                 props.globals.getNode(l_target_speed).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_ind_speed, 1).setValue(v);
+                props.globals.getNode(l_ind_speed).setValue(v);
             },
 #           func (v) {
 #               pilot.getNode(l_ias_mach, 1).setValue(v);
@@ -161,12 +173,24 @@ var copilot_connect_pilot = func (pilot) {
 #               props.globals.getNode(l_ap_pich_mode).setValue(v);
 #           },
             func (v) {
+                pilot.getNode(l_referance_deg, 1).setValue(v);
+                props.globals.getNode(l_referance_deg).setValue(v);
+            },
+            func (v) {
                 pilot.getNode(l_target_altitude, 1).setValue(v);
                 props.globals.getNode(l_target_altitude).setValue(v);
             },
             func (v) {
                 pilot.getNode(l_target_heading, 1).setValue(v);
                 props.globals.getNode(l_target_heading).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_heading, 1).setValue(v);
+                props.globals.getNode(l_heading).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_track, 1).setValue(v);
+                props.globals.getNode(l_track).setValue(v);
             },
             ]),
         ];
@@ -179,6 +203,4 @@ var copilot_disconnect_pilot = func {
 # Copilot Nasal wrappers
 
 var set_copilot_wrappers = func (pilot) {
-    pilot.getNode("instrumentation/altimeter/indicated-altitude-ft").
-        alias(props.globals.getNode("instrumentation/altimeter/indicated-altitude-ft"));
 }

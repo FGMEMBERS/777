@@ -159,6 +159,7 @@
         <afds>
             <inputs>
                 <ias-mach-selected type="bool">false</ias-mach-selected>
+                <reference-deg type="double">0</reference-deg>
             </inputs>
             <settings>
                 <manual-intervention type="bool">false</manual-intervention>
@@ -167,10 +168,21 @@
                 <pitch-mode type="string">""</pitch-mode>
             </ap-modes>
         </afds>
+        <altimeter>
+            <indicator-altitude-ft type="double">0</indicator-altitude-ft>
+            <indicated-altitude-ft type="double">0</indicated-altitude-ft>
+        </altimeter>
+        <airspeed-indicator>
+            <indicated-speed-kt type="double">0</indicated-speed-kt>
+        </airspeed-indicator>
     </instrumentation>
     <autopilot>
         <settings>
             <counter-set-altitude-ft type="int">10000</counter-set-altitude-ft>
         </settings>
+        <internal>
+            <crab-angle-hdg type="double">0</crab-angle-hdg>
+            <crab-angle-trk type="double">0</crab-angle-trk>
+        </internal>
     </autopilot>
 </PropertyList>
