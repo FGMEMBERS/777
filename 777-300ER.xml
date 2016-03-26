@@ -101,7 +101,7 @@ WEIGHT/lbs  Vref
       <control-output control="SLAT" prop="/surface-positions/slats"/>
       <control-speed control="FLAP0" transition-time="78"/>
       <control-input axis="/controls/flight/speedbrake" control="SPOILER"/>
-      <control-output control="SPOILER" prop="/surface-positions/speedbrake-norm"/>
+      <control-output control="SPOILER" prop="/surface-positions/speedbrake-pos-norm"/>
       <control-speed control="SPOILER" transition-time="2"/>
       <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
       <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>

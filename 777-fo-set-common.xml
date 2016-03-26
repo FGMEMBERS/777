@@ -129,13 +129,6 @@
         <chase-distance-m>-100</chase-distance-m>
         <yokes-visible type="bool">true</yokes-visible>
         <systems>
-            <!--  slow running property-rules (running at frame rate) -->
-            <property-rule n="100">
-                <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
-            </property-rule>
-            <property-rule n="101">
-                <path>Aircraft/777/Systems/777-PFD.xml</path>
-            </property-rule>
             <property-rule n="102">
                 <path>Aircraft/777/Systems/777-pcu.xml</path>
             </property-rule>
@@ -174,9 +167,6 @@
                 <pitch-mode type="string">""</pitch-mode>
             </ap-modes>
         </afds>
-        <altimeter>
-            <indicator-altitude-ft type="double">0</indicator-altitude-ft>
-        </altimeter>
     </instrumentation>
     <autopilot>
         <settings>

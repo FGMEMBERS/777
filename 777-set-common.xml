@@ -512,7 +512,29 @@ Service Ceiling: 43,100ft
 
         <multiplay>
             <generic>
-                <string n="0" type="string"></string> <!-- MP events -->
+                <int n="0" alias="/systems/electrical/outputs/strobe"/>
+                <int n="1" alias="/systems/electrical/outputs/beacon"/>
+                <int n="2" alias="/systems/electrical/outputs/taxi-lights"/>
+                <int n="3" alias="/systems/electrical/outputs/logo-lights"/>
+                <int n="4" alias="/systems/electrical/outputs/landing-light[0]"/>
+                <int n="5" alias="/systems/electrical/outputs/landing-light[1]"/>
+                <int n="6" alias="/systems/electrical/outputs/landing-light[2]"/>
+                <int n="7" alias="/systems/electrical/outputs/nav-lights"/>
+                <int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
+
+                <float n="0" alias="/gear/gear[0]/compression-m"/>
+                <float n="1" alias="/gear/gear[1]/compression-m"/>
+                <float n="2" alias="/gear/gear[2]/compression-m"/>
+                <float n="3" alias="/gear/gear[3]/compression-m"/>
+                <float n="4" alias="/gear/gear[4]/compression-m"/>
+                <float n="5" alias="/controls/flight/speedbrake-angle"/>
+                <float n="6" alias="/controls/gear/nosegear-steering-cmd-norm"/>
+                <float n="7" alias="/controls/gear/maingear-steering-cmd-norm"/>
+                <float n="8" alias="/surface-positions/reverser-norm"/>
+                <float n="9" alias="/surface-positions/stabilizer-pos-norm"/>
+                <float n="10" alias="/surface-positions/slats"/>
+                <string  alias="/sim/multiplay/callsign"/>
+                <!--string n="0" type="string"></string--> <!-- MP events -->
                 <string n="1" type="string"></string> <!-- MP TDM1 -->
                 <string n="2" type="string"></string> <!-- MP TDM2 -->
                 <string n="3" type="string"></string> <!-- MP TDM3 -->

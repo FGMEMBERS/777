@@ -178,7 +178,7 @@ var HYDR = {
         var leftaileronpos = props.globals.initNode("surface-positions/left-aileron-pos-norm");
         var rightaileronpos = props.globals.initNode("surface-positions/right-aileron-pos-norm");
         var rudderpos = props.globals.initNode("surface-positions/rudder-pos-norm");
-        var speedbkpos = props.globals.initNode("surface-positions/speedbrake-norm");
+        var speedbkpos = props.globals.initNode("surface-positions/speedbrake-pos-norm");
         elevatorpos.setAttribute("writable",0);
         stabilizerpos.setAttribute("writable",0);
         leftaileronpos.setAttribute("writable",0);

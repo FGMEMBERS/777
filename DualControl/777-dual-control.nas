@@ -38,7 +38,7 @@ var l_throttle = ["controls/engines/engine[0]/throttle-lever",
 var l_efis = "systems/electrical/outputs/efis";
 var l_avionics = "systems/electrical/outputs/avionics";
 
-var l_altitude_int = "instrumentation/altimeter/indicator-altitude-ft";
+#var l_altitude_int = "instrumentation/altimeter/indicator-altitude-ft";
 #var l_altitude = "instrumentation/altimeter/indicated-altitude-ft";
 var l_target_speed = "autopilot/settings/target-speed-kt";
 var l_ias_mach = "instrumentation/afds/inputs/ias-mach-selected";
@@ -69,7 +69,7 @@ var pilot_connect_copilot = func (copilot) {
                 props.globals.getNode(l_efis),
                 props.globals.getNode(l_avionics),
 
-                props.globals.getNode(l_altitude_int),
+#               props.globals.getNode(l_altitude_int),
 #               props.globals.getNode(l_altitude),
                 props.globals.getNode(l_target_speed),
 #               props.globals.getNode(l_ias_mach),
@@ -136,10 +136,10 @@ var copilot_connect_pilot = func (pilot) {
                 pilot.getNode(l_avionics, 1).setValue(v);
                 props.globals.getNode(l_avionics).setValue(v);
             },
-            func (v) {
-                pilot.getNode(l_altitude_int, 1).setValue(v);
-                props.globals.getNode(l_altitude_int).setValue(v);
-            },
+#           func (v) {
+#               pilot.getNode(l_altitude_int, 1).setValue(v);
+#               props.globals.getNode(l_altitude_int).setValue(v);
+#           },
 #           func (v) {
 #               pilot.getNode(l_altitude, 1).setValue(v);
 #               props.globals.getNode(l_altitude).setValue(v);
