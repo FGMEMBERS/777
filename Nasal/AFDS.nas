@@ -61,6 +61,12 @@ var AFDS = {
         m.AP_passive = props.globals.initNode("autopilot/locks/passive-mode",1,"BOOL");
         m.AP_pitch_engaged = props.globals.initNode("autopilot/locks/pitch-engaged",1,"BOOL");
         m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
+        m.AP_internal = props.globals.getNode("autopilot/internal",1);
+        m.AP_internal.initNode("autopilot-transition",0,"INT");
+        m.AP_internal.initNode("pitch-transition",0,"INT");
+        m.AP_internal.initNode("roll-transition",0,"INT");
+        m.AP_internal.initNode("speed-transition",0,"INT");
+        m.AP_internal.initNode("presision-loc",0,"INT");
 
         m.FMC = props.globals.getNode("autopilot/route-manager", 1);
         m.FMC_max_cruise_alt = m.FMC.initNode("cruise/max-altitude-ft",10000,"DOUBLE");
@@ -770,7 +776,11 @@ var AFDS = {
         me.indicated_vs_fpm.setValue(int((abs(VS) * 60 + 50) / 100) * 100);
         if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 30)
         {
-            setprop("instrumentation/airspeed-indicator/indicated-speed-kt", 30);
+            setprop("instrumentation/airspeed-indicator/indicator-speed-kt", 30);
+        }
+        else
+        {
+            setprop("instrumentation/airspeed-indicator/indicator-speed-kt", getprop("instrumentation/airspeed-indicator/indicated-speed-kt"));
         }
         # This value is used for displaying negative altitude
         if(current_alt < 0)

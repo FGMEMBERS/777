@@ -247,7 +247,7 @@ Syd Adams
     <type>rotate</type>
     <object-name>LHelevator</object-name>
     <object-name>LHstab</object-name>
-    <property>surface-positions/stabilizer-pos-norm</property>
+        <property alias = "/surface-positions/stabilizer-pos-norm/property"/>
     <factor>-15</factor>
     <center>
         <x-m>36.2293</x-m>

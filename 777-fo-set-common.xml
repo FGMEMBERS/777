@@ -129,6 +129,9 @@
         <chase-distance-m>-100</chase-distance-m>
         <yokes-visible type="bool">true</yokes-visible>
         <systems>
+            <!--property-rule n="101">
+                <path>Aircraft/777/Systems/777-PFD.xml</path>
+            </property-rule-->
             <property-rule n="102">
                 <path>Aircraft/777/Systems/777-pcu.xml</path>
             </property-rule>
@@ -160,6 +163,7 @@
             <inputs>
                 <ias-mach-selected type="bool">false</ias-mach-selected>
                 <reference-deg type="double">0</reference-deg>
+                <indicated-vs-fpm type="double">0</indicated-vs-fpm>
             </inputs>
             <settings>
                 <manual-intervention type="bool">false</manual-intervention>
@@ -171,18 +175,60 @@
         <altimeter>
             <indicator-altitude-ft type="double">0</indicator-altitude-ft>
             <indicated-altitude-ft type="double">0</indicated-altitude-ft>
+            <!--source-barometric type="string">"L"</source-barometric-->
+            <setting-inhg type="double">29.92</setting-inhg>
         </altimeter>
         <airspeed-indicator>
-            <indicated-speed-kt type="double">0</indicated-speed-kt>
+            <indicator-speed-kt type="double">0</indicator-speed-kt>
         </airspeed-indicator>
+        <pfd>
+            <runway-elevation-diff type="double">0</runway-elevation-diff>
+            <target-altitude-diff type="double">0</target-altitude-diff>
+            <minimum-diff type="double">0</minimum-diff>
+            <target-speed-diff type="double">0</target-speed-diff>
+            <stallspeed-diff type="double">0</stallspeed-diff>
+            <overspeed-diff type="double">0</overspeed-diff>
+            <speed-trend-up type="double">0</speed-trend-up>
+            <speed-trend-down type="double">0</speed-trend-down>
+            <vref-diff type="double">0</vref-diff>
+            <vref-text-diff type="double">0</vref-text-diff>
+            <v1-diff type="double">0</v1-diff>
+            <vr-diff type="double">0</vr-diff>
+            <v2-diff type="double">0</v2-diff>
+            <flap-diff type="double">0</flap-diff>
+            <fl1-diff type="double">0</fl1-diff>
+            <fl5-diff type="double">0</fl5-diff>
+            <fl15-diff type="double">0</fl15-diff>
+        </pfd>
+        <weu>
+            <state>
+                <vref type="double">0</vref>
+            </state>
+        </weu>
     </instrumentation>
     <autopilot>
         <settings>
             <counter-set-altitude-ft type="int">10000</counter-set-altitude-ft>
+            <counter-set-altitude-FL type="int">10000</counter-set-altitude-FL>
+            <counter-set-altitude-100 type="int">10000</counter-set-altitude-100>
+            <radio-altimeter-indication type="int">10000</radio-altimeter-indication>
+            <target-speed-kt type="int">0</target-speed-kt>
+            <heading-bug-deg type="int">360</heading-bug-deg>
+            <transition-altitude type="int">18000</transition-altitude>
+            <pfd-mach-indication type="int">0</pfd-mach-indication>
         </settings>
         <internal>
+            <alt-alert type="int">0</alt-alert>
+            <autopilot-transition type="int">0</autopilot-transition>
+            <pitch-transition type="int">0</pitch-transition>
+            <roll-transition type="int">0</roll-transition>
+            <speed-transition type="int">0</speed-transition>
             <crab-angle-hdg type="double">0</crab-angle-hdg>
             <crab-angle-trk type="double">0</crab-angle-trk>
+            <presision-loc type="int">0</presision-loc>
         </internal>
     </autopilot>
+    <velocities>
+        <groundspeed-kt type="double">0</groundspeed-kt>
+    </velocities>
 </PropertyList>
