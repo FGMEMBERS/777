@@ -135,11 +135,6 @@
             <property-rule n="102">
                 <path>Aircraft/777/Systems/777-pcu.xml</path>
             </property-rule>
-            <electrical>
-                <outputs>
-                    <avionics type="bool">false</avionics>
-                </outputs>
-            </electrical>
         </systems>
         <instrumentation>
             <path>Aircraft/777/Systems/instrumentation.xml</path>
@@ -161,16 +156,18 @@
     <instrumentation>
         <afds>
             <inputs>
+                <indicated-vs-fpm type="double">0</indicated-vs-fpm>
+                <AP type="bool">false</AP>
                 <ias-mach-selected type="bool">false</ias-mach-selected>
                 <reference-deg type="double">0</reference-deg>
-                <indicated-vs-fpm type="double">0</indicated-vs-fpm>
             </inputs>
             <settings>
                 <manual-intervention type="bool">false</manual-intervention>
             </settings>
-            <ap-modes>
+            <!--ap-modes>
                 <pitch-mode type="string">""</pitch-mode>
-            </ap-modes>
+                <mode-annunciator type="string">""</mode-annunciator>
+            </ap-modes-->
         </afds>
         <altimeter>
             <indicator-altitude-ft type="double">0</indicator-altitude-ft>
@@ -181,6 +178,20 @@
         <airspeed-indicator>
             <indicator-speed-kt type="double">0</indicator-speed-kt>
         </airspeed-indicator>
+        <efis>
+            <inputs>
+                <setting-std type="bool">false</setting-std>
+            </inputs>
+        </efis>
+        <nav>
+            <signal-quality-norm type="double">0</signal-quality-norm>
+            <heading-needle-deflection-ptr type="double">0</heading-needle-deflection-ptr>
+            <in-range type="double">0</in-range>
+            <nav-loc type="double">0</nav-loc>
+            <has-gs type="double">0</has-gs>
+            <gs-in-range type="double">0</gs-in-range>
+            <gs-needle-deflection-norm type="double">0</gs-needle-deflection-norm>
+        </nav>
         <pfd>
             <runway-elevation-diff type="double">0</runway-elevation-diff>
             <target-altitude-diff type="double">0</target-altitude-diff>
@@ -203,6 +214,11 @@
         <weu>
             <state>
                 <vref type="double">0</vref>
+                <stall-warning type="bool">false</stall-warning>
+                <flap-on type="bool">false</flap-on>
+                <fl1-on type="bool">false</fl1-on>
+                <fl5-on type="bool">false</fl5-on>
+                <fl15-on type="bool">false</fl15-on>
             </state>
         </weu>
     </instrumentation>
@@ -216,6 +232,7 @@
             <heading-bug-deg type="int">360</heading-bug-deg>
             <transition-altitude type="int">18000</transition-altitude>
             <pfd-mach-indication type="int">0</pfd-mach-indication>
+            <pfd-mach-target-indication type="int">0</pfd-mach-target-indication>
         </settings>
         <internal>
             <alt-alert type="int">0</alt-alert>
@@ -223,11 +240,21 @@
             <pitch-transition type="int">0</pitch-transition>
             <roll-transition type="int">0</roll-transition>
             <speed-transition type="int">0</speed-transition>
+            <heading-bug-error-deg type="int">360</heading-bug-error-deg>
             <crab-angle-hdg type="double">0</crab-angle-hdg>
             <crab-angle-trk type="double">0</crab-angle-trk>
             <presision-loc type="int">0</presision-loc>
         </internal>
     </autopilot>
+    <systems>
+        <electrical>
+            <outputs>
+                <avionics type="bool">false</avionics>
+                <efis type="bool">false</efis>
+            </outputs>
+            <CPT-FLT-INST type="double">0</CPT-FLT-INST>
+        </electrical>
+    </systems>
     <velocities>
         <groundspeed-kt type="double">0</groundspeed-kt>
     </velocities>

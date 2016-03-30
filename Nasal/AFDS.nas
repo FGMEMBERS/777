@@ -67,6 +67,7 @@ var AFDS = {
         m.AP_internal.initNode("roll-transition",0,"INT");
         m.AP_internal.initNode("speed-transition",0,"INT");
         m.AP_internal.initNode("presision-loc",0,"INT");
+        m.AP_internal.initNode("heading-bug-error-deg",0,"INT");
 
         m.FMC = props.globals.getNode("autopilot/route-manager", 1);
         m.FMC_max_cruise_alt = m.FMC.initNode("cruise/max-altitude-ft",10000,"DOUBLE");
