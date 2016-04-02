@@ -10,9 +10,6 @@
 
         <model n="0">
             <path>Aircraft/777/Models/777-200.xml</path>
-            <livery>
-                <file type="string">BA</file>
-            </livery>
             <door>
                 <position-x-m type="float">-18.30</position-x-m>
                 <position-y-m type="float"> -2.95</position-y-m>
@@ -150,18 +147,5 @@
             <descent-profile-low-rate type="double">-0.00050725</descent-profile-low-rate>
         </constant>
     </autopilot>
-
-    <input n="0">
-        <keyboard>
-            <key n="12">
-                <name>Ctrl-L</name>
-                <desc>toggle cabin lights</desc>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>controls/lighting/cabin-lights</property>
-                </binding>
-            </key>
-        </keyboard>
-    </input>
 
 </PropertyList>

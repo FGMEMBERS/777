@@ -5,7 +5,7 @@ var SndOut = props.globals.getNode("sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("instrumentation/clock/ET-sec",1);
 var elapsetime = aircraft.timer.new("instrumentation/clock/elapsetime-sec",1);
 var vmodel = substr(getprop("sim/aero"), 3);
-var aux_tanks = (vmodel == "-200LR");
+var aux_tanks = ((vmodel == "-200LR") or (vmodel == "-200F"));
 if(vmodel == "-200F")
 {
     aircraft.livery.init("Aircraft/777/Models/Liveries-F");

@@ -664,7 +664,7 @@
             <name>speedbrake</name>
             <mode>in-transit</mode>
             <path>Sounds/flaps.wav</path>
-            <property>surface-positions/speedbrake-norm</property>
+            <property>surface-positions/speedbrake-pos-norm</property>
             <volume>
                 <property>sim/sound/Ovolume</property>
                 <max>0.8</max>

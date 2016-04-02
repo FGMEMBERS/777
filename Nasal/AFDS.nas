@@ -61,6 +61,13 @@ var AFDS = {
         m.AP_passive = props.globals.initNode("autopilot/locks/passive-mode",1,"BOOL");
         m.AP_pitch_engaged = props.globals.initNode("autopilot/locks/pitch-engaged",1,"BOOL");
         m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
+        m.AP_internal = props.globals.getNode("autopilot/internal",1);
+        m.AP_internal.initNode("autopilot-transition",0,"INT");
+        m.AP_internal.initNode("pitch-transition",0,"INT");
+        m.AP_internal.initNode("roll-transition",0,"INT");
+        m.AP_internal.initNode("speed-transition",0,"INT");
+        m.AP_internal.initNode("presision-loc",0,"INT");
+        m.AP_internal.initNode("heading-bug-error-deg",0,"INT");
 
         m.FMC = props.globals.getNode("autopilot/route-manager", 1);
         m.FMC_max_cruise_alt = m.FMC.initNode("cruise/max-altitude-ft",10000,"DOUBLE");
@@ -770,7 +777,11 @@ var AFDS = {
         me.indicated_vs_fpm.setValue(int((abs(VS) * 60 + 50) / 100) * 100);
         if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 30)
         {
-            setprop("instrumentation/airspeed-indicator/indicated-speed-kt", 30);
+            setprop("instrumentation/airspeed-indicator/indicator-speed-kt", 30);
+        }
+        else
+        {
+            setprop("instrumentation/airspeed-indicator/indicator-speed-kt", getprop("instrumentation/airspeed-indicator/indicated-speed-kt"));
         }
         # This value is used for displaying negative altitude
         if(current_alt < 0)
@@ -1755,34 +1766,11 @@ var AFDS = {
                     if(me.vnav_descent.getValue() == 0) # Calculation of Top Of Descent distance
                     {
                         var cruise_alt = me.FMC_cruise_alt.getValue();
-                        me.top_of_descent = 8;
-                        if(cruise_alt > 10000)
-                        {
-                            me.top_of_descent += 21;
-                            if(cruise_alt > 29000)
-                            {
-                                me.top_of_descent += 41.8;
-                                if(cruise_alt > 36000)
-                                {
-                                    me.top_of_descent += 28;
-                                    me.top_of_descent += (cruise_alt - 36000) / 1000 * 3.8;
-                                }
-                                else
-                                {
-                                    me.top_of_descent += (cruise_alt - 29000) / 1000 * 4;
-                                }
-                            }
-                            else
-                            {
-                                me.top_of_descent += (cruise_alt - 10000) / 1000 * 2.2;
-                            }
-                            me.top_of_descent += 6.7;
-                        }
-                        else
-                        {
-                            me.top_of_descent += (cruise_alt - 3000) / 1000 * 3;
-                        }
-                        me.top_of_descent -= (destination_elevation / 1000 * 3);
+                        var tod_constant = 3.3;
+                        if(cruise_alt < 35000) tod_constant = 3.2;
+                        if(cruise_alt < 25000) tod_constant = 3.1;
+                        if(cruise_alt < 15000) tod_constant = 3.0;
+                        me.top_of_descent = ((cruise_alt - destination_elevation) / 1000 * tod_constant);
 
                         if((me.alt_setting.getValue() > 24000)
                             and (me.alt_setting.getValue() >= cruise_alt))

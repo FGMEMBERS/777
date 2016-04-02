@@ -1,9 +1,9 @@
 <PropertyList include="777-set-common.xml">
 
     <sim n="0">
-        <description>Boeing 777-200F</description>
+        <description>Boeing 777 Freighter</description>
         <aero>777-200F</aero>
-        <max-payload type="double">550900</max-payload>
+        <max-payload type="double">448500</max-payload>
         <startup>
             <splash-texture>Aircraft/777/splash-cargo.png</splash-texture>
         </startup>
@@ -64,6 +64,14 @@
             <min-lb type="double">0</min-lb>
         </weight>
     </sim>
+
+    <consumables n="0">
+        <fuel n="0">
+            <tank n="3"><name>Rear A</name></tank>
+            <tank n="4"><name>Rear B</name></tank>
+            <tank n="5"><name>Rear C</name></tank>
+        </fuel>
+    </consumables>
 
     <instrumentation n="0">
         <cdu n="0">
