@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">QTR Qatar Airways Cargo</name>
+            <texture>Liveries-F/QTRcargo.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>QTR</aircraft-operator>
+</sim>
+</PropertyList>

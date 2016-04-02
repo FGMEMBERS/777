@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">LCO LAN Cargo</name>
+            <texture>Liveries-F/LCO.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>LCO</aircraft-operator>
+</sim>
+</PropertyList>

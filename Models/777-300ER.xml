@@ -2234,7 +2234,7 @@ Outboard Aileron Lockout Schedule
 
 <model>
  <name>Pushback</name>
- <path>Pushback/Douglas.xml</path>
+ <path>Models/Airport/Pushback/Douglas.xml</path>
  <offsets>
   <x-m>-19.284</x-m>
   <y-m>0.0</y-m>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">FDX FedEx "Panda Express"</name>
+            <texture>Liveries-F/FDX-panda.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>FDX</aircraft-operator>
+</sim>
+</PropertyList>
