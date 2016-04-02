@@ -708,14 +708,6 @@ Service Ceiling: 43,100ft
                     <script>b777.afds.input(0,1);</script>
                 </binding>
             </key>
-            <key n="12">
-                <name>Ctrl-L</name>
-                <desc>toggle cabin lights</desc>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>controls/lighting/cabin-lights</property>
-                </binding>
-            </key>
             <key n="14">
                 <name>Ctrl-N</name>
                 <desc>LNAV</desc>

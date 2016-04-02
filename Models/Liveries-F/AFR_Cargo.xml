@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">AFR Air France Cargo</name>
+            <texture>Liveries-F/AFR_Cargo.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>AFR</aircraft-operator>
+</sim>
+</PropertyList>

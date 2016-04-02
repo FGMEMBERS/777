@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">BOX AeroLogic</name>
+            <texture>Liveries-F/BOX.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>BOX</aircraft-operator>
+</sim>
+</PropertyList>
