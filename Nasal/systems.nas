@@ -4,8 +4,16 @@
 var SndOut = props.globals.getNode("sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("instrumentation/clock/ET-sec",1);
 var elapsetime = aircraft.timer.new("instrumentation/clock/elapsetime-sec",1);
-var vmodel = substr(getprop("sim/aircraft"), 3);
-aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
+var vmodel = substr(getprop("sim/aero"), 3);
+var aux_tanks = ((vmodel == "-200LR") or (vmodel == "-200F"));
+if(vmodel == "-200F")
+{
+    aircraft.livery.init("Aircraft/777/Models/Liveries-F");
+}
+else
+{
+    aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
+}
 
 #EFIS specific class
 # ie: var efis = EFIS.new("instrumentation/efis");
@@ -568,7 +576,7 @@ var balance_fuel = func{
     var total_fuel = 0;
     var capcenter = 0;
     var j = 3;
-    if(vmodel == "-200LR")
+    if(aux_tanks)
     {
         j = 6;
         capcenter = getprop("consumables/fuel/tank[1]/capacity-gal_us");
@@ -627,7 +635,10 @@ var Startup = func{
     setprop("controls/lighting/wing-lights",1);
     setprop("controls/lighting/taxi-lights",0);
     setprop("controls/lighting/logo-lights",1);
-    setprop("controls/lighting/cabin-lights",1);
+    if(vmodel != "-200F")
+    {
+        setprop("controls/lighting/cabin-lights",1);
+    }
     setprop("controls/lighting/strobe",1);
     setprop("controls/lighting/landing-light[0]",1);
     setprop("controls/lighting/landing-light[1]",1);
@@ -993,7 +1004,7 @@ switch_ind = func() {
     }
 #CTR boost #1
     if((!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty"))))
@@ -1009,7 +1020,7 @@ switch_ind = func() {
     if((getprop("controls/fuel/tank[1]/boost-pump[0]") == 0)
         and (cpt_flt_inst.getValue() > 24)
         and (!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty")))))
@@ -1022,7 +1033,7 @@ switch_ind = func() {
     }
 #CTR boost #2
     if((!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty"))))
@@ -1038,7 +1049,7 @@ switch_ind = func() {
     if((getprop("controls/fuel/tank[1]/boost-pump[1]") == 0)
         and (cpt_flt_inst.getValue() > 24)
         and (!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty")))))

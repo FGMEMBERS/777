@@ -9,7 +9,7 @@ Syd Adams
 
     <nasal>
         <load>
-            var livery_update = aircraft.livery_update.new("Aircraft/777/Models/Liveries-200", 10);
+            var livery_update = aircraft.livery_update.new("Aircraft/777/Models/Liveries-F", 10);
         </load>
 
         <unload>
@@ -54,8 +54,8 @@ Syd Adams
         <object-name>Fuselage</object-name>
         <object-name>Engines</object-name>
         <object-name>Reversers</object-name>
-        <object-name>LHEngChrome</object-name>
-        <object-name>RHEngChrome</object-name>
+        <object-name>Cowling</object-name>
+        <object-name>Cowling.001</object-name>
         <object-name>Rudder</object-name>
         <object-name>Tail</object-name>
         <object-name>Elevator</object-name>
@@ -1184,7 +1184,10 @@ Syd Adams
         <type>select</type>
         <object-name>cabinlighting</object-name>
         <condition>
-            <property alias="/systems/electrical/outputs/cabin-lights/property"/>
+            <equals>
+                <value type="bool">true</value>
+                <value type="bool">false</value>
+            </equals>
         </condition>
     </animation>
 
@@ -2216,6 +2219,21 @@ Syd Adams
         </and>
     </condition>
 </animation>
+
+<model>
+    <name>Cargo</name>
+    <path>Aircraft/777/Models/cargo.ac</path>
+      <condition>
+        <equals>
+            <property>controls/switches/cargo</property>
+            <value type="bool">true</value>
+        </equals>
+        <less-than>
+            <property>velocities/airspeed-kt</property>
+            <value>15</value>
+        </less-than>
+      </condition>
+</model>
 
 <systems>
     <electrical>

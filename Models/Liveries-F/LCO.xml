@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name>type="string">QTR Qatar Airways Cargo</name>
-            <texture>Liveries-200/QTRcargo.png</texture>
+            <name type="string">LCO LAN Cargo</name>
+            <texture>Liveries-F/LCO.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-    <aircraft-operator>QTR</aircraft-operator>
+    <aircraft-operator>LCO</aircraft-operator>
 </sim>
 </PropertyList>
