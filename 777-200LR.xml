@@ -25,7 +25,7 @@ Max TO weight: 766,000 lbs
 Max Landing weight: 492,000 lbs
 -->
 
-<airplane mass="326000" version="YASIM_VERSION_32">
+<airplane mass="320000" version="YASIM_VERSION_32">
 
   <!-- Approach configuration -->
   <approach speed="132" alt="0.0" aoa="5.0" fuel="0.2" glide-angle="0.0">

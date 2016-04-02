@@ -26,17 +26,18 @@ V2 147
 Datum 92.5 in forward of nose - 2.3495 m
 MAC 278.51 in - 7.074154 m
 -->
-<airplane mass="318250">
+<airplane mass="318300">
 
 <!-- Approach configuration -->
-<approach speed="120" aoa="7" fuel="0.8">
-    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.35"/>
-    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.35"/>
+<approach speed="132" aoa="5" fuel="0.2" glide-angle="0">
+    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.25"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.25"/>
     <control-setting axis="/controls/flight/flaps" value="1"/>
     <control-setting axis="/surface-positions/slats" value="1"/>
     <control-setting axis="/controls/gear/gear-down" value="1"/>
-    <solve-weight idx="0" weight="350"/>
-    <solve-weight idx="1" weight="45000"/>
+    <solve-weight idx="0" weight="450"/>
+    <solve-weight idx="1" weight="43072"/> <!-- payload -->
+	<solve-weight idx="2" weight="575000"/> <!-- max landing weight -->
 </approach>
 
 <!-- Cruise configuration -->
@@ -52,22 +53,23 @@ MAC 278.51 in - 7.074154 m
 
 <cockpit x="22.8" y="0.5" z="0.75"/>
 
-<fuselage ax="25.36" ay="0" az="-0.64" bx="16.231" by="0.00" bz="0.0"
-    width="6.2" taper="0.0" midpoint="1.0"/>
-<fuselage ax="16.231" ay="0" az="0" bx="-20.0" by="0.00" bz="0.0"
-    width="6.2" taper="1.0" midpoint="0.5"/>
-<fuselage ax="-20.0" ay="0" az="0" bx="-37.0" by="0.00" bz="1.2"
-    width="6.2" taper="0.0" midpoint="0.0"/>
-<fuselage ax="4.0" ay="9.8" az="-3" bx="-1.8" by="9.8" bz="-3"
-    width="3.8" taper="1.0"/>
-<fuselage ax="4.0" ay="-9.8" az="-3" bx="-1.8" by="-9.8" bz="-3"
-    width="3.8" taper="1.0"/>
-
-<wing x="-1.4" y="3.095" z="-1.66" length="30.6" chord="10.0" sweep="28.7"
-      taper="0.15" dihedral="7" camber="0.05" incidence="0">
-    <stall aoa="12" width="12" peak="1.5"/>
-    <flap0 start="0" end=".56" lift="1.5" drag="1.8"/>
-    <flap1 start=".64" end=".88" lift="1.4" drag="1.2"/>
+  <fuselage ax="25.36" ay="0" az="-0.64" bx="16.231" by="0.00" bz="0.0"
+      width="6.2" taper="0.0" midpoint="1.0"/>
+  <fuselage ax="16.231" ay="0" az="0" bx="-20.0" by="0.00" bz="0.0"
+      width="6.2" taper="1.0" midpoint="0.5"/>
+  <fuselage ax="-20.0" ay="0" az="0" bx="-37.0" by="0.00" bz="1.2"
+      width="6.2" taper="0.0" midpoint="0.0"/>
+  <fuselage ax="4.0" ay="9.8" az="-3" bx="-1.8" by="9.8" bz="-3"
+      width="3.8" taper="1.0"/>
+  <fuselage ax="4.0" ay="-9.8" az="-3" bx="-1.8" by="-9.8" bz="-3"
+      width="3.8" taper="1.0"/>
+	  
+	  
+<wing x="-0.0" y="3.095" z="-1.66" length="32.4" chord="12.8" sweep="31.64"
+        taper="0.15" dihedral="7" camber="0.01" incidence="2" twist="-2">
+    <stall aoa="16" width="6" peak="1.5"/>
+    <flap0 start="0" end=".56" lift="1.5" drag="1.7"/>
+    <flap1 start=".64" end=".88" lift="1.5" drag="1.2"/>
     <slat start="0" end="1" aoa="2" drag="1.2"/>
     <spoiler start="0.2" end="0.6" lift="0.2" drag="2.0"/>
     <control-input axis="/controls/flight/flaps" control="FLAP0"/>
@@ -86,12 +88,12 @@ MAC 278.51 in - 7.074154 m
 </wing>
 
 <hstab x="-31.0" y="1.5" z="1.0" chord="6.0" length="10.84" taper=".20"
-       sweep="28" dihedral="7" effectiveness="2.5" camber="-0.01">
-  <stall aoa="15" width="5" peak="1.5"/>
-  <flap0 start="0" end="1" lift="1.6" drag="1.2"/>
+       sweep="28" dihedral="7" effectiveness="2.5" camber="0">
+  <stall aoa="18" width="5" peak="1.5"/>
+  <flap0 start="0" end="1" lift="1.4" drag="1.2"/>
   <control-input axis="/controls/flight/elevator" control="FLAP0"/>
   <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
-  <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+  <control-output control="FLAP0" prop="/surface-positions/elevator-trim-tab-pos-norm"/>
 </hstab>
 
 <vstab x="-30.0" y="0.00" z="2.7" chord="8.0" length="12.2" taper="0.3"
@@ -104,23 +106,23 @@ MAC 278.51 in - 7.074154 m
           min="1" max="-1"/>
 </vstab>
 
-<jet x="1.16" y="9.89"  z="-2.995" mass="19050" thrust="110100" spool-time="3"
-egt="840" tsfc="0.16 " n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
-  <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
-  <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
+<jet x="1.16" y="9.89"  z="-2.995" mass="18260" thrust="115540" spool-time="3"
+       egt="840" tsfc="0.23 " epr="40" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="107">
+    <control-input axis="/controls/engines/engine[0]/throttle-act" control="THROTTLE"/>
+    <control-input axis="/controls/engines/engine[0]/reverser-act" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
-    <control-speed control="REVERSE_THRUST" transition-time="4"/>
-<actionpt x="-2.7" y="9.89" z="-2.995"/>
-</jet>
+    <control-speed control="REVERSE_THRUST" transition-time="3"/>
+    <actionpt x="-2.7" y="9.89" z="-2.995"/>
+  </jet>
 
-<jet x="1.16" y="-9.89"  z="-2.995" mass="19050" thrust="110100"  spool-time="3"
-egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
-  <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
-  <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
+  <jet x="1.16" y="-9.89"  z="-2.995" mass="18260" thrust="115540"  spool-time="3"
+       egt="840" tsfc="0.23" epr="40" n1-idle="18.5" n1-max="110.5" n2-idle="70" n2-max="107">
+    <control-input axis="/controls/engines/engine[1]/throttle-act" control="THROTTLE"/>
+    <control-input axis="/controls/engines/engine[1]/reverser-act" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
-    <control-speed control="REVERSE_THRUST" transition-time="4"/>
-<actionpt x="-2.7" y="-9.89" z="-2.995"/>
-</jet>
+    <control-speed control="REVERSE_THRUST" transition-time="3"/>
+    <actionpt x="-2.7" y="-9.89" z="-2.995"/>
+  </jet>
 
 <!-- nose -->
 <gear x="19.28"  y="0.00" z="-5.55"
@@ -159,18 +161,23 @@ egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-speed control="EXTEND" transition-time="20"/>
 </gear>
 
-<tank x="-4.3" y="5" z="-1.5" jet="true" capacity="69000"/>
-<tank x="-4.3" y="0" z="-2.5" jet="true" capacity="182860"/>
-<tank x="-4.3" y="-5" z="-1.5" jet="true" capacity="69000"/>
+ <tank x="-4.3" y="5" z="-1.5" jet="true" capacity="70475"/>
+  <tank x="-4.3" y="0" z="-2.5" jet="true" capacity="180870"/>
+  <tank x="-4.3" y="-5" z="-1.5" jet="true" capacity="70475"/>
+
+  <tank x="-4.3" y="1" z="-8" jet="true" capacity="12600"/>
+  <tank x="-4.3" y="0" z="-9.5" jet="true" capacity="12600"/>
+  <tank x="-4.3" y="-1" z="-8" jet="true" capacity="12600"/>
+
 
 <weight x="22.0" y="0" z="0" mass-prop="/sim/weight[0]/weight-lb"/>
 <weight x="-4.3" y="0" z="0" mass-prop="/sim/weight[1]/weight-lb"/>
 
-<ballast x="-30" y="0" z="4" mass="-15500"/>
+<ballast x="-30" y="0" z="4" mass="-40000"/>
 
-<thruster x="19.28"  y="0.00" z="-5.55" vx="1" vy="0" vz="0" thrust="20000">
-  <control-input axis="/sim/model/pushback/target-speed-fps" control="THROTTLE"
-  src0="-1" src1="1" dst0="-1" dst1="1"/>
-  </thruster>
+	<thruster x="19.28"  y="0.00" z="-5.55" vx="1" vy="0" vz="0" thrust="20000">
+    <control-input axis="/sim/model/pushback/target-speed-fps" control="THROTTLE"
+                   src0="-1" src1="1" dst0="-1" dst1="1"/>
+	</thruster>
 
 </airplane>
