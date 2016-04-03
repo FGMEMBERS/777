@@ -1979,7 +1979,7 @@ var AFDS = {
             }
             elsif(lim == 15)
             {
-                me.heading_change_rate = 1.67;
+                me.heading_change_rate = 2.0;
             }
             elsif(lim == 10)
             {

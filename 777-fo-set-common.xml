@@ -41,6 +41,9 @@
         </rating>
         <aircraft-version>20140208</aircraft-version>
         <flight-model>null</flight-model>
+        <instrument-options>
+            <canvas-popup-enable type="bool">true</canvas-popup-enable>
+        </instrument-options>
         <model>
             <path>Aircraft/777/Models/777-fo.xml</path>
         </model>
@@ -250,7 +253,7 @@
         <electrical>
             <outputs>
                 <avionics type="bool">false</avionics>
-                <efis type="bool">false</efis>
+                <efis type="double">0</efis>
             </outputs>
             <CPT-FLT-INST type="double">0</CPT-FLT-INST>
         </electrical>
