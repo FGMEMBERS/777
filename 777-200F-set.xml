@@ -65,6 +65,14 @@
         </weight>
     </sim>
 
+    <consumables n="0">
+        <fuel n="0">
+            <tank n="3"><name>Rear A</name></tank>
+            <tank n="4"><name>Rear B</name></tank>
+            <tank n="5"><name>Rear C</name></tank>
+        </fuel>
+    </consumables>
+
     <instrumentation n="0">
         <cdu n="0">
             <ident>

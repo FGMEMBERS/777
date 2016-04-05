@@ -13,6 +13,9 @@
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
+            <livery>
+                <file type="string">BAW</file>
+            </livery>
             <armrest type="double">0</armrest>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>
@@ -466,6 +469,15 @@ Service Ceiling: 43,100ft
                         </binding>
                     </item>
                     <item>
+                        <label>Select MP-copilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                dual_control_tools.copilot_dialog.show(aircraft_dual_control.copilot_type);
+                            </script>
+                        </binding>
+                    </item>
+                    <item>
                         <label>Tiller Steering</label>
                         <binding>
                             <command>nasal</command>
@@ -515,9 +527,18 @@ Service Ceiling: 43,100ft
                 <float n="2" alias="/gear/gear[2]/compression-m"/>
                 <float n="3" alias="/gear/gear[3]/compression-m"/>
                 <float n="4" alias="/gear/gear[4]/compression-m"/>
-                <float n="5" alias="/surface-positions/speedbrake-norm"/>
-                <float n="6" alias="/surface-positions/reverser-norm"/>
+                <float n="5" alias="/controls/flight/speedbrake-angle"/>
+                <float n="6" alias="/controls/gear/nosegear-steering-cmd-norm"/>
+                <float n="7" alias="/controls/gear/maingear-steering-cmd-norm"/>
+                <float n="8" alias="/surface-positions/reverser-norm"/>
+                <float n="9" alias="/surface-positions/stabilizer-pos-norm"/>
+                <float n="10" alias="/surface-positions/slats"/>
                 <string  alias="/sim/multiplay/callsign"/>
+                <!--string n="0" type="string"></string--> <!-- MP events -->
+                <string n="1" type="string"></string> <!-- MP TDM1 -->
+                <string n="2" type="string"></string> <!-- MP TDM2 -->
+                <string n="3" type="string"></string> <!-- MP TDM3 -->
+                <string n="4" type="string"></string> <!-- MP TDM4 -->
             </generic>
         </multiplay>
 
@@ -706,6 +727,14 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>nasal</command>
                     <script>b777.afds.input(0,1);</script>
+                </binding>
+            </key>
+            <key n="12">
+                <name>Ctrl-L</name>
+                <desc>toggle cabin lights</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>controls/lighting/cabin-lights</property>
                 </binding>
             </key>
             <key n="14">
@@ -1132,6 +1161,15 @@ Service Ceiling: 43,100ft
         <cdu>
             <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
         </cdu>
+        <dual_control_tools>
+            <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+        </dual_control_tools>
+        <aircraft_dual_control>
+            <file>Aircraft/777/DualControl/777-dual-control.nas</file>
+        </aircraft_dual_control>
+        <dual_control>
+            <file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
+        </dual_control>
     </nasal>
 
     <limits n="0">

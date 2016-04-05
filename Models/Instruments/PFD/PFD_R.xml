@@ -687,7 +687,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>ASI</object-name>
-        <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>560</ind><dep>0.7520</dep></entry>
@@ -1517,7 +1517,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Asitext.100</object-name>
-        <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <factor>0.001</factor>
         <step>100</step>
         <scroll>1</scroll>
@@ -1531,7 +1531,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Asitext.010</object-name>
-        <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <factor>0.01</factor>
         <step>10</step>
         <scroll>1</scroll>
@@ -1545,7 +1545,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Asitext.001</object-name>
-        <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <factor>0.1</factor>
         <axis>
             <x>0</x>
@@ -2001,7 +2001,7 @@ Syd Adams
                     <property>instrumentation/efis/inputs/kpa-mode</property>
                 </not>
                 <not>
-                    <property>instrumentation/inputs/setting-std</property>
+                    <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
@@ -2019,7 +2019,7 @@ Syd Adams
                     <property>instrumentation/efis/inputs/kpa-mode</property>
                 </not>
                 <not>
-                    <property>instrumentation/inputs/setting-std</property>
+                    <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <greater-than>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
@@ -2036,7 +2036,7 @@ Syd Adams
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
                 <not>
-                    <property>instrumentation/inputs/setting-std</property>
+                    <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
@@ -2052,7 +2052,7 @@ Syd Adams
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
                 <not>
-                    <property>instrumentation/inputs/setting-std</property>
+                    <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <greater-than>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
@@ -2067,7 +2067,7 @@ Syd Adams
         <object-name>INHG-STD</object-name>
         <condition>
             <and>
-            <property>instrumentation/inputs/setting-std</property>
+            <property>instrumentation/efis/inputs/setting-std</property>
             <greater-than>
                 <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
@@ -2080,7 +2080,7 @@ Syd Adams
         <object-name>INHG-STD-YEL</object-name>
         <condition>
             <and>
-                <property>instrumentation/inputs/setting-std</property>
+                <property>instrumentation/efis/inputs/setting-std</property>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
@@ -2095,7 +2095,7 @@ Syd Adams
         <condition>
             <and>
                 <not><property>instrumentation/efis/inputs/kpa-mode</property></not>
-                <property>instrumentation/inputs/setting-std</property>
+                <property>instrumentation/efis/inputs/setting-std</property>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
@@ -2110,7 +2110,7 @@ Syd Adams
         <condition>
             <and>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
-                <property>instrumentation/inputs/setting-std</property>
+                <property>instrumentation/efis/inputs/setting-std</property>
                 <less-than-equals>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
@@ -2125,7 +2125,7 @@ Syd Adams
         <object-name>RALT</object-name>
         <condition>
             <less-than>
-                <property>position/altitude-agl-ft</property>
+                <property>autopilot/settings/radio-altimeter-indication</property>
                 <value>2500</value>
             </less-than>
         </condition>

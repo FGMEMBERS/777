@@ -95,7 +95,7 @@
             </condition>
         </enable>
         <input>
-            <property>sim/multiplay/generic/float[5]</property>
+            <property>surface-positions/speedbrake-pos-norm</property>
         </input>
         <output>
             <property>controls/flight/speedbrake-angle</property>
@@ -116,7 +116,7 @@
             </condition>
         </enable>
         <input>
-            <property>sim/multiplay/generic/float[5]</property>
+            <property>surface-positions/speedbrake-pos-norm</property>
         </input>
         <output>
             <property>controls/flight/speedbrake-angle</property>

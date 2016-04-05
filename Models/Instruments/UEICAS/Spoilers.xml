@@ -27,7 +27,7 @@
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <property>surface-positions/speedbrake-norm</property>
+                    <property>surface-positions/speedbrake-pos-norm</property>
                     <scale>50</scale>
                 </transformation>
             </transformations>
