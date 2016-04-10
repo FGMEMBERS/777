@@ -521,6 +521,7 @@ Service Ceiling: 43,100ft
                 <int n="6" alias="/systems/electrical/outputs/landing-light[2]"/>
                 <int n="7" alias="/systems/electrical/outputs/nav-lights"/>
                 <int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
+                <int n="9" type="int">0</int>
 
                 <float n="0" alias="/gear/gear[0]/compression-m"/>
                 <float n="1" alias="/gear/gear[1]/compression-m"/>
@@ -539,6 +540,7 @@ Service Ceiling: 43,100ft
                 <string n="2" type="string"></string> <!-- MP TDM2 -->
                 <string n="3" type="string"></string> <!-- MP TDM3 -->
                 <string n="4" type="string"></string> <!-- MP TDM4 -->
+                <string n="5" alias="instrumentation/efis/mfd/display-mode"/>
             </generic>
         </multiplay>
 

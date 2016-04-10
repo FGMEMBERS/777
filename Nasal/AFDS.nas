@@ -1038,7 +1038,6 @@ var AFDS = {
             {
                 if(getprop("velocities/groundspeed-kt") < 50)
                 {
-                    me.AP.setValue(0);                      # Autopilot off
                     setprop("controls/flight/aileron", 0);  # Aileron set neutral
                     setprop("controls/flight/rudder", 0);   # Rudder set neutral
                     me.FMC_destination_ils.setValue(0);     # Clear destination ILS set
