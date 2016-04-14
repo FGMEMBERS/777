@@ -1002,6 +1002,23 @@
         </config>
     </pid-controller>
 
+    <filter>
+        <name>AP engage filter</name>
+        <enable>
+            <property>instrumentation/afds/inputs/AP</property>
+        </enable>
+        <input>
+            <value>-0.018</value>
+        </input>
+        <output>
+            <property>controls/flight/AP-engage-filter</property>
+        </output>
+        <type>noise-spike</type>
+        <max-rate-of-change>
+            <value>-0.0001</value>
+        </max-rate-of-change>
+    </filter>
+
     <pid-controller>
         <name>Elevator Control</name>
         <debug>false</debug>
@@ -1027,7 +1044,9 @@
                 </condition>
                 <value>-0.024</value>
             </Kp>
-            <Kp>-0.018</Kp>
+            <Kp>
+                <property>controls/flight/AP-engage-filter</property>
+            </Kp>
             <Ti>2.0</Ti>
             <Td>0.0</Td>
             <u_min>
@@ -1097,7 +1116,7 @@
             <property>controls/flight/elevator-trim</property>
         </output>
         <config>
-            <Kp>-0.05</Kp>
+            <Kp>-0.5</Kp>
             <Ti>10.0</Ti>
             <Td>0.0</Td>
             <u_min>
