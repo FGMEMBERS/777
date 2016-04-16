@@ -132,41 +132,19 @@
         <chase-distance-m>-100</chase-distance-m>
         <yokes-visible type="bool">true</yokes-visible>
         <systems>
-            <!--property-rule n="101">
-                <path>Aircraft/777/Systems/777-PFD.xml</path>
-            </property-rule-->
             <property-rule n="102">
                 <path>Aircraft/777/Systems/777-pcu.xml</path>
             </property-rule>
+            <electrical>
+                <outputs>
+                    <avionics type="bool">false</avionics>
+                </outputs>
+            </electrical>
         </systems>
         <instrumentation>
             <path>Aircraft/777/Systems/instrumentation.xml</path>
         </instrumentation>
     </sim>
-    <autopilot>
-        <settings>
-            <counter-set-altitude-ft type="int">10000</counter-set-altitude-ft>
-            <counter-set-altitude-FL type="int">10000</counter-set-altitude-FL>
-            <counter-set-altitude-100 type="int">10000</counter-set-altitude-100>
-            <radio-altimeter-indication type="int">10000</radio-altimeter-indication>
-            <target-speed-kt type="int">0</target-speed-kt>
-            <heading-bug-deg type="int">360</heading-bug-deg>
-            <transition-altitude type="int">18000</transition-altitude>
-            <pfd-mach-indication type="int">0</pfd-mach-indication>
-            <pfd-mach-target-indication type="int">0</pfd-mach-target-indication>
-        </settings>
-        <internal>
-            <alt-alert type="int">0</alt-alert>
-            <autopilot-transition type="int">0</autopilot-transition>
-            <pitch-transition type="int">0</pitch-transition>
-            <roll-transition type="int">0</roll-transition>
-            <speed-transition type="int">0</speed-transition>
-            <heading-bug-error-deg type="int">360</heading-bug-error-deg>
-            <crab-angle-hdg type="double">0</crab-angle-hdg>
-            <crab-angle-trk type="double">0</crab-angle-trk>
-            <presision-loc type="int">0</presision-loc>
-        </internal>
-    </autopilot>
     <controls>
         <engines>
             <engine n="0">
@@ -180,137 +158,22 @@
             <speedbrake-lever type="int">0</speedbrake-lever>
         </flight>
     </controls>
-    <environment>
-        <wind-speed-kt type="double">0</wind-speed-kt>
-        <wind-from-heading-deg type="double">0</wind-from-heading-deg>
-    </environment>
     <instrumentation>
         <afds>
             <inputs>
-                <indicated-vs-fpm type="double">0</indicated-vs-fpm>
-                <AP type="bool">false</AP>
                 <ias-mach-selected type="bool">false</ias-mach-selected>
-                <reference-deg type="double">0</reference-deg>
             </inputs>
             <settings>
                 <manual-intervention type="bool">false</manual-intervention>
             </settings>
-            <!--ap-modes>
-                <pitch-mode type="string">""</pitch-mode>
-                <mode-annunciator type="string">""</mode-annunciator>
-            </ap-modes-->
         </afds>
         <altimeter>
-            <indicator-altitude-ft type="double">0</indicator-altitude-ft>
-            <indicated-altitude-ft type="double">0</indicated-altitude-ft>
             <source-barometric type="string">L</source-barometric>
-            <setting-inhg type="double">29.92</setting-inhg>
         </altimeter>
-        <airspeed-indicator>
-            <indicator-speed-kt type="double">0</indicator-speed-kt>
-        </airspeed-indicator>
-        <efis n="0">
-            <inputs>
-                <setting-std type="bool">false</setting-std>
-                <range-nm type="int">10</range-nm>
-                <wxr type="bool">false</wxr>
-                <arpt type="bool">false</arpt>
-                <sta type="bool">false</sta>
-                <wpt type="bool">false</wpt>
-                <pos type="bool">false</pos>
-                <data type="bool">false</data>
-                <terr type="bool">false</terr>
-                <tfc type="bool">false</tfc>
-                <nd-centered type="bool">false</nd-centered>
-                <lh-vor-adf type="int">0</lh-vor-adf>
-                <rh-vor-adf type="int">0</rh-vor-adf>
-            </inputs>
-            <mfd>
-                <mode-num type="int">2</mode-num>
-                <display-type type="string">LCD</display-type>
-                <true-north type="bool">false</true-north>
-                <rangearc type="bool">false</rangearc>
-            </mfd>
-            <hdg-trk-selected type="bool">false</hdg-trk-selected>
-            <hdg-bug-only type="bool">false</hdg-bug-only>
-        </efis>
-        <efis n="1">
-            <inputs>
-                <range-nm type="int">10</range-nm>
-                <wxr type="bool">false</wxr>
-                <arpt type="bool">false</arpt>
-                <sta type="bool">false</sta>
-                <wpt type="bool">false</wpt>
-                <pos type="bool">false</pos>
-                <data type="bool">false</data>
-                <terr type="bool">false</terr>
-                <tfc type="bool">false</tfc>
-                <nd-centered type="bool">false</nd-centered>
-                <lh-vor-adf type="int">0</lh-vor-adf>
-                <rh-vor-adf type="int">0</rh-vor-adf>
-            </inputs>
-            <mfd>
-                <mode-num type="int">2</mode-num>
-                <display-type type="string">LCD</display-type>
-                <true-north type="bool">false</true-north>
-                <rangearc type="bool">false</rangearc>
-            </mfd>
-            <hdg-trk-selected type="bool">false</hdg-trk-selected>
-            <hdg-bug-only type="bool">false</hdg-bug-only>
-        </efis>
-        <nav>
-            <signal-quality-norm type="double">0</signal-quality-norm>
-            <heading-needle-deflection-ptr type="double">0</heading-needle-deflection-ptr>
-            <in-range type="double">0</in-range>
-            <nav-loc type="double">0</nav-loc>
-            <has-gs type="double">0</has-gs>
-            <gs-in-range type="double">0</gs-in-range>
-            <gs-needle-deflection-norm type="double">0</gs-needle-deflection-norm>
-        </nav>
-        <pfd>
-            <runway-elevation-diff type="double">0</runway-elevation-diff>
-            <target-altitude-diff type="double">0</target-altitude-diff>
-            <minimum-diff type="double">0</minimum-diff>
-            <target-speed-diff type="double">0</target-speed-diff>
-            <stallspeed-diff type="double">0</stallspeed-diff>
-            <overspeed-diff type="double">0</overspeed-diff>
-            <speed-trend-up type="double">0</speed-trend-up>
-            <speed-trend-down type="double">0</speed-trend-down>
-            <vref-diff type="double">0</vref-diff>
-            <vref-text-diff type="double">0</vref-text-diff>
-            <v1-diff type="double">0</v1-diff>
-            <vr-diff type="double">0</vr-diff>
-            <v2-diff type="double">0</v2-diff>
-            <flap-diff type="double">0</flap-diff>
-            <fl1-diff type="double">0</fl1-diff>
-            <fl5-diff type="double">0</fl5-diff>
-            <fl15-diff type="double">0</fl15-diff>
-        </pfd>
-        <weu>
-            <state>
-                <vref type="double">0</vref>
-                <stall-warning type="bool">false</stall-warning>
-                <flap-on type="bool">false</flap-on>
-                <fl1-on type="bool">false</fl1-on>
-                <fl5-on type="bool">false</fl5-on>
-                <fl15-on type="bool">false</fl15-on>
-            </state>
-        </weu>
     </instrumentation>
-    <orientation>
-        <track-deg type="double">0</track-deg>
-        <track-magnetic-deg type="double">0</track-magnetic-deg>
-    </orientation>
-    <systems>
-        <electrical>
-            <outputs>
-                <avionics type="bool">false</avionics>
-                <efis type="double">0</efis>
-            </outputs>
-            <CPT-FLT-INST type="double">0</CPT-FLT-INST>
-        </electrical>
-    </systems>
-    <velocities>
-        <groundspeed-kt type="double">0</groundspeed-kt>
-    </velocities>
+    <autopilot>
+        <settings>
+            <counter-set-altitude-ft type="int">10000</counter-set-altitude-ft>
+        </settings>
+    </autopilot>
 </PropertyList>
