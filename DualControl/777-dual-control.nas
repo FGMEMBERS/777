@@ -96,6 +96,8 @@ var l_heading = "autopilot/internal/crab-angle-hdg";
 var l_heading_bug = "autopilot/internal/heading-bug-error-deg";
 var l_track = "autopilot/internal/crab-angle-trk";
 
+var l_target_pitch = "autopilot/internal/target-pitch-deg";
+var l_target_roll = "autopilot/internal/target-roll-deg";
 var l_autopilot_transition = "autopilot/internal/autopilot-transition";
 var l_pitch_transition = "autopilot/internal/pitch-transition";
 var l_roll_transition = "autopilot/internal/roll-transition";
@@ -111,6 +113,13 @@ var l_minimums = "instrumentation/efis/minimums";
 var l_at_armed = ["instrumentation/afds/inputs/at-armed[0]",
      "instrumentation/afds/inputs/at-armed[1]"];
 var l_FD = "instrumentation/afds/inputs/FD";
+var l_vertical_speed = "autopilot/settings/vertical-speed-fpm";
+var l_flight_path = "autopilot/settings/flight-path-angle";
+var l_vs_fpa = "instrumentation/afds/inputs/vs-fpa-selected";
+var l_vs_disp = "instrumentation/afds/settings/vs-display";
+var l_fpa_disp = "instrumentation/afds/settings/fpa-display";
+
+var l_intencity = "controls/lighting/panel-flood-intencity";
 
 var pilot_connect_copilot = func (copilot) {
 
@@ -193,6 +202,8 @@ var pilot_connect_copilot = func (copilot) {
             ),
             DCT.TDMEncoder.new
             ([
+                props.globals.getNode(l_target_pitch),
+                props.globals.getNode(l_target_roll),
                 props.globals.getNode(l_autopilot_transition),
                 props.globals.getNode(l_pitch_transition),
                 props.globals.getNode(l_roll_transition),
@@ -208,6 +219,13 @@ var pilot_connect_copilot = func (copilot) {
                 props.globals.getNode(l_at_armed[0]),
                 props.globals.getNode(l_at_armed[1]),
                 props.globals.getNode(l_FD),
+                props.globals.getNode(l_vertical_speed),
+                props.globals.getNode(l_flight_path),
+                props.globals.getNode(l_vs_fpa),
+                props.globals.getNode(l_vs_disp),
+                props.globals.getNode(l_fpa_disp),
+
+                props.globals.getNode(l_intencity),
             ],
             props.globals.getNode(pilot_TDM2_mpp),
             ),
@@ -415,6 +433,12 @@ var copilot_connect_pilot = func (pilot) {
             (pilot.getNode(pilot_TDM2_mpp),
             [
             func (v) {
+                pilot.getNode(l_target_pitch, 1).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_target_roll, 1).setValue(v);
+            },
+            func (v) {
                 pilot.getNode(l_autopilot_transition, 1).setValue(v);
             },
             func (v) {
@@ -426,6 +450,7 @@ var copilot_connect_pilot = func (pilot) {
             func (v) {
                 pilot.getNode(l_speed_transition, 1).setValue(v);
             },
+
             func (v) {
                 pilot.getNode(l_ind_vs, 1).setValue(v);
             },
@@ -435,6 +460,7 @@ var copilot_connect_pilot = func (pilot) {
             func (v) {
                 pilot.getNode(l_hdg_trk_selected, 1).setValue(v);
             },
+
             func (v) {
                 pilot.getNode(l_egt[0], 1).setValue(v);
             },
@@ -452,6 +478,25 @@ var copilot_connect_pilot = func (pilot) {
             },
             func (v) {
                 pilot.getNode(l_FD, 1).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_vertical_speed, 1).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_flight_path, 1).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_vs_fpa, 1).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_vs_disp, 1).setValue(v);
+            },
+            func (v) {
+                pilot.getNode(l_fpa_disp, 1).setValue(v);
+            },
+
+            func (v) {
+                pilot.getNode(l_intencity, 1).setValue(v);
             },
             ]),
         ];

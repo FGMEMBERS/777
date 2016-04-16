@@ -43,6 +43,7 @@ Max Landing weight: 492,000 lbs
       <control-setting axis="/controls/engines/engine[0]/throttle-act" value="0.95"/>
       <control-setting axis="/controls/engines/engine[1]/throttle-act" value="0.95"/>
       <control-setting axis="/controls/flight/flaps" value="0.0"/>
+      <control-setting axis="/controls/flight/elevator-trim" value="0"/>
       <control-setting axis="/controls/gear/gear-down" value="0"/>
       <solve-weight idx="0" weight="360"/>
       <solve-weight idx="1" weight="42072"/>

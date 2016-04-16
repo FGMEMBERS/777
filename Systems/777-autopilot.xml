@@ -1104,7 +1104,9 @@
         <name>Stabilizer Control</name>
         <debug>false</debug>
         <enable>
-            <property>instrumentation/afds/inputs/AP</property>
+            <condition>
+                <not><property>gear/gear[0]/wow</property></not>
+            </condition>
         </enable>
         <input>
             <property>controls/flight/elevator</property>

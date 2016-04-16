@@ -145,35 +145,4 @@
             <path>Aircraft/777/Systems/instrumentation.xml</path>
         </instrumentation>
     </sim>
-    <controls>
-        <engines>
-            <engine n="0">
-                <throttle-lever type="double">0</throttle-lever>
-            </engine>
-            <engine n="1">
-                <throttle-lever type="double">0</throttle-lever>
-            </engine>
-        </engines>
-        <flight>
-            <speedbrake-lever type="int">0</speedbrake-lever>
-        </flight>
-    </controls>
-    <instrumentation>
-        <afds>
-            <inputs>
-                <ias-mach-selected type="bool">false</ias-mach-selected>
-            </inputs>
-            <settings>
-                <manual-intervention type="bool">false</manual-intervention>
-            </settings>
-        </afds>
-        <altimeter>
-            <source-barometric type="string">L</source-barometric>
-        </altimeter>
-    </instrumentation>
-    <autopilot>
-        <settings>
-            <counter-set-altitude-ft type="int">10000</counter-set-altitude-ft>
-        </settings>
-    </autopilot>
 </PropertyList>
