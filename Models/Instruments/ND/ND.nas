@@ -1,5 +1,6 @@
 ##
 # storage container for all ND instances
+var my_root = "";
 var placement_left = "ND.screenL";
 var placement_right = "ND.screenR";
 var nd_display = {};
@@ -45,7 +46,7 @@ var nd_display = {};
 ###
 # entry point, this will set up all ND instances
 
-var _list = setlistener("sim/signals/fdm-initialized", func() {
+var _list = func() {
 
 
     # get a handle to the NavDisplay in canvas namespace (for now), see $FG_ROOT/Nasal/canvas/map/navdisplay.mfd
@@ -59,7 +60,7 @@ var _list = setlistener("sim/signals/fdm-initialized", func() {
     ##
     # set up a  new ND instance, under 'instrumentation/efis' and use the
     # myCockpit_switches hash to map control properties
-    var NDCpt = ND.new("instrumentation/efis", myCockpit_switches);
+    var NDCpt = ND.new(my_root~"/instrumentation/efis", myCockpit_switches);
 
     nd_display.cpt = canvas.new({
         "name": "ND",
@@ -73,7 +74,7 @@ var _list = setlistener("sim/signals/fdm-initialized", func() {
     NDCpt.newMFD(group, nd_display.cpt);
     NDCpt.update();
 
-    var NDFo = ND.new("instrumentation/efis[1]", myCockpit_switches);
+    var NDFo = ND.new(my_root~"/instrumentation/efis[1]", myCockpit_switches);
 
     nd_display.fo = canvas.new({
         "name": "ND",
@@ -87,12 +88,16 @@ var _list = setlistener("sim/signals/fdm-initialized", func() {
     NDFo.newMFD(group, nd_display.fo);
     NDFo.update();
 
-    removelistener(_list); # run ONCE
+};
+
+var _startup = setlistener("/sim/signals/fdm-initialized", func() {
+    _list();
+    removelistener(_startup); # run ONCE
 }); # fdm-initialized listener callback
 
 
 var showNd = func(pilot='cpt') {
-    if(getprop("sim/instrument-options/canvas-popup-enable"))
+    if(getprop(my_root~"/sim/instrument-options/canvas-popup-enable"))
     {
         # The optional second arguments enables creating a window decoration
         var dlg = canvas.Window.new([400, 400], "dialog");
@@ -100,4 +105,9 @@ var showNd = func(pilot='cpt') {
     }
 }
 
+var copilot = func(v){
+    my_root = v.getPath();
+    _list();
+    print("start copilot ND ", my_root);
+}
 

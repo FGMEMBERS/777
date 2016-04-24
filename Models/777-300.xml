@@ -9,7 +9,28 @@ Syd Adams
 
     <nasal>
     <load>
-        var livery_update = aircraft.livery_update.new("Aircraft/777/Models/Liveries-300", 10);
+        <![CDATA[
+            var self = cmdarg();
+            #print("LOAD 777 ", self.getPath());
+
+            # Load the needed modules if it hasn't been done yet.
+            if (!contains(globals, "cdu")) {
+                var fn_cdu = resolvepath("Models/Instruments/CDU") ~ "/boeing.nas";
+                # print("Loading 777 CDU nasal from ",fn_cdu);
+                io.load_nasal(fn_cdu, "cdu");
+            }
+            if (!contains(globals, "b777")) {
+                var fn_ND = resolvepath("Models/Instruments/ND") ~ "/ND.nas";
+                if (io.stat(fn_ND) == nil)
+                    fn_ND = resolvepath("Aircraft/777/Models/Instruments/ND") ~ "/ND.nas";
+                if (io.stat(fn_ND) == nil)
+                    fn_ND = getprop("/sim/fg-root") ~ "/Aircraft/777/Models/Instruments/ND/ND.nas";
+                # print("Loading 777 ND nasal from ",fn_ND);
+                io.load_nasal(fn_ND, "b777");
+            }
+
+            var livery_update = aircraft.livery_update.new("Aircraft/777/Models/Liveries-300", 10);
+        ]]>
     </load>
 
     <unload>
@@ -2242,7 +2263,7 @@ Outboard Aileron Lockout Schedule
 
 <model>
  <name>Firetruck1</name>
- <path>Vehicle/hoskosh-ti-1500.ac</path>
+ <path>Models/Airport/Vehicle/hoskosh-ti-1500.ac</path>
  <offsets>
   <x-m>60.0</x-m>
   <y-m>10.0</y-m>
@@ -2252,7 +2273,7 @@ Outboard Aileron Lockout Schedule
 
 <model>
  <name>Firetruck2</name>
- <path>Vehicle/hoskosh-ti-1500.ac</path>
+ <path>Models/Airport/Vehicle/hoskosh-ti-1500.ac</path>
  <offsets>
   <x-m>80.0</x-m>
   <y-m>-8.0</y-m>

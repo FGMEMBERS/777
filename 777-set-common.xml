@@ -533,12 +533,32 @@ Service Ceiling: 43,100ft
                 <float n="8" alias="/surface-positions/reverser-norm"/>
                 <float n="9" alias="/surface-positions/stabilizer-pos-norm"/>
                 <float n="10" alias="/surface-positions/slats"/>
+                <float n="11" alias="/controls/flight/aileron"/>
+                <float n="12" alias="/controls/flight/elevator"/>
+                <float n="13" alias="/controls/flight/rudder"/>
+                <float n="14" alias="/instrumentation/altimeter/indicated-altitude-ft"/>
+                <float n="15" alias="/instrumentation/airspeed-indicator/indicator-speed-kt"/>
+                <float n="16" alias="/instrumentation/afds/inputs/reference-deg"/>
+                <float n="17" alias="/instrumentation/altimeter/indicator-altitude-ft"/>
                 <string  alias="/sim/multiplay/callsign"/>
                 <!--string n="0" type="string"></string--> <!-- MP events -->
                 <string n="1" type="string"></string> <!-- MP TDM1 -->
                 <string n="2" type="string"></string> <!-- MP TDM2 -->
                 <string n="3" type="string"></string> <!-- MP TDM3 -->
                 <string n="4" type="string"></string> <!-- MP TDM4 -->
+                <string n="5" alias="/instrumentation/afds/ap-modes/roll-mode"/>
+                <string n="6" alias="/instrumentation/afds/ap-modes/roll-mode-arm"/>
+                <string n="7" alias="/instrumentation/afds/ap-modes/pitch-mode"/>
+                <string n="8" alias="/instrumentation/afds/ap-modes/pitch-mode-arm"/>
+                <string n="9" alias="/instrumentation/afds/ap-modes/speed-mode"/>
+                <string n="10" alias="/instrumentation/afds/ap-modes/mode-annunciator"/>
+                <string n="11" alias="/instrumentation/altimeter/source-barometric"/>
+                <string n="12" alias="/instrumentation/efis/minimums-mode-text"/>
+                <string n="13" alias="/instrumentation/efis[0]/mfd/display-mode"/>
+                <string n="14" alias="/instrumentation/efis[1]/mfd/display-mode"/>
+                <string n="15" alias="/instrumentation/efis[0]/mfd/display-type"/>
+                <string n="16" alias="/instrumentation/efis[1]/mfd/display-type"/>
+                <string n="17" alias="/instrumentation/cdu/display"/>
             </generic>
         </multiplay>
 
@@ -1079,7 +1099,7 @@ Service Ceiling: 43,100ft
         </encoder>
         <cdu n="0">
             <serviceable type="bool">true</serviceable>
-            <display>IDENT</display>
+            <display type="string">IDENT</display>
             <input type="string"/>
         </cdu>
         <fmc>
