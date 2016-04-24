@@ -62,10 +62,10 @@ var AFDS = {
         m.AP_pitch_engaged = props.globals.initNode("autopilot/locks/pitch-engaged",1,"BOOL");
         m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
         m.AP_internal = props.globals.getNode("autopilot/internal",1);
-        m.AP_internal.initNode("autopilot-transition",0,"INT");
-        m.AP_internal.initNode("pitch-transition",0,"INT");
-        m.AP_internal.initNode("roll-transition",0,"INT");
-        m.AP_internal.initNode("speed-transition",0,"INT");
+        m.AP_internal.initNode("autopilot-transition",0,"BOOL");
+        m.AP_internal.initNode("pitch-transition",0,"BOOL");
+        m.AP_internal.initNode("roll-transition",0,"BOOL");
+        m.AP_internal.initNode("speed-transition",0,"BOOL");
         m.AP_internal.initNode("presision-loc",0,"INT");
         m.AP_internal.initNode("heading-bug-error-deg",0,"INT");
 
@@ -397,8 +397,8 @@ var AFDS = {
                         {
                             me.lateral_mode.setValue(0);        # Clear
                             me.vertical_mode.setValue(0);       # Clear
-                            setprop("autopilot/settings/roll-transition", 0);
-                            setprop("autopilot/settings/pitch-transition", 0);
+                            setprop("autopilot/internal/roll-transition", 0);
+                            setprop("autopilot/internal/pitch-transition", 0);
                         }
                     }
                 }
@@ -414,8 +414,8 @@ var AFDS = {
                         {
                             me.lateral_mode.setValue(0);        # NO MODE
                             me.vertical_mode.setValue(0);       # NO MODE
-                            setprop("autopilot/settings/roll-transition", 0);
-                            setprop("autopilot/settings/pitch-transition", 0);
+                            setprop("autopilot/internal/roll-transition", 0);
+                            setprop("autopilot/internal/pitch-transition", 0);
                         }
                         else
                         {
@@ -580,8 +580,8 @@ var AFDS = {
             {
                 me.lateral_mode.setValue(0);        # NO MODE
                 me.vertical_mode.setValue(0);       # NO MODE
-                setprop("autopilot/settings/roll-transition", 0);
-                setprop("autopilot/settings/pitch-transition", 0);
+                setprop("autopilot/internal/roll-transition", 0);
+                setprop("autopilot/internal/pitch-transition", 0);
             }
             else
             {
@@ -719,10 +719,10 @@ var AFDS = {
         if((me.AP_speed_mode.getValue() != me.spd_list[idx])
                 and (idx > 0))
         {
-            setprop("autopilot/settings/speed-transition", 1);
+            setprop("autopilot/internal/speed-transition", 1);
             settimer(func
             {
-                setprop("autopilot/settings/speed-transition", 0);
+                setprop("autopilot/internal/speed-transition", 0);
             }, 10);
         }
         me.AP_speed_mode.setValue(me.spd_list[idx]);
@@ -815,14 +815,14 @@ var AFDS = {
         }
         if(msg == " ")
         {
-            setprop("autopilot/settings/autopilot-transition", 0);
+            setprop("autopilot/internal/autopilot-transition", 0);
         }
         elsif(me.AP_annun.getValue() != msg)
         {
-            setprop("autopilot/settings/autopilot-transition", 1);
+            setprop("autopilot/internal/autopilot-transition", 1);
             settimer(func
             {
-                setprop("autopilot/settings/autopilot-transition", 0);
+                setprop("autopilot/internal/autopilot-transition", 0);
             }, 10);
         }
         me.AP_annun.setValue(msg);
@@ -1088,10 +1088,10 @@ var AFDS = {
             if((me.AP_roll_mode.getValue() != me.roll_list[idx])
                     and (idx > 0))
             {
-                setprop("autopilot/settings/roll-transition", 1);
+                setprop("autopilot/internal/roll-transition", 1);
                 settimer(func
                 {
-                    setprop("autopilot/settings/roll-transition", 0);
+                    setprop("autopilot/internal/roll-transition", 0);
                 }, 10);
             }
             me.AP_roll_mode.setValue(me.roll_list[idx]);
@@ -1563,10 +1563,10 @@ var AFDS = {
             if((me.AP_pitch_mode.getValue() != me.pitch_list[idx])
                     and (idx > 0))
             {
-                setprop("autopilot/settings/pitch-transition", 1);
+                setprop("autopilot/internal/pitch-transition", 1);
                 settimer(func
                 {
-                    setprop("autopilot/settings/pitch-transition", 0);
+                    setprop("autopilot/internal/pitch-transition", 0);
                 }, 10);
             }
             me.AP_pitch_mode.setValue(me.pitch_list[idx]);
@@ -1642,13 +1642,13 @@ var AFDS = {
             if((me.at1.getValue() == 0) or (me.at2.getValue() == 0))
             {
                 me.autothrottle_mode.setValue(0);
-                setprop("autopilot/settings/speed-transition", 0);
+                setprop("autopilot/internal/speed-transition", 0);
             }
             # auto-throttle disengaged when reverser is enabled
             elsif (getprop("controls/engines/engine/reverser-act"))
             {
                 me.autothrottle_mode.setValue(0);
-                setprop("autopilot/settings/speed-transition", 0);
+                setprop("autopilot/internal/speed-transition", 0);
             }
             elsif(me.autothrottle_mode.getValue() == 2)     # THR REF
             {
@@ -1737,10 +1737,10 @@ var AFDS = {
             if((me.AP_speed_mode.getValue() != me.spd_list[idx])
                     and (idx > 0))
             {
-                setprop("autopilot/settings/speed-transition", 1);
+                setprop("autopilot/internal/speed-transition", 1);
                 settimer(func
                 {
-                    setprop("autopilot/settings/speed-transition", 0);
+                    setprop("autopilot/internal/speed-transition", 0);
                 }, 10);
             }
             me.AP_speed_mode.setValue(me.spd_list[idx]);

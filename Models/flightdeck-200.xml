@@ -3,6 +3,19 @@
 
 <PropertyList>
 
+<controls>
+    <flight>
+        <aileron>
+            <property>sim/multiplay/generic/float[11]</property>
+        </aileron>
+        <elevator>
+            <property>sim/multiplay/generic/float[12]</property>
+        </elevator>
+        <rudder>
+            <property>sim/multiplay/generic/float[13]</property>
+        </rudder>
+    </flight>
+</controls>
     <path>flightdeck.ac</path>
 
     <offsets>
@@ -301,7 +314,7 @@
     <animation>
         <type>translate</type>
         <object-name>RHpedal</object-name>
-        <property>controls/flight/rudder</property>
+        <property alias="/controls/flight/rudder/property"/>
         <factor>0.05</factor>
         <axis>
             <x>-1</x>
@@ -313,7 +326,7 @@
     <animation>
         <type>translate</type>
         <object-name>LHpedal</object-name>
-        <property>controls/flight/rudder</property>
+        <property alias="/controls/flight/rudder/property"/>
         <factor>-0.05</factor>
         <axis>
             <x>-1</x>
@@ -358,7 +371,7 @@
         <object-name>Yoke_R_TrimL.Switch</object-name>
         <object-name>Yoke_R_TrimR.Switch</object-name>
 
-        <property>controls/flight/elevator</property>
+        <property alias="/controls/flight/elevator/property"/>
         <factor>15</factor>
         <center>
             <x-m>-1.596</x-m>
@@ -381,7 +394,7 @@
         <object-name>Yoke_R_TrimL.Switch</object-name>
         <object-name>Yoke_R_TrimR.Switch</object-name>
 
-        <property>controls/flight/aileron</property>
+        <property alias="/controls/flight/aileron/property"/>
         <factor>30</factor>
         <center>
             <x-m>-1.5955</x-m>
@@ -404,7 +417,7 @@
         <object-name>Yoke_L_TrimL.Switch</object-name>
         <object-name>Yoke_L_TrimR.Switch</object-name>
 
-        <property>controls/flight/aileron</property>
+        <property alias="/controls/flight/aileron/property"/>
         <factor>30</factor>
         <center>
             <x-m>-1.5955</x-m>
