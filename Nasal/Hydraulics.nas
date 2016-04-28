@@ -25,9 +25,9 @@ var HYDR = {
         m.center = m.hydr.initNode("system-center", 0, "BOOL");
         m.right = m.hydr.initNode("system-right", 0, "BOOL");
         m.leng_running = props.globals.getNode("engines/engine/run", 1);
-        m.leng_primary_switch = props.globals.initNode("controls/hydraulics/system/LENG_switch", 1, "BOOL");
+        m.leng_primary_switch = props.globals.initNode("controls/hydraulics/system/LENG_switch", 0, "BOOL");
         m.reng_running = props.globals.getNode("engines/engine[1]/run", 1);
-        m.reng_primary_switch = props.globals.initNode("controls/hydraulics/system[2]/RENG_switch", 1, "BOOL");
+        m.reng_primary_switch = props.globals.initNode("controls/hydraulics/system[2]/RENG_switch", 0, "BOOL");
         m.c1elec_switch = props.globals.initNode("controls/hydraulics/system[1]/C1ELEC-switch", 0, "BOOL");
         m.c2elec_switch = props.globals.initNode("controls/hydraulics/system[1]/C2ELEC-switch", 0, "BOOL");
         m.lacmp_switch = props.globals.initNode("controls/hydraulics/system/LACMP-switch", 0, "INT");
@@ -178,7 +178,7 @@ var HYDR = {
         var leftaileronpos = props.globals.initNode("surface-positions/left-aileron-pos-norm");
         var rightaileronpos = props.globals.initNode("surface-positions/right-aileron-pos-norm");
         var rudderpos = props.globals.initNode("surface-positions/rudder-pos-norm");
-        var speedbkpos = props.globals.initNode("surface-positions/speedbrake-norm");
+        var speedbkpos = props.globals.initNode("surface-positions/speedbrake-pos-norm");
         elevatorpos.setAttribute("writable",0);
         stabilizerpos.setAttribute("writable",0);
         leftaileronpos.setAttribute("writable",0);
@@ -261,8 +261,6 @@ var update_hyderaulics = func {
 
 #####################################
     setlistener("sim/signals/fdm-initialized", func {
-    Hydr.leng_primary_switch.setValue(1);
-    Hydr.reng_primary_switch.setValue(1);
     settimer(update_hyderaulics,5);
 });
 

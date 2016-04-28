@@ -12,10 +12,6 @@
 
         <model n="0">
             <path>Aircraft/777/Models/777-300ER.xml</path>
-            <livery>
-                <file type="string">JAL</file>
-                <texture>Liveries-300/paint1.png</texture>
-            </livery>
             <door>
                 <position-x-m type="float">-23.85</position-x-m>
                 <position-y-m type="float"> -2.95</position-y-m>

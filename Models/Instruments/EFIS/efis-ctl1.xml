@@ -7,41 +7,33 @@ Syd Adams
 
  <path>efis-ctl.ac</path>
 
-	<effect>
-		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>EFIS_Lettering</object-name>
-		<object-name>EFIS_Lettering_Btns</object-name>
-	</effect>
- <animation>
-	<object-name>EFIS_Lettering</object-name>
-	<object-name>EFIS_Lettering_Btns</object-name>
- 	<type>range</type>
-	<min-m>0</min-m>
-	<max-m>5</max-m>
-	<max-property>sim/rendering/static-lod/detailed</max-property>
- </animation>
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>EFIS_Lettering</object-name>
+        <object-name>EFIS_Lettering_Btns</object-name>
+    </effect>
 
- 	<animation>
-		<type>material</type>
-		<object-name>EFIS_Lettering</object-name>
-		<object-name>EFIS_Lettering_Btns</object-name>
-		<condition>
-			<greater-than>   
-				<property>/sim/time/sun-angle-rad</property>
-				<value>1.70</value>
-			</greater-than>
-			 <greater-than>
-				<property>systems/electrical/CPT-FLT-INST</property>
-				<value>24.0</value>
-			 </greater-than>
-		</condition>
-		<emission>
-			<red>0.2</red>
-			<green>0.8</green>
-			<blue>0.2</blue>
-			<factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
-		</emission>
-	</animation>
+    <animation>
+        <type>material</type>
+        <object-name>EFIS_Lettering</object-name>
+        <object-name>EFIS_Lettering_Btns</object-name>
+        <condition>
+            <greater-than>
+                <property>/sim/time/sun-angle-rad</property>
+                <value>1.70</value>
+            </greater-than>
+             <greater-than>
+                <property>systems/electrical/CPT-FLT-INST</property>
+                <value>24.0</value>
+             </greater-than>
+        </condition>
+        <emission>
+            <red>0.2</red>
+            <green>0.8</green>
+            <blue>0.2</blue>
+            <factor-prop>controls/lighting/panel-flood-intencity</factor-prop>
+        </emission>
+    </animation>
 
     <animation>
         <type>rotate</type>
@@ -158,7 +150,7 @@ Syd Adams
         </axis>
     </animation>
 
-<!-- 
+<!--
 #############   hotspots   ############## -->
 
     <animation>
@@ -512,9 +504,9 @@ Syd Adams
             <button>0</button> <!--  left button -->
             <repeatable>true</repeatable>
             <binding>
-				<condition>
-					<not><property>instrumentation/inputs/setting-std</property></not>
-				</condition>
+                <condition>
+                    <not><property>instrumentation/efis/inputs/setting-std</property></not>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>0.01</step>
@@ -537,9 +529,9 @@ Syd Adams
             <button>1</button> <!--  center button -->
             <repeatable>true</repeatable>
             <binding>
-				<condition>
-					<not><property>instrumentation/inputs/setting-std</property></not>
-				</condition>
+                <condition>
+                    <not><property>instrumentation/efis/inputs/setting-std</property></not>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>-0.01</step>
@@ -563,9 +555,9 @@ Syd Adams
             <button>3</button> <!--  scroll up -->
             <repeatable>false</repeatable>
             <binding>
-				<condition>
-					<not><property>instrumentation/inputs/setting-std</property></not>
-				</condition>
+                <condition>
+                    <not><property>instrumentation/efis/inputs/setting-std</property></not>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>0.01</step>
@@ -589,9 +581,9 @@ Syd Adams
             <button>4</button> <!--  scroll down -->
             <repeatable>false</repeatable>
             <binding>
-				<condition>
-					<not><property>instrumentation/inputs/setting-std</property></not>
-				</condition>
+                <condition>
+                    <not><property>instrumentation/efis/inputs/setting-std</property></not>
+                </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>-0.01</step>
@@ -606,7 +598,7 @@ Syd Adams
         </action>
     </animation>
 
-	<animation>
+    <animation>
         <type>pick</type>
         <object-name>inhg.reset</object-name>
         <visible>true</visible>
@@ -615,28 +607,28 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>instrumentation/inputs/setting-std</property>
+                <property>instrumentation/efis/inputs/setting-std</property>
             </binding>
-			<binding>
-				<condition>
-					<property>instrumentation/inputs/setting-std</property>
-				</condition>
+            <binding>
+                <condition>
+                    <property>instrumentation/efis/inputs/setting-std</property>
+                </condition>
                 <command>property-assign</command>
                 <property>instrumentation/efis/inhg-previous</property>
                 <property>instrumentation/altimeter/setting-inhg</property>
             </binding>
-			<binding>
-				<condition>
-					<property>instrumentation/inputs/setting-std</property>
-				</condition>
+            <binding>
+                <condition>
+                    <property>instrumentation/efis/inputs/setting-std</property>
+                </condition>
                 <command>property-assign</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<value>29.92</value>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <value>29.92</value>
             </binding>
-			<binding>
-				<condition>
-					<not><property>instrumentation/inputs/setting-std</property></not>
-				</condition>
+            <binding>
+                <condition>
+                    <not><property>instrumentation/efis/inputs/setting-std</property></not>
+                </condition>
                 <command>property-assign</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <property>instrumentation/efis/inhg-previous</property>
@@ -648,7 +640,7 @@ Syd Adams
         </action>
     </animation>
 
-	<animation>
+    <animation>
         <type>pick</type>
         <object-name>Mins.inc</object-name>
         <object-name>Mins.dec</object-name>
@@ -663,7 +655,7 @@ Syd Adams
         </action>
     </animation>
 
-	<animation>
+    <animation>
         <type>pick</type>
         <object-name>Mins.inc</object-name>
         <object-name>Mins.dec</object-name>
@@ -705,7 +697,7 @@ Syd Adams
             </binding>
         </action>
     </animation>
-    
+
     <animation>
         <type>pick</type>
         <object-name>minset.dec</object-name>
@@ -781,7 +773,7 @@ Syd Adams
             </binding>
         </action>
     </animation>
-    
+
     <animation>
         <type>pick</type>
         <object-name>Mode.inc</object-name>

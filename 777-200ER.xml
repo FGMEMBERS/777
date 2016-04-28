@@ -66,6 +66,7 @@ WEIGHT/lbs  Vref
       <control-setting axis="/controls/engines/engine[0]/throttle-act" value="0.95"/>
       <control-setting axis="/controls/engines/engine[1]/throttle-act" value="0.95"/>
       <control-setting axis="/controls/flight/flaps" value="0.0"/>
+      <control-setting axis="/controls/flight/elevator-trim" value="0"/>
       <control-setting axis="/controls/gear/gear-down" value="0"/>
       <solve-weight idx="0" weight="360"/>
       <solve-weight idx="1" weight="42072"/>
@@ -98,7 +99,7 @@ WEIGHT/lbs  Vref
       <control-output control="SLAT" prop="/surface-positions/slats"/>
       <control-speed control="FLAP0" transition-time="78"/>
       <control-input axis="/controls/flight/speedbrake" control="SPOILER"/>
-      <control-output control="SPOILER" prop="/surface-positions/speedbrake-norm"/>
+      <control-output control="SPOILER" prop="/surface-positions/speedbrake-pos-norm"/>
       <control-speed control="SPOILER" transition-time="2"/>
       <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
       <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>

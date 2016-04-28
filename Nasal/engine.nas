@@ -191,7 +191,7 @@ var Engine = {
             }
         }
 
-        if(vmodel == "-200LR")
+        if(aux_tanks)
         {
             setprop("consumables/fuel/tank[3]/selected",
                 !getprop("consumables/fuel/tank[3]/empty")
