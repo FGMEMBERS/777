@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <filter>
+        <name>gear agl</name>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>position/altitude-agl-ft</input>
+        <output>position/gear-agl-ft</output>
+    </filter>
+
+    <filter>
+        <name>gear 0 compression</name>
+        <type>gain</type>
+        <gain>3.280839895</gain>
+        <input>gear/gear[0]/compression-ft</input>
+        <output>gear/gear[0]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 1 compression</name>
+        <type>gain</type>
+        <gain>3.280839895</gain>
+        <input>gear/gear[1]/compression-ft</input>
+        <output>gear/gear[1]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 2 compression</name>
+        <type>gain</type>
+        <gain>3.280839895</gain>
+        <input>gear/gear[2]/compression-ft</input>
+        <output>gear/gear[2]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>total mass lbs</name>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>fdm/jsbsim/inertia/weight-lbs</input>
+        <output>yasim/gross-weight-lbs</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>engines/engine[0]/n1</input>
+        <output>engines/engine[0]/rpm</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>engines/engine[1]/n1</input>
+        <output>engines/engine[1]/rpm</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>engines/engine[0]/n2</input>
+        <output>engines/engine[0]/n2rpm</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>engines/engine[1]/n2</input>
+        <output>engines/engine[1]/n2rpm</output>
+    </filter>
+
+</PropertyList>
