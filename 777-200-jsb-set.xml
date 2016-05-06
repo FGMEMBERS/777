@@ -13,13 +13,21 @@
 
     </sim>
 
- <engines>
-  <engine n="0">
-   <running type="bool">true</running>
-  </engine>
-  <engine n="1">
-   <running type="bool">true</running>
-  </engine>
- </engines>
+  <engines>
+    <engine n="0">
+      <running type="bool">true</running>
+    </engine>
+    <engine n="1">
+      <running type="bool">true</running>
+    </engine>
+  </engines>
+
+  <fdm>
+    <jsbsim>
+      <fcs>
+        <stab type="double">0</stab>
+      </fcs>
+    </jsbsim>
+  </fdm>
 
 </PropertyList>
