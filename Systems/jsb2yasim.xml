@@ -13,7 +13,7 @@
     <filter>
         <name>gear 0 compression</name>
         <type>gain</type>
-        <gain>3.280839895</gain>
+        <gain>0.30480371</gain>
         <input>gear/gear[0]/compression-ft</input>
         <output>gear/gear[0]/compression-m</output>
     </filter>
@@ -21,7 +21,7 @@
     <filter>
         <name>gear 1 compression</name>
         <type>gain</type>
-        <gain>3.280839895</gain>
+        <gain>0.30480371</gain>
         <input>gear/gear[1]/compression-ft</input>
         <output>gear/gear[1]/compression-m</output>
     </filter>
@@ -29,9 +29,25 @@
     <filter>
         <name>gear 2 compression</name>
         <type>gain</type>
-        <gain>3.280839895</gain>
+        <gain>0.30480371</gain>
         <input>gear/gear[2]/compression-ft</input>
         <output>gear/gear[2]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 3 compression</name>
+        <type>gain</type>
+        <gain>1.45</gain>
+        <input>gear/gear[1]/compression-ft</input>
+        <output>gear/gear[3]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 4 compression</name>
+        <type>gain</type>
+        <gain>1.45</gain>
+        <input>gear/gear[2]/compression-ft</input>
+        <output>gear/gear[4]/compression-m</output>
     </filter>
 
     <filter>
@@ -68,6 +84,34 @@
         <gain>1.0</gain>
         <input>engines/engine[1]/n2</input>
         <output>engines/engine[1]/n2rpm</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>fdm/jsbsim/propulsion/engine[0]/fuel-flow-rate-pps</input>
+        <output>engines/engine[0]/fuel-flow_pph</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>fdm/jsbsim/propulsion/engine[1]/fuel-flow-rate-pps</input>
+        <output>engines/engine[1]/fuel-flow_pph</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>engines/engine[0]/running</input>
+        <output>engines/engine[0]/run</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>engines/engine[1]/running</input>
+        <output>engines/engine[1]/run</output>
     </filter>
 
 </PropertyList>

@@ -3,7 +3,7 @@
     <sim n="0">
         <description>Boeing 777-200 JSBSim</description>
         <flight-model>jsb</flight-model>
-        <aero>777-200JSB</aero>
+        <aero>777-200jsb</aero>
 
         <systems>
           <autopilot>
@@ -15,10 +15,10 @@
 
   <engines>
     <engine n="0">
-      <running type="bool">true</running>
+      <running type="bool">false</running>
     </engine>
     <engine n="1">
-      <running type="bool">true</running>
+      <running type="bool">false</running>
     </engine>
   </engines>
 

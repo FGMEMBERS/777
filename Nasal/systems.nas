@@ -643,16 +643,24 @@ var Startup = func{
     setprop("controls/lighting/landing-light[0]",1);
     setprop("controls/lighting/landing-light[1]",1);
     setprop("controls/lighting/landing-light[2]",1);
-    setprop("controls/engines/engine[0]/cutoff",0);
-    setprop("controls/engines/engine[1]/cutoff",0);
     setprop("engines/engine[0]/out-of-fuel",0);
     setprop("engines/engine[1]/out-of-fuel",0);
     setprop("controls/flight/elevator-trim",0);
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
-    setprop("engines/engine[0]/run",1);
-    setprop("engines/engine[1]/run",1);
+    if(getprop("sim/flight-model") == "yasim")
+    {
+        setprop("controls/engines/engine[0]/cutoff",0);
+        setprop("controls/engines/engine[1]/cutoff",0);
+        setprop("engines/engine[0]/run",1);
+        setprop("engines/engine[1]/run",1);
+    }
+    else
+    {
+        setprop("controls/engines/engine[0]/cutoff",1);
+        setprop("controls/engines/engine[1]/cutoff",1);
+    }
     setprop("controls/hydraulics/system/LENG_switch", 1);
     setprop("controls/hydraulics/system[2]/RENG_switch", 1);
     setprop("controls/hydraulics/system[1]/C1ELEC-switch", 1);
