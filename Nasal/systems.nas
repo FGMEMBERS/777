@@ -1171,11 +1171,6 @@ var update_systems = func {
     LHeng.update();
     RHeng.update();
     #wiper.active(); # not implemented yet!
-    if(getprop("controls/gear/gear-down")){
-        setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
-        setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
-        setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
-    }
     setprop("instrumentation/efis/mfd/rangearc", (Efis.mfd_display_mode.getValue() == "MAP")
         and (Efis.wxr.getValue() or Efis.terr.getValue() or Efis.tfc.getValue()));
     setprop("instrumentation/efis[1]/mfd/rangearc", (Efis2.mfd_display_mode.getValue() == "MAP")
