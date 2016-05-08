@@ -4,13 +4,6 @@
         <description>Boeing 777-200 JSBSim</description>
         <flight-model>jsb</flight-model>
         <aero>777-200jsb</aero>
-
-        <systems>
-          <autopilot>
-            <path>Aircraft/777/Systems/jsb2yasim.xml</path>
-          </autopilot>
-        </systems>
-
     </sim>
 
   <engines>

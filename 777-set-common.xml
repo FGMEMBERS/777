@@ -604,6 +604,9 @@ Service Ceiling: 43,100ft
 
             <!--  fast running autopilot rules (running at FDM frequency / 120Hz) -->
             <autopilot>
+                <path>Aircraft/777/Systems/jsb2yasim.xml</path>
+            </autopilot>
+            <autopilot>
                 <path>Aircraft/777/Systems/777-autopilot.xml</path>
             </autopilot>
             <autopilot>
