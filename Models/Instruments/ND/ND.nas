@@ -45,7 +45,7 @@ var nd_display = {};
 ###
 # entry point, this will set up all ND instances
 
-var _list = setlistener("sim/signals/fdm-initialized", func() {
+var _list = setlistener("systems/electrical/outputs/efis", func() {
 
 
     # get a handle to the NavDisplay in canvas namespace (for now), see $FG_ROOT/Nasal/canvas/map/navdisplay.mfd
