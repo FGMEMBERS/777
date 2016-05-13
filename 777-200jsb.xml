@@ -979,9 +979,73 @@
       </function>
     </fcs_function>
 
+    <fcs_function name="aero/data/force-lift-stab">
+      <function>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sh-sqft</property>
+          <sum>
+            <property>aero/data/clstab</property>
+            <property>aero/data/clelev</property>
+          </sum>
+        </product>
+      </function>
+      <output>external_reactions/stabilizer-lift/magnitude</output>
+    </fcs_function>
+
+    <fcs_function name="aero/data/alpha-tail-rad">
+      <function>
+        <product>
+          <difference>
+            <property>aero/data/alh</property>
+            <property>fcs/stab</property>
+          </difference>
+          <value>0.017453293</value>
+        </product>
+      </function>
+    </fcs_function>
+
+    <fcs_function name="aero/data/force-lift-stab-x">
+      <function>
+        <sin>
+          <property>aero/data/alpha-tail-rad</property>
+        </sin>
+      </function>
+      <output>external_reactions/stabilizer-lift/x</output>
+    </fcs_function>
+
+    <fcs_function name="aero/data/force-lift-stab-z">
+      <function>
+        <product>
+          <cos>
+            <property>aero/data/alpha-tail-rad</property>
+          </cos>
+          <value>-1</value>
+        </product>
+      </function>
+      <output>external_reactions/stabilizer-lift/z</output>
+    </fcs_function>
+
   </channel>
 
  </flight_control>
+
+  <external_reactions>
+
+    <force name="stabilizer-lift" frame="BODY">
+      <location unit="IN">
+        <x> 2265.72 </x>
+        <y>    0    </y>
+        <z>   57.12 </z>
+      </location>
+      <direction>
+        <x>    0 </x>
+        <y>    0 </y>
+        <z>    0 </z>
+      </direction>
+    </force>
+
+  </external_reactions>
 
  <aerodynamics>
 
@@ -1075,16 +1139,6 @@
            <property>metrics/Sw-sqft</property>
            <property>fcs/speedbrake-pos-norm</property>
            <value>0</value>
-       </product>
-    </function>
-
-    <function name="aero/force/Lift_elevator">
-       <description>Lift due to Elevator Deflection</description>
-       <product>
-           <property>aero/qbar-psf</property>
-           <property>metrics/Sw-sqft</property>
-           <property>fcs/elevator-pos-rad</property>
-           <value>0.2</value>
        </product>
     </function>
 
@@ -1217,16 +1271,6 @@
        </product>
     </function>
 
-    <function name="aero/force/Drag_elevator">
-       <description>Drag due to Elevator Deflection</description>
-       <product>
-           <property>aero/qbar-psf</property>
-           <property>metrics/Sw-sqft</property>
-           <abs><property>fcs/elevator-pos-norm</property></abs>
-           <value>0.04</value>
-       </product>
-    </function>
-
   </axis>
 
   <axis name="SIDE">
@@ -1309,30 +1353,96 @@
     <function name="aero/moment/Pitch_alpha">
        <description>Pitch moment due to alpha</description>
        <product>
-           <property>aero/qbar-psf</property>
-           <property>metrics/Sw-sqft</property>
-           <property>metrics/cbarw-ft</property>
-           <property>aero/alpha-rad</property>
-           <value>-0.5</value>
-       </product>
-    </function>
-
-    <function name="aero/moment/Pitch_elevator">
-       <description>Pitch moment due to elevator</description>
-       <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/cbarw-ft</property>
-          <property>fcs/elevator-pos-rad</property>
           <table>
-            <independentVar lookup="row">velocities/mach</independentVar>
+            <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
             <tableData>
-              0.0     -1.100
-              2.0     -0.275
+                0 1 5 15  20  25  30
+              -0.0698 -0.089  -0.086  -0.205  -0.268  -0.354  -0.414  -0.501
+              -0.0524 -0.088  -0.083  -0.206  -0.274  -0.361  -0.421  -0.506
+              -0.0349 -0.087  -0.080  -0.209  -0.280  -0.366  -0.425  -0.511
+              -0.0175 -0.087  -0.079  -0.211  -0.285  -0.370  -0.428  -0.514
+              0.0000  -0.087  -0.080  -0.214  -0.290  -0.373  -0.430  -0.515
+              0.0175  -0.087  -0.080  -0.216  -0.292  -0.375  -0.430  -0.514
+              0.0349  -0.087  -0.081  -0.218  -0.293  -0.376  -0.429  -0.513
+              0.0524  -0.087  -0.081  -0.219  -0.294  -0.376  -0.427  -0.509
+              0.0698  -0.087  -0.081  -0.220  -0.294  -0.375  -0.425  -0.505
+              0.0873  -0.087  -0.081  -0.220  -0.294  -0.374  -0.423  -0.502
+              0.1047  -0.087  -0.081  -0.221  -0.294  -0.372  -0.421  -0.501
+              0.1222  -0.087  -0.080  -0.222  -0.293  -0.369  -0.420  -0.500
+              0.1396  -0.086  -0.080  -0.224  -0.293  -0.365  -0.418  -0.500
+              0.1571  -0.085  -0.079  -0.225  -0.292  -0.360  -0.416  -0.498
+              0.1745  -0.078  -0.077  -0.226  -0.291  -0.355  -0.414  -0.498
+              0.1920  -0.049  -0.076  -0.226  -0.287  -0.351  -0.412  -0.500
+              0.2094  0.011 -0.076  -0.227  -0.288  -0.349  -0.412  -0.504
+              0.2269  0.045 -0.075  -0.230  -0.293  -0.351  -0.413  -0.509
+              0.2443  0.058 -0.076  -0.231  -0.297  -0.355  -0.414  -0.517
+              0.2618  0.061 -0.077  -0.227  -0.294  -0.359  -0.417  -0.525
+              0.2793  0.046 -0.078  -0.220  -0.283  -0.355  -0.424  -0.528
+              0.2967  -0.040  -0.079  -0.209  -0.269  -0.331  -0.435  -0.526
+              0.3142  -0.138  -0.077  -0.190  -0.248  -0.286  -0.444  -0.493
+              0.3316  -0.122  -0.072  -0.164  -0.218  -0.231  -0.428  -0.447
+              0.3491  -0.058  -0.074  -0.144  -0.178  -0.191  -0.381  -0.398
+              0.3665  0.026 -0.121  -0.189  -0.148  -0.190  -0.334  -0.365
+              0.3840  0.114 -0.192  -0.255  -0.157  -0.211  -0.323  -0.387
+              0.4014  0.152 -0.173  -0.239  -0.168  -0.221  -0.356  -0.437
+              0.4189  0.181 -0.124  -0.182  -0.173  -0.227  -0.420  -0.478
+              0.4363  0.202 -0.063  -0.136  -0.176  -0.225  -0.467  -0.503
+              0.4538  0.224 -0.001  -0.096  -0.175  -0.216  -0.477  -0.498
+              0.4712  0.243 0.066 -0.059  -0.170  -0.192  -0.466  -0.478
+              0.4887  0.253 0.118 -0.021  -0.158  -0.159  -0.437  -0.447
+              0.5061  0.261 0.158 0.018 -0.133  -0.118  -0.395  -0.410
+              0.5236  0.273 0.192 0.053 -0.092  -0.079  -0.332  -0.347
+              0.5411  0.283 0.219 0.083 -0.047  -0.040  -0.256  -0.270
+              0.5585  0.292 0.238 0.107 -0.010  -0.006  -0.180  -0.192
+              0.5760  0.299 0.251 0.128 0.031 0.026 -0.104  -0.113
+              0.5934  0.306 0.257 0.146 0.067 0.057 -0.041  -0.047
+              0.6109  0.313 0.261 0.160 0.089 0.083 -0.012  -0.014
+              0.6283  0.320 0.265 0.171 0.105 0.101 0.012 0.011
             </tableData>
           </table>
        </product>
     </function>
+
+    <function name="aero/moment/dPitch_alpha_mach">
+       <description>Pitch moment due to mach</description>
+       <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/cbarw-ft</property>
+          <table>
+            <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">velocities/mach</independentVar>
+            <tableData>
+                0.4 0.6 0.7 0.75  0.8 0.83  0.85  0.87  0.89  0.91  0.94  0.96
+              -0.0698 0.000 -0.017  -0.026  -0.025  -0.022  -0.023  -0.021  -0.014  -0.011  0.001 0.030 0.045
+              -0.0524 0.000 -0.018  -0.026  -0.026  -0.023  -0.024  -0.021  -0.014  -0.009  0.005 0.032 0.048
+              -0.0349 0.000 -0.019  -0.028  -0.028  -0.025  -0.027  -0.026  -0.017  -0.011  0.004 0.032 0.050
+              -0.0175 0.000 -0.021  -0.031  -0.033  -0.032  -0.035  -0.034  -0.026  -0.018  -0.004  0.032 0.050
+              0.0000  0.000 -0.023  -0.036  -0.039  -0.043  -0.050  -0.058  -0.061  -0.053  -0.027  0.030 0.048
+              0.0175  0.000 -0.025  -0.041  -0.047  -0.056  -0.069  -0.084  -0.102  -0.094  -0.053  0.022 0.034
+              0.0349  0.000 -0.026  -0.048  -0.055  -0.062  -0.089  -0.104  -0.124  -0.105  -0.063  -0.029  -0.022
+              0.0524  0.000 -0.025  -0.051  -0.058  -0.064  -0.114  -0.117  -0.123  -0.102  -0.064  -0.057  -0.064
+              0.0698  0.000 -0.023  -0.050  -0.058  -0.064  -0.112  -0.106  -0.106  -0.087  -0.063  -0.071  -0.086
+              0.0873  0.000 -0.017  -0.042  -0.049  -0.056  -0.074  -0.075  -0.065  -0.064  -0.056  -0.090  -0.115
+              0.1047  0.000 0.000 -0.004  -0.011  -0.020  -0.019  -0.020  -0.012  -0.039  -0.033  -0.109  -0.147
+              0.1222  0.000 0.029 0.025 0.020 0.019 0.037 0.030 0.045 -0.006  -0.009  -0.129  -0.176
+              0.1396  0.000 0.058 0.039 0.043 0.046 0.053 0.065 0.078 0.021 0.003 -0.147  -0.194
+              0.1571  0.000 0.074 0.043 0.045 0.049 0.048 0.062 0.081 0.023 -0.001  -0.159  -0.204
+              0.1745  0.000 0.064 0.030 0.033 0.035 0.027 0.039 0.062 0.004 -0.030  -0.173  -0.217
+              0.1920  0.000 0.029 -0.013  -0.008  -0.012  -0.021  -0.012  0.017 -0.046  -0.093  -0.207  -0.254
+              0.2094  0.000 -0.040  -0.087  -0.085  -0.090  -0.098  -0.095  -0.060  -0.126  -0.185  -0.270  -0.320
+              0.2269  0.000 -0.085  -0.134  -0.134  -0.141  -0.151  -0.147  -0.107  -0.181  -0.241  -0.305  -0.360
+              0.2443  0.000 -0.112  -0.161  -0.165  -0.170  -0.184  -0.178  -0.132  -0.214  -0.269  -0.320  -0.378
+            </tableData>
+          </table>
+       </product>
+    </function>
+
+
 
     <function name="aero/moment/Pitch_damp">
        <description>Pitch moment due to pitch rate</description>
