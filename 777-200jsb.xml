@@ -1132,16 +1132,6 @@
       </product>
     </function>
 
-    <function name="aero/force/Lift_speedbrake">
-       <description>Delta Lift due to speedbrake</description>
-       <product>
-           <property>aero/qbar-psf</property>
-           <property>metrics/Sw-sqft</property>
-           <property>fcs/speedbrake-pos-norm</property>
-           <value>0</value>
-       </product>
-    </function>
-
   </axis>
 
   <axis name="DRAG">
@@ -1519,9 +1509,6 @@
 
   </axis>
  </aerodynamics>
-
- <external_reactions>
- </external_reactions>
 
     <!--<output name="772-data.csv" type="CSV" rate="1">
         <simulation> OFF </simulation>
