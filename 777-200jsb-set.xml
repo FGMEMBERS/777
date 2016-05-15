@@ -167,4 +167,34 @@
     </jsbsim>
   </fdm>
 
+  <limits>
+    <mass-and-balance>
+      <cg>
+      <dimension type="string">in</dimension>
+        <limit>
+          <entry>
+            <position type="double">1121</position>
+            <mass-lbs type="double">310000</mass-lbs>
+          </entry>
+          <entry>
+            <position type="double">1121</position>
+            <mass-lbs type="double">445000</mass-lbs>
+          </entry>
+          <entry>
+            <position type="double">1135</position>
+            <mass-lbs type="double">537000</mass-lbs>
+          </entry>
+          <entry>
+            <position type="double">1205</position>
+            <mass-lbs type="double">537000</mass-lbs>
+          </entry>
+          <entry>
+            <position type="double">1205</position>
+            <mass-lbs type="double">310000</mass-lbs>
+          </entry>
+        </limit>
+      </cg>
+    </mass-and-balance>
+  </limits>
+
 </PropertyList>
