@@ -469,15 +469,6 @@ Service Ceiling: 43,100ft
                         </binding>
                     </item>
                     <item>
-                        <label>Select MP-copilot</label>
-                        <binding>
-                            <command>nasal</command>
-                            <script>
-                                dual_control_tools.copilot_dialog.show(aircraft_dual_control.copilot_type);
-                            </script>
-                        </binding>
-                    </item>
-                    <item>
                         <label>Tiller Steering</label>
                         <binding>
                             <command>nasal</command>
@@ -603,9 +594,6 @@ Service Ceiling: 43,100ft
             <path>Aircraft/777/Systems/systems.xml</path>
 
             <!--  fast running autopilot rules (running at FDM frequency / 120Hz) -->
-            <autopilot>
-                <path>Aircraft/777/Systems/jsb2yasim.xml</path>
-            </autopilot>
             <autopilot>
                 <path>Aircraft/777/Systems/777-autopilot.xml</path>
             </autopilot>
@@ -1179,15 +1167,6 @@ Service Ceiling: 43,100ft
         <cdu>
             <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
         </cdu>
-        <dual_control_tools>
-            <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
-        </dual_control_tools>
-        <aircraft_dual_control>
-            <file>Aircraft/777/DualControl/777-dual-control.nas</file>
-        </aircraft_dual_control>
-        <dual_control>
-            <file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
-        </dual_control>
     </nasal>
 
     <limits n="0">

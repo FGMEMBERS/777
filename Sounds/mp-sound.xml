@@ -9,10 +9,10 @@
         <path>/Aircraft/777/Sounds/jet-trent2.wav</path>
         <mode>looped</mode>
         <condition>
-            <property>engines/engine[0]/rpm</property>
+            <property>engines/engine[0]/n1</property>
         </condition>
         <volume>
-            <property>engines/engine[0]/rpm</property>
+            <property>engines/engine[0]/n1</property>
             <offset>-0.75</offset>
             <factor>0.0125</factor>
             <min>0.0</min>
@@ -32,10 +32,10 @@
         <path>/Aircraft/777/Sounds/jet-trent2.wav</path>
         <mode>looped</mode>
         <condition>
-            <property>engines/engine[1]/rpm</property>
+            <property>engines/engine[1]/n1</property>
         </condition>
         <volume>
-            <property>engines/engine[1]/rpm</property>
+            <property>engines/engine[1]/n1</property>
             <offset>-0.75</offset>
             <factor>0.0125</factor>
             <min>0.0</min>
@@ -54,16 +54,16 @@
         <name>left n1</name>
         <path>/Aircraft/777/Sounds/jet-trent1.wav</path>
         <mode>looped</mode>
-        <property>engines/engine[0]/rpm</property>
+        <property>engines/engine[0]/n1</property>
         <pitch>
-            <property>engines/engine[0]/rpm</property>
+            <property>engines/engine[0]/n1</property>
             <offset>0.8</offset>
             <factor>0.01</factor>
             <min>0.0</min>
             <max>100.0</max>
         </pitch>
         <volume>
-            <property>engines/engine[0]/rpm</property>
+            <property>engines/engine[0]/n1</property>
             <factor>0.1</factor>
             <min>0.0</min>
             <max>0.5</max>
@@ -81,15 +81,15 @@
         <name>right n1</name>
         <path>/Aircraft/777/Sounds/jet-trent1.wav</path>
         <mode>looped</mode>
-        <property>engines/engine[1]/rpm</property>
+        <property>engines/engine[1]/n1</property>
         <volume>
-            <property>engines/engine[1]/rpm</property>
+            <property>engines/engine[1]/n1</property>
             <factor>0.1</factor>
             <min>0.0</min>
             <max>0.5</max>
         </volume>
         <pitch>
-            <property>engines/engine[1]/rpm</property>
+            <property>engines/engine[1]/n1</property>
             <offset>0.8</offset>
             <factor>0.01</factor>
             <min>0.0</min>

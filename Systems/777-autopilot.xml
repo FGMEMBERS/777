@@ -3,6 +3,46 @@
 
 <PropertyList>
 
+    <filter>
+        <name>gear 0 compression</name>
+        <type>gain</type>
+        <gain>0.30480371</gain>
+        <input>gear/gear[0]/compression-ft</input>
+        <output>gear/gear[0]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 1 compression</name>
+        <type>gain</type>
+        <gain>0.30480371</gain>
+        <input>gear/gear[1]/compression-ft</input>
+        <output>gear/gear[1]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 2 compression</name>
+        <type>gain</type>
+        <gain>0.30480371</gain>
+        <input>gear/gear[2]/compression-ft</input>
+        <output>gear/gear[2]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 3 compression</name>
+        <type>gain</type>
+        <gain>1.45</gain>
+        <input>gear/gear[1]/compression-ft</input>
+        <output>gear/gear[3]/compression-m</output>
+    </filter>
+
+    <filter>
+        <name>gear 4 compression</name>
+        <type>gain</type>
+        <gain>1.45</gain>
+        <input>gear/gear[2]/compression-ft</input>
+        <output>gear/gear[4]/compression-m</output>
+    </filter>
+
     <!-- =============================================================== -->
     <!--                        Lateral Modes                            -->
     <!-- =============================================================== -->
@@ -759,7 +799,7 @@
                     <value>26000</value>
                 </greater-than>
             </condition>
-            <value>0.1</value>
+            <value>0.10</value>
         </Kp>
         <Kp>
             <condition>
@@ -768,9 +808,9 @@
                     <value>14000</value>
                 </greater-than>
             </condition>
-            <value>0.2</value>
+            <value>0.10</value>
         </Kp>
-            <Kp>0.5</Kp>
+            <Kp>0.10</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
@@ -805,7 +845,7 @@
         <enable>
             <condition>
                 <greater-than>
-                    <property>position/gear-agl-ft</property>
+                    <property>position/altitude-agl-ft</property>
                     <value>150.0</value>
                 </greater-than>
             </condition>
@@ -910,7 +950,7 @@
                         <value>FLARE</value>
                     </equals>
                     <less-than>
-                        <property>position/gear-agl-ft</property>
+                        <property>position/altitude-agl-ft</property>
                         <value>0.1</value>
                     </less-than>
                 </and>
@@ -935,7 +975,7 @@
                             <value>FLARE</value>
                         </equals>
                         <greater-than>
-                            <property>position/gear-agl-ft</property>
+                            <property>position/altitude-agl-ft</property>
                             <value>0.1</value>
                         </greater-than>
                     </and>
@@ -1157,7 +1197,7 @@
         <update-interval-secs type="double">0.1</update-interval-secs>
         <input>
             <less-than>
-                <property>/position/gear-agl-ft</property>
+                <property>/position/altitude-agl-ft</property>
                 <value>2.0</value>
             </less-than>
         </input>

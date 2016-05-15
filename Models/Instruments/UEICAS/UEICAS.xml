@@ -210,7 +210,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[0]/n2rpm</property>
+        <property>engines/engine[0]/n2</property>
         <format>%3.1f</format>
         <font>helvetica_medium.txf</font>
         <character-size>0.008</character-size>
@@ -231,7 +231,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[1]/n2rpm</property>
+        <property>engines/engine[1]/n2</property>
         <format>%3.1f</format>
         <font>helvetica_medium.txf</font>
         <character-size>0.008</character-size>
@@ -272,7 +272,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[0]/fuel-flow_pph</property>
+        <property>fdm/jsbsim/propulsion/engine[0]/fuel-flow-rate-pps</property>
         <format>%2.1f</format>
         <font>helvetica_medium.txf</font>
         <character-size>0.008</character-size>
@@ -293,7 +293,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[1]/fuel-flow_pph</property>
+        <property>fdm/jsbsim/propulsion/engine[1]/fuel-flow-rate-pps</property>
         <format>%2.1f</format>
         <font>helvetica_medium.txf</font>
         <character-size>0.008</character-size>

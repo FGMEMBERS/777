@@ -1195,7 +1195,7 @@ Syd Adams
         <object-name>Lfan</object-name>
         <condition>
             <less-than>
-                <property>engines/engine[0]/rpm</property>
+                <property>engines/engine[0]/n1</property>
                 <value>30</value>
             </less-than>
         </condition>
@@ -1206,7 +1206,7 @@ Syd Adams
         <object-name>Rfan</object-name>
         <condition>
             <less-than>
-                <property>engines/engine[1]/rpm</property>
+                <property>engines/engine[1]/n1</property>
                 <value>30</value>
             </less-than>
         </condition>
@@ -1216,7 +1216,7 @@ Syd Adams
         <type>spin</type>
         <object-name>Lfan</object-name>
         <object-name>Lspinner</object-name>
-        <property>engines/engine[0]/rpm</property>
+        <property>engines/engine[0]/n1</property>
         <factor>10</factor>
         <center>
             <x-m>-3.495</x-m>
@@ -1234,7 +1234,7 @@ Syd Adams
         <type>spin</type>
         <object-name>Rfan</object-name>
         <object-name>Rspinner</object-name>
-        <property>engines/engine[1]/rpm</property>
+        <property>engines/engine[1]/n1</property>
         <factor>10</factor>
         <center>
             <x-m>-3.495</x-m>

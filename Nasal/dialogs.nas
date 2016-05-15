@@ -8,10 +8,10 @@ var tiller_steering = gui.Dialog.new("sim/gui/dialogs/tiller-steering/dialog",
         "Aircraft/777/Systems/tiller-steering.xml");
 
 var ground_services = gui.Dialog.new("sim/gui/dialogs/ground_services/dialog",
-		"Aircraft/777/Systems/ground_services-dlg.xml");
+        "Aircraft/777/Systems/ground_services-dlg.xml");
 
 var handy_viewer = gui.Dialog.new("sim/gui/dialogs/handy_viewer/dialog",
-		"Aircraft/777/Systems/handy_viewer.xml");
+        "Aircraft/777/Systems/handy_viewer.xml");
 gui.menuBind("radio", "dialogs.Radio.open()");
 gui.menuBind("autopilot-settings", "dialogs.ap_settings.open()");
 gui.menuBind("fuel-and-payload", "dialogs.showWeightDialog()");
@@ -62,7 +62,7 @@ var showWeightDialog = func {
     # FDM dependent settings
     if(fdm == "yasim") {
         var fdmdata = {
-            grosswgt : "/yasim/gross-weight-lbs",
+            grosswgt : "/fdm/jsbsim/inertia/weight-lbs",
             payload  : "/sim",
             cg       : nil,
         };
@@ -106,7 +106,7 @@ var showWeightDialog = func {
         val.set("format", format);
         val.set("property", n.getPath());
         val.set("live", 1);
-          
+
         row += 1;
     }
 

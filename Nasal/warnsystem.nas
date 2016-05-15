@@ -39,30 +39,30 @@ var WEU =
         # actuators
         m.stickshaker  = m.weu.initNode("actuators/stick-shaker",0,"BOOL");
         # status information
-		m.takeoff_mode = m.weu.initNode("state/takeoff-mode",1,"BOOL");
+        m.takeoff_mode = m.weu.initNode("state/takeoff-mode",1,"BOOL");
         m.stallspeed   = m.weu.initNode("state/stall-speed",-100,"DOUBLE");
         m.targetspeed   = m.weu.initNode("state/target-speed",-100,"DOUBLE");
-		m.stall_warning = m.weu.initNode("state/stall-warning", 0, "BOOL");
-		m.vref = m.weu.initNode("state/vref",0,"DOUBLE");
-		m.v1 = m.weu.initNode("state/v1",0,"DOUBLE");
-		m.vr = m.weu.initNode("state/vr",0,"DOUBLE");
-		m.v2 = m.weu.initNode("state/v2",0,"DOUBLE");
-		m.flap = m.weu.initNode("state/flap",0,"DOUBLE");
-		m.fl1 = m.weu.initNode("state/fl1",0,"DOUBLE");
-		m.fl5 = m.weu.initNode("state/fl5",0,"DOUBLE");
-		m.fl15 = m.weu.initNode("state/fl15",0,"DOUBLE");
-		m.flap_on = m.weu.initNode("state/flap-on",0,"BOOL");
-		m.fl1_on = m.weu.initNode("state/fl1-on",0,"BOOL");
-		m.fl5_on = m.weu.initNode("state/fl5-on",0,"BOOL");
-		m.fl15_on = m.weu.initNode("state/fl15-on",0,"BOOL");
-        # EICAS output 
+        m.stall_warning = m.weu.initNode("state/stall-warning", 0, "BOOL");
+        m.vref = m.weu.initNode("state/vref",0,"DOUBLE");
+        m.v1 = m.weu.initNode("state/v1",0,"DOUBLE");
+        m.vr = m.weu.initNode("state/vr",0,"DOUBLE");
+        m.v2 = m.weu.initNode("state/v2",0,"DOUBLE");
+        m.flap = m.weu.initNode("state/flap",0,"DOUBLE");
+        m.fl1 = m.weu.initNode("state/fl1",0,"DOUBLE");
+        m.fl5 = m.weu.initNode("state/fl5",0,"DOUBLE");
+        m.fl15 = m.weu.initNode("state/fl15",0,"DOUBLE");
+        m.flap_on = m.weu.initNode("state/flap-on",0,"BOOL");
+        m.fl1_on = m.weu.initNode("state/fl1-on",0,"BOOL");
+        m.fl5_on = m.weu.initNode("state/fl5-on",0,"BOOL");
+        m.fl15_on = m.weu.initNode("state/fl15-on",0,"BOOL");
+        # EICAS output
         m.msgs_alert   = [];
         m.msgs_caution = [];
         m.msgs_info    = [];
 
         # inputs
         m.node_flap_override = props.globals.getNode("instrumentation/mk-viii/outputs/discretes/flap-override");
-        m.node_radio_alt     = props.globals.getNode("position/gear-agl-ft");
+        m.node_radio_alt     = props.globals.getNode("position/altitude-agl-ft");
         m.node_flaps_tgt     = props.globals.getNode("controls/flight/flaps");
         m.node_flaps         = props.globals.getNode("surface-positions/flap-pos-norm");
         m.node_speed         = props.globals.getNode("velocities/airspeed-kt");
@@ -86,22 +86,22 @@ var WEU =
         m.ap_disengaged = 0;
         me.rudder_trim  = 0;
         me.elev_trim    = 0;
-	me.autobrake	= 0;
-	me.autobrakerto = 0;
-	me.apu_bleed	= 0;
-	me.engl_bleed	= 0;
-	me.engr_bleed	= 0;
-	me.pack_l	= 0;
-	me.pack_r	= 0;
-	me.trim_air_l	= 0;
-	me.trim_air_r	= 0;
-	me.battery	= 0;
-	me.recirc_fans	= 0;
-	me.smoking_sign	= 0;
-	me.seatbelts	= 0;
-	me.fuel_c_pump1	= 0;
-	me.fuel_c_pump2	= 0;
-	me.fuel_c_qty	= 0;	
+    me.autobrake    = 0;
+    me.autobrakerto = 0;
+    me.apu_bleed    = 0;
+    me.engl_bleed   = 0;
+    me.engr_bleed   = 0;
+    me.pack_l   = 0;
+    me.pack_r   = 0;
+    me.trim_air_l   = 0;
+    me.trim_air_r   = 0;
+    me.battery  = 0;
+    me.recirc_fans  = 0;
+    me.smoking_sign = 0;
+    me.seatbelts    = 0;
+    me.fuel_c_pump1 = 0;
+    me.fuel_c_pump2 = 0;
+    me.fuel_c_qty   = 0;
 
         # internal states
         m.active_warnings = 0;
@@ -109,7 +109,7 @@ var WEU =
         m.warn_mute       = 0;
 
         # add some listeners
-	# Flight Controls, Engines, and Brakes
+    # Flight Controls, Engines, and Brakes
         setlistener("controls/gear/gear-down",          func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/speedbrake",       func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/speedbrake-lever", func { Weu.update_listener_inputs() } );
@@ -119,46 +119,46 @@ var WEU =
         setlistener("controls/flight/elevator-trim",    func { Weu.update_listener_inputs() } );
         setlistener("sim/freeze/replay-state",          func { Weu.update_listener_inputs() } );
         setlistener(prop1 ~ "/serviceable",             func { Weu.update_listener_inputs() } );
-	setlistener("autopilot/autobrake/step",		func { Weu.update_listener_inputs() } );
-	setlistener("autopilot/autobrake/rto-selected",	func { Weu.update_listener_inputs() } );
+    setlistener("autopilot/autobrake/step",     func { Weu.update_listener_inputs() } );
+    setlistener("autopilot/autobrake/rto-selected", func { Weu.update_listener_inputs() } );
 
-	# Air Systems
-	setlistener("controls/air/bleedapu-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/air/bleedengl-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/air/bleedengr-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/air/lpack-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/air/rpack-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/air/ltrim-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/air/rtrim-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/air/recircup-switch",	func { Weu.update_listener_inputs() } );
+    # Air Systems
+    setlistener("controls/air/bleedapu-switch", func { Weu.update_listener_inputs() } );
+    setlistener("controls/air/bleedengl-switch",    func { Weu.update_listener_inputs() } );
+    setlistener("controls/air/bleedengr-switch",    func { Weu.update_listener_inputs() } );
+    setlistener("controls/air/lpack-switch",    func { Weu.update_listener_inputs() } );
+    setlistener("controls/air/rpack-switch",    func { Weu.update_listener_inputs() } );
+    setlistener("controls/air/ltrim-switch",    func { Weu.update_listener_inputs() } );
+    setlistener("controls/air/rtrim-switch",    func { Weu.update_listener_inputs() } );
+    setlistener("controls/air/recircup-switch", func { Weu.update_listener_inputs() } );
 
-	# Anti-Ice
-	setlistener("controls/anti-ice/wing-antiice-knob", func { Weu.update_listener_inputs() } );
-	setlistener("controls/anti-ice/engin/antiice-knob", func { Weu.update_listener_inputs() } );
-	setlistener("controls/anti-ice/engin[1]/antiice-knob", func { Weu.update_listener_inputs() } );
+    # Anti-Ice
+    setlistener("controls/anti-ice/wing-antiice-knob", func { Weu.update_listener_inputs() } );
+    setlistener("controls/anti-ice/engin/antiice-knob", func { Weu.update_listener_inputs() } );
+    setlistener("controls/anti-ice/engin[1]/antiice-knob", func { Weu.update_listener_inputs() } );
 
-	# Electrical
+    # Electrical
         setlistener("controls/electric/APU-generator",  func { Weu.update_listener_inputs() } );
         setlistener("systems/electrical/outputs/avionics",func { Weu.update_listener_inputs() } );
-	setlistener("controls/electric/battery-switch",	func { Weu.update_listener_inputs() } );
+    setlistener("controls/electric/battery-switch", func { Weu.update_listener_inputs() } );
 
-	# Fuel
-	setlistener("controls/fuel/tank[1]/boost-pump-switch",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/fuel/tank[1]/boost-pump-switch[1]", func { Weu.update_listener_inputs() } );
-	setlistener("consumables/fuel/tank[1]/level-lbs", func { Weu.update_listener_inputs() } );
-	setlistener("consumables/fuel/tank/level-lbs",	func { Weu.update_listener_inputs() } );
-	setlistener("consumables/fuel/tank[2]/level-lbs", func { Weu.update_listener_inputs() } );
+    # Fuel
+    setlistener("controls/fuel/tank[1]/boost-pump-switch",  func { Weu.update_listener_inputs() } );
+    setlistener("controls/fuel/tank[1]/boost-pump-switch[1]", func { Weu.update_listener_inputs() } );
+    setlistener("consumables/fuel/tank[1]/level-lbs", func { Weu.update_listener_inputs() } );
+    setlistener("consumables/fuel/tank/level-lbs",  func { Weu.update_listener_inputs() } );
+    setlistener("consumables/fuel/tank[2]/level-lbs", func { Weu.update_listener_inputs() } );
 
-	# Others
-	setlistener("controls/cabin/SeatBelt-knob",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/cabin/NoSmoking-knob",	func { Weu.update_listener_inputs() } );
-	setlistener("environment/temperature-degc",	func { Weu.update_listener_inputs() } );
+    # Others
+    setlistener("controls/cabin/SeatBelt-knob", func { Weu.update_listener_inputs() } );
+    setlistener("controls/cabin/NoSmoking-knob",    func { Weu.update_listener_inputs() } );
+    setlistener("environment/temperature-degc", func { Weu.update_listener_inputs() } );
         setlistener("instrumentation/mk-viii/inputs/discretes/gear-override", func { Weu.update_listener_inputs() } );
         setlistener("controls/engines/engine/throttle-act", func { Weu.update_throttle_input() } );
         setlistener("instrumentation/afds/inputs/AP",     func { Weu.update_ap_mode() } );
 
         m.update_listener_inputs();
-        
+
         # update inputs now and then...
         settimer(weu_update_feeder,0.5);
 
@@ -232,13 +232,13 @@ var WEU =
 
     caution_messages : func
     {
-	## Caution Messages
+    ## Caution Messages
         if (me.ap_disengaged)
             append(me.msgs_caution,"AP DISCONNECT");
-		if(getprop("instrumentation/afds/inputs/vnav-mcp-reset") == 1)
-		{
+        if(getprop("instrumentation/afds/inputs/vnav-mcp-reset") == 1)
+        {
             append(me.msgs_caution,"FMC MESSAGE");
-		}
+        }
         if ((getprop("gear/brake-thermal-energy") or 0)>1)
             append(me.msgs_caution,"L R BRAKE OVERHEAT");
         if (me.speedbrake)
@@ -254,52 +254,52 @@ var WEU =
                 append(me.msgs_caution,"SPEEDBRAKE EXTENDED");
         }
 
-	# Pilot sources state that any main tank
-	# with less than 1000kg of fuel is low
-	# 1000kg = 4409.25lbs
-	if ((me.fuel_l_qty<4409) or (me.fuel_r_qty<4409))
-	    append(me.msgs_caution,"FUEL QTY LOW");
+    # Pilot sources state that any main tank
+    # with less than 1000kg of fuel is low
+    # 1000kg = 4409.25lbs
+    if ((me.fuel_l_qty<4409) or (me.fuel_r_qty<4409))
+        append(me.msgs_caution,"FUEL QTY LOW");
 
-	## Advisory Messages
-	# Advisory Messages for air systems:
-	if (!me.apu_bleed)
-	    append(me.msgs_caution," BLEED OFF APU");
-	if ((!me.engl_bleed) and (!me.engr_bleed))
-	    append(me.msgs_caution," BLEED OFF ENG L, R");
-	if ((me.engl_bleed) and (!me.engr_bleed))
-	    append(me.msgs_caution," BLEED OFF ENG R");
-	if ((!me.engl_bleed) and (me.engr_bleed))
-	    append(me.msgs_caution," BLEED OFF ENG L");
-	if ((!me.pack_l) and (!me.pack_r))
-	    append(me.msgs_caution," PACK L, R");
-	if ((me.pack_l) and (!me.pack_r))
-	    append(me.msgs_caution," PACK R");
-	if ((!me.pack_l) and (me.pack_r))
-	    append(me.msgs_caution," PACK L");
-	if ((!me.trim_air_l) and (!me.trim_air_r))
-	    append(me.msgs_caution," TRIM AIR L, R");
-	if ((me.trim_air_l) and (!me.trim_air_r))
-	    append(me.msgs_caution," TRIM AIR R");
-	if ((!me.trim_air_l) and (me.trim_air_r))
-	    append(me.msgs_caution," TRIM AIR L");
+    ## Advisory Messages
+    # Advisory Messages for air systems:
+    if (!me.apu_bleed)
+        append(me.msgs_caution," BLEED OFF APU");
+    if ((!me.engl_bleed) and (!me.engr_bleed))
+        append(me.msgs_caution," BLEED OFF ENG L, R");
+    if ((me.engl_bleed) and (!me.engr_bleed))
+        append(me.msgs_caution," BLEED OFF ENG R");
+    if ((!me.engl_bleed) and (me.engr_bleed))
+        append(me.msgs_caution," BLEED OFF ENG L");
+    if ((!me.pack_l) and (!me.pack_r))
+        append(me.msgs_caution," PACK L, R");
+    if ((me.pack_l) and (!me.pack_r))
+        append(me.msgs_caution," PACK R");
+    if ((!me.pack_l) and (me.pack_r))
+        append(me.msgs_caution," PACK L");
+    if ((!me.trim_air_l) and (!me.trim_air_r))
+        append(me.msgs_caution," TRIM AIR L, R");
+    if ((me.trim_air_l) and (!me.trim_air_r))
+        append(me.msgs_caution," TRIM AIR R");
+    if ((!me.trim_air_l) and (me.trim_air_r))
+        append(me.msgs_caution," TRIM AIR L");
 
-	# Advisory messages for electrical & fuel systems
-	if (!me.battery)
-	    append(me.msgs_caution," ELEC BATTERY OFF");
-	if ((me.fuel_c_qty >= 10582) and ((!me.fuel_c_pump1) or (!me.fuel_c_pump2)))
-	    append(me.msgs_caution," FUEL CENTER");
-	if ((me.fuel_c_qty < 10582) and ((me.fuel_c_pump1) or (me.fuel_c_pump2)))
-	    append(me.msgs_caution," FUEL LOW CENTER");
-	if (((me.fuel_l_qty - me.fuel_r_qty) > 1000) or ((me.fuel_r_qty - me.fuel_l_qty) > 1000))
-	    append(me.msgs_caution," FUEL IMBALANCE");
+    # Advisory messages for electrical & fuel systems
+    if (!me.battery)
+        append(me.msgs_caution," ELEC BATTERY OFF");
+    if ((me.fuel_c_qty >= 10582) and ((!me.fuel_c_pump1) or (!me.fuel_c_pump2)))
+        append(me.msgs_caution," FUEL CENTER");
+    if ((me.fuel_c_qty < 10582) and ((me.fuel_c_pump1) or (me.fuel_c_pump2)))
+        append(me.msgs_caution," FUEL LOW CENTER");
+    if (((me.fuel_l_qty - me.fuel_r_qty) > 1000) or ((me.fuel_r_qty - me.fuel_l_qty) > 1000))
+        append(me.msgs_caution," FUEL IMBALANCE");
 
-	# Advisory messages for heating and anti-ice systems
-	if (me.temp_c > 10 and ((me.wing_aiknob == 2) or (me.eng1_aiknob == 2) or (me.eng2_aiknob == 2)))
-	    append(me.msgs_caution," ANTI-ICE ON"); 
-	if ((me.wheat_ls + me.wheat_lf + me.wheat_rf + me.wheat_rs)<3)
-	    append(me.msgs_caution," WINDOW HEAT");
+    # Advisory messages for heating and anti-ice systems
+    if (me.temp_c > 10 and ((me.wing_aiknob == 2) or (me.eng1_aiknob == 2) or (me.eng2_aiknob == 2)))
+        append(me.msgs_caution," ANTI-ICE ON");
+    if ((me.wheat_ls + me.wheat_lf + me.wheat_rf + me.wheat_rs)<3)
+        append(me.msgs_caution," WINDOW HEAT");
 
-	## Memo Messages
+    ## Memo Messages
         if (me.parkbrake)
             append(me.msgs_info,"PARK BRK SET");
         if (me.reverser)
@@ -308,89 +308,89 @@ var WEU =
             append(me.msgs_info,"SPEEDBRAKE ARMED");
         if (me.apu_running)
             append(me.msgs_info,"APU RUNNING");
-	if (me.autobrake>=0)
-	{
-	    # 777 manual: EICAS memo messages display the selected autobrake settings:
-	    # AUTOBRAKE 1 thru 4, AUTOBRAKE MAX, AUTOBRAKE RTO
-	    # AUTOBRAKE DISARM is an advisory message
-	    if (me.autobrake == 0)
-		append(me.msgs_caution," AUTOBRAKE DISARM");
-	    if (me.autobrake == 1)
-		append(me.msgs_info,"AUTOBRAKE 1");
-	    if (me.autobrake == 2)
-		append(me.msgs_info,"AUTOBRAKE 2");
-	    if (me.autobrake == 3)
-		append(me.msgs_info,"AUTOBRAKE 3");
-	    if (me.autobrake == 4)
-		append(me.msgs_info,"AUTOBRAKE 4");
-	    if (me.autobrake == 5)
-		append(me.msgs_info,"AUTOBRAKE MAX");
-	}
-	if (me.autobrakerto)
-	    append(me.msgs_info,"AUTOBRAKE RTO");
+    if (me.autobrake>=0)
+    {
+        # 777 manual: EICAS memo messages display the selected autobrake settings:
+        # AUTOBRAKE 1 thru 4, AUTOBRAKE MAX, AUTOBRAKE RTO
+        # AUTOBRAKE DISARM is an advisory message
+        if (me.autobrake == 0)
+        append(me.msgs_caution," AUTOBRAKE DISARM");
+        if (me.autobrake == 1)
+        append(me.msgs_info,"AUTOBRAKE 1");
+        if (me.autobrake == 2)
+        append(me.msgs_info,"AUTOBRAKE 2");
+        if (me.autobrake == 3)
+        append(me.msgs_info,"AUTOBRAKE 3");
+        if (me.autobrake == 4)
+        append(me.msgs_info,"AUTOBRAKE 4");
+        if (me.autobrake == 5)
+        append(me.msgs_info,"AUTOBRAKE MAX");
+    }
+    if (me.autobrakerto)
+        append(me.msgs_info,"AUTOBRAKE RTO");
 
-	if (!me.recirc_fans)
-	    append(me.msgs_info,"RECIRC FANS OFF");
+    if (!me.recirc_fans)
+        append(me.msgs_info,"RECIRC FANS OFF");
 
-	# If both No Smoking and Seatbelts signs are on,
-	# we show "PASS SIGNS ON" message. Otherwise,
-	# display individual memo messages
-	if ((me.smoking_sign>-1) and (me.seatbelts>-1))
-	    append(me.msgs_info,"PASS SIGNS ON");
-	if ((me.smoking_sign == -1) and (me.seatbelts>-1))
-	    append(me.msgs_info,"SEATBELTS ON");
-	if ((me.smoking_sign>-1) and (me.seatbelts == -1))
-	    append(me.msgs_info,"NO SMOKING ON");
+    # If both No Smoking and Seatbelts signs are on,
+    # we show "PASS SIGNS ON" message. Otherwise,
+    # display individual memo messages
+    if ((me.smoking_sign>-1) and (me.seatbelts>-1))
+        append(me.msgs_info,"PASS SIGNS ON");
+    if ((me.smoking_sign == -1) and (me.seatbelts>-1))
+        append(me.msgs_info,"SEATBELTS ON");
+    if ((me.smoking_sign>-1) and (me.seatbelts == -1))
+        append(me.msgs_info,"NO SMOKING ON");
 
     },
 
 #### stall warnings and other sounds ####
     update_sounds : func
     {
-		var grosswt = getprop("yasim/gross-weight-lbs");
-		if(grosswt == nil) return;
+        var grosswt = getprop("fdm/jsbsim/inertia/weight-lbs");
+        if(grosswt == nil) return;
         var target_speed = 0;
         var horn   = 0;
         var shaker = 0;
         var siren  = (size(me.msgs_alert)!=0);
         var vgrosswt = math.sqrt(grosswt/730284);
-		var altitude_compensate = (getprop("instrumentation/altimeter/indicated-altitude-ft") / 1000);
-		me.vref.setValue(vgrosswt * 166 + altitude_compensate);
+        var altitude_compensate = (getprop("instrumentation/altimeter/indicated-altitude-ft") / 1000);
+        me.vref.setValue(vgrosswt * 166 + altitude_compensate);
         # calculate Flap Maneuver Speed
-		me.flap.setValue(vgrosswt * 166 + 80 + altitude_compensate);
-		me.fl1.setValue(vgrosswt * 166 + 60 + altitude_compensate);
-		me.fl5.setValue(vgrosswt * 166 + 40 + altitude_compensate);
-		me.fl15.setValue(vgrosswt * 166 + 20 + altitude_compensate);
+        me.flap.setValue(vgrosswt * 166 + 80 + altitude_compensate);
+        me.fl1.setValue(vgrosswt * 166 + 60 + altitude_compensate);
+        me.fl5.setValue(vgrosswt * 166 + 40 + altitude_compensate);
+        me.fl15.setValue(vgrosswt * 166 + 20 + altitude_compensate);
 
         # calculate stall speed
-		var vref_table = [
-			[0, vgrosswt * 166 + 80],
-			[0.033, vgrosswt * 166 + 60],
-			[0.166, vgrosswt * 166 + 40],
-			[0.500, vgrosswt * 166 + 20],
-			[0.666, vgrosswt * 180],
-			[0.833, vgrosswt * 174],
-			[1.000, vgrosswt * 166]];
+        var vref_table = [
+            [0, vgrosswt * 166 + 80],
+            [0.033, vgrosswt * 166 + 60],
+            [0.166, vgrosswt * 166 + 40],
+            [0.500, vgrosswt * 166 + 20],
+            [0.666, vgrosswt * 180],
+            [0.833, vgrosswt * 174],
+            [1.000, vgrosswt * 166]];
 
-		var vref_flap = interpolate_table(vref_table, me.flaps);
-		var stallspeed = (vref_flap - 10 + altitude_compensate);
-		me.stallspeed.setValue(stallspeed);
+        var vref_flap = interpolate_table(vref_table, me.flaps);
+        var stallspeed = (vref_flap - 10 + altitude_compensate);
+        me.stallspeed.setValue(stallspeed);
 
-		var weight_diff = grosswt-308700;
-		me.v1.setValue(weight_diff*0.00018424+92 + altitude_compensate);
-		me.vr.setValue(weight_diff*0.000164399+104 + altitude_compensate);
-		me.v2.setValue(weight_diff*0.000138889+119 + altitude_compensate);
-		setprop("instrumentation/fmc/vspeeds/V1", me.v1.getValue());
-		setprop("instrumentation/fmc/vspeeds/VR", me.vr.getValue());
-		setprop("instrumentation/fmc/vspeeds/V2", me.v2.getValue());
+        var weight_diff = grosswt-308700;
+        me.v1.setValue(weight_diff*0.00018424+92 + altitude_compensate);
+        me.vr.setValue(weight_diff*0.000164399+104 + altitude_compensate);
+        me.v2.setValue(weight_diff*0.000138889+119 + altitude_compensate);
+        setprop("instrumentation/fmc/vspeeds/V1", me.v1.getValue());
+        setprop("instrumentation/fmc/vspeeds/VR", me.vr.getValue());
+        setprop("instrumentation/fmc/vspeeds/V2", me.v2.getValue());
 
         # calculate flap target speed
         if (me.flaps_tgt<0.01)            # flap up
         {
-			if(!(getprop("gear/gear[1]/wow") or getprop("gear/gear[2]/wow")))
-			{
-				me.takeoff_mode.setValue(0);
-			}
+            if(!(getprop("gear/gear[1]/wow") or getprop("gear/gear[2]/wow")))
+            {
+                me.takeoff_mode.setValue(0);
+            }
         }
         elsif (me.flaps_tgt<0.034)        # flap 1
         {
@@ -399,10 +399,10 @@ var WEU =
         elsif (me.flaps_tgt<0.167)        # flap 5
         {
             target_speed = me.fl1.getValue();
-			if(getprop("gear/gear[1]/wow") and getprop("gear/gear[2]/wow"))
-			{
-				me.takeoff_mode.setValue(1);
-			}
+            if(getprop("gear/gear[1]/wow") and getprop("gear/gear[2]/wow"))
+            {
+                me.takeoff_mode.setValue(1);
+            }
         }
         elsif (me.flaps_tgt<0.501)        # flap 15
         {
@@ -420,42 +420,42 @@ var WEU =
         {
             target_speed = vgrosswt * 174;
         }
-		target_speed -= 5;
+        target_speed -= 5;
 
-		if(target_speed > 250) target_speed = 250;
+        if(target_speed > 250) target_speed = 250;
         me.targetspeed.setValue(target_speed);
 
-		# Flap placard speed display switch
-		target_speed = getprop("autopilot/settings/target-speed-kt");
-		if(abs(target_speed - me.flap.getValue()) < 30) me.flap_on.setValue(1);
-		else me.flap_on.setValue(0);
-		if(abs(target_speed - me.fl1.getValue()) < 30) me.fl1_on.setValue(1);
-		else me.fl1_on.setValue(0);
-		if(abs(target_speed - me.fl5.getValue()) < 30) me.fl5_on.setValue(1);
-		else me.fl5_on.setValue(0);
-		if(abs(target_speed - me.fl15.getValue()) < 30) me.fl15_on.setValue(1);
-		else me.fl15_on.setValue(0);
-		if(me.flaps_tgt >= 0.833)
-		{
-			me.flap_on.setValue(0);
-			me.fl1_on.setValue(0);
-			me.fl5_on.setValue(0);
-			me.fl15_on.setValue(0);
-		}
+        # Flap placard speed display switch
+        target_speed = getprop("autopilot/settings/target-speed-kt");
+        if(abs(target_speed - me.flap.getValue()) < 30) me.flap_on.setValue(1);
+        else me.flap_on.setValue(0);
+        if(abs(target_speed - me.fl1.getValue()) < 30) me.fl1_on.setValue(1);
+        else me.fl1_on.setValue(0);
+        if(abs(target_speed - me.fl5.getValue()) < 30) me.fl5_on.setValue(1);
+        else me.fl5_on.setValue(0);
+        if(abs(target_speed - me.fl15.getValue()) < 30) me.fl15_on.setValue(1);
+        else me.fl15_on.setValue(0);
+        if(me.flaps_tgt >= 0.833)
+        {
+            me.flap_on.setValue(0);
+            me.fl1_on.setValue(0);
+            me.fl5_on.setValue(0);
+            me.fl15_on.setValue(0);
+        }
 
-		# Stall warning display switch
-		if((me.stall_warning.getValue() == 0) and (getprop("position/gear-agl-ft") > 400))
-		{
-			me.stall_warning.setValue(1);
-		}
-		elsif(getprop("gear/gear[1]/wow") or getprop("gear/gear[2]/wow"))
-		{
-			me.stall_warning.setValue(0);
-		}
+        # Stall warning display switch
+        if((me.stall_warning.getValue() == 0) and (getprop("position/altitude-agl-ft") > 400))
+        {
+            me.stall_warning.setValue(1);
+        }
+        elsif(getprop("gear/gear[1]/wow") or getprop("gear/gear[2]/wow"))
+        {
+            me.stall_warning.setValue(0);
+        }
 
         if ((me.speed <= (stallspeed - 5))
-				and (me.enabled)
-				and (me.stall_warning.getValue() == 1))
+                and (me.enabled)
+                and (me.stall_warning.getValue() == 1))
         {
             horn = 1;
             shaker = 1;
@@ -469,12 +469,12 @@ var WEU =
             me.siren.setBoolValue(siren and (!me.warn_mute));
             me.stallhorn.setBoolValue(horn and (!me.warn_mute));
             me.stickshaker.setBoolValue(shaker);
-            
+
             me.active_warnings = (siren or shaker or horn);
             me.active_caution = caution_state;
-            
+
             if (!me.active_warnings) me.warn_mute = 0;
-            
+
             me.master_warning.setBoolValue(me.active_warnings);
             me.master_caution.setBoolValue(me.active_caution);
         }
@@ -498,32 +498,32 @@ var WEU =
         me.apu_running   = getprop("controls/electric/APU-generator");
         me.rudder_trim   = getprop("controls/flight/rudder-trim");
         me.elev_trim     = getprop("controls/flight/elevator-trim");
-	me.autobrake	 = getprop("autopilot/autobrake/step");
-	me.autobrakerto	 = getprop("autopilot/autobrake/rto-selected");
-	me.apu_bleed	 = getprop("controls/air/bleedapu-switch");
-	me.engl_bleed	 = getprop("controls/air/bleedengl-switch");
-	me.engr_bleed	 = getprop("controls/air/bleedengr-switch");
-	me.pack_l	 = getprop("controls/air/lpack-switch");
-	me.pack_r	 = getprop("controls/air/rpack-switch");
-	me.trim_air_l	 = getprop("controls/air/ltrim-switch");
-	me.trim_air_r	 = getprop("controls/air/rtrim-switch");
-	me.battery	 = getprop("controls/electric/battery-switch");
-	me.recirc_fans	 = getprop("controls/air/recircup-switch");
-	me.seatbelts	 = getprop("controls/cabin/SeatBelt-knob");
-	me.smoking_sign	 = getprop("controls/cabin/NoSmoking-knob");
-	me.fuel_c_pump1	 = getprop("controls/fuel/tank[1]/boost-pump-switch");
-	me.fuel_c_pump2	 = getprop("controls/fuel/tank[1]/boost-pump-switch[1]");
-	me.fuel_c_qty	 = getprop("consumables/fuel/tank[1]/level-lbs");
-	me.fuel_l_qty	 = getprop("consumables/fuel/tank/level-lbs");
-	me.fuel_r_qty	 = getprop("consumables/fuel/tank[2]/level-lbs");
-	me.temp_c	 = getprop("environment/temperature-degc");
-	me.wing_aiknob	 = getprop("controls/anti-ice/wing-antiice-knob");
-	me.eng1_aiknob	 = getprop("controls/anti-ice/engin/antiice-knob");
-	me.eng2_aiknob	 = getprop("controls/anti-ice/engin[1]/antiice-knob");
-	me.wheat_ls	 = getprop("controls/anti-ice/window-heat-ls-switch");
-	me.wheat_lf	 = getprop("controls/anti-ice/window-heat-lf-switch");
-	me.wheat_rf	 = getprop("controls/anti-ice/window-heat-rf-switch");
-	me.wheat_rs	 = getprop("controls/anti-ice/window-heat-rs-switch");
+    me.autobrake     = getprop("autopilot/autobrake/step");
+    me.autobrakerto  = getprop("autopilot/autobrake/rto-selected");
+    me.apu_bleed     = getprop("controls/air/bleedapu-switch");
+    me.engl_bleed    = getprop("controls/air/bleedengl-switch");
+    me.engr_bleed    = getprop("controls/air/bleedengr-switch");
+    me.pack_l    = getprop("controls/air/lpack-switch");
+    me.pack_r    = getprop("controls/air/rpack-switch");
+    me.trim_air_l    = getprop("controls/air/ltrim-switch");
+    me.trim_air_r    = getprop("controls/air/rtrim-switch");
+    me.battery   = getprop("controls/electric/battery-switch");
+    me.recirc_fans   = getprop("controls/air/recircup-switch");
+    me.seatbelts     = getprop("controls/cabin/SeatBelt-knob");
+    me.smoking_sign  = getprop("controls/cabin/NoSmoking-knob");
+    me.fuel_c_pump1  = getprop("controls/fuel/tank[1]/boost-pump-switch");
+    me.fuel_c_pump2  = getprop("controls/fuel/tank[1]/boost-pump-switch[1]");
+    me.fuel_c_qty    = getprop("consumables/fuel/tank[1]/level-lbs");
+    me.fuel_l_qty    = getprop("consumables/fuel/tank/level-lbs");
+    me.fuel_r_qty    = getprop("consumables/fuel/tank[2]/level-lbs");
+    me.temp_c    = getprop("environment/temperature-degc");
+    me.wing_aiknob   = getprop("controls/anti-ice/wing-antiice-knob");
+    me.eng1_aiknob   = getprop("controls/anti-ice/engin/antiice-knob");
+    me.eng2_aiknob   = getprop("controls/anti-ice/engin[1]/antiice-knob");
+    me.wheat_ls  = getprop("controls/anti-ice/window-heat-ls-switch");
+    me.wheat_lf  = getprop("controls/anti-ice/window-heat-lf-switch");
+    me.wheat_rf  = getprop("controls/anti-ice/window-heat-rf-switch");
+    me.wheat_rs  = getprop("controls/anti-ice/window-heat-rs-switch");
     },
 
 #### update throttle input ####

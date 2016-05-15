@@ -1,4 +1,4 @@
-<!-- 
+<!--
 Syd Adams
 -->
 
@@ -43,7 +43,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LH_ind1</object-name>
-        <property>engines/engine[0]/rpm</property>
+        <property>engines/engine[0]/n1</property>
         <factor>2.085</factor>
         <center>
             <x-m>0</x-m>
@@ -60,7 +60,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LH_ind2</object-name>
-        <property>engines/engine[0]/rpm</property>
+        <property>engines/engine[0]/n1</property>
         <factor>1.33</factor>
         <center>
             <x-m>0</x-m>
@@ -77,7 +77,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LH_ind3</object-name>
-        <property>engines/engine[0]/rpm</property>
+        <property>engines/engine[0]/n1</property>
         <factor>0.66</factor>
         <center>
             <x-m>0</x-m>
@@ -94,7 +94,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind1</object-name>
-        <property>engines/engine[1]/rpm</property>
+        <property>engines/engine[1]/n1</property>
         <factor>2.085</factor>
         <center>
             <x-m>0</x-m>
@@ -111,7 +111,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind2</object-name>
-        <property>engines/engine[1]/rpm</property>
+        <property>engines/engine[1]/n1</property>
         <factor>1.33</factor>
         <center>
             <x-m>0</x-m>
@@ -128,7 +128,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind3</object-name>
-        <property>engines/engine[1]/rpm</property>
+        <property>engines/engine[1]/n1</property>
         <factor>0.66</factor>
         <center>
             <x-m>0</x-m>
@@ -173,7 +173,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[0]/rpm</property>
+        <property>engines/engine[0]/n1</property>
         <format>%3.1f</format>
         <font>helvetica_bold.txf</font>
         <character-size>0.009</character-size>
@@ -194,7 +194,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[1]/rpm</property>
+        <property>engines/engine[1]/n1</property>
         <format>%3.1f</format>
         <font>helvetica_bold.txf</font>
         <character-size>0.009</character-size>
@@ -250,79 +250,79 @@ Syd Adams
     <animation>
         <name>WHITE</name>
         <type>material</type>
-		<object-name>eng1-n1</object-name>
-		<object-name>eng2-n1</object-name>
-         	<emission>
-			<red>0.9</red>
-			<green>0.9</green>
-			<blue>0.9</blue>
-		</emission>
-		<ambient>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</ambient>
-		<diffuse>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</diffuse>
-		<specular>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</specular>
+        <object-name>eng1-n1</object-name>
+        <object-name>eng2-n1</object-name>
+            <emission>
+            <red>0.9</red>
+            <green>0.9</green>
+            <blue>0.9</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
     </animation>
 
     <animation>
         <name>CYAN</name>
         <type>material</type>
-		<object-name>N1</object-name>
-		<emission>
-			<red>0.0</red>
-			<green>0.9</green>
-			<blue>0.9</blue>
-		</emission>
-		<ambient>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</ambient>
-		<diffuse>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</diffuse>
-		<specular>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</specular>
+        <object-name>N1</object-name>
+        <emission>
+            <red>0.0</red>
+            <green>0.9</green>
+            <blue>0.9</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
     </animation>
 
     <!--animation>
         <name>MAGENTA</name>
         <type>material</type>
-		<emission>
-			<red>0.9</red>
-			<green>0.0</green>
-			<blue>0.9</blue>
-		</emission>
-		<ambient>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</ambient>
-		<diffuse>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</diffuse>
-		<specular>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</specular>
+        <emission>
+            <red>0.9</red>
+            <green>0.0</green>
+            <blue>0.9</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
     </animation-->
 
     <animation>
@@ -330,26 +330,26 @@ Syd Adams
         <type>material</type>
         <object-name>eng1-lmt</object-name>
         <object-name>eng2-lmt</object-name>
-		<emission>
-			<red>0.0</red>
-			<green>0.9</green>
-			<blue>0.0</blue>
-		</emission>
-		<ambient>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</ambient>
-		<diffuse>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</diffuse>
-		<specular>
-			<red>0</red>
-			<green>0</green>
-			<blue>0</blue>
-		</specular>
+        <emission>
+            <red>0.0</red>
+            <green>0.9</green>
+            <blue>0.0</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
     </animation>
 
 </PropertyList>

@@ -310,7 +310,7 @@
         <chunks>
             <chunk>
                 <type>number-value</type>
-                <property>engines/engine[0]/rpm</property>
+                <property>engines/engine[0]/n1</property>
                 <format>%3.1f</format>
             </chunk>
         </chunks>
@@ -339,7 +339,7 @@
         <chunks>
             <chunk>
                 <type>number-value</type>
-                <property>engines/engine[1]/rpm</property>
+                <property>engines/engine[1]/n1</property>
                 <format>%3.1f</format>
             </chunk>
         </chunks>

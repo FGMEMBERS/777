@@ -8,9 +8,9 @@ var Engine = {
         m.eng = props.globals.getNode("engines/engine["~eng_num~"]",1);
         m.n1 = m.eng.getNode("n1",1);
         m.n2 = m.eng.getNode("n2",1);
-        m.rpm = m.eng.getNode("rpm",1);
+        m.rpm = m.eng.getNode("n1",1);
         m.rpm.setDoubleValue(0);
-        m.n2rpm = m.eng.getNode("n2rpm",1);
+        m.n2rpm = m.eng.getNode("n2",1);
         m.n2rpm.setDoubleValue(0);
         m.egt_degf = m.eng.getNode("egt-degf",1);
         m.egt = m.eng.getNode("egt",1);
@@ -36,7 +36,7 @@ var Engine = {
         m.fuel_pph.setDoubleValue(0);
         m.fuel_gph=m.eng.getNode("fuel-flow-gph",1);
         m.hpump=props.globals.getNode("systems/hydraulics/pump-psi["~eng_num~"]",1);
-        m.running = props.globals.getNode("engines/engine["~eng_num~"]/run",1);
+        m.running = props.globals.getNode("engines/engine["~eng_num~"]/running",1);
         m.running.setBoolValue(0);
         m.hpump.setDoubleValue(0);
         m.apu = props.globals.getNode("controls/APU", 1);
@@ -100,97 +100,14 @@ var Engine = {
         me.updateOilTemp();
         me.updateOilPressure(me.n2rpm.getValue());
         me.updateOilQuantity(me.oilPressurePsi.getValue());
-        if(getprop("sim/flight-model") == "yasim")
-        {
-            if(me.fuel_out.getBoolValue() or me.cutoff.getBoolValue())
-            {
-                me.fuel_pph.setDoubleValue(0);
-                me.running.setBoolValue(0);
-                me.egt.setDoubleValue(me.egt_degf.getValue());
-            }
-            if(me.running.getBoolValue())
-            {
-                if(me.starterSwitch.getValue() == -1)
-                {
-                    settimer(func { me.starterSwitch.setValue(0);}, 0.3);
-                }
-                me.rpm.setValue(me.n1.getValue());
-                me.n2rpm.setValue(me.n2.getValue());
-                #Thrust reverser is inhibitted in air
-                if((getprop("gear/gear[1]/wow") == 0) and (getprop("gear/gear[2]/wow") == 0))
-                {
-                    me.reverser_cmd.setValue(0);
-                }
-                else
-                {
-                    if(me.throttle.getValue() == 0)
-                    {
-                        var reverser_cmd = me.reverser_cmd.getValue();
-                        if(reverser_cmd != me.reverser.getValue())
-                        {
-                            me.reverser.setValue(reverser_cmd);
-                        }
-                    }
-                }
-                me.egt.setDoubleValue(me.egt_degf.getValue());
-                var v_pph = (me.fuel_gph.getValue() * getprop("consumables/fuel/tank/density-ppg") / 1000);
-                if(v_pph < 1.2)
-                {
-                    me.idle_ff();
-                    v_pph=1.2;
-                }
-                else
-                    v_pph = v_pph + 1.2 / (1 + v_pph);
-                me.fuel_pph.setValue(v_pph);
-                var v_egt = me.egt_degf.getValue() - 64;
-                if(v_egt > 0)
-                {
-                    v_egt = 270 - v_egt/4;
-                }
-                else
-                {
-                    v_egt = 270;
-                }
-                   me.egt.setDoubleValue(me.egt_degf.getValue() + v_egt);
-            }
-            else
-            {
-                if(me.starterSwitch.getValue() == -1)
-                {
-                    if(getprop("controls/electric/APU-generator")
-                            or getprop("engines/engine[0]/run")
-                            or getprop("engines/engine[1]/run")
-                            or getprop("controls/electric/external-power")
-                            or getprop("controls/electric/external-power[1]")
-                    )
-                    {
-                        me.spool_up();
-                    }
-                    else
-                    {
-                        settimer(func { me.starterSwitch.setValue(0);}, 0.3);
-                    }
-                }else{
-                    var tmprpm = me.rpm.getValue();
-                    tmprpm -= getprop("sim/time/delta-realtime-sec") * 1.2;
-                    if(tmprpm < 0.0) tmprpm = 0;
-                    me.rpm.setValue(tmprpm);
-                    me.n2rpm.setValue(1.3*math.sqrt(tmprpm) * 12.65);
-                }
-            }
-            var hpsi =me.rpm.getValue();
-            if(hpsi>60)
-                hpsi = 60;
-            me.hpump.setValue(hpsi);
-        }
         if(getprop("sim/flight-model") == "jsb")
         {
             me.egt.setValue((me.egt_degf.getValue()-32)/1.8);
             if(me.starterSwitch.getValue() == -1)
             {
                 if(getprop("controls/electric/APU-generator")
-                        or getprop("engines/engine[0]/run")
-                        or getprop("engines/engine[1]/run")
+                        or getprop("engines/engine[0]/running")
+                        or getprop("engines/engine[1]/running")
                         or getprop("controls/electric/external-power")
                         or getprop("controls/electric/external-power[1]")
                 )

@@ -378,7 +378,7 @@ setlistener("sim/signals/fdm-initialized", func {
 
 var systems_running = 0;
 var start_updates = func {
-    if (getprop("position/gear-agl-ft")>30)
+    if (getprop("position/altitude-agl-ft")>30)
     {
         # airborne startup
         Startup();
@@ -393,8 +393,8 @@ var start_updates = func {
         setprop("instrumentation/afds/inputs/at-armed[1]", 1);
         setprop("instrumentation/afds/inputs/AP", 1);
         setprop("autopilot/internal/airport-height", 0);
-        setprop("engines/engine[0]/run",1);
-        setprop("engines/engine[1]/run",1);
+        setprop("engines/engine[0]/running",1);
+        setprop("engines/engine[1]/running",1);
         setprop("autopilot/settings/target-speed-kt", getprop("sim/presets/airspeed-kt"));
         b777.afds.input(1,1);
         setprop("autopilot/settings/counter-set-altitude-ft", getprop("sim/presets/altitude-ft"));
@@ -453,7 +453,7 @@ setlistener("sim/current-view/internal", func(vw){
 },1,0);
 
 controls.autostart = func() {
-    var run = !(getprop("engines/engine[0]/run") or getprop("engines/engine[1]/run"));
+    var run = !(getprop("engines/engine[0]/running") or getprop("engines/engine[1]/running"));
     if(run){
         Startup();
     }else{
@@ -643,24 +643,14 @@ var Startup = func{
     setprop("controls/lighting/landing-light[0]",1);
     setprop("controls/lighting/landing-light[1]",1);
     setprop("controls/lighting/landing-light[2]",1);
+    setprop("controls/engines/engine[0]/cutoff",1);
+    setprop("controls/engines/engine[1]/cutoff",1);
     setprop("engines/engine[0]/out-of-fuel",0);
     setprop("engines/engine[1]/out-of-fuel",0);
     setprop("controls/flight/elevator-trim",0);
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
-    if(getprop("sim/flight-model") == "yasim")
-    {
-        setprop("controls/engines/engine[0]/cutoff",0);
-        setprop("controls/engines/engine[1]/cutoff",0);
-        setprop("engines/engine[0]/run",1);
-        setprop("engines/engine[1]/run",1);
-    }
-    else
-    {
-        setprop("controls/engines/engine[0]/cutoff",1);
-        setprop("controls/engines/engine[1]/cutoff",1);
-    }
     setprop("controls/hydraulics/system/LENG_switch", 1);
     setprop("controls/hydraulics/system[2]/RENG_switch", 1);
     setprop("controls/hydraulics/system[1]/C1ELEC-switch", 1);
@@ -711,12 +701,12 @@ var Shutdown = func{
     setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
     setprop("controls/engines/StartIgnition-knob[0]",0);
     setprop("controls/engines/StartIgnition-knob[1]",0);
-    setprop("engines/engine[0]/run",0);
-    setprop("engines/engine[1]/run",0);
-    setprop("engines/engine[0]/rpm",0);
-    setprop("engines/engine[1]/rpm",0);
-    setprop("engines/engine[0]/n2rpm",0);
-    setprop("engines/engine[1]/n2rpm",0);
+    setprop("engines/engine[0]/running",0);
+    setprop("engines/engine[1]/running",0);
+    setprop("engines/engine[0]/n1",0);
+    setprop("engines/engine[1]/n1",0);
+    setprop("engines/engine[0]/n2",0);
+    setprop("engines/engine[1]/n2",0);
     setprop("engines/engine[0]/fuel-flow_pph",0);
     setprop("engines/engine[1]/fuel-flow_pph",0);
     setprop("instrumentation/weu/state/takeoff-mode",1);
@@ -1200,7 +1190,7 @@ var update_systems = func {
     setprop("instrumentation/clock/elapsed-string", et_tmp);
     switch_ind();
     if(getprop("sim/rendering/shaders/skydome")
-        and (getprop("position/gear-agl-ft") < 200))
+        and (getprop("position/altitude-agl-ft") < 200))
     {
         if(getprop("systems/electrical/outputs/landing-light[1]"))
         {

@@ -23,7 +23,7 @@
             <transformations>
                 <transformation>
                     <type>rotation</type>
-                    <property>engines/engine[0]/rpm</property>
+                    <property>engines/engine[0]/n1</property>
                     <scale>2.0</scale>
                 </transformation>
                 <transformation>
@@ -52,7 +52,7 @@
             <transformations>
                 <transformation>
                     <type>rotation</type>
-                    <property>engines/engine[0]/rpm</property>
+                    <property>engines/engine[0]/n1</property>
                     <scale>1.2</scale>
                 </transformation>
                 <transformation>
@@ -81,7 +81,7 @@
             <transformations>
                 <transformation>
                     <type>rotation</type>
-                    <property>engines/engine[0]/rpm</property>
+                    <property>engines/engine[0]/n1</property>
                     <scale>0.6</scale>
                 </transformation>
                 <transformation>

@@ -50,7 +50,7 @@
         <condition>
                 <and>
                     <not>
-                        <property>controls/APU/running</property>
+                        <property>controls/APU/run</property>
                     </not>
                   <greater-than>
                         <property>controls/APU/rpm</property>
@@ -69,10 +69,10 @@
             <path>/Aircraft/777/Sounds/jet-trent2.wav</path>
             <mode>looped</mode>
             <condition>
-                <property>engines/engine[0]/run</property>
+                <property>engines/engine[0]/running</property>
             </condition>
             <volume>
-                <property>engines/engine[0]/rpm</property>
+                <property>engines/engine[0]/n1</property>
                 <offset>-0.75</offset>
                 <factor>0.0125</factor>
                 <min>0.0</min>
@@ -93,10 +93,10 @@
             <path>/Aircraft/777/Sounds/jet-trent2.wav</path>
             <mode>looped</mode>
             <condition>
-                <property>engines/engine[1]/run</property>
+                <property>engines/engine[1]/running</property>
             </condition>
             <volume>
-                <property>engines/engine[1]/rpm</property>
+                <property>engines/engine[1]/n1</property>
                 <offset>-0.75</offset>
                 <factor>0.0125</factor>
                 <min>0.0</min>
@@ -116,16 +116,16 @@
             <name>left n1</name>
             <path>/Aircraft/777/Sounds/jet-trent1.wav</path>
             <mode>looped</mode>
-            <property>engines/engine[0]/rpm</property>
+            <property>engines/engine[0]/n1</property>
             <pitch>
-                <property>engines/engine[0]/rpm</property>
+                <property>engines/engine[0]/n1</property>
                 <offset>0.8</offset>
                 <factor>0.01</factor>
                 <min>0.0</min>
                 <max>100.0</max>
             </pitch>
             <volume>
-                <property>engines/engine[0]/rpm</property>
+                <property>engines/engine[0]/n1</property>
                 <factor>0.1</factor>
                 <min>0.0</min>
                 <max>0.5</max>
@@ -145,9 +145,9 @@
             <name>right n1</name>
             <path>/Aircraft/777/Sounds/jet-trent1.wav</path>
             <mode>looped</mode>
-            <property>engines/engine[1]/rpm</property>
+            <property>engines/engine[1]/n1</property>
             <volume>
-                <property>engines/engine[1]/rpm</property>
+                <property>engines/engine[1]/n1</property>
                 <factor>0.1</factor>
                 <min>0.0</min>
                 <max>0.5</max>
@@ -156,7 +156,7 @@
                 <property>sim/sound/Ovolume</property>
             </volume>
             <pitch>
-                <property>engines/engine[1]/rpm</property>
+                <property>engines/engine[1]/n1</property>
                 <offset>0.8</offset>
                 <factor>0.01</factor>
                 <min>0.0</min>
@@ -180,9 +180,9 @@
                         <property>controls/engines/StartIgnition-knob[0]</property>
                         <value>-1</value>
                     </equals>
-                    <not><property>engines/engine[0]/run</property></not>
+                    <not><property>engines/engine[0]/running</property></not>
                     <or>
-                        <property>engines/engine[1]/run</property>
+                        <property>engines/engine[1]/running</property>
                         <property>controls/electric/APU-generator</property>
                     </or>
                 </and>
@@ -209,9 +209,9 @@
                         <property>controls/engines/StartIgnition-knob[1]</property>
                         <value>-1</value>
                     </equals>
-                    <not><property>engines/engine[1]/run</property></not>
+                    <not><property>engines/engine[1]/running</property></not>
                     <or>
-                        <property>engines/engine[0]/run</property>
+                        <property>engines/engine[0]/running</property>
                         <property>controls/electric/APU-generator</property>
                     </or>
                 </and>
