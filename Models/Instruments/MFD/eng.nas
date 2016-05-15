@@ -185,14 +185,14 @@
         },
         update: func()
         {
-            me.eng0n2rpm.update(getprop("engines/engine[0]/n2rpm"));
-            me.eng1n2rpm.update(getprop("engines/engine[1]/n2rpm"));
+            me.eng0n2rpm.update(getprop("engines/engine[0]/n2"));
+            me.eng1n2rpm.update(getprop("engines/engine[1]/n2"));
             me.eng0OilTempIndic.update(getprop("engines/engine[0]/oil-temperature-degc"));
             me.eng1OilTempIndic.update(getprop("engines/engine[1]/oil-temperature-degc"));
             me.eng0OilPressIndic.update(getprop("engines/engine[0]/oil-pressure-psi"));
             me.eng1OilPressIndic.update(getprop("engines/engine[1]/oil-pressure-psi"));
-            me.eng0fuelFlowPph.setText(sprintf("%1.1f",getprop("engines/engine[0]/fuel-flow_pph")));
-            me.eng1fuelFlowPph.setText(sprintf("%1.1f",getprop("engines/engine[1]/fuel-flow_pph")));
+            me.eng0fuelFlowPph.setText(sprintf("%1.1f",getprop("fdm/jsbsim/propulsion/engine[0]/fuel-flow-rate-pps")));
+            me.eng1fuelFlowPph.setText(sprintf("%1.1f",getprop("fdm/jsbsim/propulsion/engine[1]/fuel-flow-rate-pps")));
             me.eng0OilQuantity.setText(sprintf("%2.0f",getprop("engines/engine[0]/oil-quantity")));
             me.eng1OilQuantity.setText(sprintf("%2.0f",getprop("engines/engine[1]/oil-quantity")));
         }

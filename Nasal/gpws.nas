@@ -16,7 +16,7 @@ var gpws_min_landing_flaps = 0.83;
 # GPWS specific class
 # ie: var Gpws = GPWS.new("instrumentation/mk-viii");
 ##############################################
-var GPWS = 
+var GPWS =
 {
     new : func(prop1)
     {
@@ -157,13 +157,13 @@ var GPWS =
     },
     update_height : func()
     {
-        var radio_alt = getprop("position/gear-agl-ft");
-		if(radio_alt != nil)
-		{
-	        # "glide-slope warning inhibited" is disabled below 50 feet
-    	    if ((radio_alt < 50.0)or(radio_alt > 1000.0))
-        	    me.disable_gs_override();
-		}
+        var radio_alt = getprop("position/altitude-agl-ft");
+        if(radio_alt != nil)
+        {
+            # "glide-slope warning inhibited" is disabled below 50 feet
+            if ((radio_alt < 50.0)or(radio_alt > 1000.0))
+                me.disable_gs_override();
+        }
     },
 };
 

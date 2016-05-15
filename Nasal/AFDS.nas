@@ -169,7 +169,7 @@ var AFDS = {
                 # horizontal AP controls
                 if(btn == 1)        # Heading Sel button
                 {
-                    if(getprop("position/gear-agl-ft") < 50)
+                    if(getprop("position/altitude-agl-ft") < 50)
                     {
                         btn = me.lateral_mode.getValue();
                     }
@@ -179,7 +179,7 @@ var AFDS = {
                     # set target to current heading
                     var tgtHdg = me.heading.getValue();
                     me.hdg_setting.setValue(tgtHdg);
-                    if(getprop("position/gear-agl-ft") < 50)
+                    if(getprop("position/altitude-agl-ft") < 50)
                     {
                         btn = me.lateral_mode.getValue();
                     }
@@ -472,7 +472,7 @@ var AFDS = {
                                 me.gs_armed.setValue(0);
                             }
                             elsif((lgsmode != 6)
-                                and (getprop("position/gear-agl-ft") > 1500))
+                                and (getprop("position/altitude-agl-ft") > 1500))
                             {
                                 me.lateral_mode.setValue(8);        # Default roll mode (ATT)
                             }
@@ -491,7 +491,7 @@ var AFDS = {
                         if((llocmode == 4)  # Already in LOC mode
                                 and (me.gs_armed.getValue(1)        # GS armed
                                     or (lgsmode == 6))
-                                and (getprop("position/gear-agl-ft") > 1500))
+                                and (getprop("position/altitude-agl-ft") > 1500))
                         {
                             me.lateral_mode.setValue(8);    # Default roll mode (ATT)
                             me.vertical_mode.setValue(2);   # Default pich mode (V/S)
@@ -544,7 +544,7 @@ var AFDS = {
         }
         var output = 1-me.AP.getValue();
         var disabled = me.AP_disengaged.getValue();
-        if((output==0)and(getprop("position/gear-agl-ft")<200))
+        if((output==0)and(getprop("position/altitude-agl-ft")<200))
         {
             disabled = 1;
             copilot("Captain, autopilot won't engage below 200ft.");
@@ -853,7 +853,7 @@ var AFDS = {
         }
 
         if(me.step==0){ ### glideslope armed ?###
-            var gear_agl_ft = getprop("position/gear-agl-ft");
+            var gear_agl_ft = getprop("position/altitude-agl-ft");
             if(gear_agl_ft > 500)
             {
                 gear_agl_ft = int(gear_agl_ft / 20) * 20;
@@ -936,7 +936,7 @@ var AFDS = {
             }
             elsif(me.lnav_armed.getValue())
             {
-                if(getprop("position/gear-agl-ft") > 50)
+                if(getprop("position/altitude-agl-ft") > 50)
                 {
                     msg = "";
                     me.lnav_armed.setValue(0);      # Clear
@@ -988,7 +988,7 @@ var AFDS = {
                 }
             }
             var idx = me.lateral_mode.getValue();
-            if(getprop("position/gear-agl-ft") > 50)
+            if(getprop("position/altitude-agl-ft") > 50)
             {
                 if ((idx == 1) or (idx == 2))
                 {
@@ -1018,7 +1018,7 @@ var AFDS = {
             if(idx == 4)        # LOC
             {
                 if((me.rollout_armed.getValue())
-                    and (getprop("position/gear-agl-ft") < 30))
+                    and (getprop("position/altitude-agl-ft") < 30))
                 {
                     me.rollout_armed.setValue(0);
                     idx = 5;    # ROLLOUT
@@ -1494,12 +1494,12 @@ var AFDS = {
             {
                 var f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
                 me.flare_constant_setting.setValue(f_angle);
-                if(getprop("position/gear-agl-ft") < 50)
+                if(getprop("position/altitude-agl-ft") < 50)
                 {
                     me.flare_armed.setValue(0);
                     idx = 7;            # FLARE
                 }
-                elsif(me.AP.getValue() and (getprop("position/gear-agl-ft") < 1500))
+                elsif(me.AP.getValue() and (getprop("position/altitude-agl-ft") < 1500))
                 {
                     me.rollout_armed.setValue(1);       # ROLLOUT
                     me.flare_armed.setValue(1);         # FLARE
@@ -1510,7 +1510,7 @@ var AFDS = {
             {
                 if(me.autothrottle_mode.getValue() == 5)    # SPD
                 {
-                    if(getprop("position/gear-agl-ft") < 50)
+                    if(getprop("position/altitude-agl-ft") < 50)
                     {
                         me.autothrottle_mode.setValue(4);   # A/T IDLE
                     }
@@ -1578,7 +1578,7 @@ var AFDS = {
             # Thrust reference rate calculation. This should be provided by FMC
             var vflight_idle = 0;
             var payload = getprop("consumables/fuel/total-fuel-lbs") + getprop("sim/weight[0]/weight-lb") + getprop("sim/weight[1]/weight-lb");
-            var derate = 0.3 - payload * 0.00000083;
+            var derate = 0.1 - payload * 0.00000083;
             if(current_alt > 12000)
             {
                 if(me.ias_setting.getValue() < 241)
@@ -1728,7 +1728,7 @@ var AFDS = {
                     me.autothrottle_mode.setValue(5);       # SPD
                 }
             }
-            elsif((getprop("position/gear-agl-ft") > 100)       # Approach mode and above 100 ft
+            elsif((getprop("position/altitude-agl-ft") > 100)       # Approach mode and above 100 ft
                     and (me.vertical_mode.getValue() == 6))
             {
                 me.autothrottle_mode.setValue(5);               # SPD

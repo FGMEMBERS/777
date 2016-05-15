@@ -10,7 +10,7 @@
 # is just meant to distinguish normal energy levels from exceptionally
 # high levels. The target is to drive EICAS "brakes overheat" messages
 # and gear effects only, to "reward" pilots with exceptionally bad
-# landings...       
+# landings...
 #
 # To avoid complicated calculations of different braking effects (roll/air
 # drag, reverse thrust etc), we simply assume the brake system to cause a
@@ -37,9 +37,9 @@ var BrakeSystem =
        # Scaling divisor. Use this to scale the energy output.
        # Manually tune this value: a total energy output
        # at "/gear/brake-thermal-energy" > 1.0 means overheated brakes,
-       # anything below <= 1.0 means energy absorbed by brakes is OK. 
+       # anything below <= 1.0 means energy absorbed by brakes is OK.
        m.ScalingDivisor= 700000*450.0;
-       
+
        m.SmokeActive   = 0;
        m.SmokeToggle   = 0;
        m.LnCoolFactor  = math.ln(1-m.CoolingFactor);
@@ -76,9 +76,9 @@ var BrakeSystem =
             {
                 # absorb more energy
                 var V1 = getprop("velocities/groundspeed-kt");
-                var Mass = getprop("yasim/gross-weight-lbs")/me.ScalingDivisor;
+                var Mass = getprop("fdm/jsbsim/inertia/weight-lbs")/me.ScalingDivisor;
                 # absorb some kinetic energy:
-                # dE= 1/2 * m * V1^2 - 1/2 * m * V2^2) 
+                # dE= 1/2 * m * V1^2 - 1/2 * m * V2^2)
                 var V2 = V1 - me.BrakeDecel*dt * BrakeLevel;
                 # do not absorb more energy when plane is (almost) stopped
                 if (V2>0)
@@ -89,15 +89,15 @@ var BrakeSystem =
             ThermalEnergy = ThermalEnergy * math.exp(me.LnCoolFactor * dt);
 
             setprop("gear/brake-thermal-energy",ThermalEnergy);
-            
+
             if ((ThermalEnergy>1)and(!me.SmokeActive))
             {
-                # start smoke processing 
+                # start smoke processing
                 me.SmokeActive = 1;
                 settimer(func { BrakeSys.smoke(); },0);
             }
         }
-        
+
         me.LastSimTime = CurrentTime;
         # 5 updates per second are good enough
         settimer(func { BrakeSys.update(); },0.2);
@@ -108,7 +108,7 @@ var BrakeSystem =
     {
         if ((me.SmokeActive)and(getprop("gear/brake-thermal-energy")>1))
         {
-            # make density of smoke effect depend on energy level  
+            # make density of smoke effect depend on energy level
             var SmokeDelay=0;
             var ThermalEnergy = getprop("gear/brake-thermal-energy");
             if (ThermalEnergy < 1.5)
@@ -117,7 +117,7 @@ var BrakeSystem =
                 setprop("sim/animation/fire-services",1);
             # No smoke when gear retracted
             var SmokeValue = (getprop("gear/gear[1]/position-norm")>0.5);
-            # toggle smoke to interpolate different densities 
+            # toggle smoke to interpolate different densities
             if (SmokeDelay>0.05)
             {
                 me.SmokeToggle = !me.SmokeToggle;
