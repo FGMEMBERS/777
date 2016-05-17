@@ -1293,7 +1293,7 @@ Outboard Aileron Lockout Schedule
     <type>rotate</type>
     <object-name>FUdamper</object-name>
     <object-name>FLdamper</object-name>
-    <property>sim/multiplay/generic/float[0]</property>
+        <property>gear/gear[0]/compression-m</property>
     <factor>45</factor>
     <center>
         <x-m>-24.3721</x-m>
@@ -1310,7 +1310,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>translate</type>
     <object-name>Frtstrut</object-name>
-    <property>sim/multiplay/generic/float[0]</property>
+        <property>gear/gear[0]/compression-m</property>
     <axis>
         <x>0.087</x>
         <y>0</y>
@@ -1321,7 +1321,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>FLdamper</object-name>
-    <property>sim/multiplay/generic/float[0]</property>
+        <property>gear/gear[0]/compression-m</property>
     <factor>90</factor>
     <center>
         <x-m>-23.9121</x-m>
@@ -1575,7 +1575,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>translate</type>
     <object-name>LHstrut</object-name>
-    <property>sim/multiplay/generic/float[1]</property>
+        <property>gear/gear[1]/compression-m</property>
     <axis>
         <x>0</x>
         <y>0</y>
@@ -1606,7 +1606,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>LHaxle</object-name>
-    <property>sim/multiplay/generic/float[3]</property>
+        <property>gear/gear[3]/compression-m</property>
     <interpolation>
         <entry><ind>0</ind><dep>0</dep></entry>
         <entry><ind>0.52</ind><dep>20</dep></entry>
@@ -1896,7 +1896,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>RHaxle</object-name>
-    <property>sim/multiplay/generic/float[4]</property>
+        <property>gear/gear[4]/compression-m</property>
     <interpolation>
         <entry><ind>0</ind><dep>0</dep></entry>
         <entry><ind>0.52</ind><dep>20</dep></entry>
@@ -1916,7 +1916,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>translate</type>
     <object-name>RHstrut</object-name>
-    <property>sim/multiplay/generic/float[2]</property>
+        <property>gear/gear[2]/compression-m</property>
     <axis>
         <x>0</x>
         <y>0</y>
@@ -2234,7 +2234,7 @@ Outboard Aileron Lockout Schedule
  <name>Pushback</name>
  <path>Models/Airport/Pushback/Douglas.xml</path>
  <offsets>
-  <x-m>-19.284</x-m>
+  <x-m>-24.5221</x-m>
   <y-m>0.0</y-m>
   <z-m>-5.4</z-m>
  </offsets>
@@ -2306,6 +2306,33 @@ Outboard Aileron Lockout Schedule
     </electrical>
 </systems>
 
+<gear>
+    <gear n="0">
+        <compression-m>
+            <property>sim/multiplay/generic/float[0]</property>
+        </compression-m>
+    </gear>
+    <gear n="1">
+        <compression-m>
+            <property>sim/multiplay/generic/float[1]</property>
+        </compression-m>
+    </gear>
+    <gear n="2">
+        <compression-m>
+            <property>sim/multiplay/generic/float[2]</property>
+        </compression-m>
+    </gear>
+    <gear n="3">
+        <compression-m>
+            <property>sim/multiplay/generic/float[3]</property>
+        </compression-m>
+    </gear>
+    <gear n="4">
+        <compression-m>
+            <property>sim/multiplay/generic/float[4]</property>
+        </compression-m>
+    </gear>
+</gear>
 <controls>
     <flight>
         <speedbrake-angle>
