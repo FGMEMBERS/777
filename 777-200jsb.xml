@@ -59,7 +59,7 @@
       <y>   0.00 </y>
       <z> -20.0 </z>
     </location>
-  </pointmass> 
+  </pointmass>
  </mass_balance>
 
  <ground_reactions>
@@ -132,7 +132,7 @@
    <location unit="IN">
      <x> 1309.70 </x> <!-- aft axle position -->
      <y> -229.55 </y> <!-- this coordinate gives 13 degrees of gear in free condition -->
-     <z> 200.44 </z>
+     <z> -200.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
@@ -461,32 +461,32 @@
   <channel name="Flaperon">
 
    <fcs_function name="fcs/flaperon-droop">
-	 <function>
-	  <table>
-	   <independentVar lookup="row"> fcs/flap-pos-deg </independentVar>
-	   <tableData>
-		0	0
-		1	0
-		5	10
-		15	20
-		20	20
-		25	31
-		30	31
-	   </tableData>
-	  </table>
-	 </function>
+     <function>
+      <table>
+       <independentVar lookup="row"> fcs/flap-pos-deg </independentVar>
+       <tableData>
+        0   0
+        1   0
+        5   10
+        15  20
+        20  20
+        25  31
+        30  31
+       </tableData>
+      </table>
+     </function>
    </fcs_function>
 
    <fcs_function name="fcs/flaperon-left">
-	<function>
-	  <sum>
+    <function>
+      <sum>
             <property>fcs/flaperon-droop</property>
             <product>
               <property>fcs/roll-trim-sum</property>
               <value>10</value>
             </product>
           </sum>
-	</function>
+    </function>
       <clipto>
         <min> -10.0 </min>
         <max>  36.0 </max>
@@ -494,15 +494,15 @@
    </fcs_function>
 
    <fcs_function name="fcs/flaperon-right">
-	<function>
-	  <sum>
+    <function>
+      <sum>
             <property>fcs/flaperon-droop</property>
             <product>
               <property>fcs/roll-trim-sum</property>
               <value>-10</value>
             </product>
           </sum>
-	</function>
+    </function>
       <clipto>
         <min> -10.0 </min>
         <max>  36.0 </max>
@@ -1556,9 +1556,9 @@
         <ground_reactions> OFF </ground_reactions>
         <fcs> OFF </fcs>
         <propulsion> OFF </propulsion>
-	<property>aero/data/alfad</property>
-	<property>aero/data/albr</property>
-	<property>aero/data/s-clwb</property>
+    <property>aero/data/alfad</property>
+    <property>aero/data/albr</property>
+    <property>aero/data/s-clwb</property>
     </output>-->
 
 </fdm_config>
