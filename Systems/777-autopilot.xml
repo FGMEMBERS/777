@@ -268,7 +268,7 @@
     </pi-simple-controller>
 
     <pi-simple-controller>
-        <name>Aileron Control</name>
+        <name>Roll rate calculator</name>
         <debug>false</debug>
         <enable>
             <property>instrumentation/afds/inputs/AP</property>
@@ -278,6 +278,29 @@
         </input>
         <reference>
             <property>autopilot/internal/target-roll-deg</property>
+        </reference>
+        <output>
+            <property>autopilot/internal/target-roll-rate</property>
+        </output>
+        <config>
+            <Kp>0.5</Kp>
+            <Ki>0.0</Ki>
+            <u_min>-4</u_min>
+            <u_max>4</u_max>
+        </config>
+    </pi-simple-controller>
+
+    <pi-simple-controller>
+        <name>Aileron Control</name>
+        <debug>false</debug>
+        <enable>
+            <property>instrumentation/afds/inputs/AP</property>
+        </enable>
+        <input>
+            <property>orientation/roll-rate-degps</property>
+        </input>
+        <reference>
+            <property>autopilot/internal/target-roll-rate</property>
         </reference>
         <output>
             <property>controls/flight/aileron</property>
@@ -293,7 +316,7 @@
                 <value>0.01</value>
             </Kp>
             <Kp>0.02</Kp>
-            <Ti>10</Ti>
+            <Ki>0.16</Ki>
             <Td>0.0</Td>
             <u_min>
                 <value>-1.0</value>
@@ -1002,102 +1025,159 @@
         </config>
     </pid-controller>
 
-    <filter>
-        <name>AP engage filter</name>
-        <enable>
-            <property>instrumentation/afds/inputs/AP</property>
-        </enable>
-        <input>
-            <value>-0.018</value>
-        </input>
-        <output>
-            <property>controls/flight/AP-engage-filter</property>
-        </output>
-        <type>noise-spike</type>
-        <max-rate-of-change>
-            <value>-0.0001</value>
-        </max-rate-of-change>
-    </filter>
-
-    <pid-controller>
-        <name>Elevator Control</name>
+    <pi-simple-controller>
+        <name>Pitch comparator</name>
         <debug>false</debug>
         <enable>
             <property>instrumentation/afds/inputs/AP</property>
         </enable>
         <input>
-            <property>orientation/pitch-deg</property>
+            <prop>orientation/pitch-deg</prop>
         </input>
         <reference>
-            <property>autopilot/internal/target-pitch-deg</property>
+            <prop>autopilot/internal/target-pitch-deg</prop>
         </reference>
         <output>
-            <property>controls/flight/elevator-filter</property>
+            <prop>autopilot/internal/target-accel-pitch</prop>
         </output>
         <config>
-            <Kp>
-                <condition>
-                    <equals>
-                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                        <value>G/S</value>
-                    </equals>
-                </condition>
-                <value>-0.024</value>
-            </Kp>
-            <Kp>
-                <property>controls/flight/AP-engage-filter</property>
-            </Kp>
-            <Ti>2.0</Ti>
-            <Td>0.0</Td>
-            <u_min>
-                <value>-1.0</value>
-            </u_min>
-            <u_max>
-                <value>1.0</value>
-            </u_max>
+            <Kp>0.1</Kp>            <!-- proportional gain -->
+            <Ki>0.0000001</Ki>        <!-- integral gain -->
+            <u_min>-0.2</u_min> <!-- minimum output clamp -->
+            <u_max>0.2</u_max>   <!-- maximum output clamp -->
         </config>
-    </pid-controller>
+    </pi-simple-controller>
+
+    <!-- helper which calculates current acceleration -->
+    <filter>
+        <type>noise-spike</type>
+        <max-rate-of-change>
+            <value>0.01</value>
+        </max-rate-of-change>
+        <input>
+            <expression>
+                <product>
+                    <sum>
+                        <property>accelerations/n-z-cg-fps_sec</property>
+                        <value>-1</value>
+                    </sum>
+                </product>
+            </expression>
+        </input>
+        <output>
+            <prop>autopilot/internal/current-accel</prop>
+        </output>
+    </filter>
 
     <filter>
-        <name>Elevator control filter</name>
+        <name>Target Z acceleration calculator</name>
+        <type>gain</type>
+        <gain>1</gain>
         <debug>false</debug>
-        <type>noise-spike</type>
         <enable>
             <property>instrumentation/afds/inputs/AP</property>
         </enable>
-        <max-rate-of-change>
-            <condition>
-                <greater-than>
-                    <property>instrumentation/airspeed-indicator/indicated-mach</property>
-                    <value>0.85</value>
-                </greater-than>
-            </condition>
-            <value>0.05</value>
-        </max-rate-of-change>
-        <max-rate-of-change>
-            <condition>
-                <greater-than>
-                    <property>instrumentation/airspeed-indicator/indicated-mach</property>
-                    <value>0.666</value>
-                </greater-than>
-            </condition>
-            <value>0.1</value>
-        </max-rate-of-change>
-        <max-rate-of-change>
-            <condition>
-                <greater-than>
-                    <property>instrumentation/airspeed-indicator/indicated-mach</property>
-                    <value>0.5</value>
-                </greater-than>
-            </condition>
-            <value>0.15</value>
-        </max-rate-of-change>
-        <max-rate-of-change>0.2</max-rate-of-change>
-        <initialize-to>output</initialize-to>
         <input>
-            <property>controls/flight/elevator-filter</property>
+            <expression>
+                <sum>
+                    <property>autopilot/internal/target-accel-pitch</property>
+                    <div>
+                        <value>1</value>
+                        <cos>
+                            <div>
+                                <property>orientation/roll-deg</property>
+                                <value>157.2957795131</value>
+                            </div>
+                        </cos>
+                    </div>
+                    <value>-1</value>
+                </sum>
+            </expression>
         </input>
-        <output>/controls/flight/elevator</output>
+        <output>
+            <prop>autopilot/internal/target-accel</prop>
+    </output>
+    </filter>
+
+    <filter> <!-- Max authority calculation -->
+        <type>gain</type>
+        <gain>1</gain>
+        <input>
+            <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+            <scale>-0.0003623188</scale>
+            <offset>0.182357143</offset>
+        </input>
+        <output>
+            <prop>autopilot/internal/max-authority-pos</prop>
+        </output>
+        <min>0.059</min>
+        <max>0.143</max>
+    </filter>
+
+    <filter> <!-- Max authority calculation negative -->
+        <type>gain</type>
+        <gain>-1</gain>
+        <input>
+            <prop>autopilot/internal/max-authority-pos</prop>
+        </input>
+        <output>
+            <prop>autopilot/internal/max-authority-neg</prop>
+        </output>
+    </filter>
+
+    <pi-simple-controller>
+        <name>Acceleration comparator</name>
+        <debug>false</debug>
+        <enable>
+            <property>instrumentation/afds/inputs/AP</property>
+        </enable>
+        <input>
+            <prop>autopilot/internal/current-accel</prop>
+        </input>
+        <reference>
+            <prop>autopilot/internal/target-accel</prop>
+        </reference>
+        <output>
+            <prop>autopilot/internal/elevator</prop>
+        </output>
+        <config>
+            <Kp>-1.2</Kp>            <!-- proportional gain -->
+            <Ki>-0.3</Ki>            <!-- integral gain -->
+            <u_min>autopilot/internal/max-authority-neg</u_min> <!-- minimum output clamp -->
+            <u_max>autopilot/internal/max-authority-pos</u_max>  <!-- maximum output clamp -->
+        </config>
+    </pi-simple-controller>
+
+    <filter>
+        <type>gain</type>
+        <gain>0.08</gain>
+        <input>
+            <property>orientation/pitch-rate-degps</property>
+        </input>
+        <output>
+            <prop>autopilot/internal/elevator-damp</prop>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Elevator signal plus damper summer</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <debug>false</debug>
+        <enable>
+            <property>instrumentation/afds/inputs/AP</property>
+        </enable>
+        <input>
+            <expression>
+                <sum>
+                    <property>autopilot/internal/elevator-damp</property>
+                    <property>autopilot/internal/elevator</property>
+                </sum>
+            </expression>
+        </input>
+        <output>
+            <prop>controls/flight/elevator</prop>
+        </output>
     </filter>
 
     <pid-controller>
