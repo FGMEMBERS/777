@@ -1530,8 +1530,8 @@ Syd Adams
         <object-name>LHaxle</object-name>
         <property>gear/gear[1]/position-norm</property>
         <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>1</ind><dep>20</dep></entry>
+            <entry><ind>0.95</ind><dep>-18</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
@@ -1548,10 +1548,14 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LHaxle</object-name>
-        <property>gear/gear[3]/compression-m</property>
+        <property>fdm/jsbsim/gear/left-compression-diff-m</property>
         <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>0.52</ind><dep>20</dep></entry>
+            <entry><ind>0.0</ind><dep>-13</dep></entry>
+            <entry><ind>0.1</ind><dep>-9.3</dep></entry>
+            <entry><ind>0.4</ind><dep>2.1</dep></entry>
+            <entry><ind>0.5</ind><dep>6</dep></entry>
+            <entry><ind>0.6</ind><dep>9.7</dep></entry>
+            <entry><ind>1.0</ind><dep>23.7</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
@@ -1819,8 +1823,8 @@ Syd Adams
         <object-name>RHaxle</object-name>
         <property>gear/gear[2]/position-norm</property>
         <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>1</ind><dep>20</dep></entry>
+            <entry><ind>0.95</ind><dep>-18</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
@@ -1838,10 +1842,14 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RHaxle</object-name>
-        <property>gear/gear[4]/compression-m</property>
+        <property>fdm/jsbsim/gear/right-compression-diff-m</property>
         <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>0.52</ind><dep>20</dep></entry>
+            <entry><ind>0.0</ind><dep>-13</dep></entry>
+            <entry><ind>0.1</ind><dep>-9.3</dep></entry>
+            <entry><ind>0.4</ind><dep>2.1</dep></entry>
+            <entry><ind>0.5</ind><dep>6</dep></entry>
+            <entry><ind>0.6</ind><dep>9.7</dep></entry>
+            <entry><ind>1.0</ind><dep>23.7</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
