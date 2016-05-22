@@ -115,7 +115,7 @@
   <contact type="BOGEY" name="LEFT_MAIN_AFT">
    <location unit="IN">
      <x> 1309.70 </x> <!-- aft axle position -->
-     <y> 216.00 </y>
+     <y> -216.00 </y>
      <z> -214.00 </z> <!-- this coordinate gives 13 degrees of gear in free condition -->
    </location>
    <static_friction>  0.80 </static_friction>
