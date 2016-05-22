@@ -6,7 +6,7 @@
     <filter>
         <name>gear 0 compression</name>
         <type>gain</type>
-        <gain>0.30480371</gain>
+        <gain>0.3048</gain>
         <input>gear/gear[0]/compression-ft</input>
         <output>gear/gear[0]/compression-m</output>
     </filter>
@@ -14,7 +14,7 @@
     <filter>
         <name>gear 1 compression</name>
         <type>gain</type>
-        <gain>0.30480371</gain>
+        <gain>0.3048</gain>
         <input>gear/gear[1]/compression-ft</input>
         <output>gear/gear[1]/compression-m</output>
     </filter>
@@ -22,7 +22,7 @@
     <filter>
         <name>gear 2 compression</name>
         <type>gain</type>
-        <gain>0.30480371</gain>
+        <gain>0.3048</gain>
         <input>gear/gear[2]/compression-ft</input>
         <output>gear/gear[2]/compression-m</output>
     </filter>
@@ -30,7 +30,7 @@
     <filter>
         <name>gear 3 compression</name>
         <type>gain</type>
-        <gain>1.45</gain>
+        <gain>0.3048</gain>
         <input>gear/gear[3]/compression-ft</input>
         <output>gear/gear[3]/compression-m</output>
     </filter>
@@ -38,7 +38,7 @@
     <filter>
         <name>gear 4 compression</name>
         <type>gain</type>
-        <gain>1.45</gain>
+        <gain>0.3048</gain>
         <input>gear/gear[4]/compression-ft</input>
         <output>gear/gear[4]/compression-m</output>
     </filter>

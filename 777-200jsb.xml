@@ -42,16 +42,16 @@
  </metrics>
 
  <mass_balance>
-   <ixx unit="SLUG*FT2">   6341762 </ixx>
-   <iyy unit="SLUG*FT2">  16026471 </iyy>
-   <izz unit="SLUG*FT2">  22466436 </izz>
-   <emptywt unit="LBS" >    310400 </emptywt>
-   <location name="CG" unit="IN">
-     <x> 1151.60 </x>
-     <y>   0.00 </y>
-     <z> -20.00 </z>
-   </location>
-   <pointmass name="Payload">
+    <ixx unit="SLUG*FT2">   6341762 </ixx>
+    <iyy unit="SLUG*FT2">  16026471 </iyy>
+    <izz unit="SLUG*FT2">  22466436 </izz>
+    <emptywt unit="LBS" >    310400 </emptywt>
+    <location name="CG" unit="IN">
+      <x> 1151.60 </x>
+      <y>   0.00 </y>
+      <z> -20.00 </z>
+    </location>
+    <pointmass name="Payload">
     <description> 67035 LBS + full (150965 LBS) fuel should bring model up to entered max weight</description>
     <weight unit="LBS">  33517.5 </weight>
     <location name="POINTMASS" unit="IN">
@@ -59,7 +59,7 @@
       <y>   0.00 </y>
       <z> -20.0 </z>
     </location>
-  </pointmass>
+    </pointmass>
  </mass_balance>
 
  <ground_reactions>
@@ -1058,30 +1058,6 @@
       <output>external_reactions/stabilizer-lift/z</output>
     </fcs_function>
 
-    <fcs_function name="gear/left-compression-diff-m">
-      <function>
-        <product>
-          <difference>
-            <property>gear/unit[3]/compression-ft</property>
-            <property>gear/unit[1]/compression-ft</property>
-          </difference>
-          <value>0.3048</value>
-        </product>
-      </function>
-    </fcs_function>
-
-    <fcs_function name="gear/right-compression-diff-m">
-      <function>
-        <product>
-          <difference>
-            <property>gear/unit[4]/compression-ft</property>
-            <property>gear/unit[2]/compression-ft</property>
-          </difference>
-          <value>0.3048</value>
-        </product>
-      </function>
-    </fcs_function>
-
   </channel>
 
  </flight_control>
@@ -1183,6 +1159,26 @@
               0.2094  0 -0.166  -0.235  -0.267  -0.284  -0.32 -0.324  -0.307  -0.265  -0.185  -0.021  0.06
               0.2269  0 -0.155  -0.231  -0.262  -0.278  -0.312  -0.313  -0.31 -0.275  -0.176  0.007 0.096
               0.2443  0 -0.158  -0.238  -0.267  -0.281  -0.312  -0.311  -0.322  -0.284  -0.181  0.021 0.105
+            </tableData>
+          </table>
+      </product>
+    </function>
+
+    <function name="aero/force/dLift_flaperon_left">
+      <description>Delta lift due to left flaperon deflection</description>
+      <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <table>
+            <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">fcs/flaperon-left</independentVar>
+            <tableData>
+                      -10     0       10      20      25      30      36
+              -0.0698 -0.0190 0.0000  0.0180  0.0240  0.0310  0.0360  0.0360
+              0.1047  -0.0170 0.0000  0.0170  0.0280  0.0330  0.0380  0.0380
+              0.1396  -0.0160 0.0000  0.0150  0.0240  0.0290  0.0340  0.0340
+              0.1745  -0.0120 0.0000  0.0110  0.0190  0.0210  0.0230  0.0230
+              0.3142  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
             </tableData>
           </table>
       </product>
