@@ -1277,7 +1277,7 @@ Syd Adams
         <type>rotate</type>
         <object-name>FUdamper</object-name>
         <object-name>FLdamper</object-name>
-        <property>sim/multiplay/generic/float[0]</property>
+        <property alias = "/gear/gear[0]/compression-m/property"/>
         <factor>45</factor>
         <center>
             <x-m>-19.134</x-m>
@@ -1294,7 +1294,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>Frtstrut</object-name>
-        <property>sim/multiplay/generic/float[0]</property>
+        <property alias = "/gear/gear[0]/compression-m/property"/>
         <axis>
             <x>0.087</x>
             <y>0</y>
@@ -1305,7 +1305,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>FLdamper</object-name>
-        <property>sim/multiplay/generic/float[0]</property>
+        <property alias = "/gear/gear[0]/compression-m/property"/>
         <factor>90</factor>
         <center>
             <x-m>-18.674</x-m>
@@ -1538,7 +1538,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>LHstrut</object-name>
-        <property>sim/multiplay/generic/float[1]</property>
+        <property alias = "/gear/gear[1]/compression-m/property"/>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -1575,8 +1575,8 @@ Syd Adams
                     <atan>
                         <div>
                             <difference>
-                                <property>gear/gear[3]/compression-m</property>
-                                <property>gear/gear[1]/compression-m</property>
+                                <property alias = "/gear/gear[3]/compression-m/property"/>
+                                <property alias = "/gear/gear[1]/compression-m/property"/>
                             </difference>
                             <value>1.49</value>
                         </div>
@@ -1876,8 +1876,8 @@ Syd Adams
                     <atan>
                         <div>
                             <difference>
-                                <property>gear/gear[4]/compression-m</property>
-                                <property>gear/gear[2]/compression-m</property>
+                                <property alias = "/gear/gear[4]/compression-m/property"/>
+                                <property alias = "/gear/gear[2]/compression-m/property"/>
                             </difference>
                             <value>1.49</value>
                         </div>
@@ -1901,7 +1901,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>RHstrut</object-name>
-        <property>sim/multiplay/generic/float[2]</property>
+        <property alias = "/gear/gear[2]/compression-m/property"/>
         <axis>
             <x>0</x>
             <y>0</y>
