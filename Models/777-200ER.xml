@@ -1553,8 +1553,8 @@ Syd Adams
         <object-name>LHaxle</object-name>
         <property>gear/gear[1]/position-norm</property>
         <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>1</ind><dep>20</dep></entry>
+            <entry><ind>0.95</ind><dep>-18</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
@@ -1571,11 +1571,22 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LHaxle</object-name>
-        <property>sim/multiplay/generic/float[3]</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>0.52</ind><dep>20</dep></entry>
-        </interpolation>
+        <expression>
+            <sum>
+                <rad2deg>
+                    <atan>
+                        <div>
+                            <difference>
+                                <property>gear/gear[3]/compression-m</property>
+                                <property>gear/gear[1]/compression-m</property>
+                            </difference>
+                            <value>1.49</value>
+                        </div>
+                    </atan>
+                </rad2deg>
+                <value>-19</value>
+            </sum>
+        </expression>
         <center>
             <x-m>6.407</x-m>
             <y-m>-5.616</y-m>
@@ -1842,8 +1853,8 @@ Syd Adams
         <object-name>RHaxle</object-name>
         <property>gear/gear[2]/position-norm</property>
         <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>1</ind><dep>20</dep></entry>
+            <entry><ind>0.95</ind><dep>-18</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
@@ -1861,11 +1872,22 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RHaxle</object-name>
-        <property>sim/multiplay/generic/float[4]</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>0.52</ind><dep>20</dep></entry>
-        </interpolation>
+        <expression>
+            <sum>
+                <rad2deg>
+                    <atan>
+                        <div>
+                            <difference>
+                                <property>gear/gear[4]/compression-m</property>
+                                <property>gear/gear[2]/compression-m</property>
+                            </difference>
+                            <value>1.49</value>
+                        </div>
+                    </atan>
+                </rad2deg>
+                <value>-19</value>
+            </sum>
+        </expression>
         <center>
             <x-m>6.407</x-m>
             <y-m>5.616</y-m>
