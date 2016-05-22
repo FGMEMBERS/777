@@ -1090,10 +1090,8 @@
 
     <!-- helper which calculates current acceleration -->
     <filter>
-        <type>noise-spike</type>
-        <max-rate-of-change>
-            <value>0.01</value>
-        </max-rate-of-change>
+        <type>gain</type>
+        <gain>1</gain>
         <input>
             <expression>
                 <product>

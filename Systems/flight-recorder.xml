@@ -45,9 +45,6 @@
                     <type>bool</type><property type="string">controls/electric/engine[%i]/bus-tie</property>
                 </signal>
                 <signal>
-                    <type>bool</type><property type="string">engines/engine[%i]/running</property>
-                </signal>
-                <signal>
                     <type>int8</type><property type="string">controls/engines/engine[%i]/reverser-act</property>
                 </signal>
             </signals>
