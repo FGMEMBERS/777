@@ -1052,7 +1052,7 @@
     <filter>
         <type>noise-spike</type>
         <max-rate-of-change>
-            <value>0.2</value>
+            <value>0.045</value>
         </max-rate-of-change>
         <input>
             <expression>
@@ -1141,8 +1141,8 @@
             <prop>autopilot/internal/elevator</prop>
         </output>
         <config>
-            <Kp>-1.2</Kp>            <!-- proportional gain -->
-            <Ki>-0.3</Ki>            <!-- integral gain -->
+            <Kp>-1.0</Kp>            <!-- proportional gain -->
+            <Ki>-1.8</Ki>            <!-- integral gain -->
             <u_min>autopilot/internal/max-authority-neg</u_min> <!-- minimum output clamp -->
             <u_max>autopilot/internal/max-authority-pos</u_max>  <!-- maximum output clamp -->
         </config>
