@@ -1052,7 +1052,7 @@
     <filter>
         <type>noise-spike</type>
         <max-rate-of-change>
-            <value>0.01</value>
+            <value>0.2</value>
         </max-rate-of-change>
         <input>
             <expression>
