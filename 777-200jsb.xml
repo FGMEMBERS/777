@@ -262,7 +262,7 @@
 
    <summer name="Pitch Trim Sum">
       <input>fcs/elevator-cmd-norm</input>
-      <input>fcs/pitch-trim-cmd-norm</input>
+      <!--<input>fcs/pitch-trim-cmd-norm</input>-->
       <clipto>
         <min> -1 </min>
         <max>  1 </max>
@@ -1172,13 +1172,22 @@
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <independentVar lookup="column">fcs/flaperon-left</independentVar>
-            <tableData>
+            <independentVar lookup="table">fcs/flap-pos-deg</independentVar>
+            <tableData breakPoint="0">
                       -10     0       10      20      25      30      36
               -0.0698 -0.0190 0.0000  0.0180  0.0240  0.0310  0.0360  0.0360
               0.1047  -0.0170 0.0000  0.0170  0.0280  0.0330  0.0380  0.0380
               0.1396  -0.0160 0.0000  0.0150  0.0240  0.0290  0.0340  0.0340
               0.1745  -0.0120 0.0000  0.0110  0.0190  0.0210  0.0230  0.0230
               0.3142  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+            </tableData>
+            <tableData breakPoint="1">
+                      -10     0       10      20      25      30      36
+              -0.0698 -0.0180 0.0000  0.0180  0.0240  0.0310  0.0360  0.0360
+              0.1745  -0.0170 0.0000  0.0170  0.0320  0.0370  0.0410  0.0400
+              0.2443  -0.0170 0.0000  0.0160  0.0300  0.0360  0.0380  0.0380
+              0.3491  -0.0080 0.0000  0.0070  0.0100  0.0100  0.0100  0.0100
+              0.4538  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
             </tableData>
           </table>
       </product>

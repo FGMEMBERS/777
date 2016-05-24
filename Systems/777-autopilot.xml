@@ -1123,10 +1123,9 @@
                     <div>
                         <value>1</value>
                         <cos>
-                            <div>
+                            <deg2rad>
                                 <property>orientation/roll-deg</property>
-                                <value>157.2957795131</value>
-                            </div>
+                            </deg2rad>
                         </cos>
                     </div>
                     <value>-1</value>
@@ -1136,32 +1135,6 @@
         <output>
             <prop>autopilot/internal/target-accel</prop>
     </output>
-    </filter>
-
-    <filter> <!-- Max authority calculation -->
-        <type>gain</type>
-        <gain>1</gain>
-        <input>
-            <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
-            <scale>-0.0003623188</scale>
-            <offset>0.182357143</offset>
-        </input>
-        <output>
-            <prop>autopilot/internal/max-authority-pos</prop>
-        </output>
-        <min>0.059</min>
-        <max>0.143</max>
-    </filter>
-
-    <filter> <!-- Max authority calculation negative -->
-        <type>gain</type>
-        <gain>-1</gain>
-        <input>
-            <prop>autopilot/internal/max-authority-pos</prop>
-        </input>
-        <output>
-            <prop>autopilot/internal/max-authority-neg</prop>
-        </output>
     </filter>
 
     <pi-simple-controller>
@@ -1182,8 +1155,8 @@
         <config>
             <Kp>-1.2</Kp>            <!-- proportional gain -->
             <Ki>-0.3</Ki>            <!-- integral gain -->
-            <u_min>autopilot/internal/max-authority-neg</u_min> <!-- minimum output clamp -->
-            <u_max>autopilot/internal/max-authority-pos</u_max>  <!-- maximum output clamp -->
+            <u_min>-0.5</u_min> <!-- minimum output clamp -->
+            <u_max>0.5</u_max>  <!-- maximum output clamp -->
         </config>
     </pi-simple-controller>
 
@@ -1219,7 +1192,7 @@
         </output>
     </filter>
 
-    <pid-controller>
+    <pi-simple-controller>
         <name>Stabilizer Control</name>
         <debug>false</debug>
         <enable>
@@ -1234,20 +1207,26 @@
             <value>0</value>
         </reference>
         <output>
-            <property>controls/flight/elevator-trim</property>
+            <property>autopilot/internal/stab-target</property>
         </output>
         <config>
-            <Kp>-0.5</Kp>
-            <Ti>10.0</Ti>
-            <Td>0.0</Td>
-            <u_min>
-                <value>-1.0</value>
-            </u_min>
-            <u_max>
-                <value>1.0</value>
-            </u_max>
+            <Kp>0.0</Kp>
+            <Ki>-0.5</Ki>
+            <u_min>-11.0</u_min>
+            <u_max>4.0</u_max>
         </config>
-    </pid-controller>
+    </pi-simple-controller>
+
+    <filter>
+        <name>Stabilizer control</name>
+        <debug>false</debug>
+        <type>noise-spike</type>
+        <max-rate-of-change>
+            <value>0.5</value>
+        </max-rate-of-change>
+        <input>autopilot/internal/stab-target</input>
+        <output>fdm/jsbsim/fcs/stab</output>
+    </filter>
 
     <filter>
         <name>Tiller control filter nose</name>
