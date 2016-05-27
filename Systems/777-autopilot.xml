@@ -778,9 +778,11 @@
         </config>
     </pi-simple-controller>
 
-    <pid-controller>
+    <filter>
         <name>Altitude Hold (Altimeter based) Stage 2</name>
         <debug>false</debug>
+        <type>gain</type>
+        <gain>1</gain>
         <enable>
             <condition>
                 <or>
@@ -805,48 +807,46 @@
                 </or>
             </condition>
         </enable>
-        <input>
-            <property>velocities/vertical-speed-fps</property>
-        </input>
-        <reference>
-            <property>autopilot/internal/target-climb-rate-fps</property>
-        </reference>
+    <input>
+      <expression>
+        <sum>
+          <product>
+            <property>/orientation/alpha-deg</property>
+            <cos>
+              <div>
+                <property>/orientation/roll-deg</property>
+                <value>57.2957795131</value>
+              </div>
+            </cos>
+          </product>
+          <product>
+            <asin>
+              <div>
+                <product>
+                    <property>autopilot/internal/target-climb-rate-fps</property>
+                    <value>60</value>
+                </product>
+                <product>
+                  <property>/instrumentation/airspeed-indicator[0]/true-speed-kt</property>
+                  <value>101.0696354508</value>
+                </product>
+              </div>
+            </asin>
+            <value>57.2957795131</value>
+          </product>
+        </sum>
+      </expression> 
+    </input>
         <output>
             <property>autopilot/internal/target-pitch-deg</property>
         </output>
-        <config>
-        <Kp>
-            <condition>
-                <greater-than>
-                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>26000</value>
-                </greater-than>
-            </condition>
-            <value>0.1</value>
-        </Kp>
-        <Kp>
-            <condition>
-                <greater-than>
-                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>14000</value>
-                </greater-than>
-            </condition>
-            <value>0.2</value>
-        </Kp>
-            <Kp>0.5</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>10.0</Ti>
-            <Td>0.005</Td>
-            <u_min>
+            <min>
                 <property>instrumentation/afds/settings/pitch-min</property>
-            </u_min>
-            <u_max>
+            </min>
+            <max>
                 <property>instrumentation/afds/settings/pitch-max</property>
-            </u_max>
-        </config>
-    </pid-controller>
+            </max>
+    </filter>
 
     <filter>
         <name>Current spped local</name>
@@ -1153,8 +1153,8 @@
             <prop>autopilot/internal/elevator</prop>
         </output>
         <config>
-            <Kp>-1.2</Kp>            <!-- proportional gain -->
-            <Ki>-0.3</Ki>            <!-- integral gain -->
+            <Kp>-0.6</Kp>            <!-- proportional gain -->
+            <Ki>-0.6</Ki>            <!-- integral gain -->
             <u_min>-0.5</u_min> <!-- minimum output clamp -->
             <u_max>0.5</u_max>  <!-- maximum output clamp -->
         </config>
