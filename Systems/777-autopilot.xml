@@ -1195,6 +1195,11 @@
     <pi-simple-controller>
         <name>Stabilizer Control</name>
         <debug>false</debug>
+        <enable>
+            <condition>
+                <not><property>gear/gear[0]/wow</property></not>
+            </condition>
+        </enable>
         <input>
             <property>controls/flight/elevator</property>
         </input>
@@ -1206,7 +1211,7 @@
         </output>
         <config>
             <Kp>0.0</Kp>
-            <Ki>-0.02</Ki>
+            <Ki>-0.5</Ki>
             <u_min>-11.0</u_min>
             <u_max>4.0</u_max>
         </config>
@@ -1215,11 +1220,6 @@
     <filter>
         <name>Stabilizer control</name>
         <debug>false</debug>
-        <enable>
-            <condition>
-                <not><property>gear/gear[0]/wow</property></not>
-            </condition>
-        </enable>
         <type>noise-spike</type>
         <max-rate-of-change>
             <value>0.5</value>
