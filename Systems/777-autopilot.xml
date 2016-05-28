@@ -974,7 +974,7 @@
                     </equals>
                     <less-than>
                         <property>position/altitude-agl-ft</property>
-                        <value>0.1</value>
+                        <value>15</value>
                     </less-than>
                 </and>
             </condition>
@@ -999,7 +999,7 @@
                         </equals>
                         <greater-than>
                             <property>position/altitude-agl-ft</property>
-                            <value>0.1</value>
+                            <value>15</value>
                         </greater-than>
                     </and>
                 </condition>
