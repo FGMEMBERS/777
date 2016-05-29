@@ -385,7 +385,7 @@ var AFDS = {
                 {
                     if(me.FD.getValue())
                     {
-                        if(getprop("gear/gear[1]/wow"))
+                        if(!getprop("controls/flight/air-sensing-sw"))
                         {
                             me.lateral_mode.setValue(9);        # TOGA
                             me.vertical_mode.setValue(10);      # TOGA

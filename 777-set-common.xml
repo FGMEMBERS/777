@@ -411,11 +411,19 @@ Service Ceiling: 43,100ft
             </key>
             <key>
                 <name>Ctrl-B</name>
-                <desc>toggle spoilers</desc>
+                <desc>toggle Speedbrakee</desc>
             </key>
             <key>
                 <name>=</name>
-                <desc>toggle auto spoilers</desc>
+                <desc>toggle arm Speedbrake</desc>
+            </key>
+            <key>
+                <name>}</name>
+                <desc>inclrease Speedbrake</desc>
+            </key>
+            <key>
+                <name>{</name>
+                <desc>decrease Speedbrake</desc>
             </key>
             <key>
                 <name>L</name>
@@ -852,6 +860,30 @@ Service Ceiling: 43,100ft
                     <script>controls.autostart();</script>
                 </binding>
             </key>
+            <key n="123">
+                <name>{</name>
+                <repeatable type="bool">true</repeatable>
+                <desc>Air Brake--</desc>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>controls/flight/speedbrake-lever</property>
+                    <step type="double">-0.01</step>
+                    <min>1</min>
+                    <max>2</max>
+                </binding>
+            </key>
+            <key n="125">
+                <name>}</name>
+                <repeatable type="bool">true</repeatable>
+                <desc>Air Brake++</desc>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>controls/flight/speedbrake-lever</property>
+                    <step type="double">0.01</step>
+                    <min>1</min>
+                    <max>2</max>
+                </binding>
+            </key>
         </keyboard>
     </input>
 
@@ -1117,7 +1149,7 @@ Service Ceiling: 43,100ft
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>
         <flight>
-            <speedbrake-lever type="int">0</speedbrake-lever>
+            <speedbrake-lever type="double">0</speedbrake-lever>
         </flight>
         <cabin>
             <NoSmoking-knob type="int" >1 </NoSmoking-knob>

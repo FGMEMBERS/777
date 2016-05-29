@@ -10,8 +10,7 @@
             <condition>
                 <and>
                     <property>controls/engines/engine[0]/throttle-lever</property>
-                    <property>gear/gear[1]/wow</property>
-                    <property>gear/gear[2]/wow</property>
+                    <not><property>controls/flight/air-sensing-sw</property></not>
                     <equals>
                         <property>controls/flight/speedbrake-lever</property>
                         <value>1</value>
@@ -55,8 +54,7 @@
                 </equals>
                 <not><property>controls/engines/engine[0]/reverser</property></not>
                 <property>controls/engines/engine[0]/throttle-lever</property>
-                <property>gear/gear[1]/wow</property>
-                <property>gear/gear[2]/wow</property>
+                <not><property>controls/flight/air-sensing-sw</property></not>
             </and>
         </R>
         <output>controls/flight/speedbrake</output>
@@ -88,10 +86,7 @@
         <gain>0.8</gain>
         <enable>
             <condition>
-                <and>
-                    <not><property>gear/gear[1]/wow</property></not>
-                    <not><property>gear/gear[2]/wow</property></not>
-                </and>
+                <property>controls/flight/air-sensing-sw</property>
             </condition>
         </enable>
         <input>
