@@ -867,7 +867,7 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>property-adjust</command>
                     <property>controls/flight/speedbrake-lever</property>
-                    <step type="double">-0.012</step>
+                    <step type="double">-0.01</step>
                     <min>1</min>
                     <max>2</max>
                 </binding>
@@ -879,7 +879,7 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>property-adjust</command>
                     <property>controls/flight/speedbrake-lever</property>
-                    <step type="double">0.012</step>
+                    <step type="double">0.01</step>
                     <min>1</min>
                     <max>2</max>
                 </binding>

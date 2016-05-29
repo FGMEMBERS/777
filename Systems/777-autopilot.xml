@@ -1154,6 +1154,11 @@
     <pi-simple-controller>
         <name>Stabilizer Control</name>
         <debug>false</debug>
+        <enable>
+            <condition>
+                <property>controls/flight/air-sensing-sw</property>
+            </condition>
+        </enable>
         <input>
             <property>controls/flight/elevator</property>
         </input>
@@ -1176,7 +1181,7 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <not><property>gear/gear[0]/wow</property></not>
+                <property>controls/flight/air-sensing-sw</property>
             </condition>
         </enable>
         <type>noise-spike</type>
