@@ -113,7 +113,7 @@ var Engine = {
                 )
                 {
                     me.starter.setValue(1);
-                    if(me.n1.getValue() > 25)
+                    if(me.n1.getValue() > 18)
                     {
                         controls.click(1);
                         me.starterSwitch.setValue(0);
