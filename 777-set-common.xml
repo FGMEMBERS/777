@@ -1135,7 +1135,7 @@ Service Ceiling: 43,100ft
         <gear>
             <brake-parking type="bool">1</brake-parking>
             <tiller-cmd-norm type="double">0</tiller-cmd-norm>
-            <tiller-enabled type="bool">false</tiller-enabled>
+            <tiller-enabled type="bool">true</tiller-enabled>
             <nosegear-steering-cmd-norm type="double">0</nosegear-steering-cmd-norm>
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>
