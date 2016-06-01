@@ -1170,7 +1170,7 @@
         </output>
         <config>
             <Kp>0.0</Kp>
-            <Ki>-0.5</Ki>
+            <Ki>-0.2</Ki>
             <u_min>-11.0</u_min>
             <u_max>4.0</u_max>
         </config>
@@ -1179,16 +1179,18 @@
     <filter>
         <name>Stabilizer control</name>
         <debug>false</debug>
-        <enable>
-            <condition>
-                <property>controls/flight/air-sensing-sw</property>
-            </condition>
-        </enable>
         <type>noise-spike</type>
         <max-rate-of-change>
             <value>0.5</value>
         </max-rate-of-change>
-        <input>autopilot/internal/stab-target</input>
+        <input>
+            <expression>
+                <sum>
+                    <property>controls/flight/trim-ref-speed</property>
+                    <property>autopilot/internal/stab-target</property>
+                </sum>
+            </expression>
+        </input>
         <output>controls/flight/elevator-trim</output>
     </filter>
 
