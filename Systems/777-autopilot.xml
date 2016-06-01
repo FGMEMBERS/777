@@ -1170,7 +1170,18 @@
         </output>
         <config>
             <Kp>0.0</Kp>
-            <Ki>-0.2</Ki>
+            <Ki>
+                <condition>
+                    <property>instrumentation/afds/inputs/AP</property>
+                </condition>
+                <value>-0.5</value>
+            </Ki>
+            <Ki>
+                <condition>
+                    <not><property>instrumentation/afds/inputs/AP</property></not>
+                </condition>
+                <value>-0.02</value>
+            </Ki>
             <u_min>-11.0</u_min>
             <u_max>4.0</u_max>
         </config>
