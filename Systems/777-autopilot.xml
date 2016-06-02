@@ -1156,7 +1156,10 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <property>controls/flight/air-sensing-sw</property>
+                <greater-than>
+                    <property>position/gear-agl-ft</property>
+                    <value>50.0</value>
+                </greater-than>
             </condition>
         </enable>
         <input>
@@ -1178,7 +1181,17 @@
             </Ki>
             <Ki>
                 <condition>
-                    <not><property>instrumentation/afds/inputs/AP</property></not>
+                    <and>
+                        <not><property>instrumentation/afds/inputs/AP</property></not>
+                        <greater-than>
+                            <property>orientation/roll-deg</property>
+                            <value>-5.0</value>
+                        </greater-than>
+                        <less-than>
+                            <property>orientation/roll-deg</property>
+                            <value>5.0</value>
+                        </less-than>
+                    </and>
                 </condition>
                 <value>-0.02</value>
             </Ki>
