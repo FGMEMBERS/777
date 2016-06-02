@@ -32,14 +32,14 @@ var GroundSteeringManager = {
 		var maingear_steering_cmd_norm = 0.0;
 		if(getprop("position/altitude-agl-ft") < 50)
 		{
-			var v_tiller_by_rudder = rudder_cmd_norm * (1.0 / NOSE_GEAR_MAX_ANGLE_WITH_RUDDER_DEG);
+            var v_tiller_by_rudder = rudder_cmd_norm * (NOSE_GEAR_MAX_ANGLE_WITH_RUDDER_DEG / NOSE_GEAR_MAX_ANGLE_DEG);
 
 			if (!me.tiller_switch.getValue()
 					and (getprop("velocities/groundspeed-kt") < 50)
-					and (abs(tiller_cmd_norm) < abs(rudder_cmd_norm)))
+                    and (abs(tiller_cmd_norm) < 0.01))
 				tiller_cmd_norm = rudder_cmd_norm;
 
-			if (abs(tiller_cmd_norm) > abs(v_tiller_by_rudder)) {
+            if (abs(tiller_cmd_norm) > 0.01) {
 				nosegear_steering_cmd_norm = tiller_cmd_norm;
 				var angle_degrees = tiller_cmd_norm * NOSE_GEAR_MAX_ANGLE_DEG;
 				if (abs(angle_degrees) > NOSE_GEAR_MIN_ANGLE_TO_ENABLE_MAIN_GEAR_STEERING_DEG) {

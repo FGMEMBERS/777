@@ -737,6 +737,13 @@ controls.click = func(button) {
     settimer(func { click_reset(propName) },0.4);
 }
 
+controls.elevatorTrim = func(speed) {
+    if(0 == getprop("instrumentation/afds/inputs/AP"))
+    {
+        controls.slewProp("controls/flight/trim-ref-speed", speed * 0.045);
+    }
+}
+
 switch_ind = func() {
 # Battery switch
     if(getprop("controls/electric/battery-switch") == 0)
@@ -1188,6 +1195,19 @@ var update_systems = func {
     et_tmp = sprintf("%02d:%02d", et_hr, et_min);
     setprop("instrumentation/clock/elapsed-string", et_tmp);
     switch_ind();
+    var trim_speed = getprop("/controls/flight/trim-ref-speed");
+    if((50 > getprop("position/gear-agl-ft"))
+        and (5 > abs(getprop("orientation/roll-deg"))))
+    {
+        if(trim_speed > 0.0002)
+        {
+            setprop("/controls/flight/trim-ref-speed", trim_speed - 0.0001);
+        }
+        elsif(trim_speed < -0.0002)
+        {
+            setprop("/controls/flight/trim-ref-speed", trim_speed + 0.0001);
+        }
+    }
     if(getprop("sim/rendering/shaders/skydome")
         and (getprop("position/gear-agl-ft") < 200))
     {
