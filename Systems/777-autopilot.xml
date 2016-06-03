@@ -767,7 +767,7 @@
             <property>autopilot/internal/target-climb-rate-fps</property>
         </output>
         <config>
-            <Kp>0.15</Kp>
+            <Kp>0.11</Kp>
             <Ki>0.01</Ki>
             <u_min>
             <value>-20.00</value>
@@ -835,7 +835,7 @@
             <value>57.2957795131</value>
           </product>
         </sum>
-      </expression> 
+      </expression>
     </input>
         <output>
             <property>autopilot/internal/target-pitch-deg</property>
@@ -1197,7 +1197,10 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <not><property>gear/gear[0]/wow</property></not>
+                <greater-than>
+                    <property>position/altitude-agl-ft</property>
+                    <value>50.0</value>
+                </greater-than>
             </condition>
         </enable>
         <input>
@@ -1211,7 +1214,28 @@
         </output>
         <config>
             <Kp>0.0</Kp>
-            <Ki>-0.5</Ki>
+            <Ki>
+                <condition>
+                    <property>instrumentation/afds/inputs/AP</property>
+                </condition>
+                <value>-0.5</value>
+            </Ki>
+            <Ki>
+                <condition>
+                    <and>
+                        <not><property>instrumentation/afds/inputs/AP</property></not>
+                        <greater-than>
+                            <property>orientation/roll-deg</property>
+                            <value>-5.0</value>
+                        </greater-than>
+                        <less-than>
+                            <property>orientation/roll-deg</property>
+                            <value>5.0</value>
+                        </less-than>
+                    </and>
+                </condition>
+                <value>-0.02</value>
+            </Ki>
             <u_min>-11.0</u_min>
             <u_max>4.0</u_max>
         </config>
@@ -1224,8 +1248,16 @@
         <max-rate-of-change>
             <value>0.5</value>
         </max-rate-of-change>
-        <input>autopilot/internal/stab-target</input>
+        <input>
+            <expression>
+                <sum>
+                    <property>controls/flight/trim-ref-speed</property>
+                    <property>autopilot/internal/stab-target</property>
+                </sum>
+            </expression>
+        </input>
         <output>fdm/jsbsim/fcs/stab</output>
+        <output>controls/flight/elevator-trim</output>
     </filter>
 
     <filter>

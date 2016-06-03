@@ -221,9 +221,9 @@
                         <property>instrumentation/afds/ias-target-kt</property>
                     </greater-than>
                 </condition>
-                <value>0.08</value>
+                <value>0.02</value>
             </Kp>
-            <Kp>0.16</Kp>
+            <Kp>0.04</Kp>
             <Td>0.00001</Td>
             <Ti>
                 <condition>
@@ -313,9 +313,9 @@
                         <property>instrumentation/afds/ias-target-kt</property>
                     </greater-than>
                 </condition>
-                <value>0.08</value>
+                <value>0.02</value>
             </Kp>
-            <Kp>0.16</Kp>
+            <Kp>0.04</Kp>
            <Td>0.00001</Td>
             <Ti>
                 <condition>

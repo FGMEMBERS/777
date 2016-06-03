@@ -411,7 +411,7 @@ Service Ceiling: 43,100ft
             </key>
             <key>
                 <name>Ctrl-B</name>
-                <desc>toggle Speedbrakee</desc>
+                <desc>toggle Speedbrake</desc>
             </key>
             <key>
                 <name>=</name>
@@ -1141,6 +1141,7 @@ Service Ceiling: 43,100ft
         </gear>
         <flight>
             <speedbrake-lever type="double">0</speedbrake-lever>
+            <trim-ref-speed type="double">0</trim-ref-speed>
         </flight>
         <cabin>
             <NoSmoking-knob type="int" >1 </NoSmoking-knob>
@@ -1157,6 +1158,9 @@ Service Ceiling: 43,100ft
                  <pilot-input type="double">0.25</pilot-input>
             </config>
         </autobrake>
+        <internal>
+            <stab-target type="double">0</stab-target>
+        </internal>
         <locks>
             <pitch-engaged type="bool">1</pitch-engaged>
             <roll-engaged type="bool">1</roll-engaged>
