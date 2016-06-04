@@ -1196,7 +1196,7 @@ var update_systems = func {
     setprop("instrumentation/clock/elapsed-string", et_tmp);
     switch_ind();
     var trim_speed = getprop("/controls/flight/trim-ref-speed");
-    if((50 > getprop("position/gear-agl-ft"))
+    if((50 < getprop("position/gear-agl-ft"))
         and (5 > abs(getprop("orientation/roll-deg"))))
     {
         if(trim_speed > 0.0002)
