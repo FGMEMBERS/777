@@ -738,7 +738,13 @@ controls.click = func(button) {
 controls.elevatorTrim = func(speed) {
     if(0 == getprop("instrumentation/afds/inputs/AP"))
     {
-        controls.slewProp("controls/flight/trim-ref-speed", speed * 0.045);
+        if(((1 > getprop("controls/flight/elevator-trim"))
+                and (0 < speed))
+            or ((-1 < getprop("controls/flight/elevator-trim"))
+                and (0 > speed)))
+        {
+            controls.slewProp("controls/flight/trim-ref-speed", speed * 0.45);
+        }
     }
 }
 

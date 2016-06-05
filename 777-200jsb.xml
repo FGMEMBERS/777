@@ -231,7 +231,7 @@
        <z> -20.00 </z>
      </location>
      <capacity unit="LBS"> 62300 </capacity>
-     <contents unit="LBS"> 25160.83 </contents>
+     <contents unit="LBS"> 10385 </contents>
   </tank>
 
   <tank type="FUEL" number="1"> <!-- Main tank -->
@@ -241,7 +241,7 @@
        <z> -20.00 </z>
      </location>
      <capacity unit="LBS"> 83100 </capacity>
-     <contents unit="LBS"> 25160.83 </contents>
+     <contents unit="LBS"> 0 </contents>
   </tank>
 
   <tank type="FUEL" number="2"> <!-- Right wing tank -->
@@ -251,7 +251,7 @@
        <z> -20.00 </z>
      </location>
      <capacity unit="LBS"> 62300 </capacity>
-     <contents unit="LBS"> 25160.83 </contents>
+     <contents unit="LBS"> 10385 </contents>
   </tank>
 
  </propulsion>
