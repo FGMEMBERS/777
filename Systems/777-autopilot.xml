@@ -1257,6 +1257,15 @@
             </expression>
         </input>
         <output>fdm/jsbsim/fcs/stab</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <input>
+            <property>fdm/jsbsim/fcs/stab</property>
+            <scale>0.1333408013</scale>
+            <offset>0.4667059511</offset>
+        </input>
         <output>controls/flight/elevator-trim</output>
     </filter>
 

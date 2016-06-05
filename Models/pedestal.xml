@@ -705,11 +705,12 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <object-name>StabTrim_L_Mark</object-name>
         <object-name>StabTrim_R_Mark</object-name>
         <property>/controls/flight/elevator-trim</property>
-        <factor>-0.027</factor>
+        <factor>-0.037</factor>
+        <offset-m>0.003</offset-m>
         <axis>
             <x>1</x>
             <y>0</y>
-            <z>-0.18</z>
+            <z>-0.25</z>
         </axis>
     </animation>
 

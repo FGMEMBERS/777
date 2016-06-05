@@ -248,7 +248,10 @@ Syd Adams
         <object-name>LHelevator</object-name>
         <object-name>LHstab</object-name>
         <property alias = "/surface-positions/stabilizer-pos-norm/property"/>
-        <factor>-15</factor>
+        <interpolation>
+            <entry><ind>-1.0</ind><dep>11.0</dep></entry>
+            <entry><ind>1.0</ind><dep>-4.0</dep></entry>
+        </interpolation>
         <center>
             <x-m>31.529</x-m>
             <y-m>0</y-m>
@@ -283,7 +286,10 @@ Syd Adams
         <object-name>RHelevator</object-name>
         <object-name>RHstab</object-name>
         <property alias = "/surface-positions/stabilizer-pos-norm/property"/>
-        <factor>15</factor>
+        <interpolation>
+            <entry><ind>-1.0</ind><dep>-11.0</dep></entry>
+            <entry><ind>1.0</ind><dep>4.0</dep></entry>
+        </interpolation>
         <center>
             <x-m>32.151</x-m>
             <y-m>1.250</y-m>
