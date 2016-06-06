@@ -100,14 +100,14 @@ var Engine = {
         me.updateOilTemp();
         me.updateOilPressure(me.n2rpm.getValue());
         me.updateOilQuantity(me.oilPressurePsi.getValue());
-        if(me.fuel_out.getBoolValue() or me.cutoff.getBoolValue())
-        {
-            me.fuel_pph.setDoubleValue(0);
-            me.running.setBoolValue(0);
-            me.egt.setDoubleValue(me.egt_degf.getValue());
-        }
         if(getprop("sim/flight-model") == "yasim")
         {
+            if(me.fuel_out.getBoolValue() or me.cutoff.getBoolValue())
+            {
+                me.fuel_pph.setDoubleValue(0);
+                me.running.setBoolValue(0);
+                me.egt.setDoubleValue(me.egt_degf.getValue());
+            }
             if(me.running.getBoolValue())
             {
                 if(me.starterSwitch.getValue() == -1)
@@ -185,13 +185,31 @@ var Engine = {
         }
         if(getprop("sim/flight-model") == "jsb")
         {
+            me.egt.setValue((me.egt_degf.getValue()-32)/1.8);
             if(me.starterSwitch.getValue() == -1)
             {
-                me.starter.setValue(1);
+                if(getprop("controls/electric/APU-generator")
+                        or getprop("engines/engine[0]/run")
+                        or getprop("engines/engine[1]/run")
+                        or getprop("controls/electric/external-power")
+                        or getprop("controls/electric/external-power[1]")
+                )
+                {
+                    me.starter.setValue(1);
+                    if(me.n1.getValue() > 25)
+                    {
+                        controls.click(1);
+                        me.starterSwitch.setValue(0);
+                    }
+                }
+                else
+                {
+                    settimer(func { me.starterSwitch.setValue(0);}, 0.3);
+                }
             }
         }
 
-        if(vmodel == "-200LR")
+        if(aux_tanks)
         {
             setprop("consumables/fuel/tank[3]/selected",
                 !getprop("consumables/fuel/tank[3]/empty")

@@ -10,9 +10,6 @@
 
         <model n="0">
             <path>Aircraft/777/Models/777-200.xml</path>
-            <livery>
-                <file type="string">BA</file>
-            </livery>
             <door>
                 <position-x-m type="float">-18.30</position-x-m>
                 <position-y-m type="float"> -2.95</position-y-m>
@@ -101,6 +98,7 @@
             <z-offset-m type="double">-22.31125</z-offset-m>
             </config>
         </view>
+
 
        <menubar n="0">
             <default n="0">

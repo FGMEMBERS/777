@@ -5,7 +5,15 @@ var SndOut = props.globals.getNode("sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("instrumentation/clock/ET-sec",1);
 var elapsetime = aircraft.timer.new("instrumentation/clock/elapsetime-sec",1);
 var vmodel = substr(getprop("sim/aero"), 3);
-aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
+var aux_tanks = ((vmodel == "-200LR") or (vmodel == "-200F"));
+if(vmodel == "-200F")
+{
+    aircraft.livery.init("Aircraft/777/Models/Liveries-F");
+}
+else
+{
+    aircraft.livery.init("Aircraft/777/Models/Liveries"~substr(vmodel,0,4));
+}
 
 #EFIS specific class
 # ie: var efis = EFIS.new("instrumentation/efis");
@@ -305,6 +313,7 @@ var Wiper = {
 #####################
 
 var Efis = EFIS.new("instrumentation/efis");
+var Efis2 = EFIS.new("instrumentation/efis[1]");
 var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
 var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
@@ -373,6 +382,7 @@ var start_updates = func {
     {
         # airborne startup
         Startup();
+        b777.afds.current_wp_local = getprop("sim/gui/dialogs/route-manager/selection");
         setprop("controls/gear/brake-parking",0);
         setprop("controls/lighting/taxi-lights",0);
         setprop("instrumentation/afds/ap-modes/pitch-mode", "TO/GA");
@@ -493,24 +503,21 @@ setlistener("controls/flight/speedbrake", func(spd_brake){
 
 setlistener("controls/flight/speedbrake-lever", func(spd_lever){
     var lever = spd_lever.getValue();
-    controls.click(7);
-    # do not set speedbrake property unless changed (avoid revursive updates)
-    if ((lever==0)and(getprop("controls/flight/speedbrake")!=0))
+    if (lever>1)
     {
-        setprop("controls/flight/speedbrake",0);
-    }
-    elsif ((lever==2)and(getprop("controls/flight/speedbrake")!=1))
-    {
-        setprop("controls/flight/speedbrake",1);
+        setprop("controls/flight/speedbrake", (lever - 1));
     }
 },0,0);
 
 controls.toggleAutoSpoilers = func() {
     # 0=spoilers retracted, 1=auto, 2=extended
-    if (getprop("controls/flight/speedbrake-lever")!=1)
+    if (getprop("controls/flight/speedbrake-lever")==0)
         setprop("controls/flight/speedbrake-lever",1);
     else
-        setprop("controls/flight/speedbrake-lever",2*getprop("controls/flight/speedbrake"));
+    {
+        setprop("controls/flight/speedbrake-lever",0);
+        setprop("controls/flight/speedbrake",0);
+    }
 }
 
 setlistener("controls/flight/flaps", func { controls.click(6) } );
@@ -566,7 +573,7 @@ var balance_fuel = func{
     var total_fuel = 0;
     var capcenter = 0;
     var j = 3;
-    if(vmodel == "-200LR")
+    if(aux_tanks)
     {
         j = 6;
         capcenter = getprop("consumables/fuel/tank[1]/capacity-gal_us");
@@ -625,7 +632,10 @@ var Startup = func{
     setprop("controls/lighting/wing-lights",1);
     setprop("controls/lighting/taxi-lights",0);
     setprop("controls/lighting/logo-lights",1);
-    setprop("controls/lighting/cabin-lights",1);
+    if(vmodel != "-200F")
+    {
+        setprop("controls/lighting/cabin-lights",1);
+    }
     setprop("controls/lighting/strobe",1);
     setprop("controls/lighting/landing-light[0]",1);
     setprop("controls/lighting/landing-light[1]",1);
@@ -727,6 +737,19 @@ controls.click = func(button) {
     settimer(func { click_reset(propName) },0.4);
 }
 
+controls.elevatorTrim = func(speed) {
+    if(0 == getprop("instrumentation/afds/inputs/AP"))
+    {
+        if(((1 > getprop("controls/flight/elevator-trim"))
+                and (0 < speed))
+            or ((-1 < getprop("controls/flight/elevator-trim"))
+                and (0 > speed)))
+        {
+            controls.slewProp("controls/flight/trim-ref-speed", speed * 0.045);
+        }
+    }
+}
+
 switch_ind = func() {
 # Battery switch
     if(getprop("controls/electric/battery-switch") == 0)
@@ -743,7 +766,7 @@ switch_ind = func() {
     else
     {
         setprop("controls/electric/b_batt", 1);
-    }
+        }
 # Primary external power switch
     if(primary_external.getValue() == 1)
     {
@@ -991,7 +1014,7 @@ switch_ind = func() {
     }
 #CTR boost #1
     if((!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty"))))
@@ -1007,7 +1030,7 @@ switch_ind = func() {
     if((getprop("controls/fuel/tank[1]/boost-pump[0]") == 0)
         and (cpt_flt_inst.getValue() > 24)
         and (!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty")))))
@@ -1020,7 +1043,7 @@ switch_ind = func() {
     }
 #CTR boost #2
     if((!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty"))))
@@ -1036,7 +1059,7 @@ switch_ind = func() {
     if((getprop("controls/fuel/tank[1]/boost-pump[1]") == 0)
         and (cpt_flt_inst.getValue() > 24)
         and (!getprop("consumables/fuel/tank[1]/empty")
-            or ((vmodel == "-200LR")
+            or (aux_tanks
             and (!getprop("consumables/fuel/tank[3]/empty")
                 or !getprop("consumables/fuel/tank[4]/empty")
                 or !getprop("consumables/fuel/tank[5]/empty")))))
@@ -1158,12 +1181,10 @@ var update_systems = func {
     LHeng.update();
     RHeng.update();
     #wiper.active(); # not implemented yet!
-    if(getprop("controls/gear/gear-down")){
-        setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
-        setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
-        setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
-    }
-
+    setprop("instrumentation/efis/mfd/rangearc", (Efis.mfd_display_mode.getValue() == "MAP")
+        and (Efis.wxr.getValue() or Efis.terr.getValue() or Efis.tfc.getValue()));
+    setprop("instrumentation/efis[1]/mfd/rangearc", (Efis2.mfd_display_mode.getValue() == "MAP")
+        and (Efis2.wxr.getValue() or Efis2.terr.getValue() or Efis2.tfc.getValue()));
     var et_tmp = getprop("instrumentation/clock/ET-sec");
     if(et_tmp == 0)
     {
@@ -1180,6 +1201,19 @@ var update_systems = func {
     et_tmp = sprintf("%02d:%02d", et_hr, et_min);
     setprop("instrumentation/clock/elapsed-string", et_tmp);
     switch_ind();
+    var trim_speed = getprop("/controls/flight/trim-ref-speed");
+    if((50 < getprop("position/gear-agl-ft"))
+        and (5 > abs(getprop("orientation/roll-deg"))))
+    {
+        if(trim_speed > 0.0002)
+        {
+            setprop("/controls/flight/trim-ref-speed", trim_speed - 0.0001);
+        }
+        elsif(trim_speed < -0.0002)
+        {
+            setprop("/controls/flight/trim-ref-speed", trim_speed + 0.0001);
+        }
+    }
     if(getprop("sim/rendering/shaders/skydome")
         and (getprop("position/gear-agl-ft") < 200))
     {

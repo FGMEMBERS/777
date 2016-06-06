@@ -25,7 +25,7 @@ Max TO weight: 766,000 lbs
 Max Landing weight: 492,000 lbs
 -->
 
-<airplane mass="326000" version="YASIM_VERSION_32">
+<airplane mass="320000" version="YASIM_VERSION_32">
 
   <!-- Approach configuration -->
   <approach speed="132" alt="0.0" aoa="5.0" fuel="0.2" glide-angle="0.0">
@@ -43,6 +43,7 @@ Max Landing weight: 492,000 lbs
       <control-setting axis="/controls/engines/engine[0]/throttle-act" value="0.95"/>
       <control-setting axis="/controls/engines/engine[1]/throttle-act" value="0.95"/>
       <control-setting axis="/controls/flight/flaps" value="0.0"/>
+      <control-setting axis="/controls/flight/elevator-trim" value="0"/>
       <control-setting axis="/controls/gear/gear-down" value="0"/>
       <solve-weight idx="0" weight="360"/>
       <solve-weight idx="1" weight="42072"/>
@@ -75,7 +76,7 @@ Max Landing weight: 492,000 lbs
       <control-output control="SLAT" prop="/surface-positions/slats"/>
       <control-speed control="FLAP0" transition-time="78"/>
       <control-input axis="/controls/flight/speedbrake" control="SPOILER"/>
-      <control-output control="SPOILER" prop="/surface-positions/speedbrake-norm"/>
+      <control-output control="SPOILER" prop="/surface-positions/speedbrake-pos-norm"/>
       <control-speed control="SPOILER" transition-time="2"/>
       <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
       <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>
@@ -190,6 +191,13 @@ Performance
     <control-input control="STEER" axis="/controls/gear/maingear-steering-cmd-norm" src0="-1.0" dst0="-0.1396263402" src1="1.0" dst1="0.1396263402" />
     <control-output control="STEER" prop="/controls/gear/maingear-r-steering-angle-rad" />
   </gear>
+    <!-- apu -->
+  <vstab x="0" y="0" z="0" length="0" chord="0">
+      <flap0 start="0" end="1" lift="0" drag="0"/>
+    <control-input axis="/controls/APU/running" control="FLAP0"/>
+    <control-output control="FLAP0" prop="controls/APU/rpm"/>
+    <control-speed control="FLAP0" transition-time="30"/>
+  </vstab>
 
 <!--Fuel
 

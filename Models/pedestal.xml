@@ -114,7 +114,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
 
     <model>
         <name>MFD</name>
-        <path>Aircraft/777/Models/Instruments/LEICAS/leicas.xml</path>
+        <path>Aircraft/777/Models/Instruments/MFD/MFD.xml</path>
         <offsets>
             <x-m>-0.429</x-m>
             <y-m>0.0</y-m>
@@ -438,7 +438,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <property>controls/flight/speedbrake-lever</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>1</ind><dep>20.0</dep></entry>
+            <entry><ind>1</ind><dep>10.0</dep></entry>
             <entry><ind>2</ind><dep>50.0</dep></entry>
         </interpolation>
         <center>
@@ -744,6 +744,7 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <z>0</z>
         </axis>
     </animation>
+
     <animation>
         <type>pick</type>
         <object-name>AudioPnl_L_VhfL.knob</object-name>
@@ -753,10 +754,6 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <binding>
                 <command>property-toggle</command>
                 <property>instrumentation/comm/power-btn</property>
-            </binding>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/comm/serviceable</property>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -855,10 +852,6 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
                 <property>instrumentation/comm[2]/power-btn</property>
             </binding>
             <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/comm[2]/serviceable</property>
-            </binding>
-            <binding>
                 <command>nasal</command>
                 <script>
                 controls.click(2);
@@ -953,10 +946,6 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <binding>
                 <command>property-toggle</command>
                 <property>instrumentation/comm[1]/power-btn</property>
-            </binding>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/comm[1]/serviceable</property>
             </binding>
             <binding>
                 <command>nasal</command>

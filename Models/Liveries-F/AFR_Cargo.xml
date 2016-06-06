@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">ETD Etihad Airways Cargo</name>
-            <texture>Liveries-200/ETD.png</texture>
+            <name type="string">AFR Air France Cargo</name>
+            <texture>Liveries-F/AFR_Cargo.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-    <aircraft-operator>ETD</aircraft-operator>
+    <aircraft-operator>AFR</aircraft-operator>
 </sim>
 </PropertyList>

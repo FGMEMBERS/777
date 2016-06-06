@@ -13,6 +13,9 @@
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
+            <livery>
+                <file type="string">BAW</file>
+            </livery>
             <armrest type="double">0</armrest>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>
@@ -37,6 +40,7 @@
             <tag>glass-cockpit</tag>
             <tag>ifr</tag>
         </tags>
+
         <view n="0">
             <name>Pilot View</name>
             <type>lookfrom</type>
@@ -407,11 +411,19 @@ Service Ceiling: 43,100ft
             </key>
             <key>
                 <name>Ctrl-B</name>
-                <desc>toggle spoilers</desc>
+                <desc>toggle Speedbrake</desc>
             </key>
             <key>
                 <name>=</name>
-                <desc>toggle auto spoilers</desc>
+                <desc>toggle arm Speedbrake</desc>
+            </key>
+            <key>
+                <name>}</name>
+                <desc>inclrease Speedbrake</desc>
+            </key>
+            <key>
+                <name>{</name>
+                <desc>decrease Speedbrake</desc>
             </key>
             <key>
                 <name>L</name>
@@ -442,9 +454,6 @@ Service Ceiling: 43,100ft
                             <script>controls.autostart();</script>
                         </binding>
                     </item>
-
-        
-
                     <item >
                         <label>Ground Services Control</label>
                         <binding>
@@ -517,9 +526,33 @@ Service Ceiling: 43,100ft
                 <float n="2" alias="/gear/gear[2]/compression-m"/>
                 <float n="3" alias="/gear/gear[3]/compression-m"/>
                 <float n="4" alias="/gear/gear[4]/compression-m"/>
-                <float n="5" alias="/surface-positions/speedbrake-norm"/>
-                <float n="6" alias="/surface-positions/reverser-norm"/>
+                <float n="5" alias="/controls/flight/speedbrake-angle"/>
+                <float n="6" alias="/controls/gear/nosegear-steering-cmd-norm"/>
+                <float n="7" alias="/controls/gear/maingear-steering-cmd-norm"/>
+                <float n="8" alias="/surface-positions/reverser-norm"/>
+                <float n="9" alias="/surface-positions/stabilizer-pos-norm"/>
+                <float n="10" alias="/surface-positions/slats"/>
+                <float n="11" alias="/controls/flight/aileron"/>
+                <float n="12" alias="/controls/flight/elevator"/>
+                <float n="13" alias="/controls/flight/rudder"/>
+                <float n="14" alias="/instrumentation/altimeter/indicated-altitude-ft"/>
+                <float n="15" alias="/instrumentation/airspeed-indicator/indicator-speed-kt"/>
+                <float n="16" alias="/instrumentation/afds/inputs/reference-deg"/>
+                <float n="17" alias="/instrumentation/altimeter/indicator-altitude-ft"/>
                 <string  alias="/sim/multiplay/callsign"/>
+                <!--string n="0" type="string"></string--> <!-- MP events -->
+                <string n="1" type="string"></string> <!-- MP TDM1 -->
+                <string n="2" type="string"></string> <!-- MP TDM2 -->
+                <string n="3" type="string"></string> <!-- MP TDM3 -->
+                <string n="4" type="string"></string> <!-- MP TDM4 -->
+                <string n="5" alias="/instrumentation/afds/ap-modes/roll-mode"/>
+                <string n="6" alias="/instrumentation/afds/ap-modes/roll-mode-arm"/>
+                <string n="7" alias="/instrumentation/afds/ap-modes/pitch-mode"/>
+                <string n="8" alias="/instrumentation/afds/ap-modes/pitch-mode-arm"/>
+                <string n="9" alias="/instrumentation/afds/ap-modes/speed-mode"/>
+                <string n="10" alias="/instrumentation/afds/ap-modes/mode-annunciator"/>
+                <string n="11" alias="/instrumentation/altimeter/source-barometric"/>
+                <string n="12" alias="/instrumentation/efis/minimums-mode-text"/>
             </generic>
         </multiplay>
 
@@ -610,7 +643,6 @@ Service Ceiling: 43,100ft
             <click9 type="bool">0</click9>
             <FastenSeatbelt type="bool">0</FastenSeatbelt>
             <cabinalert type="bool">0</cabinalert>
-
         </sound>
 
         <hud>
@@ -787,7 +819,28 @@ Service Ceiling: 43,100ft
                     <step type="double">0.012</step>
                 </binding>
             </key>
-
+            <key n="49">
+                <name>1</name>
+                <desc>nose up stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(-1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
+                </binding>
+            </key>
+            <key n="55">
+                <name>7</name>
+                <desc>nose down stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
+                </binding>
+            </key>
             <key n="61">
                 <name>=</name>
                 <desc>toggle auto spoilers</desc>
@@ -818,6 +871,52 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>nasal</command>
                     <script>controls.autostart();</script>
+                </binding>
+            </key>
+            <key n="123">
+                <name>{</name>
+                <repeatable type="bool">true</repeatable>
+                <desc>Air Brake--</desc>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>controls/flight/speedbrake-lever</property>
+                    <step type="double">-0.01</step>
+                    <min>1</min>
+                    <max>2</max>
+                </binding>
+            </key>
+            <key n="125">
+                <name>}</name>
+                <repeatable type="bool">true</repeatable>
+                <desc>Air Brake++</desc>
+                <binding>
+                    <command>property-adjust</command>
+                    <property>controls/flight/speedbrake-lever</property>
+                    <step type="double">0.01</step>
+                    <min>1</min>
+                    <max>2</max>
+                </binding>
+            </key>
+            <key n="362">
+                <name>Home</name>
+                <desc>nose down stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
+                </binding>
+            </key>
+            <key n="363">
+                <name>End</name>
+                <desc>nose up stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(-1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
                 </binding>
             </key>
         </keyboard>
@@ -962,6 +1061,16 @@ Service Ceiling: 43,100ft
                 </msg>
             </eicas>
         </efis>
+        <efis n="1">
+            <inputs>
+                <tfc  type="bool">false</tfc>
+                <sta  type="bool">false</sta>
+                <arpt type="bool">false</arpt>
+                <wpt  type="bool">false</wpt>
+                <wxr  type="bool">false</wxr>
+                <range-nm type="int">10</range-nm>
+            </inputs>
+        </efis>
         <rmu>
             <unit n="0">
                 <vhf-l type="int">1</vhf-l>
@@ -1100,12 +1209,13 @@ Service Ceiling: 43,100ft
         <gear>
             <brake-parking type="bool">1</brake-parking>
             <tiller-cmd-norm type="double">0</tiller-cmd-norm>
-            <tiller-enabled type="bool">false</tiller-enabled>
+            <tiller-enabled type="bool">true</tiller-enabled>
             <nosegear-steering-cmd-norm type="double">0</nosegear-steering-cmd-norm>
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>
         <flight>
-            <speedbrake-lever type="int">0</speedbrake-lever>
+            <speedbrake-lever type="double">0</speedbrake-lever>
+            <trim-ref-speed type="double">0</trim-ref-speed>
         </flight>
         <cabin>
             <NoSmoking-knob type="int" >1 </NoSmoking-knob>
@@ -1122,6 +1232,9 @@ Service Ceiling: 43,100ft
                  <pilot-input type="double">0.25</pilot-input>
             </config>
         </autobrake>
+        <internal>
+            <stab-target type="double">0</stab-target>
+        </internal>
         <locks>
             <pitch-engaged type="bool">1</pitch-engaged>
             <roll-engaged type="bool">1</roll-engaged>
@@ -1193,4 +1306,3 @@ Service Ceiling: 43,100ft
     </limits>
     
 </PropertyList>
-

@@ -3,6 +3,19 @@
 
 <PropertyList>
 
+<controls>
+    <flight>
+        <aileron>
+            <property>sim/multiplay/generic/float[11]</property>
+        </aileron>
+        <elevator>
+            <property>sim/multiplay/generic/float[12]</property>
+        </elevator>
+        <rudder>
+            <property>sim/multiplay/generic/float[13]</property>
+        </rudder>
+    </flight>
+</controls>
     <path>flightdeck.ac</path>
 
     <offsets>
@@ -40,9 +53,8 @@
         <object-name>Lettering_OxMask_4</object-name>
         <object-name>Lettering_MTerm_1</object-name>
         <object-name>Lettering_MTerm_2</object-name>
-
-<condition>
-             <greater-than>
+        <condition>
+            <greater-than>
                 <property>/sim/time/sun-angle-rad</property>
                 <value>1.70</value>
             </greater-than>
@@ -61,7 +73,7 @@
 
 
     <model>
-        <path>Models/Aircraft/marker.xml</path>
+        <path>Aircraft/Generic/marker.xml</path>
     </model>
 
     <model>
@@ -135,7 +147,7 @@
 
      <model>
         <name>CTL1</name>
-        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl1.xml</path>
         <offsets>
             <x-m>-1.824</x-m>
             <y-m>-0.361</y-m>
@@ -146,7 +158,7 @@
 
     <model>
         <name>CTL2</name>
-        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <path>Aircraft/777/Models/Instruments/EFIS/efis-ctl2.xml</path>
         <offsets>
             <x-m>-1.824</x-m>
             <y-m>0.366</y-m>

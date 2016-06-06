@@ -103,14 +103,6 @@ Syd Adams
         <path>Aircraft/777/Models/flightdeck-300.xml</path>
     </model>
 
-    <animation>
-        <type>select</type>
-        <object-name>flightdeck-300</object-name>
-        <condition>
-            <property>sim/current-view/internal</property>
-        </condition>
-    </animation>
-
     <model>
         <name>LandingLights</name>
         <path>Aircraft/777/Models/Lights/light-coneLR.xml</path>
@@ -255,7 +247,7 @@ Syd Adams
     <type>rotate</type>
     <object-name>LHelevator</object-name>
     <object-name>LHstab</object-name>
-    <property>surface-positions/stabilizer-pos-norm</property>
+        <property alias = "/surface-positions/stabilizer-pos-norm/property"/>
     <factor>-15</factor>
     <center>
         <x-m>36.2293</x-m>
@@ -290,7 +282,7 @@ Syd Adams
     <type>rotate</type>
     <object-name>RHelevator</object-name>
     <object-name>RHstab</object-name>
-    <property>surface-positions/stabilizer-pos-norm</property>
+        <property alias = "/surface-positions/stabilizer-pos-norm/property"/>
     <factor>15</factor>
     <center>
         <x-m>36.8513</x-m>
@@ -459,19 +451,11 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rbrake</object-name>
-        <property>controls/flight/speedbrake-angle</property>
+        <property alias = "/controls/flight/speedbrake-angle/property"/>
     <interpolation>
         <entry>
         <ind>0</ind>
         <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.6</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.8</ind>
-        <dep>-30</dep>
         </entry>
         <entry>
         <ind>1.0</ind>
@@ -491,19 +475,11 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rbrake1</object-name>
-        <property>controls/flight/speedbrake-angle</property>
+        <property alias = "/controls/flight/speedbrake-angle/property"/>
     <interpolation>
         <entry>
         <ind>0</ind>
         <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.6</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.8</ind>
-        <dep>-30</dep>
         </entry>
         <entry>
         <ind>1.0</ind>
@@ -583,19 +559,11 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Lbrake</object-name>
-        <property>controls/flight/speedbrake-angle</property>
+        <property alias = "/controls/flight/speedbrake-angle/property"/>
     <interpolation>
         <entry>
         <ind>0</ind>
         <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.6</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.8</ind>
-        <dep>-30</dep>
         </entry>
         <entry>
         <ind>1.0</ind>
@@ -615,19 +583,11 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Lbrake1</object-name>
-        <property>controls/flight/speedbrake-angle</property>
+        <property alias = "/controls/flight/speedbrake-angle/property"/>
     <interpolation>
         <entry>
         <ind>0</ind>
         <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.6</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>0.8</ind>
-        <dep>-30</dep>
         </entry>
         <entry>
         <ind>1.0</ind>
@@ -779,7 +739,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>translate</type>
     <object-name>Reversers</object-name>
-    <property>sim/multiplay/generic/float[6]</property>
+        <property alias ="/surface-positions/reverser-norm/property"/>
     <factor>0.7</factor>
     <axis>
         <x>1.0</x>
@@ -794,7 +754,7 @@ Outboard Aileron Lockout Schedule
     <object-name>Lslat1</object-name>
     <object-name>Rslat1.001</object-name>
     <object-name>Lslat1.001</object-name>
-    <property>surface-positions/slats</property>
+        <property alias = "/surface-positions/slats/property"/>
     <factor>0.4</factor>
     <axis>
         <x>-1.0</x>
@@ -816,7 +776,7 @@ Outboard Aileron Lockout Schedule
     <object-name>rednav</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[7]</property>
+           <property alias ="/systems/electrical/outputs/nav-lights/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -827,7 +787,7 @@ Outboard Aileron Lockout Schedule
         <object-name>Llight0</object-name>
     <condition>
         <and>
-                <property>sim/multiplay/generic/int[4]</property>
+            <property alias ="/systems/electrical/outputs/landing-light[0]/property"/>
         <equals>
             <property>gear/gear[0]/position-norm</property>
             <value>1.0</value>
@@ -841,7 +801,7 @@ Outboard Aileron Lockout Schedule
     <object-name>LHLND.flare</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[4]</property>
+            <property alias ="/systems/electrical/outputs/landing-light[0]/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -855,7 +815,7 @@ Outboard Aileron Lockout Schedule
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
                 <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[4]</property>
+                    <property alias ="/systems/electrical/outputs/landing-light[0]/property"/>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
@@ -871,7 +831,7 @@ Outboard Aileron Lockout Schedule
     <object-name>RHLND.flare</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[4]</property>
+                <property alias ="/systems/electrical/outputs/landing-light[2]/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -885,7 +845,7 @@ Outboard Aileron Lockout Schedule
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
                 <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[6]</property>
+                    <property alias ="/systems/electrical/outputs/landing-light[2]/property"/>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
@@ -902,7 +862,7 @@ Outboard Aileron Lockout Schedule
     <condition>
         <and>
         <greater-than>
-                    <property>sim/multiplay/generic/int[4]</property>
+                    <property alias ="/systems/electrical/outputs/landing-light[1]/property"/>
             <value>5</value>
         </greater-than>
         <equals>
@@ -921,7 +881,7 @@ Outboard Aileron Lockout Schedule
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
                 <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
-                    <property>sim/multiplay/generic/int[5]</property>
+                    <property alias ="/systems/electrical/outputs/landing-light[1]/property"/>
                     <value>5</value>
                 </greater-than>
                 <equals>
@@ -989,7 +949,7 @@ Outboard Aileron Lockout Schedule
     <object-name>Strobe01</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[0]</property>
+                <property alias ="/systems/electrical/outputs/strobe/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -1025,7 +985,7 @@ Outboard Aileron Lockout Schedule
     <object-name>Strobe02</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[0]</property>
+                <property alias ="/systems/electrical/outputs/strobe/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -1061,7 +1021,7 @@ Outboard Aileron Lockout Schedule
     <object-name>Strobe03</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[0]</property>
+                <property alias ="/systems/electrical/outputs/strobe/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -1097,7 +1057,7 @@ Outboard Aileron Lockout Schedule
     <object-name>Beacon01</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[1]</property>
+                <property alias ="/systems/electrical/outputs/beacon/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -1133,7 +1093,7 @@ Outboard Aileron Lockout Schedule
     <object-name>Beacon02</object-name>
     <condition>
         <greater-than>
-        <property>sim/multiplay/generic/int[1]</property>
+                <property alias ="/systems/electrical/outputs/beacon/property"/>
         <value>5</value>
         </greater-than>
     </condition>
@@ -1231,7 +1191,7 @@ Outboard Aileron Lockout Schedule
     <type>select</type>
     <object-name>cabinlighting</object-name>
     <condition>
-            <property>sim/multiplay/generic/int[8]</property>
+            <property alias="/systems/electrical/outputs/cabin-lights/property"/>
     </condition>
     </animation>
 
@@ -1303,7 +1263,7 @@ Outboard Aileron Lockout Schedule
     <type>rotate</type>
     <object-name>FUdamper</object-name>
     <object-name>FLdamper</object-name>
-    <property>sim/multiplay/generic/float[0]</property>
+        <property alias = "/gear/gear[0]/compression-m/property"/>
     <factor>45</factor>
     <center>
         <x-m>-24.3721</x-m>
@@ -1320,7 +1280,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>translate</type>
     <object-name>Frtstrut</object-name>
-    <property>sim/multiplay/generic/float[0]</property>
+        <property alias = "/gear/gear[0]/compression-m/property"/>
     <axis>
         <x>0.087</x>
         <y>0</y>
@@ -1331,7 +1291,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>FLdamper</object-name>
-    <property>sim/multiplay/generic/float[0]</property>
+        <property alias = "/gear/gear[0]/compression-m/property"/>
     <factor>90</factor>
     <center>
         <x-m>-23.9121</x-m>
@@ -1348,7 +1308,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
         <object-name>Frtstrut</object-name>
-        <property>controls/gear/nosegear-steering-cmd-norm</property>
+        <property alias = "/controls/gear/nosegear-steering-cmd-norm/property"/>
         <factor>70</factor>
     <center>
         <x-m>-24.5221</x-m>
@@ -1585,7 +1545,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>translate</type>
     <object-name>LHstrut</object-name>
-    <property>sim/multiplay/generic/float[1]</property>
+        <property alias = "/gear/gear[1]/compression-m/property"/>
     <axis>
         <x>0</x>
         <y>0</y>
@@ -1598,8 +1558,8 @@ Outboard Aileron Lockout Schedule
     <object-name>LHaxle</object-name>
     <property>gear/gear[1]/position-norm</property>
     <interpolation>
-        <entry><ind>0</ind><dep>0</dep></entry>
-        <entry><ind>1</ind><dep>20</dep></entry>
+            <entry><ind>0.95</ind><dep>-18</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
     </interpolation>
     <center>
         <x-m>6.407</x-m>
@@ -1616,11 +1576,22 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>LHaxle</object-name>
-    <property>sim/multiplay/generic/float[3]</property>
-    <interpolation>
-        <entry><ind>0</ind><dep>0</dep></entry>
-        <entry><ind>0.52</ind><dep>20</dep></entry>
-    </interpolation>
+        <expression>
+            <sum>
+                <rad2deg>
+                    <atan>
+                        <div>
+                            <difference>
+                                <property alias = "/gear/gear[3]/compression-m/property"/>
+                                <property alias = "/gear/gear[1]/compression-m/property"/>
+                            </difference>
+                            <value>1.49</value>
+                        </div>
+                    </atan>
+                </rad2deg>
+                <value>-19</value>
+            </sum>
+        </expression>
     <center>
         <x-m>6.407</x-m>
         <y-m>-5.616</y-m>
@@ -1827,7 +1798,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>LHwheel.3</object-name>
-    <property>controls/gear/maingear-steering-cmd-norm</property>
+        <property alias = "/controls/gear/maingear-steering-cmd-norm/property"/>
     <factor>-8</factor>
     <axis>
         <x>0</x>
@@ -1887,8 +1858,8 @@ Outboard Aileron Lockout Schedule
     <object-name>RHaxle</object-name>
     <property>gear/gear[2]/position-norm</property>
     <interpolation>
-        <entry><ind>0</ind><dep>0</dep></entry>
-        <entry><ind>1</ind><dep>20</dep></entry>
+            <entry><ind>0.95</ind><dep>-18</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
     </interpolation>
     <center>
         <x-m>6.407</x-m>
@@ -1906,11 +1877,22 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>RHaxle</object-name>
-    <property>sim/multiplay/generic/float[4]</property>
-    <interpolation>
-        <entry><ind>0</ind><dep>0</dep></entry>
-        <entry><ind>0.52</ind><dep>20</dep></entry>
-    </interpolation>
+        <expression>
+            <sum>
+                <rad2deg>
+                    <atan>
+                        <div>
+                            <difference>
+                                <property alias = "/gear/gear[4]/compression-m/property"/>
+                                <property alias = "/gear/gear[2]/compression-m/property"/>
+                            </difference>
+                            <value>1.49</value>
+                        </div>
+                    </atan>
+                </rad2deg>
+                <value>-19</value>
+            </sum>
+        </expression>
     <center>
         <x-m>6.407</x-m>
         <y-m>5.616</y-m>
@@ -1926,7 +1908,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>translate</type>
     <object-name>RHstrut</object-name>
-    <property>sim/multiplay/generic/float[2]</property>
+        <property alias = "/gear/gear[2]/compression-m/property"/>
     <axis>
         <x>0</x>
         <y>0</y>
@@ -2127,7 +2109,7 @@ Outboard Aileron Lockout Schedule
     <animation>
     <type>rotate</type>
     <object-name>RHwheel.3</object-name>
-    <property>controls/gear/maingear-steering-cmd-norm</property>
+        <property alias = "/controls/gear/maingear-steering-cmd-norm/property"/>
     <factor>-8</factor>
     <axis>
         <x>0</x>
@@ -2285,4 +2267,88 @@ Outboard Aileron Lockout Schedule
     </condition>
 </animation>
 
+<systems>
+    <electrical>
+        <outputs>
+            <strobe>
+                <property>sim/multiplay/generic/int[0]</property>
+            </strobe>
+            <beacon>
+                <property>sim/multiplay/generic/int[1]</property>
+            </beacon>
+            <logo-lights>
+                <property>sim/multiplay/generic/int[3]</property>
+            </logo-lights>
+            <landing-light n="0">
+                <property>sim/multiplay/generic/int[4]</property>
+            </landing-light>
+            <landing-light n="1">
+                <property>sim/multiplay/generic/int[5]</property>
+            </landing-light>
+            <landing-light n="2">
+                <property>sim/multiplay/generic/int[6]</property>
+            </landing-light>
+            <nav-lights>
+                <property>sim/multiplay/generic/int[7]</property>
+            </nav-lights>
+            <cabin-lights>
+                <property>sim/multiplay/generic/int[8]</property>
+            </cabin-lights>
+        </outputs>
+    </electrical>
+</systems>
+
+<gear>
+    <gear n="0">
+        <compression-m>
+            <property>sim/multiplay/generic/float[0]</property>
+        </compression-m>
+    </gear>
+    <gear n="1">
+        <compression-m>
+            <property>sim/multiplay/generic/float[1]</property>
+        </compression-m>
+    </gear>
+    <gear n="2">
+        <compression-m>
+            <property>sim/multiplay/generic/float[2]</property>
+        </compression-m>
+    </gear>
+    <gear n="3">
+        <compression-m>
+            <property>sim/multiplay/generic/float[3]</property>
+        </compression-m>
+    </gear>
+    <gear n="4">
+        <compression-m>
+            <property>sim/multiplay/generic/float[4]</property>
+        </compression-m>
+    </gear>
+</gear>
+<controls>
+    <flight>
+        <speedbrake-angle>
+            <property>sim/multiplay/generic/float[5]</property>
+        </speedbrake-angle>
+    </flight>
+    <gear>
+        <nosegear-steering-cmd-norm>
+            <property>sim/multiplay/generic/float[6]</property>
+        </nosegear-steering-cmd-norm>
+        <maingear-steering-cmd-norm>
+            <property>sim/multiplay/generic/float[7]</property>
+        </maingear-steering-cmd-norm>
+    </gear>
+</controls>
+<surface-positions>
+    <reverser-norm>
+        <property>sim/multiplay/generic/float[8]</property>
+    </reverser-norm>
+    <stabilizer-pos-norm>
+        <property>sim/multiplay/generic/float[9]</property>
+    </stabilizer-pos-norm>
+    <slats>
+        <property>sim/multiplay/generic/float[10]</property>
+    </slats>
+</surface-positions>
 </PropertyList>

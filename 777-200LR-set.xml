@@ -12,9 +12,6 @@
 
         <model n="0">
             <path>Aircraft/777/Models/777-200LR.xml</path>
-            <livery>
-                <file type="string">BA</file>
-            </livery>
             <door>
                 <position-x-m type="float">-18.30</position-x-m>
                 <position-y-m type="float"> -2.95</position-y-m>

@@ -61,6 +61,13 @@ var AFDS = {
         m.AP_passive = props.globals.initNode("autopilot/locks/passive-mode",1,"BOOL");
         m.AP_pitch_engaged = props.globals.initNode("autopilot/locks/pitch-engaged",1,"BOOL");
         m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
+        m.AP_internal = props.globals.getNode("autopilot/internal",1);
+        m.AP_internal.initNode("autopilot-transition",0,"BOOL");
+        m.AP_internal.initNode("pitch-transition",0,"BOOL");
+        m.AP_internal.initNode("roll-transition",0,"BOOL");
+        m.AP_internal.initNode("speed-transition",0,"BOOL");
+        m.AP_internal.initNode("presision-loc",0,"INT");
+        m.AP_internal.initNode("heading-bug-error-deg",0,"INT");
 
         m.FMC = props.globals.getNode("autopilot/route-manager", 1);
         m.FMC_max_cruise_alt = m.FMC.initNode("cruise/max-altitude-ft",10000,"DOUBLE");
@@ -144,7 +151,7 @@ var AFDS = {
         m.RmDisabled = setlistener(m.FMC.getNode("active",1), func m.wpChanged(),0,0);
 
 
-        m.NDSymbols = props.globals.getNode("instrumentation/nd/symbols", 1);
+        m.NDSymbols = props.globals.getNode("autopilot/route-manager/vnav", 1);
         setprop("autopilot/internal/waypoint-bearing-error-deg", 0);
         setprop("autopilot/route-manager/distance-remaining-nm", 99999);
         return m;
@@ -202,10 +209,7 @@ var AFDS = {
                     {
                         if(me.lateral_mode.getValue() == 3)     # Current mode is LNAV
                         {
-                            # set target to current heading
-                            var tgtHdg = me.heading.getValue();
-                            me.hdg_setting.setValue(tgtHdg);
-                            btn = 1;    # Heading sel
+                            # Do nothing
                         }
                         elsif(me.lnav_armed.getValue())
                         {   # LNAV armed then disarm
@@ -381,7 +385,7 @@ var AFDS = {
                 {
                     if(me.FD.getValue())
                     {
-                        if(getprop("gear/gear[1]/wow"))
+                        if(!getprop("controls/flight/air-sensing-sw"))
                         {
                             me.lateral_mode.setValue(9);        # TOGA
                             me.vertical_mode.setValue(10);      # TOGA
@@ -393,8 +397,8 @@ var AFDS = {
                         {
                             me.lateral_mode.setValue(0);        # Clear
                             me.vertical_mode.setValue(0);       # Clear
-                            setprop("autopilot/settings/roll-transition", 0);
-                            setprop("autopilot/settings/pitch-transition", 0);
+                            setprop("autopilot/internal/roll-transition", 0);
+                            setprop("autopilot/internal/pitch-transition", 0);
                         }
                     }
                 }
@@ -410,8 +414,8 @@ var AFDS = {
                         {
                             me.lateral_mode.setValue(0);        # NO MODE
                             me.vertical_mode.setValue(0);       # NO MODE
-                            setprop("autopilot/settings/roll-transition", 0);
-                            setprop("autopilot/settings/pitch-transition", 0);
+                            setprop("autopilot/internal/roll-transition", 0);
+                            setprop("autopilot/internal/pitch-transition", 0);
                         }
                         else
                         {
@@ -576,8 +580,8 @@ var AFDS = {
             {
                 me.lateral_mode.setValue(0);        # NO MODE
                 me.vertical_mode.setValue(0);       # NO MODE
-                setprop("autopilot/settings/roll-transition", 0);
-                setprop("autopilot/settings/pitch-transition", 0);
+                setprop("autopilot/internal/roll-transition", 0);
+                setprop("autopilot/internal/pitch-transition", 0);
             }
             else
             {
@@ -715,10 +719,10 @@ var AFDS = {
         if((me.AP_speed_mode.getValue() != me.spd_list[idx])
                 and (idx > 0))
         {
-            setprop("autopilot/settings/speed-transition", 1);
+            setprop("autopilot/internal/speed-transition", 1);
             settimer(func
             {
-                setprop("autopilot/settings/speed-transition", 0);
+                setprop("autopilot/internal/speed-transition", 0);
             }, 10);
         }
         me.AP_speed_mode.setValue(me.spd_list[idx]);
@@ -773,7 +777,11 @@ var AFDS = {
         me.indicated_vs_fpm.setValue(int((abs(VS) * 60 + 50) / 100) * 100);
         if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 30)
         {
-            setprop("instrumentation/airspeed-indicator/indicated-speed-kt", 30);
+            setprop("instrumentation/airspeed-indicator/indicator-speed-kt", 30);
+        }
+        else
+        {
+            setprop("instrumentation/airspeed-indicator/indicator-speed-kt", getprop("instrumentation/airspeed-indicator/indicated-speed-kt"));
         }
         # This value is used for displaying negative altitude
         if(current_alt < 0)
@@ -807,14 +815,14 @@ var AFDS = {
         }
         if(msg == " ")
         {
-            setprop("autopilot/settings/autopilot-transition", 0);
+            setprop("autopilot/internal/autopilot-transition", 0);
         }
         elsif(me.AP_annun.getValue() != msg)
         {
-            setprop("autopilot/settings/autopilot-transition", 1);
+            setprop("autopilot/internal/autopilot-transition", 1);
             settimer(func
             {
-                setprop("autopilot/settings/autopilot-transition", 0);
+                setprop("autopilot/internal/autopilot-transition", 0);
             }, 10);
         }
         me.AP_annun.setValue(msg);
@@ -1030,7 +1038,6 @@ var AFDS = {
             {
                 if(getprop("velocities/groundspeed-kt") < 50)
                 {
-                    me.AP.setValue(0);                      # Autopilot off
                     setprop("controls/flight/aileron", 0);  # Aileron set neutral
                     setprop("controls/flight/rudder", 0);   # Rudder set neutral
                     me.FMC_destination_ils.setValue(0);     # Clear destination ILS set
@@ -1081,10 +1088,10 @@ var AFDS = {
             if((me.AP_roll_mode.getValue() != me.roll_list[idx])
                     and (idx > 0))
             {
-                setprop("autopilot/settings/roll-transition", 1);
+                setprop("autopilot/internal/roll-transition", 1);
                 settimer(func
                 {
-                    setprop("autopilot/settings/roll-transition", 0);
+                    setprop("autopilot/internal/roll-transition", 0);
                 }, 10);
             }
             me.AP_roll_mode.setValue(me.roll_list[idx]);
@@ -1556,10 +1563,10 @@ var AFDS = {
             if((me.AP_pitch_mode.getValue() != me.pitch_list[idx])
                     and (idx > 0))
             {
-                setprop("autopilot/settings/pitch-transition", 1);
+                setprop("autopilot/internal/pitch-transition", 1);
                 settimer(func
                 {
-                    setprop("autopilot/settings/pitch-transition", 0);
+                    setprop("autopilot/internal/pitch-transition", 0);
                 }, 10);
             }
             me.AP_pitch_mode.setValue(me.pitch_list[idx]);
@@ -1635,13 +1642,13 @@ var AFDS = {
             if((me.at1.getValue() == 0) or (me.at2.getValue() == 0))
             {
                 me.autothrottle_mode.setValue(0);
-                setprop("autopilot/settings/speed-transition", 0);
+                setprop("autopilot/internal/speed-transition", 0);
             }
             # auto-throttle disengaged when reverser is enabled
             elsif (getprop("controls/engines/engine/reverser-act"))
             {
                 me.autothrottle_mode.setValue(0);
-                setprop("autopilot/settings/speed-transition", 0);
+                setprop("autopilot/internal/speed-transition", 0);
             }
             elsif(me.autothrottle_mode.getValue() == 2)     # THR REF
             {
@@ -1730,10 +1737,10 @@ var AFDS = {
             if((me.AP_speed_mode.getValue() != me.spd_list[idx])
                     and (idx > 0))
             {
-                setprop("autopilot/settings/speed-transition", 1);
+                setprop("autopilot/internal/speed-transition", 1);
                 settimer(func
                 {
-                    setprop("autopilot/settings/speed-transition", 0);
+                    setprop("autopilot/internal/speed-transition", 0);
                 }, 10);
             }
             me.AP_speed_mode.setValue(me.spd_list[idx]);
@@ -1758,34 +1765,11 @@ var AFDS = {
                     if(me.vnav_descent.getValue() == 0) # Calculation of Top Of Descent distance
                     {
                         var cruise_alt = me.FMC_cruise_alt.getValue();
-                        me.top_of_descent = 8;
-                        if(cruise_alt > 10000)
-                        {
-                            me.top_of_descent += 21;
-                            if(cruise_alt > 29000)
-                            {
-                                me.top_of_descent += 41.8;
-                                if(cruise_alt > 36000)
-                                {
-                                    me.top_of_descent += 28;
-                                    me.top_of_descent += (cruise_alt - 36000) / 1000 * 3.8;
-                                }
-                                else
-                                {
-                                    me.top_of_descent += (cruise_alt - 29000) / 1000 * 4;
-                                }
-                            }
-                            else
-                            {
-                                me.top_of_descent += (cruise_alt - 10000) / 1000 * 2.2;
-                            }
-                            me.top_of_descent += 6.7;
-                        }
-                        else
-                        {
-                            me.top_of_descent += (cruise_alt - 3000) / 1000 * 3;
-                        }
-                        me.top_of_descent -= (destination_elevation / 1000 * 3);
+                        var tod_constant = 3.3;
+                        if(cruise_alt < 35000) tod_constant = 3.2;
+                        if(cruise_alt < 25000) tod_constant = 3.1;
+                        if(cruise_alt < 15000) tod_constant = 3.0;
+                        me.top_of_descent = ((cruise_alt - destination_elevation) / 1000 * tod_constant);
 
                         if((me.alt_setting.getValue() > 24000)
                             and (me.alt_setting.getValue() >= cruise_alt))
@@ -1855,18 +1839,22 @@ var AFDS = {
                             gmt -= 24 * 3600;
                         }
                         me.estimated_time_arrival.setValue(gmt_hour * 100 + int((gmt - gmt_hour * 3600) / 60));
-                        if(me.current_wp_local != me.FMC_current_wp.getValue())
-                        {
-                            me.current_wp_local = me.FMC_current_wp.getValue();
-                        }
-                        if(me.current_wp_local < max_wpt)
+                        if(me.current_wp_local < (max_wpt - 2))
                         {
                             if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg") == nil)
                             {
                                 setprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg", getprop("instrumentation/gps/wp/wp[1]/bearing-deg"));
                             }
-                            var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
-                             - getprop("orientation/heading-deg"));
+                            if(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-distance-nm") > 1.0)
+                            {
+                                var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 1)~"]/leg-bearing-true-deg")
+                                 - getprop("orientation/heading-deg"));
+                            }
+                            else
+                            {
+                                var change_wp = abs(getprop("autopilot/route-manager/route/wp["~(me.current_wp_local + 2)~"]/leg-bearing-true-deg")
+                                 - getprop("orientation/heading-deg"));
+                            }
                         }
                         else
                         {
@@ -1986,11 +1974,11 @@ var AFDS = {
             }
             elsif(lim == 20)
             {
-                me.heading_change_rate = 1.0;
+                me.heading_change_rate = 1.1;
             }
             elsif(lim == 15)
             {
-                me.heading_change_rate = 1.67;
+                me.heading_change_rate = 2.0;
             }
             elsif(lim == 10)
             {

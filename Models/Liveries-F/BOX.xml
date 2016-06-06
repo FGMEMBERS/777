@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">DHL Southern Air</name>
-            <texture>Liveries-200/SOO.png</texture>
+            <name type="string">BOX AeroLogic</name>
+            <texture>Liveries-F/BOX.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-   	<aircraft-operator>SOO</aircraft-operator>
+    <aircraft-operator>BOX</aircraft-operator>
 </sim>
 </PropertyList>
