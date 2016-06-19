@@ -1070,6 +1070,36 @@ switch_ind = func() {
     {
         setprop("controls/fuel/tank[1]/b-boost-pump[1]", 1);
     }
+#FUEL Jettison
+    if(getprop("controls/fuel/jitteson-arm-switch")
+        and getprop("controls/flight/air-sensing-sw")
+        and (getprop("yasim/gross-weight-lbs") >= getprop("sim/max-landing-weight")))
+    {
+        if(getprop("controls/fuel/tank[0]/b-nozzle")
+            and getprop("controls/fuel/tank[0]/nozzle-switch"))
+        {
+            if(getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+            {
+                setprop("consumables/fuel/tank[1]/level-gal_us", getprop("consumables/fuel/tank[1]/level-gal_us")-1);
+            }
+            else
+            {
+                setprop("consumables/fuel/tank[0]/level-gal_us", getprop("consumables/fuel/tank[0]/level-gal_us")-1);
+            }
+        }
+        if(getprop("controls/fuel/tank[2]/b-nozzle")
+            and getprop("controls/fuel/tank[0]/nozzle-switch"))
+        {
+            if(getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+            {
+                setprop("consumables/fuel/tank[1]/level-gal_us", getprop("consumables/fuel/tank[1]/level-gal_us")-1);
+            }
+            else
+            {
+                setprop("consumables/fuel/tank[2]/level-gal_us", getprop("consumables/fuel/tank[2]/level-gal_us")-1);
+            }
+        }
+    }
 #EEC Autostart
     if((getprop("controls/engines/autostart") == 0)
             and (cpt_flt_inst.getValue() > 24))
