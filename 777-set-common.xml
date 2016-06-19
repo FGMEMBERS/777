@@ -828,6 +828,28 @@ Service Ceiling: 43,100ft
                     <step type="double">0.012</step>
                 </binding>
             </key>
+            <key n="49">
+                <name>1</name>
+                <desc>nose up stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(-1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
+                </binding>
+            </key>
+            <key n="55">
+                <name>7</name>
+                <desc>nose down stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
+                </binding>
+            </key>
             <key n="61">
                 <name>=</name>
                 <desc>toggle auto spoilers</desc>
@@ -882,6 +904,28 @@ Service Ceiling: 43,100ft
                     <step type="double">0.01</step>
                     <min>1</min>
                     <max>2</max>
+                </binding>
+            </key>
+            <key n="362">
+                <name>Home</name>
+                <desc>nose down stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
+                </binding>
+            </key>
+            <key n="363">
+                <name>End</name>
+                <desc>nose up stab trim</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(-1);
+                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
+                    </script>
                 </binding>
             </key>
         </keyboard>
@@ -1144,7 +1188,7 @@ Service Ceiling: 43,100ft
         <gear>
             <brake-parking type="bool">1</brake-parking>
             <tiller-cmd-norm type="double">0</tiller-cmd-norm>
-            <tiller-enabled type="bool">false</tiller-enabled>
+            <tiller-enabled type="bool">true</tiller-enabled>
             <nosegear-steering-cmd-norm type="double">0</nosegear-steering-cmd-norm>
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>

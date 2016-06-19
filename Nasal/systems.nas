@@ -740,7 +740,13 @@ controls.click = func(button) {
 controls.elevatorTrim = func(speed) {
     if(0 == getprop("instrumentation/afds/inputs/AP"))
     {
-        controls.slewProp("controls/flight/trim-ref-speed", speed * 0.045);
+        if(((1 > getprop("controls/flight/elevator-trim"))
+                and (0 < speed))
+            or ((-1 < getprop("controls/flight/elevator-trim"))
+                and (0 > speed)))
+        {
+            controls.slewProp("controls/flight/trim-ref-speed", speed * 0.045);
+        }
     }
 }
 
@@ -1063,6 +1069,36 @@ switch_ind = func() {
     else
     {
         setprop("controls/fuel/tank[1]/b-boost-pump[1]", 1);
+    }
+#FUEL Jettison
+    if(getprop("controls/fuel/jitteson-arm-switch")
+        and getprop("controls/flight/air-sensing-sw")
+        and (getprop("yasim/gross-weight-lbs") >= getprop("sim/max-landing-weight")))
+    {
+        if(getprop("controls/fuel/tank[0]/b-nozzle")
+            and getprop("controls/fuel/tank[0]/nozzle-switch"))
+        {
+            if(getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+            {
+                setprop("consumables/fuel/tank[1]/level-gal_us", getprop("consumables/fuel/tank[1]/level-gal_us")-1);
+            }
+            else
+            {
+                setprop("consumables/fuel/tank[0]/level-gal_us", getprop("consumables/fuel/tank[0]/level-gal_us")-1);
+            }
+        }
+        if(getprop("controls/fuel/tank[2]/b-nozzle")
+            and getprop("controls/fuel/tank[0]/nozzle-switch"))
+        {
+            if(getprop("consumables/fuel/tank[1]/level-gal_us") > 0)
+            {
+                setprop("consumables/fuel/tank[1]/level-gal_us", getprop("consumables/fuel/tank[1]/level-gal_us")-1);
+            }
+            else
+            {
+                setprop("consumables/fuel/tank[2]/level-gal_us", getprop("consumables/fuel/tank[2]/level-gal_us")-1);
+            }
+        }
     }
 #EEC Autostart
     if((getprop("controls/engines/autostart") == 0)
