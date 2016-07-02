@@ -4,6 +4,7 @@
         <description>Boeing 777-300ER</description>
         <aero>777-300ER</aero>
         <max-payload type="double">408060</max-payload>
+        <max-landing-weight type="double">554000</max-landing-weight>
         <startup>
             <splash-texture>Aircraft/777/splash-300ER.png</splash-texture>
         </startup>
