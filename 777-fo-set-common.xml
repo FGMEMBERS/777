@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+
+<!--
+    Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircraft=777-fo
+-->
+
+<PropertyList>
+
+    <nasal>
+        <b777>
+            <file>Aircraft/777/Models/Instruments/ND/ND.nas</file>
+            <!--file>Aircraft/777/Models/Instruments/MFD/mfd.nas</file>
+            <file>Aircraft/777/Models/Instruments/MFD/fctl.nas</file>
+            <file>Aircraft/777/Models/Instruments/MFD/eng.nas</file>
+            <file>Aircraft/777/Models/Instruments/MFD/fuel.nas</file-->
+        </b777>
+        <dialogs>
+            <file>Aircraft/777/Nasal/dialogs.nas</file>
+        </dialogs>
+        <!--cdu>
+            <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
+        </cdu-->
+        <dual_control_tools>
+            <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+        </dual_control_tools>
+        <aircraft_dual_control>
+            <file>Aircraft/777/DualControl/777-dual-control.nas</file>
+        </aircraft_dual_control>
+        <dual_control>
+            <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
+        </dual_control>
+    </nasal>
+    <sim>
+        <author>Hyde Yamakawa</author>
+        <status>production</status>
+        <rating>
+            <FDM type="int">4</FDM>
+            <systems type="int">4</systems>
+            <cockpit type="int">4</cockpit>
+            <model type="int">4</model>
+        </rating>
+        <aircraft-version>20140208</aircraft-version>
+        <flight-model>null</flight-model>
+        <instrument-options>
+            <canvas-popup-enable type="bool">true</canvas-popup-enable>
+        </instrument-options>
+        <model>
+            <path>Aircraft/777/Models/777-fo.xml</path>
+        </model>
+        <sound>
+            <path>Aircraft/777/Sounds/777-sound.xml</path>
+        </sound>
+        <airport>
+            <runways>
+                <start-offset-m>50</start-offset-m>
+            </runways>
+        </airport>
+        <view n="0">
+            <name>CoPilot View</name>
+            <enabled type="bool">true</enabled>
+            <type>lookfrom</type>
+            <config n="0">
+                <internal type="bool">true</internal>
+                <from-model type="bool">true</from-model>
+                <eye-lat-deg-path>/position/latitude-deg</eye-lat-deg-path>
+                <eye-lon-deg-path>/position/longitude-deg</eye-lon-deg-path>
+                <eye-alt-ft-path>/position/altitude-ft</eye-alt-ft-path>
+                <eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
+                <eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
+                <eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+                <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+                <default-pitch-deg type="double">0</default-pitch-deg>
+                <default-heading-deg type="double">0</default-heading-deg>
+                <front-direction-deg type="double">0</front-direction-deg>
+                <front-left-direction-deg type="double">45</front-left-direction-deg>
+                <left-direction-deg type="double">90</left-direction-deg>
+                <back-left-direction-deg type="double">135</back-left-direction-deg>
+                <back-direction-deg type="double">180</back-direction-deg>
+                <back-right-direction-deg type="double">225</back-right-direction-deg>
+                <right-direction-deg type="double">270</right-direction-deg>
+                <front-right-direction-deg type="double">315</front-right-direction-deg>
+                <dynamic-view type="bool">true</dynamic-view>
+                <x-offset-m type="double">0.60</x-offset-m>
+                <y-offset-m type="double">0.8</y-offset-m>
+                <pitch-offset-deg>-13.5</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                      <heading-max-deg type="double">140</heading-max-deg>
+                      <x-offset-max-m type="double">0.45</x-offset-max-m>
+                      <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.35</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
+        <view n="100">
+            <name>Pilot View</name>
+            <type>lookfrom</type>
+            <config n="0">
+                <internal type="bool">true</internal>
+                <eye-lat-deg-path>/position/latitude-deg</eye-lat-deg-path>
+                <eye-lon-deg-path>/position/longitude-deg</eye-lon-deg-path>
+                <eye-alt-ft-path>/position/altitude-ft</eye-alt-ft-path>
+                <eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
+                <eye-pitch-deg-path>/orientation/pitch-deg</eye-pitch-deg-path>
+                <eye-roll-deg-path>/orientation/roll-deg</eye-roll-deg-path>
+                <x-offset-m type="double">-0.57</x-offset-m>
+                <y-offset-m type="double">0.8</y-offset-m>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+                <pitch-offset-deg>-13.5</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                        <heading-max-deg type="double">140</heading-max-deg>
+                        <x-offset-max-m type="double">0.35</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.45</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
+        <chase-distance-m>-100</chase-distance-m>
+        <yokes-visible type="bool">true</yokes-visible>
+        <systems>
+            <property-rule n="102">
+                <path>Aircraft/777/Systems/777-pcu.xml</path>
+            </property-rule>
+            <electrical>
+                <outputs>
+                    <avionics type="bool">false</avionics>
+                </outputs>
+            </electrical>
+        </systems>
+        <instrumentation>
+            <path>Aircraft/777/Systems/instrumentation.xml</path>
+        </instrumentation>
+    </sim>
+</PropertyList>

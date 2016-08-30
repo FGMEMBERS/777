@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">AZA Alitalia (Skyteam | EI-DDH)</name>
+            <texture>Liveries-200/AZA-EI-DDH.png</texture>
+        </livery>
+    </model>
+</sim>
+</PropertyList>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">AJM Air Jamaica</name>
+            <texture>Liveries-200/AJM.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>AJM</aircraft-operator>
+</sim>
+</PropertyList>

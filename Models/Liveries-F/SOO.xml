@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">DHL Southern Air</name>
+            <texture>Liveries-F/SOO.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>SOO</aircraft-operator>
+</sim>
+</PropertyList>

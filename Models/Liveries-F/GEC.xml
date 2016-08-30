@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">GEC Lufthansa Cargo</name>
+            <texture>Liveries-F/GEC.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>GEC</aircraft-operator>
+</sim>
+</PropertyList>
