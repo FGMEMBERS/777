@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <PropertyList>
     <checklist>
         <title>Before Starting Engine</title>
@@ -116,6 +117,15 @@
         <item>
             <name>Exterior Lights</name>
             <value>Off</value>
+            <condition>
+                <and>
+                    <not><property>controls/lighting/taxi-lights</property></not>
+                    <not><property>controls/lighting/landing-lights</property></not>
+                    <not><property>controls/lighting/strobe</property></not>
+                    <not><property>controls/lighting/nav-lights</property></not>
+                    <not><property>controls/lighting/beacon</property></not>
+                </and>
+            </condition>
         </item>
         <item>
             <name>Fasten Seat Belts</name>
@@ -151,9 +161,13 @@
             <condition>
                 <greater-than>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <value>-1</value>
+                    <value>-3</value>
                 </greater-than>
             </condition>
+        </item>
+        <item>
+            <name>Transition Altitude</name>
+            <value>Check and Set</value>
         </item>
         <item>
             <name>Trims</name>
@@ -182,10 +196,10 @@
             <value>Review</value>
         </item>
         <item>
-            <name>GPWS self-test (press and hold for 5 seconds)</name>
+            <name>GPWS self-test (press and hold for 20 seconds)</name>
             <value>Done</value>
             <condition>
-                <property>instrumentation/mk-viii/inputs/discretes/self-test</property>
+             <property>instrumentation/mk-viii/inputs/discretes/self-tested</property>
             </condition>
         </item>
         <item>
@@ -205,8 +219,10 @@
                     <value>0</value>
                 </equals>
             </condition>
-
-        </item>
+         </item>
+    </checklist>
+    <checklist>
+        <title>Startup</title>
         <item>
             <name>Beacon Light</name>
             <value>On</value>
@@ -214,10 +230,10 @@
                <property>controls/lighting/beacon</property>
             </condition>
         </item>
-
-    </checklist>
-    <checklist>
-        <title>Startup</title>
+        <item>
+            <name>Contact Ground</name>
+            <value>Done</value>
+        </item>
         <item>
             <name>Strobe Light</name>
             <value>On</value>
@@ -250,7 +266,7 @@
             </condition>
         </item>
         <item>
-            <name>At N2 > 20 % fuel flow engine</name>
+            <name>At N2 &gt; 20 % fuel flow engine</name>
             <value>Check</value>
             <condition>
                 <equals>
@@ -274,7 +290,7 @@
             </condition>
         </item>
         <item>
-            <name>At N2 > 20 % fuel flow engine</name>
+            <name>At N2 &gt; 20 % fuel flow engine</name>
             <value>Check</value>
             <condition>
                 <equals>
@@ -297,7 +313,7 @@
                 </equals>
             </condition>
         </item>
-        <item>
+        <!--item>
             <name>BATT Master Switch</name>
             <value>Off</value>
             <condition>
@@ -306,7 +322,7 @@
                     <value>0</value>
                 </equals>
             </condition>
-        </item>
+        </item-->
     </checklist>
     <checklist>
         <title>After Startup</title>
@@ -335,13 +351,53 @@
             <value>Checked</value>
         </item>
         <item>
+          <name>Hydraulic Pumps</name>
+          <value>On</value>
+          <condition>
+             <and>
+              <greater-than>
+               <property>controls/hydraulics/system/LACMP-switch</property>
+               <value type="int">0</value>
+              </greater-than>
+              <equals>
+               <property>controls/hydraulics/system/LENG_switch</property>
+               <value type="bool">true</value>
+              </equals>
+              <greater-than>
+               <property>controls/hydraulics/system[1]/C1ADP-switch</property>
+               <value type="int">0</value>
+              </greater-than>
+              <equals>
+               <property>controls/hydraulics/system[1]/C1ELEC-switch</property>
+               <value type="bool">true</value>
+              </equals>
+              <greater-than>
+               <property>controls/hydraulics/system[1]/C2ADP-switch</property>
+               <value type="int">0</value>
+              </greater-than>
+              <equals>
+               <property>controls/hydraulics/system[1]/C2ELEC-switch</property>
+               <value type="bool">true</value>
+              </equals>
+              <greater-than>
+               <property>controls/hydraulics/system[2]/RACMP-switch</property>
+               <value type="int">0</value>
+              </greater-than>
+              <equals>
+               <property>controls/hydraulics/system[2]/RENG_switch</property>
+               <value type="bool">true</value>
+              </equals>
+             </and>
+          </condition>
+        </item>
+        <item>
             <name>Flaps</name>
             <value>Set for takeoff</value>
             <condition>
                 <greater-than>
                     <property>controls/flight/flaps</property>
                     <value>0</value>
-                </greater-than>>
+                </greater-than>
             </condition>
         </item>
         <item>
@@ -361,9 +417,49 @@
             <value>As requested</value>
         </item>
     </checklist>
+
+    <checklist>
+        <title>Pushback</title>
+        <item>
+            <name>Doors</name>
+            <value>Closed</value>
+        </item>
+        <item>
+            <name>Outside Equipment/Personnel</name>
+            <value>Clear</value>
+        </item>
+        <item>
+            <name>Cabin Preparation</name>
+            <value>Verify Cabin Ready</value>
+        </item>
+        <item>
+            <name>Beacon Light</name>
+            <value>On</value>
+            <condition>
+               <property>controls/lighting/beacon</property>
+            </condition>
+        </item>
+        <item>
+            <name>Strobe lights</name>
+            <value>Off</value>
+        </item>        <item>
+            <name>Pushback Clearance</name>
+            <value>Obtained</value>
+        </item>
+    </checklist>
     
     <checklist>
-        <title>Taxi</title>
+        <title>Taxi Out</title>
+        <item>
+            <name>Transponder</name>
+            <value>ALT RPTG OFF</value>
+            <condition>
+                <equals>
+                    <property>instrumentation/transponder/mode-switch</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+         </item>
         <item>
             <name>Taxi Lights</name>
             <value>On</value>
@@ -395,23 +491,44 @@
         </item>
     </checklist>
     <checklist>
-        <title>Line Up</title>
+        <title>Before Take-off</title>
         <item>
-            <name>Taxi Lights</name>
-            <value>Off</value>
-            <condition>
-               <not><property>controls/lighting/taxi-lights</property></not>
-            </condition>
+            <name>Contact Tower</name>
+            <value>Done</value>
         </item>
         <item>
-            <name>Strobe Light</name>
+        <name>Take-off/Line-up-clearance</name>
+            <value>Obtained</value>
+        </item>
+        <item>
+            <name>Transponder</name>
+            <value>TA/RA</value>
+            <condition>
+                <equals>
+                    <property>instrumentation/transponder/mode-switch</property>
+                    <value>4</value>
+                </equals>
+            </condition>
+         </item>
+        <item>
+            <name>Cabin Lights</name>
+            <value>Off</value>
+            <condition>
+               <equals>
+               <property>systems/electrical/outputs/cabin-lights</property>
+               <value>0</value>
+               </equals>
+            </condition>        
+        </item>
+        <item>
+            <name>Strobe Lights</name>
             <value>On</value>
             <condition>
                <property>controls/lighting/strobe</property>
             </condition>
         </item>
         <item>
-            <name>Landing Light</name>
+            <name>Landing Lights</name>
             <value>On</value>
             <condition>
                <property>controls/lighting/landing-lights</property>
@@ -446,7 +563,7 @@
         </item>
         <item>
             <name>Auto-throttles</name>
-            <value>On</value>
+            <value>Armed</value>
             <condition>
                <and>
                <property>instrumentation/afds/inputs/at-armed[0]</property>
@@ -457,6 +574,16 @@
     </checklist>
     <checklist>
         <title>After Take-off</title>
+        <item>
+            <name>Positive Climb</name>
+            <value>Check</value>
+            <condition>
+              <greater-than>
+               <property>instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm</property>
+               <value>900</value>
+              </greater-than>
+            </condition>
+        </item>
         <item>
             <name>Landing gear</name>
             <value>Up</value>
@@ -503,9 +630,21 @@
             <name>Lights</name>
             <value>As requested</value>
         </item>
+        <item>
+            <name>Contact Departure</name>
+            <value>Done</value>
+        </item>
     </checklist>
     <checklist>
         <title>10000 Climb</title>
+        <item>
+            <name>Contact Center</name>
+            <value>Done</value>
+        </item>
+        <item>
+            <name>Cabin Lights</name>
+            <value>As required</value>
+        </item>
         <item>
             <name>Cockpit</name>
             <value>Check</value>
@@ -565,12 +704,16 @@
             <value>As requested</value>
         </item>
         <item>
-            <name>Fueld Quantity</name>
+            <name>Fuel Quantity</name>
             <value>Checked</value>
         </item>
     </checklist>
     <checklist>
         <title>Descent</title>
+        <item>
+            <name>Contact Approach</name>
+            <value>Done</value>
+        </item>
         <item>
             <name>Approach Briefing</name>
             <value>Completed</value>
@@ -580,6 +723,10 @@
             <value>Received</value>
         </item>
         <item>
+            <name>Transition Level</name>
+            <value>Check and Set</value>
+        </item>
+        <item>
             <name>Power Speed</name>
             <value>Set for descent</value>
         </item>
@@ -587,9 +734,21 @@
             <name>De Ice</name>
             <value>As requested</value>
         </item>
+        <item>
+            <name>Minimums</name>
+            <value>Set (radio Alt)</value>
+        </item>
+        <item>
+            <name>Landing performance (weight)</name>
+            <value>Check</value>
+        </item>
     </checklist>
     <checklist>
         <title>In Range 10000 30 NM</title>
+        <item>
+            <name>Contact Approach</name>
+            <value>Done</value>
+        </item>
         <item>
             <name>Landing Light</name>
             <value>On</value>
@@ -615,6 +774,20 @@
     <checklist>
         <title>Before Landing</title>
         <item>
+            <name>Contact Tower</name>
+            <value>Done</value>
+        </item>
+        <item>
+            <name>Cabin Lights</name>
+            <value>Off</value>
+            <condition>
+               <equals>
+               <property>systems/electrical/outputs/cabin-lights</property>
+               <value>0</value>
+               </equals>
+            </condition>        
+        </item>
+        <item>
             <name>Landing Gear Lever</name>
             <value>Check Down</value>
             <condition>
@@ -628,7 +801,7 @@
                 <greater-than>
                     <property>controls/flight/flaps</property>
                     <value>0</value>
-                </greater-than>>
+                </greater-than>&gt;
             </condition>
         </item>
         <item>
@@ -655,6 +828,14 @@
                <property>controls/lighting/taxi-light</property>
             </condition>
         </item>
+        <item>
+            <name>Minimums</name>
+            <value>Check</value>
+        </item>
+        <item>
+            <name>Radio Alt Alive (2500 RA)</name>
+            <value>Check</value>
+        </item>        
     </checklist>
     <checklist>
         <title>Final check</title>
@@ -664,7 +845,7 @@
                 <greater-than>
                     <property>controls/flight/flaps</property>
                     <value>0</value>
-                </greater-than>>
+                </greater-than>&gt;
             </condition>
         <item>
             <name>Landing Gear Lever</name>
@@ -674,12 +855,73 @@
             </condition>
         </item>
         <item>
+            <name>Minimums</name>
+            <value>Check</value>
+        </item>
+        <item>
             <name>Winds</name>
             <value>Checked</value>
         </item>
     </checklist>
     <checklist>
-        <title>After Landing</title>
+        <title>Go Around/Missed Approach</title>
+        <item>
+            <name>Spoilers</name>
+            <value>Retracted</value>
+            <condition>
+                <equals>
+                    <property>controls/flight/speedbrake</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Flaps</name>
+            <value>As Required</value>
+            <condition>
+                <less-than-equals>
+                    <property>controls/flight/flaps</property>
+                    <value>0.832</value>
+                </less-than-equals>
+            </condition>
+        </item>
+        <item>
+            <name>Landing gear</name>
+            <value>Up</value>
+            <condition>
+               <not><property>controls/gear/gear-down</property></not>
+            </condition>
+        </item>
+        <item>
+            <name>Engine Parameters</name>
+            <value>Checked</value>
+        </item>
+        <item>
+            <name>Auto-pilot</name>
+            <value>Engage and set for climb</value>
+            <condition>
+               <property>instrumentation/afds/inputs/AP</property>
+            </condition>
+        </item>
+        <item>
+            <name>Power Speed</name>
+            <value>Set for climb</value>
+        </item>
+        <item>
+            <name>Lights</name>
+            <value>As requested</value>
+        </item>
+        <item>
+            <name>Contact Departure</name>
+            <value>Done</value>
+        </item>
+    </checklist>
+    <checklist>
+        <title>Taxi In</title>
+        <item>
+            <name>Contact Ground</name>
+            <value>Done</value>
+        </item>
         <item>
             <name>Flaps</name>
             <value>Up</value>
@@ -698,6 +940,16 @@
                     <property>controls/flight/speedbrake</property>
                     <value>0</value>
                 </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Autobrakes</name>
+            <value>Off</value>
+            <condition>
+                <less-than-equals>
+                <property>autopilot/autobrake/step</property>
+                <value>0</value>
+                </less-than-equals>
             </condition>
         </item>
         <item>
@@ -720,6 +972,231 @@
                 </and>
             </condition>
         </item>
+        <item>
+            <name>Transponder</name>
+            <value>ALT RPTG OFF</value>
+            <condition>
+                <equals>
+                    <property>instrumentation/transponder/mode-switch</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+         </item>
+        <item>
+            <name>Landing Lights</name>
+            <value>Off</value>
+            <condition>
+               <not><property>controls/lighting/landing-lights</property></not>
+            </condition>
+        </item>
+        <item>
+            <name>Taxi Lights</name>
+            <value>On</value>
+            <condition>
+               <property>controls/lighting/taxi-lights</property>
+            </condition>
+        </item>
+        <item>
+            <name>Nav Lights</name>
+            <value>On</value>
+            <condition>
+               <property>controls/lighting/nav-lights</property>
+            </condition>
+        </item>
+        <item>
+            <name>Strobe Lights</name>
+            <value>Off</value>
+            <condition>
+               <not><property>controls/lighting/strobe</property></not>
+            </condition>
+        </item>
+        <item>
+            <name>Spoilers</name>
+            <value>Armed</value>
+            <condition>
+               <not><property>controls/flight/speedbrake-lever</property></not>
+            </condition>
+        </item>
+        <item>
+            <name>Auto-pilot</name>
+            <value>Off</value>
+            <condition>
+            <not>
+               <property>instrumentation/afds/inputs/AP</property>
+            </not>
+            </condition>
+        </item>
+        <item>
+            <name>A/T Arm Switches</name>
+            <value>Off</value>
+            <condition>
+               <and>
+               <not><property>instrumentation/afds/inputs/at-armed[0]</property></not>
+               <not><property>instrumentation/afds/inputs/at-armed[1]</property></not>
+               </and>
+            </condition>
+        </item>        
+        <item>
+            <name>F/D switches</name>
+            <value>Off</value>
+        </item>
+        <item>
+            <name>APU</name>
+            <value>Start (as necessary)</value>
+            <condition>
+                <equals>
+                    <property>controls/APU/run</property>
+                    <value>true</value>
+                </equals>
+            </condition>
+        </item>        
+        <item>
+            <name>Cabin Lights</name>
+            <value>On</value>
+            <condition>
+               <equals>
+               <property>systems/electrical/outputs/cabin-lights</property>
+               <value>28</value>
+               </equals>
+            </condition>        
+            </item>
+    </checklist>
+    <checklist>
+        <title>Parking</title>
+        <item>
+            <name>Taxi Lights</name>
+            <value>Off</value>
+            <condition>
+               <not><property>controls/lighting/taxi-lights</property></not>
+            </condition>
+        </item>        
+        <item>
+            <name>Parking Brake</name>
+            <value>Set</value>
+            <condition>
+                <equals>
+                    <property>controls/gear/brake-parking</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Fasten Seat Belts</name>
+            <value>Off</value>
+            <condition>
+                <equals>
+                    <property>controls/cabin/SeatBelt-knob</property>
+                    <value>-1</value>
+                </equals>
+            </condition>
+        </item>
+        <item>
+            <name>Electrical Power</name>
+            <value>Establish</value>
+        </item>
+        <item>
+            <name>Fuel Control Switches</name>
+            <value>CutOff</value>
+        </item>
+        <item>
+            <name>Beacon Light</name>
+            <value>Off</value>
+            <condition>
+               <not><property>controls/lighting/beacon</property></not>
+            </condition>
+        </item>
+        <item>
+            <name>Anti-Ice</name>
+            <value>Off</value>
+        </item>
+        <item>
+            <name>Fuel pump switches</name>
+            <value>Off</value>
+            <condition>
+                <and>
+                    <not><property>controls/fuel/tank/boost-pump-switch</property></not>
+                    <not><property>controls/fuel/tank/boost-pump-switch[1]</property></not>
+                    <not><property>controls/fuel/tank[1]/boost-pump-switch</property></not>
+                    <not><property>controls/fuel/tank[1]/boost-pump-switch[1]</property></not>
+                    <not><property>controls/fuel/tank[2]/boost-pump-switch</property></not>
+                    <not><property>controls/fuel/tank[2]/boost-pump-switch[1]</property></not>
+                </and>
+            </condition>
+        </item>
+        <item>
+          <name>Hydraulic Pumps</name>
+          <value>Off</value>
+          <condition>
+           <and>
+             <equals>
+               <property>controls/hydraulics/system/LACMP-switch</property>
+               <value type="int">0</value>
+             </equals>
+             <equals>
+               <property>controls/hydraulics/system/LENG_switch</property>
+               <value type="bool">false</value>
+             </equals>
+             <equals>
+               <property>controls/hydraulics/system[1]/C1ADP-switch</property>
+               <value type="int">0</value>
+             </equals>
+             <equals>
+               <property>controls/hydraulics/system[1]/C1ELEC-switch</property>
+               <value type="bool">false</value>
+             </equals>
+             <equals>
+               <property>controls/hydraulics/system[1]/C2ADP-switch</property>
+               <value type="int">0</value>
+             </equals>
+             <equals>
+               <property>controls/hydraulics/system[1]/C2ELEC-switch</property>
+               <value type="bool">false</value>
+             </equals>
+             <equals>
+               <property>controls/hydraulics/system[2]/RACMP-switch</property>
+               <value type="int">0</value>
+             </equals>
+             <equals>
+               <property>controls/hydraulics/system[2]/RENG_switch</property>
+               <value type="bool">false</value>
+             </equals>
+           </and>
+          </condition>
+        </item>                          
+        <item>
+          <name>Window Heat</name>
+          <value>Off</value>
+        </item>
+        <item>
+          <name>EMER Lights Switch</name>
+          <value>Off</value>
+        </item>
+        <item>
+          <name>Audio Selector Panel</name>
+          <value>Set</value>
+        </item>
+        <item>
+          <name>Exterior Lights</name>
+          <value>Off</value>
+          <condition>
+                <and>
+                    <not><property>controls/lighting/taxi-lights</property></not>
+                    <not><property>controls/lighting/landing-lights</property></not>
+                    <not><property>controls/lighting/strobe</property></not>
+                    <not><property>controls/lighting/nav-lights</property></not>
+                    <not><property>controls/lighting/beacon</property></not>
+                </and>
+          </condition>          
+        </item>
+        <item>
+            <name>APU</name>
+            <value>Off</value>
+            <condition>
+                <equals>
+                    <property>controls/APU/run</property>
+                    <value>false</value>
+                </equals>
+            </condition>
+        </item>    
     </checklist>
 </PropertyList>
-

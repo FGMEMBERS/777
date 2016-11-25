@@ -565,6 +565,7 @@ controls.toggleLandingLights = func()
     setprop("controls/lighting/landing-light[0]",!state);
     setprop("controls/lighting/landing-light[1]",!state);
     setprop("controls/lighting/landing-light[2]",!state);
+    setprop("controls/lighting/landing-lights",!state);
 }
 
 var balance_fuel = func{
