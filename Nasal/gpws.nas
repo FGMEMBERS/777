@@ -16,12 +16,12 @@ var gpws_min_landing_flaps = 0.83;
 # GPWS specific class
 # ie: var Gpws = GPWS.new("instrumentation/mk-viii");
 ##############################################
-var GPWS = 
+var GPWS =
 {
     new : func(prop1)
     {
         var m = { parents : [GPWS]};
-
+        m.self_tested     = props.globals.initNode("instrumentation/mk-viii/inputs/discretes/self-tested",0,"BOOL");
         m.gpws            = props.globals.getNode(prop1);
         m.self_test       = m.gpws.getNode("inputs/discretes/self-test");
         m.flap_override   = m.gpws.getNode("inputs/discretes/momentary-flap-override");
@@ -35,6 +35,7 @@ var GPWS =
         m.gear_override = m.gpws.initNode("inputs/discretes/gear-override",0,"BOOL");
 
         m.last_gear_state = 0;
+        m.test_seq = 0;
 
         # add listener to gear
         setlistener("controls/gear/gear-down",         func { Gpws.update_gear_state() } );
@@ -158,12 +159,46 @@ var GPWS =
     update_height : func()
     {
         var radio_alt = getprop("position/gear-agl-ft");
-		if(radio_alt != nil)
-		{
-	        # "glide-slope warning inhibited" is disabled below 50 feet
-    	    if ((radio_alt < 50.0)or(radio_alt > 1000.0))
-        	    me.disable_gs_override();
-		}
+        if(radio_alt != nil)
+        {
+            # "glide-slope warning inhibited" is disabled below 50 feet
+            if ((radio_alt < 50.0)or(radio_alt > 1000.0))
+                me.disable_gs_override();
+        }
+    },
+    GPWStester : func()
+    {
+        var GPWStest = getprop("/instrumentation/mk-viii/inputs/discretes/self-test");
+        var GPWSinop = getprop("/instrumentation/mk-viii/outputs/discretes/gpws-inop");
+        var TADinop = getprop("/instrumentation/mk-viii/outputs/discretes/tad-inop");
+        if(GPWStest and !(me.self_tested.getBoolValue()))
+        {
+            if(0 == me.test_seq)
+            {
+                if(GPWSinop and TADinop)
+                {
+                    me.test_seq = 1;
+                }
+            }
+            elsif(1 == me.test_seq)
+            {
+                if(!(GPWSinop and TADinop))
+                {
+                    me.test_seq = 2;
+                }
+            }
+            elsif(2 == me.test_seq)
+            {
+                if(GPWSinop and TADinop)
+                {
+                    me.self_tested.setBoolValue(1);
+                }
+            }
+        }
+        else
+        {
+            me.test_seq = 0;
+        }
     },
 };
 
@@ -185,6 +220,7 @@ var gpws_input_feeder = func
     Gpws.tcw_feeder();
     Gpws.update_flap_state();
     Gpws.update_height();
+    Gpws.GPWStester();
     settimer(gpws_input_feeder,0.3);
 }
 
