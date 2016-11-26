@@ -115,6 +115,13 @@
             <value>On</value>
         </item>
         <item>
+          <name>ADIRS</name>
+          <value>On</value>
+          <condition>
+           <property>controls/flight/adiru</property>
+          </condition>
+        </item>
+        <item>
             <name>Exterior Lights</name>
             <value>Off</value>
             <condition>
@@ -167,7 +174,7 @@
         </item>
         <item>
             <name>Transition Altitude</name>
-            <value>Check and Set</value>
+            <value>Check and Set (Hit F11)</value>
         </item>
         <item>
             <name>Trims</name>
@@ -242,16 +249,38 @@
             </condition>
         </item>
         <item>
-            <name>Left/right/center fuel pumps ON (6 switches)</name>
+            <name>Left/right/(center) fuel pumps ON</name>
             <value>On</value>
             <condition>
                 <and>
-                    <property>controls/fuel/tank/boost-pump</property>
-                    <property>controls/fuel/tank/boost-pump[1]</property>
-                    <property>controls/fuel/tank[1]/boost-pump</property>
-                    <property>controls/fuel/tank[1]/boost-pump[1]</property>
-                    <property>controls/fuel/tank[2]/boost-pump</property>
-                    <property>controls/fuel/tank[2]/boost-pump[1]</property>
+                 <equals>
+                  <property>controls/fuel/tank/boost-pump</property>
+                  <value>1</value>
+                 </equals>
+                 <equals>
+                  <property>controls/fuel/tank/boost-pump[1]</property>
+                  <value>1</value>
+                 </equals>
+                 <equals>
+                  <property>controls/fuel/tank[2]/boost-pump</property>
+                  <value>1</value>
+                 </equals>
+                 <equals>
+                  <property>controls/fuel/tank[2]/boost-pump[1]</property>
+                  <value>1</value>
+                 </equals>
+                 <not>
+                 <equals>
+                  <property>controls/fuel/tank[1]/boost-pump-switch</property>
+                  <property>consumables/fuel/tank[1]/empty</property>
+                 </equals>
+                 </not>
+                 <not>
+                 <equals>
+                  <property>controls/fuel/tank[1]/boost-pump-switch[1]</property>
+                  <property>consumables/fuel/tank[1]/empty</property>
+                 </equals>
+                 </not>
                 </and>
             </condition>
         </item>
@@ -259,10 +288,16 @@
             <name>Set #1(left)Engine start knob to</name>
             <value>Start</value>
             <condition>
+             <or>
                 <equals>
                     <property>controls/engines/StartIgnition-knob[0]</property>
                     <value>-1</value>
                 </equals>
+                <equals>
+                    <property>engines/engine/run</property>
+                    <value>1</value>
+                </equals>
+             </or>
             </condition>
         </item>
         <item>
@@ -283,10 +318,16 @@
             <name>Set #2(Right)Engine start knob to</name>
             <value>Start</value>
             <condition>
+             <or>
                 <equals>
                     <property>controls/engines/StartIgnition-knob[1]</property>
                     <value>-1</value>
                 </equals>
+                <equals>
+                    <property>engines/engine[1]/run</property>
+                    <value>1</value>
+                </equals>
+             </or>
             </condition>
         </item>
         <item>
@@ -391,6 +432,18 @@
           </condition>
         </item>
         <item>
+          <name>Window Heat</name>
+          <value>On</value>
+          <condition>
+           <and>
+            <property>controls/anti-ice/window-heat-lf</property>
+            <property>controls/anti-ice/window-heat-ls</property>
+            <property>controls/anti-ice/window-heat-rf</property>
+            <property>controls/anti-ice/window-heat-rs</property>
+           </and>
+          </condition>
+        </item>
+        <item>
             <name>Flaps</name>
             <value>Set for takeoff</value>
             <condition>
@@ -442,7 +495,11 @@
         <item>
             <name>Strobe lights</name>
             <value>Off</value>
-        </item>        <item>
+            <condition>
+               <not><property>controls/lighting/strobe</property></not>
+            </condition>
+        </item>        
+        <item>
             <name>Pushback Clearance</name>
             <value>Obtained</value>
         </item>
@@ -535,8 +592,31 @@
             </condition>
         </item>
         <item>
-            <name>De Ice</name>
+            <name>Taxi Lights</name>
+            <value>Off</value>
+            <condition>
+               <not><property>controls/lighting/taxi-lights</property></not>
+            </condition>
+        </item>        
+        <item>
+            <name>Anti-Ice</name>
             <value>On</value>
+            <condition>
+             <and>
+              <greater-than>
+               <property>controls/anti-ice/engin/antiice-knob</property>
+               <value>0</value>
+              </greater-than>
+              <greater-than>
+               <property>controls/anti-ice/engin[1]/antiice-knob</property>
+               <value>0</value>
+              </greater-than>
+              <greater-than>
+               <property>controls/anti-ice/wing-antiice-knob</property>
+               <value>0</value>
+              </greater-than>
+             </and>
+            </condition>
         </item>
         <item>
             <name>Autobrakes</name>
@@ -735,6 +815,10 @@
             <value>As requested</value>
         </item>
         <item>
+            <name>Active runway/ILS</name>
+            <value>Set</value>
+        </item>
+        <item>
             <name>Minimums</name>
             <value>Set (radio Alt)</value>
         </item>
@@ -800,8 +884,8 @@
             <condition>
                 <greater-than>
                     <property>controls/flight/flaps</property>
-                    <value>0</value>
-                </greater-than>&gt;
+                    <value>0.666</value>
+                </greater-than>
             </condition>
         </item>
         <item>
@@ -825,7 +909,7 @@
             <name>Taxi Lights</name>
             <value>On when clear to land</value>
             <condition>
-               <property>controls/lighting/taxi-light</property>
+               <property>controls/lighting/taxi-lights</property>
             </condition>
         </item>
         <item>
@@ -839,14 +923,16 @@
     </checklist>
     <checklist>
         <title>Final check</title>
+        <item>
             <name>Flaps</name>
             <value>Down</value>
             <condition>
                 <greater-than>
                     <property>controls/flight/flaps</property>
-                    <value>0</value>
-                </greater-than>&gt;
+                    <value>0.666</value>
+                </greater-than>
             </condition>
+        </item>
         <item>
             <name>Landing Gear Lever</name>
             <value>Check Down</value>
@@ -957,18 +1043,30 @@
             <value>Neutral</value>
             <condition>
                 <and>
-                <equals>
+                <less-than-equals>
                     <property>controls/flight/aileron-trim</property>
-                    <value>0</value>
-                </equals>
-                <equals>
+                    <value>0.02</value>
+                </less-than-equals>
+                <greater-than-equals>
+                    <property>controls/flight/aileron-trim</property>
+                    <value>-0.02</value>
+                </greater-than-equals>
+                <less-than-equals>
                     <property>controls/flight/elevator-trim</property>
-                    <value>0</value>
-                </equals>
-                <equals>
+                    <value>0.02</value>
+                </less-than-equals>
+                <greater-than-equals>
+                    <property>controls/flight/elevator-trim</property>
+                    <value>-0.02</value>
+                </greater-than-equals>
+                <less-than-equals>
                     <property>controls/flight/rudder-trim</property>
-                    <value>0</value>
-                </equals>
+                    <value>0.02</value>
+                </less-than-equals>
+                <greater-than-equals>
+                    <property>controls/flight/rudder-trim</property>
+                    <value>-0.02</value>
+                </greater-than-equals>
                 </and>
             </condition>
         </item>
@@ -1014,7 +1112,10 @@
             <name>Spoilers</name>
             <value>Armed</value>
             <condition>
-               <not><property>controls/flight/speedbrake-lever</property></not>
+               <equals>
+               <property>controls/flight/speedbrake-lever</property>
+               <value>1</value>
+               </equals>
             </condition>
         </item>
         <item>
@@ -1039,6 +1140,9 @@
         <item>
             <name>F/D switches</name>
             <value>Off</value>
+            <condition>
+             <not><property>instrumentation/afds/inputs/FD</property></not>
+            </condition>
         </item>
         <item>
             <name>APU</name>
@@ -1059,7 +1163,11 @@
                <value>28</value>
                </equals>
             </condition>        
-            </item>
+        </item>
+        <item>
+            <name>Contact Ramp</name>
+            <name>Done</name>
+        </item>
     </checklist>
     <checklist>
         <title>Parking</title>
@@ -1081,6 +1189,14 @@
             </condition>
         </item>
         <item>
+            <name>Request shutdown</name>
+            <value>clearance obtained</value>
+        </item>
+        <item>
+            <name>Fuel Control Switches</name>
+            <value>CutOff</value>
+        </item>        
+        <item>
             <name>Fasten Seat Belts</name>
             <value>Off</value>
             <condition>
@@ -1091,14 +1207,6 @@
             </condition>
         </item>
         <item>
-            <name>Electrical Power</name>
-            <value>Establish</value>
-        </item>
-        <item>
-            <name>Fuel Control Switches</name>
-            <value>CutOff</value>
-        </item>
-        <item>
             <name>Beacon Light</name>
             <value>Off</value>
             <condition>
@@ -1106,21 +1214,41 @@
             </condition>
         </item>
         <item>
+            <name>Electrical Power</name>
+            <value>Establish</value>
+        </item>
+        <item>
             <name>Anti-Ice</name>
             <value>Off</value>
+            <condition>
+             <and>
+              <equals>
+               <property>controls/anti-ice/engin/antiice-knob</property>
+               <value>0</value>
+              </equals>
+              <equals>
+               <property>controls/anti-ice/engin[1]/antiice-knob</property>
+               <value>0</value>
+              </equals>
+              <equals>
+               <property>controls/anti-ice/wing-antiice-knob</property>
+               <value>0</value>
+              </equals>
+             </and>
+            </condition>
         </item>
         <item>
             <name>Fuel pump switches</name>
             <value>Off</value>
             <condition>
-                <and>
-                    <not><property>controls/fuel/tank/boost-pump-switch</property></not>
-                    <not><property>controls/fuel/tank/boost-pump-switch[1]</property></not>
-                    <not><property>controls/fuel/tank[1]/boost-pump-switch</property></not>
-                    <not><property>controls/fuel/tank[1]/boost-pump-switch[1]</property></not>
-                    <not><property>controls/fuel/tank[2]/boost-pump-switch</property></not>
-                    <not><property>controls/fuel/tank[2]/boost-pump-switch[1]</property></not>
-                </and>
+             <and>
+              <not><property>controls/fuel/tank/boost-pump-switch</property></not>
+              <not><property>controls/fuel/tank/boost-pump-switch[1]</property></not>
+              <not><property>controls/fuel/tank[1]/boost-pump-switch</property></not>
+              <not><property>controls/fuel/tank[1]/boost-pump-switch[1]</property></not>
+              <not><property>controls/fuel/tank[2]/boost-pump-switch</property></not>
+              <not><property>controls/fuel/tank[2]/boost-pump-switch[1]</property></not>
+             </and>
             </condition>
         </item>
         <item>
@@ -1166,6 +1294,33 @@
         <item>
           <name>Window Heat</name>
           <value>Off</value>
+          <condition>
+           <and>
+            <equals>
+             <property>controls/anti-ice/window-heat-lf</property>
+             <value>0</value>
+            </equals>
+            <equals>
+             <property>controls/anti-ice/window-heat-ls</property>
+             <value>0</value>
+            </equals>
+            <equals>
+             <property>controls/anti-ice/window-heat-rf</property>
+             <value>0</value>
+            </equals>
+            <equals>
+             <property>controls/anti-ice/window-heat-rs</property>
+             <value>0</value>
+            </equals>
+           </and>
+          </condition>
+        </item>
+        <item>
+          <name>ADIRU switch</name>
+          <value>Off</value>
+          <condition>
+           <not><property>controls/flight/adiru</property></not>
+          </condition>
         </item>
         <item>
           <name>EMER Lights Switch</name>
