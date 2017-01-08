@@ -503,7 +503,7 @@ setlistener("controls/flight/speedbrake", func(spd_brake){
 
 setlistener("controls/flight/speedbrake-lever", func(spd_lever){
     var lever = spd_lever.getValue();
-    if (lever>1)
+    if (lever>=1)
     {
         setprop("controls/flight/speedbrake", (lever - 1));
     }
