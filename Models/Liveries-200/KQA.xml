@@ -7,6 +7,9 @@
             <name type="string">KQA Kenya Airways</name>
             <texture>Liveries-200/KQA.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries/KQA-lights.png</texture>
+        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>KQA</aircraft-operator>

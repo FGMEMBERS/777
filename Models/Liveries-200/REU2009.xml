@@ -4,12 +4,14 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air Austral (since 2009)</name>
+            <name type="string">REU Air Austral (since 2009)</name>
             <texture>Liveries-200/REU2009.png</texture>
         </livery>
         <lights>
             <texture>Liveries-200/REU2009-lights.png</texture>
         </lights>
     </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>REU</aircraft-operator>
 </sim>
 </PropertyList>
