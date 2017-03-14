@@ -7,6 +7,9 @@
             <name type="string">COA Continental Airlines</name>
             <texture>Liveries-200/COA.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries-200/COA-Lights.png</texture>
+        </lights>
     </model>
 </sim>
 </PropertyList>
