@@ -4,9 +4,12 @@
 <sim>
     <model>
         <livery>
-            <name type="string">AFL Aeroflot</name>
+            <name type="string">Aeroflot</name>
             <texture>Liveries-200/AFL.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries-200/AFL-lights.png</texture>
+        </lights>
     </model>
 </sim>
 </PropertyList>
