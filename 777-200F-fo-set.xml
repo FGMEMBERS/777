@@ -5,7 +5,7 @@
         <startup>
             <splash-texture>Aircraft/777/splash-cargo.png</splash-texture>
         </startup>
-        <variant-of>777-200F</variant-of>
+        <variant-of>777-200</variant-of>
         <view n="0">
             <config n="0">
                 <z-offset-m type="double">-22.8</z-offset-m>

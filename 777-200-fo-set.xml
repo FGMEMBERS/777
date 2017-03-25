@@ -2,6 +2,7 @@
     <sim>
         <description>Boeing 777-200 (First Officer)</description>
         <aero>777-200</aero>
+        <variant-of>777-200</variant-of>
         <startup>
             <splash-texture>Aircraft/777/splash-200.png</splash-texture>
         </startup>
