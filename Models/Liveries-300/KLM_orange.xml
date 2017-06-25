@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">KLM Orange Pride</name>
+            <texture>Liveries-300/KLM_orange.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>KLM</aircraft-operator>
+</sim>
+</PropertyList>
