@@ -47,6 +47,7 @@ Syd Adams
         <object-name>RHelevator</object-name>
         <property-base>sim/model/livery</property-base>
         <texture-prop>texture</texture-prop>
+        <texture>Liveries-200/paint1.png</texture>
     </animation>
 
     <effect>
@@ -246,7 +247,7 @@ Syd Adams
         <type>rotate</type>
         <object-name>LHelevator</object-name>
         <object-name>LHstab</object-name>
-        <property alias = "/surface-positions/stabilizer-pos-norm/property"/>
+        <property>surface-positions/stabilizer-pos-norm</property>
         <factor>-15</factor>
         <center>
             <x-m>31.529</x-m>
@@ -281,7 +282,7 @@ Syd Adams
         <type>rotate</type>
         <object-name>RHelevator</object-name>
         <object-name>RHstab</object-name>
-        <property alias = "/surface-positions/stabilizer-pos-norm/property"/>
+        <property>surface-positions/stabilizer-pos-norm</property>
         <factor>15</factor>
         <center>
             <x-m>32.151</x-m>
@@ -450,7 +451,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rbrake</object-name>
-        <property alias = "/controls/flight/speedbrake-angle/property"/>
+        <property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -474,7 +475,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rbrake1</object-name>
-        <property alias = "/controls/flight/speedbrake-angle/property"/>
+        <property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -558,7 +559,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Lbrake</object-name>
-        <property alias = "/controls/flight/speedbrake-angle/property"/>
+        <property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -582,7 +583,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Lbrake1</object-name>
-        <property alias = "/controls/flight/speedbrake-angle/property"/>
+        <property>controls/flight/speedbrake-angle</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -698,7 +699,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>Reversers</object-name>
-        <property alias ="/surface-positions/reverser-norm/property"/>
+        <property>sim/multiplay/generic/float[6]</property>
         <factor>0.7</factor>
         <axis>
             <x>1.0</x>
@@ -711,7 +712,7 @@ Syd Adams
         <type>translate</type>
         <object-name>Rslat</object-name>
         <object-name>Lslat</object-name>
-        <property alias = "/surface-positions/slats/property"/>
+        <property>surface-positions/slats</property>
         <factor>0.4</factor>
         <axis>
             <x>-1.0</x>
@@ -733,7 +734,7 @@ Syd Adams
         <object-name>rednav</object-name>
         <condition>
             <greater-than>
-            <property alias ="/systems/electrical/outputs/nav-lights/property"/>
+            <property>sim/multiplay/generic/int[7]</property>
             <value>5</value>
             </greater-than>
         </condition>
@@ -744,7 +745,7 @@ Syd Adams
         <object-name>Llight0</object-name>
         <condition>
             <and>
-                <property alias ="/systems/electrical/outputs/landing-light[0]/property"/>
+                <property>sim/multiplay/generic/int[4]</property>
                 <equals>
                     <property>gear/gear[0]/position-norm</property>
                     <value>1.0</value>
@@ -758,7 +759,7 @@ Syd Adams
         <object-name>LHLND.flare</object-name>
         <condition>
             <greater-than>
-                <property alias ="/systems/electrical/outputs/landing-light[0]/property"/>
+                <property>sim/multiplay/generic/int[4]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -772,7 +773,7 @@ Syd Adams
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
                 <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
-                    <property alias ="/systems/electrical/outputs/landing-light[0]/property"/>
+                    <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
@@ -788,7 +789,7 @@ Syd Adams
         <object-name>RHLND.flare</object-name>
         <condition>
             <greater-than>
-                <property alias ="/systems/electrical/outputs/landing-light[2]/property"/>
+                <property>sim/multiplay/generic/int[4]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -802,7 +803,7 @@ Syd Adams
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
                 <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
-                    <property alias ="/systems/electrical/outputs/landing-light[2]/property"/>
+                    <property>sim/multiplay/generic/int[6]</property>
                     <value>5</value>
                 </greater-than>
                 <greater-than>
@@ -819,7 +820,7 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property alias ="/systems/electrical/outputs/landing-light[1]/property"/>
+                    <property>sim/multiplay/generic/int[4]</property>
                     <value>5</value>
                 </greater-than>
                 <equals>
@@ -838,7 +839,7 @@ Syd Adams
                 <not><property>sim/rendering/rembrandt/enabled</property></not>
                 <not><property>sim/rendering/shaders/skydome</property></not>
                 <greater-than>
-                    <property alias ="/systems/electrical/outputs/landing-light[1]/property"/>
+                    <property>sim/multiplay/generic/int[5]</property>
                     <value>5</value>
                 </greater-than>
                 <equals>
@@ -909,7 +910,7 @@ Syd Adams
         <object-name>Strobe01</object-name>
         <condition>
             <greater-than>
-                <property alias ="/systems/electrical/outputs/strobe/property"/>
+                <property>sim/multiplay/generic/int[0]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -946,7 +947,7 @@ Syd Adams
         <object-name>Strobe02</object-name>
         <condition>
             <greater-than>
-                <property alias ="/systems/electrical/outputs/strobe/property"/>
+                <property>sim/multiplay/generic/int[0]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -982,7 +983,7 @@ Syd Adams
         <object-name>Strobe03</object-name>
         <condition>
             <greater-than>
-                <property alias ="/systems/electrical/outputs/strobe/property"/>
+                <property>sim/multiplay/generic/int[0]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -1018,7 +1019,7 @@ Syd Adams
         <object-name>Beacon01</object-name>
         <condition>
             <greater-than>
-                <property alias ="/systems/electrical/outputs/beacon/property"/>
+                <property>sim/multiplay/generic/int[1]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -1054,7 +1055,7 @@ Syd Adams
         <object-name>Beacon02</object-name>
         <condition>
             <greater-than>
-                <property alias ="/systems/electrical/outputs/beacon/property"/>
+                <property>sim/multiplay/generic/int[1]</property>
                 <value>5</value>
             </greater-than>
         </condition>
@@ -1152,7 +1153,7 @@ Syd Adams
         <type>select</type>
         <object-name>cabinlighting</object-name>
         <condition>
-            <property alias="/systems/electrical/outputs/cabin-lights/property"/>
+            <property>sim/multiplay/generic/int[8]</property>
         </condition>
     </animation>
 
@@ -1224,7 +1225,7 @@ Syd Adams
         <type>rotate</type>
         <object-name>FUdamper</object-name>
         <object-name>FLdamper</object-name>
-        <property alias = "/gear/gear[0]/compression-m/property"/>
+        <property>sim/multiplay/generic/float[0]</property>
         <factor>45</factor>
         <center>
             <x-m>-19.134</x-m>
@@ -1241,7 +1242,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>Frtstrut</object-name>
-        <property alias = "/gear/gear[0]/compression-m/property"/>
+        <property>sim/multiplay/generic/float[0]</property>
         <axis>
             <x>0.087</x>
             <y>0</y>
@@ -1252,7 +1253,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>FLdamper</object-name>
-        <property alias = "/gear/gear[0]/compression-m/property"/>
+        <property>sim/multiplay/generic/float[0]</property>
         <factor>90</factor>
         <center>
             <x-m>-18.674</x-m>
@@ -1269,7 +1270,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Frtstrut</object-name>
-        <property alias = "/controls/gear/nosegear-steering-cmd-norm/property"/>
+        <property>controls/gear/nosegear-steering-cmd-norm</property>
         <factor>70</factor>
         <center>
             <x-m>-19.284</x-m>
@@ -1485,7 +1486,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>LHstrut</object-name>
-        <property alias = "/gear/gear[1]/compression-m/property"/>
+        <property>sim/multiplay/generic/float[1]</property>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -1522,8 +1523,8 @@ Syd Adams
                     <atan>
                         <div>
                             <difference>
-                                <property alias = "/gear/gear[3]/compression-m/property"/>
-                                <property alias = "/gear/gear[1]/compression-m/property"/>
+                                <property>/sim/multiplay/generic/float[3]</property>
+                                <property>/sim/multiplay/generic/float[1]</property>
                             </difference>
                             <value>1.49</value>
                         </div>
@@ -1738,7 +1739,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LHwheel.3</object-name>
-        <property alias = "/controls/gear/maingear-steering-cmd-norm/property"/>
+        <property>controls/gear/maingear-steering-cmd-norm</property>
         <factor>-8</factor>
         <axis>
             <x>0</x>
@@ -1823,8 +1824,8 @@ Syd Adams
                     <atan>
                         <div>
                             <difference>
-                                <property alias = "/gear/gear[4]/compression-m/property"/>
-                                <property alias = "/gear/gear[2]/compression-m/property"/>
+                                <property>/sim/multiplay/generic/float[4]</property>
+                                <property>/sim/multiplay/generic/float[2]</property>
                             </difference>
                             <value>1.49</value>
                         </div>
@@ -1833,7 +1834,7 @@ Syd Adams
                 <value>-19</value>
             </sum>
         </expression>
-         <center>
+        <center>
             <x-m>6.407</x-m>
             <y-m>5.616</y-m>
             <z-m>-5.101</z-m>
@@ -1848,7 +1849,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>RHstrut</object-name>
-        <property alias = "/gear/gear[2]/compression-m/property"/>
+        <property>sim/multiplay/generic/float[2]</property>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -2049,7 +2050,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RHwheel.3</object-name>
-        <property alias = "/controls/gear/maingear-steering-cmd-norm/property"/>
+        <property>controls/gear/maingear-steering-cmd-norm</property>
         <factor>-8</factor>
         <axis>
             <x>0</x>
@@ -2207,88 +2208,4 @@ Syd Adams
     </condition>
 </animation>
 
-<systems>
-    <electrical>
-        <outputs>
-            <strobe>
-                <property>sim/multiplay/generic/int[0]</property>
-            </strobe>
-            <beacon>
-                <property>sim/multiplay/generic/int[1]</property>
-            </beacon>
-            <logo-lights>
-                <property>sim/multiplay/generic/int[3]</property>
-            </logo-lights>
-            <landing-light n="0">
-                <property>sim/multiplay/generic/int[4]</property>
-            </landing-light>
-            <landing-light n="1">
-                <property>sim/multiplay/generic/int[5]</property>
-            </landing-light>
-            <landing-light n="2">
-                <property>sim/multiplay/generic/int[6]</property>
-            </landing-light>
-            <nav-lights>
-                <property>sim/multiplay/generic/int[7]</property>
-            </nav-lights>
-            <cabin-lights>
-                <property>sim/multiplay/generic/int[8]</property>
-            </cabin-lights>
-        </outputs>
-    </electrical>
-</systems>
-
-<gear>
-    <gear n="0">
-        <compression-m>
-            <property>sim/multiplay/generic/float[0]</property>
-        </compression-m>
-    </gear>
-    <gear n="1">
-        <compression-m>
-            <property>sim/multiplay/generic/float[1]</property>
-        </compression-m>
-    </gear>
-    <gear n="2">
-        <compression-m>
-            <property>sim/multiplay/generic/float[2]</property>
-        </compression-m>
-    </gear>
-    <gear n="3">
-        <compression-m>
-            <property>sim/multiplay/generic/float[3]</property>
-        </compression-m>
-    </gear>
-    <gear n="4">
-        <compression-m>
-            <property>sim/multiplay/generic/float[4]</property>
-        </compression-m>
-    </gear>
-</gear>
-<controls>
-    <flight>
-        <speedbrake-angle>
-            <property>sim/multiplay/generic/float[5]</property>
-        </speedbrake-angle>
-    </flight>
-    <gear>
-        <nosegear-steering-cmd-norm>
-            <property>sim/multiplay/generic/float[6]</property>
-        </nosegear-steering-cmd-norm>
-        <maingear-steering-cmd-norm>
-            <property>sim/multiplay/generic/float[7]</property>
-        </maingear-steering-cmd-norm>
-    </gear>
-</controls>
-<surface-positions>
-    <reverser-norm>
-        <property>sim/multiplay/generic/float[8]</property>
-    </reverser-norm>
-    <stabilizer-pos-norm>
-        <property>sim/multiplay/generic/float[9]</property>
-    </stabilizer-pos-norm>
-    <slats>
-        <property>sim/multiplay/generic/float[10]</property>
-    </slats>
-</surface-positions>
 </PropertyList>

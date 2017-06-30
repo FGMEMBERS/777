@@ -3,23 +3,12 @@
 -->
 
 <PropertyList>
-<instrumentation>
-    <altimeter>
-        <indicated-altitude-ft>
-            <property>sim/multiplay/generic/float[14]</property>
-        </indicated-altitude-ft>
-        <indicator-altitude-ft>
-            <property>sim/multiplay/generic/float[17]</property>
-        </indicator-altitude-ft>
-    </altimeter>
-</instrumentation>
-
  <path>stby-alt.ac</path>
 
   <animation>
    <type>textranslate</type>
    <object-name>atxt10000</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+   <property>/instrumentation/altimeter/indicator-altitude-ft</property>
    <factor>0.00001</factor>
    <step>10000</step>
         <scroll>20</scroll>
@@ -33,7 +22,7 @@
   <animation>
    <type>textranslate</type>
    <object-name>atxt1000</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+   <property>/instrumentation/altimeter/indicator-altitude-ft</property>
    <factor>0.0001</factor>
    <step>1000</step>
         <scroll>20</scroll>
@@ -47,7 +36,7 @@
   <animation>
    <type>textranslate</type>
    <object-name>atxt100</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+   <property>/instrumentation/altimeter/indicator-altitude-ft</property>
    <factor>0.001</factor>
    <step>100</step>
         <scroll>20</scroll>
@@ -61,7 +50,7 @@
   <animation>
    <type>textranslate</type>
    <object-name>atxt10</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+   <property>/instrumentation/altimeter/indicator-altitude-ft</property>
    <factor>0.01</factor>
    <axis>
      <x>0</x>
@@ -179,7 +168,7 @@
 <animation>
     <type>rotate</type>
     <object-name>StbyAltneedle</object-name>
-    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
     <factor>0.36</factor>
     <center>
         <x-m>0.0</x-m>
