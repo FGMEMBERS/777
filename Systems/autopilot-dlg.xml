@@ -570,6 +570,30 @@
                 <script>controls.click(4);b777.afds.input(3,1);</script>
             </binding>
             </button>
+			
+            <button>
+                <pref-width>45</pref-width>
+                 <pref-height>25</pref-height>
+                 <halign>left</halign>
+                <one-shot>true</one-shot>
+                <legend>FLCH</legend>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);b777.afds.input(1,8);</script>
+            </binding>
+            </button>
+			
+            <button>
+                <pref-width>45</pref-width>
+                 <pref-height>25</pref-height>
+                 <halign>left</halign>
+                <one-shot>true</one-shot>
+                <legend>VNAV</legend>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);b777.afds.input(1,5);</script>
+            </binding>
+            </button>
 
             <text>
                 <label>Transition alt</label>
