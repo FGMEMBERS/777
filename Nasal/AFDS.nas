@@ -1140,11 +1140,33 @@ var AFDS = {
 
             var idx = me.vertical_mode.getValue();
             var test_fpa = me.vs_fpa_selected.getValue();
-            var offset = (abs(getprop("velocities/vertical-speed-fps") * 60) / 8);
-            if(offset < 20)
-            {
-                offset = 20;
-            }
+			var vsnow = getprop("/autopilot/internal/vert-speed-fpm");
+			if ((vsnow >= 0 and vsnow < 500) or (vsnow < 0 and vsnow > -500)) {
+				setprop("/autopilot/internal/captvs", 100);
+				setprop("/autopilot/internal/captvsneg", -100);
+			} else  if ((vsnow >= 500 and vsnow < 1000) or (vsnow < -500 and vsnow > -1000)) {
+				setprop("/autopilot/internal/captvs", 200);
+				setprop("/autopilot/internal/captvsneg", -200);
+			} else  if ((vsnow >= 1000 and vsnow < 1500) or (vsnow < -1000 and vsnow > -1500)) {
+				setprop("/autopilot/internal/captvs", 300);
+				setprop("/autopilot/internal/captvsneg", -300);
+			} else  if ((vsnow >= 1500 and vsnow < 2000) or (vsnow < -1500 and vsnow > -2000)) {
+				setprop("/autopilot/internal/captvs", 400);
+				setprop("/autopilot/internal/captvsneg", -400);
+			} else  if ((vsnow >= 2000 and vsnow < 3000) or (vsnow < -2000 and vsnow > -3000)) {
+				setprop("/autopilot/internal/captvs", 600);
+				setprop("/autopilot/internal/captvsneg", -600);
+			} else  if ((vsnow >= 3000 and vsnow < 4000) or (vsnow < -3000 and vsnow > -4000)) {
+				setprop("/autopilot/internal/captvs", 900);
+				setprop("/autopilot/internal/captvsneg", -900);
+			} else  if ((vsnow >= 4000 and vsnow < 5000) or (vsnow < -4000 and vsnow > -5000)) {
+				setprop("/autopilot/internal/captvs", 1200);
+				setprop("/autopilot/internal/captvsneg", -1200);
+			} else  if ((vsnow >= 5000) or (vsnow < -5000)) {
+				setprop("/autopilot/internal/captvs", 1500);
+				setprop("/autopilot/internal/captvsneg", -1500);
+			}
+			var offset = getprop("/autopilot/internal/captvs");
             me.optimal_alt = ((getprop("consumables/fuel/total-fuel-lbs") + getprop("sim/weight[0]/weight-lb") + getprop("sim/weight[1]/weight-lb"))
                             / getprop("sim/max-payload"));
             if(me.optimal_alt > 0.95) me.optimal_alt = 29000;
