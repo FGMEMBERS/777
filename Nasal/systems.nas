@@ -359,6 +359,7 @@ setlistener("sim/signals/fdm-initialized", func {
     setprop("controls/fuel/b-jtsnarm", 1);
     setprop("controls/fuel/tank[0]/b-nozzle", 1);
     setprop("controls/fuel/tank[2]/b-nozzle", 1);
+    setprop("controls/cabin/NoSmoking-knob", -1);
     setprop("controls/cabin/SeatBelt-knob", -1);
 #XFD valve
     setprop("controls/fuel/b-xfdfwd-vlv", 1);
@@ -665,7 +666,8 @@ var Startup = func{
     setprop("controls/anti-ice/window-heat-rs-switch",1);
     setprop("controls/flight/adiru-switch", 1);
     setprop("controls/flight/thrust-asym-switch", 1);
-    setprop("controls/cabin/SeatBelt-knob", 1);
+    setprop("controls/cabin/NoSmoking-knob", 0);
+    setprop("controls/cabin/SeatBelt-knob", 0);
 }
 
 var Shutdown = func{
@@ -723,6 +725,7 @@ var Shutdown = func{
     setprop("controls/anti-ice/window-heat-rf-switch", 0);
     setprop("controls/anti-ice/window-heat-rs-switch",0);
     setprop("controls/flight/adiru-switch", 0);
+    setprop("controls/cabin/NoSmoking-knob", -1);
     setprop("controls/cabin/SeatBelt-knob", -1);
 }
 

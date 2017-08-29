@@ -34,9 +34,33 @@ var HYDR = {
         m.racmp_switch = props.globals.initNode("controls/hydraulics/system[2]/RACMP-switch", 0, "INT");
         m.c1adp_switch = props.globals.initNode("controls/hydraulics/system[1]/C1ADP-switch", 0, "INT");
         m.c2adp_switch = props.globals.initNode("controls/hydraulics/system[1]/C2ADP-switch", 0, "INT");
+        #m.APUrun = props.globals.getNode("controls/APU/run");
+        #m.APUgen = props.globals.getNode("controls/APU/apu-gen-switch");
+        m.APUrun = props.globals.initNode("controls/APU/run", 0, "BOOL");
+        m.APUgen = props.globals.initNode("controls/APU/apu-gen-switch", 0, "BOOL");
+        m.GP1 = props.globals.getNode("systems/electrical/PRI-EPC");
+        m.GP2 = props.globals.getNode("systems/electrical/SEC-EPC");
+        m.APUP = m.hydr.initNode("APUP-NORMAL", 0 , "BOOL");
+        m.GP = m.hydr.initNode("GP-NORMAL", 0, "BOOL");
         return m;
     },
     update : func{
+        if(me.APUrun.getValue() and me.APUgen.getValue())
+        {
+            me.APUP.setValue(1);
+        }
+        else
+        {
+            me.APUP.setValue(0);
+        }
+        if(me.GP1.getValue() or me.GP2.getValue())
+        {
+            me.GP.setValue(1);
+        }
+        else
+        {
+            me.GP.setValue(0);
+        }
         if(me.leng_running.getValue() and me.leng_primary_switch.getValue())
         {
             me.LEDP.setValue(1);
@@ -71,7 +95,7 @@ var HYDR = {
                 me.REDP_fine.setValue(1);
             }
         }
-        if((lidg.get_output_volts() > 80) and me.c1elec_switch.getValue())
+        if(((lidg.get_output_volts() > 80) or me.APUP.getValue() or me.GP.getValue()) and me.c1elec_switch.getValue())
         {
             me.C1ACMP.setValue(1);
             me.C1ACMP_fine.setValue(1);
@@ -88,7 +112,7 @@ var HYDR = {
                 me.C1ACMP_fine.setValue(1);
             }
         }
-        if((lidg.get_output_volts() > 80) and me.c2elec_switch.getValue())
+        if(((lidg.get_output_volts() > 80) or me.APUP.getValue() or me.GP.getValue()) and me.c2elec_switch.getValue())
         {
             me.C2ACMP.setValue(1);
             me.C2ACMP_fine.setValue(1);
@@ -173,6 +197,7 @@ var HYDR = {
                 me.C2ADP_fine.setValue(1);
             }
         }
+
         var elevatorpos = props.globals.initNode("surface-positions/elevator-pos-norm");
         var stabilizerpos = props.globals.initNode("surface-positions/stabilizer-pos-norm");
         var leftaileronpos = props.globals.initNode("surface-positions/left-aileron-pos-norm");
@@ -224,8 +249,7 @@ var HYDR = {
             reverserR.setAttribute("writable",0);
         }
         # center hydraulic system
-        # flight controls, leading edge slats, trailing edge flaps, landing gear actuation, alternate brakes
-        # nose gear steering, main gear steering
+        # flight controls, leading edge slats, trailing edge flaps, landing gear actuation, alternate brakes, nose gear and main gear steering
         var flappos = props.globals.initNode("surface-positions/flap-pos-norm");
         var nosewheelpos =  props.globals.initNode("controls/gear/nosegear-steering-cmd-norm");
         var mainwheelpos =  props.globals.initNode("controls/gear/maingear-steering-cmd-norm");
@@ -234,13 +258,13 @@ var HYDR = {
         {
             me.center.setValue(1);
             flappos.setAttribute("writable",1);
-            nosewheelpos.setAttribute("writable",1);
-            mainwheelpos.setAttribute("writable",1);
             elevatorpos.setAttribute("writable",1);
             leftaileronpos.setAttribute("writable",1);
             rightaileronpos.setAttribute("writable",1);
             rudderpos.setAttribute("writable",1);
             speedbkpos.setAttribute("writable",1);
+            nosewheelpos.setAttribute("writable",1);
+            mainwheelpos.setAttribute("writable",1);
         }
         else
         {

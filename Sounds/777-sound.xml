@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <PropertyList>
     <!-- cockpit x=22.5 y=0 z=0.78 -->
     <fx>
@@ -748,7 +749,7 @@
             <max-dist>6000.0</max-dist>
         </engines>
     <chime>
-        <name>nosomoking</name>
+        <name>nosomokingon</name>
         <mode>once</mode>
         <type>avionics</type>
         <path>Aircraft/777/Sounds/cabinalert.wav</path>
@@ -757,23 +758,17 @@
                 <greater-than>
                     <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
-             </greater-than>
-                <or>
-                    <equals>
-                        <property>controls/cabin/NoSmoking-knob</property>
+                </greater-than>
+                <equals>
+                        <property>controls/cabin/NoSmoking-status</property>
                         <value>1</value>
-                    </equals>
-                    <equals>
-                        <property>controls/cabin/NoSmoking-knob</property>
-                        <value>-1</value>
-                    </equals>
-                </or>
+                </equals>
             </and>
         </condition>
     </chime>
 
     <chime>
-        <name>seatbelt</name>
+        <name>nosomokingoff</name>
         <mode>once</mode>
         <type>avionics</type>
         <path>Aircraft/777/Sounds/cabinalert.wav</path>
@@ -782,20 +777,54 @@
                 <greater-than>
                     <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
-             </greater-than>
-                <or>
-                    <equals>
-                        <property>controls/cabin/SeatBelt-knob</property>
-                        <value>1</value>
-                    </equals>
-                    <equals>
-                        <property>controls/cabin/SeatBelt-knob</property>
+                </greater-than>
+                <equals>
+                        <property>controls/cabin/NoSmoking-status</property>
                         <value>-1</value>
-                    </equals>
-                </or>
+                </equals>
             </and>
         </condition>
     </chime>
+
+
+    <chime>
+        <name>seatbelton</name>
+        <mode>once</mode>
+        <type>avionics</type>
+        <path>Aircraft/777/Sounds/cabinalert.wav</path>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                        <property>controls/cabin/SeatBelt-status</property>
+                        <value>1</value>
+                </equals>
+            </and>
+        </condition>
+    </chime>
+
+    <chime>
+        <name>seatbeltoff</name>
+        <mode>once</mode>
+        <type>avionics</type>
+        <path>Aircraft/777/Sounds/cabinalert.wav</path>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                        <property>controls/cabin/SeatBelt-status</property>
+                        <value>-1</value>
+                </equals>
+            </and>
+        </condition>
+    </chime>
+
     <callout>
     <name>V1</name>
     <mode>once</mode>

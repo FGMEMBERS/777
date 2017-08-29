@@ -150,8 +150,8 @@ var WEU =
 	setlistener("consumables/fuel/tank[2]/level-lbs", func { Weu.update_listener_inputs() } );
 
 	# Others
-	setlistener("controls/cabin/SeatBelt-knob",	func { Weu.update_listener_inputs() } );
-	setlistener("controls/cabin/NoSmoking-knob",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/cabin/SeatBelt-status",	func { Weu.update_listener_inputs() } );
+	setlistener("controls/cabin/NoSmoking-status",	func { Weu.update_listener_inputs() } );
 	setlistener("environment/temperature-degc",	func { Weu.update_listener_inputs() } );
         setlistener("instrumentation/mk-viii/inputs/discretes/gear-override", func { Weu.update_listener_inputs() } );
         setlistener("controls/engines/engine/throttle-act", func { Weu.update_throttle_input() } );
@@ -509,8 +509,8 @@ var WEU =
 	me.trim_air_r	 = getprop("controls/air/rtrim-switch");
 	me.battery	 = getprop("controls/electric/battery-switch");
 	me.recirc_fans	 = getprop("controls/air/recircup-switch");
-	me.seatbelts	 = getprop("controls/cabin/SeatBelt-knob");
-	me.smoking_sign	 = getprop("controls/cabin/NoSmoking-knob");
+	me.seatbelts	 = getprop("controls/cabin/SeatBelt-status");
+	me.smoking_sign	 = getprop("controls/cabin/NoSmoking-status");
 	me.fuel_c_pump1	 = getprop("controls/fuel/tank[1]/boost-pump-switch");
 	me.fuel_c_pump2	 = getprop("controls/fuel/tank[1]/boost-pump-switch[1]");
 	me.fuel_c_qty	 = getprop("consumables/fuel/tank[1]/level-lbs");
