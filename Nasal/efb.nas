@@ -28,7 +28,7 @@ var ChartsList =
         LOCATION: "LOS ANGELES USA",
         NAME: "Intntl"
     },
-	'KIAH':
+    'KIAH':
     {
         STAR: ["RIICE3_1", "RIICE_2"],
         STARs: 2,
@@ -40,8 +40,8 @@ var ChartsList =
         APTs: 1,
         LOCATION: "HOUSTON USA",
         NAME: "G. Bush Intctl"
-    },		
-	'VABB':
+    },
+    'VABB':
     {
         STAR: "",
         STARs: 0,
@@ -53,8 +53,8 @@ var ChartsList =
         APTs: 1,
         LOCATION: "MUMBAI IN",
         NAME: "Chhatrapati Shivaji"
-    },		
-	'KMEM':
+    },
+    'KMEM':
     {
         STAR: "BEERT4",
         STARs: 1,
@@ -66,8 +66,8 @@ var ChartsList =
         APTs: 1,
         LOCATION: "MEMPHIS USA",
         NAME: "International"
-    },		
-	'LFRB':
+    },
+    'LFRB':
     {
         STAR: "STAR",
         STARs: 1,
@@ -80,7 +80,7 @@ var ChartsList =
         LOCATION: "BREST FR",
         NAME: "Guipavas"
     },
-	'LFRM':
+    'LFRM':
     {
         STAR: ["VFR_APP01", "VFR_LND01"],
         STARs: 2,
@@ -92,8 +92,8 @@ var ChartsList =
         APTs: 1,
         LOCATION: "LE MANS FR",
         NAME: "Arnage"
-    },		
-	'LIME':
+    },
+    'LIME':
     {
         STAR: ["STAR_ASTIG_ODINA_1S", "STAR_ASTIG_ODINA_1T", "STAR_DIXER_GEN_IDONA_1S", "STAR_DIXER_GEN_IDONA_1T", "STAR_DORIN_LUSIL_OSKOR_1S", "STAR_DORIN_LUSIL_OSKOR_1T", "STAR_East", "STAR_West", "STAR_VOR_DME", "VOR_Y28", "VOR_Y28_2", "VOR_Z28"],
         STARs: 12,
@@ -105,8 +105,8 @@ var ChartsList =
         APTs: 6,
         LOCATION: "BERGAMO IT",
         NAME: "Orio al Serio"
-    },		
-	'LOWI':
+    },
+    'LOWI':
     {
         STAR: ["26-RTT", "STAR", "VFR_East", "VFR_West_KTI", "West-NDB_KYI"],
         STARs: 5,
@@ -118,8 +118,8 @@ var ChartsList =
         APTs: 2,
         LOCATION: "INNSBRUCK AT",
         NAME: "Kranebitten"
-    },		
-	'WSSS':
+    },
+    'WSSS':
     {
         STAR: ["BOBAG1A", "BOBAG1B", "LAVAX1A", "LAVAX1B"],
         STARs: 4,
@@ -131,7 +131,7 @@ var ChartsList =
         APTs: 2,
         LOCATION: "SINGAPORE SG",
         NAME: "Changi"
-    },		
+    },
 };
 
 var l0 = "";
@@ -2366,5 +2366,4 @@ else setprop(property, 1);
 setlistener("sim/signals/fdm-initialized", func
  {
  efb.init();
- print("EFB Computer ........ Initialized");
  });

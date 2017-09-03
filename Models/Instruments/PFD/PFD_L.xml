@@ -5,58 +5,7 @@ Syd Adams
 
 <PropertyList>
 
- <instrumentation>
-    <altimeter>
-        <indicated-altitude-ft>
-            <property>sim/multiplay/generic/float[14]</property>
-        </indicated-altitude-ft>
-        <indicator-altitude-ft>
-            <property>sim/multiplay/generic/float[17]</property>
-        </indicator-altitude-ft>
-        <source-barometric>
-            <property>sim/multiplay/generic/string[11]</property>
-        </source-barometric>
-    </altimeter>
-    <airspeed-indicator>
-        <indicator-speed-kt>
-            <property>sim/multiplay/generic/float[15]</property>
-        </indicator-speed-kt>
-    </airspeed-indicator>
-    <afds>
-        <inputs>
-            <reference-deg>
-                <property>sim/multiplay/generic/float[16]</property>
-            </reference-deg>
-        </inputs>
-        <ap-modes>
-            <roll-mode>
-                <property>sim/multiplay/generic/string[5]</property>
-            </roll-mode>
-            <roll-mode-arm>
-                <property>sim/multiplay/generic/string[6]</property>
-            </roll-mode-arm>
-            <pitch-mode>
-                <property>sim/multiplay/generic/string[7]</property>
-            </pitch-mode>
-            <pitch-mode-arm>
-                <property>sim/multiplay/generic/string[8]</property>
-            </pitch-mode-arm>
-            <speed-mode>
-                <property>sim/multiplay/generic/string[9]</property>
-            </speed-mode>
-            <mode-annunciator>
-                <property>sim/multiplay/generic/string[10]</property>
-            </mode-annunciator>
-        </ap-modes>
-    </afds>
-    <efis>
-        <minimums-mode-text>
-            <property>sim/multiplay/generic/string[12]</property>
-        </minimums-mode-text>
-    </efis>
-</instrumentation>
-
-<path>PFD_L.ac</path>
+ <path>PFD_L.ac</path>
 
     <animation>
         <type>select</type>
@@ -413,7 +362,7 @@ Syd Adams
             <and>
                 <property>instrumentation/weu/state/flap-on</property>
                 <less-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>20000</value>
                 </less-than>
             </and>
@@ -697,7 +646,7 @@ Syd Adams
     <animation>
         <type>texrotate</type>
         <object-name>Hsi</object-name>
-        <property alias="/instrumentation/afds/inputs/reference-deg/property"/>
+        <property>instrumentation/afds/inputs/reference-deg</property>
         <center>
             <x>0.75</x>
             <y>0.75</y>
@@ -712,7 +661,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>ASI</object-name>
-        <property alias="/instrumentation/airspeed-indicator/indicator-speed-kt/property"/>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>560</ind><dep>0.7520</dep></entry>
@@ -730,7 +679,7 @@ Syd Adams
         <object-name>Alt1</object-name>
         <condition>
             <less-than>
-                <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
                 <value>9600</value>
             </less-than>
         </condition>
@@ -742,11 +691,11 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>9599.999</value>
                 </greater-than>
                 <less-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>19200</value>
                 </less-than>
             </and>
@@ -759,11 +708,11 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>19199.999</value>
                 </greater-than>
                 <less-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>28800</value>
                 </less-than>
             </and>
@@ -776,11 +725,11 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>28799.999</value>
                 </greater-than>
                 <less-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>38400</value>
                 </less-than>
             </and>
@@ -793,11 +742,11 @@ Syd Adams
         <condition>
             <and>
                 <greater-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>38399.999</value>
                 </greater-than>
                 <less-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>48000</value>
                 </less-than>
             </and>
@@ -809,7 +758,7 @@ Syd Adams
         <object-name>Alt6</object-name>
         <condition>
             <greater-than>
-                <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
                 <value>47999.999</value>
             </greater-than>
         </condition>
@@ -818,7 +767,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alt1</object-name>
-        <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
         <interpolation>
             <entry><ind>-200</ind><dep>-0.0187</dep></entry>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -833,7 +782,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alt2</object-name>
-        <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
         <interpolation>
             <entry><ind>9600</ind><dep>0</dep></entry>
             <entry><ind>19200</ind><dep>0.9035</dep></entry>
@@ -847,7 +796,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alt3</object-name>
-        <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
         <interpolation>
             <entry><ind>19200</ind><dep>0</dep></entry>
             <entry><ind>28800</ind><dep>0.9035</dep></entry>
@@ -861,7 +810,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alt4</object-name>
-        <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
         <interpolation>
             <entry><ind>28800</ind><dep>0</dep></entry>
             <entry><ind>38400</ind><dep>0.9035</dep></entry>
@@ -875,7 +824,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alt5</object-name>
-        <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
         <interpolation>
             <entry><ind>38400</ind><dep>0</dep></entry>
             <entry><ind>48000</ind><dep>0.9035</dep></entry>
@@ -889,7 +838,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alt6</object-name>
-        <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
         <interpolation>
             <entry><ind>48000</ind><dep>0</dep></entry>
             <entry><ind>57600</ind><dep>0.9035</dep></entry>
@@ -1009,7 +958,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/afds/ap-modes/speed-mode/property"/>
+        <property>instrumentation/afds/ap-modes/speed-mode</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
         <character-aspect-ratio type="double">1.4</character-aspect-ratio>
@@ -1029,7 +978,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/afds/ap-modes/roll-mode/property"/>
+        <property>instrumentation/afds/ap-modes/roll-mode</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
         <character-aspect-ratio type="double">1.4</character-aspect-ratio>
@@ -1049,7 +998,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/afds/ap-modes/pitch-mode/property"/>
+        <property>instrumentation/afds/ap-modes/pitch-mode</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
         <character-aspect-ratio type="double">1.4</character-aspect-ratio>
@@ -1069,7 +1018,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/afds/ap-modes/roll-mode-arm/property"/>
+        <property>instrumentation/afds/ap-modes/roll-mode-arm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.006</character-size>
         <character-aspect-ratio type="double">1.4</character-aspect-ratio>
@@ -1089,7 +1038,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/afds/ap-modes/pitch-mode-arm/property"/>
+        <property>instrumentation/afds/ap-modes/pitch-mode-arm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.006</character-size>
         <character-aspect-ratio type="double">1.4</character-aspect-ratio>
@@ -1109,7 +1058,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/afds/ap-modes/mode-annunciator/property"/>
+        <property>instrumentation/afds/ap-modes/mode-annunciator</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.01</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
@@ -1279,7 +1228,7 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/altimeter/source-barometric/property"/>
+        <property>instrumentation/altimeter/source-barometric</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.0058</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
@@ -1542,7 +1491,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Asitext.100</object-name>
-        <property alias="/instrumentation/airspeed-indicator/indicator-speed-kt/property"/>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <factor>0.001</factor>
         <step>100</step>
         <scroll>1</scroll>
@@ -1556,7 +1505,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Asitext.010</object-name>
-        <property alias="/instrumentation/airspeed-indicator/indicator-speed-kt/property"/>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <factor>0.01</factor>
         <step>10</step>
         <scroll>1</scroll>
@@ -1570,7 +1519,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Asitext.001</object-name>
-        <property alias="/instrumentation/airspeed-indicator/indicator-speed-kt/property"/>
+        <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
         <factor>0.1</factor>
         <axis>
             <x>0</x>
@@ -1582,7 +1531,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alttext10</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicator-altitude-ft</property>
         <factor>0.01</factor>
         <axis>
             <x>0</x>
@@ -1594,7 +1543,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alttext100</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicator-altitude-ft</property>
         <factor>0.001</factor>
         <step>100</step>
         <scroll>20</scroll>
@@ -1608,7 +1557,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alttext1000</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicator-altitude-ft</property>
         <factor>0.0001</factor>
         <step>1000</step>
         <scroll>20</scroll>
@@ -1622,7 +1571,7 @@ Syd Adams
     <animation>
         <type>textranslate</type>
         <object-name>Alttext10000</object-name>
-        <property alias="/instrumentation/altimeter/indicator-altitude-ft/property"/>
+        <property>instrumentation/altimeter/indicator-altitude-ft</property>
         <factor>0.00001</factor>
         <step>10000</step>
         <scroll>20</scroll>
@@ -2029,7 +1978,7 @@ Syd Adams
                     <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <less-than-equals>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
@@ -2047,7 +1996,7 @@ Syd Adams
                     <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <greater-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
                 </greater-than>
             </and>
@@ -2064,7 +2013,7 @@ Syd Adams
                     <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <less-than-equals>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
@@ -2080,7 +2029,7 @@ Syd Adams
                     <property>instrumentation/efis/inputs/setting-std</property>
                 </not>
                 <greater-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
                 </greater-than>
             </and>
@@ -2094,7 +2043,7 @@ Syd Adams
             <and>
             <property>instrumentation/efis/inputs/setting-std</property>
             <greater-than>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
             </greater-than>
         </and>
@@ -2107,7 +2056,7 @@ Syd Adams
             <and>
                 <property>instrumentation/efis/inputs/setting-std</property>
                 <less-than-equals>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
@@ -2122,7 +2071,7 @@ Syd Adams
                 <not><property>instrumentation/efis/inputs/kpa-mode</property></not>
                 <property>instrumentation/efis/inputs/setting-std</property>
                 <less-than-equals>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
@@ -2137,7 +2086,7 @@ Syd Adams
                 <property>instrumentation/efis/inputs/kpa-mode</property>
                 <property>instrumentation/efis/inputs/setting-std</property>
                 <less-than-equals>
-                    <property alias="/instrumentation/altimeter/indicated-altitude-ft/property"/>
+                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <property>autopilot/settings/transition-altitude</property>
                 </less-than-equals>
             </and>
@@ -2162,7 +2111,7 @@ Syd Adams
         <condition>
             <and>
                 <not-equals>
-                    <property alias="/instrumentation/afds/ap-modes/speed-mode/property"/>
+                    <property>instrumentation/afds/ap-modes/speed-mode</property>
                     <value>""</value>
                 </not-equals>
                 <not>
@@ -2178,7 +2127,7 @@ Syd Adams
         <condition>
             <and>
                 <not-equals>
-                    <property alias="/instrumentation/afds/ap-modes/speed-mode/property"/>
+                    <property>instrumentation/afds/ap-modes/speed-mode</property>
                     <value>""</value>
                 </not-equals>
                 <property>instrumentation/afds/inputs/ias-mach-selected</property>
@@ -2192,7 +2141,7 @@ Syd Adams
         <object-name>ALT-annun100</object-name>
         <condition>
             <not-equals>
-                <property alias="/instrumentation/afds/ap-modes/pitch-mode/property"/>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
                 <value>""</value>
             </not-equals>
         </condition>
@@ -2470,7 +2419,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
-        <property alias="/instrumentation/efis/minimums-mode-text/property"/>
+        <property>instrumentation/efis/minimums-mode-text</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.006</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
