@@ -1490,7 +1490,7 @@
  <!-- Autotrim                                                        -->
  <!-- =============================================================== -->
  
-	<pid-controller>
+	<pi-simple-controller>
 		<name>FBW Stabilizer Control</name>
 		<debug>false</debug>
 		<enable>
@@ -1514,7 +1514,8 @@
 			<property>autopilot/internal/stab-target</property>
 		</output>
 		<config>
-			<Kp>
+			<Kp>0.0</Kp>
+			<Ki>
 				<condition>
 					<and>
 					<greater-than>
@@ -1527,28 +1528,35 @@
 					</less-than>
 					</and>
 				</condition>
-				<value>-0.01</value>
-			</Kp>
-			<Ti>
-				<condition>
-					<and>
-						<greater-than>
-							<property>orientation/roll-deg</property>
-							<value>-5.0</value>
-						</greater-than>
-						<less-than>
-							<property>orientation/roll-deg</property>
-							<value>5.0</value>
-						</less-than>
-					</and>
-				</condition>
-				<value>100</value>
-			</Ti>
-			<Td>0.0</Td>
+				<value>-0.02</value>
+			</Ki>
 			<u_min>-11.0</u_min>
 			<u_max>4.0</u_max>
 		</config>
-	</pid-controller>
+	</pi-simple-controller>
+
+	<filter>
+		<name>Stabilizer control</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<not><property>instrumentation/afds/inputs/AP</property></not>
+			</condition>
+		</enable>
+		<max-rate-of-change>
+			<value>0.5</value>
+		</max-rate-of-change>
+		<input>
+			<expression>
+				<sum>
+					<property>controls/flight/trim-ref-speed</property>
+					<property>autopilot/internal/stab-target</property>
+				</sum>
+			</expression>
+		</input>
+		<output>controls/flight/elevator-trim</output>
+	</filter>
 	
 	<pid-controller>
 		<name>AP PITCH HELPER PLUS</name>
@@ -1621,41 +1629,30 @@
 	</pid-controller>
 
 	<filter>
-		<name>Stabilizer control</name>
+		<name>AP Stabilizer control</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
-				<or>
-					<greater-than>
-						<property>controls/flight/elevator-ap</property>
-						<value>0.01</value>
-					</greater-than>
-					<less-than>
-						<property>controls/flight/elevator-ap</property>
-						<value>-0.01</value>
-					</less-than>
-				</or>
+				<and>
+					<property>instrumentation/afds/inputs/AP</property>
+					<or>
+						<greater-than>
+							<property>controls/flight/elevator-ap</property>
+							<value>0.01</value>
+						</greater-than>
+						<less-than>
+							<property>controls/flight/elevator-ap</property>
+							<value>-0.01</value>
+						</less-than>
+					</or>
+				</and>
 			</condition>
 		</enable>
 		<input>
-			<condition>
-				<property>instrumentation/afds/inputs/AP</property>
-			</condition>
 			<property>autopilot/internal/autotrim-cmd</property>
-		</input>
-		<input>
-			<condition>
-				<not><property>instrumentation/afds/inputs/AP</property></not>
-			</condition>
-			<expression>
-				<sum>
-					<property>controls/flight/trim-ref-speed</property>
-					<property>autopilot/internal/stab-target</property>
-				</sum>
-			</expression>
 		</input>
 		<output>controls/flight/elevator-trim</output>
 		<max-rate-of-change>0.01</max-rate-of-change>
