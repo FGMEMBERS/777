@@ -1631,11 +1631,11 @@
 				<or>
 					<greater-than>
 						<property>controls/flight/elevator-ap</property>
-						<value>0.05</value>
+						<value>0.01</value>
 					</greater-than>
 					<less-than>
 						<property>controls/flight/elevator-ap</property>
-						<value>-0.05</value>
+						<value>-0.01</value>
 					</less-than>
 				</or>
 			</condition>
