@@ -1206,6 +1206,7 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Nasal/tyresmoke.nas</file>
             <file>Aircraft/777/Nasal/gpws.nas</file>
             <file>Aircraft/777/Nasal/warnsystem.nas</file>
+            <file>Aircraft/777/Nasal/Cabinalert.nas</file>
             <file>Aircraft/777/Nasal/brakesystem.nas</file>
             <file>Aircraft/777/Nasal/ground_steering.nas</file>
             <file>Aircraft/777/Models/Instruments/ND/ND.nas</file>
