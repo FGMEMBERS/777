@@ -539,24 +539,7 @@
 		<debug>false</debug>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>
-			<condition>
-				<not-equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>TO/GA</value>
-				</not-equals>
-			</condition>
-			<property>instrumentation/afds/ias-target-kt</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>TO/GA</value>
-				</equals>
-			</condition>
-			<value>166</value>
-		</input>
+		<input>instrumentation/afds/ias-target-kt</input>
 		<output>autopilot/internal/flch-kts</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>
