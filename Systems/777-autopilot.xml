@@ -562,6 +562,16 @@
 		<max-rate-of-change>
 			<condition>
 				<or>
+					<and>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>TO/GA</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>FLCH SPD</value>
+						</not-equals>
+					</and>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>1</value>
@@ -577,6 +587,16 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
+					<or>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>TO/GA</value>
+						</equals>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>FLCH SPD</value>
+						</equals>
+					</or>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>0</value>
@@ -602,6 +622,10 @@
 		<max-rate-of-change>
 			<condition>
 				<or>
+					<not-equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLCH SPD</value>
+					</not-equals>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>1</value>
@@ -617,6 +641,10 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLCH SPD</value>
+					</equals>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>0</value>
