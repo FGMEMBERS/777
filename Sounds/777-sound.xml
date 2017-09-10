@@ -722,7 +722,7 @@
             <max-dist>6000.0</max-dist>
         </engines>
     <chime>
-        <name>nosomokingon</name>
+        <name>nosmokingon</name>
         <mode>once</mode>
         <type>avionics</type>
         <path>Aircraft/777/Sounds/cabinalert.wav</path>
@@ -741,7 +741,7 @@
     </chime>
 
     <chime>
-        <name>nosomokingoff</name>
+        <name>nosmokingoff</name>
         <mode>once</mode>
         <type>avionics</type>
         <path>Aircraft/777/Sounds/cabinalert.wav</path>

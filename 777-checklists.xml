@@ -1195,6 +1195,18 @@
         <item>
             <name>Fuel Control Switches</name>
             <value>CutOff</value>
+            <condition>
+                <and>
+                    <equals>
+                        <property>controls/engines/engine[0]/cutoff</property>
+                        <value>true</value>
+                    </equals>
+                    <equals>
+                        <property>controls/engines/engine[1]/cutoff</property>
+                        <value>true</value>
+                    </equals>
+                </and>
+            </condition>
         </item>        
         <item>
             <name>Fasten Seat Belts</name>

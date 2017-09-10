@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- 777-300
 Justin Smithies
 Syd Adams
@@ -2223,7 +2224,7 @@ Outboard Aileron Lockout Schedule
  <name>Pushback</name>
  <path>Models/Airport/Pushback/Douglas.xml</path>
  <offsets>
-  <x-m>-19.284</x-m>
+  <x-m>-24.5181</x-m>
   <y-m>0.0</y-m>
   <z-m>-5.4</z-m>
  </offsets>
