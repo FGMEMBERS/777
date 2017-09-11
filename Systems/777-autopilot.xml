@@ -695,9 +695,29 @@
 		<reference>
 			<condition>
 				<equals>
-					<property>instrumentation/afds/inputs/ias-mach-selected</property>
-					<value>0</value>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>TO/GA</value>
 				</equals>
+			</condition>
+			<expression>
+				<sum>
+					<property>instrumentation/weu/state/v2</property>
+					<value>10</value>
+				</sum>
+			</expression>
+		</reference>
+		<reference>
+			<condition>
+				<and>
+					<equals>
+						<property>instrumentation/afds/inputs/ias-mach-selected</property>
+						<value>0</value>
+					</equals>
+					<not-equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>TO/GA</value>
+					</not-equals>
+				</and>
 			</condition>
 			<property>autopilot/internal/flch-kts</property>
 		</reference>
