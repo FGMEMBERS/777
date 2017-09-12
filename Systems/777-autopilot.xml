@@ -539,29 +539,22 @@
 		<debug>false</debug>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
-		<input>
-			<condition>
-				<not-equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>TO/GA</value>
-				</not-equals>
-			</condition>
-			<property>instrumentation/afds/ias-target-kt</property>
-		</input>
-		<input>
-			<condition>
-				<equals>
-					<property>instrumentation/afds/ap-modes/pitch-mode</property>
-					<value>TO/GA</value>
-				</equals>
-			</condition>
-			<value>166</value>
-		</input>
+		<input>instrumentation/afds/ias-target-kt</input>
 		<output>autopilot/internal/flch-kts</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
 				<or>
+					<and>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>TO/GA</value>
+						</not-equals>
+						<not-equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>FLCH SPD</value>
+						</not-equals>
+					</and>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>1</value>
@@ -577,6 +570,16 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
+					<or>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>TO/GA</value>
+						</equals>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>FLCH SPD</value>
+						</equals>
+					</or>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>0</value>
@@ -602,6 +605,10 @@
 		<max-rate-of-change>
 			<condition>
 				<or>
+					<not-equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLCH SPD</value>
+					</not-equals>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>1</value>
@@ -617,6 +624,10 @@
 		<max-rate-of-change>
 			<condition>
 				<and>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLCH SPD</value>
+					</equals>
 					<equals>
 						<property>gear/gear[1]/wow</property>
 						<value>0</value>
@@ -684,9 +695,29 @@
 		<reference>
 			<condition>
 				<equals>
-					<property>instrumentation/afds/inputs/ias-mach-selected</property>
-					<value>0</value>
+					<property>instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>TO/GA</value>
 				</equals>
+			</condition>
+			<expression>
+				<sum>
+					<property>instrumentation/weu/state/v2</property>
+					<value>10</value>
+				</sum>
+			</expression>
+		</reference>
+		<reference>
+			<condition>
+				<and>
+					<equals>
+						<property>instrumentation/afds/inputs/ias-mach-selected</property>
+						<value>0</value>
+					</equals>
+					<not-equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>TO/GA</value>
+					</not-equals>
+				</and>
 			</condition>
 			<property>autopilot/internal/flch-kts</property>
 		</reference>
