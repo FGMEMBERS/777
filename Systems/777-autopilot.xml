@@ -701,7 +701,7 @@
             </condition>
             <expression>
                 <sum>
-                    <property>instrumentation/weu/state/stall-speed</property>
+                    <property>instrumentation/weu/state/v2</property>
                     <value>10</value>
                 </sum>
             </expression>
