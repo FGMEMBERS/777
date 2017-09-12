@@ -1729,6 +1729,24 @@
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<input>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/gear/gear[1]/wow</property>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property>/gear/gear[2]/wow</property>
+                        <value>1</value>
+                    </equals>
+                    <property>/instrumentation/weu/state/takeoff-mode</property>
+                </and>
+            </condition>
+            <expression>
+                <value>25</value>
+            </expression>
+        </input>
+        <input>
 			<expression>
 				<product>
 					<dif>
