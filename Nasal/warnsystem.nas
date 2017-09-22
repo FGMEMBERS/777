@@ -36,6 +36,17 @@ var WEU =
         m.siren        = m.weu.initNode("sound/config-warning",   0,"BOOL");
         m.stallhorn    = m.weu.initNode("sound/stall-horn", 0,"BOOL");
         m.apwarning    = m.weu.initNode("sound/autopilot-warning", 0,"BOOL");
+		m.cautionsound = m.weu.initNode("sound/caution-warning", 0,"BOOL");
+		# caution messages status, can be replaced once advisory implemented as standalone
+		m.cautionno    = m.weu.initNode("sound/caution-messages", 0, "DOUBLE");
+		m.slowcaution  = m.weu.initNode("sound/slow-caution", 0, "DOUBLE");
+		m.cautiontime  = m.weu.initNode("sound/caut-elapsed-time", 0, "DOUBLE");
+		m.caution1     = m.weu.initNode("state/caut-hot-brakes", 0, "BOOL");
+		m.caution2     = m.weu.initNode("state/caut-spd-brakes", 0, "BOOL");
+		m.caution3     = m.weu.initNode("state/caut-low-fuel", 0, "BOOL");
+		m.caution4     = m.weu.initNode("state/caut-ias-low", 0, "BOOL");
+		m.caution5     = m.weu.initNode("state/caut-athr-off", 0, "BOOL");
+		m.caution6     = m.weu.initNode("state/alt-alert", 0, "BOOL");
         # actuators
         m.stickshaker  = m.weu.initNode("actuators/stick-shaker",0,"BOOL");
         # status information
@@ -84,6 +95,8 @@ var WEU =
         m.flap_override = 0;
         m.ap_mode       = 0;
         m.ap_disengaged = 0;
+		m.at_mode       = 0;
+		m.at_disconnect = 0;
         me.rudder_trim  = 0;
         me.elev_trim    = 0;
 	me.autobrake	= 0;
@@ -153,9 +166,10 @@ var WEU =
 	setlistener("controls/cabin/SeatBelt-status",	func { Weu.update_listener_inputs() } );
 	setlistener("controls/cabin/NoSmoking-status",	func { Weu.update_listener_inputs() } );
 	setlistener("environment/temperature-degc",	func { Weu.update_listener_inputs() } );
-        setlistener("instrumentation/mk-viii/inputs/discretes/gear-override", func { Weu.update_listener_inputs() } );
-        setlistener("controls/engines/engine/throttle-act", func { Weu.update_throttle_input() } );
-        setlistener("instrumentation/afds/inputs/AP",     func { Weu.update_ap_mode() } );
+    setlistener("instrumentation/mk-viii/inputs/discretes/gear-override", func { Weu.update_listener_inputs() } );
+    setlistener("controls/engines/engine/throttle-act", func { Weu.update_throttle_input() } );
+	setlistener("instrumentation/afds/inputs/AP",     func { Weu.update_ap_mode() } );
+	setlistener("instrumentation/afds/inputs/autothrottle-index",	func { Weu.update_at_mode() } );
 
         m.update_listener_inputs();
         
@@ -182,7 +196,7 @@ var WEU =
            # T/O warnings
 
            # 777: T/O warnings trigger when either throttle is at least at 0.667
-           # 777: T/O warnings disabled after rotation with at lease 5 degrees nose-up
+           # 777: T/O warnings disabled after rotation with at least 5 degrees nose-up
            if ((me.throttle>=0.667)and
                (me.gear_down)and
                (!me.reverser)and
@@ -224,6 +238,16 @@ var WEU =
          }
     },
 
+#### AP disengage warning ####
+    autopilot_disc_warning : func
+    {
+	if (me.ap_disengaged)
+	{
+            append(me.msgs_alert,"AUTOPILOT DISC");
+	}
+    },
+	
+
 #### EICAS messages ####
 ## Boeing has 4 types of EICAS messages:
 ## Warning, Caution, Advisory, and Memo
@@ -233,14 +257,21 @@ var WEU =
     caution_messages : func
     {
 	## Caution Messages
-        if (me.ap_disengaged)
-            append(me.msgs_caution,"AP DISCONNECT");
+	    # FMC Messages are advisories
 		if(getprop("instrumentation/afds/inputs/vnav-mcp-reset") == 1)
 		{
             append(me.msgs_caution,"FMC MESSAGE");
 		}
         if ((getprop("gear/brake-thermal-energy") or 0)>1)
+		{
             append(me.msgs_caution,"L R BRAKE OVERHEAT");
+			me.caution1.setBoolValue(1);
+		}
+		else
+		{
+			me.caution1.setBoolValue(0);
+		}
+			
         if (me.speedbrake)
         {
             # 777 manual: EICAS caution message SPEEDBRAKE EXTENDED indicates
@@ -251,14 +282,62 @@ var WEU =
                 (me.radio_alt<800)and
                 (me.throttle>0.1)and
                 (me.flaps>0.6))
+			{
                 append(me.msgs_caution,"SPEEDBRAKE EXTENDED");
+				me.caution2.setBoolValue(1);
+			}
+			else
+			{
+				me.caution2.setBoolValue(0);
+			}
         }
 
 	# Pilot sources state that any main tank
 	# with less than 1000kg of fuel is low
 	# 1000kg = 4409.25lbs
 	if ((me.fuel_l_qty<4409) or (me.fuel_r_qty<4409))
+	{
 	    append(me.msgs_caution,"FUEL QTY LOW");
+		me.caution3.setBoolValue(1);
+	}
+	else
+	{
+		me.caution3.setBoolValue(0);
+	}
+	
+	# Activates if airspeed below minimum maneuvering speed
+	# but will use stall speed + 5 for now
+	if ((me.speed < (getprop("instrumentation/weu/state/stall-speed") + 5))and(me.radio_alt > 400))
+	{
+	    append(me.msgs_caution,"AIRSPEED LOW");
+		me.caution4.setBoolValue(1);
+	}
+	else
+	{
+		me.caution4.setBoolValue(0);
+	}
+	
+	# Activates if autothrottle disconnected
+	if (me.at_disconnect)
+	{
+	    append(me.msgs_caution,"AUTOTHROTTLE DISC");
+		me.caution5.setBoolValue(1);
+	}
+	else
+	{
+		me.caution5.setBoolValue(0);
+	}
+	
+	#Altitude alert
+	if (getprop("autopilot/internal/alt-alert") == 2)
+	{
+		append(me.msgs_caution,"ALTITUDE ALERT");
+		me.caution6.setBoolValue(1);
+	}
+	else
+	{
+		me.caution6.setBoolValue(0);
+	}
 
 	## Advisory Messages
 	# Advisory Messages for air systems:
@@ -312,9 +391,9 @@ var WEU =
 	{
 	    # 777 manual: EICAS memo messages display the selected autobrake settings:
 	    # AUTOBRAKE 1 thru 4, AUTOBRAKE MAX, AUTOBRAKE RTO
-	    # AUTOBRAKE DISARM is an advisory message
+	    # AUTOBRAKE (disarm) is an advisory message
 	    if (me.autobrake == 0)
-		append(me.msgs_caution," AUTOBRAKE DISARM");
+		append(me.msgs_caution," AUTOBRAKE");
 	    if (me.autobrake == 1)
 		append(me.msgs_info,"AUTOBRAKE 1");
 	    if (me.autobrake == 2)
@@ -444,7 +523,7 @@ var WEU =
 		}
 
 		# Stall warning display switch
-		if((me.stall_warning.getValue() == 0) and (getprop("position/gear-agl-ft") > 400))
+		if((me.stall_warning.getValue() == 0) and (me.radio_alt > 400))
 		{
 			me.stall_warning.setValue(1);
 		}
@@ -466,17 +545,24 @@ var WEU =
         if ((me.active_warnings)or(me.active_caution)or(caution_state)or(siren)or(shaker)or(horn))
         {
             if (horn) siren=0;
+	    if (!me.ap_disengaged)
+	    {
             me.siren.setBoolValue(siren and (!me.warn_mute));
+	    }
+	    else
+	    {
+	    me.siren.setBoolValue(0);
+	    }
             me.stallhorn.setBoolValue(horn and (!me.warn_mute));
             me.stickshaker.setBoolValue(shaker);
             
             me.active_warnings = (siren or shaker or horn);
             me.active_caution = caution_state;
             
-            if (!me.active_warnings) me.warn_mute = 0;
+            if ((!me.active_warnings)and(!me.active_caution)) me.warn_mute = 0;
             
             me.master_warning.setBoolValue(me.active_warnings);
-            me.master_caution.setBoolValue(me.active_caution);
+            me.master_caution.setBoolValue((me.active_caution)and(!me.warn_mute));
         }
         else
             me.warn_mute = 0;
@@ -532,6 +618,68 @@ var WEU =
         me.throttle = getprop("controls/engines/engine/throttle-act");
     },
 
+#### update autothrottle mode ####
+    update_at_mode : func()
+    {
+		var at_mode = getprop("instrumentation/afds/inputs/autothrottle-index");
+		var at_armone = getprop("instrumentation/afds/inputs/at-armed");
+		var at_armtwo = getprop("instrumentation/afds/inputs/at-armed[1]");
+		if (((at_armone == 0)or(at_armtwo == 0)or((me.at_mode != 0)and(at_mode == 0)))and(!getprop("gear/gear[1]/wow"))and(!getprop("gear/gear[2]/wow")))
+		{
+		# AT has disconnected
+		me.at_disconnect = 1;
+		}
+		else
+		{
+		me.at_disconnect = 0;
+		}
+		me.at_mode = at_mode;
+    },
+	
+#### update caution messages ####
+	update_caution_msgs : func()
+	{
+		var no1 = me.caution1.getBoolValue();
+		var no2 = me.caution2.getBoolValue();
+		var no3 = me.caution3.getBoolValue();
+		var no4 = me.caution4.getBoolValue();
+		var no5 = me.caution5.getBoolValue();
+		var no6 = me.caution6.getBoolValue();
+		var totalno = no1 + no2 + no3 + no4 + no5 + no6;
+		var cauttime = me.cautiontime.getValue();
+		me.cautionno.setValue(totalno);
+		if (me.cautionno.getValue() > me.slowcaution.getValue())
+		{
+			me.cautionsound.setBoolValue(1);
+			if (cauttime > 0.5)
+			{
+				me.update_slow_caution();
+				cauttime = 0;
+			}
+			else
+			{
+				cauttime = cauttime + 0.5;
+			}
+		}
+		elsif (me.cautionno.getValue() == me.slowcaution.getValue())
+		{
+			me.cautionsound.setBoolValue(0);
+			me.cautiontime.setValue(0);
+		}
+		else
+		{
+			me.cautionsound.setBoolValue(0);
+			me.update_slow_caution();
+		}
+		me.cautiontime.setValue(cauttime);
+	},
+	
+	update_slow_caution : func()
+	{
+		var slowcautno = me.cautionno.getValue();
+		me.slowcaution.setValue(slowcautno);
+	},
+
 #### update autopilot mode ####
     update_ap_mode : func()
     {
@@ -540,8 +688,8 @@ var WEU =
        {
            # AP has disengaged
            me.ap_disengaged = 1;
-           # display "AP DISCONNECT" for 5 seconds
-           settimer(func { Weu.update_ap_mode() }, 5);
+           # display "AUTOPILOT DISC" for 1.5 seconds
+           settimer(func { Weu.update_ap_mode() }, 1.5);
        }
        else
        {
@@ -568,7 +716,9 @@ var WEU =
 
             me.takeoff_config_warnings();
             me.approach_config_warnings();
+            me.autopilot_disc_warning();
             me.caution_messages();
+			me.update_caution_msgs();
 
             if ((me.parkbrake>0.1)and((me.throttle>=0.667)or(me.radio_alt>30)))
                 append(me.msgs_alert,"CONFIG PARK BRK");
