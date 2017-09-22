@@ -40,7 +40,6 @@ var WEU =
 		# caution messages status, can be replaced once advisory implemented as standalone
 		m.cautionno    = m.weu.initNode("sound/caution-messages", 0, "DOUBLE");
 		m.slowcaution  = m.weu.initNode("sound/slow-caution", 0, "DOUBLE");
-		m.cautiontime  = m.weu.initNode("sound/caut-elapsed-time", 0, "DOUBLE");
 		m.caution1     = m.weu.initNode("state/caut-hot-brakes", 0, "BOOL");
 		m.caution2     = m.weu.initNode("state/caut-spd-brakes", 0, "BOOL");
 		m.caution3     = m.weu.initNode("state/caut-low-fuel", 0, "BOOL");
@@ -291,6 +290,10 @@ var WEU =
 				me.caution2.setBoolValue(0);
 			}
         }
+		else
+		{
+			me.caution2.setBoolValue(0);
+		}
 
 	# Pilot sources state that any main tank
 	# with less than 1000kg of fuel is low
@@ -646,32 +649,21 @@ var WEU =
 		var no5 = me.caution5.getBoolValue();
 		var no6 = me.caution6.getBoolValue();
 		var totalno = no1 + no2 + no3 + no4 + no5 + no6;
-		var cauttime = me.cautiontime.getValue();
 		me.cautionno.setValue(totalno);
 		if (me.cautionno.getValue() > me.slowcaution.getValue())
 		{
 			me.cautionsound.setBoolValue(1);
-			if (cauttime > 0.5)
-			{
-				me.update_slow_caution();
-				cauttime = 0;
-			}
-			else
-			{
-				cauttime = cauttime + 0.5;
-			}
+			settimer(func { Weu.update_slow_caution() }, 1);
 		}
 		elsif (me.cautionno.getValue() == me.slowcaution.getValue())
 		{
 			me.cautionsound.setBoolValue(0);
-			me.cautiontime.setValue(0);
 		}
 		else
 		{
 			me.cautionsound.setBoolValue(0);
 			me.update_slow_caution();
 		}
-		me.cautiontime.setValue(cauttime);
 	},
 	
 	update_slow_caution : func()
