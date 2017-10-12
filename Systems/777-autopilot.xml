@@ -1473,7 +1473,6 @@
 		<config>
 			<Kp>-0.10</Kp>
 			<Ki>0.0</Ki>
-			<Ti>2.0</Ti>
 			<u_min>-5.0</u_min>
 			<u_max>5.0</u_max>
 		</config>
