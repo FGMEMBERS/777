@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Japan Airlines JAL Contrail</name>
+            <texture>Liveries-200/JAL-CON.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>JAL</aircraft-operator>
+</sim>
+
+</PropertyList>
