@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">JAL Japan Airlines</name>
-            <texture>Liveries-200/JAL-retro.png</texture>
+            <name type="string"> Blank Livery</name>
+            <texture>Liveries-200/BLK.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
-    <aircraft-operator>JAL</aircraft-operator>
+    <aircraft-operator> </aircraft-operator>
 </sim>
 </PropertyList>

@@ -63,6 +63,7 @@ var EFIS = {
 
         m.eicas_msg_alert   = m.eicas.initNode("msg/alert"," ","STRING");
         m.eicas_msg_caution = m.eicas.initNode("msg/caution"," ","STRING");
+		m.eicas_msg_advisory = m.eicas.initNode("msg/advisory"," ","STRING");
         m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
         m.update_radar_font();
         m.update_nd_center();
@@ -241,7 +242,7 @@ var EFIS = {
         }
     },
 #### update EICAS messages ####
-    update_eicas : func(alertmsgs,cautionmsgs,infomsgs) {
+    update_eicas : func(alertmsgs,cautionmsgs,advisorymsgs,infomsgs) {
         var msg="";
         for(var i=0; i<size(alertmsgs); i+=1)
         {
@@ -253,6 +254,11 @@ var EFIS = {
             msg = msg ~ cautionmsgs[i] ~ "\n";
         }
         me.eicas_msg_caution.setValue(msg);
+		for(var i=0; i<size(advisorymsgs); i+=1)
+        {
+            msg = msg ~ advisorymsgs[i] ~ "\n";
+        }
+        me.eicas_msg_advisory.setValue(msg);
         for(var i=0; i<size(infomsgs); i+=1)
         {
             msg = msg ~ infomsgs[i] ~ "\n";
