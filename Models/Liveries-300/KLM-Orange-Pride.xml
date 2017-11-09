@@ -5,7 +5,7 @@
     <model>
         <livery>
             <name type="string">KLM Orange Pride</name>
-            <texture>Liveries-300/KLM_orange.png</texture>
+            <texture>Liveries-300/KLM-Orange-Pride.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
