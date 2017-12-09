@@ -1525,8 +1525,8 @@ Syd Adams
                     <atan>
                         <div>
                             <difference>
-                                <property>/sim/multiplay/generic/float[3]</property>
-                                <property>/sim/multiplay/generic/float[1]</property>
+                                <property>sim/multiplay/generic/float[3]</property>
+                                <property>sim/multiplay/generic/float[1]</property>
                             </difference>
                             <value>1.49</value>
                         </div>
@@ -1826,8 +1826,8 @@ Syd Adams
                     <atan>
                         <div>
                             <difference>
-                                <property>/sim/multiplay/generic/float[4]</property>
-                                <property>/sim/multiplay/generic/float[2]</property>
+                                <property>sim/multiplay/generic/float[4]</property>
+                                <property>sim/multiplay/generic/float[2]</property>
                             </difference>
                             <value>1.49</value>
                         </div>
