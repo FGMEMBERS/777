@@ -7,6 +7,9 @@
             <name type="string">SVA Saudi Arabian Airlines</name>
             <texture>Liveries-200/SVA.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries-200/SVA-lights.png</texture>
+        </lights>
     </model>
 </sim>
 </PropertyList>

@@ -1514,7 +1514,7 @@ var AFDS = {
             }
             elsif(idx == 6)             # G/S
             {
-                var f_angle = getprop("autopilot/constant/flare-base") * 135 / getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
+                var f_angle = getprop("autopilot/constant/flare-base") * 0.5 * getprop("instrumentation/weu/state/vref") / ((getprop("instrumentation/airspeed-indicator/indicated-speed-kt"))^0.9);
                 me.flare_constant_setting.setValue(f_angle);
                 if(getprop("position/gear-agl-ft") < 50)
                 {
@@ -1532,7 +1532,7 @@ var AFDS = {
             {
                 if(me.autothrottle_mode.getValue() == 5)    # SPD
                 {
-                    if(getprop("position/gear-agl-ft") < 50)
+                    if(getprop("position/gear-agl-ft") < 25)
                     {
                         me.autothrottle_mode.setValue(4);   # A/T IDLE
                     }

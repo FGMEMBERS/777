@@ -4,7 +4,7 @@
 <sim>
     <model>
         <livery>
-            <name type="string">JAL Japan Airlines (retro)</name>
+            <name type="string">JAL Japan Airlines</name>
             <texture>Liveries-200/JAL-retro.png</texture>
         </livery>
     </model>

@@ -7,6 +7,9 @@
             <name type="string">EGY EgyptAir</name>
             <texture>Liveries-200/EGY.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries-200/EGY-lights.png</texture>
+        </lights>
     </model>
 </sim>
 </PropertyList>

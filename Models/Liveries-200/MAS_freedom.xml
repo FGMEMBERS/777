@@ -6,6 +6,9 @@
             <name type="string">NAS Malaysia Airlines (Freedom of Space)</name>
             <texture>Liveries-200/MAS_freedom.png</texture>
         </livery>
+        <lights>
+			<texture>Liveries-200/MAS_freedom-lights.png</texture>
+		</lights>
     </model>
 </sim>
 </PropertyList>

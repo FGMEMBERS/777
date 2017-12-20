@@ -7,6 +7,9 @@
             <name type="string">AFL Aeroflot</name>
             <texture>Liveries-200/AFL.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries-200/AFL-lights.png</texture>
+        </lights>
     </model>
 </sim>
 </PropertyList>

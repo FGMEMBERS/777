@@ -6,6 +6,9 @@
             <name type="string">LDA Lauda Air</name>
             <texture>Liveries-200/LDA.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries-200/LDA-lights.png</texture>
+        </lights>
     </model>
 </sim>
 </PropertyList>

@@ -235,7 +235,7 @@ Syd Adams
         </condition>
     </animation>
 
-    <animation>
+     <animation>
         <type>translate</type>
         <object-name>FDpitch</object-name>
         <object-name>FDpitch_rembrandt</object-name>
@@ -260,7 +260,7 @@ Syd Adams
             <z>0</z>
         </axis>
     </animation>
-
+	
     <animation>
         <type>translate</type>
         <object-name>gspointer</object-name>

@@ -6,6 +6,9 @@
             <name type="string">MAS Malaysia Airlines</name>
             <texture>Liveries-200/MAS.png</texture>
         </livery>
+        <lights>
+            <texture>Liveries-200/MAS-lights.png</texture>
+        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>MAS</aircraft-operator>

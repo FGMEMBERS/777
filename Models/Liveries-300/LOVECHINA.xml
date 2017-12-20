@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">CCA AIRCHINA "LOVE CHINA" by SLA</name>
+            <texture>Liveries-300/LOVECHINA.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>CCA</aircraft-operator>
+</sim>
+</PropertyList>

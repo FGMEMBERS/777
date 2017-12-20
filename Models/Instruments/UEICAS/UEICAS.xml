@@ -445,6 +445,32 @@ Syd Adams
             <blue>0</blue>
         </specular>
     </animation>
+	
+	<animation>
+        <name>yellow2</name>
+        <type>material</type>
+        <object-name>advisory messages</object-name>
+        <emission>
+            <red>0.6</red>
+            <green>0.6</green>
+            <blue>0</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
+    </animation>
 
     <text>
         <name>info messages</name>
@@ -457,6 +483,26 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
         <property>instrumentation/efis/eicas/msg/info</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+	
+	<text>
+        <name>advisory messages</name>
+        <offsets>
+            <x-m>0.00212</x-m>
+            <y-m>0.010</y-m>
+            <z-m>0.085</z-m>
+        </offsets>
+        <alignment>left-top</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+                <property>instrumentation/efis/eicas/msg/advisory</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
         <character-aspect-ratio type="double">1.2</character-aspect-ratio>
