@@ -8,7 +8,7 @@
             <texture>Liveries-300/bnk.png</texture>
         </livery>
     </model>
-    <aircraft-class>gate</aircraft-class>
+    <aircraft-class> </aircraft-class>
     <aircraft-operator> </aircraft-operator>
 </sim>
 </PropertyList>
