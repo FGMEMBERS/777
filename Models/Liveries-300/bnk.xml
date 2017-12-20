@@ -5,7 +5,7 @@
     <model>
         <livery>
             <name type="string"> Blank Livery</name>
-            <texture>Liveries-300/blk.png</texture>
+            <texture>Liveries-300/bnk.png</texture>
         </livery>
     </model>
     <aircraft-class>gate</aircraft-class>
