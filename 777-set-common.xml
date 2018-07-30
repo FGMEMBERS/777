@@ -17,6 +17,7 @@
                 <file type="string">BAW</file>
             </livery>
             <armrest type="double">0</armrest>
+            <fallback-model-index type="int">252</fallback-model-index>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>
         <instrument-options>
@@ -510,7 +511,6 @@ Service Ceiling: 43,100ft
         </weight>
 
         <multiplay>
-            <fallback-model-index type="int">252</fallback-model-index>
             <generic>
                 <int n="0" alias="/systems/electrical/outputs/strobe"/>
                 <int n="1" alias="/systems/electrical/outputs/beacon"/>
