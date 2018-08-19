@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">PAV North Sky</name>
+            <texture>Liveries-300/PAV-NS.png</texture>
+        </livery>
+    </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>PAV</aircraft-operator>
+</sim>
+</PropertyList>
