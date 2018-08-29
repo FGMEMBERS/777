@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <PropertyList>
 
     <sim n="0">
-        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu</author>
+        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu, Isaak Dieleman</author>
         <status>production</status>
         <rating>
             <FDM type="int">4</FDM>
@@ -18,6 +19,32 @@
             </livery>
             <armrest type="double">0</armrest>
             <fallback-model-index type="int">252</fallback-model-index>
+            <pushback>
+              <enabled type="int"></enabled>
+              <available type="int">1</available>
+              <!--chocks alias="/controls/gear/wheel-chocks"/-->
+              <steer-cmd-norm alias="/controls/gear/tiller-cmd-norm"></steer-cmd-norm>
+              <yaw alias="/controls/gear/nosegear-steering-angle-rad"></yaw>
+              <yaw-mult type="float">1.0</yaw-mult>
+              <target-speed-km_h type="float">0.0</target-speed-km_h>
+              <K_p type="float">1.0</K_p>
+              <F_p type="float">0.1</F_p>
+              <K_i type="float">0.01</K_i>
+              <F_i type="float">2.0</F_i>
+              <K_d type="float">0.0</K_d>
+              <F_d type="float">0.0</F_d>
+              <driver>
+               <K_V type="float">5.5</K_V>
+               <F_V type="float">8.0</F_V>
+               <D_min-m type="float">7.5</D_min-m>
+               <K_psi type="float">0.05</K_psi>
+              </driver>
+              <route>
+               <show type="bool"></show>
+               <view type="string">Model View</view>
+              </route>
+              <debug type="int">0</debug>
+            </pushback>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>
         <instrument-options>
@@ -455,19 +482,19 @@ Service Ceiling: 43,100ft
                             <script>controls.autostart();</script>
                         </binding>
                     </item>
-                    <item >
+                    <item>
                         <label>Ground Services Control</label>
                         <binding>
                             <command>nasal</command>
                             <script>dialogs.ground_services.open()</script>
                         </binding>
                     </item>
-                    <item >
+                    <item>                       
                         <label>Pushback</label>
                         <name>pushback</name>
                         <binding>
-                            <command>dialog-show</command>
-                            <dialog-name>pushback</dialog-name>
+                            <command>nasal</command>
+                            <script>dialogs.pushback.open()</script>
                         </binding>
                     </item>
                     <item>
@@ -491,7 +518,7 @@ Service Ceiling: 43,100ft
                             <property>sim/yokes-visible</property>
                         </binding>
                     </item>
-                    <item >
+                    <item>
                         <label>Handy Viewer</label>
                         <name>handyviewer</name>
                         <binding>
@@ -512,29 +539,29 @@ Service Ceiling: 43,100ft
 
         <multiplay>
             <generic>
-                <int n="0" alias="/systems/electrical/outputs/strobe"/>
-                <int n="1" alias="/systems/electrical/outputs/beacon"/>
-                <int n="2" alias="/systems/electrical/outputs/taxi-lights"/>
-                <int n="3" alias="/systems/electrical/outputs/logo-lights"/>
-                <int n="4" alias="/systems/electrical/outputs/landing-light[0]"/>
-                <int n="5" alias="/systems/electrical/outputs/landing-light[1]"/>
-                <int n="6" alias="/systems/electrical/outputs/landing-light[2]"/>
-                <int n="7" alias="/systems/electrical/outputs/nav-lights"/>
-                <int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
+                <int n="0" alias="/systems/electrical/outputs/strobe"></int>
+                <int n="1" alias="/systems/electrical/outputs/beacon"></int>
+                <int n="2" alias="/systems/electrical/outputs/taxi-lights"></int>
+                <int n="3" alias="/systems/electrical/outputs/logo-lights"></int>
+                <int n="4" alias="/systems/electrical/outputs/landing-light[0]"></int>
+                <int n="5" alias="/systems/electrical/outputs/landing-light[1]"></int>
+                <int n="6" alias="/systems/electrical/outputs/landing-light[2]"></int>
+                <int n="7" alias="/systems/electrical/outputs/nav-lights"></int>
+                <int n="8" alias="/systems/electrical/outputs/cabin-lights"></int>
 
-                <float n="0" alias="/gear/gear[0]/compression-m"/>
-                <float n="1" alias="/gear/gear[1]/compression-m"/>
-                <float n="2" alias="/gear/gear[2]/compression-m"/>
-                <float n="3" alias="/gear/gear[3]/compression-m"/>
-                <float n="4" alias="/gear/gear[4]/compression-m"/>
-                <float n="5" alias="/surface-positions/speedbrake-norm"/>
-                <float n="6" alias="/surface-positions/reverser-norm"/>
-                <string  alias="/sim/multiplay/callsign"/>
+                <float n="0" alias="/gear/gear[0]/compression-m"></float>
+                <float n="1" alias="/gear/gear[1]/compression-m"></float>
+                <float n="2" alias="/gear/gear[2]/compression-m"></float>
+                <float n="3" alias="/gear/gear[3]/compression-m"></float>
+                <float n="4" alias="/gear/gear[4]/compression-m"></float>
+                <float n="5" alias="/surface-positions/speedbrake-norm"></float>
+                <float n="6" alias="/surface-positions/reverser-norm"></float>
+                <string alias="/sim/multiplay/callsign"></string>
             </generic>
         </multiplay>
 
-        <flight-recorder include="Systems/flight-recorder.xml"/>
-        <checklists include="777-checklists.xml"/>
+        <flight-recorder include="Systems/flight-recorder.xml"></flight-recorder>
+        <checklists include="777-checklists.xml"></checklists>
 
         <dimensions>
             <radius-m type="double">32</radius-m>
@@ -919,7 +946,7 @@ Service Ceiling: 43,100ft
                 <abs-altitude type="bool" archive="y">false</abs-altitude>
             </display-controls>
             <serviceable type="bool">true</serviceable>
-            <range n="0" alias="/instrumentation/efis/inputs/range-nm"/>
+            <range n="0" alias="/instrumentation/efis/inputs/range-nm"></range>
             <reference-range-nm type="double" archive="y">640</reference-range-nm>
             <mode type="string" archive="y">WX</mode>
             <font>
@@ -1021,11 +1048,11 @@ Service Ceiling: 43,100ft
         </tcas>
         <efis>
             <inputs>
-                <tfc  type="bool">false</tfc>
-                <sta  type="bool">false</sta>
+                <tfc type="bool">false</tfc>
+                <sta type="bool">false</sta>
                 <arpt type="bool">false</arpt>
-                <wpt  type="bool">false</wpt>
-                <wxr  type="bool">false</wxr>
+                <wpt type="bool">false</wpt>
+                <wxr type="bool">false</wxr>
                 <range-nm type="int">10</range-nm>
             </inputs>
             <mfd>
@@ -1034,11 +1061,11 @@ Service Ceiling: 43,100ft
         </efis>
         <efis n="1">
             <inputs>
-                <tfc  type="bool">false</tfc>
-                <sta  type="bool">false</sta>
+                <tfc type="bool">false</tfc>
+                <sta type="bool">false</sta>
                 <arpt type="bool">false</arpt>
-                <wpt  type="bool">false</wpt>
-                <wxr  type="bool">false</wxr>
+                <wpt type="bool">false</wpt>
+                <wxr type="bool">false</wxr>
                 <range-nm type="int">10</range-nm>
             </inputs>
             <mfd>
@@ -1052,8 +1079,8 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">0</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz  type="double">119.10</selected-mhz>
-                <standby-mhz  type="double">125.00</standby-mhz>
+                <selected-mhz type="double">119.10</selected-mhz>
+                <standby-mhz type="double">125.00</standby-mhz>
             </unit>
             <unit n="1">
                 <vhf-l type="int">0</vhf-l>
@@ -1061,7 +1088,7 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">0</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz  type="double">119.30</selected-mhz>
+                <selected-mhz type="double">119.30</selected-mhz>
                 <standby-mhz type="double">115.70</standby-mhz>
             </unit>
             <unit n="2">
@@ -1070,41 +1097,41 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">1</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz  type="double">119.50</selected-mhz>
+                <selected-mhz type="double">119.50</selected-mhz>
                 <standby-mhz type="double">135.70</standby-mhz>
             </unit>
         </rmu>
         <comm>
             <frequencies>
-                <selected-mhz  type="double">119.10</selected-mhz>
-                <standby-mhz  type="double">125.00</standby-mhz>
+                <selected-mhz type="double">119.10</selected-mhz>
+                <standby-mhz type="double">125.00</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <comm n="1">
             <frequencies>
-                <selected-mhz  type="double">119.30</selected-mhz>
+                <selected-mhz type="double">119.30</selected-mhz>
                 <standby-mhz type="double">115.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <comm n="2">
             <frequencies>
-                <selected-mhz  type="double">119.50</selected-mhz>
+                <selected-mhz type="double">119.50</selected-mhz>
                 <standby-mhz type="double">135.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <nav>
             <frequencies>
-                <selected-mhz  type="double">109.50</selected-mhz>
+                <selected-mhz type="double">109.50</selected-mhz>
                 <standby-mhz type="double">109.55</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </nav>
         <nav n="1">
             <frequencies>
-                <selected-mhz  type="double">110.10</selected-mhz>
+                <selected-mhz type="double">110.10</selected-mhz>
                 <standby-mhz type="double">111.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
@@ -1139,7 +1166,7 @@ Service Ceiling: 43,100ft
         <cdu n="0">
             <serviceable type="bool">true</serviceable>
             <display>IDENT</display>
-            <input type="string"/>
+            <input type="string"></input>
         </cdu>
         <fmc>
             <to-flap type="double">15</to-flap>
@@ -1149,7 +1176,7 @@ Service Ceiling: 43,100ft
                 <min-runway-length-ft type="double">5000</min-runway-length-ft>
             </config>
         </gps>
-        <efb include="Models/Instruments/EFB/TimeZones.xml"/>
+        <efb include="Models/Instruments/EFB/TimeZones.xml"></efb>
     </instrumentation>
 
     <controls n="0">
@@ -1165,8 +1192,8 @@ Service Ceiling: 43,100ft
             <trim-ref-speed type="double">0</trim-ref-speed>
         </flight>
         <cabin>
-            <NoSmoking-knob type="int" >1 </NoSmoking-knob>
-            <SeatBelt-knob type="int" >1 </SeatBelt-knob>
+            <NoSmoking-knob type="int">1 </NoSmoking-knob>
+            <SeatBelt-knob type="int">1 </SeatBelt-knob>
         </cabin>
     </controls>
 
@@ -1225,6 +1252,18 @@ Service Ceiling: 43,100ft
         <cdu>
             <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
         </cdu>
+        <autopush>
+         <file>Nasal/autopush.nas</file>
+        </autopush>
+        <autopush_driver>
+         <file>Nasal/autopush_driver.nas</file>
+        </autopush_driver>
+        <dynarr>
+         <file>Nasal/dynarr.nas</file>
+        </dynarr>
+        <autopush_route>
+         <file>Nasal/autopush_route.nas</file>
+        </autopush_route>
     </nasal>
 
     <limits n="0">

@@ -9,7 +9,10 @@ var tiller_steering = gui.Dialog.new("sim/gui/dialogs/tiller-steering/dialog",
 
 var ground_services = gui.Dialog.new("sim/gui/dialogs/ground_services/dialog",
 		"Aircraft/777/Systems/ground_services-dlg.xml");
-
+		
+var pushback = gui.Dialog.new("sim/gui/dialogs/pushback/dialog",
+		"Aircraft/777/Systems/autopush-dlg.xml");
+		
 var handy_viewer = gui.Dialog.new("sim/gui/dialogs/handy_viewer/dialog",
 		"Aircraft/777/Systems/handy_viewer.xml");
 gui.menuBind("radio", "dialogs.Radio.open()");

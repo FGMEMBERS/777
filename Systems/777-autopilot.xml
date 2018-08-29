@@ -1,9 +1,7 @@
-<?xml version="1.0"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- 777 Autopilot -->
 <!-- Retuned and Overhauled -->
 <!-- (c) 2017 Joshua Davidson (it0uchpods) -->
-
 <PropertyList>
 
  <!-- =============================================================== -->
@@ -1776,7 +1774,7 @@
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<max-rate-of-change>
-			<value>10.0</value>
+			<value>0.75</value>
 		</max-rate-of-change>
 		<input>controls/gear/nosegear-steering-cmd</input>
 		<output>controls/gear/nosegear-steering-cmd-norm</output>
@@ -1787,7 +1785,7 @@
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<max-rate-of-change>
-			<value>10.0</value>
+			<value>0.75</value>
 		</max-rate-of-change>
 		<input>controls/gear/maingear-steering-cmd</input>
 		<output>controls/gear/maingear-steering-cmd-norm</output>
