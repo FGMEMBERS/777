@@ -45,6 +45,7 @@
               </route>
               <debug type="int">0</debug>
             </pushback>
+            <path>Aircraft/Generic/marker.xml</path>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>
         <instrument-options>
@@ -1296,5 +1297,5 @@ Service Ceiling: 43,100ft
         <max-positive-g>2.5</max-positive-g>
         <max-negative-g>-1.76</max-negative-g>
     </limits>
-
+    <path>lightning-f1a.ac</path>
 </PropertyList>
