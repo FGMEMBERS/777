@@ -1,4 +1,4 @@
-var Cabinalertsystem = func{
+var CabinalertTimer = maketimer(5, func(){
 var SeatBeltknob = getprop("/controls/cabin/SeatBelt-knob");
 var IndAltFt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
 var NoSmokeknob = getprop("/controls/cabin/NoSmoking-knob");
@@ -29,11 +29,21 @@ NoSmokeStatus=NoSmokeknob;
 
 setprop("/controls/cabin/SeatBelt-status", SeatbeltStatus);
 setprop("/controls/cabin/NoSmoking-status", NoSmokeStatus);
-settimer(Cabinalertsystem,5);
-}
+CabinalertTimer.restart(5)
+});
 
-setlistener("/sim/signals/fdm-initialized", Cabinalertsystem);
-setlistener("/controls/cabin/SeatBelt-knob", Cabinalertsystem);
-setlistener("/controls/cabin/NoSmoking-knob", Cabinalertsystem);
-setlistener("/conrols/flight/flaps", Cabinalertsystem);
-setlistener("/controls/gear/gear-down", Cabinalertsystem);
+var CabinalertSystem = func{
+CabinalertTimer.singleShot = 1;
+CabinalertTimer.restart(0.01);
+};
+
+var CabinalertStartup = func{
+CabinalertTimer.start();
+};
+
+setlistener("/sim/signals/fdm-initialized", CabinalertStartup);
+setlistener("/controls/cabin/SeatBelt-knob", CabinalertSystem);
+setlistener("/controls/cabin/NoSmoking-knob", CabinalertSystem);
+setlistener("/controls/flight/flaps", CabinalertSystem);
+setlistener("/controls/gear/gear-down", CabinalertSystem);
+
