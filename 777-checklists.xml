@@ -1097,7 +1097,6 @@
             <condition>
                <property>controls/lighting/nav-lights</property>
             </condition>
-			<item>
 			<marker>
 			 <x-m>-1.6223</x-m>
              <y-m>0.0719</y-m>
