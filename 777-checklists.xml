@@ -1110,28 +1110,6 @@
              <value>true</value>
 			</binding>
         </item>
-        </item>
-        <item>
-            <name>Spoilers</name>
-            <value>Armed</value>
-            <condition>
-			   <equals>
-               <property>controls/flight/speedbrake-lever</property>
-			   <value>1</value>
-			   </equals>
-            </condition>
-            <marker>
-             <x-m>-1.5810</x-m>
-             <y-m>-0.0983</y-m>
-             <z-m>0.1727</z-m>
-             <scale>3.7438</scale>
-            </marker>
-            <binding>
-             <command>property-assign</command>
-             <property>controls/flight/speedbrake-lever</property>
-             <value>1</value>
-            </binding>
-        </item>
         <item>
             <name>Brakes</name>
             <value>Tested</value>
@@ -2232,27 +2210,6 @@
              <property>controls/lighting/strobe</property>
              <value>false</value>
 			</binding>
-        </item>
-        <item>
-            <name>Spoilers</name>
-            <value>Armed</value>
-            <condition>
-               <equals>
-               <property>controls/flight/speedbrake-lever</property>
-               <value>1</value>
-               </equals>
-            </condition>
-            <marker>
-             <x-m>-1.5810</x-m>
-             <y-m>-0.0983</y-m>
-             <z-m>0.1727</z-m>
-             <scale>3.7438</scale>
-            </marker>
-            <binding>
-             <command>property-assign</command>
-             <property>controls/flight/speedbrake-lever</property>
-             <value>1</value>
-            </binding>
         </item>
         <item>
             <name>Auto-pilot</name>
