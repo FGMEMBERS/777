@@ -1000,7 +1000,7 @@ Service Ceiling: 43,100ft
                    255 <!-- aircraft type T1, fast turbofan -->
                 </category-1>
                 <category-4>                    <!-- ALTITUDE_CALLOUTS -->
-                    11 <!-- enable all altitude callouts -->
+                    13 <!-- enable all altitude callouts -->
                 </category-4>
                 <category-8>                    <!-- RADIO_ALTITUDE_INPUT_SELECT -->
                      3 <!-- use precise (but YASim-specific) gear altitude -->
