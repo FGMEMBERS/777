@@ -111,11 +111,11 @@ var EFIS = {
             {
                 if(val==0)
                 {
-                    num=250;
+                    var num=250;
                 }
                 else
                 {
-                    num = me.minimums_baro.getValue();
+                    var num = me.minimums_baro.getValue();
                     num+=val;
                     if(num<0)num=0;
                     if(num>12000)num=12000;
@@ -126,11 +126,11 @@ var EFIS = {
             {
                 if(val==0)
                 {
-                    num=250;
+                    var num=250;
                 }
                 else
                 {
-                    num =me.minimums_radio.getValue();
+                    var num =me.minimums_radio.getValue();
                     num+=val;
                     if(num<0)num=0;
                     if(num>2500)num=2500;
