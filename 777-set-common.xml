@@ -1246,6 +1246,7 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Nasal/SWanimation.nas</file>
             <file>Aircraft/777/Nasal/runway.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
+			<file>Aircraft/777/Nasal/light-manager.nas</file>
         </b777>
         <dialogs>
             <file>Aircraft/777/Nasal/dialogs.nas</file>

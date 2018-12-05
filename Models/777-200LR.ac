@@ -1,18 +1,18 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "Paint" rgb 0.8 0.8 0.8  amb 0.8 0.8 0.8  emis 0 0 0  spec 1 1 1  shi 32  trans 0
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0.1 0.1 0.1  spec 0.5 0.5 0.5  shi 64  trans 0
+MATERIAL "Paint" rgb 0.8 0.8 0.8  amb 0.8 0.8 0.8  emis 0.1 0.1 0.1  spec 1 1 1  shi 32  trans 0
 MATERIAL "wire" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 32  trans 0.089
-MATERIAL "flatblack" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
-MATERIAL "Chrome.001" rgb 0.7 0.7 0.7  amb 0.7 0.7 0.7  emis 0 0 0  spec 1 1 1  shi 128  trans 0
-MATERIAL "rubber" rgb 0.81 0.81 0.81  amb 0.81 0.81 0.81  emis 0 0 0  spec 0.718 0.718 0.718  shi 19  trans 0
-MATERIAL "dark" rgb 0.604 0.604 0.604  amb 0.604 0.604 0.604  emis 0 0 0  spec 0.193 0.193 0.193  shi 32  trans 0
-MATERIAL "lettering.004" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 0  trans 0
+MATERIAL "flatblack" rgb 0 0 0  amb 0 0 0  emis 0.1 0.1 0.1  spec 0 0 0  shi 0  trans 0
+MATERIAL "Chrome.001" rgb 0.7 0.7 0.7  amb 0.7 0.7 0.7  emis 0.1 0.1 0.1  spec 1 1 1  shi 128  trans 0
+MATERIAL "rubber" rgb 0.81 0.81 0.81  amb 0.81 0.81 0.81  emis 0.1 0.1 0.1  spec 0.718 0.718 0.718  shi 19  trans 0
+MATERIAL "dark" rgb 0.604 0.604 0.604  amb 0.604 0.604 0.604  emis 0.1 0.1 0.1  spec 0.193 0.193 0.193  shi 32  trans 0
+MATERIAL "lettering.004" rgb 1 1 1  amb 1 1 1  emis 0.1 0.1 0.1  spec 0 0 0  shi 0  trans 0
 MATERIAL "emit" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 32  trans 0.6
-MATERIAL "wire" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 32  trans 0.089
-MATERIAL "Transparent" rgb 0.27 0.313 0.422  amb 0.27 0.313 0.422  emis 0 0 0  spec 1 1 1  shi 128  trans 0.4
-MATERIAL "nospec" rgb 0.815 0.807 0.807  amb 0.815 0.807 0.807  emis 0 0 0  spec 0.073 0.073 0.073  shi 128  trans 0
-MATERIAL "interior" rgb 0.9 0.9 0.9  amb 0.9 0.9 0.9  emis 0 0 0  spec 0.122 0.122 0.122  shi 0  trans 0
-MATERIAL "redlight" rgb 0.930661 0.055107 0.055107  amb 0.930661 0.055107 0.055107  emis 0 0 0  spec 1 0.796765 0.796765  shi 0  trans 0
+MATERIAL "wire" rgb 1 1 1  amb 1 1 1  emis 0.1 0.1 0.1  spec 0 0 0  shi 32  trans 0.089
+MATERIAL "Transparent" rgb 0.27 0.313 0.422  amb 0.27 0.313 0.422  emis 0.1 0.1 0.1  spec 1 1 1  shi 128  trans 0.4
+MATERIAL "nospec" rgb 0.815 0.807 0.807  amb 0.815 0.807 0.807  emis 0.1 0.1 0.1  spec 0.073 0.073 0.073  shi 128  trans 0
+MATERIAL "interior" rgb 0.9 0.9 0.9  amb 0.9 0.9 0.9  emis 0.1 0.1 0.1  spec 0.122 0.122 0.122  shi 0  trans 0
+MATERIAL "redlight" rgb 0.930661 0.055107 0.055107  amb 0.930661 0.055107 0.055107  emis 0.1 0.1 0.1  spec 1 0.796765 0.796765  shi 0  trans 0
 OBJECT world
 kids 114
 OBJECT poly

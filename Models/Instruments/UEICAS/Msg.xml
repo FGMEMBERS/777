@@ -62,6 +62,34 @@
             </transformation>
         </transformations>
     </layer>
+    
+    <layer>
+        <name>advisory messages</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>14</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.4</green>
+            <blue>0</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>text-value</type>
+                <property>instrumentation/efis/eicas/msg/advisory</property>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>-115</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>106</offset>
+            </transformation>
+        </transformations>
+    </layer>
 
     <layer>
         <name>info messages</name>

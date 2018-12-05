@@ -892,9 +892,21 @@
                 <property>instrumentation/weu/sound/autopilot-warning</property>
             </condition>
             <volume>
-                <factor>1</factor>
+                <factor>100</factor>
             </volume>
         </apdisengage>
+        <cautionsound>
+            <name>caution sound</name>
+            <mode>once</mode>
+            <type>avionics</type>
+            <path>Aircraft/777/Sounds/caution-sound.wav</path>
+            <condition>
+                <property>instrumentation/weu/sound/caution-warning</property>
+            </condition>
+            <volume>
+                <factor>100</factor>
+            </volume>
+        </cautionsound>
         <!-- <overspeed> <name>overspeed warning</name> <mode>looped</mode>
             <type>avionics</type> <path>Sounds/overspeed.wav</path> <condition> <greater-than>
             <property>velocities/airspeed-kt</property> <property>instrumentation/afds/max-airspeed-kts</property>
