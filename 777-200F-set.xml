@@ -15,6 +15,10 @@
                 <file type="string">MCA</file>
                 <texture>Liveries-F/MCA.png</texture>
             </livery>
+			<ramp>
+	            <x-m type="float">-19.284</x-m>
+                <class type="string">1</class>
+            </ramp>
         </model>
         <view n="0">
             <config n="0">
