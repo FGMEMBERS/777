@@ -153,5 +153,21 @@
             <descent-profile-low-rate type="double">-0.00029032</descent-profile-low-rate>
         </constant>
     </autopilot>
+	<aircraft>
+	 <jetway-pos>
+      <x-tra>-1.8</x-tra>
+	  <y-rot>3.3</y-rot>
+	  <z-rot>18.3</z-rot>
+	  <hood-rot>-6</hood-rot>
+	  <!--z-entrance-rotation>26</z-entrance-rotation-->
+	 </jetway-pos>
+	 <jetway2-pos>
+	  <x-tra>2.8</x-tra>
+	  <y-rot>8.0</y-rot>
+	  <z-rot>48</z-rot>
+	  <hood-rot>-5</hood-rot>
+	  <!--z-entrance-rotation>49</z-entrance-rotation-->
+     </jetway2-pos>
+    </aircraft>
 
 </PropertyList>
