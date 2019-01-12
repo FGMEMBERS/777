@@ -153,8 +153,8 @@ Are you ready to take controls?
 				<and>
 					<property>controls/fuel/tank/boost-pump</property>
 					<property>controls/fuel/tank/boost-pump[1]</property>
-					<property>controls/fuel/tank[1]/boost-pump</property>
-					<property>controls/fuel/tank[1]/boost-pump[1]</property>
+					<!--property>controls/fuel/tank[1]/boost-pump</property>
+					<property>controls/fuel/tank[1]/boost-pump[1]</property-->
 					<property>controls/fuel/tank[2]/boost-pump</property>
 					<property>controls/fuel/tank[2]/boost-pump[1]</property>
 				</and>
