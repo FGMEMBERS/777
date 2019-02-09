@@ -186,7 +186,50 @@
                 <type>float</type>
                 <property type="string">surface-positions/reverser-norm[1]</property>
             </signal>
-
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/left-out-aileron/final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/left-in-aileron/final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/right-in-aileron/final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/right-out-aileron/final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/left-elevator/final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/right-elevator/final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/rudder/final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/speedbrake/left-out-final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/speedbrake/left-in-final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/speedbrake/right-in-final-deg</property>
+            </signal>
+            <signal>
+                <type>float</type>
+                <property type="string">fcs/speedbrake/right-out-final-deg</property>
+            </signal>
         </signals>
 
     </config>

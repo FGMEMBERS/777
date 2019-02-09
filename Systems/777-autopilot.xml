@@ -1,40 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- 777 Autopilot -->
 <!-- Retuned and Overhauled -->
-<!-- (c) 2017 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+
 <PropertyList>
-
- <!-- =============================================================== -->
- <!-- Lateral                                                         -->
- <!-- =============================================================== -->
-
-	<filter>
-		<name>TO/GA</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<and>
-					<or>
-						<property>/instrumentation/afds/inputs/AP</property>
-						<property>/instrumentation/afds/inputs/FD</property>
-					</or>
-					<equals>
-						<property>/instrumentation/afds/ap-modes/roll-mode</property>
-						<value>TO/GA</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<value>0</value>
-		</input>
-		<output>/autopilot/internal/target-roll-deg</output>
-	</filter>
+	
+	<!-- Roll Axis -->
 	
 	<filter>
-		<name>ROLLOUT-aileron</name>
+		<name>TO/GA or ROLLOUT</name>
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -45,14 +20,20 @@
 						<property>/instrumentation/afds/inputs/AP</property>
 						<property>/instrumentation/afds/inputs/FD</property>
 					</or>
-					<equals>
-						<property>/instrumentation/afds/ap-modes/roll-mode</property>
-						<value>ROLLOUT</value>
-					</equals>
+					<or>
+						<equals>
+							<property>/instrumentation/afds/ap-modes/roll-mode</property>
+							<value>TO/GA</value>
+						</equals>
+						<equals>
+							<property>/instrumentation/afds/ap-modes/roll-mode</property>
+							<value>ROLLOUT</value>
+						</equals>
+					</or>
 				</and>
 			</condition>
 		</enable>
-		<input>0.0</input>
+		<input>0</input>
 		<output>/autopilot/internal/target-roll-deg</output>
 	</filter>
 	
@@ -129,9 +110,19 @@
 		</period>
 	</filter>
 
-	<pi-simple-controller>
-		<name>HDG HOLD</name>
+	<filter>
+		<name>IT-CONTROLLER: HDG ROLL</name>
 		<debug>false</debug>
+		<type>gain</type>
+		<gain>
+			<expression>
+				<table>
+					<property>/velocities/airspeed-kt</property>
+					<entry><ind>140</ind><dep>1.5</dep></entry>
+					<entry><ind>360</ind><dep>2.5</dep></entry>
+				</table>
+			</expression>
+		</gain>
 		<enable>
 			<condition>
 				<and>
@@ -160,30 +151,18 @@
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<property>/autopilot/internal/heading-error-deg</property>
-		</input>
-		<reference>
-			<value>0</value>
-		</reference>
-		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
-		</output>
-		<config>
-			<Kp>-1.3</Kp>
-			<Ki>-0.000001</Ki>
-			<u_min>
-				<property>/instrumentation/afds/settings/bank-min</property>
-			</u_min>
-			<u_max>
-				<property>/instrumentation/afds/settings/bank-max</property>
-			</u_max>
-		</config>
-	</pi-simple-controller>
+		<input>/autopilot/internal/heading-error-deg</input>
+		<reference>0</reference>
+		<output>/autopilot/internal/target-roll-deg</output>
+		<min>/instrumentation/afds/settings/bank-min</min>
+		<max>/instrumentation/afds/settings/bank-max</max>
+	</filter>
 
-	<pi-simple-controller>
-		<name>LNAV1</name>
+	<filter>
+		<name>IT-CONTROLLER: LNAV ROLL</name>
 		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.75</gain>
 		<enable>
 			<condition>
 				<and>
@@ -198,26 +177,12 @@
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<property>/autopilot/internal/course-error-deg</property>
-		</input>
-		<reference>
-			<value>0.0</value>
-		</reference>
-		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
-		</output>
-		<config>
-			<Kp>-1.75</Kp>
-			<Ki>-0.00001</Ki>
-			<u_min>
-				<property>/instrumentation/afds/settings/bank-min</property>
-			</u_min>
-			<u_max>
-				<property>/instrumentation/afds/settings/bank-max</property>
-			</u_max>
-		</config>
-	</pi-simple-controller>
+		<input>/autopilot/internal/course-error-deg</input>
+		<reference>0</reference>
+		<output>/autopilot/internal/target-roll-deg</output>
+		<min>/instrumentation/afds/settings/bank-min</min>
+		<max>/instrumentation/afds/settings/bank-max</max>
+	</filter>
 
 	<filter>
 		<name>nav1 heading error computer/normalizer</name>
@@ -238,9 +203,11 @@
 		</period>
 	</filter>
 
-	<pi-simple-controller>
-		<name>LOC1</name>
+	<filter>
+		<name>IT-CONTROLLER: VORLOC ROLL</name>
 		<debug>false</debug>
+		<type>gain</type>
+		<gain>2.2</gain>
 		<enable>
 			<condition>
 				<and>
@@ -255,26 +222,12 @@
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<property>/autopilot/internal/nav1-heading-error-deg</property>
-		</input>
-		<reference>
-			<value>0.0</value>
-		</reference>
-		<output>
-			<property>/autopilot/internal/target-roll-deg</property>
-		</output>
-		<config>
-			<Kp>-2.0</Kp>
-			<Ki>-0.0001</Ki>
-			<u_min>
-				<property>/instrumentation/afds/settings/bank-min</property>
-			</u_min>
-			<u_max>
-				<property>/instrumentation/afds/settings/bank-max</property>
-			</u_max>
-		</config>
-	</pi-simple-controller>
+		<input>/autopilot/internal/nav1-heading-error-deg</input>
+		<reference>0</reference>
+		<output>/autopilot/internal/target-roll-deg</output>
+		<min>/instrumentation/afds/settings/bank-min</min>
+		<max>/instrumentation/afds/settings/bank-max</max>
+	</filter>
 	
 	<filter>
 		<name>ROLL DEG SYNC</name>
@@ -291,24 +244,31 @@
 		</enable>
 		<input>/orientation/roll-deg</input>
 		<output>/autopilot/internal/target-roll-deg</output>
-		<min>
-			<property>/instrumentation/afds/settings/bank-min</property>
-		</min>
-		<max>
-			<property>/instrumentation/afds/settings/bank-max</property>
-		</max>
+		<min>/instrumentation/afds/settings/bank-min</min>
+		<max>/instrumentation/afds/settings/bank-max</max>
 	</filter>
 	
 	<filter>
 		<name>IT-CONTROLLER: TARGET ROLL CMD</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<input>
-			<property>/autopilot/internal/target-roll-deg</property>
-		</input>
+		<input>/autopilot/internal/target-roll-deg</input>
 		<output>/autopilot/internal/target-roll</output>
 		<type>noise-spike</type>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<not><property>/instrumentation/afds/inputs/AP</property></not>
+					<not><property>/instrumentation/afds/inputs/FD</property></not>
+				</and>
+			</condition>
+			<value>50</value>
+		</max-rate-of-change>
+		<max-rate-of-change>
+			<condition>
+				<not><property>/instrumentation/afds/inputs/AP</property></not>
+			</condition>
+			<value>15</value>
+		</max-rate-of-change>
 		<max-rate-of-change>6</max-rate-of-change>
 	</filter>
 	
@@ -322,33 +282,11 @@
 				<property>/instrumentation/afds/inputs/AP</property>
 			</condition>
 		</enable>
-		<input>
-			<property>/orientation/roll-deg</property>
-		</input>
-		<reference>
-			<property>/autopilot/internal/target-roll</property>
-		</reference>
-		<output>
-			<property>/autopilot/internal/roll-rate</property>
-		</output>
+		<input>/orientation/roll-deg</input>
+		<reference>/autopilot/internal/target-roll</reference>
+		<output>/autopilot/internal/roll-rate</output>
 		<min>-4.8</min>
 		<max>4.8</max>
-	</filter>
-	
-	<filter>
-		<name>IT-CONTROLLER: ROLL RATE KP (P Gain)</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<table>
-					<property>/velocities/mach</property>
-					<entry><ind>0.2</ind><dep>0.16</dep></entry>
-					<entry><ind>0.9</ind><dep>0.06</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/autopilot/internal/roll/kp</output>
 	</filter>
 	
 	<pid-controller>
@@ -375,45 +313,62 @@
 				</and>
 			</condition>
 		</enable>
-		<input>
-			<property>/orientation/roll-rate-degps</property>
-		</input>
-		<reference>
-			<property>/autopilot/internal/roll-rate</property>
-		</reference>
-		<output>
-			<property>/controls/flight/aileron-ap</property>
-		</output>
+		<input>/orientation/roll-rate-degps</input>
+		<reference>/autopilot/internal/roll-rate</reference>
+		<output>/controls/flight/aileron-ap</output>
 		<config>
 			<Kp>
-				<property>/autopilot/internal/roll/kp</property>
+				<expression>
+					<product>
+						<table>
+							<property>/velocities/airspeed-kt</property>
+							<entry><ind>140</ind><dep>0.12</dep></entry>
+							<entry><ind>360</ind><dep>0.04</dep></entry>
+						</table>
+						<table> <!-- Increase deflection if outer ailerons are locked -->
+							<property>/fcs/logic/outer-aileron-locked</property>
+							<entry><ind>0</ind><dep>1.0</dep></entry>
+							<entry><ind>1</ind><dep>1.4</dep></entry>
+						</table>
+					</product>
+				</expression>
 			</Kp>
-			<beta>1</beta>
-			<alpha>0.1</alpha>
-			<gamma>0</gamma>
 			<Ti>1.0</Ti>
 			<Td>0.0001</Td>
-			<u_min>-1</u_min>
-			<u_max>1</u_max>
+			<u_min>-1.0</u_min>
+			<u_max>1.0</u_max>
 		</config>
 	</pid-controller>
 	
 	<filter>
-		<name>IT-CONTROLLER: RUDDER NORMALIZER</name>
+		<name>IT-CONTROLLER: AILERON ROLLOUT</name>
 		<type>gain</type>
-		<gain>1.0</gain>
+		<gain>-0.1</gain>
 		<enable>
 			<condition>
 				<property>/instrumentation/afds/inputs/AP</property>
 			</condition>
 		</enable>
-		<input>/controls/flight/rudder</input>
-		<output>/controls/flight/rudder-afs-input</output>
+		<input>
+			<expression>
+				<table>
+					<property>/orientation/roll-deg</property>
+					<entry><ind>-30</ind><dep>-30</dep></entry>
+					<entry><ind> -1</ind><dep>  0</dep></entry>
+					<entry><ind>  0</ind><dep>  0</dep></entry>
+					<entry><ind>  1</ind><dep>  0</dep></entry>
+					<entry><ind> 30</ind><dep> 30</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<reference>0</reference>
+		<output>/autopilot/internal/aileron-rollout</output>
 	</filter>
 	
 	<filter>
 		<name>System Command: Aileron</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
@@ -423,60 +378,41 @@
 		</enable>
 		<input>
 			<condition>
-				<or>
+				<and>
 					<equals>
 						<property>/gear/gear[1]/wow</property>
-						<value>1</value>
+						<value>0</value>
 					</equals>
 					<equals>
 						<property>/gear/gear[2]/wow</property>
-						<value>1</value>
+						<value>0</value>
 					</equals>
-				</or>
+				</and>
 			</condition>
-			<property>/controls/flight/rudder-afs-input</property>
-			<scale>-1</scale>
-		</input>
-		<input>
 			<property>/controls/flight/aileron-ap</property>
 		</input>
+		<input>/autopilot/internal/aileron-rollout</input>
 		<output>/controls/flight/aileron</output>
-		<type>noise-spike</type>
-		<max-rate-of-change>0.9</max-rate-of-change>
+		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
-
- <!-- =============================================================== -->
- <!-- Vertical                                                        -->
- <!-- =============================================================== -->
 	
-	<predict-simple>
-		<name>ALTITUDE 5 SECONDS AHEAD</name>
-		<debug>false</debug>
-		<input>instrumentation/altimeter/indicated-altitude-ft</input>
-		<output>/autopilot/internal/altitude-5-sec-ahead</output>
-		<seconds>5.0</seconds>
-		<filter-gain>0.0</filter-gain>
-	</predict-simple>
-  
+	<!-- Pitch Axis -->
+	
 	<filter>
 		<name>ALTITUDE CAPTURE/HOLD</name>
 		<debug>false</debug>
 		<type>gain</type>
+		<gain>-5</gain>
 		<input>
 			<expression>
 				<sum>
-					<property>/autopilot/internal/altitude-5-sec-ahead</property>
-					<value>-5</value>
+					<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+					<value>-2</value>
 				</sum>
 			</expression>
 		</input>
-		<reference>
-			<property>/autopilot/settings/actual-target-altitude-ft</property>
-		</reference>
-		<gain>-8</gain>
-		<output>
-			<property>/autopilot/internal/target-fpm-alt</property>
-		</output>
+		<reference>/autopilot/settings/actual-target-altitude-ft</reference>
+		<output>/autopilot/internal/target-fpm-alt</output>
 		<min>-2000</min>
 		<max>2000</max>
 	</filter>
@@ -607,6 +543,15 @@
 		</max-rate-of-change>
 	</filter>
 	
+	<filter>
+		<name>INTERNAL VERTICAL SPEED COMPUTER</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/instrumentation/gps/indicated-vertical-speed</input>
+		<output>/autopilot/internal/vert-speed-fpm</output>
+	</filter>
+	
 	<pid-controller>
 		<name>FLCH SPEED BY PITCH</name>
 		<debug>false</debug>
@@ -696,14 +641,42 @@
 			<property>/autopilot/internal/flch-mach</property>
 			<scale>1000.0</scale>
 		</reference>
-		<output>
-			<property>/autopilot/internal/target-fpm-spd</property>
-		</output>
+		<output>/autopilot/internal/target-fpm-spd</output>
 		<config>
-			<Kp>-50</Kp>
-			<beta>1.0</beta>    
-			<alpha>0.1</alpha>  
-			<gamma>0.0</gamma>  
+			<Kp>
+				<condition>
+					<or>
+						<equals>
+							<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>FLCH SPD</value>
+						</equals>
+						<equals>
+							<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>VNAV SPD</value>
+						</equals>
+						<and>
+							<equals>
+								<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</equals>
+							<equals>
+								<property>/instrumentation/afds/inputs/vnav-path-mode</property>
+								<value>2</value>
+							</equals>
+						</and>
+					</or>
+				</condition>
+				<value>-55</value>
+			</Kp>
+			<Kp>
+				<condition>
+					<equals>
+						<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>TO/GA</value>
+					</equals>
+				</condition>
+				<value>-60</value>
+			</Kp>
 			<Ti>2.5</Ti>        
 			<Td>0.001</Td>
 			<u_min>
@@ -788,6 +761,18 @@
 		</config>
 	</pid-controller>
 	
+	<filter>
+		<name>FPA ERROR</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>/autopilot/internal/fpa</input>
+		<reference>/autopilot/settings/flight-path-angle</reference>
+		<output>/autopilot/internal/fpa-error</output>
+		<min>-1.5</min>
+		<max>1.5</max>
+	</filter>
+	
 	<pid-controller>
 		<name>FPA HOLD</name>
 		<debug>false</debug>
@@ -799,26 +784,31 @@
 				</equals>
 			</condition>
 		</enable>
-		<input>
-			<property>/autopilot/internal/fpa</property>
-		</input>
-		<reference>
-			<property>/autopilot/settings/flight-path-angle</property>
-		</reference>
-		<output>
-			<property>/autopilot/internal/target-fpm-fpa</property>
-		</output>
+		<input>/autopilot/internal/fpa-error</input>
+		<reference>0</reference>
+		<output>/autopilot/internal/target-fpm-fpa</output>
 		<config>
-			<Kp>120</Kp>
-			<beta>1.0</beta>
-			<alpha>0.1</alpha>
-			<gamma>0.0</gamma>
-			<Ti>1.0</Ti>
-			<Td>0.00001</Td>
+			<Kp>
+				<expression>
+					<table>
+						<property>/velocities/airspeed-kt</property>
+						<entry><ind>140</ind><dep>120</dep></entry>
+						<entry><ind>360</ind><dep>340</dep></entry>
+					</table>
+				</expression>
+			</Kp>
+			<Ti>
+				<condition>
+					<property>/instrumentation/afds/inputs/AP</property>
+				</condition>
+				<value>2.0</value>
+			</Ti>
+			<Ti>10.0</Ti>
+			<Td>0.002</Td>
 			<u_min>
 				<expression>
 					<dif>
-						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<property>/autopilot/internal/vert-speed-fpm</property>
 						<value>2500</value>
 					</dif>
 				</expression>
@@ -826,22 +816,13 @@
 			<u_max>
 				<expression>
 					<sum>
-						<property>/it-autoflight/internal/vert-speed-fpm</property>
+						<property>/autopilot/internal/vert-speed-fpm</property>
 						<value>2500</value>
 					</sum>
 				</expression>
 			</u_max>
 		</config>
 	</pid-controller>
-	
-	<filter>
-		<name>INTERNAL VERTICAL SPEED COMPUTER</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>60.0</gain>
-		<input>/velocities/vertical-speed-fps</input>
-		<output>/autopilot/internal/vert-speed-fpm</output>
-	</filter>
 	
 	<filter>
 		<name>INTERNAL VERTICAL SPEED COMPUTER SYNC FLCH</name>
@@ -1034,6 +1015,48 @@
 		<output>/autopilot/internal/target-common-fpm</output>
 	</filter>
 	
+	<filter>
+		<name>VERT SPEED FILTER</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/autopilot/settings/vertical-speed-fpm</input>
+		<output>/autopilot/internal/vertical-speed-fpm</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<or>
+						<equals>
+							<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>V/S</value>
+						</equals>
+						<and>
+							<equals>
+								<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+								<value>VNAV PTH</value>
+							</equals>
+							<equals>
+								<property>/instrumentation/afds/inputs/vnav-path-mode</property>
+								<value>1</value>
+							</equals>
+						</and>
+					</or>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<value>300</value>
+		</max-rate-of-change>
+		<max-rate-of-change>2000</max-rate-of-change>
+	</filter>
+	
 	<pid-controller>
 		<name>FPM HOLD</name>
 		<debug>false</debug>
@@ -1042,9 +1065,7 @@
 				<property>/instrumentation/afds/inputs/AP</property>
 			</condition>
 		</enable>
-		<input>
-			<property>/autopilot/internal/vert-speed-fpm</property>
-		</input>
+		<input>/autopilot/internal/vert-speed-fpm</input>
 		<reference>
 			<condition>
 				<or>
@@ -1089,7 +1110,7 @@
 					</and>
 				</or>
 			</condition>
-			<property>/autopilot/settings/vertical-speed-fpm</property>
+			<property>/autopilot/internal/vertical-speed-fpm</property>
 		</reference>
 		<reference>
 			<condition>
@@ -1144,10 +1165,23 @@
 			</condition>
 			<property>/autopilot/internal/nav1-rate-of-climb-fpm</property>
 		</reference>
-		<output>
-			<property>/autopilot/internal/target-pitch-deg</property>
-		</output>
+		<output>/autopilot/internal/target-pitch-deg</output>
 		<config>
+			<Kp>
+				<condition>
+					<not-equals>
+						<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLARE</value>
+					</not-equals>
+				</condition>
+				<expression>
+					<table>
+						<property>/velocities/airspeed-kt</property>
+						<entry><ind>140</ind><dep>0.0029</dep></entry>
+						<entry><ind>360</ind><dep>0.0009</dep></entry>
+					</table>
+				</expression>
+			</Kp>
 			<Kp>
 				<condition>
 					<equals>
@@ -1157,36 +1191,31 @@
 				</condition>
 				<value>0.0066</value>
 			</Kp>
-			<Kp>0.0017</Kp>
-			<Ti>3.0</Ti>
+			<Ti>2.5</Ti>
 			<Td>0.0001</Td>
 			<u_min>
 				<condition>
-					<and>
-						<equals>
-							<property>/gear/gear[1]/wow</property>
-							<value>0</value>
-						</equals>
-						<equals>
-							<property>/gear/gear[2]/wow</property>
-							<value>0</value>
-						</equals>
-					</and>
+					<not-equals>
+						<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLARE</value>
+					</not-equals>
 				</condition>
-				<value>-10</value>
+				<expression>
+					<max>
+						<dif>
+							<property>/orientation/pitch-deg</property>
+							<value>5</value>
+						</dif>
+						<value>-10</value>
+					</max>
+				</expression>
 			</u_min>
 			<u_min>
 				<condition>
-					<or>
-						<equals>
-							<property>/gear/gear[1]/wow</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/gear/gear[2]/wow</property>
-							<value>1</value>
-						</equals>
-					</or>
+					<equals>
+						<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLARE</value>
+					</equals>
 				</condition>
 				<value>0</value>
 			</u_min>
@@ -1203,7 +1232,15 @@
 						</equals>
 					</and>
 				</condition>
-				<value>30</value>
+				<expression>
+					<min>
+						<sum>
+							<property>/orientation/pitch-deg</property>
+							<value>5</value>
+						</sum>
+						<value>30</value>
+					</min>
+				</expression>
 			</u_max>
 			<u_max>
 				<condition>
@@ -1249,33 +1286,11 @@
 				<property>/instrumentation/afds/inputs/AP</property>
 			</condition>
 		</enable>
-		<input>
-			<property>/orientation/pitch-deg</property>
-		</input>
-		<reference>
-			<property>/autopilot/internal/target-pitch-deg</property>
-		</reference>
-		<output>
-			<property>/autopilot/internal/pitch-rate</property>
-		</output>
+		<input>/orientation/pitch-deg</input>
+		<reference>/autopilot/internal/target-pitch-deg</reference>
+		<output>/autopilot/internal/pitch-rate</output>
 		<min>-1.5</min>
 		<max>1.5</max>
-	</filter>
-	
-	<filter>
-		<name>IT-CONTROLLER: PITCH RATE KP (P Gain)</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<table>
-					<property>/velocities/mach</property>
-					<entry><ind>0.2</ind><dep>-0.13</dep></entry>
-					<entry><ind>0.9</ind><dep>-0.08</dep></entry>
-				</table>
-			</expression>
-		</input>
-		<output>/autopilot/internal/pitch/kp</output>
 	</filter>
 	
 	<pid-controller>
@@ -1309,58 +1324,25 @@
 		</output>
 		<config>
 			<Kp>
-				<property>/autopilot/internal/pitch/kp</property>
+				<expression>
+					<table>
+						<property>/velocities/airspeed-kt</property>
+						<entry><ind>140</ind><dep>-0.13</dep></entry>
+						<entry><ind>360</ind><dep>-0.07</dep></entry>
+					</table>
+				</expression>
 			</Kp>
-			<beta>1</beta>
-			<alpha>0.1</alpha>
-			<gamma>0</gamma>
-			<Ti>0.45</Ti>
+			<Ti>0.5</Ti>
 			<Td>0.001</Td>
-			<u_min>-1</u_min>
-			<u_max>1</u_max>
+			<u_min>-1.0</u_min>
+			<u_max>1.0</u_max>
 		</config>
 	</pid-controller>
 	
 	<filter>
-		<name>FLARE-rollout</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<enable>
-			<condition>
-				<and>
-					<property>/instrumentation/afds/inputs/AP</property>
-					<equals>
-						<property>/instrumentation/afds/ap-modes/pitch-mode</property>
-						<value>FLARE</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[1]/wow</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/gear/gear[2]/wow</property>
-						<value>1</value>
-					</equals>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<condition>
-				<equals>
-					<property>/gear/gear[0]/wow</property>
-					<value>0</value>
-				</equals>
-			</condition>
-			<value>0.2</value>
-		</input>
-		<input>0.0</input>
-		<output>/controls/flight/elevator-ap</output>
-	</filter>
-	
-	<filter>
 		<name>System Command: Elevator</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
@@ -1369,193 +1351,194 @@
 			</condition>
 		</enable>
 		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
 			<property>/controls/flight/elevator-ap</property>
 		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/gear/gear[0]/wow</property>
+						<value>0</value>
+					</equals>
+					<or>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
+			</condition>
+			<value>0.15</value>
+		</input>
+		<input>0.075</input>
 		<output>/controls/flight/elevator</output>
-		<type>noise-spike</type>
-		<max-rate-of-change>0.8</max-rate-of-change>
+		<max-rate-of-change>1.2</max-rate-of-change>
 	</filter>
 	
- <!-- =============================================================== -->
- <!-- Rudder Control                                                  -->
- <!-- =============================================================== -->
-	
-	<pi-simple-controller>
-		<name>ROLLOUT-rudder-air</name>
+	<filter>
+		<name>IT-CONTROLLER: PITCH TRIM</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
 		<enable>
 			<condition>
 				<and>
-					<property>/instrumentation/afds/inputs/AP</property>
 					<equals>
-						<property>/instrumentation/afds/ap-modes/roll-mode</property>
-						<value>ROLLOUT</value>
+						<property>/gear/gear[1]/wow</property>
+						<value>0</value>
 					</equals>
-					<not><property>/gear/gear[0]/wow</property></not>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<property>/orientation/heading-deg</property>
-		</input>
-		<reference>
-			<property>/instrumentation/nav[0]/radials/target-radial-deg</property>
-		</reference>
-		<output>
-			<property>/controls/flight/rudder</property>
-		</output>
-		<config>
-			<Kp>0.03</Kp>
-			<Ki>0.01</Ki>
-			<u_min>-0.5</u_min>
-			<u_max>0.5</u_max>
-		</config>
-	</pi-simple-controller>
-
-	<pi-simple-controller>
-		<name>ROLLOUT-rudder-gnd</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<and>
-					<property>/instrumentation/afds/inputs/AP</property>
 					<equals>
-						<property>/instrumentation/afds/ap-modes/roll-mode</property>
-						<value>ROLLOUT</value>
+						<property>/gear/gear[2]/wow</property>
+						<value>0</value>
 					</equals>
-					<property>/gear/gear[0]/wow</property>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<property>/autopilot/internal/nav1-heading-error-deg</property>
-		</input>
-		<reference>
-			<value>0.0</value>
-		</reference>
-		<output>
-			<property>/controls/flight/rudder</property>
-		</output>
-		<config>
-			<Kp>-0.10</Kp>
-			<Ki>0.0</Ki>
-			<u_min>-0.5</u_min>
-			<u_max>0.5</u_max>
-		</config>
-	</pi-simple-controller>
-
-	<pid-controller>
-		<name>Rudder Control</name>
-		<debug>false</debug>
-		<enable>
-			<condition>
-				<and>
 					<property>/instrumentation/afds/inputs/AP</property>
-					<not><property>/gear/gear[1]/wow</property></not>
-					<not>
-						<equals>
-							<property>/instrumentation/afds/ap-modes/roll-mode</property>
-							<value>ROLLOUT</value>
-						</equals>
-					</not>
-				</and>
-			</condition>
-		</enable>
-		<input>
-			<property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
-		</input>
-		<reference>
-			<value>0.0</value>
-		</reference>
-		<output>
-			<property>/controls/flight/rudder</property>
-		</output>
-		<config>
-			<Kp>0.035</Kp>
-			<beta>1</beta>
-			<alpha>0.1</alpha>
-			<gamma>0</gamma>
-			<Ti>3.0</Ti>
-			<Td>0.00001</Td>
-			<u_min>-0.2</u_min>
-			<u_max>0.2</u_max>
-		</config>
-	</pid-controller>
-	
- <!-- =============================================================== -->
- <!-- Autotrim                                                        -->
- <!-- =============================================================== -->
- 
-	<pi-simple-controller>
-		<name>FBW Stabilizer Control</name>
-		<debug>false</debug>
-		<input>
-			<property>/controls/flight/elevator</property>
-		</input>
-		<reference>
-			<value>0</value>
-		</reference>
-		<output>
-			<property>/autopilot/internal/stab-target</property>
-		</output>
-		<config>
-			<Ki>
-				<condition>
-					<property>instrumentation/afds/inputs/AP</property>
-				</condition>
-				<value>-0.3</value>
-			</Ki>
-			<Ki>
-				<condition>
-					<and>
-						<not><property>instrumentation/afds/inputs/AP</property></not>
+					<or>
 						<greater-than>
-							<property>/orientation/roll-deg</property>
-							<value>-5.0</value>
+							<property>/controls/flight/elevator-ap</property>
+							<value>0.01</value>
 						</greater-than>
 						<less-than>
-							<property>/orientation/roll-deg</property>
-							<value>5.0</value>
+							<property>/controls/flight/elevator-ap</property>
+							<value>-0.01</value>
 						</less-than>
+					</or>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/controls/flight/elevator-ap</property>
+					<value>0.01</value>
+				</greater-than>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<property>/controls/flight/elevator-ap</property>
+					<value>-0.01</value>
+				</less-than>
+			</condition>
+			<value>-1</value>
+		</input>
+		<output>/controls/flight/elevator-trim</output>
+		<min>-1.0</min>
+		<max>1.0</max>
+		<max-rate-of-change>0.01</max-rate-of-change>
+	</filter>
+	
+	<!-- Yaw Axis -->
+	
+	<pi-simple-controller>
+		<name>RUDDER VORLOC TRK</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<and>
+					<property>/instrumentation/afds/inputs/AP</property>
+					<equals>
+						<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>FLARE</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>/autopilot/internal/nav1-heading-error-deg</input>
+		<reference>0</reference>
+		<output>/controls/flight/rudder-ap</output>
+		<config>
+			<Kp>
+				<condition>
+					<and>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>0</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>0</value>
+						</equals>
 					</and>
 				</condition>
+				<value>-0.05</value>
+			</Kp>
+			<Kp>
+				<condition>
+					<or>
+						<equals>
+							<property>/gear/gear[1]/wow</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/gear/gear[2]/wow</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</condition>
 				<value>-0.02</value>
-			</Ki>
-			<u_min>-11.0</u_min>
-			<u_max>4.0</u_max>
+			</Kp>
+			<Ki>0</Ki>
 		</config>
+		<min>-0.15</min>
+		<max>0.15</max>
 	</pi-simple-controller>
 	
 	<filter>
-		<name>Stabilizer control</name>
+		<name>IT-CONTROLLER: RUDDER CMD</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<property>/instrumentation/afds/inputs/AP</property>
+			</condition>
+		</enable>
 		<input>
-			<expression>
-				<sum>
-					<property>/controls/flight/trim-ref-speed</property>
-					<property>/autopilot/internal/stab-target</property>
-				</sum>
-			</expression>
+			<condition>
+				<equals>
+					<property>/instrumentation/afds/ap-modes/pitch-mode</property>
+					<value>FLARE</value>
+				</equals>
+			</condition>
+			<property>/controls/flight/rudder-ap</property>
 		</input>
-		<output>/controls/flight/elevator-trim</output>
-		<max-rate-of-change>0.05</max-rate-of-change>
+		<input>0</input>
+		<output>/controls/flight/rudder</output>
+		<max-rate-of-change>0.6</max-rate-of-change>
 	</filter>
 	
- <!-- =============================================================== -->
- <!-- Flight Director                                                 -->
- <!-- =============================================================== -->
+	<!-- Flight Director -->
 	
 	<filter>
 		<name>IT-CONTROLLER: TARGET ROLL CMD</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
-		<input>
-			<property>/autopilot/internal/target-roll-deg</property>
-		</input>
-		<output>/autopilot/internal/target-roll-fd</output>
 		<type>noise-spike</type>
+		<input>/autopilot/internal/target-roll-deg</input>
+		<output>/autopilot/internal/target-roll-fd</output>
+		<max-rate-of-change>
+			<condition>
+				<not><property>/instrumentation/afds/inputs/FD</property></not>
+			</condition>
+			<value>50</value>
+		</max-rate-of-change>
 		<max-rate-of-change>15</max-rate-of-change>
 	</filter>
 	
@@ -1602,18 +1585,14 @@
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
 	
- <!-- =============================================================== -->
- <!-- Other Stuff                                                     -->
- <!-- =============================================================== -->
-
+	<!-- Other stuff -->
+	
 	<filter>
 		<name>Tiller control filter nose</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
-		<max-rate-of-change>
-			<value>0.75</value>
-		</max-rate-of-change>
-		<input>controls/gear/nosegear-steering-cmd</input>
+		<max-rate-of-change>0.75</max-rate-of-change>
+		<input>/controls/gear/nosegear-steering-cmd</input>
 		<output>/controls/gear/nosegear-steering-cmd-norm</output>
 	</filter>
 
@@ -1621,10 +1600,8 @@
 		<name>Tiller control filter main</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
-		<max-rate-of-change>
-			<value>0.75</value>
-		</max-rate-of-change>
-		<input>controls/gear/maingear-steering-cmd</input>
+		<max-rate-of-change>0.75</max-rate-of-change>
+		<input>/controls/gear/maingear-steering-cmd</input>
 		<output>/controls/gear/maingear-steering-cmd-norm</output>
 	</filter>
 

@@ -661,24 +661,6 @@
             <reference-dist>2</reference-dist>
             <max-dist>200.0</max-dist>
         </switch>
-        <speedbrake>
-            <name>speedbrake</name>
-            <mode>in-transit</mode>
-            <path>Sounds/flaps.wav</path>
-            <property>surface-positions/speedbrake-pos-norm</property>
-            <volume>
-                <property>sim/sound/Ovolume</property>
-                <max>0.8</max>
-                <offset>0.2</offset>
-            </volume>
-            <position>
-                <x>-9</x>
-                <y>0</y>
-                <z>0</z>
-            </position>
-            <reference-dist>60.0</reference-dist>
-            <max-dist>6000.0</max-dist>
-        </speedbrake>
         <engines>
             <name>left reverse-thrust</name>
             <mode>looped</mode>

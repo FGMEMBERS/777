@@ -79,45 +79,6 @@
         <output>controls/flight/air-sensing-sw</output>
     </flipflop>
 
-    <filter>
-        <name>Speedbrake Extend in air</name>
-        <type>gain</type>
-        <update-interval-secs type="double">0.2</update-interval-secs>
-        <gain>0.8</gain>
-        <enable>
-            <condition>
-                <property>controls/flight/air-sensing-sw</property>
-            </condition>
-        </enable>
-        <input>
-            <property>surface-positions/speedbrake-pos-norm</property>
-        </input>
-        <output>
-            <property>controls/flight/speedbrake-angle</property>
-        </output>
-    </filter>
-
-    <filter>
-        <name>Speedbrake Extend on ground</name>
-        <type>gain</type>
-        <update-interval-secs type="double">0.2</update-interval-secs>
-        <gain>1.0</gain>
-        <enable>
-            <condition>
-                <or>
-                    <property>gear/gear[1]/wow</property>
-                    <property>gear/gear[2]/wow</property>
-                </or>
-            </condition>
-        </enable>
-        <input>
-            <property>surface-positions/speedbrake-pos-norm</property>
-        </input>
-        <output>
-            <property>controls/flight/speedbrake-angle</property>
-        </output>
-    </filter>
-
     <!-- flap protection -->
 
     <filter>

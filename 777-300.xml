@@ -104,11 +104,10 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
       <control-input axis="/surface-positions/flap-pos-norm" control="SLAT" src0="0" dst0="0" src1="0.1428" dst1="1.0"></control-input>
       <control-output control="SLAT" prop="/surface-positions/slats"></control-output>
       <control-speed control="FLAP0" transition-time="78"></control-speed>
-      <control-input axis="/controls/flight/speedbrake" control="SPOILER"></control-input>
+      <control-input axis="/fcs/output/drag-spoiler" control="SPOILER"></control-input>
       <control-output control="SPOILER" prop="/surface-positions/speedbrake-pos-norm"></control-output>
       <control-speed control="SPOILER" transition-time="2"></control-speed>
-      <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"></control-input>
-      <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"></control-input>
+      <control-input axis="/fcs/output/roll" control="FLAP1" split="true"></control-input>
       <control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm"></control-output>
       <control-output control="FLAP1" side="right" prop="/surface-positions/right-aileron-pos-norm"></control-output>
   </wing>
@@ -116,7 +115,7 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
   <hstab x="-31.0" y="1.5" z="1.0" chord="6.0" length="10.84" taper=".20" sweep="28" dihedral="7" camber="0.0">
     <stall aoa="18" width="5" peak="1.5"></stall>
     <flap0 start="0" end="1" lift="1.4" drag="1.2"></flap0>
-  <control-input axis="/controls/flight/elevator" control="FLAP0"></control-input>
+  <control-input axis="/fcs/output/pitch" control="FLAP0"></control-input>
   <control-input axis="/controls/flight/elevator-trim" control="FLAP0"></control-input>
     <control-output control="FLAP0" prop="/surface-positions/elevator-trim-tab-pos-norm"></control-output>
 </hstab>
@@ -124,8 +123,7 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
   <vstab x="-30.0" y="0.00" z="2.7" chord="8.0" length="12.2" taper="0.3" sweep="33">
   <stall aoa="14" width="5" peak="1.5"></stall>
     <flap0 start="0" end="1" lift="1.4" drag="1.2"></flap0>
-  <control-input axis="/controls/flight/rudder" control="FLAP0" invert="true"></control-input>
-  <control-input axis="/controls/flight/rudder-trim" control="FLAP0" invert="true"></control-input>
+  <control-input axis="/fcs/output/yaw" control="FLAP0" invert="true"></control-input>
   <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm" min="1" max="-1"></control-output>
 </vstab>
 

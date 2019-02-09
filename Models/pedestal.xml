@@ -681,8 +681,9 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <repeatable>true</repeatable>
             <button>0</button>
             <binding>
-                <command>nasal</command>
-                <script>controls.elevatorTrim(1);</script>
+                <command>property-adjust</command>
+                <property>controls/flight/elevator-trim</property>
+				<step type="double">0.001</step>
             </binding>
         </action>
     </animation>
@@ -694,8 +695,9 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
             <repeatable>true</repeatable>
             <button>1</button>
             <binding>
-                <command>nasal</command>
-                <script>controls.elevatorTrim(-1);</script>
+                <command>property-adjust</command>
+                <property>controls/flight/elevator-trim</property>
+				<step type="double">-0.001</step>
             </binding>
         </action>
     </animation>

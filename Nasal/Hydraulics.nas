@@ -282,6 +282,17 @@ var HYDR = {
             nosewheelpos.setAttribute("writable",0);
             mainwheelpos.setAttribute("writable",0);
         }
+		
+		# Tell my new FCS if the Hydraulics are available or not - JD
+		setprop("/fcs/left-out-aileron/hyd-avail", leftaileronpos.getAttribute("writable"));
+		setprop("/fcs/left-in-aileron/hyd-avail", leftaileronpos.getAttribute("writable"));
+		setprop("/fcs/right-in-aileron/hyd-avail", rightaileronpos.getAttribute("writable"));
+		setprop("/fcs/right-out-aileron/hyd-avail", rightaileronpos.getAttribute("writable"));
+		setprop("/fcs/left-elevator/hyd-avail", elevatorpos.getAttribute("writable"));
+		setprop("/fcs/right-elevator/hyd-avail", elevatorpos.getAttribute("writable"));
+		setprop("/fcs/stabilizer/hyd-avail", elevatorpos.getAttribute("writable"));
+		setprop("/fcs/rudder/hyd-avail", rudderpos.getAttribute("writable"));
+		setprop("/fcs/spoilers/hyd-avail", speedbkpos.getAttribute("writable"));
     }
 };
 

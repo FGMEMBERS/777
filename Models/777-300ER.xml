@@ -229,8 +229,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rudder</object-name>
-    <property>surface-positions/rudder-pos-norm</property>
-    <factor>35</factor>
+    <property>fcs/rudder/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>35.9653</x-m>
         <y-m>0</y-m>
@@ -247,8 +247,8 @@ Syd Adams
     <type>rotate</type>
     <object-name>LHelevator</object-name>
     <object-name>LHstab</object-name>
-    <property>surface-positions/stabilizer-pos-norm</property>
-    <factor>-15</factor>
+    <property>fcs/stabilizer/final-deg</property>
+    <factor>-1</factor>
     <center>
         <x-m>36.2293</x-m>
         <y-m>0</y-m>
@@ -264,8 +264,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>LHelevator</object-name>
-    <property>surface-positions/elevator-pos-norm</property>
-    <factor>-10</factor>
+    <property>fcs/left-elevator/final-deg</property>
+    <factor>-1</factor>
     <center>
         <x-m>37.9093</x-m>
         <y-m>-1.026</y-m>
@@ -282,8 +282,8 @@ Syd Adams
     <type>rotate</type>
     <object-name>RHelevator</object-name>
     <object-name>RHstab</object-name>
-    <property>surface-positions/stabilizer-pos-norm</property>
-    <factor>15</factor>
+    <property>fcs/stabilizer/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>36.8513</x-m>
         <y-m>1.250</y-m>
@@ -299,8 +299,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>RHelevator</object-name>
-    <property>surface-positions/elevator-pos-norm</property>
-    <factor>10</factor>
+    <property>fcs/right-elevator/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>37.9093</x-m>
         <y-m>1.026</y-m>
@@ -316,14 +316,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Raileron</object-name>
-        <condition>
-            <greater-than>
-                <property>surface-positions/flap-pos-norm</property>
-                <value>0</value>
-            </greater-than>
-        </condition>
-    <property>surface-positions/right-aileron-pos-norm</property>
-    <factor>-15</factor>
+    <property>fcs/right-out-aileron/final-deg</property>
+    <factor>-1</factor>
     <center>
         <x-m>16.127</x-m>
         <y-m>29.538</y-m>
@@ -339,45 +333,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rflaperon</object-name>
-    <property>surface-positions/right-aileron-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>-1.0</ind>
-                <dep>-3.0</dep>
-            </entry>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>15</dep>
-            </entry>
-         </interpolation>
-    <axis>
-        <x1-m> 7.77445</x1-m>
-        <y1-m> 7.92046</y1-m>
-        <z1-m>-0.87001</z1-m>
-        <x2-m> 7.77445</x2-m>
-        <y2-m> 11.0438</y2-m>
-        <z2-m>-0.426481</z2-m>
-    </axis>
-    </animation>
-
-    <animation>
-    <type>rotate</type>
-    <object-name>Rflaperon</object-name>
-    <property>surface-positions/flap-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>30</dep>
-            </entry>
-         </interpolation>
+    <property>fcs/right-in-aileron/final-deg</property>
+    <factor>1</factor>
     <axis>
         <x1-m> 7.77445</x1-m>
         <y1-m> 7.92046</y1-m>
@@ -451,17 +408,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rbrake</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/right-in-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>6.673</x1-m>
         <y1-m>3.269</y1-m>
@@ -475,17 +423,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rbrake1</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/right-out-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>7.262</x1-m>
         <y1-m>11.979</y1-m>
@@ -559,17 +498,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Lbrake</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/left-in-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>6.737</x1-m>
         <y1-m>-8.363</y1-m>
@@ -583,17 +513,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Lbrake1</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/left-out-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>11.353</x1-m>
         <y1-m>-20.368</y1-m>
@@ -607,14 +528,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Laileron</object-name>
-        <condition>
-            <greater-than>
-                <property>surface-positions/flap-pos-norm</property>
-                <value>0</value>
-            </greater-than>
-        </condition>
-    <property>surface-positions/left-aileron-pos-norm</property>
-    <factor>15</factor>
+    <property>fcs/left-out-aileron/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>16.127</x-m>
         <y-m>-29.538</y-m>
@@ -627,53 +542,11 @@ Syd Adams
     </axis>
     </animation>
 
-<!--
-For the B767, the lockout is at around approx 278 kts or Mach .59.
-From Maintenance Training Manual
-Outboard Aileron Lockout Schedule
--->
     <animation>
     <type>rotate</type>
     <object-name>Lflaperon</object-name>
-    <property>surface-positions/left-aileron-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>-1.0</ind>
-                <dep>3.0</dep>
-            </entry>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>-15</dep>
-            </entry>
-         </interpolation>
-    <axis>
-        <x1-m> 7.77445</x1-m>
-        <y1-m>-7.92046</y1-m>
-        <z1-m>-0.87001</z1-m>
-        <x2-m> 7.77445</x2-m>
-        <y2-m>-11.0438</y2-m>
-        <z2-m>-0.426481</z2-m>
-    </axis>
-    </animation>
-
-    <animation>
-    <type>rotate</type>
-    <object-name>Lflaperon</object-name>
-    <property>surface-positions/flap-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>-30</dep>
-            </entry>
-         </interpolation>
+    <property>fcs/left-in-aileron/final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m> 7.77445</x1-m>
         <y1-m>-7.92046</y1-m>

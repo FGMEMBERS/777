@@ -2,7 +2,7 @@
 <PropertyList>
 
     <sim n="0">
-        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu, Isaak Dieleman</author>
+        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu, Isaak Dieleman, Joshua Davidson</author>
         <status>production</status>
         <rating>
             <FDM type="int">4</FDM>
@@ -527,6 +527,14 @@ Service Ceiling: 43,100ft
                             <dialog-name>handyviewer</dialog-name>
                         </binding>
                     </item>
+                    <item>
+                        <label>FBW Settings</label>
+                        <name>fbwsettings</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>fbwsettings</dialog-name>
+                        </binding>
+                    </item>
                 </menu>
             </default>
         </menubar>
@@ -608,6 +616,12 @@ Service Ceiling: 43,100ft
 
             <!--  fast running autopilot rules (running at FDM frequency / 120Hz) -->
             <autopilot>
+                <path>Aircraft/777/Systems/777-fcs.xml</path>
+            </autopilot>
+            <autopilot>
+                <path>Aircraft/777/Systems/777-spoiler.xml</path>
+            </autopilot>
+            <autopilot>
                 <path>Aircraft/777/Systems/777-autopilot.xml</path>
             </autopilot>
             <autopilot>
@@ -617,16 +631,13 @@ Service Ceiling: 43,100ft
                 <name>Autobrake system</name>
                 <path>Aircraft/777/Systems/777-autobrake.xml</path>
             </autopilot>
+            <autopilot>
+                <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
+            </autopilot>
 
             <!--  slow running property-rules (running at frame rate) -->
             <property-rule n="100">
-                <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
-            </property-rule>
-            <property-rule n="101">
                 <path>Aircraft/777/Systems/777-PFD.xml</path>
-            </property-rule>
-            <property-rule n="102">
-                <path>Aircraft/777/Systems/777-pcu.xml</path>
             </property-rule>
         </systems>
 
@@ -811,7 +822,7 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>property-adjust</command>
                     <property>controls/flight/aileron-trim</property>
-                    <step type="double">-0.012</step>
+                    <step type="double">-0.01</step>
                 </binding>
             </key>
             <key n="41">
@@ -821,29 +832,7 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>property-adjust</command>
                     <property>controls/flight/aileron-trim</property>
-                    <step type="double">0.012</step>
-                </binding>
-            </key>
-            <key n="49">
-                <name>1</name>
-                <desc>nose up stab trim</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        controls.elevatorTrim(-1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
-                    </script>
-                </binding>
-            </key>
-            <key n="55">
-                <name>7</name>
-                <desc>nose down stab trim</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        controls.elevatorTrim(1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
-                    </script>
+                    <step type="double">0.01</step>
                 </binding>
             </key>
             <key n="61">
@@ -900,28 +889,6 @@ Service Ceiling: 43,100ft
                     <step type="double">0.01</step>
                     <min>1</min>
                     <max>2</max>
-                </binding>
-            </key>
-            <key n="362">
-                <name>Home</name>
-                <desc>nose down stab trim</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        controls.elevatorTrim(1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
-                    </script>
-                </binding>
-            </key>
-            <key n="363">
-                <name>End</name>
-                <desc>nose up stab trim</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        controls.elevatorTrim(-1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
-                    </script>
                 </binding>
             </key>
         </keyboard>

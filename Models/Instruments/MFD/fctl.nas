@@ -53,7 +53,7 @@ var canvas_fctl = {
     updateSpoilers: func()
     {
         var spoilerTotalHeight = 77.5;
-        var spbangle = getprop("controls/flight/speedbrake-angle") or 0.00;
+        var spbangle = getprop("surface-positions/speedbrake-pos-norm") or 0.00;
         var spoilerCurrentHeight = spbangle*spoilerTotalHeight;
         spoilers_scale.setScale(1,spbangle);
         spoilers_scale.setTranslation(0,(spoilerTotalHeight-spoilerCurrentHeight)/2);
@@ -78,8 +78,8 @@ var canvas_fctl = {
             aileronPosLeft.setTranslation(0,62*getprop("surface-positions/left-aileron-pos-norm"));
             aileronPosRight.setTranslation(0,62*getprop("surface-positions/right-aileron-pos-norm"));
         }
-        elevPosLeft.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
-        elevPosRight.setTranslation(0,62*getprop("surface-positions/elevator-pos-norm"));
+        elevPosLeft.setTranslation(0,62*getprop("surface-positions/elevator-trim-tab-pos-norm"));
+        elevPosRight.setTranslation(0,62*getprop("surface-positions/elevator-trim-tab-pos-norm"));
         elevatorTrim.setText(sprintf("%3.2f",getprop("surface-positions/stabilizer-pos-norm")));
 
         me.updateRudderTrim();
