@@ -19,32 +19,7 @@
             </livery>
             <armrest type="double">0</armrest>
             <fallback-model-index type="int">252</fallback-model-index>
-            <pushback>
-              <enabled type="int"></enabled>
-              <available type="int">1</available>
-              <!--chocks alias="/controls/gear/wheel-chocks"/-->
-              <steer-cmd-norm alias="/controls/gear/tiller-cmd-norm"></steer-cmd-norm>
-              <yaw alias="/controls/gear/nosegear-steering-angle-rad"></yaw>
-              <yaw-mult type="float">1.0</yaw-mult>
-              <target-speed-km_h type="float">0.0</target-speed-km_h>
-              <K_p type="float">0.5</K_p>
-              <F_p type="float">0.15</F_p>
-              <K_i type="float">0.25</K_i>
-              <F_i type="float">0.1</F_i>
-              <K_d type="float">0.0</K_d>
-              <F_d type="float">0.0</F_d>
-              <driver>
-               <K_V type="float">5.5</K_V>
-               <F_V type="float">8.0</F_V>
-               <D_min-m type="float">7.5</D_min-m>
-               <K_psi type="float">0.05</K_psi>
-              </driver>
-              <route>
-               <show type="bool"></show>
-               <view type="string">Model View</view>
-              </route>
-              <debug type="int">0</debug>
-            </pushback>
+            <autopush include="autopush-config.xml"/>
             <path>Aircraft/Generic/marker.xml</path>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>
@@ -492,10 +467,10 @@ Service Ceiling: 43,100ft
                     </item>
                     <item>                       
                         <label>Pushback</label>
-                        <name>pushback</name>
+                        <name>autopush</name>
                         <binding>
-                            <command>nasal</command>
-                            <script>dialogs.pushback.open()</script>
+                            <command>dialog-show</command>
+                            <dialog-name>autopush</dialog-name>
                         </binding>
                     </item>
                     <item>
@@ -588,6 +563,8 @@ Service Ceiling: 43,100ft
             <path>controls/gear/tiller-enabled</path>
             <path>sim/weight[0]/weight-lb</path>
             <path>sim/weight[1]/weight-lb</path>
+			<path>/sim/model/autopush/route/show</path>
+            <path>/sim/model/autopush/route/show-wingtip</path>
         </aircraft-data>
         <weight n="0"><weight-lb type="double">400</weight-lb></weight>
 

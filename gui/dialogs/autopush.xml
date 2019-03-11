@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 
@@ -56,7 +56,7 @@ Distribute under the terms of GPLv2.
 		<checkbox>
 			<halign>left</halign>
 			<label>Connect</label>
-			<property>/sim/model/pushback/enabled</property>
+			<property>/sim/model/autopush/enabled</property>
 			<live>true</live>
 			<binding>
 				<command>dialog-apply</command>
@@ -81,7 +81,7 @@ Distribute under the terms of GPLv2.
 				<legend>&lt;</legend>
 				<binding>
 					<command>property-adjust</command>
-					<property>/sim/model/pushback/steer-cmd-norm</property>
+					<property>/sim/model/autopush/steer-cmd-norm</property>
 					<min>-1.0</min>
 					<max>1.0</max>
 					<step>-0.02</step>
@@ -94,7 +94,7 @@ Distribute under the terms of GPLv2.
 				<col>2</col>
 				<min>-1.0</min>
 				<max>1.0</max>
-				<property>/sim/model/pushback/steer-cmd-norm</property>
+				<property>/sim/model/autopush/steer-cmd-norm</property>
 				<step>0.1</step>
 				<live>true</live>
 				<binding>
@@ -110,7 +110,7 @@ Distribute under the terms of GPLv2.
 				<legend>&gt;</legend>
 				<binding>
 					<command>property-adjust</command>
-					<property>/sim/model/pushback/steer-cmd-norm</property>
+					<property>/sim/model/autopush/steer-cmd-norm</property>
 					<min>-1.0</min>
 					<max>1.0</max>
 					<step>0.02</step>
@@ -126,8 +126,8 @@ Distribute under the terms of GPLv2.
 				<legend>Center</legend>
 				<binding>
 					<command>property-assign</command>
-					<property>/sim/model/pushback/steer-cmd-norm</property>
-					<value>0</value>
+					<property>/sim/model/autopush/steer-cmd-norm</property>
+					<value>0.0</value>
 				</binding>
 			</button>
 
@@ -146,7 +146,7 @@ Distribute under the terms of GPLv2.
 				<legend>&lt;</legend>
 				<binding>
 					<command>property-adjust</command>
-					<property>/sim/model/pushback/target-speed-km_h</property>
+					<property>/sim/model/autopush/target-speed-km_h</property>
 					<min>-25</min>
 					<max>25</max>
 					<step>-1</step>
@@ -159,7 +159,7 @@ Distribute under the terms of GPLv2.
 				<col>2</col>
 				<min>-25</min>
 				<max>25</max>
-				<property>/sim/model/pushback/target-speed-km_h</property>
+				<property>/sim/model/autopush/target-speed-km_h</property>
 				<step>1.0</step>
 				<live>true</live>
 				<binding>
@@ -175,7 +175,7 @@ Distribute under the terms of GPLv2.
 				<legend>&gt;</legend>
 				<binding>
 					<command>property-adjust</command>
-					<property>/sim/model/pushback/target-speed-km_h</property>
+					<property>/sim/model/autopush/target-speed-km_h</property>
 					<min>-25</min>
 					<max>25</max>
 					<step>1</step>
@@ -191,8 +191,12 @@ Distribute under the terms of GPLv2.
 				<legend>Stop</legend>
 				<binding>
 					<command>property-assign</command>
-					<property>/sim/model/pushback/target-speed-km_h</property>
-					<value>0</value>
+					<property>/sim/model/autopush/target-speed-km_h</property>
+					<value>0.0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>autopush_driver.pause();</script>
 				</binding>
 			</button>
 
@@ -200,7 +204,7 @@ Distribute under the terms of GPLv2.
 				<row>1</row>
 				<col>5</col>
 				<pref-width>16</pref-width>
-				<property>/sim/model/pushback/target-speed-km_h</property>
+				<property>/sim/model/autopush/target-speed-km_h</property>
 				<format>%3.0f</format>
 				<live>true</live>
 				<halign>right</halign>
@@ -223,7 +227,7 @@ Distribute under the terms of GPLv2.
 			<text>
 				<row>0</row>
 				<col>0</col>
-				<label>Auto push:</label>
+				<label>Auto Push:</label>
 				<halign>left</halign>
 			</text>
 
@@ -244,10 +248,10 @@ Distribute under the terms of GPLv2.
 				<col>2</col>
 				<pref-width>50</pref-width>
 				<pref-height>25</pref-height>
-				<legend>Stop</legend>
+				<legend>Pause</legend>
 				<binding>
 					<command>nasal</command>
-					<script>autopush_driver.stop();</script>
+					<script>autopush_driver.pause();</script>
 				</binding>
 			</button>
 
@@ -286,8 +290,8 @@ Distribute under the terms of GPLv2.
 				<row>1</row>
 				<col>3</col>
 				<halign>left</halign>
-				<label>Always show</label>
-				<property>/sim/model/pushback/route/show</property>
+				<label>Always Show</label>
+				<property>/sim/model/autopush/route/show</property>
 				<live>true</live>
 				<binding>
 					<command>dialog-apply</command>
@@ -297,7 +301,7 @@ Distribute under the terms of GPLv2.
 			<text>
 				<row>2</row>
 				<col>0</col>
-				<label>Last point:</label>
+				<label>Last Point:</label>
 				<halign>left</halign>
 			</text>
 
@@ -309,7 +313,7 @@ Distribute under the terms of GPLv2.
 				<legend>Sharp</legend>
 				<binding>
 					<command>nasal</command>
-					<script>autopush_route.toggle_node();</script>
+					<script>autopush_route.toggle_sharp();</script>
 				</binding>
 			</button>
 
@@ -324,6 +328,18 @@ Distribute under the terms of GPLv2.
 					<script>autopush_route.delete_last();</script>
 				</binding>
 			</button>
+
+			<checkbox>
+				<row>2</row>
+				<col>3</col>
+				<halign>left</halign>
+				<label>Show Wingtip</label>
+				<live>true</live>
+				<property>/sim/model/autopush/route/show-wingtip</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+			</checkbox>
 
 		</group>
 

@@ -574,7 +574,7 @@
             <name>Pushback</name>
             <value>Connected</value>
 			<condition>
-			 <property>sim/model/pushback/connected</property>
+			 <property>sim/model/autopush/connected</property>
 			</condition>
 			<binding>
 				<command>nasal</command>

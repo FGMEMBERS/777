@@ -202,10 +202,13 @@ WEIGHT/lbs  Vref
   <ballast x="-34.7003" y="0" z="4" mass="-70000"></ballast>
 
  <thruster x="-24.5181" y="0" z="-5.4" vx="1" vy="0" vz="0" thrust="100000.0">
-  <control-input axis="/sim/model/pushback/force-x-yasim" control="THROTTLE" src0="-1" src1="1" dst0="-1" dst1="1"></control-input>
+  <control-input axis="/sim/model/autopush/force-x-yasim" control="THROTTLE" src0="-1" src1="1" dst0="-1" dst1="1"/>
  </thruster>
  <thruster x="-24.5181" y="0" z="-5.4" vx="0" vy="1" vz="0" thrust="100000.0">
-  <control-input axis="/sim/model/pushback/force-y-yasim" control="THROTTLE" src0="-1" src1="1" dst0="-1" dst1="1"></control-input>
+  <control-input axis="/sim/model/autopush/force-y-yasim" control="THROTTLE" src0="-1" src1="1" dst0="-1" dst1="1"/>
+ </thruster>
+ <thruster x="-24.5181" y="0Y" z="-5.4" vx="0" vy="0" vz="1" thrust="100000.0">
+  <control-input axis="/sim/model/autopush/force-z-yasim" control="THROTTLE" src0="-1" src1="1" dst0="-1" dst1="1"/>
  </thruster>
  
 </airplane>
