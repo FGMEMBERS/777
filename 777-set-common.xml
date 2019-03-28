@@ -465,6 +465,14 @@ Service Ceiling: 43,100ft
                             <script>dialogs.ground_services.open()</script>
                         </binding>
                     </item>
+					<item>
+					    <label>Fuel Truck Controls</label>
+                        <name>fuel_truck</name>
+						<binding>
+                            <command>dialog-show</command>
+							<dialog-name>fuel_truck</dialog-name>
+                        </binding>
+                    </item>
                     <item>                       
                         <label>Pushback</label>
                         <name>autopush</name>
@@ -1178,6 +1186,7 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777/Nasal/AFDS.nas</file>
             <file>Aircraft/777/Nasal/tyresmoke.nas</file>
             <file>Aircraft/777/Nasal/gpws.nas</file>
+			<file>Aircraft/777/Nasal/ground_services.nas</file>
             <file>Aircraft/777/Nasal/warnsystem.nas</file>
             <file>Aircraft/777/Nasal/Cabinalert.nas</file>
             <file>Aircraft/777/Nasal/brakesystem.nas</file>

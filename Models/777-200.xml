@@ -2050,6 +2050,40 @@ Syd Adams
  </offsets>
 </model>
 
+<!-- Fuel Truck -->
+
+<model>
+	<path>Models/Ground/Services/Fuel-Truck/Fuel_Truck_Short_VolvoFM.ac</path>
+	<condition>
+		<equals>
+			<property>services/fuel-truck/enable</property>
+			<value>1</value>
+		</equals>
+	</condition>
+</model>
+
+<animation>
+	<type>select</type>
+	<object-name>fuel_pipe</object-name>
+	<condition>
+		<equals>
+			<property>services/fuel-truck/connect</property>
+			<value>1</value>
+		</equals>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+	<object-name>fuel_pipe_disconnected</object-name>
+	<condition>
+		<equals>
+			<property>services/fuel-truck/connect</property>
+			<value>0</value>
+		</equals>
+	</condition>
+</animation>
+
 <model>
  <name>Firetruck1</name>
  <path>Models/Airport/Vehicle/hoskosh-ti-1500.ac</path>
