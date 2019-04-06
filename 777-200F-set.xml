@@ -5,6 +5,7 @@
         <aero>777-200F</aero>
         <max-payload type="double">448500</max-payload>
         <max-landing-weight type="double">575000</max-landing-weight>
+		<max-takeoff-weight type="double">766800</max-takeoff-weight>
         <startup>
             <splash-texture>Aircraft/777/splash-cargo.png</splash-texture>
         </startup>
@@ -101,15 +102,16 @@
                 <menu n="100">
                     <label>777-200F</label>
                     <enabled type="bool">true</enabled>
-                <item n="7">
-                <label>Show/Hide Cargo Operations</label>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>controls/switches/cargo</property>
-                </binding>
-                </item>
-                </menu>
-            </default>
+					<item n="3">
+					    <label>Weight and payload</label>
+                        <name>payload_200F</name>
+						<binding>
+                            <command>dialog-show</command>
+							<dialog-name>payload_200F</dialog-name>
+                        </binding>
+                    </item>
+				</menu>
+			</default>
         </menubar>
 
         <tutorials>

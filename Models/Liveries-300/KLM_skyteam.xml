@@ -4,7 +4,7 @@
 <sim>
     <model>
         <livery>
-            <name type="string">KLM Royal Dutch Airlines (Skyteam)</name>
+            <name type="string">KLM (Skyteam)</name>
             <texture>Liveries-300/KLM_skyteam.png</texture>
         </livery>
     </model>

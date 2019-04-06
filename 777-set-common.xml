@@ -10,7 +10,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>2017-12-09</aircraft-version>
+        <aircraft-version>2019-04-04</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
@@ -451,21 +451,22 @@ Service Ceiling: 43,100ft
             <default n="0">
                 <menu n="100">
                     <enabled type="bool">true</enabled>
-                    <item>
+                    <item n="1">
                         <label>Autostart</label>
                         <binding>
                             <command>nasal</command>
                             <script>controls.autostart();</script>
                         </binding>
                     </item>
-                    <item>
+                    <item n="2">
                         <label>Ground Services Control</label>
                         <binding>
-                            <command>nasal</command>
-                            <script>dialogs.ground_services.open()</script>
+                            <command>dialog-show</command>
+                            <dialog-name>ground_services</dialog-name>
                         </binding>
                     </item>
-					<item>
+					<!--item n3 (payload) is aircraft specific and defined in its own set file-->
+					<item n="4">
 					    <label>Fuel Truck Controls</label>
                         <name>fuel_truck</name>
 						<binding>
@@ -473,7 +474,7 @@ Service Ceiling: 43,100ft
 							<dialog-name>fuel_truck</dialog-name>
                         </binding>
                     </item>
-                    <item>                       
+                    <item n="5">                       
                         <label>Pushback</label>
                         <name>autopush</name>
                         <binding>
@@ -481,28 +482,28 @@ Service Ceiling: 43,100ft
                             <dialog-name>autopush</dialog-name>
                         </binding>
                     </item>
-                    <item>
+                    <item n="6">
                         <label>Select Livery</label>
                         <binding>
                             <command>nasal</command>
                             <script>aircraft.livery.dialog.toggle()</script>
                         </binding>
                     </item>
-                    <item>
+                    <item n="7">
                         <label>Tiller Steering</label>
                         <binding>
                             <command>nasal</command>
                             <script>dialogs.tiller_steering.open()</script>
                         </binding>
                     </item>
-                    <item>
+                    <item n="8">
                         <label>Show/Hide Yokes</label>
                         <binding>
                             <command>property-toggle</command>
                             <property>sim/yokes-visible</property>
                         </binding>
                     </item>
-                    <item>
+                    <item n="9">
                         <label>Handy Viewer</label>
                         <name>handyviewer</name>
                         <binding>
@@ -510,7 +511,7 @@ Service Ceiling: 43,100ft
                             <dialog-name>handyviewer</dialog-name>
                         </binding>
                     </item>
-                    <item>
+                    <item n="10">
                         <label>FBW Settings</label>
                         <name>fbwsettings</name>
                         <binding>
@@ -524,9 +525,11 @@ Service Ceiling: 43,100ft
 
         <weight n="0">
             <name>Crew</name>
-            <weight-lb type="double">400</weight-lb>
-            <max-lb type="double">500</max-lb>
-            <min-lb type="double">350</min-lb>
+			<!--Std. 11 cabin crew + 2 pilots @ 150 Lbs. (including 13 lbs of luggage) each.
+			Max 18 cabin crew + 2 pilots @ 150 Lbs.-->
+            <weight-lb type="double">1950</weight-lb>
+            <max-lb type="double">3000</max-lb>
+            <min-lb type="double">300</min-lb>
         </weight>
 
         <multiplay>
@@ -597,41 +600,41 @@ Service Ceiling: 43,100ft
         </flaps>
 
         <systems>
-            <path>Aircraft/777/Systems/systems.xml</path>
+            <path>Systems/systems.xml</path>
 
             <!--  fast running autopilot rules (running at FDM frequency / 120Hz) -->
             <autopilot>
-                <path>Aircraft/777/Systems/777-fcs.xml</path>
+                <path>Systems/777-fcs.xml</path>
             </autopilot>
             <autopilot>
-                <path>Aircraft/777/Systems/777-spoiler.xml</path>
+                <path>Systems/777-spoiler.xml</path>
             </autopilot>
             <autopilot>
-                <path>Aircraft/777/Systems/777-autopilot.xml</path>
+                <path>Systems/777-autopilot.xml</path>
             </autopilot>
             <autopilot>
-                <path>Aircraft/777/Systems/777-autothrottle.xml</path>
+                <path>Systems/777-autothrottle.xml</path>
             </autopilot>
             <autopilot>
                 <name>Autobrake system</name>
-                <path>Aircraft/777/Systems/777-autobrake.xml</path>
+                <path>Systems/777-autobrake.xml</path>
             </autopilot>
             <autopilot>
-                <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
+                <path>Systems/777-spoiler-fcs.xml</path>
             </autopilot>
 
             <!--  slow running property-rules (running at frame rate) -->
             <property-rule n="100">
-                <path>Aircraft/777/Systems/777-PFD.xml</path>
+                <path>Systems/777-PFD.xml</path>
             </property-rule>
         </systems>
 
         <instrumentation>
-            <path>Aircraft/777/Systems/instrumentation.xml</path>
+            <path>Systems/instrumentation.xml</path>
         </instrumentation>
 
         <sound>
-            <path>Aircraft/777/Sounds/777-sound.xml</path>
+            <path>Sounds/777-sound.xml</path>
             <stall type="bool">0</stall>
             <click1 type="bool">0</click1>
             <click2 type="bool">0</click2>
@@ -936,8 +939,8 @@ Service Ceiling: 43,100ft
                 <line-spacing type="float">0.01</line-spacing>
             </font>
             <lightning type="bool">true</lightning>
-            <radar-texture-path type="string">Aircraft/777/Models/Instruments/ND/od_wxradar.png</radar-texture-path>
-            <echo-texture-path type="string">Aircraft/777/Models/Instruments/ND/wxecho.png</echo-texture-path>
+            <radar-texture-path type="string">Models/Instruments/ND/od_wxradar.png</radar-texture-path>
+            <echo-texture-path type="string">Models/Instruments/ND/wxecho.png</echo-texture-path>
             <minimized type="bool">false</minimized>
             <heading-marker type="bool">true</heading-marker>
             <limit-deg type="int">360</limit-deg>
@@ -1174,38 +1177,39 @@ Service Ceiling: 43,100ft
 
     <nasal n="0">
         <raas>
-            <file>Aircraft/777/Nasal/raas.nas</file>
+            <file>Nasal/raas.nas</file>
         </raas>
         <b777>
-            <file>Aircraft/777/Nasal/Air.nas</file>
-            <file>Aircraft/777/Nasal/Electrical.nas</file>
-            <file>Aircraft/777/Nasal/engine.nas</file>
-            <file>Aircraft/777/Nasal/efb.nas</file>
-            <file>Aircraft/777/Nasal/Hydraulics.nas</file>
-            <file>Aircraft/777/Nasal/systems.nas</file>
-            <file>Aircraft/777/Nasal/AFDS.nas</file>
-            <file>Aircraft/777/Nasal/tyresmoke.nas</file>
-            <file>Aircraft/777/Nasal/gpws.nas</file>
-			<file>Aircraft/777/Nasal/ground_services.nas</file>
-            <file>Aircraft/777/Nasal/warnsystem.nas</file>
-            <file>Aircraft/777/Nasal/Cabinalert.nas</file>
-            <file>Aircraft/777/Nasal/brakesystem.nas</file>
-            <file>Aircraft/777/Nasal/ground_steering.nas</file>
-            <file>Aircraft/777/Models/Instruments/ND/ND.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/mfd.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/fctl.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/eng.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/fuel.nas</file>
-            <file>Aircraft/777/Nasal/SWanimation.nas</file>
-            <file>Aircraft/777/Nasal/runway.nas</file>
+            <file>Nasal/Air.nas</file>
+            <file>Nasal/Electrical.nas</file>
+            <file>Nasal/engine.nas</file>
+            <file>Nasal/efb.nas</file>
+            <file>Nasal/Hydraulics.nas</file>
+            <file>Nasal/systems.nas</file>
+            <file>Nasal/AFDS.nas</file>
+            <file>Nasal/tyresmoke.nas</file>
+            <file>Nasal/gpws.nas</file>
+			<file>Nasal/ground_services.nas</file>
+			<file>Nasal/payload.nas</file>
+            <file>Nasal/warnsystem.nas</file>
+            <file>Nasal/Cabinalert.nas</file>
+            <file>Nasal/brakesystem.nas</file>
+            <file>Nasal/ground_steering.nas</file>
+            <file>Models/Instruments/ND/ND.nas</file>
+            <file>Models/Instruments/MFD/mfd.nas</file>
+            <file>Models/Instruments/MFD/fctl.nas</file>
+            <file>Models/Instruments/MFD/eng.nas</file>
+            <file>Models/Instruments/MFD/fuel.nas</file>
+            <file>Nasal/SWanimation.nas</file>
+            <file>Nasal/runway.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
-			<file>Aircraft/777/Nasal/light-manager.nas</file>
+			<file>Nasal/light-manager.nas</file>
         </b777>
         <dialogs>
-            <file>Aircraft/777/Nasal/dialogs.nas</file>
+            <file>Nasal/dialogs.nas</file>
         </dialogs>
         <cdu>
-            <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
+            <file>Models/Instruments/CDU/boeing.nas</file>
         </cdu>
         <autopush>
          <file>Nasal/autopush.nas</file>

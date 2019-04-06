@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+	<name>payload</name>
+	<layout>vbox</layout>
+    
+	<group>
+	<layout>hbox</layout>
+		<text>
+			<label>Passengers and baggage</label>
+		</text>
+		
+		<empty>
+		    <stretch>true</stretch>
+		</empty>
+		
+		<button>
+			<halign>right</halign>
+			<pref-width>16</pref-width>
+			<pref-height>16</pref-height>
+			<legend/>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+		
+	</group>
+
+	<hrule />
+	
+	<!--Passengers and cargo overview-->
+	
+	<group>
+	<layout>table</layout>
+	
+	<text>
+		<row>0</row>
+		<col>0</col>
+		<label>Type</label>
+		<halign>right</halign>
+	</text>
+	
+	<text>
+		<row>0</row>
+		<col>2</col>
+		<label>Requested</label>
+	</text>
+	
+	<empty>
+	    <row>0</row>
+		<col>3</col>
+		<stretch>true</stretch>
+	</empty>
+	
+	<empty>
+	    <row>0</row>
+		<col>4</col>
+		<stretch>true</stretch>
+	</empty>
+	
+	<text>
+		<row>0</row>
+		<col>5</col>
+		<label>On board</label>
+		<halign>left</halign>
+	</text>
+	
+	<empty>
+	    <row>0</row>
+		<col>6</col>
+		<stretch>true</stretch>
+	</empty>
+	
+	<text>
+		<row>0</row>
+		<col>7</col>
+		<label>Weight</label>
+		<halign>left</halign>
+	</text>
+	
+	<empty>
+	    <row>0</row>
+		<col>8</col>
+		<stretch>true</stretch>
+	</empty>
+	
+	<empty>
+	    <row>0</row>
+		<col>9</col>
+		<stretch>true</stretch>
+	</empty>
+	
+	<text>
+		<row>1</row>
+		<col>0</col>
+		<label>First</label>
+		<halign>right</halign>
+	</text>
+	
+	<button>
+			<row>1</row>
+			<col>1</col>
+			<legend>-</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>/services/payload/first-request-nr</property>
+				<step>-1.0</step>
+				<min>0</min>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<slider>
+		<row>1</row>
+		<col>2</col>
+		<pref-width>250</pref-width>
+		<property>services/payload/first-request-nr</property>
+		<min>0.0</min>
+		<max>0.0</max>
+		<step>1.0</step>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</slider>
+	
+	<button>
+			<row>1</row>
+			<col>3</col>
+			<legend>+</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>services/payload/first-request-nr</property>
+				<step>1.0</step>
+				<max>0.0</max>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<text>
+		<row>1</row>
+		<col>4</col>
+		<property>services/payload/first-request-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>1</row>
+		<col>5</col>
+		<property>services/payload/first-onboard-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>1</row>
+		<col>6</col>
+		<property>services/payload/first-onboard-lbs</property>
+		<live>true</live>
+		<halign>right</halign>
+	</text>
+	
+	<text>
+		<row>1</row>
+		<col>8</col>
+		<label>Lbs</label>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>2</row>
+		<col>0</col>
+		<label>Business</label>
+		<halign>right</halign>
+	</text>
+	
+	<button>
+			<row>2</row>
+			<col>1</col>
+			<legend>-</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>services/payload/business-request-nr</property>
+				<step>-1.0</step>
+				<min>0</min>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<slider>
+		<row>2</row>
+		<col>2</col>
+		<pref-width>250</pref-width>
+		<property>services/payload/business-request-nr</property>
+		<min>0.0</min>
+		<max>0.0</max>
+		<step>1.0</step>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</slider>
+	
+	<button>
+			<row>2</row>
+			<col>3</col>
+			<legend>+</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>services/payload/business-request-nr</property>
+				<step>1.0</step>
+				<max>0.0</max>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<text>
+		<row>2</row>
+		<col>4</col>
+		<property>services/payload/business-request-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>2</row>
+		<col>5</col>
+		<property>services/payload/business-onboard-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>2</row>
+		<col>6</col>
+		<property>services/payload/business-onboard-lbs</property>
+		<live>true</live>
+		<halign>right</halign>
+	</text>
+	
+	<text>
+		<row>2</row>
+		<col>8</col>
+		<label>Lbs</label>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>3</row>
+		<col>0</col>
+		<label>Economy</label>
+		<halign>right</halign>
+	</text>
+	
+	<button>
+			<row>3</row>
+			<col>1</col>
+			<legend>-</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>services/payload/economy-request-nr</property>
+				<step>-1.0</step>
+				<min>0</min>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<slider>
+		<row>3</row>
+		<col>2</col>
+		<pref-width>250</pref-width>
+		<property>services/payload/economy-request-nr</property>
+		<min>0.0</min>
+		<max>0.0</max>
+		<step>1.0</step>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</slider>
+	
+	<button>
+			<row>3</row>
+			<col>3</col>
+			<legend>+</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>services/payload/economy-request-nr</property>
+				<step>1.0</step>
+				<max>0.0</max>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<text>
+		<row>3</row>
+		<col>4</col>
+		<property>services/payload/economy-request-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>3</row>
+		<col>5</col>
+		<property>services/payload/economy-onboard-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>3</row>
+		<col>6</col>
+		<property>services/payload/economy-onboard-lbs</property>
+		<live>true</live>
+		<halign>right</halign>
+	</text>
+	
+	<text>
+		<row>3</row>
+		<col>8</col>
+		<label>Lbs</label>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>4</row>
+		<col>0</col>
+		<label>Total:</label>
+		<halign>right</halign>
+	</text>
+	
+	<text>
+		<row>4</row>
+		<col>4</col>
+		<property>services/payload/pax-request-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+	    <row>4</row>
+		<col>5</col>
+		<property>services/payload/pax-onboard-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>4</row>
+		<col>6</col>
+		<property>services/payload/pax-onboard-lbs</property>
+		<live>true</live>
+		<halign>right</halign>
+	</text>
+	
+	<text>
+		<row>4</row>
+		<col>8</col>
+		<label>Lbs</label>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>5</row>
+		<col>0</col>
+		<label>Belly cargo</label>
+		<halign>right</halign>
+	</text>
+	
+	<input>
+		<row>5</row>
+		<col>2</col>
+		<pref-width>250</pref-width>
+		<property>services/payload/belly-request-lbs</property>
+		<live>true</live>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+	</input>
+	
+	<text>
+		<row>5</row>
+		<col>4</col>
+		<label>Lbs</label>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>5</row>
+		<col>6</col>
+		<property>services/payload/belly-onboard-lbs</property>
+		<halign>right</halign>
+		<live>true</live>
+	</text>
+	
+	<text>
+		<row>5</row>
+		<col>8</col>
+		<label>Lbs</label>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>6</row>
+		<col>0</col>
+		<label>Crew</label>
+		<halign>right</halign>
+	</text>
+	
+	<button>
+			<row>6</row>
+			<col>1</col>
+			<legend>-</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>services/payload/crew-request-nr</property>
+				<step>-1.0</step>
+				<min>2.0</min>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<slider>
+		<row>6</row>
+		<col>2</col>
+		<pref-width>250</pref-width>
+		<property>services/payload/crew-request-nr</property>
+		<min>2.0</min>
+		<max>20.0</max>
+		<step>1.0</step>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</slider>
+	
+	<button>
+			<row>6</row>
+			<col>3</col>
+			<legend>+</legend>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<padding>0</padding>
+			<binding>
+				<command>property-adjust</command>
+				<property>services/payload/crew-request-nr</property>
+				<step>1.0</step>
+				<max>20.0</max>
+				<command>dialog-apply</command>
+			</binding>
+			<halign>left</halign>
+	</button>
+	
+	<text>
+		<row>6</row>
+		<col>4</col>
+		<property>services/payload/crew-request-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>6</row>
+		<col>5</col>
+		<property>services/payload/crew-onboard-nr</property>
+		<live>true</live>
+		<halign>left</halign>
+	</text>
+	
+	<text>
+		<row>6</row>
+		<col>6</col>
+		<property>services/payload/crew-onboard-lbs</property>
+		<live>true</live>
+		<halign>right</halign>
+	</text>
+	
+	<text>
+		<row>6</row>
+		<col>8</col>
+		<label>Lbs</label>
+		<halign>left</halign>
+	</text>
+
+</group>
+
+<hrule />
+
+<group>
+    
+<layout>table</layout>
+
+<text>
+	<row>0</row>
+	<col>0</col>
+	<label>Expected crew &amp; payload weight:</label>
+	<halign>right</halign>
+	<padding>0</padding>
+</text>
+
+<text>
+	<row>0</row>
+	<col>1</col>
+	<property>services/payload/expected-weight-lbs</property>
+	<live>true</live>
+	<halign>left</halign>
+</text>
+
+<text>
+	<row>1</row>
+	<col>0</col>
+	<label>Total crew &amp; payload weight:</label>
+	<halign>right</halign>
+	<padding>0</padding>
+</text>
+
+<text>
+	<row>1</row>
+	<col>1</col>
+	<property>services/payload/weight-total-lbs</property>
+	<live>true</live>
+	<halign>left</halign>
+</text>
+
+<text>
+	<row>2</row>
+	<col>0</col>
+	<label>Maximum payload weight (excl. crew):</label>
+	<halign>right</halign>
+	<padding>0</padding>
+</text>
+
+<text>
+	<row>2</row>
+	<col>1</col>
+	<property>sim/weight[1]/max-lb</property>
+	<live>true</live>
+	<halign>left</halign>
+</text>
+
+<text>
+    <row>0</row>
+	<col>2</col>
+	<label>Gross weight:</label>
+	<halign>right</halign>
+</text>
+
+<text>
+	<row>0</row>
+	<col>3</col>
+	<property>yasim/gross-weight-lbs</property>
+	<live>true</live>
+	<halign>left</halign>
+	<padding>3</padding>
+</text>
+
+<text>
+	<row>1</row>
+	<col>2</col>
+	<label>Maximum takeoff weight:</label>
+	<halign>right</halign>
+</text>
+
+<text>
+	<row>1</row>
+	<col>3</col>
+	<property>sim/max-takeoff-weight</property>
+	<halign>left</halign>
+	<padding>3</padding>
+</text>
+
+<text>
+	<row>2</row>
+	<col>2</col>
+	<label>Maximum landing weight:</label>
+	<halign>right</halign>
+</text>
+
+<text>
+	<row>2</row>
+	<col>3</col>
+	<property>sim/max-landing-weight</property>
+	<halign>left</halign>
+	<padding>3</padding>
+</text>
+
+</group>
+
+<hrule />
+
+<group>
+	<layout>table</layout>
+	
+	<checkbox>
+		<row>0</row>
+		<col>0</col>
+		<label>Front Stairs</label>
+		<property>services/stairs/stairs1_enable</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<halign>left</halign>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<row>1</row>
+		<col>0</col>
+		<label>Middle Stairs</label>
+		<property>services/stairs/stairs2_enable</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<halign>left</halign>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<row>2</row>
+		<col>0</col>
+		<label>Rear Stairs</label>
+		<property>services/stairs/stairs3_enable</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<halign>left</halign>
+		<live>true</live>
+	</checkbox>
+
+	<checkbox>
+		<row>0</row>
+		<col>1</col>
+		<label>Baggage Truck 1</label>
+		<property>services/payload/baggage-truck1-enable</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<halign>left</halign>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<row>1</row>
+		<col>1</col>
+		<label>Baggage Truck 2</label>
+		<property>services/payload/baggage-truck2-enable</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<halign>left</halign>
+		<live>true</live>
+	</checkbox>
+	
+	<empty>
+	    <row>0</row>
+		<col>2</col>
+		<stretch>true</stretch>
+	</empty>
+	
+</group>
+
+<group>
+<layout>hbox</layout>
+	
+	<button>
+		<halign>left</halign>
+		<legend>Stairs appearance</legend>
+		<pref-width>120</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>dialog-show</command>
+			<dialog-name>stairs_paint</dialog-name>
+		</binding>
+	</button>
+</group>
+
+<hrule />
+
+<group>
+<layout>table</layout>
+	
+	<button>
+		<row>0</row>
+		<col>0</col>
+		<legend>Start boarding</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>nasal</command>
+			<script>
+				setprop("/services/payload/pax-boarding", 1);
+				var boardingtime = math.round(((getprop("/services/payload/pax-request-nr")-getprop("/services/payload/pax-onboard-nr")) / (1 + getprop("/services/stairs/stairs2_enable") + getprop("/services/stairs/stairs3_enable"))) / 60 * getprop("/services/payload/speed"));
+				screen.log.write("Passenger boarding started. Estimated boarding time: " ~ boardingtime ~ " minutes.", 0, 0.584, 1);
+			</script>
+		</binding>
+	</button>
+	
+	<button>
+		<row>0</row>
+		<col>1</col>
+		<legend>Start loading</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>nasal</command>
+				<script>
+					if ((getprop("services/payload/baggage-truck1-enable") == 1) or (getprop("services/payload/baggage-truck2-enable") == 1)) {
+						setprop("/services/payload/baggage-loading", 1);
+						var loadingtime = math.round((getprop("/services/payload/belly-request-lbs") - getprop("/services/payload/belly-onboard-lbs")) / (150 * (getprop("/services/payload/baggage-truck1-enable") + getprop("/services/payload/baggage-truck2-enable"))) / 60 * getprop("/services/payload/speed"));
+						screen.log.write("Baggage loading started. Estimated loading time: " ~ loadingtime ~ " minutes.", 0, 0.584, 1);
+					} else {
+						screen.log.write("Please enable a baggage truck first!", 1, 0, 0);
+					}
+				</script>
+		</binding>
+	</button>
+	
+	<button>
+		<row>0</row>
+		<col>2</col>
+		<legend>Normal</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>property-assign</command>
+			<property>services/payload/speed</property>
+			<value>6.0</value>
+		</binding>
+	</button>
+	
+	<button>
+		<row>1</row>
+		<col>0</col>
+		<legend>Start deboarding</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>property-assign</command>
+			<property>services/payload/pax-boarding</property>
+			<value>2</value>
+		</binding>
+	</button>
+	
+	<button>
+		<row>1</row>
+		<col>1</col>
+		<legend>Start unloading</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>property-assign</command>
+			<property>services/payload/baggage-loading</property>
+			<value>2</value>
+		</binding>
+	</button>
+	
+	<button>
+		<row>1</row>
+		<col>2</col>
+		<legend>Fast</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>property-assign</command>
+			<property>services/payload/speed</property>
+			<value>0.1</value>
+		</binding>
+	</button>
+	
+	<button>
+		<legend>Stop (de)boarding</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<row>2</row>
+		<col>0</col>
+		<binding>
+			<command>property-assign</command>
+			<property>services/payload/pax-boarding</property>
+			<value>0</value>
+		</binding>
+	</button>
+	
+	<button>
+		<legend>Stop (un)loading</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<row>2</row>
+		<col>1</col>
+		<binding>
+			<command>property-assign</command>
+			<property>services/payload/baggage-loading</property>
+			<value>0</value>
+		</binding>
+	</button>
+	
+	<button>
+		<row>2</row>
+		<col>2</col>
+		<legend>Instant</legend>
+		<pref-width>150</pref-width>
+		<pref-height>24</pref-height>
+		<binding>
+			<command>property-assign</command>
+			<property>services/payload/speed</property>
+			<value>0</value>
+		</binding>
+	</button>
+	
+</group>
+
+<hrule />
+
+<group>
+<layout>hbox</layout>
+
+	<button>
+		<legend>Close</legend>
+		<default>true</default>
+		<key>Esc</key>
+	<padding>5</padding>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<binding>
+			<command>dialog-close</command>
+		</binding>
+	</button>
+</group>
+
+</PropertyList>

@@ -1,11 +1,7 @@
-#Ground Services added by Isaak Dieleman, based on Boeing 787 systems.
+#Ground Services added by Isaak Dieleman - 20190405
 
 var ground_services = {
 	init : func {
-		me.UPDATE_INTERVAL = 0.1;
-	me.loopid = 0;
-	
-	me.ice_time = 0;
 	
 	# Fuel Truck
 	
@@ -13,15 +9,42 @@ var ground_services = {
 	setprop("/services/fuel-truck/connect", 0);
 	setprop("/services/fuel-truck/transfer", 0);
 	setprop("/services/fuel-truck/clean", 0);
-	setprop("/services/fuel-truck/request-kg", 0);	
+	setprop("/services/fuel-truck/request-lbs", getprop("/consumables/fuel/total-fuel-lbs"));
+	setprop("/services/fuel-truck/extra-lbs", 0);
+	if (getprop("/sim/aero") != "777-200F") {
+	    # The 777-200F has its own payload dialog. For the other types, the max number of first/business/economy pax has to be defined, so we
+		# overwrite the dialog with the values specified in their respective -set files.
+		var payload = gui.Dialog.new("/sim/gui/dialogs/payload/dialog", "gui/dialogs/payload-dlg.xml");
+		setprop("/sim/gui/dialogs/payload/dialog/group[1]/slider/max", getprop("/services/payload/first-max-nr"));
+		setprop("/sim/gui/dialogs/payload/dialog/group[1]/slider[1]/max", getprop("/services/payload/business-max-nr"));
+		setprop("/sim/gui/dialogs/payload/dialog/group[1]/slider[2]/max", getprop("/services/payload/economy-max-nr"));
+		setprop("/sim/gui/dialogs/payload/dialog/group[1]/button[1]/binding/max", getprop("/services/payload/first-max-nr"));
+		setprop("/sim/gui/dialogs/payload/dialog/group[1]/button[3]/binding/max", getprop("/services/payload/business-max-nr"));
+		setprop("/sim/gui/dialogs/payload/dialog/group[1]/button[5]/binding/max", getprop("/services/payload/economy-max-nr"));
+    }
+		
+	# External Power
 	
-	# Set them all to 0 if the aircraft is not stationary
+	setprop("/services/ext-pwr/enable", 0);
+	setprop("/services/ext-pwr/was_enabled", 0);
+	setprop("/services/ext-pwr/primary", 0);
+	setprop("/services/ext-pwr/secondary", 0);
 	
-	if (getprop("/velocities/groundspeed-kt") > 10) {
-		setprop("/services/fuel-truck/enable", 0);
-	}
+	# Chocks
+	
+	setprop("/services/chocks/nose", 0);
+	setprop("/services/chocks/left", 0);
+	setprop("/services/chocks/right", 0);
+	
+	# Catering Truck
+	
+	setprop("/services/catering/enable", 0);
+	setprop("/services/catering/move", 0);	
+	setprop("/services/catering/position", 0);
+	setprop("/services/catering/angle-deg", 0);
 
-	me.reset();
+    _startstop_gsv();
+	
 	},
 	update : func {
 	
@@ -34,15 +57,15 @@ var ground_services = {
 			
 				if (getprop("/consumables/fuel/total-fuel-lbs") < getprop("/services/fuel-truck/request-lbs")) {
 				    if (getprop("/consumables/fuel/tank/level-gal_us") < getprop("/consumables/fuel/tank[2]/capacity-gal_us")) {
-					    if (getprop("/consumables/fuel/tank/level-lbs") + 10 > getprop("/services/fuel-truck/request-lbs") - getprop("/consumables/fuel/tank[2]/level-lbs") - getprop("/consumables/fuel/tank[1]/level-lbs")) {
-						    setprop("/consumables/fuel/tank/level-lbs", getprop("/consumables/fuel/tank/level-lbs") + 2.7);
+					    if (getprop("/consumables/fuel/tank/level-lbs") + 6 > getprop("/services/fuel-truck/request-lbs") - getprop("/consumables/fuel/tank[2]/level-lbs") - getprop("/consumables/fuel/tank[1]/level-lbs")) {
+						    setprop("/consumables/fuel/tank/level-lbs", getprop("/consumables/fuel/tank/level-lbs") + 0.1);
 						} else {
 						    setprop("/consumables/fuel/tank/level-lbs", getprop("/consumables/fuel/tank/level-lbs") + 5.55);
 						}
 					}
 					if (getprop("/consumables/fuel/tank[2]/level-gal_us") < getprop("/consumables/fuel/tank[2]/capacity-gal_us")) {
-					    if (getprop("/consumables/fuel/tank[2]/level-lbs") + 10 > getprop("/services/fuel-truck/request-lbs") - getprop("/consumables/fuel/tank/level-lbs") - getprop("/consumables/fuel/tank[1]/level-lbs")) {
-						    setprop("/consumables/fuel/tank[2]/level-lbs", getprop("/consumables/fuel/tank[2]/level-lbs") + 2.7);
+					    if (getprop("/consumables/fuel/tank[2]/level-lbs") + 6 > getprop("/services/fuel-truck/request-lbs") - getprop("/consumables/fuel/tank/level-lbs") - getprop("/consumables/fuel/tank[1]/level-lbs")) {
+						    setprop("/consumables/fuel/tank[2]/level-lbs", getprop("/consumables/fuel/tank[2]/level-lbs") + 0.1);
 						} else {
 						    setprop("/consumables/fuel/tank[2]/level-lbs", getprop("/consumables/fuel/tank[2]/level-lbs") + 5.55);
 						}
@@ -56,8 +79,8 @@ var ground_services = {
 							setprop("/consumables/fuel/tank[1]/level-gal_us", (getprop("/consumables/fuel/tank[1]/level-gal_us") + getprop("/consumables/fuel/tank[2]/level-gal_us") - getprop("/consumables/fuel/tank[2]/capacity-gal_us")));
 							setprop("/consumables/fuel/tank[2]/level-gal_us", getprop("/consumables/fuel/tank[2]/capacity-gal_us"));
 						}
-						if (getprop("/consumables/fuel/tank[1]/level-lbs") + 20 > getprop("/services/fuel-truck/request-lbs") - getprop("/consumables/fuel/tank/level-lbs") - getprop("/consumables/fuel/tank[2]/level-lbs")) {
-						    setprop("/consumables/fuel/tank[1]/level-lbs", getprop("/consumables/fuel/tank[1]/level-lbs") + 5.3);
+						if (getprop("/consumables/fuel/tank[1]/level-lbs") + 12 > getprop("/services/fuel-truck/request-lbs") - getprop("/consumables/fuel/tank/level-lbs") - getprop("/consumables/fuel/tank[2]/level-lbs")) {
+						    setprop("/consumables/fuel/tank[1]/level-lbs", getprop("/consumables/fuel/tank[1]/level-lbs") + 0.1);
 						} else {
 						    setprop("/consumables/fuel/tank[1]/level-lbs", getprop("/consumables/fuel/tank[1]/level-lbs") + 11.1);
 						}
@@ -81,24 +104,102 @@ var ground_services = {
 				}	
 			
 			}
+		}
 		
+		#External Ground Power controls
+		
+		if (getprop("/services/ext-pwr/enable") == 1) {
+		    if (getprop("/services/ext-pwr/primary") == 1) {
+			    setprop("/controls/electric/external-power", 1);
+			} else {
+			    setprop("/controls/electric/external-power", 0);
+			}
+			if (getprop("/services/ext-pwr/secondary") == 1) {
+			    setprop("/controls/electric/external-power[1]", 1);
+			} else {
+			    setprop("/controls/electric/external-power[1]", 0);
+			}
+			setprop("/services/ext-pwr/was_enabled", 1);
+		} else {
+		    if (getprop("/services/ext-pwr/primary") == 1) {
+			    if (getprop("/services/ext-pwr/was_enabled") != 1) {
+				    screen.log.write("Can't connect primary ground power without a powerbox!", 1, 0 ,0);
+				}
+				setprop("/services/ext-pwr/primary", 0);
+				setprop("/controls/electric/external-power", 0);
+			}
+			if (getprop("/services/ext-pwr/secondary") == 1) {
+			    if (getprop("/services/ext-pwr/was_enabled") != 1) {
+				    screen.log.write("Can't connect secondary ground power without a powerbox!", 1, 0 ,0);
+				}
+				setprop("/services/ext-pwr/secondary", 0);
+				setprop("/controls/electric/external-power[1]", 0);
+			}
+			setprop("/services/ext-pwr/was_enabled", 0);
+		}
+		
+		# Chocks
+		# This uses the left and right brakes for the moment, to avoid the parking brake from being active.
+		
+		if ((getprop("/services/chocks/nose") == 1) or (getprop("/services/chocks/left") == 1)) {
+			setprop("/controls/gear/brake-left", 1);
+			setprop("/services/chocks/left-was-enabled", 1);
+		} else {
+			if (getprop("/services/chocks/left-was-enabled") == 1) {
+			    setprop("/controls/gear/brake-left", 0);
+				setprop("/services/chocks/left-was-enabled", 0);
+			}
+		}
+		
+		if ((getprop("/services/chocks/nose") == 1) or (getprop("/services/chocks/right") == 1)) {
+			setprop("/controls/gear/brake-right", 1);
+			setprop("/services/chocks/right-was-enabled", 1);
+		} else {
+			if (getprop("/services/chocks/right-was-enabled") == 1) {
+			    setprop("/controls/gear/brake-right", 0);
+				setprop("/services/chocks/right-was-enabled", 0);
+			}
+		}
+		
+		# Catering Truck Controls
+		
+		var cater_move = getprop("/services/catering/move");
+		var cater_position = getprop("/services/catering/position");
+		
+		if (getprop("/services/catering/enable") != 0) {
+			if (cater_position < cater_move) { #rise the catering truck 
+				setprop("/services/catering/position", getprop("/services/catering/position") + 0.005);  
+				if (cater_move - getprop("/services/catering/position") < 0.0001) {
+					setprop("/services/catering/position", cater_move);
+				}
+			} elsif (cater_position > cater_move) { #lower the catering truck
+				setprop("/services/catering/position", getprop("/services/catering/position") - 0.005);  
+				if ((getprop("/services/catering/position") - cater_move) < 0.0001) {
+					setprop("/services/catering/position", cater_move);
+				}
+			}
+	    } else {
+		    setprop("/services/catering/position", 0);
+			setprop("/services/catering/move", 0);
 		}
 
-	me.ice_time += 1;
-
-	},
-	reset : func {
-		me.loopid += 1;
-		me._loop_(me.loopid);
-	},
-	_loop_ : func(id) {
-		id == me.loopid or return;
-		me.update();
-		settimer(func { me._loop_(id); }, me.UPDATE_INTERVAL);
 	}
+
 };
+
+var _timer_gsv = maketimer(0.1, func{ground_services.update()});
+
+var _startstop_gsv = func() {
+    if (getprop("/gear/gear[0]/wow") == 1) {
+		_timer_gsv.start();
+	} else {
+	    _timer_gsv.stop();
+	}
+}
 
 setlistener("sim/signals/fdm-initialized", func {
 	ground_services.init();
 	print("Ground Services ..... Initialized");
 });
+
+setlistener("/gear/gear[0]/wow", func {_startstop_gsv()});

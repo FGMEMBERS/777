@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<path>cargo_ramp_2.ac</path>
+
+<animation>
+    <type>translate</type>
+	<object-name>cargo_truck</object-name>
+	<property>sim/model/ramp/x-m</property>
+	<offset-m>24.5221</offset-m>
+	<axis>
+		<x>1</x>
+		<y>0</y>
+		<z>0</z>
+	</axis>
+</animation>
+
+<animation>
+	<type>translate</type>
+	<object-name>cargo_truck</object-name>
+	<property>gear/gear[2]/compression-norm</property>
+	<interpolation>
+		<entry><ind>0.15</ind><dep>0.0</dep></entry>
+		<entry><ind>0.40</ind><dep>0.25</dep></entry>
+	</interpolation>
+	<axis>
+		<x>0</x>
+		<y>0</y>
+		<z>1</z>
+	</axis>
+</animation>
+
+<animation>
+	<type>pick</type>
+	<object-name>cargo_truck</object-name>
+	<action>
+		<button>0</button>
+		<binding>
+			<command>property-toggle</command>
+			<property>services/payload/baggage-truck2-enable</property>
+		</binding>
+	</action>
+</animation>
+
+</PropertyList>

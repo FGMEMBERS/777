@@ -95,6 +95,19 @@ var start = func() {
 		gui.popupTip("Pushback not connected");
 		return;
 	}
+	
+	# 777 mods to check if other ground equipment is clear.
+	
+	if (getprop("/services/fuel-truck/enable") == 1) {
+		gui.popupTip("Fuel Truck still connected. Can't push");
+		return;
+	}
+	
+	if (getprop("/services/ext-pwr/enable") == 1) {
+		gui.popupTip("External Power Box still connected. Can't push");
+		return;
+	}
+	
 	_route = autopush_route.route();
 	_route_reverse = autopush_route.route_reverse();
 	if ((_route == nil) or size(_route) < 2) {

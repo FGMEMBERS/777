@@ -27,10 +27,19 @@ var _unitconv = M2FT / 3.6;
 var _debug = nil;
 
 var _loop = func() {
+
+    #777 mod to prevent pushing back with ground equipment connected.
+	if ((getprop("/services/ext-pwr/enable") or getprop("/services/fuel-truck/enable") or getprop("/services/chocks/nose") or getprop("/services/chocks/left") or getprop("/services/chocks/right") or getprop("/services/payload/baggage-truck1-enable") or getprop("/services/payload/baggage-truck2-enable") or getprop("/services/catering/enable") or getprop("/services/stairs/stairs1_enable") or getprop("/services/stairs/stairs2_enable") or getprop("/services/stairs/stairs3_enable")) and (getprop("/sim/model/autopush/target-speed-km_h") != 0)) {
+		screen.log.write("(pushback): Can't push, ground equipment not clear.");
+		setprop("/sim/model/autopush/target-speed-km_h", 0);
+		return;
+	}
+	
 	if (!getprop("/sim/model/autopush/available")) {
 		_stop();
 		return;
 	}
+	
 	var force = 0.0;
 	var x = 0.0;
 	var y = 0.0;
@@ -108,8 +117,11 @@ var _start = func() {
 	_time = getprop("/sim/time/elapsed-sec");
 	setprop("/sim/model/autopush/connected", 1);
 	if (!_timer.isRunning) {
-		if (getprop("/sim/model/autopush/chocks")) {
-			setprop("/sim/model/autopush/chocks", 0);
+		#777 mod: chocks have multiple properties.
+		if ((getprop("/services/chocks/left")) or (getprop("/services/chocks/nose")) or (getprop("/services/chocks/right"))) {
+			setprop("/services/chocks/left", 0);
+			setprop("/services/chocks/nose", 0);
+			setprop("/services/chocks/right", 0);
 			screen.log.write("(pushback): Pushback connected, chocks removed. Please release brakes.");
 		} else {
 			screen.log.write("(pushback): Pushback connected, please release brakes.");

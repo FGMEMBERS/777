@@ -5,6 +5,7 @@
         <aero>777-200ER</aero>
         <max-payload type="double">341000</max-payload>
         <max-landing-weight type="double">460000</max-landing-weight>
+		<max-takeoff-weight type="double">656000</max-takeoff-weight>
         <startup>
             <splash-texture>Aircraft/777/splash-200ER.png</splash-texture>
         </startup>
@@ -110,6 +111,14 @@
             <default n="0">
                 <menu n="100">
                     <label>777-200ER</label>
+					<item n="3">
+					    <label>Weight and payload</label>
+                        <name>payload</name>
+						<binding>
+                            <command>dialog-show</command>
+							<dialog-name>payload</dialog-name>
+                        </binding>
+                    </item>
                 </menu>
             </default>
         </menubar>
@@ -169,5 +178,13 @@
 	  <!--z-entrance-rotation>49</z-entrance-rotation-->
      </jetway2-pos>
     </aircraft>
+	
+	<services> <!--Max nr of passengers in each class. Data from https://en.wikipedia.org/wiki/Boeing_777#Specifications-->
+	    <payload>
+		    <first-max-nr>24</first-max-nr>
+			<business-max-nr>54</business-max-nr>
+			<economy-max-nr>227</economy-max-nr>
+		</payload>
+	</services>
 
 </PropertyList>
