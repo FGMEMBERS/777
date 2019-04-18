@@ -438,7 +438,7 @@
 			</condition>
 			<value>2.0</value>
 		</max-rate-of-change>
-		<max-rate-of-change>0.3</max-rate-of-change>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	<filter>
 		<name>SERVO-DRIVER:throttle lever2</name>
@@ -455,7 +455,7 @@
 			</condition>
 			<value>2.0</value>
 		</max-rate-of-change>
-		<max-rate-of-change>0.3</max-rate-of-change>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 
 	<filter>
@@ -470,7 +470,7 @@
 			<property>/controls/engines/engine[0]/throttle-act</property>
 		</output>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.2</max-rate-of-change>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	<filter>
 		<name>Engin response:throttle2</name>
@@ -484,7 +484,7 @@
 			<property>/controls/engines/engine[1]/throttle-act</property>
 		</output>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.2</max-rate-of-change>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 
 </PropertyList>

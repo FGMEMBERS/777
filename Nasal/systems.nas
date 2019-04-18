@@ -644,6 +644,7 @@ var Startup = func{
     {
         setprop("controls/lighting/cabin-lights",1);
     }
+    setprop("fcs/pfc-enable", 1); # PFCs in AUTO
     setprop("controls/lighting/strobe",1);
     setprop("controls/lighting/landing-light[0]",1);
     setprop("controls/lighting/landing-light[1]",1);
@@ -748,16 +749,11 @@ controls.click = func(button) {
 }
 
 controls.elevatorTrim = func(speed) {
-    if(0 == getprop("instrumentation/afds/inputs/AP"))
-    {
-        if(((1 > getprop("controls/flight/elevator-trim"))
-                and (0 < speed))
-            or ((-1 < getprop("controls/flight/elevator-trim"))
-                and (0 > speed)))
-        {
-            controls.slewProp("controls/flight/trim-ref-speed", speed * 0.045);
-        }
-    }
+    if (!getprop("instrumentation/afds/inputs/AP")) {
+        controls.slewProp("/controls/flight/elevator-trim", speed * 0.045);
+    } else {
+		setprop("/instrumentation/afds/inputs/AP", 0);
+	}
 }
 
 switch_ind = func() {

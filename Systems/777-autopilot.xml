@@ -38,6 +38,42 @@
 	</filter>
 	
 	<filter>
+		<name>Heading Input</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/systems/navigation/hdgref/reference</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/orientation/heading-deg</property>
+		</input>
+		<input>/orientation/heading-magnetic-deg</input>
+		<output>/autopilot/internal/heading</output>
+	</filter>
+	
+	<filter>
+		<name>Track Input</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/systems/navigation/hdgref/reference</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/orientation/track-deg</property>
+		</input>
+		<input>/orientation/track-magnetic-deg</input>
+		<output>/autopilot/internal/track</output>
+	</filter>
+	
+	<filter>
 		<name>HEADING ERROR DEG</name>
 		<debug>false</debug>
 		<type>gain</type>
@@ -57,7 +93,7 @@
 			</condition>
 			<property>/autopilot/settings/heading-bug-deg</property>
 			<offset>
-				<property>/orientation/heading-magnetic-deg</property>
+				<property>/autopilot/internal/heading</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>
@@ -76,7 +112,7 @@
 			</condition>
 			<property>/autopilot/settings/heading-bug-deg</property>
 			<offset>
-				<property>/orientation/heading-deg</property>
+				<property>/autopilot/internal/track</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>

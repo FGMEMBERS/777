@@ -209,8 +209,7 @@
 	
 	<filter>
 		<name>Left Outer Aileron</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<not-equals>
@@ -252,6 +251,7 @@
 		<output>/fcs/left-out-aileron/cmd-deg</output>
 		<min>-30</min>
 		<max>10</max>
+		<max-rate-of-change>85</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -259,13 +259,12 @@
 		<type>exponential</type>
 		<input>/fcs/left-out-aileron/cmd-deg</input>
 		<output>/fcs/left-out-aileron/final-deg</output>
-		<filter-time>0.06</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
 		<name>Left Inner Aileron</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<not-equals>
@@ -298,6 +297,7 @@
 		<output>/fcs/left-in-aileron/cmd-deg</output>
 		<min>-11</min>
 		<max>32</max>
+		<max-rate-of-change>85</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -305,13 +305,12 @@
 		<type>exponential</type>
 		<input>/fcs/left-in-aileron/cmd-deg</input>
 		<output>/fcs/left-in-aileron/final-deg</output>
-		<filter-time>0.06</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
 		<name>Right Inner Aileron</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<not-equals>
@@ -344,6 +343,7 @@
 		<output>/fcs/right-in-aileron/cmd-deg</output>
 		<min>-11</min>
 		<max>32</max>
+		<max-rate-of-change>85</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -351,13 +351,12 @@
 		<type>exponential</type>
 		<input>/fcs/right-in-aileron/cmd-deg</input>
 		<output>/fcs/right-in-aileron/final-deg</output>
-		<filter-time>0.06</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
 		<name>Right Outer Aileron</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<not-equals>
@@ -399,6 +398,7 @@
 		<output>/fcs/right-out-aileron/cmd-deg</output>
 		<min>-30</min>
 		<max>10</max>
+		<max-rate-of-change>85</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -406,7 +406,7 @@
 		<type>exponential</type>
 		<input>/fcs/right-out-aileron/cmd-deg</input>
 		<output>/fcs/right-out-aileron/final-deg</output>
-		<filter-time>0.06</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -466,8 +466,7 @@
 	
 	<filter>
 		<name>Left Elevator</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<not-equals>
@@ -496,6 +495,7 @@
 		<output>/fcs/left-elevator/cmd-deg</output>
 		<min>-30</min>
 		<max>25</max>
+		<max-rate-of-change>85</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -503,13 +503,12 @@
 		<type>exponential</type>
 		<input>/fcs/left-elevator/cmd-deg</input>
 		<output>/fcs/left-elevator/final-deg</output>
-		<filter-time>0.06</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
 		<name>Right Elevator</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<not-equals>
@@ -538,6 +537,7 @@
 		<output>/fcs/right-elevator/cmd-deg</output>
 		<min>-30</min>
 		<max>25</max>
+		<max-rate-of-change>85</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -545,7 +545,7 @@
 		<type>exponential</type>
 		<input>/fcs/right-elevator/cmd-deg</input>
 		<output>/fcs/right-elevator/final-deg</output>
-		<filter-time>0.06</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -609,8 +609,7 @@
 	
 	<filter>
 		<name>Rudder</name>
-		<type>gain</type>
-		<gain>1.0</gain>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<not-equals>
@@ -633,6 +632,7 @@
 		<output>/fcs/rudder/cmd-deg</output>
 		<min>-27.3</min>
 		<max>27.3</max>
+		<max-rate-of-change>80</max-rate-of-change>
 	</filter>
 	
 	<filter>
@@ -640,7 +640,7 @@
 		<type>exponential</type>
 		<input>/fcs/rudder/cmd-deg</input>
 		<output>/fcs/rudder/final-deg</output>
-		<filter-time>0.06</filter-time>
+		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>

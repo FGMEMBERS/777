@@ -666,6 +666,10 @@ Service Ceiling: 43,100ft
         </engine>
     </engines>
 
+    <fcs n="0">
+        <pfc-enable type="bool">1</pfc-enable>
+    </fcs>
+
     <gear n="0">
         <gear n="0">
             <tyre-smoke type="bool">0</tyre-smoke>

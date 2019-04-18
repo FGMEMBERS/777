@@ -7056,4 +7056,44 @@ Syd Adams
         </action>
     </animation>
 
+    <animation>
+        <type>pick</type>
+        <object-name>PFC-Disc_Switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <equals>
+                        <property>aaa/oh/PA2/BlockPA2_Cover</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <command>property-toggle</command>
+                <property>fcs/pfc-enable</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>PFC-Disc_Switch</object-name>
+        <property>fcs/pfc-enable</property>
+        <factor>45</factor>
+        <center>
+            <x-m>0.0121</x-m>
+            <y-m>-0.27841</y-m>
+            <z-m>0.02342</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
 </PropertyList>
