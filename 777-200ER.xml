@@ -140,7 +140,7 @@ WEIGHT/lbs  Vref
     <control-speed control="EXTEND" transition-time="19"></control-speed>
   </gear>
 
-  <gear x="-6.39" y="5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.9">
+  <gear x="-6.39" y="5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.39">
     <control-input axis="/autopilot/autobrake/left-brake-output" control="BRAKE"></control-input>
     <control-input axis="/controls/gear/brake-parking" control="BRAKE"></control-input>
     <control-input axis="/controls/gear/gear-down" control="EXTEND"></control-input>
@@ -148,7 +148,7 @@ WEIGHT/lbs  Vref
     <control-speed control="EXTEND" transition-time="20"></control-speed>
   </gear>
 
-  <gear x="-6.39" y="-5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.9">
+  <gear x="-6.39" y="-5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.39">
     <control-input axis="/autopilot/autobrake/right-brake-output" control="BRAKE"></control-input>
     <control-input axis="/controls/gear/brake-parking" control="BRAKE"></control-input>
     <control-input axis="/controls/gear/gear-down" control="EXTEND"></control-input>
