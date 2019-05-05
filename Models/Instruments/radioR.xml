@@ -153,6 +153,7 @@ Syd Adams
         <property>instrumentation/rmu/unit[1]/standby-mhz</property>
         <factor>0.001</factor>
         <step>100</step>
+		<bias>0.0005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -166,6 +167,7 @@ Syd Adams
         <property>instrumentation/rmu/unit[1]/standby-mhz</property>
         <factor>0.01</factor>
         <step>10</step>
+		<bias>0.0005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -179,6 +181,7 @@ Syd Adams
         <property>instrumentation/rmu/unit[1]/standby-mhz</property>
         <factor>0.1</factor>
         <step>1</step>
+		<bias>0.0005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -573,6 +576,7 @@ Syd Adams
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
                 <step>0.025</step>
+				<max>137.0</max>
             </binding>
         </action>
     </animation>
@@ -592,6 +596,7 @@ Syd Adams
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
                 <step>-0.025</step>
+				<min>108.0</min>
             </binding>
         </action>
     </animation>
@@ -611,6 +616,7 @@ Syd Adams
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
                 <step>1</step>
+				<max>137.0</max>
             </binding>
         </action>
     </animation>
@@ -629,6 +635,7 @@ Syd Adams
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
                 <step>-1</step>
+				<min>108.0</min>
             </binding>
         </action>
     </animation>
