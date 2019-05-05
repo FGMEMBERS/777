@@ -576,7 +576,7 @@ Syd Adams
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
                 <step>0.025</step>
-				<max>137.0</max>
+				<max>136.0</max>
             </binding>
         </action>
     </animation>
@@ -616,7 +616,7 @@ Syd Adams
                 <command>property-adjust</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
                 <step>1</step>
-				<max>137.0</max>
+				<max>136.0</max>
             </binding>
         </action>
     </animation>
