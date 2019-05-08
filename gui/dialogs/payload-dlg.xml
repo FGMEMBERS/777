@@ -767,9 +767,12 @@
 		<pref-width>150</pref-width>
 		<pref-height>24</pref-height>
 		<binding>
-			<command>property-assign</command>
-			<property>services/payload/pax-boarding</property>
-			<value>2</value>
+			<command>nasal</command>
+			<script>
+				setprop("/services/payload/pax-boarding", 2);
+				var boardingtime = math.round(getprop("/services/payload/pax-onboard-nr") / (1 + getprop("/services/stairs/stairs2_enable") + getprop("/services/stairs/stairs3_enable")) / 60 * getprop("/services/payload/speed"));
+				screen.log.write("Passenger deboarding started. Estimated deboarding time: " ~ boardingtime ~ " minutes.", 0, 0.584, 1);
+			</script>
 		</binding>
 	</button>
 	
@@ -780,9 +783,16 @@
 		<pref-width>150</pref-width>
 		<pref-height>24</pref-height>
 		<binding>
-			<command>property-assign</command>
-			<property>services/payload/baggage-loading</property>
-			<value>2</value>
+			<command>nasal</command>
+				<script>
+					if ((getprop("services/payload/baggage-truck1-enable") == 1) or (getprop("services/payload/baggage-truck2-enable") == 1)) {
+						setprop("/services/payload/baggage-loading", 2);
+						var loadingtime = math.round(getprop("/services/payload/belly-onboard-lbs") / (150 * (getprop("/services/payload/baggage-truck1-enable") + getprop("/services/payload/baggage-truck2-enable"))) / 60 * getprop("/services/payload/speed"));
+						screen.log.write("Baggage unloading started. Estimated unloading time: " ~ loadingtime ~ " minutes.", 0, 0.584, 1);
+					} else {
+						screen.log.write("Please enable a baggage truck first!", 1, 0, 0);
+					}
+				</script>
 		</binding>
 	</button>
 	
@@ -806,9 +816,16 @@
 		<row>2</row>
 		<col>0</col>
 		<binding>
-			<command>property-assign</command>
-			<property>services/payload/pax-boarding</property>
-			<value>0</value>
+			<command>nasal</command>
+			<script>
+				if (getprop("/services/payload/pax-boarding") == 1) {
+				    setprop("/services/payload/pax-boarding", 0);
+					screen.log.write("Passenger boarding stopped.", 0, 0.584, 1);
+				} elsif (getprop("/services/payload/pax-boarding") == 2) {
+				    setprop("/services/payload/pax-boarding", 0);
+					screen.log.write("Passenger deboarding stopped.", 0, 0.584, 1);
+				}
+			</script>
 		</binding>
 	</button>
 	
@@ -819,9 +836,16 @@
 		<row>2</row>
 		<col>1</col>
 		<binding>
-			<command>property-assign</command>
-			<property>services/payload/baggage-loading</property>
-			<value>0</value>
+			<command>nasal</command>
+			<script>
+				if (getprop("/services/payload/baggage-loading") == 1) {
+				    setprop("/services/payload/baggage-loading", 0);
+					screen.log.write("Baggage loading stopped.", 0, 0.584, 1);
+				} elsif (getprop("/services/payload/baggage-loading") == 2) {
+				    setprop("/services/payload/baggage-loading", 0);
+					screen.log.write("Baggage unloading stopped.", 0, 0.584, 1);
+				}
+			</script>
 		</binding>
 	</button>
 	

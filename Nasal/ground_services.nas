@@ -182,7 +182,11 @@ var ground_services = {
 		    setprop("/services/catering/position", 0);
 			setprop("/services/catering/move", 0);
 		}
-
+		
+		#Pax and baggage
+		#Gui update for the weight & payload dialog (code is in payload.nas, but Gui update needs the faster timer (at 10 Hz instead of 0.17 Hz) of the ground services system)
+		setprop("/services/payload/expected-weight-lbs", getprop("/services/payload/belly-request-lbs") + getprop("/services/payload/first-request-nr") * 247 + getprop("/services/payload/business-request-nr") * 225 + getprop("/services/payload/economy-request-nr") * 170 + getprop("/services/payload/crew-request-nr") * 150);
+        setprop("/services/payload/pax-request-nr", getprop("/services/payload/first-request-nr") + getprop("/services/payload/business-request-nr") + getprop("/services/payload/economy-request-nr"));
 	}
 
 };
