@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList>
 
@@ -51,6 +51,38 @@
 		</text>
 	
 	</group>
+	
+	<group>
+		<layout>hbox</layout>
+
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+		<text>
+			<label>Options</label>
+		</text>
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+	</group>
+	
+	<checkbox>
+		<label>Show FBW Bug on PFD</label>
+		<halign>left</halign>
+		<property>/fcs/fbw/show-fbw-bug</property>
+		<binding>
+			<command>property-toggle</command>
+			<property>/fcs/fbw/show-fbw-bug</property>
+		</binding>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<binding>
+			<command>nasal</command>
+			<script>b777.writeSettings();</script>
+		</binding>
+		<live>true</live>
+	</checkbox>
 	
 	<group>
 		<layout>hbox</layout>

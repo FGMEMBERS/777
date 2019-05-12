@@ -5910,10 +5910,13 @@ Syd Adams
                 <property>aaa/oh/PA2/BlockPA2_Cover</property>
             </binding>
             <binding>
+                <command>property-assign</command>
+                <property>fcs/pfc-enable</property>
+                <value>1</value>
+            </binding>
+            <binding>
                 <command>nasal</command>
-                <script>
-                controls.click(7);
-            </script>
+                <script>controls.click(7);</script>
             </binding>
         </action>
     </animation>

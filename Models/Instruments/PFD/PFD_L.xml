@@ -299,6 +299,18 @@ Syd Adams
     </animation>
 
     <animation>
+        <object-name>fbw-text</object-name>
+        <property>instrumentation/pfd/fbw-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.00102</factor>
+    </animation>
+
+    <animation>
         <object-name>v1-text</object-name>
         <property>instrumentation/pfd/v1-diff</property>
         <type>translate</type>
@@ -332,6 +344,17 @@ Syd Adams
             <z>1</z>
         </axis>
         <factor>0.00102</factor>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>fbw-text</object-name>
+        <condition>
+            <and>
+                <not><property>fcs/fbw/pitch/trim-kts-sync</property></not>
+                <property>fcs/fbw/show-fbw-bug</property>
+            </and>
+        </condition>
     </animation>
 
     <animation>
@@ -607,11 +630,11 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>Slip.needle</object-name>
-        <property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
-        <factor>0.0025</factor>
+        <property>instrumentation/pfd/slip-skid</property>
+        <factor>0.001</factor>
         <axis>
             <x>0</x>
-            <y>-1</y>
+            <y>1</y>
             <z>0</z>
         </axis>
     </animation>
@@ -1914,6 +1937,7 @@ Syd Adams
         <type>material</type><!--blue-->
         <object-name>UTC-TEXT</object-name>
         <object-name>ET-TEXT</object-name>
+        <object-name>fbw-text</object-name>
         <emission>
             <red>0.4</red>
             <green>1.0</green>
@@ -2276,6 +2300,25 @@ Syd Adams
         </condition>
     </animation>
 
+    <text>
+        <name>fbw-text</name>
+        <offsets>
+            <x-m>0.0025</x-m>
+            <y-m>-0.067</y-m>
+            <z-m>0.0105</z-m>
+        </offsets>
+        <alignment>left-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>literal</type>
+        <text>- FBW</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.004</character-size>
+        <character-aspect-ratio type="double">1.2</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
     <text>
         <name>v1-text</name>
         <offsets>

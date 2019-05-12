@@ -13,7 +13,7 @@
    height="1024"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="fctl.svg"
    enable-background="new">
   <defs
@@ -25,18 +25,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2737284"
-     inkscape:cx="483.8555"
-     inkscape:cy="614.43705"
+     inkscape:zoom="1.801324"
+     inkscape:cx="480.03159"
+     inkscape:cy="146.06729"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer4"
      showgrid="false"
      borderlayer="true"
-     inkscape:window-width="1617"
-     inkscape:window-height="966"
-     inkscape:window-x="222"
-     inkscape:window-y="47"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      showguides="true"
      inkscape:guide-bbox="true" />
   <metadata
@@ -214,13 +214,14 @@
        y="644.94025"
        ry="5.5558391" />
     <rect
-       style="fill:none;stroke:#00ff00;stroke-width:3.92755151;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
-       id="rect4111-0"
+       style="fill:none;stroke:#00ff00;stroke-width:3.92755151;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="fctlModeBox"
        width="187.57718"
        height="42.003887"
        x="417.91931"
        y="950.71527"
-       ry="5.4358029" />
+       ry="5.4358029"
+       inkscape:label="#rect4111-0" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#00ffff;fill-opacity:1;stroke:#00ffff;font-family:Sans"
@@ -295,14 +296,15 @@
          style="font-size:28px">FLT CTRL  MODE</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:#00ff00;display:inline;font-family:Sans"
-       x="449.03424"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;display:inline;fill:#00ff00;fill-opacity:1;stroke:#00ff00"
+       x="459.03424"
        y="980.46973"
-       id="text4138-0-9"
-       sodipodi:linespacing="125%"><tspan
+       id="fctlMode"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text4138-0-9"><tspan
          sodipodi:role="line"
          id="tspan4140-7-60"
-         x="449.03424"
+         x="459.03424"
          y="980.46973"
          style="font-size:28px;fill:#00ff00;stroke:#00ff00">NORMAL</tspan></text>
     <text

@@ -552,26 +552,7 @@ var AFDS = {
         if((disabled)and(output==0)){output = 1;me.AP.setValue(0);}
         if (output==1)
         {
-            setprop("controls/flight/elevator-filter", 0);
-            setprop("controls/flight/elevator", 0);
-            var msg="";
-            var msg2="";
-            var msg3="";
-            if (abs(getprop("controls/flight/rudder-trim"))   > 0.04) msg  = "rudder";
-            if (abs(getprop("controls/flight/elevator-trim")) > 0.04) msg2 = "pitch";
-            if (abs(getprop("controls/flight/aileron-trim"))  > 0.04) msg3 = "aileron";
-            if (msg ~ msg2 ~ msg3 != "")
-            {
-                if ((msg != "")and(msg2!=""))
-                    msg = msg ~ ", " ~ msg2;
-                else
-                    msg = msg ~ msg2;
-                if ((msg != "")and(msg3!=""))
-                    msg = msg ~ " and " ~ msg3;
-                else
-                    msg = msg ~ msg3;
-                copilot("Captain, autopilot disengaged. Careful, check " ~ msg ~ " trim!");
-            }
+            copilot("Captain, autopilot disengaged.");
             me.rollout_armed.setValue(0);
             me.flare_armed.setValue(0);
             me.loc_armed.setValue(0);           # Disarm
@@ -2022,7 +2003,7 @@ var AFDS = {
 
 var afds = AFDS.new();
 
-    setlistener("sim/signals/fdm-initialized", func {
+setlistener("sim/signals/fdm-initialized", func {
     settimer(update_afds,6);
 });
 

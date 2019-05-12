@@ -504,7 +504,17 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <type>translate</type>
         <object-name>ruddertrim.needle</object-name>
         <property>controls/flight/rudder-trim</property>
-        <factor>0.0336</factor>
+        <interpolation>
+            <entry><ind>-1.000</ind><dep>-0.0335</dep></entry>
+            <entry><ind>-0.882</ind><dep>-0.0298</dep></entry>
+            <entry><ind>-0.588</ind><dep>-0.0210</dep></entry>
+            <entry><ind>-0.294</ind><dep>-0.0117</dep></entry>
+            <entry><ind> 0.000</ind><dep> 0.0000</dep></entry>
+            <entry><ind> 0.294</ind><dep> 0.0119</dep></entry>
+            <entry><ind> 0.588</ind><dep> 0.0207</dep></entry>
+            <entry><ind> 0.882</ind><dep> 0.0301</dep></entry>
+            <entry><ind> 1.000</ind><dep> 0.0335</dep></entry>
+        </interpolation>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -706,12 +716,15 @@ Sep 2013: Adjusted for the new Virtual Cokpit - I NEMO
         <type>translate</type>
         <object-name>StabTrim_L_Mark</object-name>
         <object-name>StabTrim_R_Mark</object-name>
-        <property>/controls/flight/elevator-trim</property>
-        <factor>-0.027</factor>
+        <property>fcs/stabilizer/final-deg-ind</property>
+        <interpolation>
+            <entry><ind> 0</ind><dep>-0.0340</dep></entry>
+            <entry><ind>15</ind><dep> 0.0396</dep></entry>
+        </interpolation>
         <axis>
             <x>1</x>
             <y>0</y>
-            <z>-0.18</z>
+            <z>-0.22</z>
         </axis>
     </animation>
 

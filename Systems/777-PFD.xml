@@ -78,7 +78,7 @@
           <property>instrumentation/weu/state/stall-speed</property>
       </input>
       <reference>
-          <property>velocities/airspeed-kt</property>
+          <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
           <offset>70</offset>
       </reference>
       <output>instrumentation/pfd/stallspeed-diff</output>
@@ -95,7 +95,7 @@
           <property>instrumentation/afds/max-airspeed-kts</property>
       </input>
       <reference>
-          <property>velocities/airspeed-kt</property>
+          <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
           <offset>-65</offset>
       </reference>
       <output>instrumentation/pfd/overspeed-diff</output>
@@ -134,6 +134,18 @@
       <min>-55</min>
       <max>63</max>
   </filter>
+
+	<filter>
+    	<name>FBW marker positioning</name> 
+		<type>gain</type>
+		<update-interval-secs type="double">0.05</update-interval-secs>
+		<gain>1.0</gain>
+		<input>/fcs/fbw/pitch/trim-kts</input>
+		<reference>/instrumentation/airspeed-indicator/indicated-speed-kt</reference>
+		<output>instrumentation/pfd/fbw-diff</output>
+		<min>-64</min>
+		<max>60</max>
+	</filter>
 
 	<filter>
     	<name>V1 marker positioning</name> 
@@ -254,7 +266,7 @@
   <predict-simple>
     <name>speed predictor (smoothed)</name>
     <update-interval-secs type="double">0.1</update-interval-secs>
-    <input>velocities/airspeed-kt</input>
+    <input>instrumentation/airspeed-indicator/indicator-speed-kt</input>
     <output>instrumentation/pfd/speed-lookahead</output>
     <seconds>10.0</seconds>
     <filter-gain>0.05</filter-gain>
@@ -268,7 +280,7 @@
       <property>instrumentation/pfd/speed-lookahead</property>
     </input>
     <reference>
-      <property>velocities/airspeed-kt</property>
+      <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
       <offset>90</offset>
     </reference>
     <gain>-0.002667</gain>
@@ -286,7 +298,7 @@
       <min>0</min>
     </input>
     <reference>
-      <property>velocities/airspeed-kt</property>
+      <property>instrumentation/airspeed-indicator/indicator-speed-kt</property>
       <offset>-90</offset>
     </reference>
     <gain>-0.002667</gain>

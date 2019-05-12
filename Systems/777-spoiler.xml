@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- Boeing 777 Flight Control System -->
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 <!-- Right now the 3D has them all together, so for now I am just putting them all together, not even hydraulics are simulated seperately for now -->
 
 <PropertyList>
@@ -56,7 +56,7 @@
 							<property>/fcs/spoilers/input</property>
 						</difference>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>-1.0</ind><dep>60</dep></entry>
 							<entry><ind>-0.1</ind><dep> 0</dep></entry>
 						</table>
@@ -64,7 +64,7 @@
 					<product> <!-- Retract -->
 						<property>/fcs/spoilers/input</property>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>0.1</ind><dep>  0</dep></entry>
 							<entry><ind>1.0</ind><dep>-60</dep></entry>
 						</table>
@@ -79,7 +79,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property>
+					<property>/fcs/fbw/roll/spoiler-cmd</property>
 					<entry><ind>-1.0</ind><dep>60</dep></entry>
 					<entry><ind>-0.1</ind><dep> 0</dep></entry>
 				</table>
@@ -124,7 +124,7 @@
 							<property>/fcs/spoilers/input</property>
 						</difference>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>-1.0</ind><dep>60</dep></entry>
 							<entry><ind>-0.1</ind><dep> 0</dep></entry>
 						</table>
@@ -132,7 +132,7 @@
 					<product> <!-- Retract -->
 						<property>/fcs/spoilers/input</property>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>0.1</ind><dep>  0</dep></entry>
 							<entry><ind>1.0</ind><dep>-60</dep></entry>
 						</table>
@@ -147,7 +147,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property>
+					<property>/fcs/fbw/roll/spoiler-cmd</property>
 					<entry><ind>-1.0</ind><dep>60</dep></entry>
 					<entry><ind>-0.1</ind><dep> 0</dep></entry>
 				</table>
@@ -192,7 +192,7 @@
 							<property>/fcs/spoilers/input</property>
 						</difference>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>0.1</ind><dep> 0</dep></entry>
 							<entry><ind>1.0</ind><dep>60</dep></entry>
 						</table>
@@ -200,7 +200,7 @@
 					<product> <!-- Retract -->
 						<property>/fcs/spoilers/input</property>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>-1.0</ind><dep>-60</dep></entry>
 							<entry><ind>-0.1</ind><dep>  0</dep></entry>
 						</table>
@@ -215,7 +215,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property>
+					<property>/fcs/fbw/roll/spoiler-cmd</property>
 					<entry><ind>0.1</ind><dep> 0</dep></entry>
 					<entry><ind>1.0</ind><dep>60</dep></entry>
 				</table>
@@ -254,7 +254,7 @@
 							<property>/fcs/spoilers/input</property>
 						</difference>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>0.1</ind><dep> 0</dep></entry>
 							<entry><ind>1.0</ind><dep>60</dep></entry>
 						</table>
@@ -262,7 +262,7 @@
 					<product> <!-- Retract -->
 						<property>/fcs/spoilers/input</property>
 						<table>
-							<property>/controls/flight/aileron</property>
+							<property>/fcs/fbw/roll/spoiler-cmd</property>
 							<entry><ind>-1.0</ind><dep>-60</dep></entry>
 							<entry><ind>-0.1</ind><dep>  0</dep></entry>
 						</table>
@@ -277,7 +277,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/controls/flight/aileron</property>
+					<property>/fcs/fbw/roll/spoiler-cmd</property>
 					<entry><ind>0.1</ind><dep> 0</dep></entry>
 					<entry><ind>1.0</ind><dep>60</dep></entry>
 				</table>

@@ -5,7 +5,7 @@ Version 0.6.2.
 
 Copyright (c) 2018 Autopush authors:
  Michael Danilov <mike.d.ft402 -eh- gmail.com>
- Joshua Davidson http://github.com/it0uchpods
+ Joshua Davidson http://github.com/Octal450
  Merspieler http://gitlab.com/merspieler
 Some of the code (c) FlightGear
 Distribute under the terms of GPLv2.

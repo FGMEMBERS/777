@@ -10,7 +10,7 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>2019-04-04</aircraft-version>
+        <aircraft-version>2019-05-04</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
@@ -609,6 +609,9 @@ Service Ceiling: 43,100ft
 
             <!--  fast running autopilot rules (running at FDM frequency / 120Hz) -->
             <autopilot>
+                <path>Systems/777-fbw.xml</path>
+            </autopilot>
+            <autopilot>
                 <path>Systems/777-fcs.xml</path>
             </autopilot>
             <autopilot>
@@ -654,10 +657,6 @@ Service Ceiling: 43,100ft
             <cabinalert type="bool">0</cabinalert>
         </sound>
 
-        <hud>
-            <enable3d>false</enable3d>
-        </hud>
-
         <virtual-cockpit>true</virtual-cockpit>
         <allow-toggle-cockpit>true</allow-toggle-cockpit>
     </sim>
@@ -673,6 +672,12 @@ Service Ceiling: 43,100ft
 
     <fcs n="0">
         <pfc-enable type="bool">1</pfc-enable>
+        <fbw>
+            <pitch>
+                <trim-kts type="double">140</trim-kts>
+            </pitch>
+            <show-fbw-bug type="bool">0</show-fbw-bug> <!-- Overwritten with stored setting later -->
+        </fbw>
     </fcs>
 
     <gear n="0">
@@ -888,7 +893,87 @@ Service Ceiling: 43,100ft
                     <max>2</max>
                 </binding>
             </key>
+            <key n="49">
+                <name>1</name>
+                <desc>Elevator Trim Up</desc>
+                <repeatable>true</repeatable>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(-1);
+                    </script>
+                </binding>
+                <mod-shift>
+                    <desc>Look back left</desc>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/sim/current-view/goal-heading-offset-deg</property>
+                        <property>/sim/view/config/back-left-direction-deg</property>
+                    </binding>
+                </mod-shift>
+            </key>
+            <key n="55">
+                <name>7</name>
+                <desc>Elevator Trim Down</desc>
+                <repeatable>true</repeatable>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(1);
+                    </script>
+                </binding>
+                <mod-shift>
+                    <desc>Look front left</desc>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/sim/current-view/goal-heading-offset-deg</property>
+                        <property>/sim/view/config/front-left-direction-deg</property>
+                    </binding>
+                </mod-shift>
+            </key>
+            <key n="362">
+                <name>Home</name>
+                <desc>Elevator Trim Down</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>controls.elevatorTrim(1);</script>
+                </binding>
+            </key>
+            <key n="363">
+                <name>End</name>
+                <desc>Elevator Trim Up</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>controls.elevatorTrim(-1);</script>
+                </binding>
+            </key>
         </keyboard>
+        <mice n="0">
+            <mouse n="0">
+                <mode n="1"> <!-- Mouse Yoke Support -->
+                    <button n="3">
+                        <binding n="0">
+                            <command>nasal</command>
+                            <script></script>
+                        </binding>
+                        <binding n="1">
+                            <command>nasal</command>
+                            <script>controls.elevatorTrim(1);</script>
+                        </binding>
+                    </button>
+                    <button n="4">
+                        <binding n="0">
+                            <command>nasal</command>
+                            <script></script>
+                        </binding>
+                        <binding n="1">
+                            <command>nasal</command>
+                            <script>controls.elevatorTrim(-1);</script>
+                        </binding>
+                    </button>
+                </mode>
+            </mouse>
+        </mice>
     </input>
 
     <instrumentation n="0">
@@ -1153,6 +1238,7 @@ Service Ceiling: 43,100ft
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>
         <flight>
+            <elevator-trim type="double">0.125</elevator-trim>
             <speedbrake-lever type="double">0</speedbrake-lever>
             <trim-ref-speed type="double">0</trim-ref-speed>
         </flight>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- Boeing 777 Flight Control System -->
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -30,10 +30,10 @@
 	<logic>
 		<input>
 			<and>
-				<less-than>
-					<property>/surface-positions/flap-pos-norm</property>
-					<value>0.01</value>
-				</less-than>
+				<greater-than>
+					<property>/instrumentation/airspeed-indicator/indicated-mach</property>
+					<value>0.48</value> <!-- Close, but not quite right -->
+				</greater-than>
 				<equals>
 					<property>/fcs/position/wow</property>
 					<value>0</value>
@@ -104,7 +104,7 @@
 			<expression>
 				<product>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>-1</ind><dep>-1</dep></entry>
 						<entry><ind> 0</ind><dep> 0</dep></entry>
 					</table>
@@ -123,7 +123,7 @@
 			<expression>
 				<product>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>-1</ind><dep>-1</dep></entry>
 						<entry><ind> 0</ind><dep> 0</dep></entry>
 					</table>
@@ -142,7 +142,7 @@
 			<expression>
 				<product>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>0</ind><dep> 0</dep></entry>
 						<entry><ind>1</ind><dep>-1</dep></entry>
 					</table>
@@ -161,7 +161,7 @@
 			<expression>
 				<product>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>0</ind><dep> 0</dep></entry>
 						<entry><ind>1</ind><dep>-1</dep></entry>
 					</table>
@@ -170,39 +170,6 @@
 			</expression>
 		</input>
 		<output>/fcs/anti-droop-right-outer</output>
-	</filter>
-	
-	<filter>
-		<name>Aileron Sum</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<sum>
-					<property>/controls/flight/aileron</property>
-					<property>/controls/flight/aileron-trim</property>
-				</sum>
-			</expression>
-		</input>
-		<output>/fcs/roll/aileron-sum</output>
-	</filter>
-	
-	<filter>
-		<name>Rudder Sum</name>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<sum>
-					<property>/controls/flight/rudder</property>
-					<product>
-						<property>/controls/flight/rudder-trim</property>
-						<value>0.8</value>
-					</product>
-				</sum>
-			</expression>
-		</input>
-		<output>/fcs/yaw/rudder-sum</output>
 	</filter>
 	
 	<!-- Ailerons -->
@@ -238,7 +205,7 @@
 			<expression>
 				<sum>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>-1</ind><dep>-30</dep></entry>
 						<entry><ind> 0</ind><dep>  0</dep></entry>
 						<entry><ind> 1</ind><dep> 10</dep></entry>
@@ -275,7 +242,7 @@
 			<expression>
 				<table>
 					<property>/velocities/airspeed-kt</property>
-					<entry><ind> 62</ind><dep>30</dep></entry>
+					<entry><ind> 62</ind><dep>32</dep></entry>
 					<entry><ind>116</ind><dep> 0</dep></entry>
 				</table>
 			</expression>
@@ -284,7 +251,7 @@
 			<expression>
 				<sum>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>-1</ind><dep>-11</dep></entry>
 						<entry><ind> 0</ind><dep>  0</dep></entry>
 						<entry><ind> 1</ind><dep> 32</dep></entry>
@@ -321,7 +288,7 @@
 			<expression>
 				<table>
 					<property>/velocities/airspeed-kt</property>
-					<entry><ind> 62</ind><dep>30</dep></entry>
+					<entry><ind> 62</ind><dep>32</dep></entry>
 					<entry><ind>116</ind><dep> 0</dep></entry>
 				</table>
 			</expression>
@@ -330,7 +297,7 @@
 			<expression>
 				<sum>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>-1</ind><dep> 32</dep></entry>
 						<entry><ind> 0</ind><dep>  0</dep></entry>
 						<entry><ind> 1</ind><dep>-11</dep></entry>
@@ -385,7 +352,7 @@
 			<expression>
 				<sum>
 					<table>
-						<property>/fcs/roll/aileron-sum</property>
+						<property>/fcs/fbw/roll/aileron-cmd</property>
 						<entry><ind>-1</ind><dep> 10</dep></entry>
 						<entry><ind> 0</ind><dep>  0</dep></entry>
 						<entry><ind> 1</ind><dep>-30</dep></entry>
@@ -485,7 +452,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/controls/flight/elevator</property>
+					<property>/fcs/fbw/pitch/elevator-cmd</property>
 					<entry><ind>-1</ind><dep>-30</dep></entry>
 					<entry><ind> 0</ind><dep>  0</dep></entry>
 					<entry><ind> 1</ind><dep> 25</dep></entry>
@@ -527,7 +494,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/controls/flight/elevator</property>
+					<property>/fcs/fbw/pitch/elevator-cmd</property>
 					<entry><ind>-1</ind><dep>-30</dep></entry>
 					<entry><ind> 0</ind><dep>  0</dep></entry>
 					<entry><ind> 1</ind><dep> 25</dep></entry>
@@ -587,7 +554,10 @@
 		<input>
 			<expression>
 				<product>
-					<property>/controls/flight/elevator-trim</property>
+					<sum>
+						<property>/controls/flight/elevator-trim</property>
+						<value>-0.125</value> <!-- Comepensation because YASim sucks -->
+					</sum>
 					<value>11</value>
 				</product>
 			</expression>
@@ -603,6 +573,22 @@
 		<input>/fcs/stabilizer/cmd-deg</input>
 		<output>/fcs/stabilizer/final-deg</output>
 		<max-rate-of-change>0.3</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>Stabilizer Indicator</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/fcs/stabilizer/final-deg</property>
+					<entry><ind>-11</ind><dep>15</dep></entry>
+					<entry><ind>  4</ind><dep> 0</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<output>/fcs/stabilizer/final-deg-ind</output>
 	</filter>
 	
 	<!-- Rudder -->
@@ -622,7 +608,7 @@
 		<input>
 			<expression>
 				<table>
-					<property>/fcs/yaw/rudder-sum</property>
+					<property>/fcs/fbw/yaw/rudder-cmd</property>
 					<entry><ind>-1</ind><dep>-27.3</dep></entry>
 					<entry><ind> 0</ind><dep>  0.0</dep></entry>
 					<entry><ind> 1</ind><dep> 27.3</dep></entry>
