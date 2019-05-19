@@ -7,7 +7,7 @@
         <max-landing-weight type="double">575000</max-landing-weight>
 		<max-takeoff-weight type="double">766800</max-takeoff-weight>
         <startup>
-            <splash-texture>Aircraft/777/splash-cargo.png</splash-texture>
+            <splash-texture>Aircraft/777/gui/Previews/splash-cargo.png</splash-texture>
         </startup>
         <variant-of>777-200</variant-of>
         <model n="0">

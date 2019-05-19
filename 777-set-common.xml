@@ -10,7 +10,26 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>2019-05-04</aircraft-version>
+        
+        <previews>
+            <preview>
+                <type>exterior</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/77W_air.jpg</path>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/77W_gnd.jpg</path>
+            </preview>
+            <preview>
+                <type>panel</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/777_cockpit.jpg</path>
+            </preview>
+        </previews>
+		
+        <aircraft-version>2019-05-19</aircraft-version>
         <flight-model>yasim</flight-model>
         <fuel-fraction type="double">0.1</fuel-fraction>
         <model n="0">
@@ -470,13 +489,13 @@ Service Ceiling: 43,100ft
                             <dialog-name>ground_services</dialog-name>
                         </binding>
                     </item>
-					<!--item n3 (payload) is aircraft specific and defined in its own set file-->
-					<item n="4">
-					    <label>Fuel Truck Controls</label>
+                    <!--item n3 (payload) is aircraft specific and defined in its own set file-->
+                    <item n="4">
+                        <label>Fuel Truck Controls</label>
                         <name>fuel_truck</name>
-						<binding>
+                        <binding>
                             <command>dialog-show</command>
-							<dialog-name>fuel_truck</dialog-name>
+                            <dialog-name>fuel_truck</dialog-name>
                         </binding>
                     </item>
                     <item n="5">                       
@@ -530,8 +549,8 @@ Service Ceiling: 43,100ft
 
         <weight n="0">
             <name>Crew</name>
-			<!--Std. 11 cabin crew + 2 pilots @ 150 Lbs. (including 13 lbs of luggage) each.
-			Max 18 cabin crew + 2 pilots @ 150 Lbs.-->
+            <!--Std. 11 cabin crew + 2 pilots @ 150 Lbs. (including 13 lbs of luggage) each.
+            Max 18 cabin crew + 2 pilots @ 150 Lbs.-->
             <weight-lb type="double">1950</weight-lb>
             <max-lb type="double">3000</max-lb>
             <min-lb type="double">300</min-lb>
@@ -579,7 +598,7 @@ Service Ceiling: 43,100ft
             <path>controls/gear/tiller-enabled</path>
             <path>sim/weight[0]/weight-lb</path>
             <path>sim/weight[1]/weight-lb</path>
-			<path>/sim/model/autopush/route/show</path>
+            <path>/sim/model/autopush/route/show</path>
             <path>/sim/model/autopush/route/show-wingtip</path>
         </aircraft-data>
         <weight n="0"><weight-lb type="double">400</weight-lb></weight>
@@ -1284,8 +1303,8 @@ Service Ceiling: 43,100ft
             <file>Nasal/AFDS.nas</file>
             <file>Nasal/tyresmoke.nas</file>
             <file>Nasal/gpws.nas</file>
-			<file>Nasal/ground_services.nas</file>
-			<file>Nasal/payload.nas</file>
+            <file>Nasal/ground_services.nas</file>
+            <file>Nasal/payload.nas</file>
             <file>Nasal/warnsystem.nas</file>
             <file>Nasal/Cabinalert.nas</file>
             <file>Nasal/brakesystem.nas</file>
@@ -1298,7 +1317,7 @@ Service Ceiling: 43,100ft
             <file>Nasal/SWanimation.nas</file>
             <file>Nasal/runway.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
-			<file>Nasal/light-manager.nas</file>
+            <file>Nasal/light-manager.nas</file>
         </b777>
         <dialogs>
             <file>Nasal/dialogs.nas</file>
