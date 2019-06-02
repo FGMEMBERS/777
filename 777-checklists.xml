@@ -594,8 +594,8 @@
 			 <property>sim/model/autopush/connected</property>
 			</condition>
 			<binding>
-				<command>nasal</command>
-				<script>dialogs.pushback.open()</script>
+				<command>dialog-show</command>
+				<dialog-name>autopush</dialog-name>
 			</binding>
         </item>
         <item>
