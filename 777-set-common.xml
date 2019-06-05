@@ -28,10 +28,10 @@
                 <path>gui/Previews/777_cockpit.jpg</path>
             </preview>
         </previews>
-		
-        <aircraft-version>2019-05-19</aircraft-version>
+        
+        <aircraft-version>2019-06-06</aircraft-version>
         <flight-model>yasim</flight-model>
-        <fuel-fraction type="double">0.1</fuel-fraction>
+        <fuel-fraction userarchive="y" type="double">0.0</fuel-fraction>
         <model n="0">
             <livery>
                 <file type="string">BAW</file>
@@ -543,6 +543,14 @@ Service Ceiling: 43,100ft
                             <dialog-name>fbwsettings</dialog-name>
                         </binding>
                     </item>
+                    <item n="11">
+                        <label>Aircraft Settings</label>
+                        <name>aircraft_settings</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>aircraft_settings</dialog-name>
+                        </binding>
+                    </item>
                 </menu>
             </default>
         </menubar>
@@ -598,8 +606,11 @@ Service Ceiling: 43,100ft
             <path>controls/gear/tiller-enabled</path>
             <path>sim/weight[0]/weight-lb</path>
             <path>sim/weight[1]/weight-lb</path>
-            <path>/sim/model/autopush/route/show</path>
-            <path>/sim/model/autopush/route/show-wingtip</path>
+            <path>sim/model/autopush/route/show</path>
+            <path>sim/model/autopush/route/show-wingtip</path>
+            <path>aircraft/settings/tooltips</path>
+            <path>aircraft/settings/fuel_persistent</path>
+            <path>sim/fuel-fraction</path>
         </aircraft-data>
         <weight n="0"><weight-lb type="double">400</weight-lb></weight>
 
@@ -653,6 +664,9 @@ Service Ceiling: 43,100ft
             <!--  slow running property-rules (running at frame rate) -->
             <property-rule n="100">
                 <path>Systems/777-PFD.xml</path>
+            </property-rule>
+            <property-rule n="101">
+                <path>Systems/777-fuel.xml</path>
             </property-rule>
         </systems>
 
@@ -1318,6 +1332,7 @@ Service Ceiling: 43,100ft
             <file>Nasal/runway.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
             <file>Nasal/light-manager.nas</file>
+            <file>Nasal/777.nas</file>
         </b777>
         <dialogs>
             <file>Nasal/dialogs.nas</file>
@@ -1369,5 +1384,14 @@ Service Ceiling: 43,100ft
         <max-positive-g>2.5</max-positive-g>
         <max-negative-g>-1.76</max-negative-g>
     </limits>
+    
     <path>lightning-f1a.ac</path>
+    
+    <aircraft>
+        <settings>
+            <tooltips userarchive="y" type="bool">true</tooltips>
+            <fuel_persistent userarchive="y" type="bool">false</fuel_persistent>
+        </settings>
+    </aircraft>
+
 </PropertyList>

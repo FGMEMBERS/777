@@ -28,7 +28,7 @@ V2 147
 Datum 92.5 in forward of nose - 2.3495 m
 MAC 278.51 in - 7.074154 m
 -->
-<airplane mass="318300" version="YASIM_VERSION_32">
+<airplane mass="318300" version="2018.1" mtow-lbs="766800">
 
 <!-- Approach configuration -->
   <approach speed="132" alt="0.0" aoa="5.0" fuel="0.2" glide-angle="0.0">

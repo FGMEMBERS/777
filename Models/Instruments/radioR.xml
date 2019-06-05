@@ -153,7 +153,7 @@ Syd Adams
         <property>instrumentation/rmu/unit[1]/standby-mhz</property>
         <factor>0.001</factor>
         <step>100</step>
-		<bias>0.0005</bias>
+        <bias>0.0005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -167,7 +167,7 @@ Syd Adams
         <property>instrumentation/rmu/unit[1]/standby-mhz</property>
         <factor>0.01</factor>
         <step>10</step>
-		<bias>0.0005</bias>
+        <bias>0.0005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -181,7 +181,7 @@ Syd Adams
         <property>instrumentation/rmu/unit[1]/standby-mhz</property>
         <factor>0.1</factor>
         <step>1</step>
-		<bias>0.0005</bias>
+        <bias>0.0005</bias>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -574,9 +574,16 @@ Syd Adams
                     <property>systems/electrical/outputs/avionics</property>
                 </condition>
                 <command>property-adjust</command>
+                <property>instrumentation/comm[1]/frequencies/standby-channel</property>
+                <step>1</step>
+            </binding>
+            <binding>
+                <condition>
+                    <property>systems/electrical/outputs/avionics</property>
+                </condition>
+                <command>property-assign</command>
                 <property>instrumentation/rmu/unit[1]/standby-mhz</property>
-                <step>0.025</step>
-				<max>136.0</max>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
             </binding>
         </action>
     </animation>
@@ -594,67 +601,77 @@ Syd Adams
                     <property>systems/electrical/outputs/avionics</property>
                 </condition>
                 <command>property-adjust</command>
-                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
-                <step>-0.025</step>
-				<min>108.0</min>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>stby.up.001</object-name>
-        <object-name>stby.dn.001</object-name>
-        <action>
-            <button>0</button>
-            <button>3</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <condition>
-                    <property>systems/electrical/outputs/avionics</property>
-                </condition>
-                <command>property-adjust</command>
-                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
-                <step>1</step>
-				<max>136.0</max>
-            </binding>
-        </action>
-    </animation>
-    <animation>
-        <type>pick</type>
-        <object-name>stby.up.001</object-name>
-        <object-name>stby.dn.001</object-name>
-        <action>
-            <button>1</button>
-            <button>4</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <condition>
-                    <property>systems/electrical/outputs/avionics</property>
-                </condition>
-                <command>property-adjust</command>
-                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-channel</property>
                 <step>-1</step>
-				<min>108.0</min>
+            </binding>
+            <binding>
+                <condition>
+                    <property>systems/electrical/outputs/avionics</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
             </binding>
         </action>
     </animation>
-
+    
     <animation>
-        <name>Tune-knob</name>
-        <type>rotate</type>
+        <type>knob</type>
         <object-name>Tun2.knob</object-name>
         <property>instrumentation/rmu/unit[1]/standby-mhz</property>
-        <factor>10</factor>
         <center>
-            <x-m>0.007</x-m>
-            <y-m>0.032</y-m>
-            <z-m>-0.020</z-m>
+            <x-m>0.007</x-m><y-m>0.032</y-m><z-m>-0.020</z-m>
         </center>
         <axis>
-            <x>0</x>
-            <y>0</y>
-            <z>-1</z>
+            <x>0</x><y>0</y><z>-1</z>
         </axis>
+        
+        <action>
+            <binding>
+                <condition>
+                    <property>systems/electrical/outputs/avionics</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>instrumentation/comm[1]/frequencies/standby-channel</property>
+                <factor>-160</factor>
+            </binding>
+            <binding>
+                <condition>
+                    <property>systems/electrical/outputs/avionics</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            </binding>
+        </action>
+        <shift-action>
+            <binding>
+                <condition>
+                    <property>systems/electrical/outputs/avionics</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>instrumentation/comm[1]/frequencies/standby-channel</property>
+                <factor>-16</factor>
+            </binding>
+            <binding>
+                <condition>
+                    <property>systems/electrical/outputs/avionics</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            </binding>
+        </shift-action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>aircraft/settings/tooltips</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>a6-att-ref</tooltip-id>
+                <label>Use Shift for 100 kHz steps</label>
+            </binding>
+        </hovered>
     </animation>
+    
 </PropertyList>

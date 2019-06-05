@@ -45,7 +45,7 @@ WEIGHT/lbs  Vref
 308,000     113  118  123
 
 -->
-<airplane mass="366940" version="YASIM_VERSION_32">
+<airplane mass="366940" version="2018.1" mtow-lbs="775000">
 
   <!-- Approach configuration -->
 <approach speed="145" aoa="3" fuel="0.2">

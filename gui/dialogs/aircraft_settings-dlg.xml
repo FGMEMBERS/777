@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+    <name>aircraft_settings</name>
+    <layout>vbox</layout>
+
+    <group>
+    <layout>hbox</layout>
+        <text>
+            <label>Aircraft settings</label>
+        </text>
+        
+        <empty>
+            <stretch>true</stretch>
+        </empty>
+        
+        <button>
+            <halign>right</halign>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <legend/>
+            <key>Esc</key>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+        
+    </group>
+
+    <hrule />
+    
+    <checkbox>
+        <label>Show tooltips</label>
+        <property>aircraft/settings/tooltips</property>
+        <binding>
+            <command>dialog-apply</command>
+        </binding>
+        <live>true</live>
+    </checkbox>
+
+    <checkbox>
+        <label>Store fuel level between sessions</label>
+        <property>aircraft/settings/fuel_persistent</property>
+        <binding>
+            <command>dialog-apply</command>
+        </binding>
+        <live>true</live>
+    </checkbox>
+    
+    <group>
+    <layout>hbox</layout>
+
+        <button>
+            <legend>Close</legend>
+            <default>true</default>
+            <key>Esc</key>
+        <padding>5</padding>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+        
+    </group>
+
+</PropertyList>
