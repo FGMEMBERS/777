@@ -180,7 +180,7 @@ Syd Adams
         <object-name>stby.003</object-name>
         <property>instrumentation/rmu/unit[2]/standby-mhz</property>
         <factor>0.1</factor>
-        <step>1</step>
+        <step>1.0</step>
         <bias>0.0005</bias>
         <axis>
             <x>1</x>

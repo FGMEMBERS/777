@@ -610,7 +610,18 @@ Service Ceiling: 43,100ft
             <path>sim/model/autopush/route/show-wingtip</path>
             <path>aircraft/settings/tooltips</path>
             <path>aircraft/settings/fuel_persistent</path>
+			<path>aircraft/settings/radio_persistent</path>
             <path>sim/fuel-fraction</path>
+			<path>instrumentation/comm/frequencies/selected-mhz</path>
+			<path>instrumentation/comm/frequencies/standby-mhz</path>
+			<path>instrumentation/comm[1]/frequencies/selected-mhz</path>
+			<path>instrumentation/comm[1]/frequencies/standby-mhz</path>
+			<path>instrumentation/comm[2]/frequencies/selected-mhz</path>
+			<path>instrumentation/comm[2]/frequencies/standby-mhz</path>
+			<path>instrumentation/nav/frequencies/selected-mhz</path>
+			<path>instrumentation/nav/frequencies/standby-mhz</path>
+			<path>instrumentation/nav[1]/frequencies/selected-mhz</path>
+			<path>instrumentation/nav[1]/frequencies/standby-mhz</path>
         </aircraft-data>
         <weight n="0"><weight-lb type="double">400</weight-lb></weight>
 
@@ -1162,8 +1173,8 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">0</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz type="double">119.10</selected-mhz>
-                <standby-mhz type="double">125.00</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.10</selected-mhz>
+                <standby-mhz userarchive="y" type="double">125.00</standby-mhz>
             </unit>
             <unit n="1">
                 <vhf-l type="int">0</vhf-l>
@@ -1171,8 +1182,8 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">0</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz type="double">119.30</selected-mhz>
-                <standby-mhz type="double">115.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.30</selected-mhz>
+                <standby-mhz userarchive="y" type="double">118.70</standby-mhz>
             </unit>
             <unit n="2">
                 <vhf-l type="int">0</vhf-l>
@@ -1180,42 +1191,42 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">1</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz type="double">119.50</selected-mhz>
-                <standby-mhz type="double">135.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.50</selected-mhz>
+                <standby-mhz userarchive="y" type="double">135.705</standby-mhz>
             </unit>
         </rmu>
         <comm>
             <frequencies>
-                <selected-mhz type="double">119.10</selected-mhz>
-                <standby-mhz type="double">125.00</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.10</selected-mhz>
+                <standby-mhz userarchive="y" type="double">125.00</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <comm n="1">
             <frequencies>
-                <selected-mhz type="double">119.30</selected-mhz>
-                <standby-mhz type="double">115.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.30</selected-mhz>
+                <standby-mhz userarchive="y" type="double">118.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <comm n="2">
             <frequencies>
-                <selected-mhz type="double">119.50</selected-mhz>
-                <standby-mhz type="double">135.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.50</selected-mhz>
+                <standby-mhz userarchive="y" type="double">135.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <nav>
             <frequencies>
-                <selected-mhz type="double">109.50</selected-mhz>
-                <standby-mhz type="double">109.55</standby-mhz>
+                <selected-mhz userarchive="y" type="double">109.50</selected-mhz>
+                <standby-mhz userarchive="y" type="double">109.55</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </nav>
         <nav n="1">
             <frequencies>
-                <selected-mhz type="double">110.10</selected-mhz>
-                <standby-mhz type="double">111.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">110.10</selected-mhz>
+                <standby-mhz userarchive="y" type="double">111.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </nav>
@@ -1391,6 +1402,7 @@ Service Ceiling: 43,100ft
         <settings>
             <tooltips userarchive="y" type="bool">true</tooltips>
             <fuel_persistent userarchive="y" type="bool">false</fuel_persistent>
+			<radio_persistent userarchive="y" type="bool">false</radio_persistent>
         </settings>
     </aircraft>
 

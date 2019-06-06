@@ -562,7 +562,7 @@ Syd Adams
     </animation>
 
     <animation>
-        <type>knob</type>
+        <type>pick</type>
         <object-name>stby.up</object-name>
         <object-name>stby.dn</object-name>
         <action>
