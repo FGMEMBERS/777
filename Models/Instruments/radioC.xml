@@ -633,7 +633,7 @@ Syd Adams
                 </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm[2]/frequencies/standby-channel</property>
-                <factor>-160</factor>
+                <factor>160</factor>
             </binding>
             <binding>
                 <condition>
@@ -651,7 +651,7 @@ Syd Adams
                 </condition>
                 <command>property-adjust</command>
                 <property>instrumentation/comm[2]/frequencies/standby-channel</property>
-                <factor>-16</factor>
+                <factor>16</factor>
             </binding>
             <binding>
                 <condition>
