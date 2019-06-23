@@ -1103,7 +1103,7 @@ Service Ceiling: 43,100ft
                 </category-13>
             </configuration-module>
             <voice>
-                <file-prefix type="string">Sounds/mk-viii/</file-prefix>
+                <file-prefix type="string">Aircraft/777/Sounds/GPWS/</file-prefix>
             </voice>
             <inputs>                            <!-- Module I/O -->
                 <arinc429>
