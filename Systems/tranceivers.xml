@@ -171,6 +171,30 @@
             <binding>
                 <command>dialog-apply</command>
             </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
+            </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
+            </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-l</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/standby-mhz</property>
+                <property>instrumentation/comm/frequencies/standby-mhz</property>
+            </binding>
         </input>
 
         <dial>
@@ -282,6 +306,30 @@
             <binding>
                 <command>dialog-apply</command>
             </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-r</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/standby-mhz</property>
+                <property>instrumentation/comm[1]/frequencies/standby-mhz</property>
+            </binding>
         </input>
 
         <dial>
@@ -392,6 +440,30 @@
             <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
             <binding>
                 <command>dialog-apply</command>
+            </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit/standby-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
+            </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[1]/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[1]/standby-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
+            </binding>
+			<binding>
+                <condition>
+                    <property>instrumentation/rmu/unit[2]/vhf-c</property>
+                </condition>
+                <command>property-assign</command>
+                <property>instrumentation/rmu/unit[2]/standby-mhz</property>
+                <property>instrumentation/comm[2]/frequencies/standby-mhz</property>
             </binding>
         </input>
 
