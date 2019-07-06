@@ -525,13 +525,29 @@
 <text>
 	<row>0</row>
 	<col>0</col>
-	<label>Expected crew &amp; payload weight:</label>
+	<label>Souls on Board:</label>
 	<halign>right</halign>
 	<padding>0</padding>
 </text>
 
 <text>
 	<row>0</row>
+	<col>1</col>
+	<property>services/payload/SOB-nr</property>
+	<live>true</live>
+	<halign>left</halign>
+</text>
+
+<text>
+	<row>1</row>
+	<col>0</col>
+	<label>Expected crew &amp; payload weight:</label>
+	<halign>right</halign>
+	<padding>0</padding>
+</text>
+
+<text>
+	<row>1</row>
 	<col>1</col>
 	<property>services/payload/expected-weight-lbs</property>
 	<live>true</live>
@@ -539,7 +555,7 @@
 </text>
 
 <text>
-	<row>1</row>
+	<row>2</row>
 	<col>0</col>
 	<label>Total crew &amp; payload weight:</label>
 	<halign>right</halign>
@@ -547,7 +563,7 @@
 </text>
 
 <text>
-	<row>1</row>
+	<row>2</row>
 	<col>1</col>
 	<property>services/payload/weight-total-lbs</property>
 	<live>true</live>
@@ -555,7 +571,7 @@
 </text>
 
 <text>
-	<row>2</row>
+	<row>3</row>
 	<col>0</col>
 	<label>Maximum payload weight (excl. crew):</label>
 	<halign>right</halign>
@@ -563,22 +579,38 @@
 </text>
 
 <text>
-	<row>2</row>
+	<row>3</row>
 	<col>1</col>
 	<property>sim/weight[1]/max-lb</property>
 	<live>true</live>
 	<halign>left</halign>
 </text>
 
-<text>
+<!--text>
     <row>0</row>
+	<col>2</col>
+	<label>Zero Fuel weight:</label>
+	<halign>right</halign>
+</text>
+
+<text>
+	<row>0</row>
+	<col>3</col>
+	<property>yasim/zero-fuel-weight-lbs</property>
+	<live>true</live>
+	<halign>left</halign>
+	<padding>3</padding>
+</text-->
+
+<text>
+    <row>1</row>
 	<col>2</col>
 	<label>Gross weight:</label>
 	<halign>right</halign>
 </text>
 
 <text>
-	<row>0</row>
+	<row>1</row>
 	<col>3</col>
 	<property>yasim/gross-weight-lbs</property>
 	<live>true</live>
@@ -587,14 +619,14 @@
 </text>
 
 <text>
-	<row>1</row>
+	<row>2</row>
 	<col>2</col>
 	<label>Maximum takeoff weight:</label>
 	<halign>right</halign>
 </text>
 
 <text>
-	<row>1</row>
+	<row>2</row>
 	<col>3</col>
 	<property>sim/max-takeoff-weight</property>
 	<halign>left</halign>
@@ -602,14 +634,14 @@
 </text>
 
 <text>
-	<row>2</row>
+	<row>3</row>
 	<col>2</col>
 	<label>Maximum landing weight:</label>
 	<halign>right</halign>
 </text>
 
 <text>
-	<row>2</row>
+	<row>3</row>
 	<col>3</col>
 	<property>sim/max-landing-weight</property>
 	<halign>left</halign>

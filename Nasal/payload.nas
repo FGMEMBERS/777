@@ -28,6 +28,7 @@ var payload_boarding = {
 	props.globals.initNode("/services/payload/passenger-removed", 0);
 	props.globals.initNode("/services/payload/speed", 6.0); #This defines the loading/boarding cycle speed. 6.0 equals 1 cycle every 6 seconds.
 	props.globals.initNode("/services/payload/pax-force-deboard", 0);
+	props.globals.initNode("/services/payload/SOB-nr", 0);
 	
 	# Baggage
 	
@@ -270,6 +271,7 @@ var payload_boarding = {
 		setprop("/services/payload/expected-weight-lbs", getprop("/services/payload/belly-request-lbs") + getprop("/services/payload/first-request-nr") * 247 + getprop("/services/payload/business-request-nr") * 225 + getprop("/services/payload/economy-request-nr") * 170 + getprop("/services/payload/crew-request-nr") * 150);
 		setprop("/sim/weight[1]/weight-lb", getprop("/services/payload/pax-onboard-lbs") + getprop("/services/payload/belly-onboard-lbs"));
 		setprop("/sim/weight/weight-lb", getprop("/services/payload/crew-onboard-lbs"));
+		setprop("/services/payload/SOB-nr", (getprop("/services/payload/pax-onboard-nr") + getprop("/services/payload/crew-onboard-nr")));
 
 	},
 };
