@@ -1964,7 +1964,7 @@ Syd Adams
 <!-- contrails -->
 
 <model>
-<path>Effects/contrail1.xml</path>
+<path>Aircraft/777/Models/Effects/contrail1.xml</path>
 <offsets>
 <x-m>15.10</x-m>
 <y-m>-9.90</y-m>
@@ -1976,7 +1976,7 @@ Syd Adams
 </model>
 
 <model>
-<path>Effects/contrail1.xml</path>
+<path>Aircraft/777/Models/Effects/contrail1.xml</path>
 <offsets>
 <x-m>15.10</x-m>
 <y-m>9.90</y-m>
@@ -1990,7 +1990,7 @@ Syd Adams
 <!-- Tire smoke -->
 
 <model>
- <path>Effects/tire-smoke-nose.xml</path>
+ <path>Aircraft/777/Models/Effects/tire-smoke-nose.xml</path>
  <name>tyre-smoke-n</name>
  <offsets>
   <x-m>-19.00</x-m>
@@ -2000,7 +2000,7 @@ Syd Adams
 </model>
 
 <model>
- <path>Effects/tire-smoke-left.xml</path>
+ <path>Aircraft/777/Models/Effects/tire-smoke-left.xml</path>
  <name>tyre-smoke-l</name>
  <offsets>
   <x-m>7.80</x-m>
@@ -2010,7 +2010,7 @@ Syd Adams
 </model>
 
 <model>
- <path>Effects/tire-smoke-right.xml</path>
+ <path>Aircraft/777/Models/Effects/tire-smoke-right.xml</path>
  <name>tyre-smoke-r</name>
  <offsets>
   <x-m>7.80</x-m>
@@ -2023,7 +2023,7 @@ Syd Adams
 
 <model>
  <name>Pushback</name>
- <path>Autopush/Goldhofert.xml</path>
+ <path>Aircraft/777/Models/Autopush/Goldhofert.xml</path>
  <offsets>
   <x-m>-19.284</x-m>
   <y-m>0.0</y-m>
@@ -2034,7 +2034,7 @@ Syd Adams
 <!-- Fuel Truck -->
 
 <model>
-    <path>Ground/Services/Fuel-Truck/Fuel_Truck_Short_VolvoFM.xml</path>
+    <path>Aircraft/777/Models/Ground/Services/Fuel-Truck/Fuel_Truck_Short_VolvoFM.xml</path>
     <condition>
         <and>
             <equals>
@@ -2052,7 +2052,7 @@ Syd Adams
 <!-- External Power -->
 
 <model>
-    <path>Ground/Services/External-Power/ext-pwr-box.xml</path>
+    <path>Aircraft/777/Models/Ground/Services/External-Power/ext-pwr-box.xml</path>
     <condition>
         <and>
             <equals>
@@ -2071,7 +2071,7 @@ Syd Adams
 
 <model>
     <name>chock_nose</name>
-    <path>Ground/Services/Chocks/chock_nose.xml</path>
+    <path>Aircraft/777/Models/Ground/Services/Chocks/chock_nose.xml</path>
     <condition>
         <and>
             <equals>
@@ -2088,7 +2088,7 @@ Syd Adams
 
 <model>
     <name>chock_left</name>
-    <path>Ground/Services/Chocks/chock_left.xml</path>
+    <path>Aircraft/777/Models/Ground/Services/Chocks/chock_left.xml</path>
     <condition>
         <and>
             <equals>
@@ -2105,7 +2105,7 @@ Syd Adams
 
 <model>
     <name>chock_right</name>
-    <path>Ground/Services/Chocks/chock_right.xml</path>
+    <path>Aircraft/777/Models/Ground/Services/Chocks/chock_right.xml</path>
     <condition>
         <and>
             <equals>
@@ -2123,7 +2123,7 @@ Syd Adams
 <!-- Baggage Trucks -->
 
 <model>
-    <path>Ground/Services/Baggage/cargo_ramp_1.xml</path>
+    <path>Aircraft/777/Models/Ground/Services/Baggage/cargo_ramp_1.xml</path>
     <condition>
         <and>
             <equals>
@@ -2144,7 +2144,7 @@ Syd Adams
 </model>
 
 <model>
-    <path>Ground/Services/Baggage/cargo_ramp_2.xml</path>
+    <path>Aircraft/777/Models/Ground/Services/Baggage/cargo_ramp_2.xml</path>
     <condition>
         <and>
             <equals>
