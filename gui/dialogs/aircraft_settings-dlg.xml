@@ -51,6 +51,26 @@
     </checkbox>
     
     <checkbox>
+        <label>Store pax and cargo between sessions</label>
+        <halign>left</halign>
+        <property>aircraft/settings/weight_persistent</property>
+        <binding>
+            <command>dialog-apply</command>
+        </binding>
+        <live>true</live>
+    </checkbox>
+    
+    <checkbox>
+        <label>Store Ground Services between sessions</label>
+        <halign>left</halign>
+        <property>aircraft/settings/ground_services_persistent</property>
+        <binding>
+            <command>dialog-apply</command>
+        </binding>
+        <live>true</live>
+    </checkbox>
+    
+    <checkbox>
         <label>Store radio frequencies between sessions</label>
         <halign>left</halign>
         <property>aircraft/settings/radio_persistent</property>

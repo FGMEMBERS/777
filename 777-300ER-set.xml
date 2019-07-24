@@ -5,7 +5,7 @@
         <aero>777-300ER</aero>
         <max-payload type="double">408060</max-payload>
         <max-landing-weight type="double">554000</max-landing-weight>
-		<max-takeoff-weight type="double">775000</max-takeoff-weight>
+        <max-takeoff-weight type="double">775000</max-takeoff-weight>
         <startup>
             <splash-texture>Aircraft/777/gui/Previews/splash-300ER.png</splash-texture>
         </startup>
@@ -26,13 +26,13 @@
                 <position-z-m type="float"> -0.55</position-z-m>
                 <jetway-hood-deg type="float">3</jetway-hood-deg>
             </door>
-			<ramp>
-	            <x-m type="float">-24.5221</x-m>
+            <ramp>
+                <x-m type="float">-24.5221</x-m>
                 <class type="string">0</class>
             </ramp>
         </model>
         
-		<view n="0">
+        <view n="0">
             <config n="0">
                 <z-offset-m type="double">-28.0781</z-offset-m>
             </config>
@@ -111,13 +111,13 @@
         <menubar n="0">
             <default n="0">
                 <menu n="100">
-				    <label>777-300ER</label>
-					<name>payload</name>
-					<item n="3">
-					    <label>Weight and payload</label>
-						<binding>
+                    <label>777-300ER</label>
+                    <name>payload</name>
+                    <item n="3">
+                        <label>Weight and payload</label>
+                        <binding>
                             <command>dialog-show</command>
-							<dialog-name>payload</dialog-name>
+                            <dialog-name>payload</dialog-name>
                         </binding>
                     </item>
                 </menu>
@@ -135,10 +135,31 @@
         </tutorials>
 
         <weight n="1">
-            <!--  365 pax max @ 180 lbs-->
+            <!--  365 pax max-->
             <name>Pax/Baggage</name>
             <weight-lb type="double">70420</weight-lb>
             <max-lb type="double">154000</max-lb>
+            <min-lb type="double">0</min-lb>
+        </weight>
+        <weight n="2">
+            <!--  Front Catering Galley -->
+            <name>Front Catering Galley</name>
+            <weight-lb type="double">0</weight-lb>
+            <max-lb type="double">2325</max-lb>
+            <min-lb type="double">0</min-lb>
+        </weight>
+        <weight n="3">
+            <!--  Center Catering Galley -->
+            <name>Center Catering Galley</name>
+            <weight-lb type="double">0</weight-lb>
+            <max-lb type="double">1850</max-lb>
+            <min-lb type="double">0</min-lb>
+        </weight>
+        <weight n="4">
+            <!--  Rear Catering Galley -->
+            <name>Rear Catering Galley</name>
+            <weight-lb type="double">0</weight-lb>
+            <max-lb type="double">2675</max-lb>
             <min-lb type="double">0</min-lb>
         </weight>
         <aircraft-operator>JAL</aircraft-operator>
@@ -164,29 +185,30 @@
         </constant>
     </autopilot>
     
-	<aircraft>
-	 <jetway-pos>
+    <aircraft>
+     <jetway-pos>
       <x-tra>-1.8</x-tra>
-	  <y-rot>3.3</y-rot>
-	  <z-rot>18.3</z-rot>
-	  <hood-rot>-6</hood-rot>
-	  <!--z-entrance-rotation>26</z-entrance-rotation-->
-	 </jetway-pos>
-	 <jetway2-pos>
-	  <x-tra>2.8</x-tra>
-	  <y-rot>8.0</y-rot>
-	  <z-rot>48</z-rot>
-	  <hood-rot>-5</hood-rot>
-	  <!--z-entrance-rotation>49</z-entrance-rotation-->
+      <y-rot>3.3</y-rot>
+      <z-rot>18.3</z-rot>
+      <hood-rot>-6</hood-rot>
+      <!--z-entrance-rotation>26</z-entrance-rotation-->
+     </jetway-pos>
+     <jetway2-pos>
+      <x-tra>2.8</x-tra>
+      <y-rot>8.0</y-rot>
+      <z-rot>48</z-rot>
+      <hood-rot>-5</hood-rot>
+      <!--z-entrance-rotation>49</z-entrance-rotation-->
      </jetway2-pos>
     </aircraft>
-	
-	<services>
-	    <payload>
-		    <first-max-nr>22</first-max-nr>
-			<business-max-nr>70</business-max-nr>
-			<economy-max-nr>273</economy-max-nr>
-		</payload>
-	</services>
+    
+    <services>
+        <payload>
+            <first-max-nr>22</first-max-nr>
+            <business-max-nr>70</business-max-nr>
+            <economy-max-nr>273</economy-max-nr>
+            <catering-max-lbs>6850</catering-max-lbs>
+        </payload>
+    </services>
 
 </PropertyList>

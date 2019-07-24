@@ -2165,24 +2165,20 @@ Syd Adams
 <!--Catering Truck-->
 
 <model>
-    <path>Aircraft/777/Models/Ground/Services/Catering/Catering_Loader_Truck_VolvoFM.xml</path>
-    <condition>
-        <and>
-            <equals>
-                <property>services/catering/enable</property>
-                <value>1</value>
-            </equals>
-            <less-than>
-                    <property>velocities/groundspeed-kt</property>
-                <value>1</value>
-            </less-than>
-        </and>
-    </condition>
+    <path>Aircraft/777/Models/Ground/Services/Catering/Catering_Loader_Truck_VolvoFM_2R.xml</path>
     <offsets>
         <x-m>0.5</x-m>
         <y-m>0.0</y-m>
         <z-m>0.0</z-m>
     </offsets>
+</model>
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Catering/Catering_Loader_Truck_VolvoFM_3R.xml</path>
+</model>
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Catering/Catering_Loader_Truck_VolvoFM_4R_200.xml</path>
 </model>
 
 <!--Stairs-->
@@ -2201,7 +2197,7 @@ Syd Adams
 
 <model>
  <name>Firetruck1</name>
- <path>Airport/Vehicle/hoskosh-ti-1500.ac</path>
+ <path>Models/Airport/Vehicle/hoskosh-ti-1500.ac</path>
  <offsets>
   <x-m>60.0</x-m>
   <y-m>10.0</y-m>
@@ -2211,7 +2207,7 @@ Syd Adams
 
 <model>
  <name>Firetruck2</name>
- <path>Airport/Vehicle/hoskosh-ti-1500.ac</path>
+ <path>Models/Airport/Vehicle/hoskosh-ti-1500.ac</path>
  <offsets>
   <x-m>80.0</x-m>
   <y-m>-8.0</y-m>

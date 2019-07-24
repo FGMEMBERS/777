@@ -25,8 +25,18 @@
             <preview>
                 <type>panel</type>
                 <splash type="bool">false</splash>
+                <path>gui/Previews/772_landing.jpg</path>
+            </preview>
+            <preview>
+                <type>panel</type>
+                <splash type="bool">false</splash>
                 <path>gui/Previews/777_cockpit.jpg</path>
             </preview>
+            <preview>
+                <type>panel</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/77F_gnd.jpg</path>
+            </preview>			
         </previews>
         
         <aircraft-version>2019-06-06</aircraft-version>
@@ -397,8 +407,8 @@ See main menu: "Help" - "Tutorials".
 
 === Takeoff Procedure ===
 Pre-departure:
-1. - Allocate your fuel, passengers and weight under Equipment/fuel and payload
-   - Ensure a complete systems checklist is carried out
+1. - Allocate your fuel, passengers and weight under "777-xxx/Weight and Payload" and "777-xxx/Fuel truck controls"
+   - Ensure a complete systems checklist is carried out (Help > checklists)
    - Use Pushback truck to taxi away from the terminal
 
 Departure:
@@ -468,6 +478,10 @@ Service Ceiling: 43,100ft
             <key>
                 <name>Ctrl-W</name>
                 <desc>enable/disable EICAS warning unit</desc>
+            </key>
+            <key>
+                <name>e</name>
+                <desc>set idle thrust</desc>
             </key>
         </help>
 
@@ -610,18 +624,20 @@ Service Ceiling: 43,100ft
             <path>sim/model/autopush/route/show-wingtip</path>
             <path>aircraft/settings/tooltips</path>
             <path>aircraft/settings/fuel_persistent</path>
-			<path>aircraft/settings/radio_persistent</path>
+            <path>aircraft/settings/weight_persistent</path>
+            <path>aircraft/settings/ground_services_persistent</path>
+            <path>aircraft/settings/radio_persistent</path>
             <path>sim/fuel-fraction</path>
-			<path>instrumentation/comm/frequencies/selected-mhz</path>
-			<path>instrumentation/comm/frequencies/standby-mhz</path>
-			<path>instrumentation/comm[1]/frequencies/selected-mhz</path>
-			<path>instrumentation/comm[1]/frequencies/standby-mhz</path>
-			<path>instrumentation/comm[2]/frequencies/selected-mhz</path>
-			<path>instrumentation/comm[2]/frequencies/standby-mhz</path>
-			<path>instrumentation/nav/frequencies/selected-mhz</path>
-			<path>instrumentation/nav/frequencies/standby-mhz</path>
-			<path>instrumentation/nav[1]/frequencies/selected-mhz</path>
-			<path>instrumentation/nav[1]/frequencies/standby-mhz</path>
+            <path>instrumentation/comm/frequencies/selected-mhz</path>
+            <path>instrumentation/comm/frequencies/standby-mhz</path>
+            <path>instrumentation/comm[1]/frequencies/selected-mhz</path>
+            <path>instrumentation/comm[1]/frequencies/standby-mhz</path>
+            <path>instrumentation/comm[2]/frequencies/selected-mhz</path>
+            <path>instrumentation/comm[2]/frequencies/standby-mhz</path>
+            <path>instrumentation/nav/frequencies/selected-mhz</path>
+            <path>instrumentation/nav/frequencies/standby-mhz</path>
+            <path>instrumentation/nav[1]/frequencies/selected-mhz</path>
+            <path>instrumentation/nav[1]/frequencies/standby-mhz</path>
         </aircraft-data>
         <weight n="0"><weight-lb type="double">400</weight-lb></weight>
 
@@ -889,6 +905,21 @@ Service Ceiling: 43,100ft
                     <script>controls.toggleAutoSpoilers();</script>
                 </binding>
             </key>
+            <key n="101">
+				<name>e</name>
+				<desc>Set idle thrust</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+                        if (getprop("instrumentation/afds/inputs/autothrottle-index") > 0) {
+                            b777.afds.autothrottle_mode.setValue(4);
+                        } else {
+                            setprop("controls/engines/engine[0]/throttle", 0);
+                            setprop("controls/engines/engine[1]/throttle", 0);
+                        }
+                    </script>
+				</binding>
+			</key>
              <key n="108">
                 <name>l</name>
                 <desc>toggle landing lights</desc>
@@ -1402,7 +1433,9 @@ Service Ceiling: 43,100ft
         <settings>
             <tooltips userarchive="y" type="bool">true</tooltips>
             <fuel_persistent userarchive="y" type="bool">false</fuel_persistent>
-			<radio_persistent userarchive="y" type="bool">false</radio_persistent>
+            <weight_persistent userarchive="y" type="bool">false</weight_persistent>
+            <radio_persistent userarchive="y" type="bool">false</radio_persistent>
+            <ground_services_persistent userarchive="y" type="bool">false</ground_services_persistent>
         </settings>
     </aircraft>
 
