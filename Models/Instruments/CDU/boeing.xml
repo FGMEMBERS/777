@@ -2,6 +2,7 @@
 
 <path>boeing.ac</path>
 
+
 <animation>
     <type>material</type>
     <texture alias="../../texture"/>
@@ -125,7 +126,7 @@
 
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -146,7 +147,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.043</y-m>
@@ -155,7 +156,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/page</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -167,7 +168,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.045</y-m>
@@ -176,7 +177,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line1/left-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -188,7 +189,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.049</y-m>
@@ -209,7 +210,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -230,7 +231,28 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.000</y-m>
+        <z-m> 0.097</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line1/center-title-large</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -251,7 +273,260 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> -0.010</y-m>
+        <z-m> 0.092</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line1/center-left</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> -0.010</y-m>
+        <z-m> 0.08</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line2/center-left</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> -0.010</y-m>
+        <z-m> 0.068</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line3/center-left</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> -0.010</y-m>
+        <z-m> 0.056</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line4/center-left</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> -0.010</y-m>
+        <z-m> 0.044</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line5/center-left</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> -0.010</y-m>
+        <z-m> 0.032</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line6/center-left</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.010</y-m>
+        <z-m> 0.092</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line1/center-right</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.010</y-m>
+        <z-m> 0.08</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line2/center-right</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.010</y-m>
+        <z-m> 0.068</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line3/center-right</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.010</y-m>
+        <z-m> 0.056</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line4/center-right</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.010</y-m>
+        <z-m> 0.044</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line5/center-right</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.010</y-m>
+        <z-m> 0.032</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line6/center-right</property>
+            <character-size type="double">0.007</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>center-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+
+<model>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.045</y-m>
@@ -260,7 +535,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line1/right-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -272,7 +547,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.049</y-m>
@@ -293,7 +568,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.045</y-m>
@@ -302,7 +577,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line2/left-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -314,7 +589,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.049</y-m>
@@ -335,7 +610,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -356,7 +631,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -377,7 +652,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.045</y-m>
@@ -386,7 +661,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line2/right-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -398,7 +673,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.049</y-m>
@@ -419,7 +694,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.045</y-m>
@@ -428,7 +703,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line3/left-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -440,7 +715,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.049</y-m>
@@ -461,7 +736,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -482,7 +757,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -503,7 +778,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.045</y-m>
@@ -512,7 +787,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line3/right-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -524,7 +799,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.049</y-m>
@@ -545,7 +820,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.045</y-m>
@@ -554,7 +829,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line4/left-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -566,7 +841,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.049</y-m>
@@ -587,7 +862,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -608,7 +883,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -629,7 +904,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.045</y-m>
@@ -638,7 +913,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line4/right-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -650,7 +925,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.049</y-m>
@@ -671,7 +946,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.045</y-m>
@@ -680,7 +955,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line5/left-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -692,7 +967,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.049</y-m>
@@ -713,7 +988,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -722,7 +997,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line5/center-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.009</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -734,7 +1009,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -755,7 +1030,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.045</y-m>
@@ -764,7 +1039,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line5/right-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -776,7 +1051,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.049</y-m>
@@ -797,7 +1072,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.045</y-m>
@@ -806,7 +1081,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line6/left-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -818,7 +1093,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m>-0.049</y-m>
@@ -839,7 +1114,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -848,7 +1123,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line6/center-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.009</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -860,7 +1135,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.000</y-m>
@@ -881,7 +1156,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.045</y-m>
@@ -890,7 +1165,7 @@
     <overlay>
         <params>
             <property type="string">/instrumentation/cdu/output/line6/right-title</property>
-            <character-size type="double">0.004</character-size>
+            <character-size type="double">0.0045</character-size>
             <color>
                 <red   type="double">0.8</red>
                 <green type="double">0.8</green>
@@ -902,7 +1177,7 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
         <y-m> 0.049</y-m>
@@ -923,10 +1198,262 @@
 </model>
 
 <model>
-    <path>Aircraft/Instruments-3d/cdu/display-text-value.xml</path>
+    <path>display-text-value.xml</path>
     <offsets>
         <x-m> 0.004</x-m>
-        <y-m> 0.000</y-m>
+        <y-m> 0.049</y-m>
+        <z-m> 0.092</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line1/right-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>right-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.049</y-m>
+        <z-m> 0.080</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line2/right-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>right-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.049</y-m>
+        <z-m> 0.068</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line3/right-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>right-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.049</y-m>
+        <z-m> 0.056</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line4/right-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>right-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.049</y-m>
+        <z-m> 0.044</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line5/right-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>right-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m> 0.049</y-m>
+        <z-m> 0.032</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line6/right-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>right-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m>-0.049</y-m>
+        <z-m> 0.092</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line1/left-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>left-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m>-0.049</y-m>
+        <z-m> 0.080</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line2/left-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>left-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m>-0.049</y-m>
+        <z-m> 0.068</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line3/left-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>left-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m>-0.049</y-m>
+        <z-m> 0.056</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line4/left-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>left-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m>-0.049</y-m>
+        <z-m> 0.044</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line5/left-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>left-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m>-0.049</y-m>
+        <z-m> 0.032</z-m>
+    </offsets>
+    <overlay>
+        <params>
+            <property type="string">/instrumentation/cdu/output/line6/left-small</property>
+            <character-size type="double">0.004</character-size>
+            <color>
+                <red   type="double">0.8</red>
+                <green type="double">0.8</green>
+                <blue  type="double">0.8</blue>
+            </color>
+            <alignment>left-center</alignment>
+        </params>
+    </overlay>
+</model>
+
+<model>
+    <path>display-text-value.xml</path>
+    <offsets>
+        <x-m> 0.004</x-m>
+        <y-m>-0.049</y-m>
         <z-m> 0.024</z-m>
     </offsets>
     <overlay>
@@ -940,7 +1467,7 @@
                 <green type="double">0.8</green>
                 <blue  type="double">0.8</blue>
             </color>
-            <alignment>center-center</alignment>
+            <alignment>left-center</alignment>
         </params>
     </overlay>
 </model>
@@ -1108,9 +1635,30 @@
         <button>0</button>
         <repeatable>false</repeatable>
         <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/fmc/isInputedPos</property>
+                    <value>1</value>
+                </equals>
+            </condition>
             <command>property-assign</command>
             <property>/instrumentation/cdu/display</property>
-            <value type="string">INIT_REF</value>
+            <value>PERF_INIT</value>
+        </binding>
+    </action>
+	   <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/fmc/isInputedPos</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+            <command>property-assign</command>
+            <property>/instrumentation/cdu/display</property>
+            <value>POS_INIT</value>
         </binding>
     </action>
 </animation>
@@ -1125,6 +1673,35 @@
             <command>property-assign</command>
             <property>/instrumentation/cdu/display</property>
             <value type="string">RTE1_1</value>
+        </binding>
+    </action>
+</animation>
+
+<animation>
+    <type>pick</type>
+    <object-name>Btn.altn</object-name>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/instrumentation/cdu/display</property>
+            <value type="string">ALTN</value>
+        </binding>
+    </action>
+</animation>
+
+
+<animation>
+    <type>pick</type>
+    <object-name>Btn.vnav</object-name>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/instrumentation/cdu/display</property>
+            <value type="string">VNAV</value>
         </binding>
     </action>
 </animation>
@@ -1187,6 +1764,53 @@
 
 <animation>
     <type>pick</type>
+    <object-name>Btn.fmc-comm</object-name>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/instrumentation/cdu/display</property>
+            <value type="string">FMC_COMM</value>
+        </binding>
+    </action>
+</animation>
+
+<animation>
+    <type>pick</type>
+    <object-name>Btn.exec</object-name>
+    <condition>
+     <equals>
+      <property>/autopilot/route-manager/isArmed</property>
+      <value>1</value>
+     </equals>
+    </condition>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>nasal</command>
+            <script>cdu.execPushed();</script>
+        </binding>
+    </action>
+</animation>
+
+<animation>
+    <type>translate</type>
+    <object-name>Power.led</object-name>
+    <property>/autopilot/route-manager/isArmed</property>
+	<offset>0.002</offset>
+	<factor>-0.002</factor>
+	<axis>
+	   <x>1</x>
+	   <y>0</y>
+	   <z>0</z>
+	  </axis>
+</animation>
+
+
+<animation>
+    <type>pick</type>
     <object-name>Btn.prev-page</object-name>
     <action>
         <button>0</button>
@@ -1202,7 +1826,105 @@
             <property>/instrumentation/cdu/display</property>
             <value>RTE1_1</value>
         </binding>
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>POS_REF</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>POS_REF_0</value>
+        </binding>
     </action>
+	<action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>POS_REF_0</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>POS_INIT</value>
+        </binding>
+	</action>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/cdu/display</property>
+                    <value>RTE1_DEP</value>
+                </equals>
+            </condition>
+            <command>nasal</command>
+            <script>cdu.sidPrevPge();</script>
+        </binding>
+    </action>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/cdu/display</property>
+                    <value>RTE1_ARR</value>
+                </equals>
+            </condition>
+            <command>nasal</command>
+            <script>cdu.arrPrevPge();</script>
+        </binding>
+    </action>
+	<action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/cdu/display</property>
+                    <value>RTE1_LEGS</value>
+                </equals>
+            </condition>
+            <command>nasal</command>
+            <script>cdu.turnLEGS(0);</script>
+        </binding>
+    </action>
+	<action>
+	<button>0</button>
+	<repeatable>false</repeatable>
+	<binding>
+		<condition>
+			<equals>
+				<property>/instrumentation/cdu/display</property>
+				<value>TO_REF_2</value>
+			</equals>
+		</condition>
+		<command>property-assign</command>
+		<property>/instrumentation/cdu/display</property>
+		<value>TO_REF</value>
+    </binding>
+</action>
+		<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>ALTN_LIST</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>ALTN</value>
+        </binding>
+	</action>
 </animation>
 
 <animation>
@@ -1221,6 +1943,104 @@
             <command>property-assign</command>
             <property>/instrumentation/cdu/display</property>
             <value>RTE1_2</value>
+        </binding>
+        <binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>POS_INIT</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>POS_REF_0</value>
+        </binding>
+    </action>
+	<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>POS_REF_0</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>POS_REF</value>
+        </binding>
+	</action>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/cdu/display</property>
+                    <value>RTE1_DEP</value>
+                </equals>
+            </condition>
+            <command>nasal</command>
+            <script>cdu.sidNextPge();</script>
+        </binding>
+    </action>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/cdu/display</property>
+                    <value>RTE1_ARR</value>
+                </equals>
+            </condition>
+            <command>nasal</command>
+            <script>cdu.arrNextPge();</script>
+        </binding>
+    </action>
+		<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>TO_REF</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>TO_REF_2</value>
+        </binding>
+	</action>
+		<action>
+		<button>0</button>
+		<repeatable>false</repeatable>
+		<binding>
+			<condition>
+				<equals>
+					<property>/instrumentation/cdu/display</property>
+					<value>ALTN</value>
+				</equals>
+			</condition>
+			<command>property-assign</command>
+			<property>/instrumentation/cdu/display</property>
+			<value>ALTN_LIST</value>
+        </binding>
+	</action>
+	    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <condition>
+                <equals>
+                    <property>/instrumentation/cdu/display</property>
+                    <value>RTE1_LEGS</value>
+                </equals>
+            </condition>
+            <command>nasal</command>
+            <script>cdu.turnLEGS(1);</script>
         </binding>
     </action>
 </animation>
@@ -1776,9 +2596,9 @@
         <repeatable>false</repeatable>
         <binding>
             <command>nasal</command>
-            <script>setprop("/instrumentation/cdu/input","");</script>
+            <script>cdu.del();</script>
         </binding>
-    </action>
+	</action>
 </animation>
 
 </PropertyList>

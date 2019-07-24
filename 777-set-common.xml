@@ -2,7 +2,7 @@
 <PropertyList>
 
     <sim n="0">
-        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu, Isaak Dieleman, Joshua Davidson</author>
+        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu, Isaak Dieleman, Joshua Davidson, Sidi Liang, Yongfan Li</author>
         <status>production</status>
         <rating>
             <FDM type="int">4</FDM>
@@ -906,11 +906,11 @@ Service Ceiling: 43,100ft
                 </binding>
             </key>
             <key n="101">
-				<name>e</name>
-				<desc>Set idle thrust</desc>
-				<binding>
-					<command>nasal</command>
-					<script>
+                <name>e</name>
+                <desc>Set idle thrust</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
                         if (getprop("instrumentation/afds/inputs/autothrottle-index") > 0) {
                             b777.afds.autothrottle_mode.setValue(4);
                         } else {
@@ -918,8 +918,8 @@ Service Ceiling: 43,100ft
                             setprop("controls/engines/engine[1]/throttle", 0);
                         }
                     </script>
-				</binding>
-			</key>
+                </binding>
+            </key>
              <key n="108">
                 <name>l</name>
                 <desc>toggle landing lights</desc>
@@ -1381,7 +1381,13 @@ Service Ceiling: 43,100ft
         </dialogs>
         <cdu>
             <file>Models/Instruments/CDU/boeing.nas</file>
+            <file>Models/Instruments/CDU/library.nas</file>
+            <file>Models/Instruments/CDU/functions.nas</file>
+            <file>Models/Instruments/CDU/LEGS.nas</file>
         </cdu>
+        <datalink>
+            <file>Models/Instruments/CDU/datalink.nas</file>
+        </datalink>
         <autopush>
          <file>Nasal/autopush.nas</file>
         </autopush>
