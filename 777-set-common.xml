@@ -912,11 +912,10 @@ Service Ceiling: 43,100ft
                     <command>nasal</command>
                     <script>
                         if (getprop("instrumentation/afds/inputs/autothrottle-index") > 0) {
-                            b777.afds.autothrottle_mode.setValue(4);
-                        } else {
-                            setprop("controls/engines/engine[0]/throttle", 0);
-                            setprop("controls/engines/engine[1]/throttle", 0);
+                            setprop("instrumentation/afds/inputs/autothrottle-index", 0);
                         }
+                        setprop("controls/engines/engine[0]/throttle", 0);
+                        setprop("controls/engines/engine[1]/throttle", 0);
                     </script>
                 </binding>
             </key>
