@@ -67,6 +67,33 @@
 	</filter>
 	
 	<filter>
+		<name>A/P Pitch Rate Filter</name>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<property>/instrumentation/afds/inputs/AP</property>
+			</condition>
+			<expression>
+				<table>
+					<property>/autopilot/internal/pitch-rate</property>
+					<entry><ind>-6</ind><dep> 1</dep></entry>
+					<entry><ind> 0</ind><dep> 0</dep></entry>
+					<entry><ind> 6</ind><dep>-1</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>/controls/flight/elevator</input>
+		<output>/fcs/fbw/ap/pitch-rate-cmd</output>
+		<max-rate-of-change>
+			<condition>
+				<property>/instrumentation/afds/inputs/AP</property>
+			</condition>
+			<value>0.8</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<filter>
 		<name>Elevator Nul</name>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -74,7 +101,7 @@
 			<condition>
 				<property>/instrumentation/afds/inputs/AP</property>
 			</condition>
-			<value>0</value>
+			<property>/fcs/fbw/ap/pitch-rate-cmd</property>
 		</input>
 		<input>
 			<expression>
