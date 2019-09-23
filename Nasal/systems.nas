@@ -63,7 +63,7 @@ var EFIS = {
 
         m.eicas_msg_alert   = m.eicas.initNode("msg/alert"," ","STRING");
         m.eicas_msg_caution = m.eicas.initNode("msg/caution"," ","STRING");
-		m.eicas_msg_advisory = m.eicas.initNode("msg/advisory"," ","STRING");
+        m.eicas_msg_advisory = m.eicas.initNode("msg/advisory"," ","STRING");
         m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
         m.update_radar_font();
         m.update_nd_center();
@@ -112,11 +112,11 @@ var EFIS = {
             {
                 if(val==0)
                 {
-                    num=250;
+                    var num=250;
                 }
                 else
                 {
-                    num = me.minimums_baro.getValue();
+                    var num = me.minimums_baro.getValue();
                     num+=val;
                     if(num<0)num=0;
                     if(num>12000)num=12000;
@@ -127,11 +127,11 @@ var EFIS = {
             {
                 if(val==0)
                 {
-                    num=250;
+                    var num=250;
                 }
                 else
                 {
-                    num =me.minimums_radio.getValue();
+                    var num =me.minimums_radio.getValue();
                     num+=val;
                     if(num<0)num=0;
                     if(num>2500)num=2500;
@@ -254,7 +254,7 @@ var EFIS = {
             msg = msg ~ cautionmsgs[i] ~ "\n";
         }
         me.eicas_msg_caution.setValue(msg);
-		for(var i=0; i<size(advisorymsgs); i+=1)
+        for(var i=0; i<size(advisorymsgs); i+=1)
         {
             msg = msg ~ advisorymsgs[i] ~ "\n";
         }
@@ -338,7 +338,7 @@ setlistener("sim/signals/fdm-initialized", func {
     setprop("instrumentation/comm[2]/power-btn",0);
     setprop("instrumentation/comm/power-good",0);
     setprop("instrumentation/comm[1]/power-good",0);
-    setprop("instrumentation/comm[2]/power-gppd",0);
+    setprop("instrumentation/comm[2]/power-good",0);
     setprop("instrumentation/comm/volume",0.5);
     setprop("instrumentation/comm[1]/volume",0.5);
     setprop("instrumentation/comm[2]/volume",0.5);
@@ -381,6 +381,8 @@ setlistener("sim/signals/fdm-initialized", func {
     setprop("controls/switches/fire/cargo-aft-switch", 0);
     setprop("controls/switches/fire/apu-discharged", 1);
     settimer(start_updates,1);
+    readSettings();
+    writeSettings();
 });
 
 var systems_running = 0;
@@ -408,7 +410,7 @@ var start_updates = func {
         setprop("autopilot/settings/actual-target-altitude-ft", getprop("sim/presets/altitude-ft"));
         b777.afds.input(0,2);
         setprop("controls/flight/rudder-trim", 0);
-        setprop("controls/flight/elevator-trim", 0);
+        setprop("controls/flight/elevator-trim", 0.125);
         setprop("controls/flight/aileron-trim", 0);
         setprop("instrumentation/weu/state/takeoff-mode",0);
         if(var vbaro = getprop("environment/metar/pressure-inhg"))
@@ -644,6 +646,7 @@ var Startup = func{
     {
         setprop("controls/lighting/cabin-lights",1);
     }
+    setprop("fcs/pfc-enable", 1); # PFCs in AUTO
     setprop("controls/lighting/strobe",1);
     setprop("controls/lighting/landing-light[0]",1);
     setprop("controls/lighting/landing-light[1]",1);
@@ -652,7 +655,7 @@ var Startup = func{
     setprop("controls/engines/engine[1]/cutoff",0);
     setprop("engines/engine[0]/out-of-fuel",0);
     setprop("engines/engine[1]/out-of-fuel",0);
-    setprop("controls/flight/elevator-trim",0);
+    setprop("controls/flight/elevator-trim",0.125);
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
@@ -701,7 +704,7 @@ var Shutdown = func{
     setprop("controls/fuel/tank[1]/boost-pump-switch[1]",0);
     setprop("controls/fuel/tank[2]/boost-pump-switch[0]",0);
     setprop("controls/fuel/tank[2]/boost-pump-switch[1]",0);
-    setprop("controls/flight/elevator-trim",0);
+    setprop("controls/flight/elevator-trim",0.125);
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
     setprop("controls/flight/speedbrake-lever",0);
@@ -748,16 +751,11 @@ controls.click = func(button) {
 }
 
 controls.elevatorTrim = func(speed) {
-    if(0 == getprop("instrumentation/afds/inputs/AP"))
-    {
-        if(((1 > getprop("controls/flight/elevator-trim"))
-                and (0 < speed))
-            or ((-1 < getprop("controls/flight/elevator-trim"))
-                and (0 > speed)))
-        {
-            controls.slewProp("controls/flight/trim-ref-speed", speed * 0.045);
-        }
-    }
+    if (!getprop("instrumentation/afds/inputs/AP")) {
+        controls.slewProp("/controls/flight/elevator-trim", speed * 0.045);
+    } else {
+		setprop("/instrumentation/afds/inputs/AP", 0);
+	}
 }
 
 switch_ind = func() {
@@ -1241,44 +1239,6 @@ var update_systems = func {
     et_tmp = sprintf("%02d:%02d", et_hr, et_min);
     setprop("instrumentation/clock/elapsed-string", et_tmp);
     switch_ind();
-    var trim_speed = getprop("/controls/flight/trim-ref-speed");
-    if((50 < getprop("position/gear-agl-ft"))
-        and (5 > abs(getprop("orientation/roll-deg"))))
-    {
-        if(trim_speed > 0.0002)
-        {
-            setprop("/controls/flight/trim-ref-speed", trim_speed - 0.0001);
-        }
-        elsif(trim_speed < -0.0002)
-        {
-            setprop("/controls/flight/trim-ref-speed", trim_speed + 0.0001);
-        }
-    }
-    if(getprop("sim/rendering/shaders/skydome")
-        and (getprop("position/gear-agl-ft") < 200))
-    {
-        if(getprop("systems/electrical/outputs/landing-light[1]"))
-        {
-            setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
-            setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 1);
-            setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", -5);
-            setprop("sim/rendering/als-secondary-lights/landing-light2-offset-deg", 5);
-        }
-        else
-        {
-            if(getprop("systems/electrical/outputs/taxi-lights"))
-            {
-                setprop("sim/rendering/als-secondary-lights/use-landing-light", 1);
-                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
-                setprop("sim/rendering/als-secondary-lights/landing-light1-offset-deg", 0);
-            }
-            else
-            {
-                setprop("sim/rendering/als-secondary-lights/use-landing-light", 0);
-                setprop("sim/rendering/als-secondary-lights/use-alt-landing-light", 0);
-            }
-        }
-    }
     setprop("instrumentation/rmu/unit/offside_tuned",
         (((getprop("instrumentation/rmu/unit/vhf-l") == 0) and (getprop("instrumentation/rmu/unit/hf-l") == 0))
             or getprop("instrumentation/rmu/unit[1]/vhf-l")
@@ -1297,4 +1257,51 @@ var update_systems = func {
             or getprop("instrumentation/rmu/unit[1]/vhf-c")));
 
     settimer(update_systems,0);
+}
+
+# Elevator Trim FBW Handler - Do Not Touch or C*U Control Law Might Behave Preposterously! -JD
+var slewProp = func(prop, delta) {
+	delta *= getprop("/sim/time/delta-realtime-sec");
+	setprop(prop, getprop(prop) + delta);
+	return getprop(prop);
+}
+
+setprop("/controls/flight/elevator-trim-time", 0);
+setprop("/fcs/fbw/pitch/trim-kts-switch", 0);
+
+controls.elevatorTrim = func(d) {
+	if (getprop("/fcs/fbw/active") == 1 and getprop("/instrumentation/afds/inputs/AP") != 1) { # Command FBW to change trim speed
+		setprop("/fcs/fbw/pitch/trim-kts-switch", d);
+		setprop("/controls/flight/elevator-trim-time", getprop("/sim/time/elapsed-sec"));
+		elevatorTrimTimer.start();
+	} else if (getprop("/instrumentation/afds/inputs/AP") != 1) { # Actually move the stabilizer
+		setprop("/fcs/fbw/pitch/trim-kts-switch", 0);
+		slewProp("/controls/flight/elevator-trim", d * 0.04);
+	}
+}
+
+var elevatorTrimTimer = maketimer(0.05, func {
+	if (getprop("/fcs/fbw/active") == 1 and getprop("/instrumentation/afds/inputs/AP") != 1) {
+		if (getprop("/controls/flight/elevator-trim-time") + 0.1 <= getprop("/sim/time/elapsed-sec")) {
+			elevatorTrimTimer.stop();
+			setprop("/fcs/fbw/pitch/trim-kts-switch", 0);
+		}
+	} else {
+		elevatorTrimTimer.stop();
+		setprop("/fcs/fbw/pitch/trim-kts-switch", 0);
+	}
+});
+
+# Stuff for storing settings, derived from ACCONFIG
+# Add any properties in this way and they will be stored/restored
+setprop("/systems/acconfig/options/show-fbw-bug", 0);
+
+var readSettings = func {
+	io.read_properties(getprop("/sim/fg-home") ~ "/Export/777-config.xml", "/systems/acconfig/options");
+	setprop("/fcs/fbw/show-fbw-bug", getprop("/systems/acconfig/options/show-fbw-bug"));
+}
+
+var writeSettings = func {
+	setprop("/systems/acconfig/options/show-fbw-bug", getprop("/fcs/fbw/show-fbw-bug"));
+	io.write_properties(getprop("/sim/fg-home") ~ "/Export/777-config.xml", "/systems/acconfig/options");
 }

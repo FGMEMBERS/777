@@ -1117,7 +1117,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Display_1"
-loc 0.0023435 0.0035665 -9.2499e-05
+loc 0.0023435 0.00457436 -9.2499e-05
 data 6
 Circle
 texture "pfd3d.png"
@@ -1988,7 +1988,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Asitext.100"
-loc 0.004 0.00478613 0.000653576
+loc 0.004 0.00579399 0.000653576
 texture "../../Textures/Lettering/numbers.png"
 crease 30.000000
 numvert 4
@@ -2007,7 +2007,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Asitext.010"
-loc 0.004 0.00481325 -0.00466305
+loc 0.004 0.00582111 -0.00466305
 texture "../../Textures/Lettering/numbers.png"
 crease 30.000000
 numvert 4
@@ -2026,7 +2026,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Asitext.001"
-loc 0.004 0.00465477 -0.0101551
+loc 0.004 0.00566263 -0.0101551
 texture "../../Textures/Lettering/numbers.png"
 crease 30.000000
 numvert 4
@@ -3439,7 +3439,7 @@ refs 4
 kids 0
 OBJECT poly
 name "IAS_window"
-loc 0.003 0.0091365 0.080107
+loc 0.003 0.0101444 0.080107
 data 6
 Circle
 texture "pfd3d.png"
@@ -3459,7 +3459,7 @@ numvert 36
 0 -0.0086845 0.011231
 0 0.0033145 -0.006378
 0 4.64991e-05 -0.010003
-0 5.14993e-05 -0.011268
+0 5.14984e-05 -0.011268
 0 0.0037735 -0.00718001
 0 -4.65009e-05 -0.010003
 0 -0.0033135 -0.006378

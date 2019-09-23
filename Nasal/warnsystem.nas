@@ -275,10 +275,8 @@ var WEU =
 			append(me.msgs_caution,"SPEEDBRAKE EXTENDED");
 		}
 
-	# Pilot sources state that any main tank
-	# with less than 1000kg of fuel is low
-	# 1000kg = 4409.25lbs
-	if ((me.fuel_l_qty<4409) or (me.fuel_r_qty<4409))
+	# FCOM states that FUEL QTY LOW occurs at 4500 lbs exactly
+	if ((me.fuel_l_qty<4500) or (me.fuel_r_qty<4500))
 	{
 	    append(me.msgs_caution,"FUEL QTY LOW");
 	}
@@ -328,11 +326,11 @@ var WEU =
 	# Advisory messages for electrical & fuel systems
 	if (!me.battery)
 	    append(me.msgs_advisory," ELEC BATTERY OFF");
-	if ((me.fuel_c_qty >= 10582) and ((!me.fuel_c_pump1) or (!me.fuel_c_pump2)))
-	    append(me.msgs_advisory," FUEL CENTER");
-	if ((me.fuel_c_qty < 10582) and ((me.fuel_c_pump1) or (me.fuel_c_pump2)))
+	if ((me.fuel_c_qty >= 2400) and ((!me.fuel_c_pump1) or (!me.fuel_c_pump2)))
+	    append(me.msgs_advisory," FUEL IN CENTER");
+	if ((me.fuel_c_qty < 2400) and ((me.fuel_c_pump1) or (me.fuel_c_pump2)))
 	    append(me.msgs_advisory," FUEL LOW CENTER");
-	if (((me.fuel_l_qty - me.fuel_r_qty) > 1000) or ((me.fuel_r_qty - me.fuel_l_qty) > 1000))
+	if (((me.fuel_l_qty - me.fuel_r_qty) > 3000) or ((me.fuel_r_qty - me.fuel_l_qty) > 3000))
 	    append(me.msgs_advisory," FUEL IMBALANCE");
 
 	# Advisory messages for heating and anti-ice systems
@@ -585,9 +583,7 @@ var WEU =
     update_at_mode : func()
     {
 		var at_mode = getprop("instrumentation/afds/inputs/autothrottle-index");
-		var at_armone = getprop("instrumentation/afds/inputs/at-armed");
-		var at_armtwo = getprop("instrumentation/afds/inputs/at-armed[1]");
-		if (((at_armone == 0)or(at_armtwo == 0)or((me.at_mode != 0)and(at_mode == 0)))and(!getprop("gear/gear[1]/wow"))and(!getprop("gear/gear[2]/wow")))
+		if ((me.at_mode != 0)and(at_mode == 0)and(!getprop("gear/gear[1]/wow"))and(!getprop("gear/gear[2]/wow")))
 		{
 		# AT has disconnected
 		me.at_disconnect = 1;

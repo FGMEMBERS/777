@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 
 <PropertyList>
+<!--Livery by Lars0817-->
 <sim>
     <model>
         <livery>
-            <name type="string">KLM Royal Dutch Airlines (New livery)</name>
+            <name type="string">KLM (New livery)</name>
             <texture>Liveries-300/KLM-New-livery.png</texture>
         </livery>
     </model>

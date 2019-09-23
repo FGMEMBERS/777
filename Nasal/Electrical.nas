@@ -50,9 +50,9 @@ var lights_output=[];
 var lights_load=[];
 
 var strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
-aircraft.light.new("controls/lighting/strobe-state", [0.05, 1.30], strobe_switch);
+aircraft.light.new("controls/lighting/strobe-state", [0.03, 1.3], strobe_switch);
 var beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
-aircraft.light.new("controls/lighting/beacon-state", [0.05, 2.0], beacon_switch);
+aircraft.light.new("controls/lighting/beacon-state", [0.03, 1.28], beacon_switch);
 
 var APU = {
     new : func(generator)
@@ -382,6 +382,9 @@ var init_switches = func{
     append(lbus_output,props.globals.initNode("systems/electrical/outputs/comm[1]",0,"DOUBLE"));
     append(lbus_load,1);
     append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/comm[2]",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
     append(lbus_output,props.globals.initNode("systems/electrical/outputs/nav",0,"DOUBLE"));
     append(lbus_load,1);
     append(lbus_input,AVswitch);
@@ -645,5 +648,5 @@ lighting = func(bv) {
 update_electrical = func {
     var scnd = getprop("sim/time/delta-sec");
     update_virtual_bus( scnd );
-    settimer(update_electrical, 0.2);
+    settimer(update_electrical, 0.01);
 }

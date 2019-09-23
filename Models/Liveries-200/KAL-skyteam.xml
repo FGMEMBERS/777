@@ -7,9 +7,6 @@
             <name type="string">KAL Korean Air (Skyteam)</name>
             <texture>Liveries-200/KAL-skyteam.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/KAL-skyteam-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>KAL</aircraft-operator>

@@ -42,6 +42,7 @@ var HYDR = {
         m.GP2 = props.globals.getNode("systems/electrical/SEC-EPC");
         m.APUP = m.hydr.initNode("APUP-NORMAL", 0 , "BOOL");
         m.GP = m.hydr.initNode("GP-NORMAL", 0, "BOOL");
+		m.PushConn = props.globals.getNode("sim/model/autopush/connected", 0, "BOOL");
         return m;
     },
     update : func{
@@ -266,13 +267,32 @@ var HYDR = {
             nosewheelpos.setAttribute("writable",1);
             mainwheelpos.setAttribute("writable",1);
         }
-        else
+        elsif(me.PushConn.getValue() and !me.C1ACMP.getValue() and !me.C2ACMP.getValue()
+            and !me.C1ADP.getValue() and !me.C2ADP.getValue())
+		{
+			me.center.setValue(0);
+            flappos.setAttribute("writable",0);
+			nosewheelpos.setAttribute("writable",1);
+			mainwheelpos.setAttribute("writable" ,1);
+		}	
+		else
         {
             me.center.setValue(0);
             flappos.setAttribute("writable",0);
             nosewheelpos.setAttribute("writable",0);
             mainwheelpos.setAttribute("writable",0);
         }
+		
+		# Tell my new FCS if the Hydraulics are available or not - JD
+		setprop("/fcs/left-out-aileron/hyd-avail", leftaileronpos.getAttribute("writable"));
+		setprop("/fcs/left-in-aileron/hyd-avail", leftaileronpos.getAttribute("writable"));
+		setprop("/fcs/right-in-aileron/hyd-avail", rightaileronpos.getAttribute("writable"));
+		setprop("/fcs/right-out-aileron/hyd-avail", rightaileronpos.getAttribute("writable"));
+		setprop("/fcs/left-elevator/hyd-avail", elevatorpos.getAttribute("writable"));
+		setprop("/fcs/right-elevator/hyd-avail", elevatorpos.getAttribute("writable"));
+		setprop("/fcs/stabilizer/hyd-avail", elevatorpos.getAttribute("writable"));
+		setprop("/fcs/rudder/hyd-avail", rudderpos.getAttribute("writable"));
+		setprop("/fcs/spoilers/hyd-avail", speedbkpos.getAttribute("writable"));
     }
 };
 

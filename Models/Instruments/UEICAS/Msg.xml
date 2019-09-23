@@ -62,8 +62,8 @@
             </transformation>
         </transformations>
     </layer>
-	
-	<layer>
+    
+    <layer>
         <name>advisory messages</name>
         <type>text</type>
         <font>arial_black</font>

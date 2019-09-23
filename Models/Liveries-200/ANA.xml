@@ -7,9 +7,6 @@
             <name type="string">ANA All Nippon Airways</name>
             <texture>Liveries-200/ANA.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries/ANA-lights.png</texture>
-        </lights>
     </model>
     <aircraft-class>gate</aircraft-class>
     <aircraft-operator>ANA</aircraft-operator>

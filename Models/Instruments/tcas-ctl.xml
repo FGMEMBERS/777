@@ -228,6 +228,27 @@
     </animation>
 
     <animation>
+        <type>pick</type>
+        <object-name>IDENT.btn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/transponder/ident</property>
+                <value>true</value>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>instrumentation/transponder/ident</property>
+                    <value>false</value>
+                </binding>
+            </mod-up>
+        </action>
+    </animation>
+
+    <animation>
         <type>rotate</type>
         <object-name>XPNDR_Mode.knob</object-name>
         <property>instrumentation/transponder/mode-switch</property>

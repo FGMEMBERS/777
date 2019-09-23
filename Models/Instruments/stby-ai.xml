@@ -25,60 +25,8 @@
     <animation>
         <type>translate</type>
         <object-name>Slip.needle</object-name>
-        <property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
-        <factor>0.0020</factor>
-        <axis>
-            <x>0</x>
-            <y>-1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>FDroll_rembrandt</object-name>
-        <object-name>FDpitch_rembrandt</object-name>
-        <condition>
-			<property>sim/rendering/rembrandt/enabled</property>
-            <or>
-                <property>instrumentation/afds/inputs/FD</property>
-                <property>instrumentation/afds/settings/auto-pop-up</property>
-            </or>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>FDroll</object-name>
-        <object-name>FDpitch</object-name>
-        <condition>
-			<not><property>sim/rendering/rembrandt/enabled</property></not>
-            <or>
-                <property>instrumentation/afds/inputs/FD</property>
-                <property>instrumentation/afds/settings/auto-pop-up</property>
-            </or>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>translate</type>
-        <object-name>FDpitch</object-name>
-        <object-name>FDpitch_rembrandt</object-name>
-        <property>autopilot/fd/pitch-bar</property>
-        <factor>0.0006</factor>
-        <axis>
-            <x>0</x>
-            <y>0</y>
-            <z>1</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>translate</type>
-        <object-name>FDroll</object-name>
-        <object-name>FDroll_rembrandt</object-name>
-        <property>autopilot/fd/roll-bar</property>
-        <factor>0.0002</factor>
+        <property>instrumentation/pfd/slip-skid</property>
+        <factor>0.0008</factor>
         <axis>
             <x>0</x>
             <y>1</y>

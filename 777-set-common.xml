@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <PropertyList>
 
     <sim n="0">
-        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu</author>
+        <author>Justin Smithies, Syd Adams, Thorsten Brehm, Arminair, Hyde Yamakawa, Juigi Zollo, Jean-Yves Lebleu, Isaak Dieleman, Joshua Davidson, Sidi Liang, Yongfan Li</author>
         <status>production</status>
         <rating>
             <FDM type="int">4</FDM>
@@ -9,14 +10,46 @@
             <cockpit type="int">4</cockpit>
             <model type="int">4</model>
         </rating>
-        <aircraft-version>20140208</aircraft-version>
+        
+        <previews>
+            <preview>
+                <type>exterior</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/77W_air.jpg</path>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/77W_gnd.jpg</path>
+            </preview>
+            <preview>
+                <type>panel</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/772_landing.jpg</path>
+            </preview>
+            <preview>
+                <type>panel</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/777_cockpit.jpg</path>
+            </preview>
+            <preview>
+                <type>panel</type>
+                <splash type="bool">false</splash>
+                <path>gui/Previews/77F_gnd.jpg</path>
+            </preview>			
+        </previews>
+        
+        <aircraft-version>2019-06-06</aircraft-version>
         <flight-model>yasim</flight-model>
-        <fuel-fraction type="double">0.1</fuel-fraction>
+        <fuel-fraction userarchive="y" type="double">0.0</fuel-fraction>
         <model n="0">
             <livery>
                 <file type="string">BAW</file>
             </livery>
             <armrest type="double">0</armrest>
+            <fallback-model-index type="int">252</fallback-model-index>
+            <autopush include="autopush-config.xml"/>
+            <path>Aircraft/Generic/marker.xml</path>
         </model>
         <shutterspeed type="double">0.18</shutterspeed>
         <instrument-options>
@@ -361,6 +394,11 @@
         </config>
 </view>
 
+      <hud n="0">
+         <enable3d n="0">false</enable3d>
+         <enable3d n="1">false</enable3d>
+      </hud>
+
         <help n="0">
             <title>777</title>
             <text>=== Tutorials ===
@@ -369,8 +407,8 @@ See main menu: "Help" - "Tutorials".
 
 === Takeoff Procedure ===
 Pre-departure:
-1. - Allocate your fuel, passengers and weight under Equipment/fuel and payload
-   - Ensure a complete systems checklist is carried out
+1. - Allocate your fuel, passengers and weight under "777-xxx/Weight and Payload" and "777-xxx/Fuel truck controls"
+   - Ensure a complete systems checklist is carried out (Help > checklists)
    - Use Pushback truck to taxi away from the terminal
 
 Departure:
@@ -441,61 +479,90 @@ Service Ceiling: 43,100ft
                 <name>Ctrl-W</name>
                 <desc>enable/disable EICAS warning unit</desc>
             </key>
+            <key>
+                <name>e</name>
+                <desc>set idle thrust</desc>
+            </key>
         </help>
 
         <menubar n="0">
             <default n="0">
                 <menu n="100">
                     <enabled type="bool">true</enabled>
-                    <item>
+                    <item n="1">
                         <label>Autostart</label>
                         <binding>
                             <command>nasal</command>
                             <script>controls.autostart();</script>
                         </binding>
                     </item>
-                    <item >
+                    <item n="2">
                         <label>Ground Services Control</label>
                         <binding>
-                            <command>nasal</command>
-                            <script>dialogs.ground_services.open()</script>
+                            <command>dialog-show</command>
+                            <dialog-name>ground_services</dialog-name>
                         </binding>
                     </item>
-                    <item >
-                        <label>Pushback</label>
-                        <name>pushback</name>
+                    <!--item n3 (payload) is aircraft specific and defined in its own set file-->
+                    <item n="4">
+                        <label>Fuel Truck Controls</label>
+                        <name>fuel_truck</name>
                         <binding>
                             <command>dialog-show</command>
-                            <dialog-name>pushback</dialog-name>
+                            <dialog-name>fuel_truck</dialog-name>
                         </binding>
                     </item>
-                    <item>
+                    <item n="5">                       
+                        <label>Pushback</label>
+                        <name>autopush</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>autopush</dialog-name>
+                        </binding>
+                    </item>
+                    <item n="6">
                         <label>Select Livery</label>
                         <binding>
                             <command>nasal</command>
                             <script>aircraft.livery.dialog.toggle()</script>
                         </binding>
                     </item>
-                    <item>
+                    <item n="7">
                         <label>Tiller Steering</label>
                         <binding>
                             <command>nasal</command>
                             <script>dialogs.tiller_steering.open()</script>
                         </binding>
                     </item>
-                    <item>
+                    <item n="8">
                         <label>Show/Hide Yokes</label>
                         <binding>
                             <command>property-toggle</command>
                             <property>sim/yokes-visible</property>
                         </binding>
                     </item>
-                    <item >
+                    <item n="9">
                         <label>Handy Viewer</label>
                         <name>handyviewer</name>
                         <binding>
                             <command>dialog-show</command>
                             <dialog-name>handyviewer</dialog-name>
+                        </binding>
+                    </item>
+                    <item n="10">
+                        <label>FBW Settings</label>
+                        <name>fbwsettings</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>fbwsettings</dialog-name>
+                        </binding>
+                    </item>
+                    <item n="11">
+                        <label>Aircraft Settings</label>
+                        <name>aircraft_settings</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>aircraft_settings</dialog-name>
                         </binding>
                     </item>
                 </menu>
@@ -504,36 +571,38 @@ Service Ceiling: 43,100ft
 
         <weight n="0">
             <name>Crew</name>
-            <weight-lb type="double">400</weight-lb>
-            <max-lb type="double">500</max-lb>
-            <min-lb type="double">350</min-lb>
+            <!--Std. 11 cabin crew + 2 pilots @ 150 Lbs. (including 13 lbs of luggage) each.
+            Max 18 cabin crew + 2 pilots @ 150 Lbs.-->
+            <weight-lb type="double">1950</weight-lb>
+            <max-lb type="double">3000</max-lb>
+            <min-lb type="double">300</min-lb>
         </weight>
 
         <multiplay>
             <generic>
-                <int n="0" alias="/systems/electrical/outputs/strobe"/>
-                <int n="1" alias="/systems/electrical/outputs/beacon"/>
-                <int n="2" alias="/systems/electrical/outputs/taxi-lights"/>
-                <int n="3" alias="/systems/electrical/outputs/logo-lights"/>
-                <int n="4" alias="/systems/electrical/outputs/landing-light[0]"/>
-                <int n="5" alias="/systems/electrical/outputs/landing-light[1]"/>
-                <int n="6" alias="/systems/electrical/outputs/landing-light[2]"/>
-                <int n="7" alias="/systems/electrical/outputs/nav-lights"/>
-                <int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
+                <int n="0" alias="/systems/electrical/outputs/strobe"></int>
+                <int n="1" alias="/systems/electrical/outputs/beacon"></int>
+                <int n="2" alias="/systems/electrical/outputs/taxi-lights"></int>
+                <int n="3" alias="/systems/electrical/outputs/logo-lights"></int>
+                <int n="4" alias="/systems/electrical/outputs/landing-light[0]"></int>
+                <int n="5" alias="/systems/electrical/outputs/landing-light[1]"></int>
+                <int n="6" alias="/systems/electrical/outputs/landing-light[2]"></int>
+                <int n="7" alias="/systems/electrical/outputs/nav-lights"></int>
+                <int n="8" alias="/systems/electrical/outputs/cabin-lights"></int>
 
-                <float n="0" alias="/gear/gear[0]/compression-m"/>
-                <float n="1" alias="/gear/gear[1]/compression-m"/>
-                <float n="2" alias="/gear/gear[2]/compression-m"/>
-                <float n="3" alias="/gear/gear[3]/compression-m"/>
-                <float n="4" alias="/gear/gear[4]/compression-m"/>
-                <float n="5" alias="/surface-positions/speedbrake-norm"/>
-                <float n="6" alias="/surface-positions/reverser-norm"/>
-                <string  alias="/sim/multiplay/callsign"/>
+                <float n="0" alias="/gear/gear[0]/compression-m"></float>
+                <float n="1" alias="/gear/gear[1]/compression-m"></float>
+                <float n="2" alias="/gear/gear[2]/compression-m"></float>
+                <float n="3" alias="/gear/gear[3]/compression-m"></float>
+                <float n="4" alias="/gear/gear[4]/compression-m"></float>
+                <float n="5" alias="/surface-positions/speedbrake-norm"></float>
+                <float n="6" alias="/surface-positions/reverser-norm"></float>
+                <string alias="/sim/multiplay/callsign"></string>
             </generic>
         </multiplay>
 
-        <flight-recorder include="Systems/flight-recorder.xml"/>
-        <checklists include="777-checklists.xml"/>
+        <flight-recorder include="Systems/flight-recorder.xml"></flight-recorder>
+        <checklists include="777-checklists.xml"></checklists>
 
         <dimensions>
             <radius-m type="double">32</radius-m>
@@ -551,6 +620,24 @@ Service Ceiling: 43,100ft
             <path>controls/gear/tiller-enabled</path>
             <path>sim/weight[0]/weight-lb</path>
             <path>sim/weight[1]/weight-lb</path>
+            <path>sim/model/autopush/route/show</path>
+            <path>sim/model/autopush/route/show-wingtip</path>
+            <path>aircraft/settings/tooltips</path>
+            <path>aircraft/settings/fuel_persistent</path>
+            <path>aircraft/settings/weight_persistent</path>
+            <path>aircraft/settings/ground_services_persistent</path>
+            <path>aircraft/settings/radio_persistent</path>
+            <path>sim/fuel-fraction</path>
+            <path>instrumentation/comm/frequencies/selected-mhz</path>
+            <path>instrumentation/comm/frequencies/standby-mhz</path>
+            <path>instrumentation/comm[1]/frequencies/selected-mhz</path>
+            <path>instrumentation/comm[1]/frequencies/standby-mhz</path>
+            <path>instrumentation/comm[2]/frequencies/selected-mhz</path>
+            <path>instrumentation/comm[2]/frequencies/standby-mhz</path>
+            <path>instrumentation/nav/frequencies/selected-mhz</path>
+            <path>instrumentation/nav/frequencies/standby-mhz</path>
+            <path>instrumentation/nav[1]/frequencies/selected-mhz</path>
+            <path>instrumentation/nav[1]/frequencies/standby-mhz</path>
         </aircraft-data>
         <weight n="0"><weight-lb type="double">400</weight-lb></weight>
 
@@ -575,38 +662,47 @@ Service Ceiling: 43,100ft
         </flaps>
 
         <systems>
-            <path>Aircraft/777/Systems/systems.xml</path>
+            <path>Systems/systems.xml</path>
 
             <!--  fast running autopilot rules (running at FDM frequency / 120Hz) -->
             <autopilot>
-                <path>Aircraft/777/Systems/777-autopilot.xml</path>
+                <path>Systems/777-fbw.xml</path>
             </autopilot>
             <autopilot>
-                <path>Aircraft/777/Systems/777-autothrottle.xml</path>
+                <path>Systems/777-fcs.xml</path>
+            </autopilot>
+            <autopilot>
+                <path>Systems/777-spoiler.xml</path>
+            </autopilot>
+            <autopilot>
+                <path>Systems/777-autopilot.xml</path>
+            </autopilot>
+            <autopilot>
+                <path>Systems/777-autothrottle.xml</path>
             </autopilot>
             <autopilot>
                 <name>Autobrake system</name>
-                <path>Aircraft/777/Systems/777-autobrake.xml</path>
+                <path>Systems/777-autobrake.xml</path>
+            </autopilot>
+            <autopilot>
+                <path>Systems/777-spoiler-fcs.xml</path>
             </autopilot>
 
             <!--  slow running property-rules (running at frame rate) -->
             <property-rule n="100">
-                <path>Aircraft/777/Systems/777-spoiler-fcs.xml</path>
+                <path>Systems/777-PFD.xml</path>
             </property-rule>
             <property-rule n="101">
-                <path>Aircraft/777/Systems/777-PFD.xml</path>
-            </property-rule>
-            <property-rule n="102">
-                <path>Aircraft/777/Systems/777-pcu.xml</path>
+                <path>Systems/777-fuel.xml</path>
             </property-rule>
         </systems>
 
         <instrumentation>
-            <path>Aircraft/777/Systems/instrumentation.xml</path>
+            <path>Systems/instrumentation.xml</path>
         </instrumentation>
 
         <sound>
-            <path>Aircraft/777/Sounds/777-sound.xml</path>
+            <path>Sounds/777-sound.xml</path>
             <stall type="bool">0</stall>
             <click1 type="bool">0</click1>
             <click2 type="bool">0</click2>
@@ -621,10 +717,6 @@ Service Ceiling: 43,100ft
             <cabinalert type="bool">0</cabinalert>
         </sound>
 
-        <hud>
-            <enable3d>false</enable3d>
-        </hud>
-
         <virtual-cockpit>true</virtual-cockpit>
         <allow-toggle-cockpit>true</allow-toggle-cockpit>
     </sim>
@@ -637,6 +729,16 @@ Service Ceiling: 43,100ft
             <n1-limit type="double">98.5</n1-limit>
         </engine>
     </engines>
+
+    <fcs n="0">
+        <pfc-enable type="bool">1</pfc-enable>
+        <fbw>
+            <pitch>
+                <trim-kts type="double">140</trim-kts>
+            </pitch>
+            <show-fbw-bug type="bool">0</show-fbw-bug> <!-- Overwritten with stored setting later -->
+        </fbw>
+    </fcs>
 
     <gear n="0">
         <gear n="0">
@@ -782,7 +884,7 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>property-adjust</command>
                     <property>controls/flight/aileron-trim</property>
-                    <step type="double">-0.012</step>
+                    <step type="double">-0.01</step>
                 </binding>
             </key>
             <key n="41">
@@ -792,29 +894,7 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>property-adjust</command>
                     <property>controls/flight/aileron-trim</property>
-                    <step type="double">0.012</step>
-                </binding>
-            </key>
-            <key n="49">
-                <name>1</name>
-                <desc>nose up stab trim</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        controls.elevatorTrim(-1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
-                    </script>
-                </binding>
-            </key>
-            <key n="55">
-                <name>7</name>
-                <desc>nose down stab trim</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        controls.elevatorTrim(1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
-                    </script>
+                    <step type="double">0.01</step>
                 </binding>
             </key>
             <key n="61">
@@ -823,6 +903,20 @@ Service Ceiling: 43,100ft
                 <binding>
                     <command>nasal</command>
                     <script>controls.toggleAutoSpoilers();</script>
+                </binding>
+            </key>
+            <key n="101">
+                <name>e</name>
+                <desc>Set idle thrust</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        if (getprop("instrumentation/afds/inputs/autothrottle-index") > 0) {
+                            setprop("instrumentation/afds/inputs/autothrottle-index", 0);
+                        }
+                        setprop("controls/engines/engine[0]/throttle", 0);
+                        setprop("controls/engines/engine[1]/throttle", 0);
+                    </script>
                 </binding>
             </key>
              <key n="108">
@@ -873,29 +967,87 @@ Service Ceiling: 43,100ft
                     <max>2</max>
                 </binding>
             </key>
-            <key n="362">
-                <name>Home</name>
-                <desc>nose down stab trim</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        controls.elevatorTrim(1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
-                    </script>
-                </binding>
-            </key>
-            <key n="363">
-                <name>End</name>
-                <desc>nose up stab trim</desc>
+            <key n="49">
+                <name>1</name>
+                <desc>Elevator Trim Up</desc>
+                <repeatable>true</repeatable>
                 <binding>
                     <command>nasal</command>
                     <script>
                         controls.elevatorTrim(-1);
-                        gui.popupTip(sprintf("Elevator trim: %d", 100 * getprop("/controls/flight/elevator-trim")));
                     </script>
+                </binding>
+                <mod-shift>
+                    <desc>Look back left</desc>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/sim/current-view/goal-heading-offset-deg</property>
+                        <property>/sim/view/config/back-left-direction-deg</property>
+                    </binding>
+                </mod-shift>
+            </key>
+            <key n="55">
+                <name>7</name>
+                <desc>Elevator Trim Down</desc>
+                <repeatable>true</repeatable>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        controls.elevatorTrim(1);
+                    </script>
+                </binding>
+                <mod-shift>
+                    <desc>Look front left</desc>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/sim/current-view/goal-heading-offset-deg</property>
+                        <property>/sim/view/config/front-left-direction-deg</property>
+                    </binding>
+                </mod-shift>
+            </key>
+            <key n="362">
+                <name>Home</name>
+                <desc>Elevator Trim Down</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>controls.elevatorTrim(1);</script>
+                </binding>
+            </key>
+            <key n="363">
+                <name>End</name>
+                <desc>Elevator Trim Up</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>controls.elevatorTrim(-1);</script>
                 </binding>
             </key>
         </keyboard>
+        <mice n="0">
+            <mouse n="0">
+                <mode n="1"> <!-- Mouse Yoke Support -->
+                    <button n="3">
+                        <binding n="0">
+                            <command>nasal</command>
+                            <script></script>
+                        </binding>
+                        <binding n="1">
+                            <command>nasal</command>
+                            <script>controls.elevatorTrim(1);</script>
+                        </binding>
+                    </button>
+                    <button n="4">
+                        <binding n="0">
+                            <command>nasal</command>
+                            <script></script>
+                        </binding>
+                        <binding n="1">
+                            <command>nasal</command>
+                            <script>controls.elevatorTrim(-1);</script>
+                        </binding>
+                    </button>
+                </mode>
+            </mouse>
+        </mice>
     </input>
 
     <instrumentation n="0">
@@ -918,7 +1070,7 @@ Service Ceiling: 43,100ft
                 <abs-altitude type="bool" archive="y">false</abs-altitude>
             </display-controls>
             <serviceable type="bool">true</serviceable>
-            <range n="0" alias="/instrumentation/efis/inputs/range-nm"/>
+            <range n="0" alias="/instrumentation/efis/inputs/range-nm"></range>
             <reference-range-nm type="double" archive="y">640</reference-range-nm>
             <mode type="string" archive="y">WX</mode>
             <font>
@@ -955,8 +1107,8 @@ Service Ceiling: 43,100ft
                 <line-spacing type="float">0.01</line-spacing>
             </font>
             <lightning type="bool">true</lightning>
-            <radar-texture-path type="string">Aircraft/777/Models/Instruments/ND/od_wxradar.png</radar-texture-path>
-            <echo-texture-path type="string">Aircraft/777/Models/Instruments/ND/wxecho.png</echo-texture-path>
+            <radar-texture-path type="string">Models/Instruments/ND/od_wxradar.png</radar-texture-path>
+            <echo-texture-path type="string">Models/Instruments/ND/wxecho.png</echo-texture-path>
             <minimized type="bool">false</minimized>
             <heading-marker type="bool">true</heading-marker>
             <limit-deg type="int">360</limit-deg>
@@ -971,7 +1123,7 @@ Service Ceiling: 43,100ft
                    255 <!-- aircraft type T1, fast turbofan -->
                 </category-1>
                 <category-4>                    <!-- ALTITUDE_CALLOUTS -->
-                    13 <!-- enable all altitude callouts -->
+                    1002 <!-- enable all altitude callouts -->
                 </category-4>
                 <category-8>                    <!-- RADIO_ALTITUDE_INPUT_SELECT -->
                      3 <!-- use precise (but YASim-specific) gear altitude -->
@@ -1020,11 +1172,11 @@ Service Ceiling: 43,100ft
         </tcas>
         <efis>
             <inputs>
-                <tfc  type="bool">false</tfc>
-                <sta  type="bool">false</sta>
+                <tfc type="bool">false</tfc>
+                <sta type="bool">false</sta>
                 <arpt type="bool">false</arpt>
-                <wpt  type="bool">false</wpt>
-                <wxr  type="bool">false</wxr>
+                <wpt type="bool">false</wpt>
+                <wxr type="bool">false</wxr>
                 <range-nm type="int">10</range-nm>
             </inputs>
             <mfd>
@@ -1033,11 +1185,11 @@ Service Ceiling: 43,100ft
         </efis>
         <efis n="1">
             <inputs>
-                <tfc  type="bool">false</tfc>
-                <sta  type="bool">false</sta>
+                <tfc type="bool">false</tfc>
+                <sta type="bool">false</sta>
                 <arpt type="bool">false</arpt>
-                <wpt  type="bool">false</wpt>
-                <wxr  type="bool">false</wxr>
+                <wpt type="bool">false</wpt>
+                <wxr type="bool">false</wxr>
                 <range-nm type="int">10</range-nm>
             </inputs>
             <mfd>
@@ -1051,8 +1203,8 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">0</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz  type="double">119.10</selected-mhz>
-                <standby-mhz  type="double">125.00</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.10</selected-mhz>
+                <standby-mhz userarchive="y" type="double">125.00</standby-mhz>
             </unit>
             <unit n="1">
                 <vhf-l type="int">0</vhf-l>
@@ -1060,8 +1212,8 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">0</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz  type="double">119.30</selected-mhz>
-                <standby-mhz type="double">115.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.30</selected-mhz>
+                <standby-mhz userarchive="y" type="double">118.70</standby-mhz>
             </unit>
             <unit n="2">
                 <vhf-l type="int">0</vhf-l>
@@ -1069,42 +1221,42 @@ Service Ceiling: 43,100ft
                 <vhf-c type="int">1</vhf-c>
                 <hf-l type="int">0</hf-l>
                 <hf-r type="int">0</hf-r>
-                <selected-mhz  type="double">119.50</selected-mhz>
-                <standby-mhz type="double">135.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.50</selected-mhz>
+                <standby-mhz userarchive="y" type="double">135.705</standby-mhz>
             </unit>
         </rmu>
         <comm>
             <frequencies>
-                <selected-mhz  type="double">119.10</selected-mhz>
-                <standby-mhz  type="double">125.00</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.10</selected-mhz>
+                <standby-mhz userarchive="y" type="double">125.00</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <comm n="1">
             <frequencies>
-                <selected-mhz  type="double">119.30</selected-mhz>
-                <standby-mhz type="double">115.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.30</selected-mhz>
+                <standby-mhz userarchive="y" type="double">118.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <comm n="2">
             <frequencies>
-                <selected-mhz  type="double">119.50</selected-mhz>
-                <standby-mhz type="double">135.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">119.50</selected-mhz>
+                <standby-mhz userarchive="y" type="double">135.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </comm>
         <nav>
             <frequencies>
-                <selected-mhz  type="double">109.50</selected-mhz>
-                <standby-mhz type="double">109.55</standby-mhz>
+                <selected-mhz userarchive="y" type="double">109.50</selected-mhz>
+                <standby-mhz userarchive="y" type="double">109.55</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </nav>
         <nav n="1">
             <frequencies>
-                <selected-mhz  type="double">110.10</selected-mhz>
-                <standby-mhz type="double">111.70</standby-mhz>
+                <selected-mhz userarchive="y" type="double">110.10</selected-mhz>
+                <standby-mhz userarchive="y" type="double">111.70</standby-mhz>
             </frequencies>
             <volume type="double">0</volume>
         </nav>
@@ -1138,7 +1290,7 @@ Service Ceiling: 43,100ft
         <cdu n="0">
             <serviceable type="bool">true</serviceable>
             <display>IDENT</display>
-            <input type="string"/>
+            <input type="string"></input>
         </cdu>
         <fmc>
             <to-flap type="double">15</to-flap>
@@ -1148,7 +1300,7 @@ Service Ceiling: 43,100ft
                 <min-runway-length-ft type="double">5000</min-runway-length-ft>
             </config>
         </gps>
-        <efb include="Models/Instruments/EFB/TimeZones.xml"/>
+        <efb include="Models/Instruments/EFB/TimeZones.xml"></efb>
     </instrumentation>
 
     <controls n="0">
@@ -1160,12 +1312,13 @@ Service Ceiling: 43,100ft
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>
         <flight>
+            <elevator-trim type="double">0.125</elevator-trim>
             <speedbrake-lever type="double">0</speedbrake-lever>
             <trim-ref-speed type="double">0</trim-ref-speed>
         </flight>
         <cabin>
-            <NoSmoking-knob type="int" >1 </NoSmoking-knob>
-            <SeatBelt-knob type="int" >1 </SeatBelt-knob>
+            <NoSmoking-knob type="int">1 </NoSmoking-knob>
+            <SeatBelt-knob type="int">1 </SeatBelt-knob>
         </cabin>
     </controls>
 
@@ -1193,37 +1346,59 @@ Service Ceiling: 43,100ft
 
     <nasal n="0">
         <raas>
-            <file>Aircraft/777/Nasal/raas.nas</file>
+            <file>Nasal/raas.nas</file>
         </raas>
         <b777>
-            <file>Aircraft/777/Nasal/Air.nas</file>
-            <file>Aircraft/777/Nasal/Electrical.nas</file>
-            <file>Aircraft/777/Nasal/engine.nas</file>
-            <file>Aircraft/777/Nasal/efb.nas</file>
-            <file>Aircraft/777/Nasal/Hydraulics.nas</file>
-            <file>Aircraft/777/Nasal/systems.nas</file>
-            <file>Aircraft/777/Nasal/AFDS.nas</file>
-            <file>Aircraft/777/Nasal/tyresmoke.nas</file>
-            <file>Aircraft/777/Nasal/gpws.nas</file>
-            <file>Aircraft/777/Nasal/warnsystem.nas</file>
-            <file>Aircraft/777/Nasal/Cabinalert.nas</file>
-            <file>Aircraft/777/Nasal/brakesystem.nas</file>
-            <file>Aircraft/777/Nasal/ground_steering.nas</file>
-            <file>Aircraft/777/Models/Instruments/ND/ND.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/mfd.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/fctl.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/eng.nas</file>
-            <file>Aircraft/777/Models/Instruments/MFD/fuel.nas</file>
-            <file>Aircraft/777/Nasal/SWanimation.nas</file>
-            <file>Aircraft/777/Nasal/runway.nas</file>
+            <file>Nasal/Air.nas</file>
+            <file>Nasal/Electrical.nas</file>
+            <file>Nasal/engine.nas</file>
+            <file>Nasal/efb.nas</file>
+            <file>Nasal/Hydraulics.nas</file>
+            <file>Nasal/systems.nas</file>
+            <file>Nasal/AFDS.nas</file>
+            <file>Nasal/tyresmoke.nas</file>
+            <file>Nasal/gpws.nas</file>
+            <file>Nasal/ground_services.nas</file>
+            <file>Nasal/payload.nas</file>
+            <file>Nasal/warnsystem.nas</file>
+            <file>Nasal/Cabinalert.nas</file>
+            <file>Nasal/brakesystem.nas</file>
+            <file>Nasal/ground_steering.nas</file>
+            <file>Models/Instruments/ND/ND.nas</file>
+            <file>Models/Instruments/MFD/mfd.nas</file>
+            <file>Models/Instruments/MFD/fctl.nas</file>
+            <file>Models/Instruments/MFD/eng.nas</file>
+            <file>Models/Instruments/MFD/fuel.nas</file>
+            <file>Nasal/SWanimation.nas</file>
+            <file>Nasal/runway.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
+            <file>Nasal/light-manager.nas</file>
+            <file>Nasal/777.nas</file>
         </b777>
         <dialogs>
-            <file>Aircraft/777/Nasal/dialogs.nas</file>
+            <file>Nasal/dialogs.nas</file>
         </dialogs>
         <cdu>
-            <file>Aircraft/777/Models/Instruments/CDU/boeing.nas</file>
+            <file>Models/Instruments/CDU/boeing.nas</file>
+            <file>Models/Instruments/CDU/library.nas</file>
+            <file>Models/Instruments/CDU/functions.nas</file>
+            <file>Models/Instruments/CDU/LEGS.nas</file>
         </cdu>
+        <datalink>
+            <file>Models/Instruments/CDU/datalink.nas</file>
+        </datalink>
+        <autopush>
+         <file>Nasal/autopush.nas</file>
+        </autopush>
+        <autopush_driver>
+         <file>Nasal/autopush_driver.nas</file>
+        </autopush_driver>
+        <dynarr>
+         <file>Nasal/dynarr.nas</file>
+        </dynarr>
+        <autopush_route>
+         <file>Nasal/autopush_route.nas</file>
+        </autopush_route>
     </nasal>
 
     <limits n="0">
@@ -1256,5 +1431,17 @@ Service Ceiling: 43,100ft
         <max-positive-g>2.5</max-positive-g>
         <max-negative-g>-1.76</max-negative-g>
     </limits>
+    
+    <path>lightning-f1a.ac</path>
+    
+    <aircraft>
+        <settings>
+            <tooltips userarchive="y" type="bool">true</tooltips>
+            <fuel_persistent userarchive="y" type="bool">false</fuel_persistent>
+            <weight_persistent userarchive="y" type="bool">false</weight_persistent>
+            <radio_persistent userarchive="y" type="bool">false</radio_persistent>
+            <ground_services_persistent userarchive="y" type="bool">false</ground_services_persistent>
+        </settings>
+    </aircraft>
 
 </PropertyList>

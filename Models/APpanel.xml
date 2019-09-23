@@ -534,6 +534,7 @@ Autopilot Control Panel
         <property>autopilot/settings/target-speed-mach</property>
         <factor>1</factor>
         <step>0.1</step>
+		<bias>0.00001</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -547,6 +548,7 @@ Autopilot Control Panel
         <property>autopilot/settings/target-speed-mach</property>
         <factor>10.0</factor>
         <step>0.01</step>
+		<bias>0.00001</bias>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -560,6 +562,7 @@ Autopilot Control Panel
         <property>autopilot/settings/target-speed-mach</property>
         <factor>100.0</factor>
         <step>0.001</step>
+		<bias>0.00001</bias>
         <axis>
             <x>0</x>
             <y>1</y>

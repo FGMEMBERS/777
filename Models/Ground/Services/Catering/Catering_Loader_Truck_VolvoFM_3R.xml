@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+	<!-- 787 catering truck implemented on the 777 by Isaak Dieleman -->
+	
+	<path>Catering_Loader_Truck_VolvoFM_3R.ac</path>
+	
+	# Visible or not
+	
+	<animation>
+		<type>select</type>
+		<object>cater_bridge2</object>
+		<object>cater_truck2</object>
+		<object>gourmet_cargo2</object>
+		<object>gourmet_railing2</object>
+		<object>gourmet_scissor_inner2</object>
+		<object>gourmet_scissor_outer2</object>
+		<condition>
+			<and>
+				<equals>
+					<property>services/catering/enable2</property>
+					<value>1</value>
+				</equals>
+				<less-than>
+						<property>velocities/groundspeed-kt</property>
+					<value>1</value>
+				</less-than>
+			</and>
+		</condition>
+	</animation>
+	
+	# Pick animations
+	
+	<animation>
+        <type>pick</type>
+		<object-name>cater_bridge2</object-name>
+		<object-name>gourmet_cargo2</object-name>
+		<object-name>gourmet_railing2</object-name>
+		<object-name>gourmet_scissor_inner2</object-name>
+		<object-name>gourmet_scissor_outer2</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>services/catering/move2</property>
+            </binding>
+        </action>
+    </animation>
+	
+	<animation>
+        <type>pick</type>
+		<object-name>cater_truck2</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>services/catering/enable2</property>
+            </binding>
+        </action>
+    </animation>
+	
+	# Positioning
+	
+	<animation>
+		<type>translate</type>
+		<object>cater_bridge2</object>
+		<object>cater_truck2</object>
+		<object>gourmet_cargo2</object>
+		<object>gourmet_railing2</object>
+		<object>gourmet_scissor_inner2</object>
+		<object>gourmet_scissor_outer2</object>
+		<property>sim/model/ramp/x-m</property>
+		<offset-m>19.284</offset-m>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	# Elevator Animation
+
+	<animation>
+		<type>translate</type>
+		<object-name>cater_bridge2</object-name>
+		<property>services/catering/position2</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0.0</dep>
+			</entry>
+			<entry>
+				<ind>0.47368421052</ind>
+				<dep>0.0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>2.0</dep>
+			</entry>
+		</interpolation> 
+		<axis>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>gourmet_railing2</object-name>
+		<object-name>gourmet_cargo2</object-name>
+		<property>services/catering/position2</property>
+		<factor>3.8</factor>
+		<axis>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>gourmet_scissor_outer2</object-name>
+		<object-name>gourmet_scissor_inner2</object-name>
+		<property>services/catering/position2</property>
+		<factor>1.9</factor>
+		<axis>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>gourmet_scissor_outer2</object-name>
+		<property>services/catering/position2</property>
+		<factor>32</factor>
+		<expression>
+		    <rad2deg>
+				<asin>
+					<div>
+						<product>
+							<property>services/catering/position2</property>
+							<value>3.8</value>
+						</product>
+						<value>7.36481</value>
+					</div>
+				</asin>
+			</rad2deg>
+		</expression>
+		<center>
+			<x-m>-12.66448</x-m>
+			<y-m>9.15734</y-m>
+			<z-m>-4.46443</z-m>
+		</center>
+		<axis>
+		    <x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>gourmet_scissor_inner2</object-name>
+		<property>services/catering/position2</property>
+		<factor>32</factor>
+		<expression>
+		    <rad2deg>
+				<asin>
+					<div>
+						<product>
+							<property>services/catering/position2</property>
+							<value>-3.8</value>
+						</product>
+						<value>7.36481</value>
+					</div>
+				</asin>
+			</rad2deg>
+		</expression>
+		<center>
+			<x-m>-12.66448</x-m>
+			<y-m>9.15734</y-m>
+			<z-m>-4.46443</z-m>
+		</center>
+		<axis>
+		    <x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+<animation>
+	<type>translate</type>
+	<object>cater_bridge2</object>
+	<object>cater_truck2</object>
+	<object>gourmet_cargo2</object>
+	<object>gourmet_railing2</object>
+	<object>gourmet_scissor_inner2</object>
+	<object>gourmet_scissor_outer2</object>
+	<property>gear/gear[2]/compression-norm</property>
+	<interpolation>
+		<entry><ind>0.15</ind><dep>0.0</dep></entry>
+		<entry><ind>0.40</ind><dep>0.15</dep></entry>
+	</interpolation>
+	<axis>
+		<x>0</x>
+		<y>0</y>
+		<z>1</z>
+	</axis>
+</animation>
+
+</PropertyList>

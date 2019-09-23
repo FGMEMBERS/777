@@ -2,33 +2,6 @@
 <PropertyList>
     <!-- cockpit x=22.5 y=0 z=0.78 -->
     <fx>
-
-<egpws>
-			<name>egpws</name>
-			<mode>once</mode>
-			<type>avionics</type>
-			<path>Aircraft/777/Sounds/GPWS/altitude-2500.wav</path>
-			<condition>
-				<and>
-					<less-than>
-						<property>/position/altitude-agl-ft</property>
-						<value>2500</value>
-					</less-than>
-				</and>
-			</condition>
-		<volume>
-        		<factor>100</factor>
-    		</volume>
-    		<position>
-        		<x>0.00</x>
-        		<y>0.00</y>
-        		<z>0.00</z>
-    		</position>
-    		<reference-dist>10.0</reference-dist>
-    		<max-dist>100.0</max-dist>
-	</egpws>
-
-
 <!-- APU -->
 
     <apu>
@@ -308,7 +281,7 @@
         <gear1>
             <name>gear</name>
             <mode>in-transit</mode>
-            <path>Aircraft/777/Sounds/gear.wav</path>
+            <path>Sounds/gear.wav</path>
             <property>gear/gear[0]/position-norm</property>
             <volume>
                 <property>sim/sound/Ovolume</property>
@@ -688,24 +661,6 @@
             <reference-dist>2</reference-dist>
             <max-dist>200.0</max-dist>
         </switch>
-        <speedbrake>
-            <name>speedbrake</name>
-            <mode>in-transit</mode>
-            <path>Sounds/flaps.wav</path>
-            <property>surface-positions/speedbrake-pos-norm</property>
-            <volume>
-                <property>sim/sound/Ovolume</property>
-                <max>0.8</max>
-                <offset>0.2</offset>
-            </volume>
-            <position>
-                <x>-9</x>
-                <y>0</y>
-                <z>0</z>
-            </position>
-            <reference-dist>60.0</reference-dist>
-            <max-dist>6000.0</max-dist>
-        </speedbrake>
         <engines>
             <name>left reverse-thrust</name>
             <mode>looped</mode>
@@ -922,7 +877,7 @@
                 <factor>100</factor>
             </volume>
         </apdisengage>
-		<cautionsound>
+        <cautionsound>
             <name>caution sound</name>
             <mode>once</mode>
             <type>avionics</type>
@@ -934,7 +889,6 @@
                 <factor>100</factor>
             </volume>
         </cautionsound>
-
         <!-- <overspeed> <name>overspeed warning</name> <mode>looped</mode>
             <type>avionics</type> <path>Sounds/overspeed.wav</path> <condition> <greater-than>
             <property>velocities/airspeed-kt</property> <property>instrumentation/afds/max-airspeed-kts</property>
@@ -951,5 +905,14 @@
                 <factor>1.2</factor>
             </pitch>
         </crash>
+        <avhum>
+            <path>/Sounds/avionics-400Hz.wav</path>
+            <mode>looped</mode>
+            <type>avionics</type>
+            <property>systems/electrical/outputs/avionics</property>
+            <volume>
+                <factor>0.2</factor>
+            </volume>
+        </avhum>
 </fx>
 </PropertyList>

@@ -4,7 +4,7 @@
 <sim>
     <model>
         <livery>
-            <name type="string">TAM Old Livery</name>
+            <name type="string">TAM TAM (One World)</name>
             <texture>Liveries-300/TAM-O.png</texture>
         </livery>
     </model>

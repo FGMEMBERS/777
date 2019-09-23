@@ -7,9 +7,6 @@
             <name type="string">DAL Delta Airlines (retro)</name>
             <texture>Liveries-200/DAL_retro.png</texture>
         </livery>
-        <lights>
-            <texture>Liveries-200/DAL_retro-lights.png</texture>
-        </lights>
     </model>
 </sim>
 </PropertyList>

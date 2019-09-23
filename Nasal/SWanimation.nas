@@ -68,6 +68,7 @@ var RDSPLST = aircraft.door.new("controls/switches/RDSPLSwitchTimer", duration);
 var RAIRDATAST = aircraft.door.new("controls/switches/RAIRDATASwitchTimer", duration);
 var CDSPLST = aircraft.door.new("controls/switches/CDSPLSwitchTimer", duration);
 var AFAST = aircraft.door.new("controls/switches/AFASwitchTimer", duration);
+var XPDRSWITCH = getprop("instrumentation/transponder/mode-switch");
 
 setlistener("controls/electric/battery-switch", func {
         if(getprop("controls/electric/battery-switch")) BATTST.open();
@@ -341,5 +342,16 @@ setlistener("controls/fuel/tank[2]/nozzle-switch", func {
     setprop("controls/fuel/tank[2]/b-nozzle", 0);
     settimer(func { setprop("controls/fuel/tank[2]/b-nozzle", 1) }, 5.0);
 });
+setlistener("instrumentation/transponder/mode-switch", func {
+    XPDRSWITCH = getprop("instrumentation/transponder/mode-switch");
+    if(XPDRSWITCH == 0) {
+    setprop("instrumentation/transponder/inputs/knob-mode", 1);
+    } elsif (XPDRSWITCH == 1) {
+    setprop("instrumentation/transponder/inputs/knob-mode", 4);
+    } else {
+    setprop("instrumentation/transponder/inputs/knob-mode", 5);
+    }
+});
+
 
 

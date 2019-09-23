@@ -5,8 +5,9 @@
         <aero>777-200</aero>
         <max-payload type="double">238000</max-payload>
         <max-landing-weight type="double">445000</max-landing-weight>
+        <max-takeoff-weight type="double">545000</max-takeoff-weight>
         <startup>
-            <splash-texture>Aircraft/777/splash-200.png</splash-texture>
+            <splash-texture>Aircraft/777/gui/Previews/splash-200.png</splash-texture>
         </startup>
         <primary-set type="bool">true</primary-set>
         <model n="0">
@@ -23,6 +24,10 @@
                 <position-z-m type="float"> -0.42</position-z-m>
                 <jetway-hood-deg type="float">3</jetway-hood-deg>
             </door>
+            <ramp>
+                <x-m type="float">-19.284</x-m>
+                <class type="string">1</class>
+            </ramp>
         </model>
         <view n="0">
             <config n="0">
@@ -105,6 +110,14 @@
             <default n="0">
                 <menu n="100">
                     <label>777-200</label>
+                    <item n="3">
+                        <label>Weight and payload</label>
+                        <name>payload</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>payload</dialog-name>
+                        </binding>
+                    </item>
                 </menu>
             </default>
         </menubar>
@@ -124,6 +137,27 @@
             <name>Pax/Baggage</name>
             <weight-lb type="double">44840</weight-lb>
             <max-lb type="double">125530</max-lb>
+            <min-lb type="double">0</min-lb>
+        </weight>
+        <weight n="2">
+            <!--  Front Catering Galley -->
+            <name>Front Catering Galley</name>
+            <weight-lb type="double">0</weight-lb>
+            <max-lb type="double">1725</max-lb>
+            <min-lb type="double">0</min-lb>
+        </weight>
+        <weight n="3">
+            <!--  Center Catering Galley -->
+            <name>Center Catering Galley</name>
+            <weight-lb type="double">0</weight-lb>
+            <max-lb type="double">2525</max-lb>
+            <min-lb type="double">0</min-lb>
+        </weight>
+        <weight n="4">
+            <!--  Rear Catering Galley -->
+            <name>Rear Catering Galley</name>
+            <weight-lb type="double">0</weight-lb>
+            <max-lb type="double">2675</max-lb>
             <min-lb type="double">0</min-lb>
         </weight>
         <aircraft-operator>BAW</aircraft-operator>
@@ -148,5 +182,30 @@
             <descent-profile-low-rate type="double">-0.00050725</descent-profile-low-rate>
         </constant>
     </autopilot>
-
+    <aircraft>
+     <jetway-pos>
+      <x-tra>-1.8</x-tra>
+      <y-rot>3.3</y-rot>
+      <z-rot>18.3</z-rot>
+      <hood-rot>-6</hood-rot>
+      <!--z-entrance-rotation>26</z-entrance-rotation-->
+     </jetway-pos>
+     <jetway2-pos>
+      <x-tra>2.8</x-tra>
+      <y-rot>8.0</y-rot>
+      <z-rot>48</z-rot>
+      <hood-rot>-5</hood-rot>
+      <!--z-entrance-rotation>49</z-entrance-rotation-->
+     </jetway2-pos>
+    </aircraft>
+    
+    <services> <!--Max nr of passengers in each class. Data from https://en.wikipedia.org/wiki/Boeing_777#Specifications-->
+        <payload>
+            <first-max-nr>24</first-max-nr>
+            <business-max-nr>54</business-max-nr>
+            <economy-max-nr>227</economy-max-nr>
+            <catering-max-lbs>6925</catering-max-lbs>
+        </payload>
+    </services>
+    
 </PropertyList>

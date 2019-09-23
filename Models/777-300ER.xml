@@ -3,7 +3,6 @@
 Justin Smithies
 Syd Adams
 -->
-
 <PropertyList>
 
     <path>Aircraft/777/Models/777-300ER.ac</path>
@@ -23,10 +22,10 @@ Syd Adams
     <animation>
     <type>material</type>
     <object-name>Fuselage</object-name>
-    <object-name>RFdoor</object-name>
+    <!--object-name>RFdoor</object-name>
     <object-name>LFdoor</object-name>
     <object-name>LRdoor</object-name>
-    <object-name>RRdoor</object-name>
+    <object-name>RRdoor</object-name-->
     <object-name>Rmain.geardoor</object-name>
     <object-name>Lmain.geardoor</object-name>
     <object-name>Engines</object-name>
@@ -230,8 +229,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rudder</object-name>
-    <property>surface-positions/rudder-pos-norm</property>
-    <factor>35</factor>
+    <property>fcs/rudder/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>35.9653</x-m>
         <y-m>0</y-m>
@@ -248,8 +247,8 @@ Syd Adams
     <type>rotate</type>
     <object-name>LHelevator</object-name>
     <object-name>LHstab</object-name>
-    <property>surface-positions/stabilizer-pos-norm</property>
-    <factor>-15</factor>
+    <property>fcs/stabilizer/final-deg</property>
+    <factor>-1</factor>
     <center>
         <x-m>36.2293</x-m>
         <y-m>0</y-m>
@@ -265,8 +264,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>LHelevator</object-name>
-    <property>surface-positions/elevator-pos-norm</property>
-    <factor>-10</factor>
+    <property>fcs/left-elevator/final-deg</property>
+    <factor>-1</factor>
     <center>
         <x-m>37.9093</x-m>
         <y-m>-1.026</y-m>
@@ -283,8 +282,8 @@ Syd Adams
     <type>rotate</type>
     <object-name>RHelevator</object-name>
     <object-name>RHstab</object-name>
-    <property>surface-positions/stabilizer-pos-norm</property>
-    <factor>15</factor>
+    <property>fcs/stabilizer/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>36.8513</x-m>
         <y-m>1.250</y-m>
@@ -300,8 +299,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>RHelevator</object-name>
-    <property>surface-positions/elevator-pos-norm</property>
-    <factor>10</factor>
+    <property>fcs/right-elevator/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>37.9093</x-m>
         <y-m>1.026</y-m>
@@ -317,14 +316,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Raileron</object-name>
-        <condition>
-            <greater-than>
-                <property>surface-positions/flap-pos-norm</property>
-                <value>0</value>
-            </greater-than>
-        </condition>
-    <property>surface-positions/right-aileron-pos-norm</property>
-    <factor>-15</factor>
+    <property>fcs/right-out-aileron/final-deg</property>
+    <factor>-1</factor>
     <center>
         <x-m>16.127</x-m>
         <y-m>29.538</y-m>
@@ -340,45 +333,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rflaperon</object-name>
-    <property>surface-positions/right-aileron-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>-1.0</ind>
-                <dep>-3.0</dep>
-            </entry>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>15</dep>
-            </entry>
-         </interpolation>
-    <axis>
-        <x1-m> 7.77445</x1-m>
-        <y1-m> 7.92046</y1-m>
-        <z1-m>-0.87001</z1-m>
-        <x2-m> 7.77445</x2-m>
-        <y2-m> 11.0438</y2-m>
-        <z2-m>-0.426481</z2-m>
-    </axis>
-    </animation>
-
-    <animation>
-    <type>rotate</type>
-    <object-name>Rflaperon</object-name>
-    <property>surface-positions/flap-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>30</dep>
-            </entry>
-         </interpolation>
+    <property>fcs/right-in-aileron/final-deg</property>
+    <factor>1</factor>
     <axis>
         <x1-m> 7.77445</x1-m>
         <y1-m> 7.92046</y1-m>
@@ -452,17 +408,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rbrake</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/right-in-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>6.673</x1-m>
         <y1-m>3.269</y1-m>
@@ -476,17 +423,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Rbrake1</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/right-out-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>7.262</x1-m>
         <y1-m>11.979</y1-m>
@@ -560,17 +498,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Lbrake</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/left-in-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>6.737</x1-m>
         <y1-m>-8.363</y1-m>
@@ -584,17 +513,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Lbrake1</object-name>
-        <property>controls/flight/speedbrake-angle</property>
-    <interpolation>
-        <entry>
-        <ind>0</ind>
-        <dep>0</dep>
-        </entry>
-        <entry>
-        <ind>1.0</ind>
-        <dep>-60</dep>
-        </entry>
-    </interpolation>
+    <property>fcs/spoilers/left-out-final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m>11.353</x1-m>
         <y1-m>-20.368</y1-m>
@@ -608,14 +528,8 @@ Syd Adams
     <animation>
     <type>rotate</type>
     <object-name>Laileron</object-name>
-        <condition>
-            <greater-than>
-                <property>surface-positions/flap-pos-norm</property>
-                <value>0</value>
-            </greater-than>
-        </condition>
-    <property>surface-positions/left-aileron-pos-norm</property>
-    <factor>15</factor>
+    <property>fcs/left-out-aileron/final-deg</property>
+    <factor>1</factor>
     <center>
         <x-m>16.127</x-m>
         <y-m>-29.538</y-m>
@@ -628,53 +542,11 @@ Syd Adams
     </axis>
     </animation>
 
-<!--
-For the B767, the lockout is at around approx 278 kts or Mach .59.
-From Maintenance Training Manual
-Outboard Aileron Lockout Schedule
--->
     <animation>
     <type>rotate</type>
     <object-name>Lflaperon</object-name>
-    <property>surface-positions/left-aileron-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>-1.0</ind>
-                <dep>3.0</dep>
-            </entry>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>-15</dep>
-            </entry>
-         </interpolation>
-    <axis>
-        <x1-m> 7.77445</x1-m>
-        <y1-m>-7.92046</y1-m>
-        <z1-m>-0.87001</z1-m>
-        <x2-m> 7.77445</x2-m>
-        <y2-m>-11.0438</y2-m>
-        <z2-m>-0.426481</z2-m>
-    </axis>
-    </animation>
-
-    <animation>
-    <type>rotate</type>
-    <object-name>Lflaperon</object-name>
-    <property>surface-positions/flap-pos-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0.0</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>-30</dep>
-            </entry>
-         </interpolation>
+    <property>fcs/left-in-aileron/final-deg</property>
+    <factor>-1</factor>
     <axis>
         <x1-m> 7.77445</x1-m>
         <y1-m>-7.92046</y1-m>
@@ -1582,8 +1454,8 @@ Outboard Aileron Lockout Schedule
                     <atan>
                         <div>
                             <difference>
-                                <property>/sim/multiplay/generic/float[3]</property>
-                                <property>/sim/multiplay/generic/float[1]</property>
+                                <property>sim/multiplay/generic/float[3]</property>
+                                <property>sim/multiplay/generic/float[1]</property>
                             </difference>
                             <value>1.49</value>
                         </div>
@@ -1883,8 +1755,8 @@ Outboard Aileron Lockout Schedule
                     <atan>
                         <div>
                             <difference>
-                                <property>/sim/multiplay/generic/float[4]</property>
-                                <property>/sim/multiplay/generic/float[2]</property>
+                                <property>sim/multiplay/generic/float[4]</property>
+                                <property>sim/multiplay/generic/float[2]</property>
                             </difference>
                             <value>1.49</value>
                         </div>
@@ -2157,7 +2029,7 @@ Outboard Aileron Lockout Schedule
 <model>
 <path>Aircraft/777/Models/Effects/contrail1.xml</path>
 <offsets>
-<x-m>14.88</x-m>
+<x-m>15.10</x-m>
 <y-m>9.90</y-m>
 <z-m>-3.0</z-m>
 <heading-deg>0</heading-deg>
@@ -2166,33 +2038,10 @@ Outboard Aileron Lockout Schedule
 </offsets>
 </model>
 
-
-<!--model>
-<path>Aircraft/777/Models/Effects/contrail3.xml</path>
-<offsets>
-<x-m>40.3</x-m>
-<y-m>-9.90</y-m>
-<z-m>-3.0</z-m>
-<heading-deg>0</heading-deg>
- <roll-deg>    0 </roll-deg>
- <pitch-deg>   0 </pitch-deg>
-</offsets>
-</model>
+<!-- Tire smoke -->
 
 <model>
-<path>Aircraft/777/Models/Effects/contrail4.xml</path>
-<offsets>
-<x-m>41.0</x-m>
-<y-m>9.90</y-m>
-<z-m>-3.0</z-m>
-<heading-deg>0</heading-deg>
- <roll-deg>    0 </roll-deg>
- <pitch-deg>   0 </pitch-deg>
-</offsets>
-</model-->
-
-<model>
- <path>Aircraft/777/Models/Effects/tyre-smoke-nose.xml</path>
+ <path>Aircraft/777/Models/Effects/tire-smoke-nose.xml</path>
  <name>tyre-smoke-n</name>
  <offsets>
   <x-m>-19.00</x-m>
@@ -2201,9 +2050,8 @@ Outboard Aileron Lockout Schedule
  </offsets>
 </model>
 
-
 <model>
- <path>Aircraft/777/Models/Effects/tyre-smoke-left.xml</path>
+ <path>Aircraft/777/Models/Effects/tire-smoke-left.xml</path>
  <name>tyre-smoke-l</name>
  <offsets>
   <x-m>7.80</x-m>
@@ -2213,7 +2061,7 @@ Outboard Aileron Lockout Schedule
 </model>
 
 <model>
- <path>Aircraft/777/Models/Effects/tyre-smoke-right.xml</path>
+ <path>Aircraft/777/Models/Effects/tire-smoke-right.xml</path>
  <name>tyre-smoke-r</name>
  <offsets>
   <x-m>7.80</x-m>
@@ -2222,15 +2070,178 @@ Outboard Aileron Lockout Schedule
  </offsets>
 </model>
 
+<!-- Pushback -->
+
 <model>
  <name>Pushback</name>
- <path>Models/Airport/Pushback/Douglas.xml</path>
+ <path>Aircraft/777/Models/Autopush/Goldhofert.xml</path>
  <offsets>
   <x-m>-24.5181</x-m>
   <y-m>0.0</y-m>
   <z-m>-5.4</z-m>
  </offsets>
 </model>
+
+<!-- Fuel Truck -->
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Fuel-Truck/Fuel_Truck_Short_VolvoFM.xml</path>
+    <condition>
+        <and>
+            <equals>
+                <property>services/fuel-truck/enable</property>
+                <value>1</value>
+            </equals>
+            <less-than>
+                <property>velocities/groundspeed-kt</property>
+                <value>1</value>
+            </less-than>
+        </and>
+    </condition>
+</model>
+
+<!-- External Power -->
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/External-Power/ext-pwr-box.xml</path>
+    <condition>
+        <and>
+            <equals>
+                <property>services/ext-pwr/enable</property>
+                <value>1</value>
+            </equals>
+            <less-than>
+                <property>velocities/groundspeed-kt</property>
+                <value>1</value>
+            </less-than>
+        </and>
+    </condition>
+</model>
+
+<!-- Chocks -->
+
+<model>
+    <name>chock_nose</name>
+    <path>Aircraft/777/Models/Ground/Services/Chocks/chock_nose.xml</path>
+    <condition>
+        <and>
+            <equals>
+                <property>services/chocks/nose</property>
+                <value>1</value>
+            </equals>
+            <less-than>
+                <property>velocities/groundspeed-kt</property>
+                <value>1</value>
+            </less-than>
+        </and>
+    </condition>
+</model>
+
+<model>
+    <name>chock_left</name>
+    <path>Aircraft/777/Models/Ground/Services/Chocks/chock_left.xml</path>
+    <condition>
+        <and>
+            <equals>
+                <property>services/chocks/left</property>
+                <value>1</value>
+            </equals>
+            <less-than>
+                <property>velocities/groundspeed-kt</property>
+                <value>1</value>
+            </less-than>
+        </and>
+    </condition>
+</model>
+
+<model>
+    <name>chock_right</name>
+    <path>Aircraft/777/Models/Ground/Services/Chocks/chock_right.xml</path>
+    <condition>
+        <and>
+            <equals>
+                <property>services/chocks/right</property>
+                <value>1</value>
+            </equals>
+            <less-than>
+                <property>velocities/groundspeed-kt</property>
+                <value>1</value>
+            </less-than>
+        </and>
+    </condition>
+</model>
+
+<!-- Baggage Trucks -->
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Baggage/cargo_ramp_1.xml</path>
+    <condition>
+        <and>
+            <equals>
+                <property>services/payload/baggage-truck1-enable</property>
+                <value>1</value>
+            </equals>
+            <less-than>
+                    <property>velocities/groundspeed-kt</property>
+                <value>1</value>
+            </less-than>
+        </and>
+    </condition>
+</model>
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Baggage/cargo_ramp_2.xml</path>
+    <condition>
+        <and>
+            <equals>
+                <property>services/payload/baggage-truck2-enable</property>
+                <value>1</value>
+            </equals>
+            <less-than>
+                    <property>velocities/groundspeed-kt</property>
+                <value>1</value>
+            </less-than>
+        </and>
+    </condition>
+</model>
+
+<!--Catering Trucks-->
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Catering/Catering_Loader_Truck_VolvoFM_2R.xml</path>
+</model>
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Catering/Catering_Loader_Truck_VolvoFM_3R.xml</path>
+    <offsets>
+        <x-m>9.5</x-m>
+        <y-m>0.0</y-m>
+        <z-m>0.0</z-m>
+    </offsets>
+</model>
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Catering/Catering_Loader_Truck_VolvoFM_4R_300.xml</path>
+    <offsets>
+        <x-m>9.5</x-m>
+        <y-m>0.0</y-m>
+        <z-m>0.0</z-m>
+    </offsets>
+</model>
+
+<!--Stairs-->
+
+<model>
+    <path>Aircraft/777/Models/Ground/Services/Stairs/Stairs-300.xml</path>
+    <condition>
+        <less-than>
+            <property>velocities/groundspeed-kt</property>
+            <value>1</value>
+        </less-than>
+    </condition>
+</model>
+
+<!--Firetruck-->
 
 <model>
  <name>Firetruck1</name>
@@ -2260,7 +2271,7 @@ Outboard Aileron Lockout Schedule
     <and>
         <property>sim/animation/fire-services</property>
         <less-than>
-        <property>velocities/airspeed-kt</property>
+        <property>velocities/groundspeed-kt</property>
         <value>40</value>
         </less-than>
     </and>
